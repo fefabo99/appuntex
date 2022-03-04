@@ -1,0 +1,35 @@
+\documentclass[12pt, a4paper, openany, twoside]{book}
+
+\begin{document}
+\author{Fabio Ferrario}
+\title{Analisi e Progetto di Algoritmi}
+\maketitle
+
+\tableofcontents
+
+\chapter*{Cammini minimi}
+
+\section{Definizioni e proprietà}
+Sia G=(V,E) un grafo orientato con costi w sugli archi, 
+il costo di un cammino p=\textless$ v_1,v_2,...v_k$\textgreater è dato
+dalla somma del peso di tutti i vertici di quel cammino
+
+\paragraph*{Cammino minimo} tra una coppia di vertici $x$ e $y$ è un cammino di costo
+minore o uguale a quello di ogni altro cammino tra gli stessi vertici
+
+\paragraph*{Sottostruttura ottima}: ogni sottocammino di un cammino minimo è anch'esso minimo
+
+\paragraph*{Albero dei cammini minimi}: I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
+essere rappresentati tramite un albero radicato in $s$, detto albero dei cammini minimi
+
+\section{Algoritmo di Dijkstra}
+
+L’algoritmo di Dijkstra risolve il problema dei cammini minimi da sorgente unica.\\
+Vogliamo trovare un camminimo minimo che va da un dato vertice sorgente s $\epsilon$ V a ciascun vertice v $\epsilon$ V in un grafo orientato
+pesato G = (V, E)
+
+\paragraph{Attenzione}
+Dijksta funziona solo se w $\geq$  0 $\forall$ w $\epsilon$ W
+
+
+\end{document}
