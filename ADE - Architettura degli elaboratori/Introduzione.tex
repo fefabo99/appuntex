@@ -1,0 +1,79 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+
+\begin{document}
+\title{ADE - Archietettura degli elaboratori}
+\author{Elia Ronchetti}
+\date{Marzo 2022}
+
+\maketitle
+\tableofcontents
+
+\chapter{Introduzione e Argomenti}
+\section{Rappresentazione dell'informazione}
+\begin{itemize}
+    \item Sistemi numerici
+    \item Rappresentazione dei numeri interi con e senza segno
+    \item Rappresentazione dei numeri in virgola fissa e mobile
+    \item Rappresentazione dell'informatica non numerica
+\end{itemize}
+
+\section{Circuiti logici}
+\begin{itemize}
+    \item Reti combinatorie
+    \item Reti sequenziali e FSM (Finite State Machine)
+    \item Rassegna di circuiti notevoli (decoder, multiplexer, register file, ALU, etc.)
+\end{itemize}
+
+\section{Instruction Set Architecture (ISA)}
+\begin{itemize}
+    \item schema di von Neumann
+    \item CPU, registri, ALU e memoria
+    \item Ciclo fondamentale di esecuzione di una istruzione (fetch/decode/execute)
+    \item Tipi e formati di istruzioni MIPS32
+    \item Modalità di indirizzamento
+\end{itemize}
+
+\section{Linguaggio Assembly}
+\begin{itemize}
+    \item Formato simbolico delle istruzioni
+    \item Catena di programmazione (compilatore, assembler, linker, loader, debugger, etc.)
+    \item Pseudo-istruzioni e direttive dell'assemblatore
+    \item Scrittura di semplici programmi assembly
+    \item Convenzioni programmative (memoria, nomi dei registri, etc.)
+\end{itemize}
+
+\section{Datapath}
+\begin{itemize}
+    \item Percorsi dei dati per le diverse classi di istruzioni
+    \item Controllo del percorso dei dati con FSM
+\end{itemize}
+
+\section{Gestione delle eccezioni}
+\begin{itemize}
+    \item Tassonomia di eccezioni in terminologia MIPS32
+    \item Modifiche alla FSM di controllo, registro Cause
+\end{itemize}
+
+\section{Tecniche di gestione dell'ingresso/uscita}
+\begin{itemize}
+    \item Controllo di programma
+    \item Interruzione di programma
+    \item Accesso diretto alla memoria
+\end{itemize}
+
+\section{Gerarchie di memoria: cache}
+\begin{itemize}
+    \item Cache a mappature diretta
+    \item Cahce fully associative
+    \item Cache n-way set associative
+\end{itemize}
+
+\chapter{Sistemi numerici}
+
+
+
+\end{document}
