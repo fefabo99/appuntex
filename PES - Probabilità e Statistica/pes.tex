@@ -11,7 +11,77 @@
 
 \maketitle
 \tableofcontents
+\chapter{Introduzione}
+Il corso di probabilità e statistica per l'informatica è diviso in 2 parti
+\begin{enumerate}
+    \item Stastica Descrittiva - Descrivere e riassumere i dati
+    \begin{enumerate}
+        \item Probabilità - Descrivere matematicamente i fenomeni casuali
+    \end{enumerate}
+    \item Statistica inferenziale - Trarre conclusioni dai dati
+\end{enumerate}
 
 \chapter{Analisi Descrittiva}
+\section{Descrivere i dati}
+Per descrivere una raccolta dati in maniera chiara e immediata è utile utilizzare una \textbf{tabella delle frequenze}
+all'interno della quale sono contenuti:
+\begin{itemize}
+    \item Valori
+    \item Frequenze Assolute - Numero di volte in cui compare "i" nell'insieme di dati
+    \item Frequenze Relative - Frazione di volte in cui compare i nell'insieme di dati
+    \item Percentuali - (Frequenza relativa x 100)
+\end{itemize}
+
+I dati possono essere
+\begin{itemize}
+    \item Qualitativi
+    \item Quantitativi 
+\end{itemize}
+Noi useremo i dati \textbf{quantitativi}
+
+\subsection{Rappresentazione dei dati}
+Per rappresentare le frequenze (assolute o relative) risulta efficace e immediato l'utilizzo di un grafico a barre detto istogramma,
+esso rappresenta in graficamente la tabella, chiaramamente da esso è possibile risalire alla tabella stessa.
+Capita di avere degli insiemi di dati che assumono un valore elevato di valori distini, per questo conviene suddividerli in classi e
+determinare la frequenza di ciascuna classe. In questo modo c'è una perdita d'informazioni (sui valori specifici), ma così facendo possiamo
+calcolare le frequenze delle classi e avere un'idea migliore della distribuzione dei dati.
+
+\subsection{Dati Bivariati}
+Quando per ciascun individuo vengono misurate due variabili ci troviamo un insieme di N dati a coppie detti \textbf{dati bivariati}.
+Anche in questo caso è possibile calcolare le frequenze, in questo caso detto \textbf{frequenze congiunte}.
+
+è possibile, inoltre, misurare la correlazione tra le due variabili attraverso per esempio un diagramma di dispersione (detto anche scatterplot).
+
+\paragraph{Correlazione non significa causalità!} Non è detto che l'aumento di una variabile causi la diminuzione dell'altra o viceversa, potrebbe esserci una causa comune. 
+
+\section{Riassumere i dati}
+Dopo aver rappresentato i dati vogliamo ora riassumerli mediante quantità numeriche, dette \textbf{Statistiche Campionarie}, al fine di sintetizzare le proprietà
+salienti dei dati.
+
+\subsection{Indici di posizione}
+Per definire il centro dell'insieme dei dati definiamo la 
+\paragraph{\textbf{Media Campionaria}} \scalebox{2}{$\frac{x_1 + x_2 + \dots + x_n}{N}$} %Aggiungere sommatoria
+
+Per misurare il valore in posizione centrale (considerando l'insieme di dati ordinato), utilizziamo la
+\paragraph{\textbf{Mediana}}
+\begin{itemize}
+    \item Se N dispari - {$X_\frac{N+1}{2}$}
+    \item Se N pari - (manca da scrivere la formula in latex) %{$\frac{X_\frac{N+1}{2} + X_\frac{N}{2}$}
+\end{itemize}
+
+La mediana è insesibile alle code
+
+
+
+
+
+\chapter{Esame}
+L'esame sarà strutturato nella seguente maniera
+\paragraph{Parte 1 - Teoria}
+8 Domande a risposta multipla - Punteggio 10/30
+\paragraph{Parte 2 - Pratica}
+4 Esercizi a risposta aperta - Punteggio 20/30
+\paragraph{Progetto (facoltativo)}
+Progetto R, da consegnare prima dell'esame, può fornire un massimo di 2/30
 
 \end{document}
