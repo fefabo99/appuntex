@@ -32,6 +32,8 @@ all'interno della quale sono contenuti:
     \item Percentuali - (Frequenza relativa x 100)
 \end{itemize}
 
+Il dato che compare con frequenza più alta è detto \textbf{moda}.
+
 I dati possono essere
 \begin{itemize}
     \item Qualitativi
@@ -66,13 +68,60 @@ Per misurare il valore in posizione centrale (considerando l'insieme di dati ord
 \paragraph{\textbf{Mediana}}
 \begin{itemize}
     \item Se N dispari - {$X_\frac{N+1}{2}$}
-    \item Se N pari - (manca da scrivere la formula in latex) %{$\frac{X_\frac{N+1}{2} + X_\frac{N}{2}$}
+    \item Se N pari - $m = \frac{x_\frac{N}{2}+x_(\frac{N}{2}+1)}{2}$
 \end{itemize}
 
 La mediana è insesibile alle code
 
+\section{Coefficiente di correlazione lineare}
+Posso misurare il grado di correlazione tra una coppia di dati attraverso il coefficiente di correlazione lineare. 
 
+\begin{equation}
+    r = \frac{\sum_{k=1}^N (x_i - x)(y_i - y)}{(N -1)S_x S_y}
+\end{equation}
 
+Si può mostrare che:
+\begin{equation}
+    -1<=r<=1
+\end{equation}
+
+In generale $r > 0$ indica una correlazione positiva
+\\ $r < 0$ indica una correlazione negativa 
+
+\subsection{Correlazioni significative}
+$|r| > 0.7$ Correlazione significativa
+\\$|r| < 0.3$ Correlazione debole
+
+\section{Percentili e quantili}
+Per analizzare la distribuzione dei dati è utile fissare un numero k che rappresenta la posizione all'interno dato all'interno dell'insieme
+questo valore percentuale è detto \textbf{k-esimo Percentile Campionario}, valore t per cui
+\begin{itemize}
+    \item almeno il k\% dei dati è $ <= t$
+    \item almeno il $(100 -k)\%$ dei dati è $<= t$
+\end{itemize}
+
+I casi più importanti sono per k = 25, 50, 75
+\\ Risulta pratico scrivere $k = 100p$ dove $p = \frac{k}{100}\in [0, 1]$, dove i casi importanti sono per:
+\begin{itemize} 
+    \item $p = \frac{1}{4}: k = 100p$ = 25-esimo percentile = primo quartile $q_1$
+    \item $p = \frac{1}{2}: k = 100p$ = 50-esimo percentile = secondo quartile $q_2$ = mediana m
+    \item $p = \frac{3}{4}: k = 100p$ = 75-esimo percentile = terzo quartile $q_3$
+\end{itemize}
+
+Per calcolare il k-esimo percentile t è necessario:
+\begin{enumerate}
+    \item Ordinare l'insieme di dati $x_1 <= x_2 <= \dots <= x_n$
+    \item Se $N_p$ non è intera $t=x_i$ è il dato la cui posizione i è l'intero successivo a $N_p$
+    \item Se $N_p$ è intera $t = \frac{x_(Np) x_(Np+1)}{2}$ è la media aritmetica fra il dato in posizione N e il successivo 
+\end{enumerate}
+
+\paragraph{Nota per R} Esistono diverse definizioni di quantile, R èer esempio ne utilizza una diversa di default
+
+\'E possibile utilizzare i \textbf{Boxplot} per la rappresentazione dei quantili
+% Probabilità
+
+\chapter{Probabilità}
+\paragraph{Esperimento aleatorio} $\to$ Fenomeno il cui esito non è prevedibile a priori
 
 
 \chapter{Esame}
