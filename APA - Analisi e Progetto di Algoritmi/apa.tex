@@ -3,6 +3,10 @@
 \usepackage{listings}
 \usepackage{amsmath}
 
+
+% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+
 \begin{document}
 \title{Analisi e Progetto di Algoritmi}
 \author{Fabio Ferrario}
@@ -10,6 +14,43 @@
 \maketitle
 
 \tableofcontents
+
+\chapter{introduzione}
+\section{Argomenti del Corso}
+\begin{enumerate}
+    \item Programamzione dinamica
+    \begin{enumerate}
+        \item Esempi introduttivi
+        \item Caratteristiche principali
+        \item Implementazione con matrici
+    \end{enumerate}
+    \item Algoritmi greedy
+    \begin{enumerate}
+        \item Esempio: Scheduling di attività
+        \item Elementi della strategia greedy
+        \item Algoritmo di Huffman
+        \item Dimostrazione di correttezza
+        \item Greedy vs Dynamic programming: knapsack
+        \item Definizione di matroide: esempi
+        \item il teorema di Rado
+    \end{enumerate}
+    \item Algoritmi su grafi
+    \begin{enumerate}
+        \item Rappresentazione in memoria di un grafo
+        \item Visita in ampiezza e in profondità di un grafo
+        \item Ricerca delle componenti connesse di un grafo non orientato
+        \item Ricerca delle componenti (fortemente) connesse in un grafo orientato
+        \item Ricerca di cammini minimi in un grafo - Algorimti di programmazione dinamica
+        \item Costruzione di alberi di copertura minimi
+        \item Problemi di massimo flusso
+    \end{enumerate}
+    \item NP completezza
+    \begin{enumerate}
+        \item Problemi trattabili e intrattabili
+        \item Riducibilità polinomiale
+    \end{enumerate}
+
+\end{enumerate}
 
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
