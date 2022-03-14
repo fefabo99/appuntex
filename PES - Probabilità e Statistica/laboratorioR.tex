@@ -1,0 +1,75 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=R,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\begin{document}
+\title{Laboratorio R}
+\author{Elia Ronchetti}
+\date{Marzo 2022}
+
+\maketitle
+\tableofcontents
+\chapter{Introduzione a R e Analisi Descrittiva}
+Nell'interprete è possibile definire variabili, array, in maniera molto simile
+a Python
+
+Nell'esempio seguente dichiariamo delle variabili e leggiamo un dataset
+\begin{lstlisting}
+    a = 5
+    b = c(1, 2, 4)
+    arr = c(1:10)
+    s = c(1, 2, "ciao")
+    str(dataset)
+\end{lstlisting}
+
+
+Come notiamo per creare un array è necessario invocare la funzione \textbf{c} e salvarla in una variabile.
+\\ \'E possibile dichiarare degli Array misti, con numeri e stringhe.
+\\ Per quanto riguarda l'analisi approssimativa del dataset è possibile utilizzare il
+comando \textbf{str}
+
+\section{Grafici}
+La stampa dei grafici avviene tramite le apposite funzioni
+\begin{lstlisting}
+    stripchart(rivers, method="overplot")
+    stripchart(rivers, method="jitter")
+    hist(rivers)
+    hist(rivers, breaks=30) #commento
+\end{lstlisting}
+Nell'penultimo esempio gli istogrammi stampati non hanno un numero di barre definito dall'utente
+ma viene definito automaticamente da R studio, posso definire io il numero di barre attraverso
+il parametro \textbf{breaks}, come nell'ultimo esempio 
+
+\section{BoxPlot}
+Per la stampa di un Boxplot è sufficiente utilizzare la funzione \textbf{boxplot(data)}
+In questo modo è possibile stampare il grafico con i relativi outliers.
+\paragraph{Statistiche} Per sapere valore minimo, quartili e varie statistiche basta utilizzare
+\textbf{boxplot.stats(rivers)}
+\paragraph{Outliers} Gli outliers vegono considerati come tali se superano il terzo quartile
++ 
+
+\end{document}
