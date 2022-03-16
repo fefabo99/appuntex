@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\graphicspath{ {./images/} }
 
 \begin{document}
 \title{PES - Probabilità e Statistica per l'informatica}
@@ -118,12 +119,36 @@ Per calcolare il k-esimo percentile t è necessario:
 \paragraph{Nota per R} Esistono diverse definizioni di quantile, R èer esempio ne utilizza una diversa di default
 
 \'E possibile utilizzare i \textbf{Boxplot} per la rappresentazione dei quantili
-% Probabilità
 
 \chapter{Probabilità}
 Il calcolo delle probabilità è la teoria matematica che permette di descrivere e studiare \textbf{esperimenti aleatori}
-\paragraph{Esperimento aleatorio} $\to$ Fenomeno il cui esito non è prevedibile a priori
-\section{}
+\paragraph{Esperimento aleatorio} $\to$ Fenomeno il cui esito non è prevedibile con certezza a priori
+\section{Introduzione}
+La descrizione matematica si articola in tre passi
+\begin{enumerate}
+    \item Spazio campionario (o spazio degli esiti)$\to$ Insieme $\Omega$ che contiene tutti i possibili esiti dell'esperimento \\ es. Tiro un dato a sei facce $\Omega = {1, 2, 3, 4, 5, 6}$
+    \item Eventi $\to$ sono i sottinsiemi dello spazio campionario $A \subseteq \Omega$ \\ es. Tiro un dado a sei facce: esce un numero pari $A = {2, 4, 6}$
+    \item Probabilità $\to$ Regola che assegna, in modo coerente, a ogni evento $A \subseteq \Omega$ un "grado di fiducia" $P(A)$, tra 0 e 1, che attribuiamo al verificarsi di A
+    O funzione $P: P(\Omega) \to [0, 1]$ che soddisfa opportune proprietà
+\end{enumerate}
+\section{Proprietà di base} 
+\begin{enumerate}
+    \item $P(\Omega) = 1$
+    \item Se A e B sono eventi disgiunti, cioè $A \cap B \neq \emptyset$, allora \\ $P (A \cup B) = P(A) + P(B)$
+\end{enumerate}
+\paragraph{La coppia $(\Omega, P)$ è detta \textbf{Spazio di Probabilità}}.
+\\ Fissiamo uno spazio di probabilità $(\Omega, P)$.
+Da queste proprietà si deducono molte altre proprietà
+\begin{itemize}
+    \item $P(\emptyset) = 0$
+    \item \textbf{Regola del complementare} $\to P(A^c) = 1 - P(A)$ \\ Vale per ogni A
+    \item \textbf{Regola della addizione di probabilità} $\to P(A \cup B) = P(A) + P(B) - P(A \cap B)$ 
+    \\ Vale per ogni A, B (anche $A \cap B \neq \emptyset$)
+    \item Monotonia: se $A \subseteq B$ allora $P(A) <= P(B)$
+\end{itemize}
+\paragraph{Analogia} c'è un analogia tra probabilità e area
+\\\includegraphics{analogia_prob_area.png}
+\section{Calcolo combinatorio}
 
 
 

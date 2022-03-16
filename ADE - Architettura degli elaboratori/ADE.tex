@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\graphicspath{ {./images/} }
 
 \begin{document}
 \title{ADE - Archietettura degli elaboratori}
@@ -72,6 +73,8 @@
     \item Cache n-way set associative
 \end{itemize}
 
+%Fine indice - Inizio Appunti
+
 \chapter{Sistemi numerici} 
 
 Con il termine bit definiamo l'unità di misura dell'informazione. Un bit può assumero solo il valore di 0 o 1.
@@ -92,8 +95,7 @@ Il sistema numerico decimale:
     \item è un sistema posizionale: ogni cifra assume un valore diverso a seconda della posizione che occupa
 \end{itemize}
 
-\paragraph{Confronto tra Basi}
-Inserire immagine confronto
+Confronto tra Basi \\\includegraphics{confronto_tra_basi.png}
 
 \section{Conversione tra basi}
 Svolti esercizi di conversione tra basi
@@ -254,4 +256,28 @@ Solo 1 valore è attivo per ogni combinazione di input, quindi l'ingresso selezi
 una delle uscite, l'uscita selezionata ha valore 1 tutte le altre 0.
 \\ Nella foto il pallino vuoto corrisponde a 0, mentre senza pallino corrisponde a 1.
 
+\section{Multiplexor}
+Riceve n segnali in input, esso necessiterà
+Se abbiamo un multiplexor
+
+\section{Logiche a due livelli e PLA}
+\textbf{Programmable Logic Array}
+\begin{itemize}
+    \item Insieme di input
+    \item And Gates
+    \item Or Gates
+    \item Output
+\end{itemize}
+
+Normalmente il bus è di 32 bit
+
+\section{ALU}
+%Inserire descrizione ALU
+Blocchi per la costruzione di una ALU
+\begin{itemize}
+    \item AND
+    \item OR
+\end{itemize}
+Una Alu a 32 è semplicemente l'interconnessione di 32 ALU ad 1 bit in cascata
+\section{BEQ: branch-on-equal}
 \end{document}
