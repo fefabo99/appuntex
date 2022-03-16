@@ -52,6 +52,9 @@
 
 \end{enumerate}
 
+\section{Alcuni materiali}
+https://lonati.di.unimi.it/algopig/2122/?page=materiali
+
 \chapter{Programmazione Dinamica}
 \section{Introduzione}
 \paragraph{La programmazione dinamica} è una tecnica di programmazione che viene utilizzata per risolvere problemi più velocemente rispetto ad una soluzione ricorsiva a discapito di un maggiore consumo di memoria.
@@ -82,7 +85,21 @@ D-et-I risolverebbe inutilmente i sottoproblemi ogni volta, mentre un algoritmo 
 \section{Weighted Interval Scheduling}
 \subsection{Introduzione}
 \paragraph{Il problema} dello scheduling di attività riguarda la gestione di un insime di attività caratterizzate da un tempo di inizio, un tempo di fine e un valore. L'obiettivo è quello di determinare un insieme di attività mutualmente compatibili il cui valore totle è massimo. Un insieme di attività si dice mutualmente compatibili se per ogni attività di tale insieme, nessun'altra attività dell'insieme si sovrappone a questa.
+\paragraph{Pseudocodice}
+$p(i)$ è il più grande indice i > j tale che l'intervallo di indice i non si sovrappone all'intervallo di indice j.
+\begin{lstlisting}[mathescape=true]
+WEIGHTED-INTERVAL-SCHEDULING 
+	M[0] = 0
+	For i = 1 to n
+		M[i] = max(v$_i$ + M[p(i)], M[i-1])
+\end{lstlisting}
+In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
+\begin{itemize}
+	\item $v_i$ = $M[p(i)]$ se $i \in OPT$
+	\item $M[i-1]$ se $i \notin OPT$
+\end{itemize}
 
+\section{Il Knapsack Problem}
 
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
@@ -201,7 +218,7 @@ Alla fine dell'esecuzione DFS-VISIT mette nero il nodo in esame e procede con il
 
 
 \paragraph{Sottografo dei predecessori}
-Data una visita in profondità, il sottografo dei predecessori può essere formato da pià alberi, poichè la visita può essere ripetuta da più sorgenti.
+Data una visita in profondità, il sottografo dei predecessori può essere formato da più alberi, poichè la visita può essere ripetuta da più sorgenti.
 Quindi forma una foresta DF, composta da vari alberi DF.
 
 
