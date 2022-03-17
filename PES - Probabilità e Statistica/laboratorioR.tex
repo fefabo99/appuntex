@@ -34,6 +34,17 @@
 \maketitle
 \tableofcontents
 \chapter{Introduzione a R e Analisi Descrittiva}
+\section{Navigazione directory}
+In R Studio per navigare nelle varie directory è necessario utilizzare i seguenti comandi
+\begin{lstlisting}
+  getwd() #comando che restituisce la cartella di lavoro corrente
+  setwd() #comnado che consente di modificare la cartella di lavoro corrente.
+  setwd("./LEZIONI") #esempio
+  dir() #per visualizzare i file e le cartelle nella working directory
+  list.files() #idem a dir
+\end{lstlisting}
+
+\section{Definzione variabili}
 Nell'interprete è possibile definire variabili, array, in maniera molto simile
 a Python
 
@@ -72,6 +83,16 @@ In questo modo è possibile stampare il grafico con i relativi outliers.
 \paragraph{Outliers} Gli outliers vegono considerati come tali se superano il terzo quartile
 + 1,5 il range interquartile
 
-Per effettuare un confronto la ALU usa l'operatore SLT
+\section{ScatterPlot}
+Per effettuare la stampa di uno ScatterPlot è necessario prima importare la libreria
+lattice via riga di comanda tramite
+\begin{lstlisting}
+  library(lattice)
+\end{lstlisting}
+Oppure tramite GUI su R Studio
+Il comanda per la stampa di questo grafico è il seguente
+\begin{lstlisting}
+  xyplot(dati$chol~dati$weight)
+\end{lstlisting}
 
 \end{document}
