@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{fancyvrb}
 \graphicspath{ {./images/} }
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
 \begin{document}
 \title{ADE - Archietettura degli elaboratori}
@@ -95,7 +96,10 @@ Il sistema numerico decimale:
     \item è un sistema posizionale: ogni cifra assume un valore diverso a seconda della posizione che occupa
 \end{itemize}
 
-Confronto tra Basi \\\includegraphics{confronto_tra_basi.png}
+Confronto tra Basi
+\begin{center}
+    \includegraphics[width=60mm,scale=0.5]{confronto_tra_basi.png}    
+\end{center}
 
 \section{Conversione tra basi}
 Svolti esercizi di conversione tra basi
@@ -104,7 +108,8 @@ Svolti esercizi di conversione tra basi
     \item Addizzioni e sottrazioni
     \item Svolti esercizi con Overflow, bit di carry
 \end{itemize}
-
+ L'overflow di verifica quando il risultato non può essere rappresentato con il numero di bit,
+ che ho a disposizione e quindi ottengo un risultato sbagliato.
 \section{Operazioni con segno}
 Ci sono diverse modalità per rappresentare il segno in base 2
 \subsection{Modulo e segno}
@@ -120,8 +125,13 @@ Questa rappresentazone è semplice e con n bit totali, si possono rappresentare 
 \end{itemize}
 
 \subsection{Operazioni aritmetiche con MS}
-%Copia le slide
-Possiamo avere overflow solo quando %completa perchè la prof legge le slide a 5x
+Possiamo avere overflow solo quando:
+\begin{itemize}
+    \item si sommano due operandi con segno concorde
+    \item si sottraggono due operandi con segno discorde
+\end{itemize}
+L'overflow si verifica quando c'è un riporto della cifra più significativa del modulo, cioè non si è nella
+condizione di rappresentare il risultato ottenuto.
 \subsection{Complemento a 1 (CA1)}
 \'E un'altra modalità di rappresentazione dei numeri interi con segno. Come indica il nome stesso, questo metodo si basa sull'operazione di complemento
 
@@ -139,16 +149,24 @@ Anche qui il MSB è 0 se x è positivo e MSB = 1 se x è negativo
 \paragraph{Esecuzione}
 \begin{enumerate}
     \item Se il numero X è positivo esso rimane invariato
-    \item Se il numero X è negativo 
+    \item Se il numero X è negativo
+    \begin{enumerate}
+        \item Si effettua il complemento a 1 (CA1) sul valore da codificare
+        \item Si somma +1 al risultato ottenuto con CA1
+    \end{enumerate}
 \end{enumerate}
-Così elimino la doppia rappresentazione dello zero
+Così elimino la doppia rappresentazione dello zero. I valori negativi hanno MSB = 1.
 
 \subsubsection{3 Metodi per il calcolo di CA2}
-%Sistemare
 \begin{enumerate}
-    \item Bau
-    \item MiaoM
-    \item Regola pratica
+    \item Definizione di complemento alla base
+    \item Per calcolare CA2 si calcola CA1 e si somma 1
+    \item Regola Pratica
+    \begin{enumerate}
+        \item Si parte da destra, si trascrivono tutti gli 0 fino ad incontrare il primo 
+        1 e si trascrive anch'esso
+        \item Si complementano a 1 (0 $\to$ 1 e 1 $\to$ 0) tutti i bit restanti
+    \end{enumerate}
 \end{enumerate}
 
 \title{Distinzione tra Operazione CA2 e Rappresentazone CA2}
@@ -158,13 +176,43 @@ Così elimino la doppia rappresentazione dello zero
 \end{itemize}
 
 \subsection{Operazioni aritmetiche con CA2}
-\subsubsection{Somma a Sottrazione}
+\subsubsection{Somma}
 \begin{enumerate}
-    \item Si esegue la somma su tutti i bit egli addendi, segno compreso
+    \item Si esegue la somma su tutti i bit degli addendi, segno compreso
     \item Un eventuale riporto (carry) oltre il bit di segno (MSB) viene scartato
-    \item Nel caso gli operandi siano di segno concorde occorre verificare la presenza o meno di overflow (il segno del risultato non  è concorde
-    con quello dei due addendi)
+    \item Nel caso gli operandi siano di segno concorde occorre verificare la presenza o meno
+    di overflow (il segno del risultato non  è concorde con quello dei due addendi)
 \end{enumerate}
+L'overflow non si presenta mai quando si sommano operandi di segno opposto.
+L'overflow si presenta se:
+\begin{equation}
+    (+A)+(+B)=-C
+\end{equation}
+oppure
+\begin{equation}
+    (-A)+(-B) = +C    
+\end{equation}
+Un altro modo per vedere se c'è overflow è guardare i riporti nelle ultime 
+due posizioni più significative, se sono diversi c'è overflow.
+\subsubsection{Sottrazione}
+La sottrazione tra 2 numeri in \textbf{CA2} viene trasformata in somma applicando la seguente Regola
+\begin{equation}
+    A-B=A+(-B)
+\end{equation}
+Tradotto in termini di CA2
+\begin{equation}
+    A-B=A+CA2(B)
+\end{equation}
+Si effettua il complemento del sottraendo
+\paragraph{Overflow} Per assicurarsi della correttezza del risultato bisogna verificare l'assenza di 
+Overflow:
+\begin{enumerate}
+    \item Non si ha overflow se gli operandi hanno segno discorde
+    \item Si ha overflow se gli operandi hanno segno concorde e il segno del risultato è discorde con essi
+\end{enumerate}
+Gli operandi devono essere rappresentati sempre con lo stesso numero di bit, per questo motivo
+in caso ci fossero meno bit si replica n volte il bit di segno (questo non altera il risultato)
+
 \section{Operazione di Shift}
 Consiste nello spostare (shit) verso destra (right) o verso sinistra (left) la posizione delle cifre di un numero, epsresso in una base qualsiasi, inserendo uno zero
 nelle posizioni lasciate libere.
@@ -173,10 +221,21 @@ nelle posizioni lasciate libere.
     \item Right equivale a dividere il numero per la base
 \end{itemize}
 \section{Rappresentazione Eccesso $2^n$}
-Balzata alla grande dalla prof, riprendere dalle slide
+Un numero X è rappresentato come segue:
+\begin{equation}
+    X+2^{n-1}
+\end{equation}
+Con n bit si rappresenta l'eccesso
+\paragraph{Regola pratica} I numeri in eccesso $2^{n-1}$ si ottengono da quelli in CA2
+complementando il bit più significativo
+\section{Rappresentazione Eccesso 128}
+Il numero è rappresentato come segue
+\begin{center}
+    \includegraphics[width=120mm, scale=0.6]{eccesso128.png}
+\end{center}
 
 \section{Rappresentazione con la virgola}
-\subsection(Virgola fissa)
+\subsection{Virgola fissa}
 \'E il metodo più semplice, scegliamo dove mettere la virgola e la fissiamo
 Il problema è che in base a dove posiziono la virgola ho diverse capacità di rappresentazione della parte intera o frazionaria
 \begin{itemize}
@@ -187,7 +246,7 @@ Questo porta rigidità
 
 \subsection{Virgola mobile}
 \begin{itemize}
-    \item Usa un bit per rappresentare il segno s
+    \item Usa 1 bit per rappresentare il segno s
     \item Usa altri bit per rappresentare la mantissa m
     \item Usa altri bit per codificare l'esponente e
 \end{itemize}
@@ -203,9 +262,8 @@ Seguendo lo standard IEEE 754 la suddivisione è effettuata nella seguente modal
 \begin{itemize}
     \item Segno - 1
     \item Esponente - 11
-    \item Mantissa - boh
+    \item Mantissa - 52
 \end{itemize}
-Anche qua la prof va a 200 all'ora e se ne sbatte il cazzo che la gente non sta capendo una sega
 
 \subsection{Errore assoluto ed errore relativo}
 Rappresentando un numero reale n in virgola mobile si commette un errore di approssimazione
