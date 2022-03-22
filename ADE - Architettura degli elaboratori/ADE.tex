@@ -266,8 +266,16 @@ Seguendo lo standard IEEE 754 la suddivisione è effettuata nella seguente modal
 \end{itemize}
 
 \subsection{Errore assoluto ed errore relativo}
-Rappresentando un numero reale n in virgola mobile si commette un errore di approssimazione
-%Aggiungere cose sensate
+Rappresentando un numero reale n in virgola mobile si commette un errore di approssimazione,
+dato che viene rappresentato un numero razionale n con un numero limitato di cifre significative
+\begin{itemize}
+    \item Errore assoluto
+    \item Errore relativo
+\end{itemize}
+%Errore assoluto e relativo è Poco chiaro
+\subsection{Codifiche}
+Spiegazione ASCII, Unicode
+%Aggiungere info
 
 \chapter{Circuiti logici}
 
@@ -286,15 +294,15 @@ Le porte logiche hanno n input e generalmente 1 output
 
 \subsection{AND}
 Questa porta logica svolge l'operazione logica di AND tra due bit, detta anche \textbf{prodotto logico}.
-%Riporta immagine porta logica e tabella
+\includegraphics[width=100mm, scale=0.6]{tabella_and.png}
 
 \subsection{OR}
 Svolge l'operazione logica di OR tra due bit, detta anche somma logica.
-%Anche qui immagine e tab di verità
+\includegraphics[width=100mm, scale=0.6]{tabella_or.png}
 
 \subsection{NOT}
 Svolge l'operazione logica di NOT su un bit, detta anche \textbf{negazione logica}.
-%Idem
+\includegraphics[width=100mm, scale=0.6]{tabella not.png}
 
 \subsection{Port con più di due ingressi}
 Ad eccezione della porta NOT, le altre porte logiche possono esistere anche ad N ingressi, queste porte
@@ -302,10 +310,12 @@ svolgono l'operazione logica associata su N bit invece che su 2.
 \\ Nei circuiti si possono realizzare porte a N ingressi collegando a cascata tra loro porte a 2 ingressi.
 
 \section{Porte logiche derivate}
-Porta NAND $\to$ svolge l'operazione di NOT sul bit risultante dell'operazione di AND.
+Porta NAND $\to$ svolge l'operazione di NOT sul bit risultante dell'operazione di AND. 
+(nega il risultato dell'and).
 \\ Porta NOR $ \to $ svolge l'operazione di NOT sul bit risultante dall'operazione di OR.
+(nega il risultato dell'or).
 \\ Porta XOR Opera come disgiunzione esclusiva tra due input, quando i 2 bit sono uguali produce in output un 1. 
-% XOR poco chiaro, ripassare
+Viceversa restituisce 0.
 Le porte NOR e NAND svolgono la funzione di inverter, sono definite universali
 
 \section{Decoder}
@@ -315,16 +325,57 @@ una delle uscite, l'uscita selezionata ha valore 1 tutte le altre 0.
 \\ Nella foto il pallino vuoto corrisponde a 0, mentre senza pallino corrisponde a 1.
 
 \section{Multiplexor}
-Riceve n segnali in input, esso necessiterà
-Se abbiamo un multiplexor
+Un multiplexor, detto anche selettore, è un componente elettronico caratterizzato da
+\begin{itemize}
+    \item $2^n$ entrate principali
+    \item n entrate di controllo (selettore)
+    \item 1 uscite
+\end{itemize}
+Riceve n segnali in input e un solo segnale di output
+
 
 \section{Logiche a due livelli e PLA}
+Possiamo creare logiche a due livelli:
+\begin{itemize}
+    \item Somma di prodotti: somma logica (OR) di prodotti (AND)
+    \item Prodotto di somme: prodotto (AND) di somme (OR)
+\end{itemize}
+Esercizio tabella di verità
+
 \textbf{Programmable Logic Array}
+La somma di prodotti corrisponde ad una implementazione comunemente nota come \textbf{Programmable Logic Array}
 \begin{itemize}
     \item Insieme di input
-    \item And Gates
-    \item Or Gates
-    \item Output
+    \item I corrispondenti input complementati (mediante inverter)
+    \item Una logica a due stage:
+    \begin{itemize}
+        \item Primo stage: un array di porte logiche AND (prodotto)
+        \item Secondo stage: un array di porte logiche OR (somma)
+    \end{itemize}
+\end{itemize}
+\begin{center}
+    \includegraphics[width=70mm, scale=0.6]{ex_pla.png}    
+\end{center}
+
+\section{ROM (Read Only Memory)}
+Circuito combinatorio in cui ad ogni ingresso (indirizzo)
+corrisponde una uscita (contenuto della cella di memoria con quell'indirizzo).
+\begin{itemize}
+    \item Input: n bit
+    \item Output: una tra le $2^n$ celle/locazioni di memoria
+\end{itemize}
+
+\paragraph{ROM vs PLA}
+\begin{itemize}
+    \item ROM - fully decoded VS PLA - partially decoded
+    \item ROM dimensione più grande rispetto a PLA
+    \item PLA più efficienti
+    \item ROM possono implementare qualsiasi funzone logica
+\end{itemize}
+
+\begin{itemize}
+    \item PROM (Programmable ROM) $\to$ possono essere programmate
+    \item EPROM (Erasable Programmable ROM)
 \end{itemize}
 
 Normalmente il bus è di 32 bit
