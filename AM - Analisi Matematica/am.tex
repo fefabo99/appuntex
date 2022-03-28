@@ -3,13 +3,17 @@
 \usepackage{listings}
 \usepackage{amsmath}
 
+% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+
+
 \begin{document}
 \title{Analisi Matematica}
 \author{Fabio Ferrario}
 \date{2022}
 \maketitle
-\chapter{Argomenti del Corso}
-
+\chapter{Il Corso}
+\section{Programma del corso}
 \begin{enumerate}
 \item Numeri Reali
 \begin{enumerate}
@@ -18,12 +22,44 @@
 \item Funzioni reali di una variabile
 \end{enumerate}
 \item Successioni
-\item Limiti e continuità
-\item Calcoli differenziale
-\item Calcolo integrale
-\item Serie numeriche
-
+\begin{enumerate}
+    \item Limiti di successioni reali
+    \item Principio di Introduzione
+    \item Limiti notevoli
 \end{enumerate}
+\item Limiti e continuità
+\begin{enumerate}
+    \item Limiti di Funzioni
+    \item Limiti notevoli
+    \item Funzioni continue
+    \item Proprietà globali delle funzioni continue
+\end{enumerate}
+\item Calcoli differenziale
+\begin{enumerate}
+    \item Derivate di una funzione
+    \item Proprietà delle funzioni derivabili
+    \item Funzioni convesse e concave
+    \item Formula di Taylor
+    \item Grafici di funzioni
+\end{enumerate}
+\item Calcolo integrale
+\begin{enumerate}
+    \item Funzioni integrabili secondo Rienmann
+    \item Teorema fondamentale del calcolo e integrali indefiniti
+    \item Metodi d'integrazione
+\end{enumerate}
+\item Serie numeriche
+\begin{enumerate}
+    \item Serie, convergenza, convergenza assoluta
+    \item Serie a termini positivi
+    \item Serie a termini di segno variabile
+\end{enumerate}
+\end{enumerate}
+
+\section{Prerequisiti}
+\emph{Algebra elementare}: Calcolo letterale, equazioni e disequazioni di primo e secondo grado
+\\\emph{Trigonometria elementare}
+\\\emph{Esponenziali e logaritmi}
 \chapter{Esame}
 \section{compitino 2019}
 \paragraph{1a. La serie $\sum^{+\inf}_{n=1} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 3$
