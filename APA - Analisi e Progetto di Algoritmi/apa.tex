@@ -64,10 +64,10 @@ https://lonati.di.unimi.it/algopig/2122/?page=materiali
 La programmazione dinamica risolve un problema combinando le soluzioni dei suoi sottoproblemi.\\
 l'approccio generale si può riassumere in 4 passi:
 \begin{enumerate}
-    \item Caratterizzare la struttura di una soluzione ottimale.
-    \item Definire ricorsivamente il valore di una soluzione ottimale (e quindi di tutte)
-    \item Calcolare il valore delle soluzioi ottimali, tipicamente in maniera bottom-up, memorizzando in tabelle i valori delle soluzioni ottimali
-    \item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
+	\item Caratterizzare la struttura di una soluzione ottimale.
+	\item Definire ricorsivamente il valore di una soluzione ottimale (e quindi di tutte)
+	\item Calcolare il valore delle soluzioi ottimali, tipicamente in maniera bottom-up, memorizzando in tabelle i valori delle soluzioni ottimali
+	\item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
 \end{enumerate}
 
 \paragraph{Proprietà necessarie} per applicare la porgrammazione dinamica in modo utile ed efficiente:
@@ -100,7 +100,19 @@ In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
 \end{itemize}
 
 \section{Il Knapsack Problem}
+\paragraph{il problema} Ci sono n oggetti ai quali sono associati un peso e un valore. Ho uno zaino di capictà in peso C. L'obiettivo è prendere k oggetti tali per cui il valore sia massimo senza superare la capacità dello zaino
+\paragraph{Input} $I = \{e_1,...,e_n\} \forall  i, e_i$ ha associati due valori: $v_i$ (valore) e $w_i$ (peso). W = Peso totale dello zaino.
+\paragraph{Output} Trovare un sottoinsieme $ S \subset I $ di elementi $S = \{e_{j,1}, ..., e_{j,k}\} , 1 \leq j_l \leq n$ tc. soddisfa 2 vincoli:
+\begin{itemize}
+	\item max$(\Sigma_{e_i \in S}V_i)$ ;
+	\item $\Sigma_{e_i \in S} W_i \leq W$.
+\end{itemize} 
 
+\paragraph{Sottostruttura ottima}
+La sottostruttura ottima del problema non è molto straight-forward. facciamo un esempio:
+\subparagraph*{}Se abbiamo un problema (che non necessariamente ci interessa definire) la cui soluzione S è $\{e_2,e_3,e_4\}$.\\
+Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
+\\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
 Indico un paio di definizioni:
