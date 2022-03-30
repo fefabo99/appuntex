@@ -3,6 +3,8 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\usepackage{amssymb}
+\usepackage{amsmath}
 \graphicspath{ {./images/} }
 
 \begin{document}
@@ -373,13 +375,108 @@ Ad ogni variabile aleatoria discreta X possiamo associare
 Definita anche come distribuzione di probabilità, è una funzione che assegna
 ad ogni valore possibile di X la probabilità dell'evento elementare $(X = x)$
 \subsection{Proprietà}
-%Terminare proprietà
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{prop_densità_discreta.png}
+\end{center}
+Concettualmente una v.a. (variabile aleatoria) X è rappresentata matematicamente da una
+una funzione definita sullo spazio campionario $\Omega$ di un esperimento aleatorio.
+\begin{center}
+    $X:\Omega \to R$
+\end{center}
+Allo stesso tempo possiamo pensare a X come a un numero che dipende dal caso.
+Se siamo interessati a una v.a. discreta X, spesso non è necessario scrivere lo
+spazio campionario $\Omega$ ed esprimere X come funzione, 
+ci basta conoscere la densità discreta.
+
+\subsection{Valore medio di X}
+Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
+$x_1, x_2, \dots, x_n$. Si definisce
+
+\begin{equation}
+    E[X]:= \sum_{i = 1}^{n} x_i (p_X)^{x_i} = \sum_{i = 1}^{n} x_i P(X= x_i)
+\end{equation}
+\paragraph{Valore Medio} è la somma dei valori assunti da X "pesati" con le rispettive probabilità
+Si può notare da alcuni esempi che il valore medio E[X] non è necessariamente
+uno dei valori $x_i$ assunti da X!
+A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
+ci aspettiamo di osservare.
+\subsubsection{Interpretazione frequentista di E[X]}
+Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
+e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
+ripetizioni dell'esperimento si ha con grande probabilità che:
+\begin{equation}
+    \frac{X_1 + X_2 + \dots + X_n}{N} \backsimeq  E[X]
+\end{equation}
+
+\subsection{Proprietà del valore medio}
+Per ogni variabile aleatoria (reale) X
+\begin{center}
+    $E[X + c] = E[X] + c$
+    \\$E[cX] = c E[X]$
+\end{center}
+Questo vale per ogni costante $c \in R$
+\\ Se X e Y sono due variabili aleatorie che dipendono entrambe dallo
+stesso esperimento aleatorio, allora:
+\begin{center}
+    $E[X+Y] = E[X] + E[Y]$
+\end{center}
+Si dice che il valore medio è un operatore lineare.
+\paragraph{Altre importanti proprietà} Se $X = c$ (costante) allora
+$E[X] = E[c] = c$
+\\ Un'altra proprietà importante: Se $X >= 0$ allora $E[X] >= 0$
+\paragraph{Formula di trasferimento} 
+
+\begin{equation}
+    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_x^{x_i}
+= \sum_{i = 1}^{n}f(x_i)P(X = x_i)
+\end{equation}
+Valida per ogni funzione $f:R \to R$. In particolare
+\begin{equation}
+    E[X^2] = \sum_{i = 1}^{n} x_i^2 p_X^{x_i} = \sum_{i = 1}^{n} x_i^2P(X=x_i)
+\end{equation}
+
+\section{Varianza e Deviazione standard con valore medio}
+\paragraph{Varianza} $VAR[X] := E[(X-u)^2] >= 0$ con $u:=E[X]$
+\paragraph{Deviazione Standard} $SD[X] := \sqrt{VAR[X]}$
+\paragraph{Formula alternativa} $VAR[X] = E[X^2] - E[X]^2$
+\\ La deviazione standard ha la stessa "unità di misura" di X e fornisce 
+una misura della larghezza (o dispersione) dei valori $x_i$ assunti da X rispetto
+al valore medio E[X].
+Valore medio E[X] e varianza VAR[X] sono due numeri reali che riassumono
+le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
+Sono importanti anche perchè talvolta possono essere calcolati
+senza conoscere in dettaglio la densità descrita $p_x$, ma sfruttando le
+proprietà di valore medio e varianza.
+
+\subsection{Proprietà della varianza}
+Per ogni variabile aleatoria (reale) X
 \begin{itemize}
-    \item $P_x$ è una funzione da R in [0, 1]
-    \item P
+    \item $VAR[X+c] = VAR[X]$
+    \item $VAR[cX] = c^2 VAR[X]$
 \end{itemize}
+Per ogni costante reale $c \in R$
+\paragraph{Osservazione} Diverse dalle proprietà del valore media!
+\\ Varianza = $(SD)^2 \backsimeq $ (larghezza della distribuzione)$^2$
+\begin{center}
+    Inoltre $X = c \Leftrightarrow VAR[X] = 0$
+\end{center}
 
+\subsection{Dipendenza e indipendenza variabili aleatorie}
+Siano X e Y due variabili aleatorie, che dipendono entrambe dallo 
+stesso esperimento aleatorio. Quanto valre $VAR[X+Y] = ?$
+\textbf{dipende da come solo legate X e Y!}
+\paragraph{Definizione indipendenza} Due v.a. discrete X e Y si dicono indipendenti
+se gli eventi {X = x} e {Y = y} sono indipendenti, ossia:
+\begin{equation}
+    P(X=x, Y=y) = P(X = x)P(Y = y)
+\end{equation}
+Per ogni scelta di x e y.
+\paragraph{Teorema} Se X e Y sono v.a. indipendenti, allora:
+\begin{equation}
+    VAR[X+Y] = VAR[X] + VAR[Y]
+\end{equation}
 
+%Modalità d'esame
 \chapter{Esame}
 L'esame sarà strutturato nella seguente maniera
 \paragraph{Parte 1 - Teoria}
