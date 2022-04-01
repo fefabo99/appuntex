@@ -27,7 +27,7 @@
 \begin{itemize}
     \item Reti combinatorie
     \item Reti sequenziali e FSM (Finite State Machine)
-    \item Rassegna di circuiti notevoli (decoder, multiplexer, register file, ALU, etc.)
+    \item Rassegna di circuiti notevoli (decoder, multiplexor, register file, ALU, etc.)
 \end{itemize}
 
 \section{Instruction Set Architecture (ISA)}
@@ -292,12 +292,13 @@ Esse realizzano le operazioni principali dell'algebra booleana. Sono circuiti el
 producono un segnale in output ottenuto effettuando una operazione booleana sugli ingressi.
 Le porte logiche hanno n input e generalmente 1 output
 
-\subsection{AND}
-Questa porta logica svolge l'operazione logica di AND tra due bit, detta anche \textbf{prodotto logico}.
+\subsection{AND *}
+Questa porta logica svolge l'operazione logica di AND tra due bit, detta anche 
+\textbf{prodotto logico}.
 \includegraphics[width=100mm, scale=0.6]{tabella_and.png}
 
-\subsection{OR}
-Svolge l'operazione logica di OR tra due bit, detta anche somma logica.
+\subsection{OR +}
+Svolge l'operazione logica di OR tra due bit, detta anche \textbf{somma logica}.
 \includegraphics[width=100mm, scale=0.6]{tabella_or.png}
 
 \subsection{NOT}
@@ -317,12 +318,16 @@ Porta NAND $\to$ svolge l'operazione di NOT sul bit risultante dell'operazione d
 \\ Porta XOR Opera come disgiunzione esclusiva tra due input, quando i 2 bit sono uguali produce in output un 1. 
 Viceversa restituisce 0.
 Le porte NOR e NAND svolgono la funzione di inverter, sono definite universali
-
+\chapter{Circuiti combinatori}
+Sono circuiti dove non sono presenti memorie, l'output di un circuito combinatorio
+dipende solo dall'input che stiamo dando al circuito.
 \section{Decoder}
 Componente elettronico caratterizzato dall'avere n ingressi e $2^n$ uscite
 Solo 1 valore è attivo per ogni combinazione di input, quindi l'ingresso seleziona 
 una delle uscite, l'uscita selezionata ha valore 1 tutte le altre 0.
 \\ Nella foto il pallino vuoto corrisponde a 0, mentre senza pallino corrisponde a 1.
+Esiste anche il suo inverso denominato encoder che riceve $2^n$ input e produce un output
+di n bit.
 
 \section{Multiplexor}
 Un multiplexor, detto anche selettore, è un componente elettronico caratterizzato da
@@ -332,7 +337,22 @@ Un multiplexor, detto anche selettore, è un componente elettronico caratterizza
     \item 1 uscite
 \end{itemize}
 Riceve n segnali in input e un solo segnale di output.
-\\ Un multiplexer a 32 bit corrisponde a un array di 32 multiplexor ad 1 bit.
+Nel caso in cui riceva 2 input (A e B) + il selector (S), il valore di output sarà A o B
+in base al segnale del selettore (0 o 1, quindi True o False).
+\\ Un multiplexor a 32 bit corrisponde a un array di 32 multiplexor ad 1 bit.
+
+\subsection{Relazione importante per gli es}
+La relazione tra il massimo numero di ingressi selezionabili (n) con m segnali/ingressi 
+di selezioni è:
+\begin{center}
+    $m = \log_2 n$
+    ovvero
+    $n = 2^m$
+\end{center}
+Nel caso io abbia un multiplexor a 32 ingressi il numero di ingressi di selezione m sarà:
+\begin{center}
+    $2^m = 32$ ovvero $m = 5$
+\end{center}
 
 
 \section{Logiche a due livelli e PLA}
@@ -410,9 +430,12 @@ Una ALU a 32 è semplicemente l'interconnessione di 32 ALU ad 1 bit in cascata
     \includegraphics[width=120mm, scale=0.5]{alu_somma_circuito.png}
 \end{center}
 \paragraph{Sottrazione}
-Negando b possiamo ottonere una sottrazione (in CA2)
+Negando b possiamo ottonere una sottrazione (in CA2). Per questo si aggiunge un Binvert e lo
+si setta a 1 nel caso serva effettuare una sottrazione
 \paragraph{NOR} si implementa con De Morgan
-Connettendo 32 ALU da 1 bit otteniamo una ALU a 32 bit
+Connettendo 32 ALU da 1 bit otteniamo una ALU a 32 bit. La connessione si effettua collegando
+il bit meno significativo con il CarryIn del bit più significativo. Questa organizzazione è
+chiamata ripple carry.
 \section{Operazioni di confronto - SLT e BEQ}
 Le operazioni di confronto all'interno di una ALU sono BEQ (Branch-on-equal)
 e SLT (set-on-less-then)
@@ -425,4 +448,69 @@ Per poter realizzare il confronto si effettua la sottrazione tra a e b.
     \item Se $a-b < 0$ allora $a<b$ e il risultato sarà 000...01
     \item Se $a-b < 0$ allora $a>b$ e il risultato sarà 000...00
 \end{itemize}
+\subsection{BEQ - Branch on equal}
+Per verificare l'uguaglianza di 2 elementi si fa la sottrazione fra di essi, se il risultato
+è zero i due elementi sono uguali. Logicamente si fa un OR di tutte le uscite delle ALU a 1 bit
+e poi si nega il risultato.
+\subsection{Overflow detection}
+Infine per completare la ALU è necessario inserire nell'ultima operazione un circuito
+per l'overflow detection. Se all'ultima operazione è presente un bit di CarryOut si è verificato
+un overflow.
+\begin{center}
+    Questa è il simbolo comunemente utilizzato per rappresentare la ALU. 
+    \includegraphics[width=50mm, scale=0.5]{alu_symbol.png}
+\end{center}
+\subsection{Carry Lookahead}
+Obiettivo: anticipare i bit di CarrIn per i bit più significativi per velocizzare le operazioni
+\\ Soluzione: passare tra meno porte
+\\ Teniamo conto che ALU ha 3 ingressi: 2 operandi e CarryIN (per la prima ALU su 1 bit)
+\begin{center}
+    CarryOut0 = CarryIn1 = (b0 * CarryIn0) + (a0 * CarryIn0) + (a0 * b0)
+    \\CarryOut1 = CarryIn2 = (b1 * CarryIn1) + (a1 * CarryIn1) + (a1 * b1)
+\end{center}
+Possiamo quindi riscrivere CarryIn2 sostituendo CarryIn1 della prima equazione
+\begin{center}
+    CarryIn2 = b
+\end{center}
+
+\section{Note per gli esercizi}
+\subsection{Conversione da tabella a circuito}
+\'E sufficiente prendere in considerazione solo le righe dove ho 1 come output, i valori 
+relativi a quella riga vanno concatenati con degli AND, dato che solo se si verificano tutti
+ottengo 1 come output, mentre per concatenare le righe vere fra di loro utilizzo gli OR, dato che
+è sufficiente che si verifichi anche solo 1 di queste righe per poter ottenere 1 come risultato.s
+\subsection{Calcolo output circuito}
+Se si tratta di somme di prodotti (and concatenati da or) è sufficiente identificare un valore
+che dà true dato che essendo una catenda di OR basta un solo true perchè l'espressione sia true.
+Mentre è necessario controllare che siano tutti false per affermare che l'intera espressione
+sia falsa.
+\\Se si tratta di prodotti di somme (OR concatenati da AND) è necessario verificare che tutte le
+sotto espressioni siano vere per poter affermare che l'intera espressione sia vera.
+Mentre è sufficiente che una singola sotto espressione sia false per poter affermare che
+l'intera espressione sia false.
+
+\chapter{Circuiti sequenziali}
+Cicuiti dove sono presenti delle memorie, per questo motivo l'output non dipende
+solo dall'input che stiamo dando, ma dipende anche da valori salvati precedentemente in memoria,
+questo concetto è chiamato \textbf{stato} nei blocchi logici.
+
+\section{Clock}
+Il segnale di clock è fondamentale per le reti sequenziali caratterizzate da uno stato.
+Il clock è definito come un segnale (onda quadra) con un preiodo predeterminato e costante.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{clock_rappresentazione.png}
+\end{center}
+Caratterizzato da un periodo T (oppure ciclo) di clock e dalla frequenza F definita come
+$\frac{1}{T}$ e misurata in Hertz.
+
+Il periodo di Clock è abbastanza grande da assicurare la stabilità degli output di un circuito
+e determina quando il contenuto di un elemento che rappresenta lo stato è aggiornato.
+Sostanzialmente determina il ritmo dei calcoli e delle operazioni di memorizzazione.
+\\ Con il clock il circuito diventa sincrono.
+
+\paragraph{Differenza con i circuiti combinatori} La sequenza temporale determina il valore
+memorizzato nello stato.
+
+%Arrivato a pag B48 del libro - Clock
+
 \end{document}
