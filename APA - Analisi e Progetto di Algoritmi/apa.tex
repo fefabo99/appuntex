@@ -3,7 +3,6 @@
 \usepackage{listings}
 \usepackage{amsmath}
 
-
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
@@ -99,8 +98,9 @@ In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
 	\item $M[i-1]$ se $i \notin OPT$
 \end{itemize}
 
-\section{Il Knapsack Problem}
-\paragraph{il problema} Ci sono n oggetti ai quali sono associati un peso e un valore. Ho uno zaino di capictà in peso C. L'obiettivo è prendere k oggetti tali per cui il valore sia massimo senza superare la capacità dello zaino
+\section{Il Knapsack Problem (0/1)}
+\paragraph{il problema} Ci sono n oggetti ai quali sono associati un peso e un valore. Ho uno zaino di capictà in peso C. L'obiettivo è prendere k oggetti tali per cui il valore sia massimo senza superare la capacità dello zaino.\\
+Questo tipo di problema si chiama \emph{0/1} perchè un oggetto \emph{O lo prendo tutto o non lo prendo proprio}. Si utilizza questa terminologia per differenziare lo 0/1 dal Knapsack Frazionario che vedremo in seguito.
 \paragraph{Input} $I = \{e_1,...,e_n\} \forall  i, e_i$ ha associati due valori: $v_i$ (valore) e $w_i$ (peso). W = Peso totale dello zaino.
 \paragraph{Output} Trovare un sottoinsieme $ S \subset I $ di elementi $S = \{e_{j,1}, ..., e_{j,k}\} , 1 \leq j_l \leq n$ tc. soddisfa 2 vincoli:
 \begin{itemize}
@@ -113,6 +113,11 @@ La sottostruttura ottima del problema non è molto straight-forward. facciamo un
 \subparagraph*{}Se abbiamo un problema (che non necessariamente ci interessa definire) la cui soluzione S è $\{e_2,e_3,e_4\}$.\\
 Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
 \\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
+\chapter{Algoritmi Greedy}
+Un algoritmo greedy non si basa su risultati precedenti già calcolati, ma fa una serie di scelte basandosi su quella che risulta essere la scelta migliore ad ogni istante (quando devo fare la scelta).
+\\La difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma determinare se l'algoritmo funziona 
+
+
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
 Indico un paio di definizioni:
