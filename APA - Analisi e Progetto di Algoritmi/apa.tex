@@ -113,10 +113,12 @@ La sottostruttura ottima del problema non è molto straight-forward. facciamo un
 \subparagraph*{}Se abbiamo un problema (che non necessariamente ci interessa definire) la cui soluzione S è $\{e_2,e_3,e_4\}$.\\
 Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
 \\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
-\chapter{Algoritmi Greedy}
-Un algoritmo greedy non si basa su risultati precedenti già calcolati, ma fa una serie di scelte basandosi su quella che risulta essere la scelta migliore ad ogni istante (quando devo fare la scelta).
-\\La difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma determinare se l'algoritmo funziona 
 
+\chapter{Algoritmi Greedy}
+A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
+\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona. 
+\paragraph{Applicazioni}
+Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
 
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
