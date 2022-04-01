@@ -331,7 +331,8 @@ Un multiplexor, detto anche selettore, è un componente elettronico caratterizza
     \item n entrate di controllo (selettore)
     \item 1 uscite
 \end{itemize}
-Riceve n segnali in input e un solo segnale di output
+Riceve n segnali in input e un solo segnale di output.
+\\ Un multiplexer a 32 bit corrisponde a un array di 32 multiplexor ad 1 bit.
 
 
 \section{Logiche a due livelli e PLA}
@@ -381,12 +382,47 @@ corrisponde una uscita (contenuto della cella di memoria con quell'indirizzo).
 Normalmente il bus è di 32 bit
 
 \section{ALU}
-%Inserire descrizione ALU
+L'Aritmethic Logic Unit è la parte del processore che svolge le operazioni
+aritmetico-logiche.
+\\\'E un insieme di circuiti combinatori che implementa:
+\begin{itemize}
+    \item Operazioni aritmetiche, es. somma e sottrazione
+    \item Operazioni logiche: es AND e OR
+\end{itemize}
 Blocchi per la costruzione di una ALU
 \begin{itemize}
     \item AND
     \item OR
 \end{itemize}
-Una Alu a 32 è semplicemente l'interconnessione di 32 ALU ad 1 bit in cascata
-\section{BEQ: branch-on-equal}
+Una ALU a 32 è semplicemente l'interconnessione di 32 ALU ad 1 bit in cascata
+
+\paragraph{Blocchi base per costruire ALU}
+\begin{itemize}
+    \item AND gate 
+    \item OR gate
+    \item Inverter
+    \item Multiplexor
+\end{itemize}
+\subsection{Operazioni aritmetiche}
+\paragraph{Addizione}
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{alu_somma.png}
+    \includegraphics[width=120mm, scale=0.5]{alu_somma_circuito.png}
+\end{center}
+\paragraph{Sottrazione}
+Negando b possiamo ottonere una sottrazione (in CA2)
+\paragraph{NOR} si implementa con De Morgan
+Connettendo 32 ALU da 1 bit otteniamo una ALU a 32 bit
+\section{Operazioni di confronto - SLT e BEQ}
+Le operazioni di confronto all'interno di una ALU sono BEQ (Branch-on-equal)
+e SLT (set-on-less-then)
+\subsection{SLT}
+Risultato: 1 se a<b, 0 altrimenti.
+\\ Per eseguire questa istruzione si devono poter azzerare tutti i bit dal bit-1 alcuni
+bit-31 e assegnare al bit-0 il valore del risultato.
+Per poter realizzare il confronto si effettua la sottrazione tra a e b.
+\begin{itemize}
+    \item Se $a-b < 0$ allora $a<b$ e il risultato sarà 000...01
+    \item Se $a-b < 0$ allora $a>b$ e il risultato sarà 000...00
+\end{itemize}
 \end{document}

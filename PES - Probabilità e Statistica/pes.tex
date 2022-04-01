@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\usepackage{amssymb}
 \graphicspath{ {./images/} }
 
 \begin{document}
@@ -282,13 +283,200 @@ per rilveare la presenza di un virus. Super interessante e utile.
 \\Il file è \textbf{Appunti Lezione 3 - In fondo al PDF}
 
 \section{Indipendenza di eventi}
+Può capitare che, per un evento A, l'informazione che un altro evento B si è verificato
+non ne cambi la probabilità.
+\begin{equation}
+    P(A|B) = P(A)
+\end{equation}
+che equivale
+\begin{equation}
+    P(A \cap B) = P(A)*P(B)
+\end{equation}
+In questo caso gli eventi A e B si dicono \textbf{Indipendenti}
+\paragraph{Esempi}
+Lancio di due dadi, i risultati sono eventi indipendenti
+\\ Urna contenente 5 palline rosse e 3 palline verdi. Pesco in successione due palline, 
+senza reimmissione. La probabilità che la prima pallina sia rossa e che la seconda sia rossa
+sono \textbf{dipendenti}!
 
+\subsection{Eventi indipendenti $\neq$ Eventi disgiunti!}
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{differenza_disgiunti_indipendenti.png}
+\end{center}
+Quindi due eventi indipendenti non possono essere disgiunti,
+tranne nel caso "banale" in cui uno dei due abbia probabilità
+nulla.
+
+\paragraph{Estensioni}
+Tre eventi A, B, C si dicono indipendenti se valgono
+\begin{center}
+    $P(A \cap B \cap C) = P(A)P(B)P(C)$
+    \\$P(A \cap B) = P(A)P(B)$
+    \\$P(B \cap C) = P(B)P(C)$
+    \\$P(A \cap C) = P(A)P(C)$
+\end{center}
+
+% Variabili Aleatorie
 \chapter{Variabili aleatorie}
+Variabile aleatoria (detta anche casuale o stocastica), è una variabile che può assumere valori
+diversi in dipendenza da qualche fenomeno aleatorio. Il termine "aleatorio" deriva dal latino \textit{alea} (gioco di dadi), ed esprime il
+concetto di rischio calcolato.
+\begin{center}
+    \textit{"alea iacta est"} - "il dado è tratto"
+\end{center}
 
+Consideriamo un esperimento aleatorio, descritto da uno spazio di probabilità $(\Omega, P)$.
+Spesso non siamo interessati a tutti i dettagli del'esito dell'esperimento, ma solo a 
+una quantità (tipicamente numerica) determinata dall'esito dell'esperimento.
+Una tale quantità è detta \textbf{Variabile aleatoria}.
+\\ Possiamo considerare la variabile aleatoria come:
+\begin{itemize}
+    \item Intero: Quantità che dipende dal "caso"
+    \item Funzione matematica: Funzione definita sullo spazio campionario: $X: \Omega \to R$
+\end{itemize}
+Ricodiamo che un evento è:
+\begin{itemize}
+    \item Affermazione sull'esito dell'esperimento aleatorio
+    \item Sottoinsieme dello spazio campionario: $A \subset \Omega$
+\end{itemize}
 
+Se X è una variabile aleatoria, e se x è un suo possibile valore, allora:
+\begin{itemize}
+    \item o X assume il valore x
+    \item oppure ${w \in \Omega: X(w) = x }$
+\end{itemize}
 
+Ogni variabile aleatoria X determina molti eventi!
+\paragraph{Attenzione}: non confondere variabili aleatorie ed eventi
+\\ Le variabili aleatorie rappresentano esiti esprimibili numericamente di esperimenti
+ancora da effettuare! Dove per esperimento si intende qualsiasi fenomeno o sotiazuone con sviluppi
+imprevedibili a priori. Essendo imprevedibile a priori il valore assunto da una variabile
+aleatoria, tutto ciò che si può fare è esprimere delle valutazioni di tipo probabilistico sui valori
+che essa assumerà. Per questa ragione ad ogni variabile aleatoria X è associata una funzione che esprime
+in modo chiaro tali valutazioni. 
+\\Se la variabile è discreta si parlerà di \textbf{Densità discreta}.
+\\Se la variabile è continua di parlerà di \textbf{Funzione di ripartizione}.
 
+\section{Variabili aleatorie discrete}
+Una variabile aleatoria X (reale) si dice \textbf{discreta} se i valori che può
+assumere sono un insieme finito:
+\begin{equation}
+    X(\Omega) = {x_1, x_2, \dots, x_n} \subseteq  R
+\end{equation}
+Oppure un insieme infinito numerabile
+\begin{equation}
+    X(\Omega) = {x_1, X_2, \dots } = {x_i} i \in N \subseteq R
+\end{equation}
+Ad ogni variabile aleatoria discreta X possiamo associare
+\begin{center}
+    \textbf{Densità discreta} $P_x(x_i) = P(X = x_i)$
+\end{center}
+Definita anche come distribuzione di probabilità, è una funzione che assegna
+ad ogni valore possibile di X la probabilità dell'evento elementare $(X = x)$
+\subsection{Proprietà}
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{prop_densità_discreta.png}
+\end{center}
+Concettualmente una v.a. (variabile aleatoria) X è rappresentata matematicamente da una
+una funzione definita sullo spazio campionario $\Omega$ di un esperimento aleatorio.
+\begin{center}
+    $X:\Omega \to R$
+\end{center}
+Allo stesso tempo possiamo pensare a X come a un numero che dipende dal caso.
+Se siamo interessati a una v.a. discreta X, spesso non è necessario scrivere lo
+spazio campionario $\Omega$ ed esprimere X come funzione, 
+ci basta conoscere la densità discreta.
 
+\subsection{Valore medio di X}
+Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
+$x_1, x_2, \dots, x_n$. Si definisce
+
+\begin{equation}
+    E[X]:= \sum_{i = 1}^{n} x_i (p_X)^{x_i} = \sum_{i = 1}^{n} x_i P(X= x_i)
+\end{equation}
+\paragraph{Valore Medio} è la somma dei valori assunti da X "pesati" con le rispettive probabilità
+Si può notare da alcuni esempi che il valore medio E[X] non è necessariamente
+uno dei valori $x_i$ assunti da X!
+A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
+ci aspettiamo di osservare.
+\subsubsection{Interpretazione frequentista di E[X]}
+Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
+e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
+ripetizioni dell'esperimento si ha con grande probabilità che:
+\begin{equation}
+    \frac{X_1 + X_2 + \dots + X_n}{N} \backsimeq  E[X]
+\end{equation}
+
+\subsection{Proprietà del valore medio}
+Per ogni variabile aleatoria (reale) X
+\begin{center}
+    $E[X + c] = E[X] + c$
+    \\$E[cX] = c E[X]$
+\end{center}
+Questo vale per ogni costante $c \in R$
+\\ Se X e Y sono due variabili aleatorie che dipendono entrambe dallo
+stesso esperimento aleatorio, allora:
+\begin{center}
+    $E[X+Y] = E[X] + E[Y]$
+\end{center}
+Si dice che il valore medio è un operatore lineare.
+\paragraph{Altre importanti proprietà} Se $X = c$ (costante) allora
+$E[X] = E[c] = c$
+\\ Un'altra proprietà importante: Se $X >= 0$ allora $E[X] >= 0$
+\paragraph{Formula di trasferimento} 
+
+\begin{equation}
+    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_x^{x_i}
+= \sum_{i = 1}^{n}f(x_i)P(X = x_i)
+\end{equation}
+Valida per ogni funzione $f:R \to R$. In particolare
+\begin{equation}
+    E[X^2] = \sum_{i = 1}^{n} x_i^2 p_X^{x_i} = \sum_{i = 1}^{n} x_i^2P(X=x_i)
+\end{equation}
+
+\section{Varianza e Deviazione standard con valore medio}
+\paragraph{Varianza} $VAR[X] := E[(X-u)^2] >= 0$ con $u:=E[X]$
+\paragraph{Deviazione Standard} $SD[X] := \sqrt{VAR[X]}$
+\paragraph{Formula alternativa} $VAR[X] = E[X^2] - E[X]^2$
+\\ La deviazione standard ha la stessa "unità di misura" di X e fornisce 
+una misura della larghezza (o dispersione) dei valori $x_i$ assunti da X rispetto
+al valore medio E[X].
+Valore medio E[X] e varianza VAR[X] sono due numeri reali che riassumono
+le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
+Sono importanti anche perchè talvolta possono essere calcolati
+senza conoscere in dettaglio la densità descrita $p_x$, ma sfruttando le
+proprietà di valore medio e varianza.
+
+\subsection{Proprietà della varianza}
+Per ogni variabile aleatoria (reale) X
+\begin{itemize}
+    \item $VAR[X+c] = VAR[X]$
+    \item $VAR[cX] = c^2 VAR[X]$
+\end{itemize}
+Per ogni costante reale $c \in R$
+\paragraph{Osservazione} Diverse dalle proprietà del valore media!
+\\ Varianza = $(SD)^2 \backsimeq $ (larghezza della distribuzione)$^2$
+\begin{center}
+    Inoltre $X = c \Leftrightarrow VAR[X] = 0$
+\end{center}
+
+\subsection{Dipendenza e indipendenza variabili aleatorie}
+Siano X e Y due variabili aleatorie, che dipendono entrambe dallo 
+stesso esperimento aleatorio. Quanto valre $VAR[X+Y] = ?$
+\textbf{dipende da come solo legate X e Y!}
+\paragraph{Definizione indipendenza} Due v.a. discrete X e Y si dicono indipendenti
+se gli eventi {X = x} e {Y = y} sono indipendenti, ossia:
+\begin{equation}
+    P(X=x, Y=y) = P(X = x)P(Y = y)
+\end{equation}
+Per ogni scelta di x e y.
+\paragraph{Teorema} Se X e Y sono v.a. indipendenti, allora:
+\begin{equation}
+    VAR[X+Y] = VAR[X] + VAR[Y]
+\end{equation}
+
+\section{Variabili aleatorie continue}
+%Modalità d'esame
 \chapter{Esame}
 L'esame sarà strutturato nella seguente maniera
 \paragraph{Parte 1 - Teoria}
