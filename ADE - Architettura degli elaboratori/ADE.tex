@@ -494,6 +494,12 @@ Cicuiti dove sono presenti delle memorie, per questo motivo l'output non dipende
 solo dall'input che stiamo dando, ma dipende anche da valori salvati precedentemente in memoria,
 questo concetto è chiamato \textbf{stato} nei blocchi logici.
 
+Sintetizzando, i circuiti sequenziali sono formati da:
+\begin{itemize}
+    \item Elementi di memoria (di vario tipo) che memorizzano informazione
+    \item Reti combinatorie che elaborano informazione
+\end{itemize}
+
 \section{Clock}
 Il segnale di clock è fondamentale per le reti sequenziali caratterizzate da uno stato.
 Il clock è definito come un segnale (onda quadra) con un preiodo predeterminato e costante.
@@ -507,6 +513,13 @@ Il periodo di Clock è abbastanza grande da assicurare la stabilità degli outpu
 e determina quando il contenuto di un elemento che rappresenta lo stato è aggiornato.
 Sostanzialmente determina il ritmo dei calcoli e delle operazioni di memorizzazione.
 \\ Con il clock il circuito diventa sincrono.
+
+\section{S-R Latch}
+\textbf{S-R Latch} è un circuito composto da 2 porte NOR concatenate dove
+\begin{itemize}
+    \item S = Set
+    \item R = Reset
+\end{itemize}
 
 \paragraph{Differenza con i circuiti combinatori} La sequenza temporale determina il valore
 memorizzato nello stato.
