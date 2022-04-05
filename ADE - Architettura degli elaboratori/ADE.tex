@@ -494,6 +494,9 @@ Cicuiti dove sono presenti delle memorie, per questo motivo l'output non dipende
 solo dall'input che stiamo dando, ma dipende anche da valori salvati precedentemente in memoria,
 questo concetto è chiamato \textbf{stato} nei blocchi logici.
 
+\paragraph{Differenza con i circuiti combinatori} La sequenza temporale determina il valore
+memorizzato nello stato.
+
 Sintetizzando, i circuiti sequenziali sono formati da:
 \begin{itemize}
     \item Elementi di memoria (di vario tipo) che memorizzano informazione
@@ -513,6 +516,10 @@ Il periodo di Clock è abbastanza grande da assicurare la stabilità degli outpu
 e determina quando il contenuto di un elemento che rappresenta lo stato è aggiornato.
 Sostanzialmente determina il ritmo dei calcoli e delle operazioni di memorizzazione.
 \\ Con il clock il circuito diventa sincrono.
+\\ La tipologia di clocking studiata è la \textbf{edge-triggered clocking}, cioè tutti i
+cambiamenti avvengono sul bordo di un clock. Esistono altre tipologie di clock
+utilizzate, come la \textbf{level-triggered} (utilizzata nei primi esempi), 
+ma noi studieremo solo edge triggered.
 
 \section{S-R Latch}
 \textbf{S-R Latch} è un circuito composto da 2 porte NOR concatenate dove
@@ -520,10 +527,125 @@ Sostanzialmente determina il ritmo dei calcoli e delle operazioni di memorizzazi
     \item S = Set
     \item R = Reset
 \end{itemize}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{sr_latch.png}
+    \includegraphics[width=70mm, scale=0.5]{sr_latch_tabella.png}
+\end{center}
 
-\paragraph{Differenza con i circuiti combinatori} La sequenza temporale determina il valore
-memorizzato nello stato.
+Come si può notare dalla tabella tabella di verità, il valore di set serve per
+salvare un nuovo valore, quello di reset per scartare il valore salvato. Se entrambi
+i valori sono a zero il valore salvato resta immutato.
+\\ La combinazione set = 1 e reset = 1 va assolutamente evitata, dato che viola le
+proprietà di complementarietà e può portare ad una configurazione instabile.
+I valori S e R devono essere stabili e valere (1,0) o (0,1) per poter memorizzare
+un valore corretto. Essi sono di solito calcolati da un circuito combinatorio.
 
-%Arrivato a pag B48 del libro - Clock
+Per evitare che vengano memorizzati i valori mentre il circuito combinatorio li sta
+calcolando viene utilizzato il clock. Esso determina il tempo in cui è possibile
+memoirzzare un dato.
 
+\section{D Latch}
+Caratterizzato da D = il valore da memorizzare, C = il segnale di clock, ovvero quando
+il latch deve leggere e memorizzare il valore. Gli output sono sempre i valori degli
+stati interni Q e il suo complementare $\neg Q$.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{D-latch.png}
+\end{center}
+\'E un Latch sincronizzato con il clock, così il latch cambia stato in momenti opportuni
+Quando il clock è deasserted non viene memorizzato nessun valore, mentre quando è
+asserted viene memorizzato un valore (in funzione di D).
+\\Il segnale D, ottenuto come output di un circuito combinatorio deve:
+\begin{itemize}
+    \item Essere già stabile quando C diventa asserted
+    \item Rimanere stabile per tutta la durata del livello alto di C (Setup time)
+    \item Rimanere stabile per un altro periodo di tempo per evitare malfunzionamenti
+\end{itemize}
+Nei circuiti teorici dove il ritardo è nullo il problema non si pone, ma nei circuiti
+reali il \textbf{ritardo NON è nullo}.
+Gli output possono temporaneamente cambiare da valori corretti a valori errati
+e ancora a valori corretti, questp fenomeno è denominato \textbf{Glitch}.
+Dopo un certo intervallo, con alta probailità i segnali si stabilizzano.
+\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{glitch.png}
+\end{center}
+Per questo motivo il clock T deve essere scelto abbastanza lungo affinchè l'output
+del circuito combinatorio si stabilizzi. Deve essere stabili un po' prima del periodo di apertura del
+latch (setup time) e lo deve rimanere per un certo tempo (hold time).
+
+\paragraph{Funzionamento D Latch} Quando il clock C è asserito allora il latch
+è aperto e si può memorizzare il valore può essere memorizzato (il valore di output
+diventa il valore di input D). Mentre quando il clock C non è asserito il latch viene detto
+chiuso e il valore di output Q è il l'ultimo valore memorizzato l'ultima volta
+che il latch era aperto.
+
+\paragraph{Il D-latch è caratterizzato dal seguente comportamento}
+\begin{itemize}
+    \item Durante l'intervallo alto del clock il valore del segnale di ingresso D
+    viene memorizzato nel latch
+    \item Il valore di D si propaga quasi immediatamento all'uscita Q
+    \item Anche le eventuali variazioni di D si proagano quasi immedatamente, con il
+    risultato che Q può variare più volte durante l'intervallo alto del clock
+    \item Solo quando il clock torna a zero Q si stabilizza
+    \item Durante l'intervallo basso del clock il latch \textbf{non memorizza}
+\end{itemize}
+
+Fino ad ora abbiamo visto solo esempi con metodologia di clocking detta level-triggered,
+ora vedremo la \textbf{edge-triggered}. 
+\subsection{Edge-triggered clocking} In questo caso il timing avviene sul fronte di salita
+(o di discesa) del clock, otteniamo così i seguenti vantaggi
+\begin{itemize}
+    \item La memorizzazione avviene istantaneamente
+    \item L'eventuale segnale di ritorno sporco non fa in tempo ad arrivare a causa 
+    dell'istantaneità della memorizzazione
+\end{itemize}
+Il Latch è trasparente, ma non può essere utilizzato sia come input che output
+all'interno dello stesso ciclo.
+
+\section{D Flip Flop}
+Il D Flip-Flop è utilizzabile come input e output durante lo stesso ciclo di clock.
+Realizzato ponendo in serie 2 D-latch: il primo viene denominato \textbf{master}
+il secondo \textbf{slave}.
+
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{d_flip_flop.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=120mm, scale=0.7]{d_flip-flop circuito.png}
+\end{center}
+Il Flip Flop non è trasparente, dato che il suo valore cambia solo sui on the clock
+edge.
+
+\section{Differenze tra Latch e Flip-Flop}
+La principale differenza è nel momento in cui questi due circuiti operano.
+\\ Il latch memorizza quando riceve un valore da memorizzare e il clock è asserito.
+\\ Flip Flop invece memorizza \textbf{solo} on a clock edge.
+Per questo ultimo motivo e per la possibilità di poter essere usato sia come
+input che come output all'interno di un solo ciclo utilizzeremo principalmente 
+flip-flop.
+
+\section{Datapath e Register File}
+Il Datapath è un insieme di unità di calcolo, come ad esempio la ALU e i registri,
+necessari per l'esecuzione delle istruzioni nella CPU.
+I registri sono presenti all'interno di una CPU e costituiscono una delle strutture
+principali di un processore. Possono essere letti e modificati fornendo un register number
+a cui accedere.
+\subsection*{Implementazione}
+Un registro è costituito da n flip-flop. (in MIPS ogni registro è di 1 word = 4byte = 32 bit).
+I registri sono organizzati in un \textbf{Register File}.
+Il Register File del MIPS ha 32 registri (32*32 = 1024 flip-flop).
+Il register file permette la lettura di 2 registri e la scrittura di 1 registro.
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{registri.png}
+\end{center}
+Nel Datapath della CPU il clock non entra direttamente nei vari flip-flop,
+viene messo in AND con un segnale di controllo "Write", il segnalare determina se,
+in corrispondenza del fronte di discesa del clock, il valore D debba (o meno)
+essere memorizzato nel registro.
+
+\subsection*{Lettura dal Register File}
+\begin{itemize}
+    \item Utilizza 2 segnali che indicano i registri da leggere (Read Reg1, Read Reg2)
+    \item Utilizza 2 multiplexer: ognuno con 32 ingressi e un segnale di controllo da 5 bit
+    \item Il register file fornisce \textbf{sempre} in output una coppia di registri
+\end{itemize}
 \end{document}
