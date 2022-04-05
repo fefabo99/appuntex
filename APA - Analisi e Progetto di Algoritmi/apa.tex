@@ -114,6 +114,65 @@ La sottostruttura ottima del problema non è molto straight-forward. facciamo un
 Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
 \\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
 
+
+\section{Longest Common Subsequence}
+\subsection{Definizione del problema}
+Date due sequenze $X$ e $Y$, trovare la più lunga sottosequenza comune di caratteri (non necessariamente consecutivi).\\
+Una sottosequenza di una data sequenza è la sequenza stessa alla quale sono stati tolti zero o più elementi. Una sottosequenza comune di due sequenze è una sottosequenza di entrambe.
+\\Il problema della LCS può essere risolto in modo efficiente applicando la programmazione dinamica.
+\subsection{Sottostruttura ottima di una LCS}
+LCS gode della proprietà della sottostruttura ottima, infatti:
+\\Data una sequenza $X=\{x_1,x_2,...,x_m\}$ definiamo $X_i=\{x_1,x_2,...,x_i\}$ l'i-esimo prefisso di X per $i = 0,...,m$
+\paragraph{Teorema}
+Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
+\begin{enumerate}
+	\item Se $x_m = y_n$, allora $z_k = x_m =y_n$ e $Z_{k-1}$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
+	\item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
+	\item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
+\end{enumerate}
+La caratterizzazione di questo teorema dimostra che una LCS di due sequenze contiene al suo interno una LCS di prefissi delle due sequenze. Quindi il problema della più lunga sottosequenza comune gode della proprietà della sottostruttura ottima
+
+\paragraph{In parole povere}
+Se sappiamo che Z è una (qualsiasi) LCS di X e Y, allora se ne deduce che:
+\\(1) Se gli ultimi elementi di X e Y sono uguali, allora è anche l'ultimo elemento di Z. Inoltre implica che $Z_{k-1}$, quindi Z se togliamo il suo ultimo elemento, è una LCS di X e Y a cui sono stati tolti l'ultimo elemento ciascuno.
+\\Se gli ultimi elementi di X e Y NON sono uguali invece, qui ci sono due opzioni: (2) o l'ultimo elemento di Z è uguale all'ultimo elemento di Y, in tal caso Z è una lcs di Y e X senza l'ultimo elemento, oppure (3) viceversa 
+
+\paragraph{La soluzione ricorsiva}
+Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
+\begin{equation*}
+	c[i,j] = \begin{cases}
+		0 & \text{se $i = 0$ o $j = 0$}\\
+		c[i-1,j-1] + 1 & \text{se $x_i = y_j$}\\
+		max(c[i,j-1], c[i-1,j]) & \text{se $x_i \neq y_j$}
+
+	\end{cases}
+\end{equation*}
+
+
+\paragraph{pseudocodice}
+\begin{lstlisting}[mathescape=true]
+LCS-LENGHT(X,Y)
+	m = X.lenght
+	n = Y.lenght
+	b[1..m,1..n] e c[0..m,0..m] -> nuove tabelle
+	for i = 1 to m
+		c[i,0] = 0
+	for j= 0 to n
+		c[0,j] = 0
+	for i = 1 to m
+		for j = 1 to n
+			if $x_i$ == $y_i$
+				c[i,j] = c[i-1,j-1] + 1  
+				b[i,j] = $\nwarrow $
+			elseif c[i - 1,j] $\geq$ c[i,j-1]
+				c[i,j] = c[i-1,j]  
+				b[i,j] = $\uparrow $
+			else
+				c[i,j] = c[i,j-1]  
+				b[i,j] = $\leftarrow $
+	return c e b
+\end{lstlisting}
+
 \chapter{Algoritmi Greedy}
 \section{Introduzione}
 A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
@@ -896,11 +955,11 @@ DFS-ACYCLIC(G)
 	Siano $X=< x_1, …, x_m>$ e $Y=< y_1, …, y_n>$ due sequenze e sia $Z=< z_1, …, z_k>$
 	una LCS di X e Y. Scrivere la proprieta’ di sottostruttura ottima di Z \\
 	(Teorema 15.1 pag 325)
+	Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
 	\begin{enumerate}
 		\item Se $x_m = y_n$, allora $z_k = x_m =y_n$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
 		\item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
 		\item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
-
 	\end{enumerate}
 	\paragraph{2}
 	Scrivere le equazioni di ricorrenza per risolvere il problema della LCS di due
