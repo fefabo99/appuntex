@@ -648,4 +648,42 @@ essere memorizzato nel registro.
     \item Utilizza 2 multiplexer: ognuno con 32 ingressi e un segnale di controllo da 5 bit
     \item Il register file fornisce \textbf{sempre} in output una coppia di registri
 \end{itemize}
+Utilizza 3 segnali: \begin{itemize}
+    \item Il registro da scrivere
+    \item Il valore da scrivere
+    \item Il segnale di controllo
+\end{itemize}
+Utilizza un decoder che decodifica il numero del registro da scrivere (Write Register)
+\\ Il segnalre Write (già in AND con il clock) è in AND con l'output del decoder
+\\ Se Write non è asserito nessun valore sarà scritto nel registro
+\paragraph*{Alcune note}
+\begin{itemize}
+    \item Ogni registro può contenere valori di qualsiasi tipo purcè usino il numero
+    di bit a disposizione nel registro
+    \item Spetterà a chi definisce il programma in binario usare i dati
+    memorizzati nei registri in modo coerente con il loro tipo
+    \item Il ciclo di clock deve essere sufficientemente lungo da permettere
+    al segnale di propagarsi dall'output del Register File al suo input, compreso Il
+    computo della ALU.
+\end{itemize}
+\section{Memoria}
+Oltre alle piccole memorie dei registri e file di registro esistono altri tipi di
+memoria che possiamo distinguere in base a diversi parametri
+\begin{enumerate}
+    \item Dimensione: quantità di dati memorizzati
+    \item Velocità: tempo tra richiesta e risposta
+    \item Consumo: potenza assorbita
+    \item Costo: costo per bit
+\end{enumerate}
+
+Non è possibile avere una memoria con tutte le caratteristiche ideali.
+Possiamo però organizzare una gerarchia
+\begin{itemize}
+    \item Memoria piccole e più veloci (costose) sono poste ai livelli alti
+    \item Memorie ampie e più lente (meno costose) sono poste ai livelli più bassi
+\end{itemize}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{gerarchie_memorie.png}
+\end{center}
+%END
 \end{document}
