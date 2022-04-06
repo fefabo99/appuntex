@@ -685,5 +685,154 @@ Possiamo però organizzare una gerarchia
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{gerarchie_memorie.png}
 \end{center}
-%END
+
+\subsection*{RAM}
+La dimensione del register file è piccola, per memorizzare dati strutturati è 
+necessaria una memoria più grande come la \textbf{RAM - Random Access Memory},
+che è meno veloce della memoria dei registri, ma molto più capiente.
+\\La RAM è un insieme di celle da 1 byte ognuna individuata da un indirizzo.
+Le operazioni di lettura copiano il contenuto della cella di memoria nel registro dati,
+mentre le operazioni di scrittura copiano il contenuto del Registro Dati nella cella.
+\subsection*{SRAM e DRAM}
+\paragraph*{Static RAM} \begin{itemize}
+    \item è più veloce, tempi di accesso intorno a 0,5 - 2,5 ns
+    \item vengono utilizzati dei latch per la realizzazone
+\end{itemize}
+\paragraph*{Dynamic RAM} \begin{itemize}
+    \item Ogni bit è memorizzato tramite un condensatore
+    \item tempi di accesso intorno a 50-70 ns
+    \item è necessario rinfrescare il contenuto della DRAM a intervalli di tempo prefissati
+\end{itemize}
+
+\subsection*{SRAM}
+\'E realizzata come matrice di latch
+\begin{itemize}
+    \item Larghezza o ampiezza = numero di latch pre ogni cella
+    \item Altezza H = numero di celle indirizzabili
+    \item Singolo indirizzo usato sia per lettura che per scrittura
+    \item Non è possibile leggere e scrivere contemporaneamente
+\end{itemize}
+
+\paragraph*{Circuito SRAM}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{SRAM.png}
+\end{center}
+\paragraph*{Spiegazione circuito}\begin{itemize}
+    \item Din e Dout
+    \item Address
+    \item Segnali di controllo \begin{itemize}
+        \item Chip select deve essere asserito per poter leggere o scrivere
+        \item Output enable deve essere asserito per poter leggere
+        \item Write enable deve essere asserito per poter scrivere
+    \end{itemize}
+\end{itemize}
+\subsection*{Realizzazione SRAM}
+Non è possibile utilizzare decoder e multiplexer come per i registri perchè
+data la dimensione notevolmente maggiore avremmo bisogno di enormi multiplexer e decoder,
+con molte porte AND, questo porterebbe all'introduzione di ritardi considerevoli agli accessi
+della memoria.
+\\ Per evitare multiplexer in uscita quindi: \begin{itemize}
+    \item Possiamo usare una linea di bit condivisa su cui i vari elementi di memoria
+    sono tutti collegati (OR)
+    \item Il collegamento alla linea condivisa avviene tramite buffer a tre stati,
+    che aprono o chiudono i collegamenti (se il controllo è asserito o meno)
+    \item Il buffer ha due ingressi (dato e segnali di Enable) e una uscita
+    \begin{itemize}
+        \item l'uscita è uguale al dato (0 o 1) se Enable è asserito
+        \item l'uscita viene impedita se Enable non è asserito
+    \end{itemize} 
+\end{itemize}
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{realizzazioneSRAM.png}
+\end{center}
+\paragraph*{Esempio SRMA 4x2}
+\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{SRAM 4x2.png}
+\end{center}
+I latch di una certa colonna osno collegati alla stessa linea in output (Dout[0] e Dout[1]).
+\\ Nell'esempio ogni D-latch ha un segnale di Enable che abilita 
+il three-state buffer interno. Il devoder serve ad abilitare in lettura e scrittura una
+certa linea di memoria. Entrambi i segnali Write enable e Enable vengono abilitati
+su una sola linea di memoria (2 bit).
+
+\subsection*{SRAM a 2 livelli}
+Per diminuire la complessità dei decoder è opportuno suddividere gli indirizzabili
+in 2 blocchi:
+\begin{enumerate}
+    \item parte alta per accedere a una riga
+    \item parte bassa per accedere a una specifica colonna
+\end{enumerate}
+Nota che celle consecutive hanno indirizzi che solitamente differiscono solo per 
+la parte bassa dell'indirizzo, la parte in alto è quindi comune.
+\\ Le \textbf{Synchronous SRAM e DRAM (SSRAM e SDRAM)} permettono di aumentare la banda
+di trasferimento alla memoria sfruttando questa proprietà.
+\\ Synchronous perchè sono sincronizzate con un segnale di clock.
+\begin{itemize}
+    \item è possibile specificare che vogliamo trasferire dalla memoria
+    una \textbf{sequenza di celle consecutive (burst)}
+    \item ogni burst è specificato da un indirizzo di partenza e da una lunghezza
+    \item le celle del burst sono contenute all'interno di una stessa Riga,
+    \textbf{selezionata una volta per tutte tramite decoder}
+    \item La memoria fornisce una delle celle del burst a ogni ciclo di clock 
+\end{itemize}
+In pratica scegliendo una sequenza di celle consecutive si utilizza una volta sola
+il decoder, in seguito si utilizza solo il multiplexor. Questo migliora la banda di
+trasferimento, inoltre non è necessario ripresentare l'indirizzo per ottenere ogni cella
+del burst.
+Esempio di SRAM: 4M x 8 $\to$ servono 22 linee di indirizzo (4M = $2^{22}$)
+\begin{itemize}
+    \item suddiviso in 8 blocchi da 4Mb
+    \item parte alta dell'indirizzo [21-10] seleziona la medesima riga di ogni blocco
+    attraverso un Decoder
+    \item parte bassa dell'indirizzo [9-0] seleziona singoli bit dei 1024 bit in
+    output dai vari blocchi attraverso una serie di 8 Multiplexer
+\end{itemize}
+\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{SRAM a 2 livelli.png}
+\end{center}
+\paragraph{Perchè usare le DRAM}
+Le DRAM sono meno costoso e più capienti rispetto alle SRAM, essendo realizzate
+con un solo transistor per bit e un solo condensatore occupano meno spazio per singolo
+bit, inoltre i condensatori hanno un basso costo.
+Purtroppo sono più lente rispetto alle SRAM (da 5 a 10 volte più lente!). 
+
+\paragraph{Funzionamento DRAM} 
+\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{DRAM struttura.png}
+\end{center}
+\begin{itemize}
+    \item Il condensatore possiede una carica (0/1)
+    \item Il transistor viene chiuso, trasferendo il potenziale elettrico del condensatore
+    sulla Bit line (output), grazie al segnale affermato sulla Word line
+    \item la specifica Word line è attivata sulla base dell'indirizzo di memoria richiesto
+\end{itemize}\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{SRAM a 2 livelli.png}
+\end{center}
+\paragraph{Perchè usare le DRAM}
+Le DRAM sono meno costoso e più capienti rispetto alle SRAM, essendo realizzate
+con un solo transistor per bit e un solo condensatore occupano meno spazio per singolo
+bit, inoltre i condensatori hanno un basso costo.
+Purtroppo sono più lente rispetto alle SRAM (da 5 a 10 volte più lente!). 
+\section{Macchine a stati finiti}
+Per la rappresentazione dei circuiti combinatori vengono utilizzate 
+delle tabelle di verità, mentre per i circuiti sequenziali sono utilizzate le 
+\textbf{Finite State Machine (FSM)}.
+Sono composte da un set di stati e 2 funzioni 
+\begin{itemize}
+    \item Next state function - determina lo stato successivo partendo dallo stato corrente
+    e dai valori in ingresso
+    \item Output function - produce un insieme di risultati partendo dallo stato corrente
+    e dai valori di ingresso
+\end{itemize}
+Sono sincronizzate con il clock
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{FSM.png}
+\end{center}
+\paragraph*{FSM - Moore vs Mealy}
+Se la macchina dipende dallo stato corrente e basta, quindi viene usata come controller
+parliamo di una \textbf{FSM Moore}.
+\\ Se la macchina dipende dallo stato corrente e dagli input parliamo di una FSM Mealy.
+In questo corso si utilizza Moore.
+
+%END------------------------------------------------------------------------
 \end{document}
