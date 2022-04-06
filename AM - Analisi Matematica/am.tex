@@ -2,6 +2,7 @@
 \usepackage[italian]{babel}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage{amsfonts}
 
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
@@ -12,6 +13,9 @@
 \author{Fabio Ferrario}
 \date{2022}
 \maketitle
+
+\tableofcontents
+
 \chapter{Il Corso}
 \section{Programma del corso}
 \begin{enumerate}
@@ -61,7 +65,7 @@
 \\\emph{Trigonometria elementare}
 \\\emph{Esponenziali e logaritmi}
 
-\chapter{Richiami di Matematica}
+\chapter{Analisi 0}
 Aggiungo in questa sezione una parte di richiami di matematica presa dal corso omonimo su e-learning
 \section{Programma del precorso}
 Questo è l'intero programma del precorso:
@@ -151,18 +155,60 @@ Ogni triangolo èquilatero è isoscele
     \item Affinchè un triangolo abbia 3 lati uguali è necessario che ne abbia due uguali tra loro
 \end{itemize}
 Quindi A è ipotesi, B è la tesi.
-\chapter{Esame}
-\section{compitino 2019}
-\paragraph{1a. La serie $\sum^{+\inf}_{n=1} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 3$
-\subparagraph{}
-$\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
 
-\paragraph{1b. La serie $\sum^{+\inf}_{n=1} \frac{ln^3}{n^{\alpha - 1} + 3n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 2$
-\subparagraph{} La serie diventa divergente se $\alpha = 2 \lor \alpha \leq 2$
+\section{Valore assoluto (modulo) di un numero Reale}
+\subsection{Definizione} Per ogni $x \in R$ si pone
+\begin{equation}
+    |x| = \begin{cases}
+        x & \text{se $x \geq 0$}\\
+        -x & \text{se $x < 0$}
+    \end{cases}
+\end{equation}
+$|x|$ si dice valore assoluto, o modulo, di x\\
+\paragraph{ATTENZIONE} dire che "il modulo di un numero è il numero senza il segno" non ha senso in questo contesto, quindi non va usata perchè vale solo se x è "semplice"
+\paragraph{In parole povere} il modulo di $x$ è $x$ se x è positivo, il suo opposto se è negativo\\
+quindi $|3 - \pi| = \pi - 3$ perchè $3-\pi$ è negativo ($3 - 3.14$) quindi il suo modulo è il suo opposto.
+\\Volendo, $|x|$ si può anche interpretare come il massimo tra $x$ e $-x$.
+\subsection{Modulo e moltiplicazione}
+Per ogni $x, y \in R$ si ha $|xy| = |x||y|$.\\Se $y\neq0$, si ha anche $|x/y|=|x|/|y|$
+\subsection{Modulo e addizione}
+Il modulo della somma NON coincide con la somma dei moduli. Però vale la seguente importantissima disuguaglianza:
+\paragraph{Disuguaglianza triangolare} siano x,y numeri reali. Allora:
+\begin{equation}
+    |x+y| \leq |x| + |y|
+\end{equation} 
+(cioè il modulo della somma è minore o uguale della somma dei due moduli)
 
-\paragraph{2a. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+1}$ è uguale a} $-1$
-\subparagraph{}
-Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
-\paragraph{2b. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+2}$ è uguale a} $\frac{1}{2}$
+\section{Intervalli in $\mathbb{R}$}
+\paragraph{Definizione.} Diremo intervallo di $\mathbb{R}$ un sottoinsieme $I$ di $\mathbb{R}$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione: se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
+\\In parole povere: $I$ è intervallo di $\mathbb{R}$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
 
+\paragraph{Intervalli limitati.}
+Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i seguenti sottoinsiemi di $\mathbb{R}$:
+\begin{itemize}
+    \item[] $[a,b] = \{x \in R : a \leq x \leq b\}$ CHIUSO
+    \item[] $[a,b) = \{x \in R : a \leq x < b\}$ SUPERIORMENTE APERTO
+    \item[] $(a,b] = \{x \in R : a > x \leq b\}$ INFERIORMENTE APERTO
+    \item[] $(a,b) = \{x \in R : a > x < b\}$ APERTO
+\end{itemize}
+{\tiny(le parentesi tonde a volte vengono sostituite con delle parentesi quadre nel senso opposto)}
+\\Tutti questi intervalli sono detti intervalli \emph{limitati}
+\paragraph{Intervalli illimitati.} sono invece intervalli illimitati, per ogni $a \in R$, gli insiemi:
+\begin{itemize}
+    \item[] $\{x \in R: x \geq a\}$ (semiretta \emph{chiusa} inferiormente limitata)
+    \item[] $\{x \in R: x > a\}$ (semiretta \emph{aperta} inferiormente limitata)
+    \item[] $\{x \in R: x \leq a\}$ (semiretta \emph{chiusa} superiormente limitata)
+    \item[] $\{x \in R: x < a\}$ (semiretta \emph{aperta} superiormente limitata)
+\end{itemize}
+
+\subsection{Massimi e Minimi dei sottoinsieme di $\mathbb{R}$}
+\paragraph{Definizione.} Sia $S$ un sottoinsieme di $\mathbb{R}$. Un elemento $m\in R$ si dice \emph{massimo} di S se appartiene ad S ed è maggiore o uguale di ogni elemento di $S$.
+\\Dualmente, $\mu \in \mathbb{R} $ è detto \emph{minimo} di $S$ se appartiene ad $S$ ed è minore o uguale di ogni elemento di $S$
+\\Un sottoinsieme può \emph{avere o non avere massimo}, \emph{avere o non avere minimo}, ma se esistono sono UNICI
+
+\subsection{Maggioranti, minoranti. Insiemi superiormente/inferiormente limitati e limitati}
+\paragraph{Definizioni.} Sia $S$ sottoinsieme non vuoto di $\mathbb{R}$. si dice che $b\in \mathbb{R}$ è un \emph{maggiorante} per $S$ se risulta $s\leq b$ per ogni $s \in S$. Si dice che $S$ è \emph{Superiormente limitato} (in $\mathbb{R}$) se ammette maggioranti in $\mathbb{R}$.
+\\l'insieme dei maggioranti in $\mathbb{R}$ di $S\subseteq \mathbb{R}$ è indicato con $S^*$.
+\\dualmente per i minoranti, ovviamente i minoranti sono tutti minori di $S$ e l'insieme dei minoranti si indica con $S_*$.
+\\Un insieme non vuoto $S \subseteq \mathbb{R}$ si dice \emph{limitato} se è tanto superiormente limitato quanto inferiormente limitato. 
 \end{document}

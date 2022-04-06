@@ -1,0 +1,32 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+
+
+\begin{document}
+\title{Esami di Analisi Matematica}
+\author{Fabio Ferrario}
+\date{2022}
+\maketitle
+
+\tableofcontents
+\chapter{Esame}
+\section{compitino 2019}
+\paragraph{1a. La serie $\sum^{+\inf}_{n=1} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 3$
+\subparagraph{}
+$\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
+
+\paragraph{1b. La serie $\sum^{+\inf}_{n=1} \frac{ln^3}{n^{\alpha - 1} + 3n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 2$
+\subparagraph{} La serie diventa divergente se $\alpha = 2 \lor \alpha \leq 2$
+
+\paragraph{2a. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+1}$ è uguale a} $-1$
+\subparagraph{}
+Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
+\paragraph{2b. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+2}$ è uguale a} $\frac{1}{2}$
+
+\end{document}
