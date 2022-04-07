@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{fancyvrb}
 \usepackage{amssymb}
+\usepackage{amsmath}
 \graphicspath{ {./images/} }
 
 \begin{document}
@@ -22,6 +23,16 @@ Il corso di probabilità e statistica per l'informatica è diviso in 2 parti
     \end{enumerate}
     \item Statistica inferenziale - Trarre conclusioni dai dati
 \end{enumerate}
+
+%Modalità d'esame
+\chapter{Esame}
+L'esame sarà strutturato nella seguente maniera
+\paragraph{Parte 1 - Teoria}
+8 Domande a risposta multipla - Punteggio 10/30
+\paragraph{Parte 2 - Pratica}
+4 Esercizi a risposta aperta - Punteggio 20/30
+\paragraph{Progetto (facoltativo)}
+Progetto R, da consegnare prima dell'esame, può fornire un massimo di 2/30
 
 \chapter{Analisi Descrittiva}
 \section{Descrivere i dati}
@@ -466,24 +477,67 @@ stesso esperimento aleatorio. Quanto valre $VAR[X+Y] = ?$
 \textbf{dipende da come solo legate X e Y!}
 \paragraph{Definizione indipendenza} Due v.a. discrete X e Y si dicono indipendenti
 se gli eventi {X = x} e {Y = y} sono indipendenti, ossia:
-\begin{equation}
+\begin{equation*}
     P(X=x, Y=y) = P(X = x)P(Y = y)
-\end{equation}
+\end{equation*}
 Per ogni scelta di x e y.
 \paragraph{Teorema} Se X e Y sono v.a. indipendenti, allora:
-\begin{equation}
+\begin{equation*}
     VAR[X+Y] = VAR[X] + VAR[Y]
-\end{equation}
+\end{equation*}
 
 \section{Variabili aleatorie continue}
-%Modalità d'esame
-\chapter{Esame}
-L'esame sarà strutturato nella seguente maniera
-\paragraph{Parte 1 - Teoria}
-8 Domande a risposta multipla - Punteggio 10/30
-\paragraph{Parte 2 - Pratica}
-4 Esercizi a risposta aperta - Punteggio 20/30
-\paragraph{Progetto (facoltativo)}
-Progetto R, da consegnare prima dell'esame, può fornire un massimo di 2/30
+Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
+\\ Variabile aleatoria $\to$ funzione $X:\Omega \to R$
+\\Fin'ora abbiamo studiato v.a. discrete, che assumono un insieme finito oppure
+infinito numerabile di valori $X(\Omega) = {x_1, x_2, \dots}$, dove la distribuzione
+X è determinata dalla densità discreta:
+\begin{equation*}
+    P_x^{x_i} = P(X=x_i)
+\end{equation*}
+\begin{equation}
+    P(X \in A) = \sum_{x_i \in A}P_x^{x_i}  
+\end{equation}
+Consideriamo ora una classe "complementare" di v.a., dette \textbf{assolutamente continue}
+che assumono un insieme infinito più che numerabile di valore, come ad es. un intervallo
+di R: $[0, 1]$ $[0, +\infty)$ $(-\infty, +\infty)$
+\\ Una v.a. è \textbf{assolutamente continua} se la sua distribuzione è determinata
+da una funzione $f_x(x)$, a valori positivi, detta densità della v.a. X, nel modo
+seguente:
+\begin{equation*}
+    P(X \in A) = \int_{A}f_x (x) \,dx 
+\end{equation*}
+In particolare:
+\begin{equation*}
+    P(X\in[s,t]) = \int_{s}^{t} f_x (x)\,dx 
+\end{equation*}
+con $-\infty \leq s \leq t \leq +\infty$
+\\Area sotto il grafico di $f_x$ tra i punti s e t
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{va continue integrale.png}
+\end{center}
+\subsection*{Analogie tra v.a ass. continua e X discreta}
+Ci sono analogie formali tra le 2: \begin{itemize}
+    \item X ass. continua $P(X \in [s, t]) = \int_{s}^{t} f_x (x) \,dx$ \textbf{Integrale}
+    \item X discreta $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_x (x_i)$ \textbf{Somma}
+\end{itemize}
+Ma anche importanti differenze!
+\\ Se X è assolutamente continua:
+\begin{equation*}
+    \forall x \in R: P(X=x) = 0
+\end{equation*}
+\begin{equation*}
+    P(X \in [s,t]) = P(X \in (s, t))
+\end{equation*}
+\paragraph*{Proprietà} La densità di una v.a. assolutamente continua X è una funzione 
+$f_x : R \to R$ (integrabile) tale che: \begin{itemize}
+    \item $f_x (x) \geq 0$ $\forall x \in R$
+    \item $\int_{-\infty}^{+\infty} f_x (x) \,dx = 1$ Area 
+    totale sotto il grafico di $f_x$
+\end{itemize}
+ \paragraph*{Osservazione} $1 = P(X \in (-\infty, +\infty)) 
+ \neq \sum_{x \in (+\infty, -\infty)} P (X = x) = 0$ Dato che $X \in (+\infty, -\infty)$
+ è più che numberabile!
+%Esempio estrazione v.a. uniforme continua
 
 \end{document}
