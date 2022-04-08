@@ -7,6 +7,8 @@
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
+% variabile per funzione standard f: X -> Y
+\newcommand{\function}{f: X \rightarrow Y}
 
 \begin{document}
 \title{Analisi Matematica}
@@ -16,8 +18,17 @@
 
 \tableofcontents
 
-\chapter{Il Corso}
-\section{Programma del corso}
+\chapter*{Prefazione}
+\section{Introduzione}
+Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
+\\Come fonte ho utilizzato:
+\begin{itemize}
+    \item Appunti di altri studenti
+    \item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione) 
+\end{itemize}
+\section{Il Corso}
+Come già detto, questi appunti sono in funzione del corso di Analisi Matematica di UNIMIB, a.a. 2021/22, insegnato dalla Professoressa Pini.
+\subsection{Programma del corso}
 \begin{enumerate}
 \item Numeri Reali
 \begin{enumerate}
@@ -60,7 +71,7 @@
 \end{enumerate}
 \end{enumerate}
 
-\section{Prerequisiti}
+\subsection{Prerequisiti}
 \emph{Algebra elementare}: Calcolo letterale, equazioni e disequazioni di primo e secondo grado
 \\\emph{Trigonometria elementare}
 \\\emph{Esponenziali e logaritmi}
@@ -69,65 +80,6 @@
 \section{introduzione}
 Questo capitolo è dedicato ad alcuni argomenti contenuti sia nel precorso di matematica fornito dall'università, che del capitolo omonimo del libro Analisi Uno di Giuseppe De Marco.
 \\Qui verrano segnati soltanto gli argomenti che ritengo siano propedeutici al corso di Analisi 1 oppure che ritengo sufficientemente interessanti da essere ricordati.
-
-% \section{Programma del precorso su E-Learning}
-% Questo è l'intero programma del precorso:
-% \begin{enumerate}
-%     \item Preliminari
-%     \begin{itemize}
-%         \item elemtnti di logica, proposizioni e predicati, connettivi e quantificatori
-%         \item Insiemi relazione di appartenenza, di inclusione, relazioni fra Insiemi
-%     \end{itemize}
-%     \item Numeri
-%     \begin{itemize}
-%         \item I numeri interi, razionali, Reali
-%         \item Relazioni fra insiemi di numeri, piccola combinatorica
-%         \item Potenze ed esponenziali, radici
-%         \item Fattorizzazione di numeri
-%     \end{itemize}
-%     \item Polinomi
-%     \begin{itemize}
-%         \item Prodotti notevoli e scomposizioni
-%         \item Divisione tra Polinomi
-%         \item Zeri dei Polinomi
-%     \end{itemize}
-%     \item Equazioni e disequazioni algebriche
-%     \begin{itemize}
-%         \item Equazioni algebriche di primo e secondo grado
-%         \item Disequazioni Razionali intere
-%         \item Disequazioni Razionali fratte
-%         \item Disequazioni irrazionali
-%         \item Disequazioni con valore assoluto
-%     \end{itemize}
-%     \item Elementi di geometria analitica
-%     \begin{itemize}
-%         \item Il Piano cartesiano
-%         \item La retta
-%         \item Le coniche fondamentali (circonferenza, parabola, ellisse, iperbole)
-%     \end{itemize}
-%     \item Funzioni Reali
-%     \begin{itemize}
-%         \item Generalità: definizione, dominio, immagine
-%         \item Proprietà delle funzioni: crescenti e decrescenti, monotone, massimi e minimi
-%         \item Funzioni iniettive, suriettive, biiettive
-%         \item Studio del grafico delle principali funzioni elementari: Potenze intere, radici, potenze con esponente razionale e reale, valore assoluto
-%     \end{itemize}
-%     \item Esponenziali e logaritmi
-%     \begin{itemize}
-%         \item Esponenziali e proprietà, la funzione esponenziale
-%         \item Logaritmi e proprietò, la funzione logaritmo
-%         \item Equazioni e disequazioni logatitmiche
-%     \end{itemize}
-%     \item Trigonometria
-%     \begin{itemize}
-%         \item Angoli e loro misura
-%         \item Le funzioni seno, coseno, tangente, cotangente
-%         \item Le formule trigonometriche fondamentali
-%         \item Equazioni e disequazioni trigonometriche
-%     \end{itemize}
-% \end{enumerate}
-% Di questi argomenti segnerò gli appunti solo di quelli in cui potrei avere una carenza oppure sono di interesse per la materia Analisi Matematica.
-
 \section{Linguaggio della matematica }
 La matematica è fatta di:
 \begin{itemize}
@@ -215,4 +167,59 @@ Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i s
 \\l'insieme dei maggioranti in $\mathbb{R}$ di $S\subseteq \mathbb{R}$ è indicato con $S^*$.
 \\dualmente per i minoranti, ovviamente i minoranti sono tutti minori di $S$ e l'insieme dei minoranti si indica con $S_*$.
 \\Un insieme non vuoto $S \subseteq \mathbb{R}$ si dice \emph{limitato} se è tanto superiormente limitato quanto inferiormente limitato. 
+\subsection{Prodotto Cartesiano}
+\paragraph{Definizione.}Dati due insiemi $X$ e $Y$, il loro prodotto cartesiano è per definizione l'insieme $X \times Y$ formato da tutte le coppie ordinate $(x,y)$ che hanno la prima componente $x \in X$, la seconda $y \in Y$.\\
+Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$ e si indica anche con $X^2$
+\chapter{Funzioni}
+\section{Definizione e Proprietà}
+\paragraph{Definizione di Funzione.} Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+\paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
+\subsection{Dominio e Codominio}
+se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
+\paragraph{Assegnare una funzione} significa assegnare:
+\begin{itemize}
+    \item Un dominio $X$
+    \item Un codominio $Y$
+    \item Una regola che a ogni $x$ del dominio associ una $y$ del codominio
+\end{itemize}
+Pertanto: due funzioni $f$ e $g$ sono \textbf{uguali} se e solo se hanno lo \emph{stesso dominio}, lo\emph{ stesso codominio}, e inoltre si ha \emph{$f(x) = g(x)$ per ogni x del dominio}.\\
+Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio e il codominio dati siano gli stessi.
+\subsection{Insieme immagine}
+Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
+In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
+L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}. 
+Vale sempre $f(X) \subseteq Y$, quindi l'immagine è \emph{sempre} conenuta nel codomino, ma in generale è $f(X) \subset Y$, cioè immagine e codominio sono diversi.
+
+\paragraph{In parole povere} L'insieme immagine di una funzione è l'insieme di tutti i valori della funzione per ogni elemento del dominio.
+L'insieme immagine è \emph{sempre} contenuta nel dominio, ma non sempre vi coincide.
+
+\subsection{Funzioni Suriettive}
+Quando l\emph{'\textbf{insieme immagine} e il \textbf{codomino} di una funzione coincidono}, essa si dice che è \emph{suriettiva}
+\paragraph{Definizione. } Una funzione $\function$ si dice \emph{suriettiva} se è $f(X) = Y$.
+Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.
+\subsection{Immagine Inversa}
+Dualmente al concetto di immagine c'è quello di antiimmagine.
+\paragraph{Definizione. }Sia $\function $ una funzione, sia $F \subseteq Y$.
+Si chiama immagine inversa $f^\leftarrow(T)$ (o controimmagine, o antiimmagine) di $T$ mediante $f$ l'insieme degli $x \in X$ la cui imamgine sta in $T$.
+in simboli: $f^\leftarrow(T) = \{ x \in X : f(x) \in T\}$.
+\paragraph{In parole povere} L'antiimmagine mediante un insieme $T$ è l'insime dei valori del dominio la cui immagine è contenuta in $T$
+\subsection{Funzioni Iniettive}
+La funzione $\function$ è detta iniettiva se trasforma elementi distinti in elementi distinti, ovvero:
+\paragraph{Definizione. } $f: X \rightarrow Y$ si dice iniettiva se per ogni $x_1, x_2 \in X$ e $x_1 \neq x_2$ implicano $f(x_1) \neq f(x_2)$.
+\paragraph{}Per vedere che una $\function$ \emph{non} è iniettiva, basta esibire anche una sola coppia $x_1, x_2$ di elementi distinti ($x_1 \neq x_2$) del dominio per cui sia $f(x_1) = f(x_2)$.
+\\Per provare invece che è iniettiva, occorre dimostrare che per ogni coppia di elementi distinti $x_1, x_2 \in X, x_1 \neq x_2$ si ha $f(x_1) \neq f(x_2)$
+\subsection{Biiezioni}
+Una funzione $\function$ è detta biiettiva se è sia iniettiva che suriettiva.
+Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un solo $x \in X$ tale che sia $y = f(x)$.
+Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
+Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca. 
+\subsection{Funzione Inversa}
+Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
+dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
+se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
+\paragraph*{} se $f$ è funzione reale di variabile reale biiettiva, il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $x=y$.
+
+\section{Funzioni Elementari}
+
+
 \end{document}
