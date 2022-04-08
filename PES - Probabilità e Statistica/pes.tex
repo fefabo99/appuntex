@@ -541,4 +541,29 @@ $f_x : R \to R$ (integrabile) tale che: \begin{itemize}
  
 %Esempio estrazione v.a. uniforme continua
 
+Fissato un intervallo limitato $[a, b]$ $(-\infty < a < b < -\infty)$.
+\\ Una v.a. X si dice uniforme continua i [a, b] e si scrive $X \sim U(a, b)$
+se X è ass. cont con densità
+\begin{equation*}
+    f_x^(x) =
+    \begin{cases}
+        c \text{ se } x \in [a, b]\\
+        0 \text{ se } x \notin [a, b]
+    \end{cases} 
+\end{equation*}
+con $c = \frac{1}{b-a}$
+\\ Dato un intervallo $[s, t] \subseteq [a, b]$
+\begin{equation*}
+    P(X \in [s,t]) = \int_s^t f_x (x) \,dx = 
+    \frac{1}{b -a} \int_s^t 1 \,dx = \frac{t-s}{b-a} =
+    \frac{\text{Lungh. di } [s,t]}{\text{Lungh. di } [a, b]}
+\end{equation*} 
+\includegraphics[width=100mm, scale = 0.5]{va unif continua.png}
+\paragraph*{Osservazione} Si può mostrare che a partire da una v.a. U(0,1) è possibile
+generare una v.a. con distribuzione arbitraria!
+
+\paragraph*{Valori assunti da una V.A assolutamente continua}
+\begin{equation*}
+    X(\Omega) = {x \in R: f_x(x) > 0S}
+\end{equation*}
 \end{document}
