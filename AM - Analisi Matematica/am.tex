@@ -175,13 +175,13 @@ Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i s
 \paragraph{Definizione.}Dati due insiemi $X$ e $Y$, il loro prodotto cartesiano è per definizione l'insieme $X \times Y$ formato da tutte le coppie ordinate $(x,y)$ che hanno la prima componente $x \in X$, la seconda $y \in Y$.\\
 Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$ e si indica anche con $X^2$
 
-\section{Funzioni}
+\chapter{Funzioni}
 
-\subsection{Generalità}
+\section{Generalità}
 \paragraph{Definizione di Funzione.} Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
 \paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
 
-\subsubsection{Dominio e Codominio}
+\subsection{Dominio e Codominio}
 se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
 \paragraph{Assegnare una funzione} significa assegnare:
 \begin{itemize}
@@ -192,7 +192,7 @@ se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispe
 Pertanto: due funzioni $f$ e $g$ sono \textbf{uguali} se e solo se hanno lo \emph{stesso dominio}, lo\emph{ stesso codominio}, e inoltre si ha \emph{$f(x) = g(x)$ per ogni x del dominio}.\\
 Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio e il codominio dati siano gli stessi.
 
-\subsubsection{Insieme immagine}
+\subsection{Insieme immagine}
 Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
 In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
 L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}. 
@@ -200,9 +200,13 @@ Vale sempre $f(X) \subseteq Y$, quindi l'immagine è \emph{sempre} conenuta nel 
 \paragraph{In parole povere} L'insieme immagine di una funzione è l'insieme di tutti i valori della funzione per ogni elemento del dominio.
 L'insieme immagine è \emph{sempre} contenuta nel dominio, ma non sempre vi coincide.
 
-\subsubsection{Composizione di Funzioni} %TODO
+\subsection{Composizione di Funzioni} 
+Siano $\function$ e $g: Y \rightarrow Z$ funzioni.
+Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f" o "g cerchietto f") ponendo $g \circ f = g(f(x))$ per ogni $x \in X$;
+$g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
+\\Per poter fare la composizione, \textbf{occorre che il codominio di $f$ coincide con il dominio di $g$}.
 
-\subsubsection{Funzioni Suriettive}
+\subsection{Funzioni Suriettive}
 Quando l\emph{'\textbf{insieme immagine} e il \textbf{codomino} di una funzione coincidono}, essa si dice che è \emph{suriettiva}
 \paragraph{Definizione. } Una funzione $\function$ si dice \emph{suriettiva} se è $f(X) = Y$.
 Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.
@@ -232,9 +236,47 @@ dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
 se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
 \paragraph*{} se $f$ è funzione reale di variabile reale biiettiva, il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $x=y$.
 
-\subsection{Funzioni Crescenti e strettamente Crescenti}%TODO
+\subsection{Funzioni Pari/Dispari, Funzioni Monotone}
+Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
+
+\paragraph*{Pari}
+Si dice che $f$ è pari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = f(-x)$;
+\\Le funzioni pari hanno grafico simmetrico rispetto all'asse delle ordinate.
+\paragraph*{Dispari}
+Si dice che $f$ è dispari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = -f(x)$;
+\\Le funzioni dispari hanno grafico simmetrico rispetto all'origine
+
+\paragraph*{Monotona Crescente}
+Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $f(x_1) \leq f(x_2)$;
+\\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) < f(x_2)$ allora $f$ si dice \emph{strettamente crescente};
+
 
 \subsection{Grafici di Funzioni Elementari} %TODO
+
+
+\chapter{Serie Numeriche}
+\section{Introduzione}
+Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
+In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
+\section{Definizione}
+Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
+($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
+\begin{equation*}
+    s_m = x_0 + ... + x_m
+    \\\text{ovvero}
+    \\s_m = \sum_{n=0}^m x_n
+\end{equation*}
+
+\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
+Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
+\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
+\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali. 
+
+\subsection*{In parole povere...}
+Una serie numerica è il modo di indicare una somma di infiniti numeri.
+Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
+\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
+
 
 
 \end{document}
