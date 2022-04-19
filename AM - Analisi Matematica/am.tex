@@ -10,6 +10,7 @@
 
 \newcommand{\function}{f: X \rightarrow Y} % variabile per funzione standard f: X -> Y
 \newcommand{\R}{\mathbb{R}} %variabile per R
+\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.3pt}}
 
 \begin{document}
 \title{Analisi Matematica}
@@ -178,7 +179,8 @@ Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$
 \chapter{Funzioni}
 
 \section{Generalità}
-\paragraph{Definizione di Funzione.} Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+
+\subsection{Definizione di Funzione.} Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
 \paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
 
 \subsection{Dominio e Codominio}
@@ -200,23 +202,32 @@ Vale sempre $f(X) \subseteq Y$, quindi l'immagine è \emph{sempre} conenuta nel 
 \paragraph{In parole povere} L'insieme immagine di una funzione è l'insieme di tutti i valori della funzione per ogni elemento del dominio.
 L'insieme immagine è \emph{sempre} contenuta nel dominio, ma non sempre vi coincide.
 
-\subsection{Composizione di Funzioni} 
-Siano $\function$ e $g: Y \rightarrow Z$ funzioni.
-Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f" o "g cerchietto f") ponendo $g \circ f = g(f(x))$ per ogni $x \in X$;
-$g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
-\\Per poter fare la composizione, \textbf{occorre che il codominio di $f$ coincide con il dominio di $g$}.
-
-\subsection{Funzioni Suriettive}
-Quando l\emph{'\textbf{insieme immagine} e il \textbf{codomino} di una funzione coincidono}, essa si dice che è \emph{suriettiva}
-\paragraph{Definizione. } Una funzione $\function$ si dice \emph{suriettiva} se è $f(X) = Y$.
-Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.
-
 \subsubsection{Immagine Inversa}
 Dualmente al concetto di immagine c'è quello di antiimmagine.
 \paragraph{Definizione. }Sia $\function $ una funzione, sia $F \subseteq Y$.
 Si chiama immagine inversa $f^\leftarrow(T)$ (o controimmagine, o antiimmagine) di $T$ mediante $f$ l'insieme degli $x \in X$ la cui imamgine sta in $T$.
 in simboli: $f^\leftarrow(T) = \{ x \in X : f(x) \in T\}$.
 \paragraph{In parole povere} L'antiimmagine mediante un insieme $T$ è l'insime dei valori del dominio la cui immagine è contenuta in $T$
+
+
+\section{Composizione di Funzioni} 
+Siano $\function$ e $g: Y \rightarrow Z$ funzioni.
+Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f" o "g cerchietto f") ponendo $g \circ f = g(f(x))$ per ogni $x \in X$;
+$g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
+\\Per poter fare la composizione, \textbf{occorre che il codominio di $f$ coincide con il dominio di $g$}.
+
+\defaultrule
+\subsection*{esempio}
+Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
+\\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$
+
+\defaultrule
+\section{Iniettività e Suriettività}
+
+\subsection{Funzioni Suriettive}
+Quando l\emph{'\textbf{insieme immagine} e il \textbf{codomino} di una funzione coincidono}, essa si dice che è \emph{suriettiva}
+\paragraph{Definizione. } Una funzione $\function$ si dice \emph{suriettiva} se è $f(X) = Y$.
+Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.
 
 \subsubsection{Funzioni Iniettive}
 La funzione $\function$ è detta iniettiva se trasforma elementi distinti in elementi distinti, ovvero:
@@ -230,15 +241,14 @@ Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un 
 Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
 Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca. 
 
-\subsubsection{Funzione Inversa}
+\subsection{Funzione Inversa}
 Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
 dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
 se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
 \paragraph*{} se $f$ è funzione reale di variabile reale biiettiva, il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $x=y$.
 
-\subsection{Funzioni Pari/Dispari, Funzioni Monotone}
+\section{Funzioni Pari/Dispari}
 Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
-
 \paragraph*{Pari}
 Si dice che $f$ è pari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = f(-x)$;
 \\Le funzioni pari hanno grafico simmetrico rispetto all'asse delle ordinate.
@@ -246,13 +256,16 @@ Si dice che $f$ è pari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = f(-
 Si dice che $f$ è dispari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = -f(x)$;
 \\Le funzioni dispari hanno grafico simmetrico rispetto all'origine
 
-\paragraph*{Monotona Crescente}
+\section{Monotonia di una Funzione}
+Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
+
+\subsection{Funzione Crescente}
 Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $f(x_1) \leq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) < f(x_2)$ allora $f$ si dice \emph{strettamente crescente};
 
-
-\subsection{Grafici di Funzioni Elementari} %TODO
-
+\subsection{Funzione Decrescente}
+Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
+\\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
 
 \chapter{Serie Numeriche}
 \section{Introduzione}
