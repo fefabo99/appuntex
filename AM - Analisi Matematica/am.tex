@@ -271,15 +271,21 @@ Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue
 \section{Introduzione}
 Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
 In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
+
+\paragraph*{Richiamiamo le successioni}
+Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
+Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
 \section{Definizione}
 Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
 ($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
 \begin{equation*}
     s_m = x_0 + ... + x_m
-    \\\text{ovvero}
-    \\s_m = \sum_{n=0}^m x_n
 \end{equation*}
+Che equivale alla notazione:
 
+\begin{equation*}
+    \boxed{s_m = \sum_{n=0}^m x_n}
+\end{equation*}
 \paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
 Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
 \paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
@@ -289,6 +295,29 @@ Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in 
 Una serie numerica è il modo di indicare una somma di infiniti numeri.
 Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
 \\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
+
+
+\section{Serie Convergenti}
+\subsection{Serie Geometrica}
+Per ogni $x\in \R$, consideriamo la serie di termine generale $x^k$, cioè la serie
+\begin{equation*}
+    \sum_{n=0}^{+\infty} x^n
+\end{equation*}
+Essa è detta \emph{serie geometrica di ragione $x$}.
+è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $x$, le somme parziali $s_n$.
+Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica. 
+risulta:
+\begin{equation}
+    \underset{x \to \infty}{\lim} s_n \begin{cases}
+        \text{non esiste} & x \leq -1 \\
+        = \frac{1}{1-x} & -1 < x < 1 \\
+        = +\infty & x \geq 1
+    \end{cases}
+\end{equation}
+
+\paragraph{In parole povere}
+Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
+\\ \textbf{Attenzione però}, perchè questo vale se la serie parte con $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
 
 
 

@@ -7,6 +7,16 @@
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
+\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.1pt}}
+
+%comandi matematici
+\newcommand{\serie}[2]{\sum_{n=#1}^{#2} x^n}
+\newcommand{\limite}[2][n]{lim_{#1 \rightarrow #2}}
+
+%comandi per le domande, risposte e spiegazioni
+\newcommand{\domanda}[2]{\paragraph*{#1}#2:}
+\newcommand{\risposta}[1]{\begin{center}#1 \end{center}}
+\newcommand{\spiegazione}[1]{\defaultrule \par #1 \defaultrule}
 
 \begin{document}
 \title{Esami di Analisi Matematica}
@@ -15,18 +25,30 @@
 \maketitle
 
 \tableofcontents
-\chapter{Esame}
-\section{compitino 2019}
-\paragraph{1a. La serie $\sum^{+\inf}_{n=1} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 3$
-\subparagraph{}
-$\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
+\chapter{Compitini}
+\section{Compitino 2019}
+\subsection{Domande Chiuse}
 
-\paragraph{1b. La serie $\sum^{+\inf}_{n=1} \frac{ln^3}{n^{\alpha - 1} + 3n}$ è} CONVERGENTE SE E SOLO SE $\alpha > 2$
-\subparagraph{} La serie diventa divergente se $\alpha = 2 \lor \alpha \leq 2$
+\domanda{1a}{La serie $\serie{1}{+\infty} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è}
+\risposta{Convergente sse $\alpha > 3$}
+\spiegazione{
+    $\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
+}
 
-\paragraph{2a. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+1}$ è uguale a} $-1$
-\subparagraph{}
-Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
-\paragraph{2b. La somma della serie $\sum^{+\inf}_{n=0} 3\cdot (-\frac{1}{2})^{n+2}$ è uguale a} $\frac{1}{2}$
+\domanda{1b}{La serie $\serie{1}{+\infty} \frac{ln^3}{n^{\alpha - 1} + 3n}$ è}
+\risposta{Convergente sse $\alpha > 2$}
+\spiegazione{La serie diventa divergente se $\alpha = 2 \lor \alpha \leq 2$}
+
+\domanda{2a}{La somma della serie $\serie{0}{+\infty} 3\cdot (-\frac{1}{2})^{n+1}$ è uguale a}
+\risposta{$-1$}
+\spiegazione{
+    Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
+}
+\domanda{2b}{La somma della serie $\serie{0}{+\infty} 3\cdot (-\frac{1}{2})^{n+2}$ è uguale a}
+\risposta{$\frac{1}{2}$}
+
+\domanda{3a}{Il $\limite{n}{+\infty} \frac{3n^2-n+n ln n +(-1)^n}{2n+4n ln n - n^ - \frac 2/n^2}$ vale}
+\risposta{3}
+ 
 
 \end{document}
