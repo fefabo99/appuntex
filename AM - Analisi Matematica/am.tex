@@ -3,16 +3,12 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-
-% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
-\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
-
-
-\newcommand{\function}{f: X \rightarrow Y} % variabile per funzione standard f: X -> Y
-\newcommand{\R}{\mathbb{R}} %variabile per R
-\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.3pt}}
-
+ 
 \begin{document}
+
+%File di variabili
+\include{variabili}
+
 \title{Analisi Matematica}
 \author{Fabio Ferrario}
 \date{2022}
@@ -216,12 +212,11 @@ Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f"
 $g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
 \\Per poter fare la composizione, \textbf{occorre che il codominio di $f$ coincide con il dominio di $g$}.
 
-\defaultrule
-\subsection*{esempio}
-Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
-\\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$
 
-\defaultrule
+\esempio{
+    Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
+    \\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$    
+}
 \section{Iniettività e Suriettività}
 
 \subsection{Funzioni Suriettive}
@@ -266,7 +261,12 @@ Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $
 \subsection{Funzione Decrescente}
 Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
-
+\chapter{Limiti e Continuità}
+% TODO capitolo Limiti
+\chapter{Calcolo Differenziale}
+%TODO capitolo Calcolo Differenziale (derivate)
+\chapter{Calcolo Integrale}
+%TODO capitolo Calcolo Integrale (inegrali)
 \chapter{Serie Numeriche}
 \section{Introduzione}
 Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
@@ -299,26 +299,58 @@ Come dice la definizione, una serie è formata da una coppia ordinata di success
 
 \section{Serie Convergenti}
 \subsection{Serie Geometrica}
-Per ogni $x\in \R$, consideriamo la serie di termine generale $x^k$, cioè la serie
-\begin{equation*}
-    \sum_{n=0}^{+\infty} x^n
-\end{equation*}
-Essa è detta \emph{serie geometrica di ragione $x$}.
-è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $x$, le somme parziali $s_n$.
+La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
+Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
 Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica. 
 risulta:
 \begin{equation}
-    \underset{x \to \infty}{\lim} s_n \begin{cases}
-        \text{non esiste} & x \leq -1 \\
-        = \frac{1}{1-x} & -1 < x < 1 \\
-        = +\infty & x \geq 1
+    \underset{n \to \infty}{\lim} s_n \begin{cases}
+        \text{non esiste} & q \leq -1 \\
+        = \frac{1}{1-q} & -1 < q < 1 \\
+        = +\infty & q \geq 1
     \end{cases}
 \end{equation}
+Per cui 
+\begin{equation}
+    \sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
+        indeterminata & q \leq -1 \\
+        convergente & -1 < q < 1 \\
+        divergente +\infty & q \geq 1
+    \end{cases}
+\end{equation}
+
+\esempio{
+    $\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$ 
+}
 
 \paragraph{In parole povere}
 Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
 \\ \textbf{Attenzione però}, perchè questo vale se la serie parte con $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
 
+\subsection{Serie Telescopica}
+Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
+Allora risulta:
+\begin{equation*}
+    s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
+\end{equation*}
+Da cui
+\begin{equation*}
+    \sum_{k=1}^{n}a_k = \underset{n \to +\infty}{\lim} s_n = b_ - \underset{n \to +\infty}{\lim} b_{n+1} = b_1
+\end{equation*}
+
+\subsubsection*{Serie di Mengoli}
+La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
+La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
+\begin{equation*}
+    a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+quindi, la sua somma parizale è:
+\begin{equation*}
+    s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
+\\Da qui è possibile calcolarne il $\limite{+\infty} s_n = 1$, quindi la serei \emph{converge a 1}.
+Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
 
 \end{document}

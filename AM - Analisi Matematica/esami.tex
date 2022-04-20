@@ -4,21 +4,12 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 
-% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
-\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
-
-\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.1pt}}
-
-%comandi matematici
-\newcommand{\serie}[2]{\sum_{n=#1}^{#2} x^n}
-\newcommand{\limite}[2][n]{lim_{#1 \rightarrow #2}}
-
-%comandi per le domande, risposte e spiegazioni
-\newcommand{\domanda}[2]{\paragraph*{#1}#2:}
-\newcommand{\risposta}[1]{\begin{center}#1 \end{center}}
-\newcommand{\spiegazione}[1]{\defaultrule \par #1 \defaultrule}
 
 \begin{document}
+
+%File di variabili
+\include{variabili}
+
 \title{Esami di Analisi Matematica}
 \author{Fabio Ferrario}
 \date{2022}
@@ -51,4 +42,15 @@
 \risposta{3}
  
 
+\chapter{Esami}
+\section{Febbraio 2021}
+
+\domanda{1}{Sia $a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3}$. Allora, per $\limite{+\infty}$}
+\risposta{$a_n \sim \frac{2}{n^5}$}
+\spiegazione{
+    \begin{equation*}
+        a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3} \rightarrow \frac{\frac{2}{n^2}}{n^3} \rightarrow \frac{2}{n^2} \cdot \frac{1}{n^3} = \frac{2}{n^5}
+    \end{equation*}
+    \paragraph*{Ovvero} Bisogna trovare l'un asintotico per il numeratore e per il denominatore, DA FINIRE
+}
 \end{document}
