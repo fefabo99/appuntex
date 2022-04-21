@@ -15,7 +15,15 @@
 \maketitle
 
 \tableofcontents
-
+\chapter*{Elementi da tenere conto e smistare}
+Qui alcune cose sparse che ho preso da i miei fogli di appunti che vanno tenute a mente e che sono ancora da smistare,
+\section{Limiti}
+\begin{itemize}
+    \item $\limite{x}{0} \ln(1+x) \sim x$
+    \item $\limite{x}{0} \ln(1-x) \sim -x$
+\end{itemize}
+\section{Polinomio di McLaurin}
+$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
 \chapter*{Prefazione}
 \section{Introduzione}
 Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
@@ -284,6 +292,11 @@ Inserisco qui alcune derivate che vale la pena ricordare
     \item \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
     \item \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
 \end{itemize}
+\subsection{Derivate composte}
+\begin{itemize}
+    \item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
+    \item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(f(x))$
+\end{itemize}
 \chapter{Calcolo Integrale}
 %TODO capitolo Calcolo Integrale (inegrali)
 \chapter{Serie Numeriche}
@@ -323,7 +336,7 @@ Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al
 Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica. 
 risulta:
 \begin{equation}
-    \underset{n \to \infty}{\lim} s_n \begin{cases}
+    \limite{n}{+\infty} s_n \begin{cases}
         \text{non esiste} & q \leq -1 \\
         = \frac{1}{1-q} & -1 < q < 1 \\
         = +\infty & q \geq 1
@@ -354,7 +367,7 @@ Allora risulta:
 \end{equation*}
 Da cui
 \begin{equation*}
-    \sum_{k=1}^{n}a_k = \underset{n \to +\infty}{\lim} s_n = b_ - \underset{n \to +\infty}{\lim} b_{n+1} = b_1
+    \sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
 \end{equation*}
 
 \subsubsection*{Serie di Mengoli}
@@ -368,7 +381,7 @@ quindi, la sua somma parizale è:
     s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
 \end{equation*}
 questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
-\\Da qui è possibile calcolarne il $\limite{+\infty} s_n = 1$, quindi la serei \emph{converge a 1}.
+\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
 
