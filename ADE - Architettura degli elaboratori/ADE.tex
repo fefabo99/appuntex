@@ -834,5 +834,72 @@ parliamo di una \textbf{FSM Moore}.
 \\ Se la macchina dipende dallo stato corrente e dagli input parliamo di una FSM Mealy.
 In questo corso si utilizza Moore.
 
+\chapter{Instruction Set Architecture (ISA)}
+Per analizzare l'architettura di un computer analizziamo tre aspetti
+fondamentali:
+\begin{itemize}
+    \item Cosa fa (ISA)
+    \item Come si programma (Assembly Language)
+    \item Come è fatto (circuiti e Datapath)
+\end{itemize}
+\section{Filosofie di progetto della CPU}
+Ci sono 2 principali filosofie di progetto della CPU
+\begin{itemize}
+    \item RISC (Reduced Instruction Set Computing)
+    \item CISC (Complex Instruction Set Computing)
+\end{itemize}
+\subsection{RISC}
+\begin{itemize}
+    \item Poche istruzioni semplici
+    \item Struttura circuitamente semplice
+    \item Esecuzione veloce di una singola operazione
+    \item Occorrono più istruzioni per fare cose anche semplici
+\end{itemize}
+Ottimi esempi di questa tipologia di architettura sono MIPS, ARM e PowerPC.
+\paragraph{Implementazioni} MIPS è stata utilizzata per i processori del Nintendo64,
+mentre PowerPC per quanto riguarda PlayStation , Xbox 360, Nintendo Wii e GameCube.
+
+\subsection{CISC}
+\begin{itemize}
+    \item Istruzioni complesse
+    \item Struttura circuitalmente complicata
+    \item Esecuzione più lenta di una singola istruzione
+    \item Occorrono meno istruzioni
+\end{itemize}
+Un esempio diffusissimo è Intel x86 e tutti i derivati.
+
+\section{MIPS}
+Noi utilizzeremo MIPS attraverso QTSPIM.
+Essendo RISC è semplice, uniforme e più semplice da capire. 
+Utilizza 32 registri di 32 bit e istruzioni di 32 bit.
+
+Ogni istruzione ha un formato diverso, quindi raggruppa di 32 bit in modo diverso.
+In MIPS le istruzioni sono divise in tre formati
+\begin{itemize}
+    \item R-type - Istruzioni relative ai registri
+    \item I-type - Istruzioni immediate (costanti passate direttamente nel codice dell'operazione)
+    \item J-type
+\end{itemize}
+
+\subsection{R-Type}
+Sono le istruzioni che operano sui registri
+Formato istruzione.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{R-type format.png}
+\end{center}
+\paragraph*{OpCode} In questo caso l'opcode dice che è di tipo R dato che le R-type Instruction
+hanno tutte OpCode 000000. Per identificare l'istruzione è necessario controllare il 
+campo funct. Per gli altri tipi di istruzione non esiste.
+
+\subsection{I-type}
+Istruzoni per la somma di valori ricorrenti (costanti), in questo caso la costante viene direttamente
+passata nel codice dell'operazione, riservando 16 bit per il valore (campo passato in complemento a 2).
+Vengono chiamate I-type perchè si tratta di operazioni immediate.
+Il valore è considerato come un intero con segno ($2^15$ valori rappresentabili)
+Il formato è il seguente:
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{I-type format.png}
+\end{center}
+\paragraph{1:06:56 Lezione sorrenti istruzioni assembly}
 %END------------------------------------------------------------------------
 \end{document}
