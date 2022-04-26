@@ -148,7 +148,6 @@ Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
 	\end{cases}
 \end{equation*}
 
-
 \paragraph{pseudocodice}
 \begin{lstlisting}[mathescape=true]
 LCS-LENGHT(X,Y)
@@ -172,6 +171,59 @@ LCS-LENGHT(X,Y)
 				b[i,j] = $\leftarrow $
 	return c e b
 \end{lstlisting}
+
+
+
+\subsection{Esercizio: LCS $\geq L$}
+\paragraph*{Testo}
+Date due sequenze:\\
+$X = <x_1,...,x_m>$ di lunghezza $m$\\
+$Y = <y_1,...,y_n>$ di lunghezza $n$\\
+e dato un $L \geq 0$ stabilire se \emph{La lunghezza di una qualunque LCS di $X$ e $Y$ è $\geq L$}. 
+
+\paragraph*{Istanza di un qualunque sottoproblema}
+\begin{itemize}
+	\item[] $X_i$ (con $0 \leq i \leq m$)
+	\item[] $Y_j$ (con $0 \leq j \leq n$)
+	\item[] $l$ (con $0 \leq l \leq L$)  
+\end{itemize}
+Quindi ogni sottoproblema è individuato da una n-pla (i, j, l) con $0 \leq i \leq m$, $0 \leq j \leq n$, $0 \leq l \leq L$.
+La soluzione di ogni sottoproblema sarà un valore \emph{True/False} a se cibda cge esusta i nebi yba LCS di $X_i$ e $Y_j$ di lunghezza $geq l$.
+Pertanto introduciamo una variabile per ogni sottoproblema destinata a contenerne la soluzione.
+\paragraph*{Definizione delle Variabiili}
+$\forall i\in \{0,...,m\}, \forall j\in\{0,...n\}, \forall l\in \{0...,L\}$
+$C_{ijl}$ è definita come soluzione del sottoproblema (i,j,l), ossia vale True sse la lunghezza di una qualunque LCS di $X_i$ e $Y_j$ è $geq l$.
+Per ogni i,j,l come sopra dobbiamo ora calcoalre il valore di $c_{ijl}$.
+\paragraph*{Caso Base}
+\begin{equation}
+	c_{ijl} = \begin{cases}
+		\text{True} & \text{se $l = 0$}\\
+		\text{False} & \text{se $l>0 \wedge (i<l \vee j<l)$}
+	\end{cases}
+\end{equation}
+\paragraph*{Passo Ricorsivo}
+Comprende tute le tuple (i,j,l) con $l>0 \wedge i\geq l \wedge j \geq l$
+	\begin{itemize}
+		\item[Caso 1] sse $x_i = y_j$\\ $c_{ijl} = c_{i-1,j-1,l-1}$ %Non c'è il +1 perchè è True/False pirla%
+		\item[Casi 2] se  $x_i \neq y_j$,
+		\begin{itemize}
+			\item[2a] LCS($X_i,Y_j$) termina con $z_k \neq x_i$ \\ $c_{i-1,j,l}$
+			\item[2b] LCS($X_i,Y_j$) termina con $z_k \neq y_j$ \\ $c_{i,j-1,l}$
+		\end{itemize}
+	\end{itemize}
+Risolvendo $\exists$ una LCS($X_i,Y_j$) di lunghezza $\geq l$ sse ciò si verifica in almeno uno dei due casi, per cui:
+$c_{ijl} = c_{i-1,j,l} \vee c_{i,j-1,l}$.
+Riassumendo, il passo ricorsivo è:
+Dati $l>0 \wedge i\geq l \wedge j \geq l$
+\begin{equation}
+	C_{ijl} = \begin{cases}
+		C_{i-1,j-1,l-1} &  x_i = y_j\\
+		C_{i-1,j,l} \vee C_{i,j-1,l} & x_i \neq y_j
+	\end{cases}
+\end{equation}
+
+\paragraph*{Soluzione}
+Con istanza X,Y,L la soluzione del problema è il valore di $c_{m,n,L}$
 
 \chapter{Algoritmi Greedy}
 \section{Introduzione}
