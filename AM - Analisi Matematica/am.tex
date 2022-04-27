@@ -327,6 +327,34 @@ $a_n$ soddisfa quella proprietà per ogni $n \geq N$, quindi da un certo $n$ in 
     $a_n =\frac{1}{n+1}$ $[1, \frac{1}{2}, \frac{1}{3},\frac{1}{4}...] $ è \emph{Definitivamente minore di $\frac{1}{3}$}
 }
 
+\section{Limiti di Successioni}
+\paragraph*{}Calcolare il limite di una successione (che si indica con $\limite{n}{+\infty}a_n$ o $\lim a_n$)
+è equivalente a chiedersi che tipo di comportamento ha la successione quando $n$ tende a diventare molto molto grande.
+
+\paragraph*{Definizione} Sia $a_n$ una successione, e sia $l \in \R$.
+Si dice che $a_n$ ha per limite $l$ per $n$ tendente all'infinito (o che $a_n$ tende a $l$)
+se la successione $a_n$ si trova \emph{definitivamente} in ogni intorno di $l \in \R$
+e si scrive $\limite{n}{+\infty} a_n = l$
+
+Quando si calcola il limite bisogna però distinguere 4 casistiche:
+\begin{enumerate}
+    \item \textbf{Convergenza}, se $l\in\R$, si ha $\lim a_n = l$ sse $\forall \epsilon > 0$ esiste un indice $n_\epsilon\in\N$ tale che si abbia:
+    \begin{center}
+        $|a_n-l|\leq\epsilon$ per ogni $n \geq n_\epsilon$
+    \end{center}
+    \item \textbf{Divergenza a $+\infty$}, si ha $\lim a_n = +\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
+    \begin{center}
+        $a_n\geq a$ per ogni $n \geq n_a$
+    \end{center}
+    \item \textbf{Divergenza a $-\infty$}, si ha $\lim a_n = -\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
+    \begin{center}
+        $a_n\leq a$ per ogni $n \geq n_a$
+    \end{center}
+    \item \textbf{Indeterminazione} se non si verifica nessuno dei casi precedenti, quindi il $\lim a_n$ non esiste.
+\end{enumerate}
+\paragraph*{In parole povere} La successione converge se la successione al crescere di n va ad avvicinarsi sempre di più a $l$,
+diverge a $+\infty$ se esiste un indice che permette alla successione di essere più grande di un qualsiasi numero Reale
+e infine diverge a $-\infty$ se esiste un indice che permette alla successione di essere più piccolo di una qualsiasi numero Reale.
 \chapter{Limiti e Continuità}
 % TODO capitolo Limiti
 \chapter{Calcolo Differenziale}
