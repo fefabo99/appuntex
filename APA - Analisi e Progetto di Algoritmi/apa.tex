@@ -1,15 +1,31 @@
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage[italian]{babel}
 \usepackage{listings}
+\usepackage{xcolor}
+
+
 \usepackage{amsmath}
 \usepackage{hyperref}
-
 
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
+\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
 
-
+\lstset{
+	language=python,
+	basicstyle=\ttfamily,
+	mathescape,	
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=4,
+	columns=fullflexible,
+    breaklines=true,
+    breakatwhitespace=false,
+	backgroundcolor=\color{grigiochiaro},
+	keywordstyle=\color[HTML]{6A1ABE}\bfseries
+}
 
 \begin{document}
 \title{Analisi e Progetto di Algoritmi}
@@ -20,7 +36,10 @@
 \tableofcontents
 
 \chapter*{Introduzione}
-\section*{Argomenti del Corso}
+\section{Il corso}
+Il corso è erogato nel primo semestre da Claudio Zandron e Alberto Dennunzio per il turno AL e da Paola Bonizzoni e Raffaella Rizzi per il turno MZ.
+
+\subsection*{Argomenti del corso}
 \begin{enumerate}
 	\item Programamzione dinamica
 	      \begin{enumerate}
@@ -70,7 +89,8 @@ l'approccio generale si può riassumere in 4 passi:
 \begin{enumerate}
 	\item Caratterizzare la struttura di una soluzione ottimale.
 	\item Definire ricorsivamente il valore di una soluzione ottimale (e quindi di tutte).
-	\item Calcolare il valore delle soluzinoi ottimali, tipicamente in maniera bottom-up, memorizzando i loro valori in tabelle.
+	\item Calcolare il valore delle soluzinoi ottimali, tipicamente in maniera bottom-up,
+	memorizzando i loro valori in tabelle.
 	\item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
 \end{enumerate}
 
@@ -80,27 +100,27 @@ l'approccio generale si può riassumere in 4 passi:
 	\item \textbf{Sovrapposizione dei sottoproblemi}: L'insieme dei sottoproblemi distinti ha cardinalità di molto inferiore all'insieme delle soluzioni possibili da cui vogliamo seleziona quella ottima. Quindi un problema deve apparire molte volte come sottoproblema di altri problemi
 \end{enumerate}
 
-\subsection{DP vs D-et-I}
+\paragraph{DP vs D-et-I}
 Come il metodo divide-et-impera, la programmazione dinamica risolve un problema combinando le soluzioni dei suoi sottoproblemi.\\
 La programmazione dinamica è utile quando i sottoproblemi si sovrappongono, ovvero \emph{diversi sottoproblemi contengono gli stessi sottoproblemi}\\
 D-et-I risolverebbe inutilmente i sottoproblemi ogni volta, mentre un algoritmo di programmazione dinamica risolve ogni sottoproblema una sola volta e ne memorizza la soluzione in una tabella, in modo da evitare di dover ripetere ogni volta il calcolo della soluzione di un sottoproblema già risolto.
-
 \subparagraph{Esempio: Fibonacci} 
 Calcolando il numero di Fibonacci, se utilizziamo la tecnica D-et-I l'albero delle chiamate ricorsive \emph{esplode}.
 Se invece utilizzando la programmazione dinamica memorizziamo i valori già calcolati possiamo evitare di ripetere inutilmente calcoli già risolti.
 
 \section{Weighted Interval Scheduling}
-\subsection{Introduzione}
-\paragraph{Il problema} dello scheduling di attività riguarda la gestione di un insime di attività caratterizzate da un tempo di inizio, un tempo di fine e un valore.
-L'obiettivo è quello di determinare un insieme di attività mutualmente compatibili il cui valore totle è massimo.
-Un insieme di attività si dice mutualmente compatibili se per ogni attività di tale insieme, nessun'altra attività dell'insieme si sovrappone a questa.
+\paragraph{Introduzione}Il problema dello scheduling di attività riguarda la gestione di un insime di attività caratterizzate da un tempo di inizio, un tempo di fine e un valore.
+L'obiettivo è quello di determinare un insieme di attività mutualmente compatibili il cui valore totale è massimo.
+
+Un insieme di attività si dice\emph{ mutualmente compatibili} se per ogni attività di tale insieme, nessun'altra attività dell'insieme si sovrappone a questa.
+
 
 \paragraph{Pseudocodice}
 $p(i)$ è il più grande indice i > j tale che l'intervallo di indice i non si sovrappone all'intervallo di indice j.
-\begin{lstlisting}[mathescape=true]
-WEIGHTED-INTERVAL-SCHEDULING 
+\begin{lstlisting}
+WIS
 	M[0] = 0
-	For i = 1 to n
+	for i = 1 to n
 		M[i] = max(v$_i$ + M[p(i)], M[i-1])
 \end{lstlisting}
 In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
@@ -109,7 +129,7 @@ In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
 	\item $M[i-1]$ se $i \notin OPT$
 \end{itemize}
 
-\section{Il Knapsack Problem (0/1)}
+\section{Knapsack Problem 0/1}
 \paragraph{il problema} Ci sono n oggetti ai quali sono associati un peso e un valore. Ho uno zaino di capictà in peso C. L'obiettivo è prendere k oggetti tali per cui il valore sia massimo senza superare la capacità dello zaino.\\
 Questo tipo di problema si chiama \emph{0/1} perchè un oggetto \emph{O lo prendo tutto o non lo prendo proprio}. Si utilizza questa terminologia per differenziare lo 0/1 dal Knapsack Frazionario che vedremo in seguito.
 \paragraph{Input} $I = \{e_1,...,e_n\} \forall  i, e_i$ ha associati due valori: $v_i$ (valore) e $w_i$ (peso). W = Peso totale dello zaino.
@@ -127,11 +147,11 @@ Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I
 
 
 \section{Longest Common Subsequence}
-\subsection{Definizione del problema}
+\paragraph{Definizione del problema}
 Date due sequenze $X$ e $Y$, trovare la più lunga sottosequenza comune di caratteri (non necessariamente consecutivi).\\
 Una sottosequenza di una data sequenza è la sequenza stessa alla quale sono stati tolti zero o più elementi. Una sottosequenza comune di due sequenze è una sottosequenza di entrambe.
 \\Il problema della LCS può essere risolto in modo efficiente applicando la programmazione dinamica.
-\subsection{Sottostruttura ottima di una LCS}
+\subsection*{Sottostruttura ottima di una LCS}
 LCS gode della proprietà della sottostruttura ottima, infatti:
 \\Data una sequenza $X=\{x_1,x_2,...,x_m\}$ definiamo $X_i=\{x_1,x_2,...,x_i\}$ l'i-esimo prefisso di X per $i = 0,...,m$
 \paragraph{Teorema}
@@ -160,8 +180,8 @@ Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
 \end{equation*}
 
 \paragraph{pseudocodice}
-\begin{lstlisting}[mathescape=true]
-LCS-LENGHT(X,Y)
+\begin{lstlisting}
+def LCS-LENGHT(X,Y):
 	m = X.lenght
 	n = Y.lenght
 	b[1..m,1..n] e c[0..m,0..m] -> nuove tabelle
@@ -174,7 +194,7 @@ LCS-LENGHT(X,Y)
 			if $x_i$ == $y_i$
 				c[i,j] = c[i-1,j-1] + 1  
 				b[i,j] = $\nwarrow $
-			elseif c[i - 1,j] $\geq$ c[i,j-1]
+			elif c[i - 1,j] $\geq$ c[i,j-1]
 				c[i,j] = c[i-1,j]  
 				b[i,j] = $\uparrow $
 			else
@@ -185,7 +205,8 @@ LCS-LENGHT(X,Y)
 
 
 
-\subsection{Esercizio: LCS $\geq L$}
+\subsection*{Esercizio: LCS $\geq L$}
+
 \paragraph*{Testo}
 Date due sequenze:\\
 $X = <x_1,...,x_m>$ di lunghezza $m$\\
@@ -243,10 +264,12 @@ A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{g
 \paragraph{Applicazioni}
 Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
 \section{Scheduling di Attività}
+
 \subsection*{Introduzione}
 Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
 \paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
-\subsection{Sottostruttura ottima}
+
+\subsection*{Sottostruttura ottima}
 Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
 \\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
 \begin{itemize}
@@ -260,7 +283,7 @@ Possiamo facilmente verificare che il problema della selzione di attività prese
 \end{itemize}
 Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
 
-\subsection{La scelta Greedy}
+\subsection*{La scelta Greedy}
 Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
 Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
 Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
@@ -300,8 +323,8 @@ BFS (Breadth-First search) è un algoritmo di visita di un grafo in ampiezza.
 \\Alla fine dell'esecuzione di BFS, tutti i vertici della compoente connessa a cui appartiene il vertice sorgente avranno colore NERO.
 
 \paragraph{Pseudocodice} Algoritmo BFS
-\begin{lstlisting}[mathescape=true]
-BFS(G, s)
+\begin{lstlisting}
+def BFS(G, s)
     for ogni v $\in$ V\{s}
         col[v] = White
         d[v] = $\infty$
@@ -352,8 +375,8 @@ Dato un grafo orientato, DFS differenzia ogni arco $(u,v)$ in 4 modi diversi
 In un grafo NON ORIENTATO esistono soltanto gli archi dell'albero e gli archi all'indietro.
 
 \paragraph{Pseudocodice} Algoritmo DFS
-\begin{lstlisting}[mathescape=true]
-DFS(G)
+\begin{lstlisting}
+def DFS(G)
     for ogni u $\in$ V
         col[u] = White
         $\pi$[u] = NIL
@@ -362,8 +385,8 @@ DFS(G)
         if col[u] == White
             DFS-VISIT(u)
 \end{lstlisting}
-\begin{lstlisting}[mathescape=true]
-DFS-VISIT(G,u)
+\begin{lstlisting}
+def DFS-VISIT(G,u)
 col[u] = Gray
 time++
 d[u] = time
@@ -388,8 +411,6 @@ Data una visita in profondità, il sottografo dei predecessori può essere forma
 Quindi forma una foresta DF, composta da vari alberi DF.
 
 
-
-
 \section{Cammini minimi}
 
 Sia G=(V,E) un grafo orientato con costi w sugli archi,
@@ -407,7 +428,7 @@ ogni sottocammino di un cammino minimo è anch'esso minimo
 I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
 essere rappresentati tramite un albero radicato in $s$, detto albero dei cammini minimi
 
-\section{Algoritmo di Floyd-Warshall}
+\subsection{Algoritmo di Floyd-Warshall}
 L'algoritmo di Floyd-Warshall calcola il cammino minimo da $i$ a $j$ per ogni coppia di vertici $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito
 
 \paragraph{Funzionamento}
@@ -430,8 +451,8 @@ L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-
 
 \paragraph{Pseudocodice} Algoritmo di Floyd-Warshall
 
-\begin{lstlisting}[mathescape=true]
-FLOYD-WARSHALL (G, W)
+\begin{lstlisting}
+def FLOYD-WARSHALL (G, W)
     D$^{(0)}$ = W
     for $h=1$ to $n$
         for $i=1$ to $n$
@@ -451,7 +472,7 @@ di ogni nodo con ogni altro nodo aumentando di volta in volta il (possibile) num
 	$O(|V|^2)$
 \end{center}
 
-\subsection{Variante: Cammini minimi $\leq L$}
+\subsection*{Variante di FW: Cammini minimi $\leq L$}
 
 Dato un grafo orientato e senza cappi $(V,E,W)$ e dato un itnero L\textgreater0 calcolare
 $\forall (i,j) \in V^2$ il peso di un cammino minimo da i a j di lunghezza $\leq L$
@@ -493,14 +514,14 @@ Invece se k non fa parte del cammino minimo, si sceglie il minore tra un eventua
 
 \paragraph{Pseudocodice}
 
-\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}
 CAMMINIMINIMI_MINORE_DI_L(V,E,W,L)
 for l=1 to L //Caso base puro (k=0)
     for i=1 to n
         for j=1 to n
             if i==j
                 $d^{(0,l)}_{ij} = 0 $
-            elseif $(i,j) \in E$
+            elif $(i,j) \in E$
                 $d^{(0,l)}_{ij} = w_ij $
             else
                 $d^{(0,l)}_{ij} = \infty $
@@ -541,7 +562,7 @@ Inoltre questi algoritmi hanno bisogno di due funzioni d'appoggio, INITIALIZE e 
 Per gli algoritmi di questo tipo viene spesso utilizzata una funzione INITIALIZE, che imposta
 le distanze e i "padri" di ogni nodo rendendo s la nostra sorgente (quindi a distanza zero)
 
-\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}
 
 INITIALIZE(G, s)
     for ogni $v \in V$
@@ -555,7 +576,7 @@ La tecnica del rilassamento di un $arco (u,v)$ consiste nel verificare se, passa
 per v precedentemente trovato. Quindi partendo da stime per eccesso delle distanze le decrementiamo progressivamente
 fino a renderle esatte
 
-\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}
 
 RELAX(u, v, w)
     if v.d > u.d + w(u, v)
@@ -578,7 +599,7 @@ Dijkstra funziona solo se w $\geq$  0 $\forall$ w $\in$ W
 
 \paragraph{Pseudocodice} Algoritmo di Dijkstra
 
-\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}
 DIJKSTRA(G, w, s)
     INITIALIZE(G,s)
     S = $\phi$
@@ -622,7 +643,7 @@ In Bellman-Ford il rilassamento viene eseguito $|V|-1$ volte per arco indipenden
 Bellman-Ford NON segue un approccio Greedy.
 
 \paragraph{Pseudocodice} algoritmo di Bellman-Ford
-\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}
 BELLMAN-FORD(G, w, s)
     INITIALIZE(G, s)
     for i = 1 to |V|-1
