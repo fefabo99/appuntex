@@ -1,0 +1,36 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lipsum}
+
+\definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
+\definecolor{sfondo_esempio}{rgb}{0.9,0.9,0.9}
+\newmdenv[
+    innerlinewidth=0.5pt,
+    roundcorner=4pt,
+    linecolor=mycolor,
+    innerleftmargin=6pt,
+    innerrightmargin=6pt,
+    innertopmargin=6pt,
+    innerbottommargin=6pt
+]{mybox}
+
+\newmdenv[
+    backgroundcolor=sfondo_esempio,
+    linewidth=0pt,
+    innertopmargin=12pt,
+    innerbottommargin=12pt
+]{esempio}
+
+\begin{document}
+
+
+\begin{mybox}
+\lipsum[4]
+\end{mybox}
+
+\begin{esempio}
+\lipsum[1]
+\end{esempio}
+
+\paragraph*{Un paragrafo a caso} in cui scrivo cose \lipsum[2]
+\end{document}

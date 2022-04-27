@@ -3,7 +3,21 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amsfonts}
- 
+\usepackage[framemethod=tikz]{mdframed} 
+
+%Box per l'esempio
+\definecolor{sfondo_esempio}{rgb}{0.95,0.95,0.95}
+\newmdenv[
+    backgroundcolor=sfondo_esempio,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_esempio}
+
+\newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
+
+
+
 \begin{document}
 
 %File di variabili
@@ -45,7 +59,7 @@ Come già detto, questi appunti sono in funzione del corso di Analisi Matematica
 \item Successioni
 \begin{enumerate}
     \item Limiti di successioni reali
-    \item Principio di Introduzione
+    \item Principio di Induzione
     \item Limiti notevoli
 \end{enumerate}
 \item Limiti e continuità
@@ -277,6 +291,42 @@ Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $
 \subsection{Funzione Decrescente}
 Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
+\chapter{Successioni}
+\section{Introduzione}
+\paragraph{Definizione: }Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
+La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$
+
+\esempio{
+    $a_n = 2n-3$ è una successione.
+    $a_0 = -3$, $a_1 = -1$, $a_2 = 1$, $a_3 = 3$ , ... sono i suoi valori
+}
+\paragraph*{Limitazioni} Una successione $\{a_n\}$ si dice:
+\begin{itemize}
+    \item \textbf{Inferiormente limitata} se esiste $m \in \R$ tale che $a_n \geq m \forall n \in \N$
+    \item \textbf{Superiormente limitata} se esiste $M \in \R$ tale che $a_n \leq M \forall n \in \N$
+    \item \textbf{Limitata} se esistono $m \in \R$ e $M \in \R$ tali che $m \leq a_n \leq M \forall n \in \N$
+\end{itemize}
+\esempio{
+    La successione $\{\frac{1}{n+1}\}$ i cui primi termini sono $1, \frac{1}{2}, \frac{1}{3},$...\\
+    è \emph{limitata}: si ha infatti che $0 < a_n \leq 1 \forall n \in \N$
+}
+
+\paragraph*{Monotonia} Una successione $\{a_n\}$ si dice:
+\begin{itemize}
+    \item \textbf{Monotona crescente} se $a_n\leq a_{n+1} \forall n \in \N$
+    \item \textbf{Monotona strettamente crescente} se $a_n < a_{n+1} \forall n \in \N$
+    \item \textbf{Monotona decrescente} se $a_n \geq a_{n+1} \forall n\in\N$
+    \item \textbf{Monotona strettamente decrescente} se $a_n > a_{n+1} \forall n \in \N$
+\end{itemize}
+
+\paragraph*{Definizione} Si dice che una successione {$a_n$} possiede (o acquista) una certa proprietà \textbf{definitivamente} se esiste $N \in \N$ tale che
+$a_n$ soddisfa quella proprietà per ogni $n \geq N$, quindi da un certo $n$ in poi.
+
+\esempio{Queste serie:\\
+    $a_n = 2n-3$ $[-3,-1,1,3,5,...]$  è \emph{Definitivamente positiva}\\
+    $a_n =\frac{1}{n+1}$ $[1, \frac{1}{2}, \frac{1}{3},\frac{1}{4}...] $ è \emph{Definitivamente minore di $\frac{1}{3}$}
+}
+
 \chapter{Limiti e Continuità}
 % TODO capitolo Limiti
 \chapter{Calcolo Differenziale}
@@ -384,5 +434,36 @@ questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e
 \\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
-
+\section{Criterio del confronto asintotico}
+\paragraph*{Definizione:} Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
+\begin{center}
+    $a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
+\end{center}
+Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
+\esempio{
+    Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
+    I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
+    Al numeratore, essendo $\cos n$ un valore limitato diventa irrilevante in confronto ad $n$.
+    Al denominatore, essendo $3n$ molto più piccolo di $n^3$ diventa irrilevante. 
+    Quindi:
+    \begin{equation*}
+        \frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n}
+    \end{equation*}
+    $\Sigma \frac{1}{n}$ converge (serie armonica generalizzata con $\alpha > 1$), quindi anche $\frac{n+\cos n}{n^3 - 3n}$ \textbf{converge}
+}
+\paragraph{Ma non è sempre così semplice}In quest'ultimo esempio per trovare una successione asintotica alla nostra è stato sufficiente focalizzarci sui \emph{termini preponderanti} al numeratore e al denominatore.
+Spesso però le cose sono più complicate, conviene quindi affidarci ai \emph{limiti notevoli} come nel prossimo esempio:
+\esempio{
+    Determinare il carattere della serie $\serie{1}{\inf} \frac{e^{\frac{1}{n^2}} -1}{4n}$.\\
+    Anche qui la serie è a termini positivi (il numeratore è sempre positivo, visto che $e^\frac{1}{n^2}$ sarà sempre $ > 1$).
+    In questo caso però è più difficile trovare una serie asintotica, visto che il numeratore tende a 0 quando $n$ tende a $\inf$ non abbiamo un termine prenponderante sull'altro.
+    Il numeratore però ricorda il \emph{limite notevole legato all'esponenziale} che diceva:
+    \begin{equation}
+        \limite{\epsilon(x)}{0} \frac{e^{\epsilon(x)}-1}{\epsilon(x)} = 1
+    \end{equation}
+    Il che, data la definizione di confronto asintotico, implica che $e^{\epsilon(x)}-1 \sim \epsilon(x)$ per $\epsilon(x) \to 0$.
+    Nel nostro caso, $\frac{1}{n^2}$ tende a $0$, quindi $e^{\frac{1}{n^2}} -1 \sim \frac{1}{n^2}$.\\
+    \subparagraph*{Di conseguenza} $\frac{e^{\frac{1}{n^2}} -1}{4n} \sim \frac{\frac{1}{n^2}}{4n} = \frac{1}{4n^3}$.\\
+    Come prima, $\frac{1}{4n^3}$ è una serie armonica generalizzata con termine $\alpha > 1$, quindi \textbf{Converge}
+}
 \end{document}
