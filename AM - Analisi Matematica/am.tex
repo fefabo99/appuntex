@@ -18,12 +18,13 @@
 \newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
 
 \newmdenv[
-    linewidth=1pt,
-    innertopmargin=14pt,
+    frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
+    frametitleaboveskip=-\ht\strutbox,
+    linewidth=0.5pt,
     innerbottommargin=14pt,
 ]{box_definizione}
 
-\newcommand{\definizione}[1]{\begin{box_definizione} \textbf{Definizione: } #1 \end{box_definizione}}
+\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
 
 \begin{document}
 
@@ -150,14 +151,15 @@ un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 
 \section{Valore assoluto (modulo) di un numero Reale}
 
-\subsection*{Definizione} Per ogni $x \in R$ si pone
+\definizione{ Per ogni $x \in R$ si pone
 \begin{equation}
     |x| = \begin{cases}
         x & \text{se $x \geq 0$}\\
         -x & \text{se $x < 0$}
     \end{cases}
 \end{equation}
-$|x|$ si dice valore assoluto, o modulo, di x\\
+$|x|$ si dice valore assoluto, o modulo, di x
+}
 \paragraph{ATTENZIONE} dire che "il modulo di un numero è il numero senza il segno" non ha senso in questo contesto, quindi non va usata perchè vale solo se x è "semplice"
 \paragraph{In parole povere} il modulo di $x$ è $x$ se x è positivo, il suo opposto se è negativo\\
 quindi $|3 - \pi| = \pi - 3$ perchè $3-\pi$ è negativo ($3 - 3.14$) quindi il suo modulo è il suo opposto.
@@ -174,8 +176,12 @@ Il modulo della somma NON coincide con la somma dei moduli. Però vale la seguen
 (cioè il modulo della somma è minore o uguale della somma dei due moduli)
 
 \section{Insiemi e Intervalli in $\R$}
-\paragraph{Definizione.} Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione: se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
-\\In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
+\definizione{
+    Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione:
+    se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
+}
+
+In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
 
 \paragraph{Intervalli limitati.}
 Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i seguenti sottoinsiemi di $\R$:
@@ -421,7 +427,7 @@ In realtà non è cosi, infatti spesso è possibile che la somma di infiniti num
 \paragraph*{Richiamiamo le successioni}
 Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
 Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
-\section{Definizione}
+\definizione{
 Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
 ($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
 \begin{equation*}
@@ -430,8 +436,9 @@ Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
 Che equivale alla notazione:
 
 \begin{equation*}
-    \boxed{s_m = \sum_{n=0}^m x_n}
+    s_m = \sum_{n=0}^m x_n
 \end{equation*}
+}
 \paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
 Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
 \paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
@@ -499,11 +506,13 @@ questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
 \section{Criterio del confronto asintotico}
-\paragraph*{Definizione:} Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
+\definizione{
+Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
 \begin{center}
     $a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
 \end{center}
 Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
+}
 \esempio{
     Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
     I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
