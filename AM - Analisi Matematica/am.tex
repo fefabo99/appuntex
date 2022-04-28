@@ -17,7 +17,13 @@
 
 \newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
 
+\newmdenv[
+    linewidth=1pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_definizione}
 
+\newcommand{\definizione}[1]{\begin{box_definizione} \textbf{Definizione: } #1 \end{box_definizione}}
 
 \begin{document}
 
@@ -356,6 +362,35 @@ Quando si calcola il limite bisogna però distinguere 4 casistiche:
 \paragraph*{In parole povere} La successione converge se la successione al crescere di n va ad avvicinarsi sempre di più a $l$,
 diverge a $+\infty$ se esiste un indice che permette alla successione di essere più grande di un qualsiasi numero Reale
 e infine diverge a $-\infty$ se esiste un indice che permette alla successione di essere più piccolo di una qualsiasi numero Reale.
+
+\section{Principio di Induzione}
+\subsection*{Introduzione}
+Il principio di Induzione è un teorema noto, che è spesso utile per discutere la validità di una successione \emph{infinita} di proposizioni in un \emph{numero finito di passi}.
+
+\definizione{
+    Sia data una proposizione $P(n)$, $\forall n \in \N$ con $n > n_0$ .
+    \\Se sono soddisfatte le seguenti condizioni: 
+    \begin{enumerate}
+        \item $\exists n_0$ tale che $P(n_0)$ è VERA
+        \item $\forall n \geq n_0$ vale l'implicazione $P(n-1) \implies P(n)$
+    \end{enumerate}
+    \emph{Allora $P(n)$ è vera per ogni $n \geq n_0$}
+}
+\paragraph*{}
+Una \emph{propisizione} è un qualunque enunciato il cui valore dipende da $n$, per esempio "$n$ è pari", "$n$ è primo".
+
+\esempio{
+Consideriamo l'enunciato: $P(n): 2^n \geq n^3$,
+e proviamo che "$P(n)$ vera $\implies P(n+1)$ vera" per ogni $n\geq 7$.
+Infatti per $n \geq 7$ risulta:
+\begin{equation*} %TODO vai a capire cosa vuol dire sta roba
+    2^{n+1} = 2\cdot 2^n \geq 2 \cdot n^3 = n^3 + n \cdot n^2 \geq n^3 + 7n^2 \geq n^3 + 3n^2 +3n+1 = (n+1)^3
+\end{equation*}
+e quindi per ogni $n \geq 7$, se $2^n \geq n^3$ allora $2^{n+1} \geq (n+1)^3$.
+D'altra parte, semplici calcoli mostrano che $P(n)$ è falsa per $n = 7,8,9$, mentre è vera per $n=10$.
+Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'implicazione, per ogni $n \geq 7$, mentre è vera per ogni $n \geq 10$, dal momento che (1) è verificata con $n_0=10$.
+}
+
 \chapter{Limiti e Continuità}
 % TODO capitolo Limiti
 \chapter{Calcolo Differenziale}
