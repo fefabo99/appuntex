@@ -6,7 +6,8 @@
 \usepackage[framemethod=tikz]{mdframed} 
 \usepackage{hyperref}
 
-%Box per l'esempio
+%Definizioni delle varia box custom
+
 \definecolor{sfondo_esempio}{rgb}{0.95,0.95,0.95}
 \newmdenv[
     backgroundcolor=sfondo_esempio,
@@ -17,7 +18,14 @@
 
 \newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
 
+\newmdenv[
+    frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
+    frametitleaboveskip=-\ht\strutbox,
+    linewidth=0.5pt,
+    innerbottommargin=14pt,
+]{box_definizione}
 
+\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
 
 \begin{document}
 
@@ -30,15 +38,7 @@
 \maketitle
 
 \tableofcontents
-\chapter*{Elementi da tenere conto e smistare}
-Qui alcune cose sparse che ho preso da i miei fogli di appunti che vanno tenute a mente e che sono ancora da smistare,
-\section{Limiti}
-\begin{itemize}
-    \item $\limite{x}{0} \ln(1+x) \sim x$
-    \item $\limite{x}{0} \ln(1-x) \sim -x$
-\end{itemize}
-\section{Polinomio di McLaurin}
-$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
+
 \chapter*{Prefazione}
 \section{Introduzione}
 Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
@@ -47,7 +47,7 @@ Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassum
     \item Appunti di altri studenti
     \item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione) 
 \end{itemize}
-\section{Il Corso}
+\section*{Il Corso}
 Come già detto, questi appunti sono in funzione del corso di Analisi Matematica di UNIMIB, a.a. 2021/22, insegnato dalla Professoressa Pini.
 \subsection*{Programma del corso}
 \begin{enumerate}
@@ -97,10 +97,10 @@ Come già detto, questi appunti sono in funzione del corso di Analisi Matematica
 \\\emph{Trigonometria elementare}
 \\\emph{Esponenziali e logaritmi}
 
-\section{Analisi 0}
+\chapter{Analisi 0}
 \paragraph{introduzione}
 Questa piccola sezione contiene alcuni argomenti che non fanno parte del programma di Analisi matematica ma possono essere propedeutici ad essa.
-\subsection*{Linguaggio della matematica }
+\section{Linguaggio della matematica }
 La matematica è fatta di:
 \begin{itemize}
     \item Definizioni $\leftarrow$ Circoscrive un campo, in modo da definire se un oggetto vi appartiene o no
@@ -132,7 +132,7 @@ Ogni triangolo èquilatero è isoscele
 \end{itemize}
 Quindi A è ipotesi, B è la tesi.
 
-\subsection*{Richiamo di trigonometria}
+\section{Richiamo di trigonometria}
 un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 \begin{itemize}
     \item $\frac{\cos(x)}{\sin(x)} = \cot(x)$
@@ -140,18 +140,17 @@ un piccolissimo richiamino di trigonometria (DA COMPLETARE)
     \item $\cos(0) = 1$
 \end{itemize}
 
-\chapter{Numeri Reali e Complessi}
-
 \section{Valore assoluto (modulo) di un numero Reale}
 
-\subsection*{Definizione} Per ogni $x \in R$ si pone
+\definizione{ Per ogni $x \in R$ si pone
 \begin{equation}
     |x| = \begin{cases}
         x & \text{se $x \geq 0$}\\
         -x & \text{se $x < 0$}
     \end{cases}
 \end{equation}
-$|x|$ si dice valore assoluto, o modulo, di x\\
+$|x|$ si dice valore assoluto, o modulo, di x
+}
 \paragraph{ATTENZIONE} dire che "il modulo di un numero è il numero senza il segno" non ha senso in questo contesto, quindi non va usata perchè vale solo se x è "semplice"
 \paragraph{In parole povere} il modulo di $x$ è $x$ se x è positivo, il suo opposto se è negativo\\
 quindi $|3 - \pi| = \pi - 3$ perchè $3-\pi$ è negativo ($3 - 3.14$) quindi il suo modulo è il suo opposto.
@@ -167,9 +166,13 @@ Il modulo della somma NON coincide con la somma dei moduli. Però vale la seguen
 \end{equation} 
 (cioè il modulo della somma è minore o uguale della somma dei due moduli)
 
-\section{Insiemi e Intervalli in $\R$}
-\paragraph{Definizione.} Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione: se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
-\\In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
+\section{Insiemi e Intervalli in R}
+\definizione{
+    Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione:
+    se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
+}
+
+In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
 
 \paragraph{Intervalli limitati.}
 Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i seguenti sottoinsiemi di $\R$:
@@ -206,12 +209,14 @@ Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$
 \chapter{Funzioni}
 
 \section{Generalità}
-
-\subsection{Definizione di Funzione.} Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+\definizione{
+    Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+}
 \paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
 
-\subsection{Dominio e Codominio}
-se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
+\definizione{
+    se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
+}
 \paragraph{Assegnare una funzione} significa assegnare:
 \begin{itemize}
     \item Un dominio $X$
@@ -221,7 +226,7 @@ se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispe
 Pertanto: due funzioni $f$ e $g$ sono \textbf{uguali} se e solo se hanno lo \emph{stesso dominio}, lo\emph{ stesso codominio}, e inoltre si ha \emph{$f(x) = g(x)$ per ogni x del dominio}.\\
 Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio e il codominio dati siano gli stessi.
 
-\subsection{Insieme immagine}
+\subsection*{Insieme immagine}
 Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
 In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
 L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}. 
@@ -250,12 +255,12 @@ $g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta 
 }
 \section{Iniettività e Suriettività}
 
-\subsection{Funzioni Suriettive}
+\subsection*{Funzioni Suriettive}
 Quando l\emph{'\textbf{insieme immagine} e il \textbf{codomino} di una funzione coincidono}, essa si dice che è \emph{suriettiva}
 \paragraph{Definizione. } Una funzione $\function$ si dice \emph{suriettiva} se è $f(X) = Y$.
 Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.
 
-\subsubsection{Funzioni Iniettive}
+\subsection*{Funzioni Iniettive}
 La funzione $\function$ è detta iniettiva se trasforma elementi distinti in elementi distinti, ovvero:
 \paragraph{Definizione. } $f: X \rightarrow Y$ si dice iniettiva se per ogni $x_1, x_2 \in X$ e $x_1 \neq x_2$ implicano $f(x_1) \neq f(x_2)$.
 \paragraph{}Per vedere che una $\function$ \emph{non} è iniettiva, basta esibire anche una sola coppia $x_1, x_2$ di elementi distinti ($x_1 \neq x_2$) del dominio per cui sia $f(x_1) = f(x_2)$.
@@ -267,7 +272,7 @@ Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un 
 Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
 Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca. 
 
-\subsection{Funzione Inversa}
+\subsection*{Funzione Inversa}
 Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
 dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
 se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
@@ -285,22 +290,27 @@ Si dice che $f$ è dispari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = 
 \section{Monotonia di una Funzione}
 Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
 
-\subsection{Funzione Crescente}
+\subsection*{Funzione Crescente}
 Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $f(x_1) \leq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) < f(x_2)$ allora $f$ si dice \emph{strettamente crescente};
 
-\subsection{Funzione Decrescente}
+\subsection*{Funzione Decrescente}
 Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
-\chapter{Successioni}
-\section{Introduzione}
-\paragraph{Definizione: }Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
-La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$
 
+
+\chapter{Successioni}
+
+\section{Introduzione}
+\definizione{
+    Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
+    La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$    
+} 
 \esempio{
     $a_n = 2n-3$ è una successione.
     $a_0 = -3$, $a_1 = -1$, $a_2 = 1$, $a_3 = 3$ , ... sono i suoi valori
 }
+
 \paragraph*{Limitazioni} Una successione $\{a_n\}$ si dice:
 \begin{itemize}
     \item \textbf{Inferiormente limitata} se esiste $m \in \R$ tale che $a_n \geq m \forall n \in \N$
@@ -356,8 +366,72 @@ Quando si calcola il limite bisogna però distinguere 4 casistiche:
 \paragraph*{In parole povere} La successione converge se la successione al crescere di n va ad avvicinarsi sempre di più a $l$,
 diverge a $+\infty$ se esiste un indice che permette alla successione di essere più grande di un qualsiasi numero Reale
 e infine diverge a $-\infty$ se esiste un indice che permette alla successione di essere più piccolo di una qualsiasi numero Reale.
+
+\section{Principio di Induzione}
+\subsection*{Introduzione}
+Il principio di Induzione è un teorema noto, che è spesso utile per discutere la validità di una successione \emph{infinita} di proposizioni in un \emph{numero finito di passi}.
+
+\definizione{
+    Sia data una proposizione $P(n)$, $\forall n \in \N$ con $n > n_0$ .
+    \\Se sono soddisfatte le seguenti condizioni: 
+    \begin{enumerate}
+        \item $\exists n_0$ tale che $P(n_0)$ è VERA
+        \item $\forall n \geq n_0$ vale l'implicazione $P(n-1) \implies P(n)$
+    \end{enumerate}
+    \emph{Allora $P(n)$ è vera per ogni $n \geq n_0$}
+}
+\paragraph*{}
+Una \emph{propisizione} è un qualunque enunciato il cui valore dipende da $n$, per esempio "$n$ è pari", "$n$ è primo".
+
+\esempio{
+Consideriamo l'enunciato: $P(n): 2^n \geq n^3$,
+e proviamo che "$P(n)$ vera $\implies P(n+1)$ vera" per ogni $n\geq 7$.
+Infatti per $n \geq 7$ risulta:
+\begin{equation*} %TODO vai a capire cosa vuol dire sta roba
+    2^{n+1} = 2\cdot 2^n \geq 2 \cdot n^3 = n^3 + n \cdot n^2 \geq n^3 + 7n^2 \geq n^3 + 3n^2 +3n+1 = (n+1)^3
+\end{equation*}
+e quindi per ogni $n \geq 7$, se $2^n \geq n^3$ allora $2^{n+1} \geq (n+1)^3$.
+D'altra parte, semplici calcoli mostrano che $P(n)$ è falsa per $n = 7,8,9$, mentre è vera per $n=10$.
+Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'implicazione, per ogni $n \geq 7$, mentre è vera per ogni $n \geq 10$, dal momento che (1) è verificata con $n_0=10$.
+}
+
+\esempio{ \emph{Somma di Gauss}\\
+    Proviamo per induzione che $\forall n\in\N$ risulta:
+    \begin{equation*}
+        P_n: \sum_{k=0}^n k= \frac{n(n+1)}{2}
+    \end{equation*}
+    ovvero, la somma dei primi $n \in\N$ numeri equivale a $\frac{n(n+1)}{2}$
+    \paragraph*{}Questa formula è banalmente vera per $n=0$.
+    Mentre per il passo induttivo si può provare come segue:
+    \begin{equation*}
+        \sum_{k=0}^{n+1} k = \sum_{k=0}^{n} k + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n+2)}{2} 
+    \end{equation*}
+    \paragraph*{Spiegazione}
+    se guardi $\frac{(n+1)(n+2)}{2}$ si può notare che equivale a $\frac{n(n+1)}{2}$ se ad $n$ sostituisci $n+1$
+    %TODO trovare un modo migliore per spiegare sta roba mannaggia a te
+}
+
+\esempio{
+    Un esempio sostanzialmente analogo è il seguente:\\
+    \begin{equation*}
+        P_n: \sum_{k=0}^n x^k = \frac{1-x^{n+1}}{1-x}
+    \end{equation*}
+    \paragraph*{}Questa formula è banalmente vera per $n=0$.
+    Mentre per il passo induttivo si può provare come segue:
+    \begin{equation*}
+        \sum_{k=0}^{n+1} x^k = \sum_{k=0}^n x^k \cdot x^{n+1} = \frac{1-x^{n+1}}{1-x}\cdot x^{n+1} = \frac{1-x^{n+2}}{1-x}
+    \end{equation*}
+    \paragraph*{Spiegazione} Osserviamo che $\frac{1-x^{n+2}}{1-x}$ equivale a $\frac{1-x^{n+1}}{1-x}$ sostituendo $n$ con $n+1$
+}
+
 \chapter{Limiti e Continuità}
 % TODO capitolo Limiti
+
+\section{Alcuni limiti}
+\begin{itemize}
+    \item $\limite{x}{0} \ln(1+x) \sim x$
+    \item $\limite{x}{0} \ln(1-x) \sim -x$
+\end{itemize}
 \chapter{Calcolo Differenziale}
 \section{Alcune derivate}
 Inserisco qui alcune derivate che vale la pena ricordare
@@ -376,6 +450,11 @@ Inserisco qui alcune derivate che vale la pena ricordare
     \item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
     \item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(f(x))$
 \end{itemize}
+\section{Polinomio di Taylor}
+
+\subsection*{Polinomio di McLaurin}
+$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
+
 \chapter{Calcolo Integrale}
 %TODO capitolo Calcolo Integrale (inegrali)
 \chapter{Serie Numeriche}
@@ -386,7 +465,7 @@ In realtà non è cosi, infatti spesso è possibile che la somma di infiniti num
 \paragraph*{Richiamiamo le successioni}
 Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
 Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
-\section{Definizione}
+\definizione{
 Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
 ($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
 \begin{equation*}
@@ -395,8 +474,9 @@ Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
 Che equivale alla notazione:
 
 \begin{equation*}
-    \boxed{s_m = \sum_{n=0}^m x_n}
+    s_m = \sum_{n=0}^m x_n
 \end{equation*}
+}
 \paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
 Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
 \paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
@@ -464,11 +544,13 @@ questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
 \section{Criterio del confronto asintotico}
-\paragraph*{Definizione:} Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
+\definizione{
+Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
 \begin{center}
     $a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
 \end{center}
 Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
+}
 \esempio{
     Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
     I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
