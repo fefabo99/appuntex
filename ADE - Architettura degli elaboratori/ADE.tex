@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{fancyvrb}
+\usepackage{hyperref}
 \graphicspath{ {./images/} }
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
@@ -220,7 +221,7 @@ nelle posizioni lasciate libere.
     \item Left equivale a moltiplicare il numero per la base
     \item Right equivale a dividere il numero per la base
 \end{itemize}
-\section{Rappresentazione Eccesso $2^n$}
+\section*{Rappresentazione Eccesso $2^n$}
 Un numero X è rappresentato come segue:
 \begin{equation}
     X+2^{n-1}
@@ -868,7 +869,7 @@ mentre PowerPC per quanto riguarda PlayStation , Xbox 360, Nintendo Wii e GameCu
 \end{itemize}
 Un esempio diffusissimo è Intel x86 e tutti i derivati.
 
-\section{MIPS}
+\section{Istruzioni MIPS}
 Noi utilizzeremo MIPS attraverso QTSPIM.
 Essendo RISC è semplice, uniforme e più semplice da capire. 
 Utilizza 32 registri di 32 bit e istruzioni di 32 bit.
@@ -881,7 +882,7 @@ In MIPS le istruzioni sono divise in tre formati
     \item J-type
 \end{itemize}
 
-\section{R-Type}
+\subsection{R-Type}
 Sono le istruzioni che operano sui registri
 Formato istruzione.
 \begin{center}
@@ -890,8 +891,13 @@ Formato istruzione.
 \paragraph*{OpCode} In questo caso l'opcode dice che è di tipo R dato che le R-type Instruction
 hanno tutte OpCode 000000. Per identificare l'istruzione è necessario controllare il 
 campo funct. Per gli altri tipi di istruzione non esiste.
+\subsubsection*{Shift left)}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Shift left.png}
+\end{center}
 
-\section{I-type}
+
+\subsection{I-type}
 Istruzoni per la somma di valori ricorrenti (costanti), in questo caso la costante viene direttamente
 passata nel codice dell'operazione, riservando 16 bit per il valore (campo passato in complemento a 2).
 Vengono chiamate I-type perchè si tratta di operazioni immediate.
@@ -903,11 +909,60 @@ Il formato è il seguente:
 Chiaramente le stringhe di bit sono poco leggibili, per questo esiste assembly.
 Scrivo delle parole e attraverso un assembler lo trasformo in linguaggio macchina, traduco
 quindi il codice sorgente in eseguibile.
+\paragraph{Indirizzamento della memoria} Nota utile per la spiegazione della prossime istruzioni
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{assembly indirizzamento memoria.png}
+\end{center}
+\subsubsection*{Load and Store}
+Istruzione per prelevare un valore dalla memoria RAM e salvarlo in un registro della CPU.
+Istruzione composta da:
+\begin{itemize}
+    \item opcode
+    \item Registro di destinazione
+    \item Indirizzo di memoria il cui contenuto viene copiato nel registro destinazione
+\end{itemize}
+\paragraph{Problema} La memoria è grande, in MIPS ho $2^32$ locazioni, 
+per specificare un indirizzo occorrone 32 bit, ma non ci stanno in una istruzione di appunto
+32 bit. 
+\paragraph*{Soluzione} Usare il formato I-type (opcode, 2 registri, 1 immediato), dove un
+registro è la destinazione, un registro contiene un indirizzo base e il valore immediato
+è interpretato come l'offset (spiazzamento) rispetto all'indirizzo base.
+L'indirizzo a cui accedere è calcolato quindi come (base + offset).
+\paragraph*{Esempio Load Word MIPS}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{load and store.png}
+\end{center}
+\paragraph*{Rappresentazione grafica esecuzione Load Word}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{funzionamento ld.png}
+\end{center}
+Il problema del little endian - big endian è un problema di convenzione,
+alcuni calcolatori considerano i bit ricevuti in memoria dal più significativo
+al meno significativo, altri il contrario, più avanti si affronterà la soluzione
+a questo problema.
+\subsubsection*{Store word}
+In questo caso viene memorizzato il contenuto di un registro del processore direttamente
+in memoria RAM. Viene sempre utilizzata la tecnica della rappresentazione di un indirizzo di
+memoria come "indirizzo base + offset"
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{store word.png}
+\end{center}
+\subsubsection*{Branch equal}
+Sempre istruzione I-Type, mi permette di saltare a Branch Address se il contenuto
+del primo registro è diverso dal contenuto del secondo.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{branch.png}
+\end{center}
 
-\subsection{Load and Store}
-% Poco chiaro
-\subsection{Branch equal}
-Sempre istruzione I-Type, mi permette  
-\subsection{}
+\subsection{J-type}
+Istruzioni caratterizzate dal fatto che ci sia un salto (jump) a un determinato
+indirizzo. 
+\subsubsection*{Jump}
+L'istruzione Jump mi permette di saltare a una specifica istruzione tramite indirizzo.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{jump.png}
+\end{center}
+\section{Procedure}
+
 %END------------------------------------------------------------------------
 \end{document}
