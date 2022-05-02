@@ -881,7 +881,7 @@ In MIPS le istruzioni sono divise in tre formati
     \item J-type
 \end{itemize}
 
-\subsection{R-Type}
+\section{R-Type}
 Sono le istruzioni che operano sui registri
 Formato istruzione.
 \begin{center}
@@ -891,7 +891,7 @@ Formato istruzione.
 hanno tutte OpCode 000000. Per identificare l'istruzione è necessario controllare il 
 campo funct. Per gli altri tipi di istruzione non esiste.
 
-\subsection{I-type}
+\section{I-type}
 Istruzoni per la somma di valori ricorrenti (costanti), in questo caso la costante viene direttamente
 passata nel codice dell'operazione, riservando 16 bit per il valore (campo passato in complemento a 2).
 Vengono chiamate I-type perchè si tratta di operazioni immediate.
@@ -900,6 +900,14 @@ Il formato è il seguente:
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{I-type format.png}
 \end{center}
-\paragraph{1:06:56 Lezione sorrenti istruzioni assembly}
+Chiaramente le stringhe di bit sono poco leggibili, per questo esiste assembly.
+Scrivo delle parole e attraverso un assembler lo trasformo in linguaggio macchina, traduco
+quindi il codice sorgente in eseguibile.
+
+\subsection{Load and Store}
+% Poco chiaro
+\subsection{Branch equal}
+Sempre istruzione I-Type, mi permette  
+\subsection{}
 %END------------------------------------------------------------------------
 \end{document}
