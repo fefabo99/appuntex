@@ -2,6 +2,9 @@
 \usepackage[framemethod=tikz]{mdframed}
 \usepackage{lipsum}
 
+\newcommand{\domanda}[2]{\paragraph*{#1} #2:}
+
+
 \definecolor{mycolor}{rgb}{0.122, 0.435, 0.698}
 \definecolor{sfondo_esempio}{rgb}{0.9,0.9,0.9}
 \newmdenv[
@@ -33,4 +36,10 @@
 \end{esempio}
 
 \paragraph*{Un paragrafo a caso} in cui scrivo cose \lipsum[2]
+
+\domanda{1}{La serie $sum_{n=1}^{+\infty}(-1)^n sin(\frac{3}{n^2})$}
+
+
+
+
 \end{document}

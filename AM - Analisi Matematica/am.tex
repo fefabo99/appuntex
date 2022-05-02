@@ -3,6 +3,7 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage[makeroom]{cancel}
 \usepackage[framemethod=tikz]{mdframed} 
 \usepackage{hyperref}
 
@@ -543,7 +544,79 @@ questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e
 \\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
-\section{Criterio del confronto asintotico}
+\section{Criteri di Convergenza}
+Se la serie che dobbiamo analizzare non è ne Geomterica, ne Telescopica si può comunque verificare la convergenza di una serie.
+\\innanzitutto diamo una condizione necessaria per la convergenza:
+
+\definizione{
+    Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo} ($a_n \to 0$ per $n \to \infty$).
+}
+Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
+Ci sono quindi dei criteri che forniscono \emph{condizioni sufficiente} per la convergenza di una serie:
+
+\begin{itemize}
+    \item Criterio del Rapporto
+    \item Criterio della Radice
+    \item Criterio del Confronto
+    \item Criterio del Confronto asintotico
+\end{itemize}
+Questi vengono utilizzati per serie a termini generali \emph{non negativi}
+\begin{itemize}
+    \item Criterio dell'assoluta convergenza
+    \item Criterio di Leibnitz
+\end{itemize}
+Queste invece sono usate per serie a termini generali di \emph{segno variabile.}
+
+\subsection{Alcune proprietà utili}
+Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
+
+\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
+Allora:
+\begin{enumerate}
+    \item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
+    \item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
+\end{enumerate}
+n.b. che una costante moltiplicativa non modifica il carattere di una serie
+
+\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
+Quindi converge o diverge a $+\infty$
+\esempio{
+    $\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
+    \begin{itemize}
+        \item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
+        \item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)  
+    \end{itemize}
+    Per cui questa serie \textbf{diverge a $+\infty$}
+}
+
+\subsection{Criterio del Rapporto}
+Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
+\definizione{
+    Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
+    \begin{itemize}
+        \item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+        \item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+        \item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}  
+    \end{itemize}
+}
+n.b. che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$
+
+\esempio{
+    Studiare il carattere di $\serie{n}{+\infty} \frac{n^{2015}}{3^n}$:
+    \begin{equation*}
+        \limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{2015}}{3^{n+1}}}{\frac{n^{2015}}{3^n}} = 
+        \frac{(n+1)^{2015}}{3 \cdot \cancel{3^n}} \cdot \frac{\cancel{3^n}}{n^{2015}} =
+        \frac{(n+1)^{2015}}{3 \cdot n^{2015}} = \frac{1}{3} \frac{(n+1)^{2015}}{n^{2015}}
+    \end{equation*}
+    Siccome $\limite{n}{+\infty} \frac{(n+1)^{2015}}{n^{2015}} = 1$ allora
+    \begin{equation*}
+        \limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{1}{3}
+    \end{equation*}
+    $\frac{1}{3} < 1$ quindi la serie \emph{Converge}
+}
+
+
+\subsection{Criterio del confronto asintotico}
 \definizione{
 Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
 \begin{center}
