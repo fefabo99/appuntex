@@ -896,7 +896,6 @@ campo funct. Per gli altri tipi di istruzione non esiste.
     \includegraphics[width=100mm, scale=0.5]{Shift left.png}
 \end{center}
 
-
 \subsection{I-type}
 Istruzoni per la somma di valori ricorrenti (costanti), in questo caso la costante viene direttamente
 passata nel codice dell'operazione, riservando 16 bit per il valore (campo passato in complemento a 2).
@@ -913,6 +912,7 @@ quindi il codice sorgente in eseguibile.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{assembly indirizzamento memoria.png}
 \end{center}
+
 \subsubsection*{Load and Store}
 Istruzione per prelevare un valore dalla memoria RAM e salvarlo in un registro della CPU.
 Istruzione composta da:
@@ -940,6 +940,7 @@ Il problema del little endian - big endian è un problema di convenzione,
 alcuni calcolatori considerano i bit ricevuti in memoria dal più significativo
 al meno significativo, altri il contrario, più avanti si affronterà la soluzione
 a questo problema.
+
 \subsubsection*{Store word}
 In questo caso viene memorizzato il contenuto di un registro del processore direttamente
 in memoria RAM. Viene sempre utilizzata la tecnica della rappresentazione di un indirizzo di
@@ -947,21 +948,26 @@ memoria come "indirizzo base + offset"
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{store word.png}
 \end{center}
-\subsubsection*{Branch equal}
+
+\subsubsection*{Branch on not equal}
 Sempre istruzione I-Type, mi permette di saltare a Branch Address se il contenuto
 del primo registro è diverso dal contenuto del secondo.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{branch.png}
 \end{center}
 
+
 \subsection{J-type}
 Istruzioni caratterizzate dal fatto che ci sia un salto (jump) a un determinato
 indirizzo. 
+
 \subsubsection*{Jump}
 L'istruzione Jump mi permette di saltare a una specifica istruzione tramite indirizzo.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{jump.png}
 \end{center}
+
+
 \section{Procedure}
 
 %END------------------------------------------------------------------------
