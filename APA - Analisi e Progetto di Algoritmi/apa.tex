@@ -156,7 +156,9 @@ La sottostruttura ottima del problema non è molto straight-forward. facciamo un
 Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
 \\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
 
-\section{Longest Common Subsequence}
+\section{LCS}
+LCS, o Longest Common Susbequence è un problema di programmazione dinamica in cui si richiede di trovare la più grande sottosequenza comune a due sottosequenze.
+
 \paragraph{Definizione del problema}
 Date due sequenze $X$ e $Y$, trovare \emph{la più lunga sottosequenza comune di caratteri} (non necessariamente consecutivi).\\
 Una sottosequenza di una data sequenza è la sequenza stessa alla quale sono stati tolti zero o più elementi.
@@ -297,6 +299,63 @@ def LCS-MAGGIORE-L(X,Y,L)
 					c$_{i,j,l}$ = c$_{i-1,j,l}$ $\vee$ c$_{i,j-1,l}$
 	return c$_{m,n,L}$
 \end{lstlisting}
+
+\section{LIS}
+%TODO
+\section{LGCS / LICS} %Pagina 24 degli appunti pdf che ho preso da Elearning
+LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
+di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
+
+\paragraph*{Definizione del Problema} 
+Date due sequenze $X$ e $Y$, rispettivamente trovare di $m$ ed $n$ caratteri \emph{la lunghezza della più lunga sottosequenza comune di caratteri strettamente crescenti}
+
+\subsection*{Sottoproblema}
+Il sottoproblema non prende in considerazione l'intero input, ma solo i prefissi di $X$ e $Y$ rispettivamente di dimensione $i$ e $j$.
+è così definito: 
+\\Date due sequenze X e Y, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$.
+\\Ad ogni sottoproblema è associata una \textbf{variabile} $c_{i,j}$ così definita:
+$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
+\\Il problema così definito però non è risolvibile, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
+
+\subsection*{Problema ausiliario}
+Il problema ausiliario è definito come segue:
+
+\paragraph*{Definizione di Problema Ausiliario}
+Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente che termini con $x_n =y_m$.
+
+\paragraph*{In altre parole} Si richiede che la sottosequenza soluzione del problema termini con l'ultimo elemento delle sequenze X e Y
+solo nel caso in cui siano lo stesso elemento.
+In caso contrario, la soluzione è la sequenza vuota.
+\paragraph*{Sottoproblema} date due sequenze X e Y , rispettivamente di m ed n numeri interi, si
+determini la lunghezza di una tra le pi`u lunghe sottosequenze crescenti comuni
+a Xi e a Yj e che termina con xi e yj (se questi coincidono)
+\\ed è associato alla varaible cij così definita
+\\ci,j = lunghezza di una tra le pi`u lunghe sottosequenze crescenti comuni a Xi e
+Yj e che termina con xi e yj (se questi coincidono)
+
+\paragraph*{Spiegazione} Si noti quindi che per un qualunque sottoproblema di dimensione (s, t), solo imponendo che la soluzione cs,t si riferisca ad una sottosequenza crescente comune
+a Xs e Yt che termina con xs = yt `e possibile stabilire se un altro elemento
+xu = yv con u > s e v > t possa essere accodato a tale sottosequenza (andando
+a verificare che xs = yt minore uguale xu = yv).
+
+\subsection{Equazioni di ricorrenza}
+\paragraph*{Nota bene} %dopo spostare in teoria TODO
+un equazione di ricorrenza è composta da:
+\begin{itemize}
+	\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
+	\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
+\end{itemize}
+
+\paragraph*{Caso Base}
+Fano parte del caso base: tutte le coppia (i,j) con i = 0 O j= 0 ma anche qualunque coppia tale che xi diverso da yj.
+Quindi: il caso base base si ha per quei sottoprovlemi di dimensione (i,j) con i > 0 e j > 0 tali che xi diverso da yj.
+è scrivibile come cij = 0.
+
+\paragraph*{Passo ricorsivo} (i,j) con i>0 e j>0 tali che xi = yj
+DA COMPLETARE
+
+
+
 \chapter{Algoritmi Greedy}
 \section{Introduzione}
 A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
