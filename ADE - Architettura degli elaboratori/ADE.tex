@@ -959,7 +959,7 @@ del primo registro è diverso dal contenuto del secondo.
 
 \subsection{J-type}
 Istruzioni caratterizzate dal fatto che ci sia un salto (jump) a un determinato
-indirizzo. 
+indirizzo.
 
 \subsubsection*{Jump}
 L'istruzione Jump mi permette di saltare a una specifica istruzione tramite indirizzo.
@@ -967,8 +967,58 @@ L'istruzione Jump mi permette di saltare a una specifica istruzione tramite indi
     \includegraphics[width=100mm, scale=0.5]{jump.png}
 \end{center}
 
-
 \section{Procedure}
+Questa sezione tratterà il passaggio di parametri attraverso registri per esempio
+per il controllo del flusso del programma.
 
+\subsection*{Istruzione jal - jump and link}
+\paragraph*{Sintassi} jal "IndirizzoProcedura".
+\\ Questa istruzione salta a una procedura indicata nella stessa e contemporaneamente
+crea un collegamento a dove deve ritornare per continuare l'esecuzione del chiamante.
+Salva nel registra \$ra, return adress situato nel registro 31, l'indirizzo a cui tornare
+dopo l'esecuzione della procedura.
+\'E l'indirizzo successivo a quello dell'istruzione jal, cioè l'indirizzo in cui si trova
+la jal + 4. Tale indirizzo si trova nel regisro PC (Program Counter). 
+
+\subsection*{jr - jump register}
+\paragraph*{Sintassi} jr "registro".
+\\ Salta all'indirizzo contenuto in un registro. \'E una istruzione di uso generale
+che consente di saltare a qualsiasi locazione di memoria.
+\paragraph*{Utilizzo tipico di jr} jr \$ra. In questo modo realizzo il ritorno da procedura,
+saltando all'indirizzo precedentemente salvato da jal.
+
+\subsection{Passaggio parametri - convenzioni base}
+Riporto per chiarezza uno screenshot di QTSPIM per chiarire la denominazioni dei registri
+della CPU.
+\begin{center}
+    \includegraphics[width=50mm, scale=0.5]{QTSPIM Reg.png}
+\end{center}
+\begin{itemize}
+    \item \$a0 - \$a3: registri argomento per il passaggio dei parametri
+    \item \$v0 - \$v1: registri valore per la restituzione dei risultati
+\end{itemize}
+Dal punto di vista hardware sono registri come tutti gli altri, ma il loro utilizzo
+per il passaggio di parametri e risultati è una convenzione programmativa che deve 
+essere rispettata per consentire di scrivere procedure che possono essere scritte
+senza bisogno di sapere come è fatto il programma che le chiama e possono essere chiamate
+senza bisogno di sapere come sono fatte "dentro".
+\paragraph*{NB un parametro può essere un dato o un indirizzo!}
+\paragraph*{I 6 passi di una procedura}
+\begin{itemize}
+    \item Setting dei parametri in un luogo accessibile alla procedura
+    \item Trasferire il controllo alla procedura e salvare l'indirizzo
+    dell'istruzione dove tornare dopo la chiamata della procedura (usare jal)
+    \item Acquisire risorse per l'esecuzione della procedura
+    \item Eseguire il compito richiesto
+    \item Mettere il risultato in un luogo accessibile al chiamante
+    \item Restituire il controllo al punto di partenza (usare l'istruzione jr)
+\end{itemize}
+
+%PAG A-22 spiegazione più approfondita dei registri, andare a vedere e riportare
+% negli appunti
+% Rivedere esempi PDF procedure
+
+\section{ASM - Catena Programmativa + Linguaggio Assembly}
+\section{Syscall}
 %END------------------------------------------------------------------------
 \end{document}
