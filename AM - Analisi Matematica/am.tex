@@ -7,7 +7,7 @@
 \usepackage[framemethod=tikz]{mdframed} 
 \usepackage{hyperref}
 
-%Definizioni delle varia box custom
+%Definizioni delle box custom
 
 \definecolor{sfondo_esempio}{rgb}{0.95,0.95,0.95}
 \newmdenv[
@@ -545,14 +545,16 @@ questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e
 Questo è l'esempio più semplice di \textbf{serie telescopica}  
 
 \section{Criteri di Convergenza}
-Se la serie che dobbiamo analizzare non è ne Geomterica, ne Telescopica si può comunque verificare la convergenza di una serie.
-\\innanzitutto diamo una condizione necessaria per la convergenza:
-
+Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
+Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
 \definizione{
-    Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo} ($a_n \to 0$ per $n \to \infty$).
-}
+    Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
+    \begin{equation*}
+        \limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
+    \end{equation*}
+    }
 Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
-Ci sono quindi dei criteri che forniscono \emph{condizioni sufficiente} per la convergenza di una serie:
+Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
 
 \begin{itemize}
     \item Criterio del Rapporto
@@ -565,7 +567,7 @@ Questi vengono utilizzati per serie a termini generali \emph{non negativi}
     \item Criterio dell'assoluta convergenza
     \item Criterio di Leibnitz
 \end{itemize}
-Queste invece sono usate per serie a termini generali di \emph{segno variabile.}
+Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
 
 \subsection{Alcune proprietà utili}
 Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
@@ -576,7 +578,7 @@ Allora:
     \item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
     \item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
 \end{enumerate}
-n.b. che una costante moltiplicativa non modifica il carattere di una serie
+\nb{che una costante moltiplicativa non modifica il carattere di una serie}
 
 \paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
 Quindi converge o diverge a $+\infty$
@@ -599,10 +601,10 @@ Il primo criterio è quello del rapporto, che può essere usato se il termine ge
         \item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}  
     \end{itemize}
 }
-n.b. che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$
+\nb{che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$}
 
 \esempio{
-    Studiare il carattere di $\serie{n}{+\infty} \frac{n^{2015}}{3^n}$:
+    Studiare il carattere di $\serie{0}{+\infty} \frac{n^{2015}}{3^n}$:
     \begin{equation*}
         \limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{2015}}{3^{n+1}}}{\frac{n^{2015}}{3^n}} = 
         \frac{(n+1)^{2015}}{3 \cdot \cancel{3^n}} \cdot \frac{\cancel{3^n}}{n^{2015}} =
@@ -615,8 +617,70 @@ n.b. che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$
     $\frac{1}{3} < 1$ quindi la serie \emph{Converge}
 }
 
+\subsection{Criterio della Radice}
+Questo criterio, molto simile a quello del Rapporto, dice che:
+\definizione{
+    Sia $a_n \geq 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \sqrt[n]{a_n} = l$, allora:
+    \begin{itemize}
+        \item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+        \item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+        \item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}  
+    \end{itemize}
+}
+\esempio{
+    Studiare il carattere di $\serie{2}{+\infty} \frac{1}{(\log n)^{\frac{n}{2}}}$:
+    \begin{equation*}
+        \limite{n}{+\infty} \sqrt[n]{\frac{1}{(\log n)^{\frac{n}{2}}}} =
+        (\frac{1}{(\log n)^{\frac{n}{2}}})^{\frac{1}{n}} = 
+        \frac{1}{(\log n)^{\frac{n}{2n}}} =
+        \frac{1}{sqrt{(\log n)}}
+    \end{equation*}
+    siccome $\limite{n}{+\infty} \log n = +\infty$
+    \begin{equation*}
+        \limite{n}{+\infty} \frac{1}{sqrt{(\log n)}} = 0
+    \end{equation*} 
+    $0 < 1$, per cui la serie \emph{Converge}
+}
 
-\subsection{Criterio del confronto asintotico}
+\subsection{Criterio del Confronto}
+
+\definizione{
+    Supponiamo che $0 \geq a_n \geq b_n$ Definitivamente.
+    Allora valgono le seguenti implicazioni:
+    \begin{enumerate}
+        \item $\sum b_n$ converge $\implies \sum a_n$ converge
+        \item $\sum a_n$ diverge a $+\infty \implies \sum b_n$ diverge a $+\infty$
+    \end{enumerate}
+    \nb{L'inverso di queste implicazioni generalmente non valgono}
+}
+\paragraph*{In pratica quindi} Se riusciamo a trovare una serie che sia definitivamente maggiore (o minore) della nostra serie e di cui conosciamo il carattere
+possiamo conoscere anche il carattere della nostra serie.
+\\Il trucco quindi è scoprire tale serie, per farlo vengono spesso utilizzate le \emph{Serie Armoniche Generalizzate}
+
+\subsubsection{Serie Armoniche Generalizzate}
+Riporto le due formule delle serie Armoniche Generalizzate:
+\begin{equation*}
+    \serie{1}{+\infty} \frac{1}{n^\alpha} \begin{cases}
+        \text{CONVERGE} & \text{Se } \alpha > 1 \\ 
+        \text{DIVERGE} & \text{Se } \alpha \leq 1 
+    \end{cases}
+\end{equation*}
+\begin{equation*}
+    \serie{1}{+\infty} \frac{1}{n^\alpha (\log n)^\beta} \begin{cases}
+        \text{CONVERGE} & \text{Se } \alpha > 1 \vee \alpha = 1 \wedge \beta > 1 \\ 
+        \text{DIVERGE} & \text{Se } \alpha < 1 \vee \alpha = 1 \wedge \beta \leq 1
+    \end{cases}
+\end{equation*}
+
+\esempio{
+    Studiare il carattere di $\serie{1}{+\infty} (\frac{\cos n}{n})^2$:
+    \\$(\cos n)^2$ Varia tra 0 e 1, quindi è $\leq 1$.
+    \\$0 \leq (\frac{\cos n}{n})^2 \leq \frac{1}{n^2}$ per ogni $n\geq 1$.
+    \\$\serie{1}{+\infty} \frac{1}{n^2}$ converge, quindi anche nostra serie \emph{Converge}
+    
+}
+
+\subsection{Criterio del Confronto Asintotico}
 \definizione{
 Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
 \begin{center}
