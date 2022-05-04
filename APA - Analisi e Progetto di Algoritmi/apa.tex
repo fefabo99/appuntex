@@ -10,7 +10,7 @@
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
 \definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
-
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
 \lstset{
 	language=python,
 	basicstyle=\ttfamily,
@@ -31,12 +31,12 @@
 }
 
 \newmdenv[
-    backgroundcolor=grigiochiaro,
+    backgroundcolor=giallochiaro,
     linewidth=0pt,
     innertopmargin=14pt,
     innerbottommargin=14pt,
 ]{box_spiegazione}
-\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \textbf{Spiegazione: }#1\end{box_spiegazione}}
+\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
 
 \begin{document}
 \title{Analisi e Progetto di Algoritmi}
@@ -307,36 +307,38 @@ LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Sub
 di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
 
 \paragraph*{Definizione del Problema} 
-Date due sequenze $X$ e $Y$, rispettivamente trovare di $m$ ed $n$ caratteri \emph{la lunghezza della più lunga sottosequenza comune di caratteri strettamente crescenti}
+Date due sequenze $X$ e $Y$, rispettivamente di $m$ ed $n$ caratteri, trovare \emph{la lunghezza della più lunga sottosequenza comune di caratteri strettamente crescenti}
 
 \subsection*{Sottoproblema}
 Il sottoproblema non prende in considerazione l'intero input, ma solo i prefissi di $X$ e $Y$ rispettivamente di dimensione $i$ e $j$.
 è così definito: 
 \\Date due sequenze X e Y, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$.
 \\Ad ogni sottoproblema è associata una \textbf{variabile} $c_{i,j}$ così definita:
-$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
-\\Il problema così definito però non è risolvibile, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
+\\$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
+\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
 
 \subsection*{Problema ausiliario}
-Il problema ausiliario è definito come segue:
+Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
 
 \paragraph*{Definizione di Problema Ausiliario}
-Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente che termini con $x_n =y_m$.
+Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
 
-\paragraph*{In altre parole} Si richiede che la sottosequenza soluzione del problema termini con l'ultimo elemento delle sequenze X e Y
-solo nel caso in cui siano lo stesso elemento.
-In caso contrario, la soluzione è la sequenza vuota.
-\paragraph*{Sottoproblema} date due sequenze X e Y , rispettivamente di m ed n numeri interi, si
-determini la lunghezza di una tra le pi`u lunghe sottosequenze crescenti comuni
-a Xi e a Yj e che termina con xi e yj (se questi coincidono)
-\\ed è associato alla varaible cij così definita
-\\ci,j = lunghezza di una tra le pi`u lunghe sottosequenze crescenti comuni a Xi e
-Yj e che termina con xi e yj (se questi coincidono)
+\spiegazione{
+Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
+Se questi non coincidono, la soluzione è la sequenza vuota.
+Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
+}
 
-\paragraph*{Spiegazione} Si noti quindi che per un qualunque sottoproblema di dimensione (s, t), solo imponendo che la soluzione cs,t si riferisca ad una sottosequenza crescente comune
-a Xs e Yt che termina con xs = yt `e possibile stabilire se un altro elemento
-xu = yv con u > s e v > t possa essere accodato a tale sottosequenza (andando
-a verificare che xs = yt minore uguale xu = yv).
+\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
+a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
+\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+
+\spiegazione{ 
+Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
+a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
+a verificare che $x_s = y_t < x_u = y_v$).
+}
 
 \subsection{Equazioni di ricorrenza}
 \paragraph*{Nota bene} %dopo spostare in teoria TODO
@@ -347,12 +349,25 @@ un equazione di ricorrenza è composta da:
 \end{itemize}
 
 \paragraph*{Caso Base}
-Fano parte del caso base: tutte le coppia (i,j) con i = 0 O j= 0 ma anche qualunque coppia tale che xi diverso da yj.
-Quindi: il caso base base si ha per quei sottoprovlemi di dimensione (i,j) con i > 0 e j > 0 tali che xi diverso da yj.
-è scrivibile come cij = 0.
+Fano parte del caso base:
+\begin{itemize}
+	\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
+	\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
+\end{itemize}
+Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
+è scrivibile come:
+\begin{equation*}
+	c_{i,j} = \begin{cases}
+		0 & \text{se  } i=0 \vee j=0 \vee x_i \neq y_j
+	\end{cases}
+\end{equation*}
+\spiegazione{
+	Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
+	perchè non abbiamo sottosequenze comuni crescenti.
+}
 
-\paragraph*{Passo ricorsivo} (i,j) con i>0 e j>0 tali che xi = yj
-DA COMPLETARE
+\paragraph*{Passo ricorsivo}
+
 
 
 
