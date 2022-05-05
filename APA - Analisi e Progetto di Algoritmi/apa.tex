@@ -356,20 +356,56 @@ Fano parte del caso base:
 \end{itemize}
 Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
 è scrivibile come:
-\begin{equation*}
-	c_{i,j} = \begin{cases}
-		0 & \text{se  } i=0 \vee j=0 \vee x_i \neq y_j
-	\end{cases}
-\end{equation*}
+\begin{center}
+	$$c_{i,j} = 0$$
+	\\se $i=0 \vee j=0 \vee x_i \neq y_j$
+\end{center}
 \spiegazione{
 	Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
 	perchè non abbiamo sottosequenze comuni crescenti.
 }
 
 \paragraph*{Passo ricorsivo}
+Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
+\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
+che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
+Ovvero:
 
+\begin{center}
+	$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
+	\\se $i>0\wedge j>0 \wedge x_i = y_j$
+\end{center}
 
+Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
+così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
 
+\paragraph*{Soluzione del problema}
+Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
+Quindi la soluzione del problema iniziale è:
+\begin{equation*}
+	max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
+\end{equation*}
+
+\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
+
+\begin{lstlisting}
+def LGCS(X,Y)
+	max = 0
+	for i = 1 to m
+		for j = 1 to n
+			if x$_i \neq$ y$_j$
+				c[i,j] = 0 #caso base
+			else
+				temp = 0
+				for h = 1 to i-1
+					for k=1 to j-1
+						if (x$_h <$ x$_i$) $\wedge$ (c[h,k] > temp)
+							temp = c[h,k]
+				c[i,j] = 1 + temp
+			if c[i,j] > max
+				max = c[i,j]
+	return max
+\end{lstlisting}
 
 \chapter{Algoritmi Greedy}
 \section{Introduzione}
