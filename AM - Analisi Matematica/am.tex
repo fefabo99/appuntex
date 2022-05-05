@@ -695,7 +695,7 @@ Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carat
     Al denominatore, essendo $3n$ molto più piccolo di $n^3$ diventa irrilevante. 
     Quindi:
     \begin{equation*}
-        \frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n}
+        \frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n^2}
     \end{equation*}
     $\Sigma \frac{1}{n}$ converge (serie armonica generalizzata con $\alpha > 1$), quindi anche $\frac{n+\cos n}{n^3 - 3n}$ \textbf{converge}
 }
@@ -706,12 +706,53 @@ Spesso però le cose sono più complicate, conviene quindi affidarci ai \emph{li
     Anche qui la serie è a termini positivi (il numeratore è sempre positivo, visto che $e^\frac{1}{n^2}$ sarà sempre $ > 1$).
     In questo caso però è più difficile trovare una serie asintotica, visto che il numeratore tende a 0 quando $n$ tende a $\inf$ non abbiamo un termine prenponderante sull'altro.
     Il numeratore però ricorda il \emph{limite notevole legato all'esponenziale} che diceva:
-    \begin{equation}
+    \begin{equation*}
         \limite{\epsilon(x)}{0} \frac{e^{\epsilon(x)}-1}{\epsilon(x)} = 1
-    \end{equation}
+    \end{equation*}
     Il che, data la definizione di confronto asintotico, implica che $e^{\epsilon(x)}-1 \sim \epsilon(x)$ per $\epsilon(x) \to 0$.
     Nel nostro caso, $\frac{1}{n^2}$ tende a $0$, quindi $e^{\frac{1}{n^2}} -1 \sim \frac{1}{n^2}$.\\
     \subparagraph*{Di conseguenza} $\frac{e^{\frac{1}{n^2}} -1}{4n} \sim \frac{\frac{1}{n^2}}{4n} = \frac{1}{4n^3}$.\\
     Come prima, $\frac{1}{4n^3}$ è una serie armonica generalizzata con termine $\alpha > 1$, quindi \textbf{Converge}
+}
+\nb{Esiste un enunciato più generale di questo criterio}
+
+\section{Criterio dell'Assoluta Convergenza}
+Questo criterio è il primo che vediamo che vale anche per serie a \emph{termine di segno variabile}
+\definizione{
+    Una serie $\sum a_n$ si dice \emph{assolutamente convergente} se converge la serie $\sum |a_n|$.
+    \\ Se la serie $\sum a_n$ converge assolutamente, allora \emph{Connverge}
+
+    \nb{Il viceversa, in generale, non è vero}
+}
+
+\esempio{
+    Studiare il carattere della serie $\serie{n=1}{+1\infty} \frac{\sin (n!)}{n^4}$
+    \\ in questa serie abbiamo il numeratore che oscilla tra $-1$ e $1$, quindi questa serie non è a termini definitivamente positivi.
+    Usando quindi il criterio della convergenza assoluta, e poi il criterio del confronto abbiamo che:
+    $$ 0 \leq \frac{|\sin (n!)|}{n^4} \leq \frac{1}{n^4} \implies \text{Converge Assolutamente}$$
+    Visto che la serie converge assolutamente, allora \emph{converge}
+}
+\esempio{
+    Studiare il carattere della serie $\serie{n=1}{+1\infty} (-1)^n \frac{n^2 + 3}{n^4+2n}$
+    \\Anche questa serie ha il segno variabile (per il $(-1)^n$) quindi usiamo il criterio dell'assoluta convergenza
+    $$ |(-1)^n \frac{n^2 + 3}{n^4+2n}| = \frac{n^2 + 3}{n^4+2n} \sim \frac{1}{n^2} $$
+    sappiamo che $\frac{1}{n^2}$ è una serie armonica generalizzata che converge, quindi la serie converge assolutamente e di conseguenza converge
+}
+\section{Criterio di Leibniz}
+Il criterio di Leibniz è il secondo criterio utilizzabile per le serie a \emph{Segno variabile}
+\definizione{
+    Sia $\{a_n\}$ una successione:
+    \begin{itemize}
+        \item $a_n \geq 0$ Definitivamente
+        \item $a_n \to 0$ per $n \to \infty$
+        \item $a_{n+1} \leq a_n$ Definitivamente (monotna decrescente) 
+    \end{itemize}
+    Allora la serie $\serie{0}{+\infty}(-1)^na_n$ è convergente
+}
+
+\esempio{
+    Studiare il carattere della serie $\serie{0}{\infty} \frac{(-1)^n}{n!}$
+    \\$a_n = \frac{1}{n!}$, ed è \emph{positiva}, \emph{infinitesima} e \emph{decrescente}
+    \\Di conseguenza, \emph{converge per Leibniz}
 }
 \end{document}

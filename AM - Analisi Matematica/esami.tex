@@ -3,9 +3,18 @@
 \usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-
+\usepackage[framemethod=tikz]{mdframed} 
 
 \begin{document}
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
+\newmdenv[
+    backgroundcolor=giallochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_spiegazione}
+\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
+
 
 %File di variabili
 \include{variabili}
@@ -58,7 +67,10 @@
 
 \section{Giugno 2019}
 
-\domanda{1}{La serie $sum_{n=1}^{+\infty}(-1)^n sin(\frac{3}{n^2})$}
+\domanda{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
 \risposta{Converge assolutamente}
+\spiegazione{
+Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che 
+}
 
 \end{document}
