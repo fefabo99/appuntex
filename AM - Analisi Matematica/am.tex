@@ -427,12 +427,46 @@ Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'impl
 
 \chapter{Limiti e Continuità}
 % TODO capitolo Limiti
-
-\section{Alcuni limiti}
+\section{Limiti Notevoli}
 \begin{itemize}
     \item $\limite{x}{0} \ln(1+x) \sim x$
     \item $\limite{x}{0} \ln(1-x) \sim -x$
 \end{itemize}
+\section{Equivalenze Asintotiche}
+Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
+Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
+
+\definizione{
+    Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
+    $$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
+    e si scrive $f(x) \sim g(x)$ per $x\to x_0$
+}
+Dai limiti notevoli si ricava facilmente che, per $x \to 0$
+\begin{itemize}
+    \item $\sin x \sim x$
+    \item $1 - \cos x \sim \frac{1}{2}x^2$
+    \item $\tan x \sim x$
+    \item $ln(1+x) \sim x$
+    \item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
+\end{itemize}
+\nb{
+    Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
+    una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$} 
+}
+\esempio{
+    \\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
+    \\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
+}
+\subsection*{Alcune Proprietà}
+\begin{enumerate}
+    \item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
+    \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
+    \item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
+    \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
+    \item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
+\end{enumerate}
+
+ 
 \chapter{Calcolo Differenziale}
 \section{Alcune derivate}
 Inserisco qui alcune derivate che vale la pena ricordare
