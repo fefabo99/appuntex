@@ -987,15 +987,25 @@ che consente di saltare a qualsiasi locazione di memoria.
 \paragraph*{Utilizzo tipico di jr} jr \$ra. In questo modo realizzo il ritorno da procedura,
 saltando all'indirizzo precedentemente salvato da jal.
 
-\subsection{Passaggio parametri - convenzioni base}
+\subsection{Passaggio parametri - convenzioni base registri}
 Riporto per chiarezza uno screenshot di QTSPIM per chiarire la denominazioni dei registri
 della CPU.
 \begin{center}
     \includegraphics[width=50mm, scale=0.5]{QTSPIM Reg.png}
 \end{center}
 \begin{itemize}
-    \item \$a0 - \$a3: registri argomento per il passaggio dei parametri
-    \item \$v0 - \$v1: registri valore per la restituzione dei risultati
+    \item \$r0 (0): contiene sempre il valore 0
+    \item \$at (1), \$k0 (26) e \$k1 (27): sono riservati per l'assembler e il sistema operativo
+    \item \$a0 - \$a3 (4-7): registri argomento per il passaggio dei parametri
+    \item \$v0, \$v1 (2,3): registri valore per la restituzione dei risultati
+    \item \$t0 - \$t9 (8-15, 24, 25): chiamati \textbf{caller-saved register} sono utilizzati per memorizzare quantità temporanee
+    che non serve che vengano preservate tra le calls
+    \item \$s0 - \$s7 (16-23): chiamati \textbf{callee-saved register} utilizzati per contenere valori per un tempo lungo, valori
+    che devono essere preservati attraverso le calls.
+    \item \$gp (28): puntatore globale che punta a metà di un blocco di memoria da 64K 
+    \item \$sp (29): stack pointer, punta l'ultima posizione sullo stack
+    \item \$fp (30): frame pointer
+    \item \$ra (31): return address from a procedure call (l'istruzione jal scrive in questo registro)
 \end{itemize}
 Dal punto di vista hardware sono registri come tutti gli altri, ma il loro utilizzo
 per il passaggio di parametri e risultati è una convenzione programmativa che deve 
@@ -1014,11 +1024,126 @@ senza bisogno di sapere come sono fatte "dentro".
     \item Restituire il controllo al punto di partenza (usare l'istruzione jr)
 \end{itemize}
 
-%PAG A-22 spiegazione più approfondita dei registri, andare a vedere e riportare
-% negli appunti
 % Rivedere esempi PDF procedure
 
-\section{ASM - Catena Programmativa + Linguaggio Assembly}
+\chapter{ASM - Catena Programmativa + Linguaggio Assembly}
+\section{Linguaggio Assembler - Vantaggi e Svantaggi}
+\paragraph*{Vantaggi} La dipendeza dall'architettura del calcolatore porta a numerosi vantaggi
+\begin{itemize}
+    \item Più efficienza
+    \item Programmi potenzialmente più compatti
+    \item Massimo sfruttamento delle potenzialità dell'hardware sottostante
+    \item Molto importante per programmare controller di processi e macchinari o per 
+    apparati limitati (embedded)
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item meno espressività (strutture di controllo limitate)
+    \item Necessario conoscere i dettagli dell'architettura
+    \item Mancaza di portabilità su architetture diverse
+    \item Difficoltà di comprensione
+    \item Lunghezza maggiore dei programmi
+\end{itemize}
+
+\section{Compiler, Assembler, Linker}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{compiler_assebler_linker.png}    
+\end{center}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{catena programmativa.png}
+\end{center}
+
+\paragraph*{Debugger}
+Consente di eseguire il programma in modo controllato per la ricerca di un bug.
+Programma eseguito passo per passo e ispezione del valore di variabili ed espressioni.
+Possibilità di interrompere in punti predefiniti (breakpoint) e di interruzione in caso di modificati
+del valore di determinate variabili (watchpoint). Visualizzazione degli indirizzi di memoria
+delle variabili o delle istruzioni.
+
+\subsection{Compilatore}
+Un programma ad alto livello viene tradotto nel linguaggio assembly utilizzando un
+apposito programma detto compilatore. Dopo la fase di compilazione, il programma scritto
+in linguaggio assembly viene tradotto in linguaggio macchina da un apposito programma \textbf{l'assemblatore}.
+\\ Spesso con il termine compilazione si indica l'intero processo di traduzione da linguaggio
+ad alto livello a linguaggio macchina (essendo l'assemblatore spesso integrato con il compilatore).
+
+\subsection{Assembler}
+\begin{itemize}
+    \item Converte un programma assembler (file sorgente) in linguaggio macchina (file oggetto).
+    \item Gestisce le etichette
+    \item Gestisce pseudoistruzioni
+    \item Gestisce numeri in base diverse
+\end{itemize}
+
+\subsection{Il processo di assemblaggio}
+L'assemblaggio è un procedimento sequenziali che esamina, riga per riga il codice sorgente
+Assembly, traducendo ciascuna riga in un'istruzione del linguaggio macchina.
+Viene applicato modulo per modulo al programma costituisce per ogni modulo la tabella dei 
+simboli del modulo.
+2 passi importanti \begin{itemize}
+    \item Traduce i codici mnemonici (simbolici) delle istruzioni nei corrispondenti
+    codici binari
+    \item Traduce i riferimenti simbolici (variabili, registri, etichete di salt, parametri)
+    nei corrispondenti indirizzi numerici.
+\end{itemize}
+Poichè le etichette di salto generano il problema dei riferimenti in avanti (ossia,
+riferimenti ad etichette successive o contenute in altri file), l'assemblatore deve leggere
+il programma sorgente due volte.
+\\ Ogni lettura del programma sorgente è chiamata passo e l'assemblatore è chiamato traduttore
+a 2 passi.
+\\ Ogni modulo assemblato di default parte dall'indirizzo 0
+\paragraph*{Tabella dei simboli} Contiene i riferimenti simbolici presenti nel modulo
+da tradurre e al termine del primo passo, conterrà gli indirizzi numerici di
+di tutti i simboli, tranne quelli esterni al modulo in esame.
+Per le etichette associate a direttive dell'assemblatore che definiscono costanti
+simboliche viene creata la coppia "etichetta, valore" e in ogni istruzione che
+fa riferimento al simbolo viene sostitito il valore.
+\\ Discorso simile per le etichette che definiscono variabili (spazio di memoria +
+eventuale inizializzazione). In questo caso l'assemblatore riserva spazio, eventualmente
+inizializza la zona di memoria e crea nella tabella la coppia "etichetta, indirizzo".
+In ogni istruzione fa riferimento al simbolo (all'etichetta), il simbolo viene
+sostituito con l'indirizzo.
+Nelle etichette presenti nelle istruzioni di salto, l'assemblatore deve generare un
+riferimento all'indirizzo dell'istruzione destinazione di salto.
+\paragraph*{Osservazioni} Le etichette esterne (global) al modulo possono essere usate
+da moduli esterni, mentre le etichette interne (local) sono visibili solo all'interno 
+di un modulo.
+\\ Le etichette esterne a un modulo rimangono non risolte, ma l'assembler non è disturbato
+da questo aspetto, dato che esse saranno risolte poi dal \textbf{linker}.
+
+\subsection{Linker (Link editor)}
+Dopo che l'assembler ha tradotto il sorgente in vari moduli non resta che integrarli
+fra di loro e creare una singola unità eseguibile, a questo ci pensa il \textbf{linker}.
+Il linker principlamente effettua le seguenti operazioni:\begin{itemize}
+    \item Inserisce in memoria in modo simbolico il codice e i moduli dati
+    \item Determina gli indirizzi dei dati e delle etichete che compaiono nelle istruzioni
+    \item Corregge i riferimenti interni ed esterni e risolve i riferimenti in sospeso (a etichette esterne)
+    \item Genera il file eseguibile
+\end{itemize}
+Quindi ora abbiamo il file il linguaggio macchina pronto per essere eseguito.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{linker.png}
+\end{center}
+\subsection{Loader}
+Quando eseguiamo un programma interviene il \textbf{loader}.
+\'E la parte che si occupa del caricamento del programma e delle relative librerie in memoria,
+prepara inoltre l'esecuzione da parte del sistema operativo.
+Nel dettaglio: \begin{itemize}
+    \item Viene letta l'intestazione del file eseguibile per determinare la lunghezza
+    del segmento di testo (cioè delle istruzioni) e del segmento dati (cioè le variabili)
+    \item Viene creato uno spazio di indirizzamento sufficiente a contenere testo e dati
+    \item Vengono copiate delle istruzioni e dati dal file esegubile in memoria
+    \item Vengono copiati nello stack eventuali parametri passati al programma principale
+    \item Inizializzati i registri e impostato lo stack pointer affinchè punti alla prima
+    locazione libera
+    \item Salto a una procedura di startup la quale copia i parametri nei registri argomento
+    e chiama la procedura principale del programma
+    \item Quando la procedura principale restituisce il controllo, la procedura di
+    startup termina il programma con una chiamata alla funzione di sistema exit
+\end{itemize}
+
+
+
 \section{Syscall}
 %END------------------------------------------------------------------------
 \end{document}
