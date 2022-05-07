@@ -967,7 +967,7 @@ L'istruzione Jump mi permette di saltare a una specifica istruzione tramite indi
     \includegraphics[width=100mm, scale=0.5]{jump.png}
 \end{center}
 
-\section{Procedure}
+\section{Procedure e convenzioni registri}
 Questa sezione tratterà il passaggio di parametri attraverso registri per esempio
 per il controllo del flusso del programma.
 
@@ -1007,7 +1007,29 @@ della CPU.
     \item \$fp (30): frame pointer
     \item \$ra (31): return address from a procedure call (l'istruzione jal scrive in questo registro)
 \end{itemize}
-Dal punto di vista hardware sono registri come tutti gli altri, ma il loro utilizzo
+\subsection{Convenzioni sui registri t e s}
+\paragraph{I registri \$t (temporary) non sono salvati dalla procedura} 
+\begin{itemize}
+    \item il chiamante non si può aspettare di trovare immutati i contenuti dei registri 
+    \$t dopo una chiamata a procedura
+    \item I contenuti dei registri \$t devono essere salvati dal chiamante prima della chiamata
+    a procedura
+\end{itemize}
+
+\paragraph{I registri \$s (saved) sono salvati dalla proceudra}
+\begin{itemize}
+    \item Il chiamante ha il diritto di aspettarsi che i contenuti dei registri \$s siano
+    immutati dopo una chiamta a procedura
+    \item Se la procedura usa i registri \$ s deve salvarne il contenuto all'inizio e
+    ripristinarlo prima del ritorno
+\end{itemize}
+Il contenuto dei registri \$s viene salvato sullo \textbf{stack}. 
+\paragraph{Procedura foglia e non foglia}
+Una procedura foglia non chiama altre procedura, mentre una procedura NON foglia chiama altre
+procedure.
+Se una procedura chiama un'altra procedura è necessario salvare il contenuto dei registri \$ ra
+e \$s sullo stack.
+\\ Dal punto di vista hardware sono registri come tutti gli altri, ma il loro utilizzo
 per il passaggio di parametri e risultati è una convenzione programmativa che deve 
 essere rispettata per consentire di scrivere procedure che possono essere scritte
 senza bisogno di sapere come è fatto il programma che le chiama e possono essere chiamate
@@ -1140,6 +1162,77 @@ Nel dettaglio: \begin{itemize}
     e chiama la procedura principale del programma
     \item Quando la procedura principale restituisce il controllo, la procedura di
     startup termina il programma con una chiamata alla funzione di sistema exit
+\end{itemize}
+
+L'assemblatore riceve delle ridettive in fase di assemblaggio, queste non corrispondono
+a istruzioni macchina e servono per: \begin{itemize}
+    \item associare etichette simboliche a indirizzi
+    \item allocare spazio di memoria per le variabili
+    \item decidere in quali zone di memoria allocare istruzioni e dati
+\end{itemize}
+
+\subsection{Pseudoistruzioni}
+Istruzione assemblu che non ha una corrispondente istruzione macchina, viene tradotta
+dall'assembler in una sequenza di istruzioni.
+
+\section{Uso dello stack}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{uso dello stack.png}
+\end{center}
+Lo stack è l'area di memoria dove vegono salvati gli indirizzi delle procedure che devono
+essere richiamate.
+Cosa fa la procedura? Alloca spazio nello stack
+\begin{itemize}
+    \item Decrementa \$sp per lasciare in stack lo spazio necessario al salvataggio (1 word
+    per ciascun registro da salvare)
+    \item Salva \$ra
+    \item Salva eventuali altri registri usando \$sp come registro base
+    \item Ripristina i registri
+    \item Incrementa \$sp per riportarlo alla situazione inizializzazione
+    \item Jr \$ra (ritorno alla procedura)
+\end{itemize}
+
+I registri che interagiscono con lo stack sono: \begin{itemize}
+    \item \$sp che punta alla prima parola del frame
+    \item \$fp che punta all'ultima parola del frame
+\end{itemize}
+Un frame di solito è multiplo della parola doppia (8 byte).
+\\Esempio: un frame di 32 byte
+\begin{lstlisting}
+    addi $sp, $sp, -32 # frame di stack di 32 byte
+    addi $fp, $sp, 28 # imposta il frame pointer
+    sw $ra, 0($fp) # salva l'indirizzo di ritorno 
+                   # come primo word nel frame sullo stack
+\end{lstlisting}
+
+\subsection{Operazioni procedura chiamante}
+Prima di chiamare una procedura, la procedura chiamante deve eseguire i seguenti passi
+ al fine di non avere perdita di informazione:
+\begin{itemize}
+    \item Impostare gli argomenti da passare alla procedura in \$a0 - \$a3, eventuali
+    altri argomenti sono nella memoria o nello stack
+    \item Salvare eventualmente i registri \$a0 - \$a3 e \$t0 - \$t0 in quanto la procedura
+    chiamata può usare liberamente questi registri
+    \item Infine chiamare la procedura tramite istruzione \textit{jal "nome procedura"}
+\end{itemize}
+
+\subsection{Operazioni procedura chiamata}
+La procedura chiamata chiamata deve eseguire i seguenti passi \textbf{appena viene chiamata}
+\begin{itemize}
+    \item Allocare il suo stack frame (\$sp = \$sp - dimensione frame procedura)
+    \item Salvare i valori disponibili nei registri \$s0 - \$s7, \$fp, \$ra se intende
+    usare tali registri per la sua esecuzione, se per esempio la procedura non chiama
+    un'altra procedura non è necessario salvare il registra \$ra
+    \item Settare il frame pointer (che indica l'indirizzo dell'ultima parola del frame)
+    \$fp = \$sp - dimensione frame procedura + 4
+\end{itemize}
+
+Quando \textbf{ha finito la sua esecuzione} deve eseguire i seguenti passaggi
+\begin{itemize}
+    \item Mettere il valore di ritorno nei registri \$v0, \$v1
+    \item Ripristinare i valori dei registri salvati sullo stack (\$s0 - \$s7. \$fp, \$ra)
+    \item Liberare lo spazio sullo stack: \$sp = \$sp + dimensione frame procedura
+    \item Eseguire l'istruzione \textit{jt \$ra}
 \end{itemize}
 
 
