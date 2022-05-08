@@ -1235,8 +1235,30 @@ Quando \textbf{ha finito la sua esecuzione} deve eseguire i seguenti passaggi
     \item Eseguire l'istruzione \textit{jt \$ra}
 \end{itemize}
 
-
-
 \section{Syscall}
+In un sistema reale esiste il Sistema Operativo che è un insieme di programmi che: \begin{itemize}
+    \item stanno in un'area (protetta) di memoria
+    \item svolgono funzioni di utilità generale (in particolare I/O) richiamabili dai
+    programmi utente
+\end{itemize}
+Qui tratteremo i meccanismi base di chiamata al SO. Il simulatore MIPS fornisce alcune
+funzioni elementare che simulano alcune funzionalità base del SO, richiamabili attraverso
+il meccanismo di \textbf{syscall}, concettualmente analogo a una chiamata a procedura.
+\\ Per effettuare una syscall è sufficiente inserire nel registro \$v0 il codice della syscall
+e nei registri \$a0-\$a3 gli argomenti.
+
+\paragraph{Syscall essenziali}
+\begin{itemize}
+    \item exit2 codice 17: terminazione del programma
+    \item read\_int
+    \item print\_int codice 1 (parametro passato per valore)
+    \item read\_string
+    \item print\_string (parametro passato per indirizzo)
+\end{itemize}
+
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{tabella syscall.png}
+\end{center}
+
 %END------------------------------------------------------------------------
 \end{document}
