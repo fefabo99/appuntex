@@ -1029,6 +1029,8 @@ Una procedura foglia non chiama altre procedura, mentre una procedura NON foglia
 procedure.
 Se una procedura chiama un'altra procedura è necessario salvare il contenuto dei registri \$ ra
 e \$s sullo stack.
+\\ Per convenzione i registri \$a0 -\$a3 sono utilizzati per il passagio dei parametri.
+\\ Mentre gli indirizzi \$v0 - \$v1 sono utilizzati per la restituzione dei risultati.
 \\ Dal punto di vista hardware sono registri come tutti gli altri, ma il loro utilizzo
 per il passaggio di parametri e risultati è una convenzione programmativa che deve 
 essere rispettata per consentire di scrivere procedure che possono essere scritte
