@@ -426,12 +426,64 @@ Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'impl
 }
 
 \chapter{Limiti e Continuità}
-% TODO capitolo Limiti
 \section{Limiti Notevoli}
 \begin{itemize}
     \item $\limite{x}{0} \ln(1+x) \sim x$
     \item $\limite{x}{0} \ln(1-x) \sim -x$
 \end{itemize}
+
+\section{Asintoti Verticali e Orizzontali}
+\subsection*{Asintoti Verticali}
+\definizione{
+    Si dice che la retta $x=a$ è un \emph{Asintoto Verticale} di $f(x)$ se si verifica almeno una di queste caratteristiche:
+    \begin{itemize}
+        \item $\limite{x}{a^-} f(x)= +\infty$
+        \item $\limite{x}{a^-} f(x)= -\infty$
+        \item $\limite{x}{a^+} f(x)= +\infty$
+        \item $\limite{x}{a^+} f(x)= -\infty$
+    \end{itemize}
+    Una funzione può avere un numero qualsiasi di asintoti verticali
+}
+\paragraph*{In poche parole} Un Asintoto Verticale è una retta che fa da "muro" nel dominio di una funzione, e si trova facendo il limite della funzione in un punto specifico, se questo limite è uguale a $\pm \infty$ allora abbiamo trovato un asintoto verticale.
+
+\paragraph*{Come si trova??} Per trovare eventuali \emph{Asintoti Verticali} devo identificare i punti dove ci sono \emph{problemi di definizione},
+come "buchi" o estremi del dominio.
+
+\esempio{
+    $$y = \ln x + \frac{1}{x-2}$$
+    Dominio: $x-2 \neq 0 \rightarrow x\neq 2 \wedge x>0$
+    \\In questo esempio abbiamo dei problemi di definizione in $x=2$, dove c'è un "buco" nel dominio, e in $x=0$ dove c'è il limite del dominio.
+    \\in questi punti \emph{potrebbero} esserci degli AV. Proviamo:
+    \\$\limite{x}{0^+} f(x)= -\infty$
+    \\$\limite{x}{2^-} f(x)= -\infty$
+    \\$\limite{x}{2^+} f(x)= +\infty$
+    \\Quindi $x=0$ e $x=2$ sono asintoti verticali.
+} 
+\subsection*{Asintoti Orizzontali}
+Una situazione abbastanza analoga la si ha con gli \emph{Asintoti Orizzontali}
+\definizione{
+    Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (destro)} di $f(x)$ per $x\to +\infty$ se $\limite{x}{+\infty} f(x) = l$
+    \\Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (sinistro)} di $f(x)$ per $x\to -\infty$ se $\limite{x}{-\infty} f(x) = l$
+
+}
+In questo caso però, una funzione può avere \emph{al massimo 2 asinto   ti orizzontali}
+
+\section{Asintoti Obliqui}
+\paragraph*{definizione}{ %la definizione è broken, va sistemata TODO
+Si dice che la retta $y=mx + q$ è un asintoto obliquo (destro) di $f(x)$ per $x \to +\infty$ se
+$\limite{x}{+\infty} [f(x)-mx-q]=0$. 
+Una Situazione analoga lo si ha per $-\infty $ (sinistro).
+}
+
+Una funzione può avere al massimo 2 asintoti obliqui diversi, uno a $+\infty$ e uno a $-\infty$.
+La stessa retta può essere asintoto obliquo destro e sinistro.
+\paragraph*{Come trovare} un asintoto obliquo a $\pm \infty$? %SISTEMARE che si capisca meglio
+Bisogna provare a svolgere un paio di limiti.
+\\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ è asintoto obliquo
+
+\nb{
+    Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
+}
 \section{Equivalenze Asintotiche}
 Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
 Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"

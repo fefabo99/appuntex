@@ -73,11 +73,28 @@
 Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
 \\Usiamo quindi il criterio dell'assoluta convergenza.
 \begin{equation}
-    |\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2}| \sim \frac{3}{n^2} 
+    |\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2})| \sim \frac{3}{n^2} 
 \end{equation}
     è da capire bene
 }
 \domanda{2}{La Successione $a_n = \frac{\ln(2+n^3)-5\sqrt[]{n^2-n}+2^{-n^4+5n}}{5n+3\ln n - n \ln n}}$ per $n \to +\infty$ ha limite:
-\risposta{}
+\risposta{$\limite{n}{+\infty} = 0$}
+\spiegazione{
+    Si trova una successione asintoticamente equivalente sia per numeratore, che per denominatore.
+    $$ a_n \sim \frac{2^{-n^4}}{5n}$$
+    Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
+    \\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
+}
+
+\domanda{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
+\risposta{$$y=2x+1$$}
+\spiegazione{
+    Per trovare un asintoto obliquo bisogna trovare $m$ e $q$:
+    $m=\limite{x}{+\infty}\frac{f(x)}{x} \rightarrow \frac{\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}}{x}$
+    $\rightarrow (\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}})\cdot \frac{1}{x}
+    \rightarrow \frac{2x^3+4x}{2x-x^3} + \frac{e^{-\frac{1}{x}}}{x}
+    \rightarrow
+
+}
 
 \end{document}
