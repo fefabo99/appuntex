@@ -1262,5 +1262,74 @@ e nei registri \$a0-\$a3 gli argomenti.
     \includegraphics[width=100mm, scale=0.5]{tabella syscall.png}
 \end{center}
 
+\chapter{Datapath}
+Il datapath è un insieme di unità di calcolo, come ad esempio
+ALU, i registri e i moltiplicatori necessari per l'esecuzione delle istruzioni nella
+CPU.
+Il passaggio di due operando attraverso la ALU e la memorizzazione del risultato in un
+nuovo registro viene detto ciclo di data path. Tale ciclo definisce ciò che è in grado
+di fare una macchina: più veloce è questo ciclo, più veloce sarà la macchina.
+
+\section{Realizzare un datapath}
+\begin{itemize}
+    \item Si stabilisce il set di istruzioni da implementare
+    \item Si identificano i componenti del datapath (Alu, register file, ecc)
+    \item Si stabilisce la metodologia di clocking
+    \item Si assembla il datapath e si identificano i segnali di controllo
+    \item Si analizza l'implementazione di ogni istruzione per determinare il setting
+    dei segnali di controllo
+    \item Si analizza l'implementazione di ogni istruzione per determinare il setting
+    dei segnali di controllo
+    \item Si assembla la logica di controllo
+\end{itemize}
+
+\section{Passi per l'esecuzione di una istruzione - Fetch Decode Execute}
+\subsection*{Fetch} \begin{itemize}
+    \item Legge l'istruzione dalla memoria e la salva in un registro dedicato
+    (Instruction Register)
+    \item L'indirizzo di memoria che indica l'istruzione da leggere si trova nel registro
+    Program Counter (PC)
+    \item Dopo la lettura dell'istruzione in PC, viene incrementato di 3 per indicare la
+    prossima istruzione (usando l'ALU)
+\end{itemize}
+\subsection*{Decode}
+Decodifica i vari campi dell'istruzione per decidere quali sono i passi necessari
+per la sua esecuzione
+
+\subsection*{Execute}
+Esegue i passi necessari per eseguire l'istruzione
+
+\section{Implementazione Fetch}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Implementazione fetch.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Fetch PC+4.png}
+\end{center}
+Ciclo che ci permette in sostanza di caricare l'indirizzo di memoria iniziale e
+poi incrementare il PC d 4 per passare all'istruzione successiva
+\section*{Decode}
+Il processore MIPS legge i vari campi dell'istruzione e identifica il tipo di istruzione
+da eseguire (OPCODE e FUNC CODE se necessario)
+\section*{Execute}
+\section*{Clocking}
+Nello schema è implicito il clock, ci sono 2 metodologie principali
+\paragraph*{Singolo ciclo} \begin{itemize}
+    \item Ciclo singolo di lunghezza fissa uguale al tempo necessario per eseguire l'istruzione
+    più lunga
+    \item Ogni istruzione viene eseguita in un ciclo di clock
+    \item Svantaggi: spreco di tempo, perchè per far sì che tutte le istruzioni vengano eseguite in 
+    un clock solo devo avere un clock più lento.
+\end{itemize}
+
+\paragraph*{Multi-ciclo} \begin{itemize}
+    \item Ciclo di lunghezza fissa più corretto
+    \item Ogni istruzione viene eseguita in più cicli di clock
+    \item Istruzioni di tipo diverso - eseguite in un numero di cicli di clock diverso
+    \item Maggiore ottimizzazione rispetto al singolo ciclo
+    \item Più complesso perchè devo orchestrare (unità di controllo) la gestione dei clock
+\end{itemize}
+% Fare lezione 3/4 Datapath
 %END------------------------------------------------------------------------
+
 \end{document}
