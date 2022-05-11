@@ -426,7 +426,6 @@ Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli ad
     \item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
 \end{enumerate}
 }
-
 \reflibro{Teorema 15.1 pag 325}
 \domanda{2}{
 Scrivere le equazioni di ricorrenza per risolvere il problema della LCS di due
@@ -440,15 +439,19 @@ sequenze, specificando bene il significato delle variabili coinvolte
         max(c[i,j-1], c[i-1,j] & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
     \end{cases}
 \end{equation*}
+$c[i,j]$ è una matrice contenente la lunghezza di una qualsiasi LCS delle sottosequenze di lunghezza rispettivamente $i$ e $j$ di $X$ e $Y$
 }
 \reflibro{“Fase 2: una soluzione ricorsiva” pag. 325}
-\paragraph{3}
-Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
-specificando il suo tempo di calcolo\\
-("Fase 3: Calcolare la lunghezza di una LCS" pag.326)
-Tempo di esecuzione: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
+\domanda{3}{
+    Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
+    specificando il suo tempo di calcolo\\
+}
 
-\begin{lstlisting}[mathescape=true]
+\risposta{
+Tempo di esecuzione: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
+} 
+%lstlisting non va dentro \risposta per qualche motivo
+\begin{lstlisting}[mathescape=true] 
 LCS-LENGHT(X,Y)
 m = X.lenght
 n = Y.lenght
@@ -470,6 +473,8 @@ for i = 1 to m
             b[i,j] = $\leftarrow $
 return c e b
 \end{lstlisting}
+\reflibro{"Fase 3: Calcolare la lunghezza di una LCS" pag.326}
+
 \paragraph{4}
 Definire qual e’ il sottografo dei predecessori (o albero BFS) prodotto dalla
 visita BFS di un grafo G=<V,E>, specificando bene da quali vertici e quali
