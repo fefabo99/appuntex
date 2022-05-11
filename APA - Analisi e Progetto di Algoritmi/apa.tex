@@ -178,11 +178,11 @@ Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_
 La caratterizzazione di questo teorema dimostra che una LCS di due sequenze contiene al suo interno una LCS di prefissi delle due sequenze.
 Quindi il problema della più lunga sottosequenza comune gode della proprietà della sottostruttura ottima
 
-\paragraph{In parole povere}
-Se sappiamo che Z è una (qualsiasi) LCS di X e Y, allora se ne deduce che:
+\spiegazione{
+Se sappiamo che \emph{Z è una (qualsiasi) LCS di X e Y}, allora se ne deduce che:
 \\(1) Se gli ultimi elementi di X e Y sono uguali, allora è anche l'ultimo elemento di Z. Inoltre implica che $Z_{k-1}$, quindi Z se togliamo il suo ultimo elemento, è una LCS di X e Y a cui sono stati tolti l'ultimo elemento ciascuno.
 \\Se gli ultimi elementi di X e Y NON sono uguali invece, qui ci sono due opzioni: (2) o l'ultimo elemento di Z è uguale all'ultimo elemento di Y, in tal caso Z è una lcs di Y e X senza l'ultimo elemento, oppure (3) viceversa 
-
+}
 \paragraph{La soluzione ricorsiva}
 Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
 \begin{equation*}

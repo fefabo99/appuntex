@@ -2,11 +2,24 @@
 \usepackage[italian]{babel}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage[framemethod=tikz]{mdframed} 
 
 % comando per le liste numerate come 1 - 1.1 , 2 - 2.2
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
 
+\newcommand{\domanda}[2]{\begin{box_domanda}\textbf{#1} #2\end{box_domanda}}
+\newcommand{\risposta}[1]{#1}
+\newcommand{\reflibro}[1]{(\small{#1})}
+
+\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
+
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_domanda}
 
 
 \begin{document}
@@ -400,20 +413,26 @@ DFS-VISIT-ACYCLIC(u)
 Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
 
 \chapter{Domande di Teoria}
-\paragraph{1}
-Siano $X=<x_1,...,x_m>$ e $Y=< y_1,...,y_n>$ due sequenze e sia $Z=<z_1,...,z_k>$
-una LCS di X e Y. Scrivere la proprieta’ di sottostruttura ottima di Z \\
-(Teorema 15.1 pag 325)
-Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
+
+\domanda{1}{
+    Siano $X=<x_1,...,x_m>$ e $Y=< y_1,...,y_n>$ due sequenze e sia $Z=<z_1,...,z_k>$
+    una LCS di X e Y. Scrivere la proprieta’ di sottostruttura ottima di Z    
+}
+\risposta{
+    Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
 \begin{enumerate}
-    \item Se $x_m = y_n$, allora $z_k = x_m =y_n$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
+    \item Se $x_m = y_n$, allora $z_k = x_m =y_n$ e $Z_{k-1}$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
     \item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
     \item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
 \end{enumerate}
-\paragraph{2}
+}
+
+\reflibro{Teorema 15.1 pag 325}
+\domanda{2}{
 Scrivere le equazioni di ricorrenza per risolvere il problema della LCS di due
-sequenze, specificando bene il significato delle variabili coinvolte \\
-(“Fase 2: una soluzione ricorsiva” pag. 325)
+sequenze, specificando bene il significato delle variabili coinvolte 
+}
+\risposta{
 \begin{equation*}
     c[i,j] = \begin{cases}
         0                      & \text{se $i = 0$ or $j = 0$}           \\
@@ -421,6 +440,8 @@ sequenze, specificando bene il significato delle variabili coinvolte \\
         max(c[i,j-1], c[i-1,j] & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
     \end{cases}
 \end{equation*}
+}
+\reflibro{“Fase 2: una soluzione ricorsiva” pag. 325}
 \paragraph{3}
 Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
 specificando il suo tempo di calcolo\\
