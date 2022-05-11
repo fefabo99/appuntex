@@ -520,30 +520,89 @@ Dai limiti notevoli si ricava facilmente che, per $x \to 0$
 
  
 \chapter{Calcolo Differenziale}
-\section{Alcune derivate}
-Inserisco qui alcune derivate che vale la pena ricordare
+
+\section{Derivate note}
+Non esistono veramente delle derivate note, però alcune funzioni hanno delle derivate che vale la pena ricordare per velocizzare il processo di derivazione:
+
 \begin{itemize}
-    \item \derivata{\sin(x)}{\cos(x)}
-    \item \derivata{\cos(x)}{-\sin(x)}
-    \item \derivata{\ln(x)}{\frac{1}{x}}
-    \item \derivata{e^x}{e^x}
-    \item \derivata{e^{-x}}{-e^{-x}}
-    \item \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
-    \item \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
-    \item \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+    \item[\textbf{Seno}] \derivata{\sin(x)}{\cos(x)}
+    \item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
+    \item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
+    \item[\textbf{Radice}] \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+    \item[\textbf{e$^x$}] \derivata{e^x}{e^x}
+    \item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
+    \item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
+    \item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
 \end{itemize}
 \subsection{Derivate composte}
 \begin{itemize}
     \item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
-    \item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(f(x))$
+    \item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(x)$
 \end{itemize}
-\section{Polinomio di Taylor}
 
+
+
+\section{Polinomio di Taylor}
 \subsection*{Polinomio di McLaurin}
 $T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
 
 \chapter{Calcolo Integrale}
-%TODO capitolo Calcolo Integrale (inegrali)
+\section{Gli integrali}
+\definizione{
+    L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
+}
+\subsection{Il calcolo degli integrali}
+Per calcolare $\int_{a}^{b} f(x) dx$ devo:
+\begin{enumerate}
+    \item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
+    \item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
+    \item Sottrarre i due valori ($F(b)-F(a)$)
+\end{enumerate}
+Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
+
+\esempio{
+    $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
+}
+
+\subsection{Proprietà degli integrali}
+\begin{itemize}
+    \item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
+    \item $\int K f(x) dx = K\int f(x) dx$
+    \item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
+\end{itemize}
+
+\section{Le primitive}
+Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
+\\Si noti che:
+\begin{itemize}
+    \item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
+    \item Le primitive non sono \emph{mai uniche}
+\end{itemize}
+Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
+
+\subsection{Primitive Elementari}
+Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
+\begin{tabular}{ |c|c|c| } 
+    \hline
+    $f(x)$ & $F(x)$ \\
+    \hline
+    $cos(x)$ & $sin(x)$ \\
+    \hline
+    $sin(x)$ & $-cos(x)$ \\
+    \hline
+    $e^x$ & $e^x$ \\
+    \hline
+    $a^x$ & $\frac{a^x}{\ln a} $ \\
+    \hline
+    $x^n$ & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+    \hline
+    $\frac{1}{x}$ & $\ln |x| $ \\
+    \hline
+    $\frac{1}{1+x^2}$ & $arctg(x) $ \\
+    \hline
+\end{tabular}
+
+
 \chapter{Serie Numeriche}
 \section{Introduzione}
 Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.

@@ -2,6 +2,7 @@
 \usepackage[italian]{babel}
 \usepackage{listings}
 \usepackage{amsmath}
+\usepackage[makeroom]{cancel}
 \usepackage{amsfonts}
 \usepackage[framemethod=tikz]{mdframed} 
 
@@ -87,14 +88,44 @@ Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che ques
 }
 
 \domanda{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
-\risposta{$$y=2x+1$$}
+\risposta{$$y=-2x+1$$}
 \spiegazione{
-    Per trovare un asintoto obliquo bisogna trovare $m$ e $q$:
-    $m=\limite{x}{+\infty}\frac{f(x)}{x} \rightarrow \frac{\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}}{x}$
-    $\rightarrow (\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}})\cdot \frac{1}{x}
-    \rightarrow \frac{2x^3+4x}{2x-x^3} + \frac{e^{-\frac{1}{x}}}{x}
-    \rightarrow$
-
+    Per trovare un asintoto obliquo bisogna trovare $m$ e $q$ che compongono la retta $y=mx +q$:
+    \\$
+    m=\limite{x}{+\infty}\frac{f(x)}{x} 
+    = \frac{\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}}{x}
+    = (\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}})\cdot \frac{1}{x}
+    = \frac{2x^3+4x}{2x-x^3} + \frac{e^{-\frac{1}{x}}}{x}
+    = \frac{\cancel{x}(2x^2+4)}{\cancel{x}(2-x^2)} + \frac{e^{-\frac{1}{x}}}{x}
+    \sim \frac{2\cancel{x^2}}{-\cancel{x^2}} + \frac{e^{-\frac{1}{x}}}{x}
+    = -2 + \frac{e^{-\frac{1}{x}}}{x}
+    $. Siccome $\frac{e^{-\frac{1}{x}}}{x}$ tende a $0$, allora $m$ equivale a $-2$
+    \\Adesso dobbiamo trovare $q$
+    \\$
+    q = \limite{x}{+\infty} [f(x) -mx]
+    = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}} +2x
+    \sim \frac{2\cancel{x^3}}{-\cancel{x^2}} + e^{-\frac{1}{x}} +2x
+    =\cancel{-2x} + e^{-\frac{1}{x}} \cancel{+2x} = e^{-\frac{1}{x}} = 1
+    $
+    \\Quindi, l'asintoto obliquo esiste e ha equazione $y=-2x+1$
 }
 
+\domanda{4}{Sia $f(x) = \sqrt{x^2 +2x +3}$. allora $f'(1)$ vale:}
+\risposta{$\frac{2}{\sqrt{6}}$}
+\spiegazione{
+    Basti ricordarsi che:
+    \\La derivata di una radice è: \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+    \\Questa funzione è una funzione composta ($f(x) = \sqrt{g(x)}$), quindi bisogna derivarla come tale: $f(g(x)) = f'(g(x)) \cdot g'(x)$.
+    \\Una volta calcolata la derivata e semplificata fino a un punto "comodo", basta sostituire $x$ con 1. 
+}
+
+\domanda{5}{L'insieme delle soluzioni della disequazione $e^x \sqrt[3]{x-1} \geq 1$ è del tipo}
+\risposta{$(\alpha, +\infty)$ con $\alpha>1$}
+\spiegazione{
+Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzialmente "corretta", quindi quando il termine sinistro è maggiore di 1.
+\\Se si prova un po per esclusione, si vede che per $x=0$ è "falsa" e rimane così anche per valori minori di 0.
+\\$x=1$ ci da 0, quindi deve essere per forza un valore maggiore di 1
+}
+
+\domanda{6}{la funzione $f(x) = \ln(x^2+2x+3)$ è monotona crescente se e solo se}
 \end{document}
