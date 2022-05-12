@@ -1329,7 +1329,32 @@ Nello schema è implicito il clock, ci sono 2 metodologie principali
     \item Maggiore ottimizzazione rispetto al singolo ciclo
     \item Più complesso perchè devo orchestrare (unità di controllo) la gestione dei clock
 \end{itemize}
-% Fare lezione 3/4 Datapath
+
+\section{Datapath multi-ciclo}
+Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
+\begin{itemize}
+    \item Memorizzano valori intermedi che vengono usati nel ciclo di clock successivo
+    per continuare l'esecuzione della stessa istruzione
+    \item Instruction Register - Tiene in memoria la copia dell'istruzione che sto utilizzando
+    \item MDR - Memory Data Regiser - Copia dei dati da elaborare prelevati dalla memoria 
+    \item A, B - registri tra register File e l'ingresso Alu - tengono in memoria i registri contenenti gli operando
+    \item ALUout - l'output della ALU (dato che l'ALU è un circuito combinatorio non è in 
+    grado di memorizzare un risultato)
+\end{itemize}
+
+\section{Dettaglio esecuzione istruzioni MIPS}
+\begin{itemize}
+    \item Fetch dell'istruzione e incremento PC
+    \item Decode: decodifica dell'istruzione E lettura registri E calcolo
+    dell'indirizzo per un eventuale branch
+    \item Execute: eseguire le operazionmi relative a R\_type OPPURE calcolo di memoria
+    OPPURE completa branch OPPURE completa kump
+    \item Execute: completa R\_type OPPURE accesso alla memoria
+    \item Execute: scrittura registro (solo per l'istruzione lw)
+\end{itemize}
+
+\subsection*{}
+
 %END------------------------------------------------------------------------
 
 \end{document}
