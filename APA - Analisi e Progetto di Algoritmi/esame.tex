@@ -10,7 +10,7 @@
 
 \newcommand{\domanda}[2]{\begin{box_domanda}\textbf{#1} #2\end{box_domanda}}
 \newcommand{\risposta}[1]{#1}
-\newcommand{\reflibro}[1]{(\small{#1})}
+\newcommand{\reflibro}[1]{}%hidden for now
 
 \definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
 
@@ -27,6 +27,7 @@
 \author{Fabio Ferrario}
 \date{2022}
 \maketitle
+\tableofcontents
 
 \chapter{Come si risolvono gli esercizi}
 \section{Introduzione}
@@ -436,7 +437,7 @@ sequenze, specificando bene il significato delle variabili coinvolte
     c[i,j] = \begin{cases}
         0                      & \text{se $i = 0$ or $j = 0$}           \\
         c[i-1,j-1] + 1         & \text{se $i,j > 0$ and $x_i = y_j$}    \\
-        max(c[i,j-1], c[i-1,j] & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
+        max(c[i,j-1], c[i-1,j]) & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
     \end{cases}
 \end{equation*}
 $c[i,j]$ è una matrice contenente la lunghezza di una qualsiasi LCS delle sottosequenze di lunghezza rispettivamente $i$ e $j$ di $X$ e $Y$
@@ -446,11 +447,10 @@ $c[i,j]$ è una matrice contenente la lunghezza di una qualsiasi LCS delle sotto
     Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
     specificando il suo tempo di calcolo\\
 }
-
 \risposta{
-Tempo di esecuzione: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
+Tempo di esecuzione di LCS-LENGHT: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
 } 
-%lstlisting non va dentro \risposta per qualche motivo
+%lstlisting non va dentro \risposta per cose di variabili e boh
 \begin{lstlisting}[mathescape=true] 
 LCS-LENGHT(X,Y)
 m = X.lenght
@@ -475,74 +475,117 @@ return c e b
 \end{lstlisting}
 \reflibro{"Fase 3: Calcolare la lunghezza di una LCS" pag.326}
 
-\paragraph{4}
-Definire qual e’ il sottografo dei predecessori (o albero BFS) prodotto dalla
-visita BFS di un grafo G=<V,E>, specificando bene da quali vertici e quali
-archi e’ composto.\\
-(“Alberi di visita in ampiezza”  pag. 502)\\
-Il sottografo dei predecessori $G_\pi$ è un albero BF (o albero di visita in ampiezza) se $V_\pi$ è formato da vertici raggiungibili da s e, per ogni v $\in V_\pi$, c'è un solo cammino semplice da s a v in $G_\pi$ che è anche un cammino minimo da s a v in G. GLi archi in $E_\pi$ sono detti archi dell'albero
-\paragraph{5}
+\domanda{4}{
+Definire qual è il sottografo dei predecessori (o albero BFS) prodotto dalla
+visita BFS di un grafo $G=<V,E>$, specificando bene da quali vertici e quali
+archi e’ composto.
+}
+\risposta{
+Il sottografo dei predecessori $G_\pi <V_\pi, E_\pi>$ è un albero BF (o albero di visita in ampiezza) se:
+$V_\pi$ è formato da vertici raggiungibili da $s$ e, per ogni $v \in V_\pi$, c'è un solo cammino semplice da $s$ a $v$ in $G_\pi$ che è anche un cammino minimo da $s$ a $v$ in $G$.
+GLi archi in $E_\pi$ sono detti \emph{archi dell'albero}.
+}
+\reflibro{“Alberi di visita in ampiezza”  pag. 502}
+\domanda{5}{
 Scrivere qual e’ il tempo di calcolo dell’algoritmo BFS motivando BENE la
-risposta (fare riferimento allo pseudocodice).\\
-("Analisi" pag 499)\\
-Tempo di esecuzione: O(V + E)\\
-Tempo delle operazioni con la coda O(V) e tempo per l'ispezione di ADJ è O(E)
-\paragraph{6}
-Spiegare il significato dei colori assegnati ai vertici dall’algoritmo BFS. Alla
-fine dell’esecuzione dell’algoritmo BFS su un grafo G=<V,E>, quali colori
-assumono i vertici?\\
-(Sez 22.2 pag 497)
-
-\paragraph{7}
-Definire qual e’ il sottografo dei predecessori (o foresta DF) prodotto dalla
-visita DFS di un grafo G=<V,E>, specificando bene da quali vertici e quali
-archi e’ composto.\\
-(Sez 22.3 pag 504)\\
-Il sottografo dei predecesso o foresta DF è così definita $G\pi = (V, E\pi )$ , dove:
+risposta (fare riferimento allo pseudocodice).
+}
+\risposta{
+Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
+Di cui $O(V)$ è il tempo delle operazioni con la coda, e $O(E)$ è il tempo per l'ispezione di ADJ.
+}
+\reflibro{"Analisi" pag 499}
+\domanda{6}{
+Spiegare il significato dei colori assegnati ai vertici dall’algoritmo BFS.
+Alla fine dell’esecuzione dell’algoritmo BFS su un grafo $G=<V,E>$, quali colori assumono i vertici?
+}
+\risposta{
+BFS assegna ad ogni vertice del grafo un colore:
+\\\emph{Bianco} per i vertici non ancora scoperti, \emph{Grigio} per i vertici scoperti ma di cui ancora non è stata scandita del tutto la lista di adiacenza
+e \emph{Nero} ad ogni vertice scoperto di cui è stata scandita l'intera lista di adiacenza.
+\\Alla fine dell'esecuzione di BFS, ogni nodo appartenente alla componente connessa del nodo sorgente assumera il colore \emph{nero} 
+}
+\domanda{7}{
+Definire qual e’ il sottografo dei predecessori (o foresta DF) prodotto dalla visita DFS di un grafo $G=<V,E>$,
+specificando bene da quali vertici e quali archi e’ composto.
+}
+\risposta{
+Il sottografo dei predecessori o foresta DF è così definita:
+$G\pi = (V, E\pi )$ , dove:
 $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
-\paragraph{8}
-Descrivere la classificazione degli archi che la visita in profondita’ produce a
-partire da un grafo G=<V,E>. Come si classifica un generico arco (u,v) del
-grafo?\\
-("Classificazione degli archi" pag 509)
-Arco dell'albero, in avanti, indietro e di attraversamento
-\paragraph{9}
-Scrivere qual e’ il tempo di calcolo dell’algoritmo DFS motivando BENE la
-risposta (fare riferimento allo pseudocodice)\\
-(Pag. 464-465)\\
-Tempo di esecuzione DFS: $\theta(V+E)$ perchè: DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco) e il ciclo in DFS-VISIT è chiamato una volta per ogni E (quindi ogni volta che c'è una adiacenza)
-\paragraph{11}
+\\In pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
+}
+
+\domanda{8}{
+Descrivere la classificazione degli archi che la visita in profondità produce a partire da un grafo $G=<V,E>$.
+Come si classifica un generico arco $(u,v)$ del grafo?
+}
+\risposta{
+DFS classifica gli alberi in questo modo:
+Arco dell'albero: ogni arco che va a scoprire un nuovo vertice,
+Arco all'indietro: se va in un nodo grigio,
+Arco in avanti: se va in un nodo nero scoperto dopo u,
+Arco di attraversamento: se va in un nodo nero scoperto prima di u.
+}
+\domanda{9}{
+Scrivere qual e’ il tempo di calcolo dell’algoritmo DFS motivando bene la
+risposta (fare riferimento allo pseudocodice)}
+\risposta{
+DFS ha un tempo di esecuzione di $\theta(V+E)$.
+DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco, quindi $\theta(V)$)
+e il ciclo in DFS-VISIT è chiamato una volta per ogni arco (ogni volta che c'è una adiacenza, quindi $\theta(E)$)
+}
+\domanda{11}{
 Dare la definizione di ordinamento topologico, specificando bene a che tipo di
 grafo si applica. Descrivere come si ottiene l’ordinamento topologico
-sfruttando l’algoritmo DFS.\\
-(sez 22.4 pag 512)\\
+sfruttando l’algoritmo DFS
+}
+\risposta{
 Un ordinamento topologico di un DAG G è un ordinamento lineare di tutti i suoi vertici tale che, se G contiene un arco (u,v), allora u appare prima di v nell'ordinamento.
-TOPOLOGICAL-SORT(G): chiama DFS per calcolare i tempi di completamento v.f, poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
+l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
+}
 
-\paragraph{12}
-Descrivere la caratterizzazione della struttura di un cammino minimo p=< v1,
-…, vl> utilizzata dall’algoritmo di Floyd-Warshall.\\
-(Paragrafo “La struttura di un cammino minimo” pag. 580)\\
-\paragraph{13}
+\domanda{12}{
+Descrivere la caratterizzazione della struttura di un cammino minimo $p=< v1, …, vl>$ utilizzata dall’algoritmo di Floyd-Warshall.
+}
+\risposta{
+L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$ 
+è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
+%non l'ho capita bene    
+}
+\domanda{13}{
 Illustrare e motivare le equazioni di ricorrenza su cui si basa l’algoritmo di
-Floyd-Warshall, specificando bene il significato delle variabili coinvolte.
-\begin{equation*}
-	d_{ij}^k = \begin{cases}
-		w_{ij}                                        & k=0 \\
-		min\{d_{ij}^{k-1},d_{ik}^{k-1} + d_{kj}^{k-1} & k>0
-	\end{cases}
-\end{equation*}
-\paragraph{14}
-illustrare un metodo per costruire i cammini minimi nell’algoritmo di Floyd-Warshall.\\
-Calcolo la matrice D dei pesi dei cammini minimi e poi costruisco la matrice dei predecessori della matrice D
-\paragraph{15}
+Floyd-Warshall, specificando bene il significato delle variabili coinvolte.}
+\risposta{
+    Equazione di ricorrenza:
+    \begin{equation*}
+        d_{ij}^k = \begin{cases}
+            w_{ij}                                        & k=0 \\
+            min\{d_{ij}^{k-1},d_{ik}^{k-1} + d_{kj}^{k-1}\} & k>0
+        \end{cases}
+    \end{equation*}
+    in cui: $w_ij$ è il peso dell'arco da $i$ a $j$, $d_{ij}^k$ è il peso del cammino minimo da $i$ a $j$ usando al più i vertici di indice $k$.
+    $d_{ij}^k$ assume il valore del peso dell'arco diretto tra $i$ e $j$ se non ci sono archi intermedi, altrimenti il minore tra il cammino minimo usando un vertice intermedio in meno e la somma di due cammini minimi usando un vertice intermedio in meno.
+}
+
+\domanda{14}{
+illustrare un metodo per costruire i cammini minimi nell’algoritmo di Floyd-Warshall.
+}
+\risposta{
+Per costruire i cammini minimi in FW calcolo la matrice D dei pesi dei cammini minimi e poi costruisco la matrice dei predecessori della matrice D.
+}
+\domanda{15}{
 Che cos’e’ la chiusura transitiva di un grafo orientato? Descrivere un modo
-per calcolarla.\\
+per calcolarla.}
+\risposta{
 Dato un grafo orientato si vuole determinare se per ciascuna coppia di ij esuste un cammino da i a j. la chiusura transitiva è definita come il grafo G* = (V,E*) dove E* = {(i,j): esiste un cammino dal vertice i al vertice j in G}\\
 un modo per calcolare la CT consiste nell'assegnare un peso 1 a ogni arco e nell'eseguire FW. se esiste un cammino da i a j si ha dij < n, altrimenti infinito
-\paragraph{16}
+}
+\domanda{16}{
 escrivere come modificare le equzioni di ricorrenza dell’algoritmo di Floyd-Warshall per calcolare la chiusura transitiva di un grafo orientato.\\
 k=0
+}
+\risposta{
 \begin{equation*}
 	t_{ij}^0 = \begin{cases}
 		0  & i \neq j \land (i,j) \notin E \\
@@ -553,30 +596,43 @@ k>0
 \begin{equation*}
 	t_{ij}^k = t_{ij}^{k-1} \lor (t_{ik}^{k-1} \land t_{kj}^{k-1})
 \end{equation*}
+}
 
-\paragraph{17}
-Dare la definizione di 1) Sistema di Indipendenza, 2) Problema associato ad
-un coppia costituita da un sistema di indipendenza e da funzione peso definita
-sul sistema di indipendenza. Scrivere inoltre qual è l’algoritmo Greedy
-associato a tale coppia.\\
-Sistema di indipendenza: Data la coppia <E,F> dove E è un insieme finito e F è una famiglia di sottoinsiemi di E, definiamo tale coppia sistema di indipendenza se vale al seguente proprietà:
-\begin{equation*}
-	\forall A \in F se B \subseteq A \implies B \in F
-\end{equation*}
-\paragraph{18}
-Definire cos’è un matroide, enunciare il Teorema di Rado\\
-matroide: un sistema di independenza è detto matroide se:
-\begin{equation*}
-	\forall A, B \in F e |A| = |B| + 1 \rightarrow \exists a \in A\backslash B tale che B \cup \{a\} \in F
-\end{equation*}
-teorema di Rado: Dato un sitema di indipendenza <E,F> le seguenti proposizioni sono equivalenti:
+\domanda{17}{
+Dare la definizione di:
+\begin{enumerate}
+    \item Sistema di Indipendenza.
+    \item Problema associato ad
+    un coppia costituita da un sistema di indipendenza e da funzione peso definita
+    sul sistema di indipendenza.
+\end{enumerate}
+Scrivere inoltre qual è l’algoritmo Greedy associato a tale coppia.
+}
+\risposta{
+\begin{enumerate}
+    \item Sistema di indipendenza: Data la coppia $<E,F>$ dove $E$ è un insieme finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia sistema di indipendenza se vale la seguente proprietà:
+    \begin{equation*}
+        \forall A \in F se B \subseteq A \implies B \in F
+    \end{equation*}
+\end{enumerate}
+
+}
+\domanda{18}{
+Definire cos’è un matroide, enunciare il Teorema di Rado.}
+\risposta{
+Un \emph{Matroide} è un sistema di independenza che rispetta la seguente proprietà:
+$$
+	\forall A, B \in F \text{ e } |A| = |B| + 1 \implies \exists a \in A\backslash B \text{ tale che } B \cup \{a\} \in F
+$$
+il Teorema di Rado dice: Dato un sitema di indipendenza $<E,F>$ le seguenti proposizioni sono equivalenti:
 \begin{itemize}
-	\item Per ogni funzione peso w : E -> R+, l'algoritmo greedy associato fornisce una soluzione ottima
-	\item <E,F> è un matroide
+	\item Per ogni funzione peso $w : E \to R+$, l'algoritmo greedy associato fornisce una soluzione ottima
+	\item $<E,F>$ è un matroide
 \end{itemize}
-\paragraph{19}
+}
+\domanda{19}{
 Cos’è una struttura dati per insiemi disgiunti? Definire formalmente quali
 sono le operazioni principali su una struttura dati per insiemi disgiunti.
-\tableofcontents
+}
 
 \end{document}

@@ -483,7 +483,7 @@ def BFS(G, s)
     d[s] = 0
     $\pi$[s] = NIL
     ENQUEUE(Q,s)
-    While Q$\neq \emptyset$
+    while Q$\neq \emptyset$
         u = DEQUEUE(Q)
         for ogni v $\in$ adj[u]
             if col[v]==White
@@ -502,11 +502,15 @@ dove inserisce s, che è il primo nodo Grigio.
 inserendoli di volta in volta in Q. Quando la lista di adiacenza è stata scandita per intero, vuol dire che il nodo è stato scoperto del tutto e quindi diventa nero.
 Il ciclo ricomincia finchè Q non sarà vuota.
 
+\paragraph*{Tempo di esecuzione}
+Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
+Di cui $O(V)$ è il tempo delle operazioni con la cosa, e $O(E)$ è il tempo per l'ispezione di ADJ.
 
 \paragraph{Sottografo dei predecessori}
-Oltre a segnare la distanza la visita in ampiezza costruisce un albero BF (Albero di ricerca in ampiezza), che alla radice ha il vertice sorgente $s$. Quando un vertice $v$
-Quando durante l'ispezione della lista di adiacenza di un vertice $u$ viene scoperto un vertice vianco $v$,
-il vertice $v$ e l'arco $(u,v)$ che vengono aggiunti all'albero. Il vertice $u$ viene detto padre di $v$.
+La visita in ampiezza costruisce un albero BF \emph{(Albero di ricerca in ampiezza)}, che alla radice ha il vertice sorgente $s$.
+Quando durante l'ispezione della lista di adiacenza di un vertice $u$ viene scoperto un vertice \emph{ bianco $v$},
+il vertice $v$ e l'arco $(u,v)$ che lo collega a $u$ vengono aggiunti all'albero.
+Il vertice $u$ viene detto \emph{padre} di $v$.
 
 
 \subsection{Algoritmo DFS}
@@ -554,41 +558,53 @@ DFS comincia inizializzando il grafo come BFS ma senza impostare d[].
 Poi fa un ciclo su ogni nodo del grafo, chiamato DFS-VISIT su tutti i nodi bianchi che trova.
 DFS-VISIT(G,u) visita tutti i nodi adiacenti a $u$, operando ricorsivamente su ogni nodo bianco che trova.
 Alla fine dell'esecuzione DFS-VISIT mette nero il nodo in esame e procede con il primo nodo bianco che trova nell'albero.
-
+\paragraph*{Tempo di calcolo}
+DFS ha un tempo di esecuzione di $\theta(V+E)$.
+DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco, quindi $\theta(V)$)
+e il ciclo in DFS-VISIT è chiamato una volta per ogni arco (ogni volta che c'è una adiacenza, quindi $\theta(E)$)
 
 \paragraph{Sottografo dei predecessori}
-Data una visita in profondità, il sottografo dei predecessori può essere formato da più alberi, poichè la visita può essere ripetuta da più sorgenti.
-Quindi forma una foresta DF, composta da vari alberi DF.
+Anche DFS genera un \emph{sottografo dei predecessori $G_\pi<V,E_\pi>$}, ma a differenza di BFS
+$G_\pi$ forma effettivamente una \emph{foresta di alberi}, in cui ogni albero rappresenta una componente connessa del grafo.
+Nota che, a differenza del sottografo dei predecessori di BFS, $G_\pi$ contiene tutti i vertici di $G$.
+\\Formalmente, il sottografo dei predecessori (o foresta DF) è così definito:
+$G\pi = (V, E\pi )$ , dove:
+$E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
+\\in pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
 
+\subsection*{Ordinamento Topologico}
+Questo paragrafo spiega come utilizzare la visita in profondità per eseguire l'ordinamento topologico di un 
+grafo \emph{orientato aciclico} o DAG (Directed acyclic graph).
+\\Un ordinamento topologico di un DAG $G<V,E>$ è un ordinamento lineare di tutti i suoi vertici tale che , se $G$ contiene un arco $(u,v)$ 
+allora $u$ appare prima di $v$ nell'ordinamento.
+\\In pratica, un ordinamento topologico può essere visto come un ordinamento dei suo vertici lungo una linea orizzontale in modo che tutti gli archi orientati siano diretti da sinistra a destra.
+\\l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
+  
 
 \section{Cammini minimi}
+Alcuni algoritmi sui grafi molto importanti sono quelli che calcolano i \emph{cammini minimi} per grafi orientati \textbf{pesati},
+quindi grafi (orientati) che hanno un peso assegnato su ogni arco.
 
-Sia G=(V,E) un grafo orientato con costi w sugli archi,
-il costo di un cammino p=\textless$ v_1,v_2,...v_k$\textgreater è dato
-dalla somma del peso di tutti i vertici di quel cammino
-
-\paragraph*{Cammino minimo}
-tra una coppia di vertici $x$ e $y$ è un cammino di costo
-minore o uguale a quello di ogni altro cammino tra gli stessi vertici
-
-\paragraph*{Sottostruttura ottima}
-ogni sottocammino di un cammino minimo è anch'esso minimo
-
-\paragraph*{Albero dei cammini minimi}
-I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
+\paragraph*{definizioni}
+Sia $G=(V,E)$ un grafo orientato con costi w sugli archi,
+il costo di un cammino $p=<v_1,v_2,...v_k>$ è dato dalla somma del peso di tutti i vertici di quel cammino.
+\\Il \textbf{Cammino minimo} tra una coppia di vertici $x$ e $y$ è \emph{un cammino di costo
+minore o uguale a quello di ogni altro cammino tra gli stessi vertici}.
+\\\textbf{Sottostruttura ottima}: ogni sottocammino di un cammino minimo è anch'esso minimo.
+\\\textbf{Albero dei cammini minimi}: I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
 essere rappresentati tramite un albero radicato in $s$, detto albero dei cammini minimi
 
+\paragraph*{Gli algoritmi} che studieremo sono di due tipi: da sorgente unica, come Dijkstra e Bellman-Ford, oppure quelli che calcolano i cammini minimi per ogni coppia di vertici, come Floyd-Warshall.
 \subsection{Algoritmo di Floyd-Warshall}
-L'algoritmo di Floyd-Warshall calcola il cammino minimo da $i$ a $j$ per ogni coppia di vertici $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito
+L'algoritmo di Floyd-Warshall calcola il cammino minimo da $i$ a $j$ \emph{per ogni coppia di vertici} $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito.
 
 \paragraph{Funzionamento}
-L'idea alla base di questo algoritmo è un processo iterativo che, scorrendo tutti i nodi, ad ogni passo h si ha
-(data una matrice D) nella posizione [i,j] la distanza - pesata - minima dal nodo di indice i a quello j attraversando
-solo nodi di indice minore o uguale a h.\\
+L'idea alla base di questo algoritmo è un processo iterativo che, scorrendo tutti i nodi, ad ogni passo $h$ si ha
+(data una matrice D) nella posizione $[i,j]$ la \emph{distanza di peso minimo} dal nodo di indice $i$ a quello $j$ attraversando solo nodi di indice minore o uguale a $h$.\\
 \textit{Quindi $D^h$ equivale alla matrice che contiene i cammini minimi utilizzando come nodi intermedi al massimo i nodi di indice $h$.}
 \\Se non vi è collegamento tra due nodi allora nella cella corrispondente c'è infinito.
 Ovviamente alla fine (con h = numero di nodi) leggendo la matrice si ricava la distanza minima fra i vari nodi del grafo.
-L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-usepackage
+L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-up.
 
 \paragraph{Equazione di Ricorrenza}
 
@@ -598,6 +614,13 @@ L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-
 		min\{ d^{(h-1)}_{ij},d^{(h-1)}_{ih} + d^{(h-1)}_{jh}\} & \text{if $h > 0$}
 	\end{cases}
 \end{equation*}
+\spiegazione{
+La variabile $d^{(h)}_{i,j}$, che contiene il peso del cammino minimo da $i$ a $j$ con al più $h$ vertici intermedi e vale:
+il peso del cammino $(i,j)$ se non usiamo vertici intermedi (se non c'è il collegamento questo vale infinito), oppure il minore tra i pesi dei cammini che utilizzano un cammino intermedio.
+}
+\paragraph*{Struttura di un cammino minimo}
+L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$ 
+è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
 
 \paragraph{Pseudocodice} Algoritmo di Floyd-Warshall
 
@@ -613,7 +636,7 @@ def FLOYD-WARSHALL (G, W)
 \end{lstlisting}
 
 \paragraph{Spiegazione Codice}
-L'algoritmo inizia impostando a zero tutti i cammini minimi di un nodo con se stesso.
+L'algoritmo inizia mettendo nella matrice $D$ il peso di ogni arco senza nodi intermedi.
 Procede poi con tre cicli for, il cui più esterno è h e il più interno j, in cui confronta i cammini minimi
 di ogni nodo con ogni altro nodo aumentando di volta in volta il (possibile) numero di nodi intermedi (h)
 
