@@ -128,4 +128,31 @@ Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzia
 }
 
 \domanda{6}{la funzione $f(x) = \ln(x^2+2x+3)$ è monotona crescente se e solo se}
+\risposta{$x\in (-1,+\infty)$}
+\spiegazione{
+    Per trovare se una funzione è \emph{monotona crescente} bisogna porre la derivata della funzione $\geq 0$.
+    Il risultato è $x\geq -1$, che equivale a $x\in (-1,+\infty)$.
+}
+\domanda{7}{L'estremo inferiore della successione $\{a_n\}_{n\geq0}$, dove $a_n = 3^{n+(-1)^nn}$ è:}
+\risposta{
+    1
+}
+\spiegazione{
+    Per vedere l'estremo inferiore di una successione bisognerebbe provare qualche valore di $n$ a partire dal più piccolo (in questo caso 0).
+    Se il termine è infinitesimale, l'estremo inferiore si trova con il limite, altrimenti vedi il valore minore che trovi.
+}
+\domanda{8}{$\int_{\pi/2}^{\pi} x \sin x dx$ vale:}
+\risposta{
+    $\pi -1$
+}
+\spiegazione{
+    Integro per parti, quindi abbiamo:
+    \\$f(x) = x$ e quindi $f'(x) = 1$
+    \\$g'(x)= \sin(x)$ e quindi $g(x) = -\cos(x)$
+    \\Risolvo con la formula dell'\emph{integrazione per parti}: 
+    $$x (-\cos(x)) - \int 1(-\cos(x)) = -x\cos(x)+\sin(x) = \sin(x)-x\cos(x)$$
+    Risolvo l'integrale per gli estremi dati:
+    $F(\pi) = \pi$, $F(\pi/2)=1$. 
+    Quindi l'integrale dato vale $\pi -1$
+}
 \end{document}

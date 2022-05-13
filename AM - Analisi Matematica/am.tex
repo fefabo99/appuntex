@@ -6,6 +6,9 @@
 \usepackage[makeroom]{cancel}
 \usepackage[framemethod=tikz]{mdframed} 
 \usepackage{hyperref}
+\usepackage{graphicx}
+
+\graphicspath{ {./img/} }
 
 %Definizioni delle box custom
 
@@ -45,52 +48,52 @@
 Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
 \\Come fonte ho utilizzato:
 \begin{itemize}
-    \item Appunti di altri studenti
-    \item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione) 
+	\item Appunti di altri studenti
+	\item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione)
 \end{itemize}
 \section*{Il Corso}
 Come già detto, questi appunti sono in funzione del corso di Analisi Matematica di UNIMIB, a.a. 2021/22, insegnato dalla Professoressa Pini.
 \subsection*{Programma del corso}
 \begin{enumerate}
-\item Numeri Reali
-\begin{enumerate}
-\item Funzioni elementari
-\item Generalità sulle funzioni
-\item Funzioni reali di una variabile
-\end{enumerate}
-\item Successioni
-\begin{enumerate}
-    \item Limiti di successioni reali
-    \item Principio di Induzione
-    \item Limiti notevoli
-\end{enumerate}
-\item Limiti e continuità
-\begin{enumerate}
-    \item Limiti di Funzioni
-    \item Limiti notevoli
-    \item Funzioni continue
-    \item Proprietà globali delle funzioni continue
-\end{enumerate}
-\item Calcoli differenziale
-\begin{enumerate}
-    \item Derivate di una funzione
-    \item Proprietà delle funzioni derivabili
-    \item Funzioni convesse e concave
-    \item Formula di Taylor
-    \item Grafici di funzioni
-\end{enumerate}
-\item Calcolo integrale
-\begin{enumerate}
-    \item Funzioni integrabili secondo Rienmann
-    \item Teorema fondamentale del calcolo e integrali indefiniti
-    \item Metodi d'integrazione
-\end{enumerate}
-\item Serie numeriche
-\begin{enumerate}
-    \item Serie, convergenza, convergenza assoluta
-    \item Serie a termini positivi
-    \item Serie a termini di segno variabile
-\end{enumerate}
+	\item Numeri Reali
+	      \begin{enumerate}
+		      \item Funzioni elementari
+		      \item Generalità sulle funzioni
+		      \item Funzioni reali di una variabile
+	      \end{enumerate}
+	\item Successioni
+	      \begin{enumerate}
+		      \item Limiti di successioni reali
+		      \item Principio di Induzione
+		      \item Limiti notevoli
+	      \end{enumerate}
+	\item Limiti e continuità
+	      \begin{enumerate}
+		      \item Limiti di Funzioni
+		      \item Limiti notevoli
+		      \item Funzioni continue
+		      \item Proprietà globali delle funzioni continue
+	      \end{enumerate}
+	\item Calcoli differenziale
+	      \begin{enumerate}
+		      \item Derivate di una funzione
+		      \item Proprietà delle funzioni derivabili
+		      \item Funzioni convesse e concave
+		      \item Formula di Taylor
+		      \item Grafici di funzioni
+	      \end{enumerate}
+	\item Calcolo integrale
+	      \begin{enumerate}
+		      \item Funzioni integrabili secondo Rienmann
+		      \item Teorema fondamentale del calcolo e integrali indefiniti
+		      \item Metodi d'integrazione
+	      \end{enumerate}
+	\item Serie numeriche
+	      \begin{enumerate}
+		      \item Serie, convergenza, convergenza assoluta
+		      \item Serie a termini positivi
+		      \item Serie a termini di segno variabile
+	      \end{enumerate}
 \end{enumerate}
 
 \subsection*{Prerequisiti}
@@ -104,53 +107,85 @@ Questa piccola sezione contiene alcuni argomenti che non fanno parte del program
 \section{Linguaggio della matematica }
 La matematica è fatta di:
 \begin{itemize}
-    \item Definizioni $\leftarrow$ Circoscrive un campo, in modo da definire se un oggetto vi appartiene o no
-    \item Assiomi/Postulati $\leftarrow$  Affermazione che viene accettata come vera senza che essa venga dimostrata
-    \item Preposizioni/Teoremi $\leftarrow$  un teorema è struttrato così: data questa premessa (ipotesi) è possibile dedurre delle conseguenze (tesi)
+	\item Definizioni $\leftarrow$ Circoscrive un campo, in modo da definire se un oggetto vi appartiene o no
+	\item Assiomi/Postulati $\leftarrow$  Affermazione che viene accettata come vera senza che essa venga dimostrata
+	\item Preposizioni/Teoremi $\leftarrow$  un teorema è struttrato così: data questa premessa (ipotesi) è possibile dedurre delle conseguenze (tesi)
 \end{itemize}
-\paragraph*{Affermazioni} In matematica se affermo "Se \emph{un} numero è divisibile per 6, allora lo è anche per due", quel "un" in matematica si traduce in \emph{"esiste un numero"} oppure in \emph{"per ogni numero"} 
+\paragraph*{Affermazioni} In matematica se affermo "Se \emph{un} numero è divisibile per 6, allora lo è anche per due", quel "un" in matematica si traduce in \emph{"esiste un numero"} oppure in \emph{"per ogni numero"}
 \begin{itemize}
-    \item $\forall \leftarrow$ Per ogni
-    \item $\exists \leftarrow$ Esiste
+	\item $\forall \leftarrow$ Per ogni
+	\item $\exists \leftarrow$ Esiste
 \end{itemize}
 
 \paragraph*{Proposizioni}
 Le proposizioni in matematica sono fatte da soggetto + predicato nominale e possono risultare Vere o False.
-esempio: 
+esempio:
 \\Ogni giorno piove (x = giorno e P(x) = piove) $\leftarrow \forall x P(x)$
 \\Non ($\forall x P(x)$) $\leftarrow \exists x : \not P(x)$
 
 \paragraph*{Implicazioni}
 A e B due proposizioni. Cosa significa A -> B? (a implica b)
 \begin{itemize}
-    \item A è sufficiente per B
-    \item B è necessario per A
+	\item A è sufficiente per B
+	\item B è necessario per A
 \end{itemize}
 Ogni triangolo èquilatero è isoscele
 \begin{itemize}
-    \item Affinchè un triangolo abbia 2 lati uguali è sufficiente che ne abbia tre uguali
-    \item Affinchè un triangolo abbia 3 lati uguali è necessario che ne abbia due uguali tra loro
+	\item Affinchè un triangolo abbia 2 lati uguali è sufficiente che ne abbia tre uguali
+	\item Affinchè un triangolo abbia 3 lati uguali è necessario che ne abbia due uguali tra loro
 \end{itemize}
 Quindi A è ipotesi, B è la tesi.
+\section{Disequazioni}
+Nel corso di Analisi Matematica troviamo spesso delle disequazioni da risolvere, è bene quindi sapere come risolverle.
+In caso non si sia presa in mano la matematica per un po di tempo, potrebbe essere una buona idea ripassarle.
 
+\paragraph*{Le disequazioni} sono come delle equazioni in cui ci si chiede "per quali valori di $x$ questa espressione è maggiore (minore) di un certo valore".
+Vengono risolte esattamente come le equazioni, ma il significato del risultato è diverso.
+
+\subsection{Disequazioni di secondo grado}
+Le disequazioni (come le equazioni) di secondo grado si risolvono, una volta ridotte alla forma standard $ax^2+bx+c$, usando la formula risolutiva:
+$$x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
+\begin{itemize}
+	\item $\Delta > 0 \implies $ 2 soluzioni Reali
+ 	\item $\Delta < 0 \implies $ Nessuna soluzione Reale (ma 2 complesse)
+	\item $\Delta = 0 \implies $ 1 Soluzione Reale  
+\end{itemize}
+Ricordiamo poi, che una funzione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
+quindi quando sta sopra l'asse delle ascisse.
+\paragraph*{}
+Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappresentazione" della parabola
+\\\includegraphics[width=\textwidth]{parabole-delta.png}
+
+\paragraph*{Legge di annullamento del prodotto}
+Segnare sta cosa
 \section{Richiamo di trigonometria}
 un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 \begin{itemize}
-    \item $\frac{\cos(x)}{\sin(x)} = \cot(x)$
-    \item $\sin(0) = 0$
-    \item $\cos(0) = 1$
+	\item $\frac{\cos(x)}{\sin(x)} = \cot(x)$
 \end{itemize}
-
+\paragraph*{Valori di $\sin(x)$}
+\begin{itemize}
+	\item $\sin(0) = 0$
+ \item $\sin(\pi/2) = 1$
+ \item $\sin(\pi) = 0$
+\end{itemize}
+\paragraph*{Valori di $\cos(x)$}
+\begin{itemize}
+	\item $\cos(0) = 1$
+ \item $\cos(\pi/2) = 0$
+ \item $\cos(\pi) = -1$
+\end{itemize}
 \section{Valore assoluto (modulo) di un numero Reale}
 
 \definizione{ Per ogni $x \in R$ si pone
-\begin{equation}
-    |x| = \begin{cases}
-        x & \text{se $x \geq 0$}\\
-        -x & \text{se $x < 0$}
-    \end{cases}
-\end{equation}
-$|x|$ si dice valore assoluto, o modulo, di x
+	\begin{equation}
+		|x| = \begin{cases}
+			x  & \text{se $x \geq 0$} \\
+			-x & \text{se $x < 0$}
+		\end{cases}
+	\end{equation}
+	$|x|$ si dice valore assoluto, o modulo, di x
 }
 \paragraph{ATTENZIONE} dire che "il modulo di un numero è il numero senza il segno" non ha senso in questo contesto, quindi non va usata perchè vale solo se x è "semplice"
 \paragraph{In parole povere} il modulo di $x$ è $x$ se x è positivo, il suo opposto se è negativo\\
@@ -163,14 +198,14 @@ Per ogni $x, y \in R$ si ha $|xy| = |x||y|$.\\Se $y\neq0$, si ha anche $|x/y|=|x
 Il modulo della somma NON coincide con la somma dei moduli. Però vale la seguente importantissima disuguaglianza:
 \paragraph{Disuguaglianza triangolare} siano x,y numeri reali. Allora:
 \begin{equation}
-    |x+y| \leq |x| + |y|
-\end{equation} 
+	|x+y| \leq |x| + |y|
+\end{equation}
 (cioè il modulo della somma è minore o uguale della somma dei due moduli)
 
 \section{Insiemi e Intervalli in R}
 \definizione{
-    Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione:
-    se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$. 
+	Diremo \textbf{intervallo} di $\R$ un sottoinsieme $I$ di $\R$ che sia convesso rispetto all'ordine, cioè che soddisfi la seguente condizione:
+	se $a,b \in I$, e $a \leq b$, ogni $x\in R$ tale che $a \leq x \leq b$ appartiene a $I$.
 }
 
 In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, contiene anche \emph{tutti i numeri reali che stanno fra questi due}.
@@ -178,19 +213,19 @@ In parole povere: $I$ è intervallo di $\R$ se, contenendo due numeri reali, con
 \paragraph{Intervalli limitati.}
 Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i seguenti sottoinsiemi di $\R$:
 \begin{itemize}
-    \item[] $[a,b] = \{x \in R : a \leq x \leq b\}$ CHIUSO
-    \item[] $[a,b) = \{x \in R : a \leq x < b\}$ SUPERIORMENTE APERTO
-    \item[] $(a,b] = \{x \in R : a > x \leq b\}$ INFERIORMENTE APERTO
-    \item[] $(a,b) = \{x \in R : a > x < b\}$ APERTO
+	\item[] $[a,b] = \{x \in R : a \leq x \leq b\}$ CHIUSO
+	\item[] $[a,b) = \{x \in R : a \leq x < b\}$ SUPERIORMENTE APERTO
+	\item[] $(a,b] = \{x \in R : a > x \leq b\}$ INFERIORMENTE APERTO
+	\item[] $(a,b) = \{x \in R : a > x < b\}$ APERTO
 \end{itemize}
 {\tiny(le parentesi tonde a volte vengono sostituite con delle parentesi quadre nel senso opposto)}
 \\Tutti questi intervalli sono detti intervalli \emph{limitati}
 \paragraph{Intervalli illimitati.} sono invece intervalli illimitati, per ogni $a \in R$, gli insiemi:
 \begin{itemize}
-    \item[] $\{x \in R: x \geq a\}$ (semiretta \emph{chiusa} inferiormente limitata)
-    \item[] $\{x \in R: x > a\}$ (semiretta \emph{aperta} inferiormente limitata)
-    \item[] $\{x \in R: x \leq a\}$ (semiretta \emph{chiusa} superiormente limitata)
-    \item[] $\{x \in R: x < a\}$ (semiretta \emph{aperta} superiormente limitata)
+	\item[] $\{x \in R: x \geq a\}$ (semiretta \emph{chiusa} inferiormente limitata)
+	\item[] $\{x \in R: x > a\}$ (semiretta \emph{aperta} inferiormente limitata)
+	\item[] $\{x \in R: x \leq a\}$ (semiretta \emph{chiusa} superiormente limitata)
+	\item[] $\{x \in R: x < a\}$ (semiretta \emph{aperta} superiormente limitata)
 \end{itemize}
 
 \subsection*{Massimi e Minimi dei sottoinsiemi di $\R$}
@@ -202,7 +237,7 @@ Fissati $a, b \in R$, con $a<b$, si riconosce facilmente che sono intervalli i s
 \paragraph{Definizioni.} Sia $S$ sottoinsieme non vuoto di $\R$. si dice che $b\in \R$ è un \emph{maggiorante} per $S$ se risulta $s\leq b$ per ogni $s \in S$. Si dice che $S$ è \emph{Superiormente limitato} (in $\R$) se ammette maggioranti in $\R$.
 \\l'insieme dei maggioranti in $\R$ di $S\subseteq \R$ è indicato con $S^*$.
 \\dualmente per i minoranti, ovviamente i minoranti sono tutti minori di $S$ e l'insieme dei minoranti si indica con $S_*$.
-\\Un insieme non vuoto $S \subseteq \R$ si dice \emph{limitato} se è tanto superiormente limitato quanto inferiormente limitato. 
+\\Un insieme non vuoto $S \subseteq \R$ si dice \emph{limitato} se è tanto superiormente limitato quanto inferiormente limitato.
 \subsection*{Prodotto Cartesiano}
 \paragraph{Definizione.}Dati due insiemi $X$ e $Y$, il loro prodotto cartesiano è per definizione l'insieme $X \times Y$ formato da tutte le coppie ordinate $(x,y)$ che hanno la prima componente $x \in X$, la seconda $y \in Y$.\\
 Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$ e si indica anche con $X^2$
@@ -211,18 +246,18 @@ Se $X = Y$, il prodotto $X \times X$ si chiama \emph{quadrato cartesiano} di $X$
 
 \section{Generalità}
 \definizione{
-    Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+	Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
 }
 \paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
 
 \definizione{
-    se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
+	se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
 }
 \paragraph{Assegnare una funzione} significa assegnare:
 \begin{itemize}
-    \item Un dominio $X$
-    \item Un codominio $Y$
-    \item Una regola che a ogni $x$ del dominio associ una $y$ del codominio
+	\item Un dominio $X$
+	\item Un codominio $Y$
+	\item Una regola che a ogni $x$ del dominio associ una $y$ del codominio
 \end{itemize}
 Pertanto: due funzioni $f$ e $g$ sono \textbf{uguali} se e solo se hanno lo \emph{stesso dominio}, lo\emph{ stesso codominio}, e inoltre si ha \emph{$f(x) = g(x)$ per ogni x del dominio}.\\
 Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio e il codominio dati siano gli stessi.
@@ -230,7 +265,7 @@ Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio 
 \subsection*{Insieme immagine}
 Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
 In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
-L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}. 
+L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}.
 Vale sempre $f(X) \subseteq Y$, quindi l'immagine è \emph{sempre} conenuta nel codomino, ma in generale è $f(X) \subset Y$, cioè immagine e codominio sono diversi.
 \paragraph{In parole povere} L'insieme immagine di una funzione è l'insieme di tutti i valori della funzione per ogni elemento del dominio.
 L'insieme immagine è \emph{sempre} contenuta nel dominio, ma non sempre vi coincide.
@@ -243,7 +278,7 @@ in simboli: $f^\leftarrow(T) = \{ x \in X : f(x) \in T\}$.
 \paragraph{In parole povere} L'antiimmagine mediante un insieme $T$ è l'insime dei valori del dominio la cui immagine è contenuta in $T$
 
 
-\section{Composizione di Funzioni} 
+\section{Composizione di Funzioni}
 Siano $\function$ e $g: Y \rightarrow Z$ funzioni.
 Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f" o "g cerchietto f") ponendo $g \circ f = g(f(x))$ per ogni $x \in X$;
 $g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
@@ -251,8 +286,8 @@ $g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta 
 
 
 \esempio{
-    Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
-    \\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$    
+	Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
+	\\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$
 }
 \section{Iniettività e Suriettività}
 
@@ -271,7 +306,7 @@ La funzione $\function$ è detta iniettiva se trasforma elementi distinti in ele
 Una funzione $\function$ è detta biiettiva se è sia iniettiva che suriettiva.
 Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un solo $x \in X$ tale che sia $y = f(x)$.
 Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
-Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca. 
+Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca.
 
 \subsection*{Funzione Inversa}
 Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
@@ -304,39 +339,39 @@ Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue
 
 \section{Introduzione}
 \definizione{
-    Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
-    La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$    
-} 
+	Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
+	La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$
+}
 \esempio{
-    $a_n = 2n-3$ è una successione.
-    $a_0 = -3$, $a_1 = -1$, $a_2 = 1$, $a_3 = 3$ , ... sono i suoi valori
+	$a_n = 2n-3$ è una successione.
+	$a_0 = -3$, $a_1 = -1$, $a_2 = 1$, $a_3 = 3$ , ... sono i suoi valori
 }
 
 \paragraph*{Limitazioni} Una successione $\{a_n\}$ si dice:
 \begin{itemize}
-    \item \textbf{Inferiormente limitata} se esiste $m \in \R$ tale che $a_n \geq m \forall n \in \N$
-    \item \textbf{Superiormente limitata} se esiste $M \in \R$ tale che $a_n \leq M \forall n \in \N$
-    \item \textbf{Limitata} se esistono $m \in \R$ e $M \in \R$ tali che $m \leq a_n \leq M \forall n \in \N$
+	\item \textbf{Inferiormente limitata} se esiste $m \in \R$ tale che $a_n \geq m \forall n \in \N$
+	\item \textbf{Superiormente limitata} se esiste $M \in \R$ tale che $a_n \leq M \forall n \in \N$
+	\item \textbf{Limitata} se esistono $m \in \R$ e $M \in \R$ tali che $m \leq a_n \leq M \forall n \in \N$
 \end{itemize}
 \esempio{
-    La successione $\{\frac{1}{n+1}\}$ i cui primi termini sono $1, \frac{1}{2}, \frac{1}{3},$...\\
-    è \emph{limitata}: si ha infatti che $0 < a_n \leq 1 \forall n \in \N$
+	La successione $\{\frac{1}{n+1}\}$ i cui primi termini sono $1, \frac{1}{2}, \frac{1}{3},$...\\
+	è \emph{limitata}: si ha infatti che $0 < a_n \leq 1 \forall n \in \N$
 }
 
 \paragraph*{Monotonia} Una successione $\{a_n\}$ si dice:
 \begin{itemize}
-    \item \textbf{Monotona crescente} se $a_n\leq a_{n+1} \forall n \in \N$
-    \item \textbf{Monotona strettamente crescente} se $a_n < a_{n+1} \forall n \in \N$
-    \item \textbf{Monotona decrescente} se $a_n \geq a_{n+1} \forall n\in\N$
-    \item \textbf{Monotona strettamente decrescente} se $a_n > a_{n+1} \forall n \in \N$
+	\item \textbf{Monotona crescente} se $a_n\leq a_{n+1} \forall n \in \N$
+	\item \textbf{Monotona strettamente crescente} se $a_n < a_{n+1} \forall n \in \N$
+	\item \textbf{Monotona decrescente} se $a_n \geq a_{n+1} \forall n\in\N$
+	\item \textbf{Monotona strettamente decrescente} se $a_n > a_{n+1} \forall n \in \N$
 \end{itemize}
 
 \paragraph*{Definizione} Si dice che una successione {$a_n$} possiede (o acquista) una certa proprietà \textbf{definitivamente} se esiste $N \in \N$ tale che
 $a_n$ soddisfa quella proprietà per ogni $n \geq N$, quindi da un certo $n$ in poi.
 
 \esempio{Queste serie:\\
-    $a_n = 2n-3$ $[-3,-1,1,3,5,...]$  è \emph{Definitivamente positiva}\\
-    $a_n =\frac{1}{n+1}$ $[1, \frac{1}{2}, \frac{1}{3},\frac{1}{4}...] $ è \emph{Definitivamente minore di $\frac{1}{3}$}
+	$a_n = 2n-3$ $[-3,-1,1,3,5,...]$  è \emph{Definitivamente positiva}\\
+	$a_n =\frac{1}{n+1}$ $[1, \frac{1}{2}, \frac{1}{3},\frac{1}{4}...] $ è \emph{Definitivamente minore di $\frac{1}{3}$}
 }
 
 \section{Limiti di Successioni}
@@ -350,19 +385,19 @@ e si scrive $\limite{n}{+\infty} a_n = l$
 
 Quando si calcola il limite bisogna però distinguere 4 casistiche:
 \begin{enumerate}
-    \item \textbf{Convergenza}, se $l\in\R$, si ha $\lim a_n = l$ sse $\forall \epsilon > 0$ esiste un indice $n_\epsilon\in\N$ tale che si abbia:
-    \begin{center}
-        $|a_n-l|\leq\epsilon$ per ogni $n \geq n_\epsilon$
-    \end{center}
-    \item \textbf{Divergenza a $+\infty$}, si ha $\lim a_n = +\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
-    \begin{center}
-        $a_n\geq a$ per ogni $n \geq n_a$
-    \end{center}
-    \item \textbf{Divergenza a $-\infty$}, si ha $\lim a_n = -\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
-    \begin{center}
-        $a_n\leq a$ per ogni $n \geq n_a$
-    \end{center}
-    \item \textbf{Indeterminazione} se non si verifica nessuno dei casi precedenti, quindi il $\lim a_n$ non esiste.
+	\item \textbf{Convergenza}, se $l\in\R$, si ha $\lim a_n = l$ sse $\forall \epsilon > 0$ esiste un indice $n_\epsilon\in\N$ tale che si abbia:
+	      \begin{center}
+		      $|a_n-l|\leq\epsilon$ per ogni $n \geq n_\epsilon$
+	      \end{center}
+	\item \textbf{Divergenza a $+\infty$}, si ha $\lim a_n = +\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
+	      \begin{center}
+		      $a_n\geq a$ per ogni $n \geq n_a$
+	      \end{center}
+	\item \textbf{Divergenza a $-\infty$}, si ha $\lim a_n = -\infty$ sse $\forall a\in \R$ esiste un indice $n_a\in\N$ tale che si abbia:
+	      \begin{center}
+		      $a_n\leq a$ per ogni $n \geq n_a$
+	      \end{center}
+	\item \textbf{Indeterminazione} se non si verifica nessuno dei casi precedenti, quindi il $\lim a_n$ non esiste.
 \end{enumerate}
 \paragraph*{In parole povere} La successione converge se la successione al crescere di n va ad avvicinarsi sempre di più a $l$,
 diverge a $+\infty$ se esiste un indice che permette alla successione di essere più grande di un qualsiasi numero Reale
@@ -373,76 +408,76 @@ e infine diverge a $-\infty$ se esiste un indice che permette alla successione d
 Il principio di Induzione è un teorema noto, che è spesso utile per discutere la validità di una successione \emph{infinita} di proposizioni in un \emph{numero finito di passi}.
 
 \definizione{
-    Sia data una proposizione $P(n)$, $\forall n \in \N$ con $n > n_0$ .
-    \\Se sono soddisfatte le seguenti condizioni: 
-    \begin{enumerate}
-        \item $\exists n_0$ tale che $P(n_0)$ è VERA
-        \item $\forall n \geq n_0$ vale l'implicazione $P(n-1) \implies P(n)$
-    \end{enumerate}
-    \emph{Allora $P(n)$ è vera per ogni $n \geq n_0$}
+	Sia data una proposizione $P(n)$, $\forall n \in \N$ con $n > n_0$ .
+	\\Se sono soddisfatte le seguenti condizioni:
+	\begin{enumerate}
+		\item $\exists n_0$ tale che $P(n_0)$ è VERA
+		\item $\forall n \geq n_0$ vale l'implicazione $P(n-1) \implies P(n)$
+	\end{enumerate}
+	\emph{Allora $P(n)$ è vera per ogni $n \geq n_0$}
 }
 \paragraph*{}
 Una \emph{propisizione} è un qualunque enunciato il cui valore dipende da $n$, per esempio "$n$ è pari", "$n$ è primo".
 
 \esempio{
-Consideriamo l'enunciato: $P(n): 2^n \geq n^3$,
-e proviamo che "$P(n)$ vera $\implies P(n+1)$ vera" per ogni $n\geq 7$.
-Infatti per $n \geq 7$ risulta:
-\begin{equation*} %TODO vai a capire cosa vuol dire sta roba
-    2^{n+1} = 2\cdot 2^n \geq 2 \cdot n^3 = n^3 + n \cdot n^2 \geq n^3 + 7n^2 \geq n^3 + 3n^2 +3n+1 = (n+1)^3
-\end{equation*}
-e quindi per ogni $n \geq 7$, se $2^n \geq n^3$ allora $2^{n+1} \geq (n+1)^3$.
-D'altra parte, semplici calcoli mostrano che $P(n)$ è falsa per $n = 7,8,9$, mentre è vera per $n=10$.
-Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'implicazione, per ogni $n \geq 7$, mentre è vera per ogni $n \geq 10$, dal momento che (1) è verificata con $n_0=10$.
+	Consideriamo l'enunciato: $P(n): 2^n \geq n^3$,
+	e proviamo che "$P(n)$ vera $\implies P(n+1)$ vera" per ogni $n\geq 7$.
+	Infatti per $n \geq 7$ risulta:
+	\begin{equation*} %TODO vai a capire cosa vuol dire sta roba
+		2^{n+1} = 2\cdot 2^n \geq 2 \cdot n^3 = n^3 + n \cdot n^2 \geq n^3 + 7n^2 \geq n^3 + 3n^2 +3n+1 = (n+1)^3
+	\end{equation*}
+	e quindi per ogni $n \geq 7$, se $2^n \geq n^3$ allora $2^{n+1} \geq (n+1)^3$.
+	D'altra parte, semplici calcoli mostrano che $P(n)$ è falsa per $n = 7,8,9$, mentre è vera per $n=10$.
+	Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'implicazione, per ogni $n \geq 7$, mentre è vera per ogni $n \geq 10$, dal momento che (1) è verificata con $n_0=10$.
 }
 
 \esempio{ \emph{Somma di Gauss}\\
-    Proviamo per induzione che $\forall n\in\N$ risulta:
-    \begin{equation*}
-        P_n: \sum_{k=0}^n k= \frac{n(n+1)}{2}
-    \end{equation*}
-    ovvero, la somma dei primi $n \in\N$ numeri equivale a $\frac{n(n+1)}{2}$
-    \paragraph*{}Questa formula è banalmente vera per $n=0$.
-    Mentre per il passo induttivo si può provare come segue:
-    \begin{equation*}
-        \sum_{k=0}^{n+1} k = \sum_{k=0}^{n} k + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n+2)}{2} 
-    \end{equation*}
-    \paragraph*{Spiegazione}
-    se guardi $\frac{(n+1)(n+2)}{2}$ si può notare che equivale a $\frac{n(n+1)}{2}$ se ad $n$ sostituisci $n+1$
-    %TODO trovare un modo migliore per spiegare sta roba mannaggia a te
+	Proviamo per induzione che $\forall n\in\N$ risulta:
+	\begin{equation*}
+		P_n: \sum_{k=0}^n k= \frac{n(n+1)}{2}
+	\end{equation*}
+	ovvero, la somma dei primi $n \in\N$ numeri equivale a $\frac{n(n+1)}{2}$
+	\paragraph*{}Questa formula è banalmente vera per $n=0$.
+	Mentre per il passo induttivo si può provare come segue:
+	\begin{equation*}
+		\sum_{k=0}^{n+1} k = \sum_{k=0}^{n} k + (n+1) = \frac{n(n+1)}{2} + (n+1) = \frac{(n+1)(n+2)}{2}
+	\end{equation*}
+	\paragraph*{Spiegazione}
+	se guardi $\frac{(n+1)(n+2)}{2}$ si può notare che equivale a $\frac{n(n+1)}{2}$ se ad $n$ sostituisci $n+1$
+	%TODO trovare un modo migliore per spiegare sta roba mannaggia a te
 }
 
 \esempio{
-    Un esempio sostanzialmente analogo è il seguente:\\
-    \begin{equation*}
-        P_n: \sum_{k=0}^n x^k = \frac{1-x^{n+1}}{1-x}
-    \end{equation*}
-    \paragraph*{}Questa formula è banalmente vera per $n=0$.
-    Mentre per il passo induttivo si può provare come segue:
-    \begin{equation*}
-        \sum_{k=0}^{n+1} x^k = \sum_{k=0}^n x^k \cdot x^{n+1} = \frac{1-x^{n+1}}{1-x}\cdot x^{n+1} = \frac{1-x^{n+2}}{1-x}
-    \end{equation*}
-    \paragraph*{Spiegazione} Osserviamo che $\frac{1-x^{n+2}}{1-x}$ equivale a $\frac{1-x^{n+1}}{1-x}$ sostituendo $n$ con $n+1$
+Un esempio sostanzialmente analogo è il seguente:\\
+\begin{equation*}
+	P_n: \sum_{k=0}^n x^k = \frac{1-x^{n+1}}{1-x}
+\end{equation*}
+\paragraph*{}Questa formula è banalmente vera per $n=0$.
+Mentre per il passo induttivo si può provare come segue:
+\begin{equation*}
+	\sum_{k=0}^{n+1} x^k = \sum_{k=0}^n x^k \cdot x^{n+1} = \frac{1-x^{n+1}}{1-x}\cdot x^{n+1} = \frac{1-x^{n+2}}{1-x}
+\end{equation*}
+\paragraph*{Spiegazione} Osserviamo che $\frac{1-x^{n+2}}{1-x}$ equivale a $\frac{1-x^{n+1}}{1-x}$ sostituendo $n$ con $n+1$
 }
 
 \chapter{Limiti e Continuità}
 \section{Limiti Notevoli}
 \begin{itemize}
-    \item $\limite{x}{0} \ln(1+x) \sim x$
-    \item $\limite{x}{0} \ln(1-x) \sim -x$
+	\item $\limite{x}{0} \ln(1+x) \sim x$
+	\item $\limite{x}{0} \ln(1-x) \sim -x$
 \end{itemize}
 
 \section{Asintoti Verticali e Orizzontali}
 \subsection*{Asintoti Verticali}
 \definizione{
-    Si dice che la retta $x=a$ è un \emph{Asintoto Verticale} di $f(x)$ se si verifica almeno una di queste caratteristiche:
-    \begin{itemize}
-        \item $\limite{x}{a^-} f(x)= +\infty$
-        \item $\limite{x}{a^-} f(x)= -\infty$
-        \item $\limite{x}{a^+} f(x)= +\infty$
-        \item $\limite{x}{a^+} f(x)= -\infty$
-    \end{itemize}
-    Una funzione può avere un numero qualsiasi di asintoti verticali
+	Si dice che la retta $x=a$ è un \emph{Asintoto Verticale} di $f(x)$ se si verifica almeno una di queste caratteristiche:
+	\begin{itemize}
+		\item $\limite{x}{a^-} f(x)= +\infty$
+		\item $\limite{x}{a^-} f(x)= -\infty$
+		\item $\limite{x}{a^+} f(x)= +\infty$
+		\item $\limite{x}{a^+} f(x)= -\infty$
+	\end{itemize}
+	Una funzione può avere un numero qualsiasi di asintoti verticali
 }
 \paragraph*{In poche parole} Un Asintoto Verticale è una retta che fa da "muro" nel dominio di una funzione, e si trova facendo il limite della funzione in un punto specifico, se questo limite è uguale a $\pm \infty$ allora abbiamo trovato un asintoto verticale.
 
@@ -450,29 +485,29 @@ Sintetizzando si può dire che $P(n)$ è \emph{induttiva}, cioè verifica l'impl
 come "buchi" o estremi del dominio.
 
 \esempio{
-    $$y = \ln x + \frac{1}{x-2}$$
-    Dominio: $x-2 \neq 0 \rightarrow x\neq 2 \wedge x>0$
-    \\In questo esempio abbiamo dei problemi di definizione in $x=2$, dove c'è un "buco" nel dominio, e in $x=0$ dove c'è il limite del dominio.
-    \\in questi punti \emph{potrebbero} esserci degli AV. Proviamo:
-    \\$\limite{x}{0^+} f(x)= -\infty$
-    \\$\limite{x}{2^-} f(x)= -\infty$
-    \\$\limite{x}{2^+} f(x)= +\infty$
-    \\Quindi $x=0$ e $x=2$ sono asintoti verticali.
-} 
+	$$y = \ln x + \frac{1}{x-2}$$
+	Dominio: $x-2 \neq 0 \rightarrow x\neq 2 \wedge x>0$
+	\\In questo esempio abbiamo dei problemi di definizione in $x=2$, dove c'è un "buco" nel dominio, e in $x=0$ dove c'è il limite del dominio.
+	\\in questi punti \emph{potrebbero} esserci degli AV. Proviamo:
+	\\$\limite{x}{0^+} f(x)= -\infty$
+		\\$\limite{x}{2^-} f(x)= -\infty$
+	\\$\limite{x}{2^+} f(x)= +\infty$
+		\\Quindi $x=0$ e $x=2$ sono asintoti verticali.
+}
 \subsection*{Asintoti Orizzontali}
 Una situazione abbastanza analoga la si ha con gli \emph{Asintoti Orizzontali}
 \definizione{
-    Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (destro)} di $f(x)$ per $x\to +\infty$ se $\limite{x}{+\infty} f(x) = l$
-    \\Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (sinistro)} di $f(x)$ per $x\to -\infty$ se $\limite{x}{-\infty} f(x) = l$
+	Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (destro)} di $f(x)$ per $x\to +\infty$ se $\limite{x}{+\infty} f(x) = l$
+	\\Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (sinistro)} di $f(x)$ per $x\to -\infty$ se $\limite{x}{-\infty} f(x) = l$
 
 }
 In questo caso però, una funzione può avere \emph{al massimo 2 asinto   ti orizzontali}
 
 \section{Asintoti Obliqui}
 \paragraph*{definizione}{ %la definizione è broken, va sistemata TODO
-Si dice che la retta $y=mx + q$ è un asintoto obliquo (destro) di $f(x)$ per $x \to +\infty$ se
-$\limite{x}{+\infty} [f(x)-mx-q]=0$. 
-Una Situazione analoga lo si ha per $-\infty $ (sinistro).
+	Si dice che la retta $y=mx + q$ è un asintoto obliquo (destro) di $f(x)$ per $x \to +\infty$ se
+	$\limite{x}{+\infty} [f(x)-mx-q]=0$.
+	Una Situazione analoga lo si ha per $-\infty $ (sinistro).
 }
 
 Una funzione può avere al massimo 2 asintoti obliqui diversi, uno a $+\infty$ e uno a $-\infty$.
@@ -481,126 +516,141 @@ La stessa retta può essere asintoto obliquo destro e sinistro.
 Bisogna provare a svolgere un paio di limiti.
 \\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ è asintoto obliquo
 
-\nb{
-    Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
-}
-\section{Equivalenze Asintotiche}
-Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
-Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
+	\nb{
+		Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
+	}
+	\section{Equivalenze Asintotiche}
+	Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
+	Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
 
-\definizione{
-    Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
-    $$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
-    e si scrive $f(x) \sim g(x)$ per $x\to x_0$
-}
-Dai limiti notevoli si ricava facilmente che, per $x \to 0$
-\begin{itemize}
-    \item $\sin x \sim x$
-    \item $1 - \cos x \sim \frac{1}{2}x^2$
-    \item $\tan x \sim x$
-    \item $ln(1+x) \sim x$
-    \item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
-\end{itemize}
-\nb{
-    Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
-    una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$} 
-}
-\esempio{
-    \\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
-    \\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
-}
-\subsection*{Alcune Proprietà}
-\begin{enumerate}
-    \item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
-    \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
-    \item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
-    \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
-    \item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
-\end{enumerate}
-
- 
-\chapter{Calcolo Differenziale}
-
-\section{Derivate note}
-Non esistono veramente delle derivate note, però alcune funzioni hanno delle derivate che vale la pena ricordare per velocizzare il processo di derivazione:
-
-\begin{itemize}
-    \item[\textbf{Seno}] \derivata{\sin(x)}{\cos(x)}
-    \item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
-    \item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
-    \item[\textbf{Radice}] \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
-    \item[\textbf{e$^x$}] \derivata{e^x}{e^x}
-    \item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
-    \item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
-    \item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
-\end{itemize}
-\subsection{Derivate composte}
-\begin{itemize}
-    \item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
-    \item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(x)$
-\end{itemize}
+	\definizione{
+		Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
+		$$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
+		e si scrive $f(x) \sim g(x)$ per $x\to x_0$
+	}
+	Dai limiti notevoli si ricava facilmente che, per $x \to 0$
+	\begin{itemize}
+		\item $\sin x \sim x$
+		\item $1 - \cos x \sim \frac{1}{2}x^2$
+		\item $\tan x \sim x$
+		\item $ln(1+x) \sim x$
+		\item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
+	\end{itemize}
+	\nb{
+		Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
+		una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$}
+	}
+	\esempio{
+		\\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
+			\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
+	}
+	\subsection*{Alcune Proprietà}
+	\begin{enumerate}
+		\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
+		      \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
+		\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
+		      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
+		\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
+	\end{enumerate}
 
 
+	\chapter{Calcolo Differenziale}
 
-\section{Polinomio di Taylor}
-\subsection*{Polinomio di McLaurin}
+	\section{Derivate note}
+	Non esistono veramente delle derivate note, però alcune funzioni hanno delle derivate che vale la pena ricordare per velocizzare il processo di derivazione:
+
+	\begin{itemize}
+		\item[\textbf{Seno}] \derivata{\sin(x)}{\cos(x)}
+		\item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
+		\item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
+		\item[\textbf{Radice}] \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+		\item[\textbf{e$^x$}] \derivata{e^x}{e^x}
+		\item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
+		\item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
+		\item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
+	\end{itemize}
+	\subsection{Derivate composte}
+	\begin{itemize}
+		\item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
+		\item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(x)$
+	\end{itemize}
+
+
+
+	\section{Polinomio di Taylor}
+	\subsection*{Polinomio di McLaurin}
 $T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
 
-\chapter{Calcolo Integrale}
-\section{Gli integrali}
-\definizione{
-    L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
-}
-\subsection{Il calcolo degli integrali}
-Per calcolare $\int_{a}^{b} f(x) dx$ devo:
-\begin{enumerate}
-    \item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
-    \item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
-    \item Sottrarre i due valori ($F(b)-F(a)$)
-\end{enumerate}
-Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
+	\chapter{Calcolo Integrale}
+	\section{Gli integrali}
+	\definizione{
+	L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
+	}
+	\subsection{Il calcolo degli integrali}
+	Per calcolare $\int_{a}^{b} f(x) dx$ devo:
+	\begin{enumerate}
+		\item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
+		\item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
+		\item Sottrarre i due valori ($F(b)-F(a)$)
+	\end{enumerate}
+	Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
 
 \esempio{
-    $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
+$\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 }
 
 \subsection{Proprietà degli integrali}
 \begin{itemize}
-    \item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
-    \item $\int K f(x) dx = K\int f(x) dx$
-    \item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
+	\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
+	\item $\int K f(x) dx = K\int f(x) dx$
+	\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
 \end{itemize}
 
 \section{Le primitive}
 Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
 \\Si noti che:
 \begin{itemize}
-    \item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
-    \item Le primitive non sono \emph{mai uniche}
+	\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
+	\item Le primitive non sono \emph{mai uniche}
 \end{itemize}
 Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
 
 \subsection{Primitive Elementari}
 Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
-\begin{tabular}{ |c|c|c| } 
-    \hline
-    $f(x)$ & $F(x)$ \\
-    \hline
-    $cos(x)$ & $sin(x)$ \\
-    \hline
-    $sin(x)$ & $-cos(x)$ \\
-    \hline
-    $e^x$ & $e^x$ \\
-    \hline
-    $a^x$ & $\frac{a^x}{\ln a} $ \\
-    \hline
-    $x^n$ & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
-    \hline
-    $\frac{1}{x}$ & $\ln |x| $ \\
-    \hline
-    $\frac{1}{1+x^2}$ & $arctg(x) $ \\
-    \hline
+\begin{tabular}{ |c|c|c| }
+	\hline
+	$f(x)$            & $F(x)$                                  \\
+	\hline
+	$cos(x)$          & $sin(x)$                                \\
+	\hline
+	$sin(x)$          & $-cos(x)$                               \\
+	\hline
+	$e^x$             & $e^x$                                   \\
+	\hline
+	$a^x$             & $\frac{a^x}{\ln a} $                    \\
+	\hline
+	$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+	\hline
+	$\frac{1}{x}$     & $\ln |x| $                              \\
+	\hline
+	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
+	\hline
 \end{tabular}
+
+\subsection{Primitive di Derivate di funzioni composte}
+\definizione{
+	Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
+	In questo caso:
+	$$ [F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c$$
+}
+\esempio{
+	$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
+}
+\subsection{Integrazione per Parti}
+Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
+$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
+In pratica, l'integrale di una funzione derivabile moltiplicato per una funzione integrabile è integrabile per parti.
+\\Questa tecnica può essere usata per risolvere integrali complessi.
 
 
 \chapter{Serie Numeriche}
@@ -612,21 +662,21 @@ In realtà non è cosi, infatti spesso è possibile che la somma di infiniti num
 Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
 Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
 \definizione{
-Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
-($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
-\begin{equation*}
-    s_m = x_0 + ... + x_m
-\end{equation*}
-Che equivale alla notazione:
+	Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
+	($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
+	\begin{equation*}
+		s_m = x_0 + ... + x_m
+	\end{equation*}
+	Che equivale alla notazione:
 
-\begin{equation*}
-    s_m = \sum_{n=0}^m x_n
-\end{equation*}
+	\begin{equation*}
+		s_m = \sum_{n=0}^m x_n
+	\end{equation*}
 }
 \paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
 Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
 \paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
-\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali. 
+\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
 
 \subsection*{In parole povere...}
 Una serie numerica è il modo di indicare una somma di infiniti numeri.
@@ -638,26 +688,26 @@ Come dice la definizione, una serie è formata da una coppia ordinata di success
 \subsection{Serie Geometrica}
 La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
 Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
-Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica. 
+Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
 risulta:
 \begin{equation}
-    \limite{n}{+\infty} s_n \begin{cases}
-        \text{non esiste} & q \leq -1 \\
-        = \frac{1}{1-q} & -1 < q < 1 \\
-        = +\infty & q \geq 1
-    \end{cases}
+	\limite{n}{+\infty} s_n \begin{cases}
+		\text{non esiste} & q \leq -1  \\
+		= \frac{1}{1-q}   & -1 < q < 1 \\
+		= +\infty         & q \geq 1
+	\end{cases}
 \end{equation}
-Per cui 
+Per cui
 \begin{equation}
-    \sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
-        indeterminata & q \leq -1 \\
-        convergente & -1 < q < 1 \\
-        divergente +\infty & q \geq 1
-    \end{cases}
+	\sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
+		indeterminata      & q \leq -1  \\
+		convergente        & -1 < q < 1 \\
+		divergente +\infty & q \geq 1
+	\end{cases}
 \end{equation}
 
 \esempio{
-    $\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$ 
+	$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
 }
 
 \paragraph{In parole povere}
@@ -668,49 +718,49 @@ Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è compo
 Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
 Allora risulta:
 \begin{equation*}
-    s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
+	s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
 \end{equation*}
 Da cui
 \begin{equation*}
-    \sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
+	\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
 \end{equation*}
 
 \subsubsection*{Serie di Mengoli}
 La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
 La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
 \begin{equation*}
-    a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
+	a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
 \end{equation*}
 quindi, la sua somma parizale è:
 \begin{equation*}
-    s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
+	s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
 \end{equation*}
 questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
 \\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
-Questo è l'esempio più semplice di \textbf{serie telescopica}  
+Questo è l'esempio più semplice di \textbf{serie telescopica}
 
 \section{Criteri di Convergenza}
 Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
 Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
 \definizione{
-    Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
-    \begin{equation*}
-        \limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
-    \end{equation*}
-    }
+	Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
+	\begin{equation*}
+		\limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
+	\end{equation*}
+}
 Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
 Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
 
 \begin{itemize}
-    \item Criterio del Rapporto
-    \item Criterio della Radice
-    \item Criterio del Confronto
-    \item Criterio del Confronto asintotico
+	\item Criterio del Rapporto
+	\item Criterio della Radice
+	\item Criterio del Confronto
+	\item Criterio del Confronto asintotico
 \end{itemize}
 Questi vengono utilizzati per serie a termini generali \emph{non negativi}
 \begin{itemize}
-    \item Criterio dell'assoluta convergenza
-    \item Criterio di Leibnitz
+	\item Criterio dell'assoluta convergenza
+	\item Criterio di Leibnitz
 \end{itemize}
 Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
 
@@ -720,83 +770,83 @@ Ecco alcune proprietà delle serie che ci saranno utili a verificare la converge
 \paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
 Allora:
 \begin{enumerate}
-    \item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
-    \item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
+	\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
+	\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
 \end{enumerate}
 \nb{che una costante moltiplicativa non modifica il carattere di una serie}
 
 \paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
 Quindi converge o diverge a $+\infty$
 \esempio{
-    $\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
-    \begin{itemize}
-        \item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
-        \item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)  
-    \end{itemize}
-    Per cui questa serie \textbf{diverge a $+\infty$}
+$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
+\begin{itemize}
+	\item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
+	\item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)
+\end{itemize}
+Per cui questa serie \textbf{diverge a $+\infty$}
 }
 
 \subsection{Criterio del Rapporto}
 Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
 \definizione{
-    Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
-    \begin{itemize}
-        \item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
-        \item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
-        \item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}  
-    \end{itemize}
+	Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
+	\begin{itemize}
+		\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+		\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+		\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+	\end{itemize}
 }
 \nb{che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$}
 
 \esempio{
-    Studiare il carattere di $\serie{0}{+\infty} \frac{n^{2015}}{3^n}$:
-    \begin{equation*}
-        \limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{2015}}{3^{n+1}}}{\frac{n^{2015}}{3^n}} = 
-        \frac{(n+1)^{2015}}{3 \cdot \cancel{3^n}} \cdot \frac{\cancel{3^n}}{n^{2015}} =
-        \frac{(n+1)^{2015}}{3 \cdot n^{2015}} = \frac{1}{3} \frac{(n+1)^{2015}}{n^{2015}}
-    \end{equation*}
-    Siccome $\limite{n}{+\infty} \frac{(n+1)^{2015}}{n^{2015}} = 1$ allora
-    \begin{equation*}
-        \limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{1}{3}
-    \end{equation*}
-    $\frac{1}{3} < 1$ quindi la serie \emph{Converge}
+	Studiare il carattere di $\serie{0}{+\infty} \frac{n^{2015}}{3^n}$:
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{2015}}{3^{n+1}}}{\frac{n^{2015}}{3^n}} =
+		\frac{(n+1)^{2015}}{3 \cdot \cancel{3^n}} \cdot \frac{\cancel{3^n}}{n^{2015}} =
+		\frac{(n+1)^{2015}}{3 \cdot n^{2015}} = \frac{1}{3} \frac{(n+1)^{2015}}{n^{2015}}
+	\end{equation*}
+	Siccome $\limite{n}{+\infty} \frac{(n+1)^{2015}}{n^{2015}} = 1$ allora
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{1}{3}
+	\end{equation*}
+	$\frac{1}{3} < 1$ quindi la serie \emph{Converge}
 }
 
 \subsection{Criterio della Radice}
 Questo criterio, molto simile a quello del Rapporto, dice che:
 \definizione{
-    Sia $a_n \geq 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \sqrt[n]{a_n} = l$, allora:
-    \begin{itemize}
-        \item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
-        \item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
-        \item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}  
-    \end{itemize}
+	Sia $a_n \geq 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \sqrt[n]{a_n} = l$, allora:
+	\begin{itemize}
+		\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+		\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+		\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+	\end{itemize}
 }
 \esempio{
-    Studiare il carattere di $\serie{2}{+\infty} \frac{1}{(\log n)^{\frac{n}{2}}}$:
-    \begin{equation*}
-        \limite{n}{+\infty} \sqrt[n]{\frac{1}{(\log n)^{\frac{n}{2}}}} =
-        (\frac{1}{(\log n)^{\frac{n}{2}}})^{\frac{1}{n}} = 
-        \frac{1}{(\log n)^{\frac{n}{2n}}} =
-        \frac{1}{sqrt{(\log n)}}
-    \end{equation*}
-    siccome $\limite{n}{+\infty} \log n = +\infty$
-    \begin{equation*}
-        \limite{n}{+\infty} \frac{1}{sqrt{(\log n)}} = 0
-    \end{equation*} 
-    $0 < 1$, per cui la serie \emph{Converge}
+	Studiare il carattere di $\serie{2}{+\infty} \frac{1}{(\log n)^{\frac{n}{2}}}$:
+	\begin{equation*}
+		\limite{n}{+\infty} \sqrt[n]{\frac{1}{(\log n)^{\frac{n}{2}}}} =
+		(\frac{1}{(\log n)^{\frac{n}{2}}})^{\frac{1}{n}} =
+		\frac{1}{(\log n)^{\frac{n}{2n}}} =
+		\frac{1}{sqrt{(\log n)}}
+	\end{equation*}
+	siccome $\limite{n}{+\infty} \log n = +\infty$
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{1}{sqrt{(\log n)}} = 0
+	\end{equation*}
+	$0 < 1$, per cui la serie \emph{Converge}
 }
 
 \subsection{Criterio del Confronto}
 
 \definizione{
-    Supponiamo che $0 \geq a_n \geq b_n$ Definitivamente.
-    Allora valgono le seguenti implicazioni:
-    \begin{enumerate}
-        \item $\sum b_n$ converge $\implies \sum a_n$ converge
-        \item $\sum a_n$ diverge a $+\infty \implies \sum b_n$ diverge a $+\infty$
-    \end{enumerate}
-    \nb{L'inverso di queste implicazioni generalmente non valgono}
+	Supponiamo che $0 \geq a_n \geq b_n$ Definitivamente.
+	Allora valgono le seguenti implicazioni:
+	\begin{enumerate}
+		\item $\sum b_n$ converge $\implies \sum a_n$ converge
+		\item $\sum a_n$ diverge a $+\infty \implies \sum b_n$ diverge a $+\infty$
+	\end{enumerate}
+	\nb{L'inverso di queste implicazioni generalmente non valgono}
 }
 \paragraph*{In pratica quindi} Se riusciamo a trovare una serie che sia definitivamente maggiore (o minore) della nostra serie e di cui conosciamo il carattere
 possiamo conoscere anche il carattere della nostra serie.
@@ -805,99 +855,99 @@ possiamo conoscere anche il carattere della nostra serie.
 \subsubsection{Serie Armoniche Generalizzate}
 Riporto le due formule delle serie Armoniche Generalizzate:
 \begin{equation*}
-    \serie{1}{+\infty} \frac{1}{n^\alpha} \begin{cases}
-        \text{CONVERGE} & \text{Se } \alpha > 1 \\ 
-        \text{DIVERGE} & \text{Se } \alpha \leq 1 
-    \end{cases}
+	\serie{1}{+\infty} \frac{1}{n^\alpha} \begin{cases}
+		\text{CONVERGE} & \text{Se } \alpha > 1    \\
+		\text{DIVERGE}  & \text{Se } \alpha \leq 1
+	\end{cases}
 \end{equation*}
 \begin{equation*}
-    \serie{1}{+\infty} \frac{1}{n^\alpha (\log n)^\beta} \begin{cases}
-        \text{CONVERGE} & \text{Se } \alpha > 1 \vee \alpha = 1 \wedge \beta > 1 \\ 
-        \text{DIVERGE} & \text{Se } \alpha < 1 \vee \alpha = 1 \wedge \beta \leq 1
-    \end{cases}
+	\serie{1}{+\infty} \frac{1}{n^\alpha (\log n)^\beta} \begin{cases}
+		\text{CONVERGE} & \text{Se } \alpha > 1 \vee \alpha = 1 \wedge \beta > 1    \\
+		\text{DIVERGE}  & \text{Se } \alpha < 1 \vee \alpha = 1 \wedge \beta \leq 1
+	\end{cases}
 \end{equation*}
 
 \esempio{
-    Studiare il carattere di $\serie{1}{+\infty} (\frac{\cos n}{n})^2$:
-    \\$(\cos n)^2$ Varia tra 0 e 1, quindi è $\leq 1$.
-    \\$0 \leq (\frac{\cos n}{n})^2 \leq \frac{1}{n^2}$ per ogni $n\geq 1$.
-    \\$\serie{1}{+\infty} \frac{1}{n^2}$ converge, quindi anche nostra serie \emph{Converge}
-    
+	Studiare il carattere di $\serie{1}{+\infty} (\frac{\cos n}{n})^2$:
+	\\$(\cos n)^2$ Varia tra 0 e 1, quindi è $\leq 1$.
+		\\$0 \leq (\frac{\cos n}{n})^2 \leq \frac{1}{n^2}$ per ogni $n\geq 1$.
+	\\$\serie{1}{+\infty} \frac{1}{n^2}$ converge, quindi anche nostra serie \emph{Converge}
+
 }
 
 \subsection{Criterio del Confronto Asintotico}
 \definizione{
-Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se 
-\begin{center}
-    $a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
-\end{center}
-Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
+	Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se
+	\begin{center}
+		$a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
+	\end{center}
+	Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
 }
 \esempio{
-    Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
-    I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
-    Al numeratore, essendo $\cos n$ un valore limitato diventa irrilevante in confronto ad $n$.
-    Al denominatore, essendo $3n$ molto più piccolo di $n^3$ diventa irrilevante. 
-    Quindi:
-    \begin{equation*}
-        \frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n^2}
-    \end{equation*}
-    $\Sigma \frac{1}{n}$ converge (serie armonica generalizzata con $\alpha > 1$), quindi anche $\frac{n+\cos n}{n^3 - 3n}$ \textbf{converge}
+	Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
+	I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
+	Al numeratore, essendo $\cos n$ un valore limitato diventa irrilevante in confronto ad $n$.
+	Al denominatore, essendo $3n$ molto più piccolo di $n^3$ diventa irrilevante.
+	Quindi:
+	\begin{equation*}
+		\frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n^2}
+	\end{equation*}
+	$\Sigma \frac{1}{n}$ converge (serie armonica generalizzata con $\alpha > 1$), quindi anche $\frac{n+\cos n}{n^3 - 3n}$ \textbf{converge}
 }
 \paragraph{Ma non è sempre così semplice}In quest'ultimo esempio per trovare una successione asintotica alla nostra è stato sufficiente focalizzarci sui \emph{termini preponderanti} al numeratore e al denominatore.
 Spesso però le cose sono più complicate, conviene quindi affidarci ai \emph{limiti notevoli} come nel prossimo esempio:
 \esempio{
-    Determinare il carattere della serie $\serie{1}{\inf} \frac{e^{\frac{1}{n^2}} -1}{4n}$.\\
-    Anche qui la serie è a termini positivi (il numeratore è sempre positivo, visto che $e^\frac{1}{n^2}$ sarà sempre $ > 1$).
-    In questo caso però è più difficile trovare una serie asintotica, visto che il numeratore tende a 0 quando $n$ tende a $\inf$ non abbiamo un termine prenponderante sull'altro.
-    Il numeratore però ricorda il \emph{limite notevole legato all'esponenziale} che diceva:
-    \begin{equation*}
-        \limite{\epsilon(x)}{0} \frac{e^{\epsilon(x)}-1}{\epsilon(x)} = 1
-    \end{equation*}
-    Il che, data la definizione di confronto asintotico, implica che $e^{\epsilon(x)}-1 \sim \epsilon(x)$ per $\epsilon(x) \to 0$.
-    Nel nostro caso, $\frac{1}{n^2}$ tende a $0$, quindi $e^{\frac{1}{n^2}} -1 \sim \frac{1}{n^2}$.\\
-    \subparagraph*{Di conseguenza} $\frac{e^{\frac{1}{n^2}} -1}{4n} \sim \frac{\frac{1}{n^2}}{4n} = \frac{1}{4n^3}$.\\
-    Come prima, $\frac{1}{4n^3}$ è una serie armonica generalizzata con termine $\alpha > 1$, quindi \textbf{Converge}
+	Determinare il carattere della serie $\serie{1}{\inf} \frac{e^{\frac{1}{n^2}} -1}{4n}$.\\
+	Anche qui la serie è a termini positivi (il numeratore è sempre positivo, visto che $e^\frac{1}{n^2}$ sarà sempre $ > 1$).
+	In questo caso però è più difficile trovare una serie asintotica, visto che il numeratore tende a 0 quando $n$ tende a $\inf$ non abbiamo un termine prenponderante sull'altro.
+	Il numeratore però ricorda il \emph{limite notevole legato all'esponenziale} che diceva:
+	\begin{equation*}
+		\limite{\epsilon(x)}{0} \frac{e^{\epsilon(x)}-1}{\epsilon(x)} = 1
+	\end{equation*}
+	Il che, data la definizione di confronto asintotico, implica che $e^{\epsilon(x)}-1 \sim \epsilon(x)$ per $\epsilon(x) \to 0$.
+	Nel nostro caso, $\frac{1}{n^2}$ tende a $0$, quindi $e^{\frac{1}{n^2}} -1 \sim \frac{1}{n^2}$.\\
+	\subparagraph*{Di conseguenza} $\frac{e^{\frac{1}{n^2}} -1}{4n} \sim \frac{\frac{1}{n^2}}{4n} = \frac{1}{4n^3}$.\\
+	Come prima, $\frac{1}{4n^3}$ è una serie armonica generalizzata con termine $\alpha > 1$, quindi \textbf{Converge}
 }
 \nb{Esiste un enunciato più generale di questo criterio}
 
 \section{Criterio dell'Assoluta Convergenza}
 Questo criterio è il primo che vediamo che vale anche per serie a \emph{termine di segno variabile}
 \definizione{
-    Una serie $\sum a_n$ si dice \emph{assolutamente convergente} se converge la serie $\sum |a_n|$.
-    \\ Se la serie $\sum a_n$ converge assolutamente, allora \emph{Connverge}
+	Una serie $\sum a_n$ si dice \emph{assolutamente convergente} se converge la serie $\sum |a_n|$.
+	\\ Se la serie $\sum a_n$ converge assolutamente, allora \emph{Connverge}
 
-    \nb{Il viceversa, in generale, non è vero}
+	\nb{Il viceversa, in generale, non è vero}
 }
 
 \esempio{
-    Studiare il carattere della serie $\serie{n=1}{+1\infty} \frac{\sin (n!)}{n^4}$
-    \\ in questa serie abbiamo il numeratore che oscilla tra $-1$ e $1$, quindi questa serie non è a termini definitivamente positivi.
-    Usando quindi il criterio della convergenza assoluta, e poi il criterio del confronto abbiamo che:
-    $$ 0 \leq \frac{|\sin (n!)|}{n^4} \leq \frac{1}{n^4} \implies \text{Converge Assolutamente}$$
-    Visto che la serie converge assolutamente, allora \emph{converge}
+	Studiare il carattere della serie $\serie{n=1}{+1\infty} \frac{\sin (n!)}{n^4}$
+	\\ in questa serie abbiamo il numeratore che oscilla tra $-1$ e $1$, quindi questa serie non è a termini definitivamente positivi.
+	Usando quindi il criterio della convergenza assoluta, e poi il criterio del confronto abbiamo che:
+	$$ 0 \leq \frac{|\sin (n!)|}{n^4} \leq \frac{1}{n^4} \implies \text{Converge Assolutamente}$$
+	Visto che la serie converge assolutamente, allora \emph{converge}
 }
 \esempio{
-    Studiare il carattere della serie $\serie{n=1}{+1\infty} (-1)^n \frac{n^2 + 3}{n^4+2n}$
-    \\Anche questa serie ha il segno variabile (per il $(-1)^n$) quindi usiamo il criterio dell'assoluta convergenza
-    $$ |(-1)^n \frac{n^2 + 3}{n^4+2n}| = \frac{n^2 + 3}{n^4+2n} \sim \frac{1}{n^2} $$
-    sappiamo che $\frac{1}{n^2}$ è una serie armonica generalizzata che converge, quindi la serie converge assolutamente e di conseguenza converge
+	Studiare il carattere della serie $\serie{n=1}{+1\infty} (-1)^n \frac{n^2 + 3}{n^4+2n}$
+	\\Anche questa serie ha il segno variabile (per il $(-1)^n$) quindi usiamo il criterio dell'assoluta convergenza
+	$$ |(-1)^n \frac{n^2 + 3}{n^4+2n}| = \frac{n^2 + 3}{n^4+2n} \sim \frac{1}{n^2} $$
+	sappiamo che $\frac{1}{n^2}$ è una serie armonica generalizzata che converge, quindi la serie converge assolutamente e di conseguenza converge
 }
 \section{Criterio di Leibniz}
 Il criterio di Leibniz è il secondo criterio utilizzabile per le serie a \emph{Segno variabile}
 \definizione{
-    Sia $\{a_n\}$ una successione:
-    \begin{itemize}
-        \item $a_n \geq 0$ Definitivamente
-        \item $a_n \to 0$ per $n \to \infty$
-        \item $a_{n+1} \leq a_n$ Definitivamente (monotna decrescente) 
-    \end{itemize}
-    Allora la serie $\serie{0}{+\infty}(-1)^na_n$ è convergente
+	Sia $\{a_n\}$ una successione:
+	\begin{itemize}
+		\item $a_n \geq 0$ Definitivamente
+		\item $a_n \to 0$ per $n \to \infty$
+		\item $a_{n+1} \leq a_n$ Definitivamente (monotna decrescente)
+	\end{itemize}
+	Allora la serie $\serie{0}{+\infty}(-1)^na_n$ è convergente
 }
 
 \esempio{
-    Studiare il carattere della serie $\serie{0}{\infty} \frac{(-1)^n}{n!}$
-    \\$a_n = \frac{1}{n!}$, ed è \emph{positiva}, \emph{infinitesima} e \emph{decrescente}
-    \\Di conseguenza, \emph{converge per Leibniz}
+	Studiare il carattere della serie $\serie{0}{\infty} \frac{(-1)^n}{n!}$
+	\\$a_n = \frac{1}{n!}$, ed è \emph{positiva}, \emph{infinitesima} e \emph{decrescente}
+	\\Di conseguenza, \emph{converge per Leibniz}
 }
 \end{document}
