@@ -314,7 +314,7 @@ dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
 se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
 \paragraph*{} se $f$ è funzione reale di variabile reale biiettiva, il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $x=y$.
 
-\section{Funzioni Pari/Dispari}
+\section*{Funzioni Pari/Dispari}
 Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
 \paragraph*{Pari}
 Si dice che $f$ è pari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = f(-x)$;
@@ -334,7 +334,21 @@ Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $
 Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
 \\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
 
+\paragraph{Come si calcola la monotonia?}
+Per calcolare la monotonia di una funzione, bisogna porre la derivata (che è il "rateo" di crescita della funzione) \emph{Maggiore (o minore o maggiore uguale o minore uguale) di 0}.
+Nei punti in cui la derivata rimane maggiore (minore,...) di 0, la funzione è \emph{monotona crescente (decrescente,...)}
 
+
+\section{Continuità di una funzione}
+La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
+
+\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro capcolati nel punto coincidono con la valutazione della funzione nel punto.
+\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
+$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
+}
+
+
+Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme
 \chapter{Successioni}
 
 \section{Introduzione}
