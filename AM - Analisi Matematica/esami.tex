@@ -155,4 +155,47 @@ Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzia
     $F(\pi) = \pi$, $F(\pi/2)=1$. 
     Quindi l'integrale dato vale $\pi -1$
 }
+
+\section{Giugno 2020}
+\domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
+\risposta{Suriettiva ma non Iniettiva}
+\spiegazione{
+    La funzione è \emph{suriettiva} perchè se riempie tutto $\R$. per controllarlo basta vedere i grafici dei due pezzi.
+    \\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due x diverse. Anche qua per controllarlo si possono usare i grafici oppure verificare provando.
+    Per esempio
+    sappiamo che con $f(0) = 2$ e $f(0^+)=1$, quindi rendendo la funzione non monotona. 
+}
+
+\domanda{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
+\risposta{è definita per ogni $x\geq 0$}
+\spiegazione{$g\circ f = g(f(x)) = ln(1+e^{\sqrt{x}})$, quindi bisogna vedere dove è definita quella funzione.
+\\Sappiamo che l'argomento di una radice va posto maggiore o uguale a zero.
+\\Forse anche il logaritmo (VEDERE)}
+
+\domanda{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
+\risposta{$\frac{e}{e^2-1}$}
+\spiegazione{Il risultato mi viene $\frac{e^3}{e^2-1}$, quindi bisogna CAPIRE cosa ho sbagliato}
+
+\domanda{4}{Sia $f:\R \to \R$ la funzione definita da $f(x) = \int_{1}^{x} t^2 e^{\sqrt[3]{t}} dt$. Allora:}
+\risposta{$f$ è Crescente}
+\spiegazione{CAPIRE}
+
+\domanda{5}{$\limite{n}{+\infty} \frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}}$ vale:}
+\risposta{-1}
+\spiegazione{$\frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}} \sim \frac{-n^3 \ln^2 n}{n^3 \ln^2 n} = -1$}
+
+\domanda{6}{Il massimo dell'insime $A = {\frac{2+(-1)^n}{2^n+(-1)^{n+1}}}$ è}
+\risposta{1}
+\spiegazione{per $n=2$ l'insieme vale 1, mentre per tutti gli altri valori di n è minore.}
+
+
+\domanda{7}{sia $f(x) = \arctan(\sqrt{x})$. Allora $f'(1)=$}
+\risposta{Nessuna delle precedenti ($\frac{1}{4}$)}
+\spiegazione{Trovo la derivata dell funzione:
+\\$f'(x) = \frac{1}{1+x} \cdot \frac{1}{2\sqrt{x}} = \frac{1}{2\sqrt{x}(1+x)}$. La derivata vale in $x=1$:
+$f'(1) = \frac{1}{4}$}
+
+\domanda{8}{Sia $f$ definita e continua su [a,b]. Allora:}
+\risposta{Assume il valore $\frac{f(a)+f(b)}{2}$}
+\spiegazione{CAPIRE continuità di una funzione}
 \end{document}
