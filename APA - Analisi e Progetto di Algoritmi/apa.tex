@@ -1,42 +1,6 @@
 \documentclass[12pt, a4paper, openany]{book}
-\usepackage[italian]{babel}
-\usepackage{listings}
-\usepackage{xcolor}
-\usepackage{amsmath}
-\usepackage{hyperref}
-\usepackage[framemethod=tikz]{mdframed} 
+\usepackage{fstyle}
 
-% comando per le liste numerate come 1 - 1.1 , 2 - 2.2
-\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
-
-\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
-\definecolor{giallochiaro}{rgb}{1,1,0.95}
-\lstset{
-	language=python,
-	basicstyle=\ttfamily,
-	mathescape,	
-    numbers=left,
-    stepnumber=1,
-    showstringspaces=false,
-    tabsize=4,
-	columns=fullflexible,
-    breaklines=true,
-    breakatwhitespace=false,
-	backgroundcolor=\color{grigiochiaro},
-	keywordstyle=\color[HTML]{6A1ABE}\bfseries
-}
-\lstdefinestyle{small}{
-	numbers=none,
-	tabsize=2,
-}
-
-\newmdenv[
-    backgroundcolor=giallochiaro,
-    linewidth=0pt,
-    innertopmargin=14pt,
-    innerbottommargin=14pt,
-]{box_spiegazione}
-\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
 
 \begin{document}
 \title{Analisi e Progetto di Algoritmi}
@@ -408,12 +372,13 @@ def LGCS(X,Y)
 \end{lstlisting}
 
 \chapter{Algoritmi Greedy}
-\section{Introduzione}
+\section{Definizione}
 A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
 \\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona. 
 \paragraph{Applicazioni}
 Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
-\section{Scheduling di Attività}
+
+\section{Algoritmo: Scheduling di Attività}
 
 \subsection*{Introduzione}
 Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
@@ -439,7 +404,12 @@ Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce 
 Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
 \paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
 
+\section{Sistemi di Indipendenza}
+\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
+$$\forall A \in F \wedge B\subseteq A \implies B \in F$$
+\textbf{Ovvero}: dato un insieme di sottoinsiemi di $E$ chiamato $F$ e preso un qualsiasi elemento $A$ (che è un insieme) da $F$, in $F$ abbiamo anche tutti i sottoinsiemi di $A$
 
+\paragraph*{Osservazione} Un grafo può essere visto come un sistema di indipendenza in cui solo lati e vertici costituiscono gli insiemi indipendenti.
 \chapter{Algoritmi su Grafi}
 \section{Riassunto sui grafi}
 Indico un paio di definizioni:

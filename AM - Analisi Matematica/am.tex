@@ -1,40 +1,9 @@
 \documentclass[12pt, a4paper, openany]{book}
-\usepackage[italian]{babel}
-\usepackage{listings}
-\usepackage{amsmath}
-\usepackage{amsfonts}
-\usepackage[makeroom]{cancel}
-\usepackage[framemethod=tikz]{mdframed} 
-\usepackage{hyperref}
-\usepackage{graphicx}
+\usepackage{fstyle}
 
 \graphicspath{ {./img/} }
 
-%Definizioni delle box custom
-
-\definecolor{sfondo_esempio}{rgb}{0.95,0.95,0.95}
-\newmdenv[
-    backgroundcolor=sfondo_esempio,
-    linewidth=0pt,
-    innertopmargin=14pt,
-    innerbottommargin=14pt,
-]{box_esempio}
-
-\newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
-
-\newmdenv[
-    frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
-    frametitleaboveskip=-\ht\strutbox,
-    linewidth=0.5pt,
-    innerbottommargin=14pt,
-]{box_definizione}
-
-\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
-
 \begin{document}
-
-%File di variabili
-\include{variabili}
 
 \title{Analisi Matematica}
 \author{Fabio Ferrario}

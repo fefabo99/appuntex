@@ -1,0 +1,60 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fstyle}[2022/05/18 Fabio's Latex style]
+
+%Imports
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage[framemethod=tikz]{mdframed} 
+
+% Renewed Commands
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+
+%New commands
+\newcommand{\domanda}[2]{\begin{box_domanda}\textbf{#1} #2\end{box_domanda}}
+\newcommand{\risposta}[1]{#1}
+\newcommand{\reflibro}[1]{}
+
+
+% Colors
+\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
+
+%lstlistings settings
+\lstset{
+	language=python,
+	basicstyle=\ttfamily,
+	mathescape,	
+    numbers=left,
+    stepnumber=1,
+    showstringspaces=false,
+    tabsize=4,
+	columns=fullflexible,
+    breaklines=true,
+    breakatwhitespace=false,
+	backgroundcolor=\color{grigiochiaro},
+	keywordstyle=\color[HTML]{6A1ABE}\bfseries
+}
+\lstdefinestyle{small}{
+	numbers=none,
+	tabsize=2,
+}
+
+%mdframed environments
+\newmdenv[
+    backgroundcolor=giallochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_spiegazione}
+\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
+
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_domanda}
+

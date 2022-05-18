@@ -1,0 +1,58 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fstyle}[2022/05/18 Fabio's Latex style]
+
+%Imports
+
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[makeroom]{cancel}
+\usepackage[framemethod=tikz]{mdframed} 
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+%Renewed Commands
+\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.1pt}} %Rule di default
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}} % Liste numerate
+
+%New commands
+\newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
+\newcommand{\esempio}[1]{\begin{box_esempio} \textbf{Esempio: }#1\end{box_esempio}}
+\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
+\newcommand{\R}{\mathbb{R}} % Spazio dei numeri Reali
+\newcommand{\N}{\mathbb{N}} % Spazio dei numeri Naturali
+\newcommand{\function}{f: X \rightarrow Y} % Funzione standard f: X -> Y
+\newcommand{\limite}[2]{\underset{#1 \to #2}{\lim}} % Limite
+\newcommand{\serie}[2]{\sum_{n=#1}^{#2}} % Serie
+\newcommand{\derivata}[2]{$f(x) = #1 \to f'(x) = #2 $}
+\newcommand{\domanda}[2]{\paragraph*{#1} #2}
+\newcommand{\risposta}[1]{\begin{center} \emph{#1} \end{center}}
+\newcommand{\irrisolta}{\begin{center}\textcolor{red}{\small{$\uparrow$ DOMANDA IRRISOLTA $\uparrow$}}\end{center}}
+\newcommand{\parzialmenterisolta}{\begin{center}\textcolor{orange}{\small{$\uparrow$ DOMANDA PARZIALMENTE RISOLTA $\uparrow$}}\end{center}}
+\newcommand{\nb}[1]{\underline{\emph{N.B.}} \small{#1}}
+
+%Colors
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
+\definecolor{sfondo_esempio}{rgb}{0.95,0.95,0.95}
+
+%Mdframed environments
+\newmdenv[
+    backgroundcolor=giallochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_spiegazione}
+\newmdenv[
+    backgroundcolor=sfondo_esempio,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_esempio}
+\newmdenv[
+    frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
+    frametitleaboveskip=-\ht\strutbox,
+    linewidth=0.5pt,
+    innerbottommargin=14pt,
+]{box_definizione}
+
