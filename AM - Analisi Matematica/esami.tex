@@ -5,6 +5,7 @@
 \usepackage[makeroom]{cancel}
 \usepackage{amsfonts}
 \usepackage[framemethod=tikz]{mdframed} 
+\usepackage{hyperref}
 
 \begin{document}
 \definecolor{giallochiaro}{rgb}{1,1,0.95}
@@ -59,9 +60,9 @@
 }
 \risposta{$a_n \sim \frac{2}{n^5}$}
 \spiegazione{
-    \begin{equation*}
+$$
         a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3} \rightarrow \frac{\frac{2}{n^2}}{n^3} \rightarrow \frac{2}{n^2} \cdot \frac{1}{n^3} = \frac{2}{n^5}
-    \end{equation*}
+$$
     Bisogna trovare una successione asintoticamente equivalente sia per il numeratore, che per il denominatore.
     \\
 }
@@ -73,10 +74,11 @@
 \spiegazione{
 Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
 \\Usiamo quindi il criterio dell'assoluta convergenza.
-\begin{equation}
+$$
     |\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2})| \sim \frac{3}{n^2} 
-\end{equation}
-    è da capire bene
+$$
+la corrispondenza asintotica vale perchè l'argomento del seno è infinitesimale. 
+La successione risultante è una serie armonica di grado $> 1$, quindi converge.
 }
 \domanda{2}{La Successione $a_n = \frac{\ln(2+n^3)-5\sqrt[]{n^2-n}+2^{-n^4+5n}}{5n+3\ln n - n \ln n}}$ per $n \to +\infty$ ha limite:
 \risposta{$\limite{n}{+\infty} = 0$}
@@ -171,14 +173,16 @@ Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzia
 \spiegazione{$g\circ f = g(f(x)) = ln(1+e^{\sqrt{x}})$, quindi bisogna vedere dove è definita quella funzione.
 \\Sappiamo che l'argomento di una radice va posto maggiore o uguale a zero.
 \\Forse anche il logaritmo (VEDERE)}
+\parzialmenterisolta
 
 \domanda{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
 \risposta{$\frac{e}{e^2-1}$}
 \spiegazione{Il risultato mi viene $\frac{e^3}{e^2-1}$, quindi bisogna CAPIRE cosa ho sbagliato}
+\parzialmenterisolta
 
 \domanda{4}{Sia $f:\R \to \R$ la funzione definita da $f(x) = \int_{1}^{x} t^2 e^{\sqrt[3]{t}} dt$. Allora:}
 \risposta{$f$ è Crescente}
-\spiegazione{CAPIRE}
+\irrisolta
 
 \domanda{5}{$\limite{n}{+\infty} \frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}}$ vale:}
 \risposta{-1}
@@ -191,11 +195,42 @@ Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzia
 
 \domanda{7}{sia $f(x) = \arctan(\sqrt{x})$. Allora $f'(1)=$}
 \risposta{Nessuna delle precedenti ($\frac{1}{4}$)}
-\spiegazione{Trovo la derivata dell funzione:
+\spiegazione{Trovo la derivata della funzione:
 \\$f'(x) = \frac{1}{1+x} \cdot \frac{1}{2\sqrt{x}} = \frac{1}{2\sqrt{x}(1+x)}$. La derivata vale in $x=1$:
 $f'(1) = \frac{1}{4}$}
 
 \domanda{8}{Sia $f$ definita e continua su [a,b]. Allora}
 \risposta{Assume il valore $\frac{f(a)+f(b)}{2}$}
-\spiegazione{CAPIRE continuità di una funzione}
+\spiegazione{Non ho trovato nessuna definizione che giustifichi questa cosa, ma da Telegram mi dicono:
+Se una funzione è continua in un intervallo ed ho $y_1 = f(a)$ e $y_2 = f(b)$ allora la funzione può assumere tutti i valori tra $y_1$ e $y_2$.
+$\frac{f(a)+f(b)}{2}$ se lo guardi nell'asse delle y è un valore compreso tra $f(a)$ e $f(b)$.
+\\Un'altra risposta corretta potrebbe essere: Assume tutti i valori tra $f(a)$ e $f(b)$.
+}
+
+\section{Giugno 2021}
+\domanda{O}{Sia $f:\R \to \R$ definita da $f(x) = x^3 + 4x$. sull'intervallo $I = (-1,1)$ la funzione $f$ è:}
+\spiegazione{Studiare CONCAVITA' e CONVESSITA'}
+\irrisolta
+\domanda{O}{La somma della serie $\serie{0}{+\infty} (\frac{2}{3})^{2n}$ vale}
+\risposta{$\frac{9}{5}$}
+\spiegazione{La serie è simile a una geometrica, però c'è quel $2n$ da mandare via, quindi:
+$$ (\frac{2}{3})^{2n}= [(\frac{2}{3})^{2}]^n = (\frac{4}{9})^{n}$$
+Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la formula $\sum (q)^n = \frac{1}{1-q}$ ci da $\frac{9}{5}$
+}
+\domanda{O}{Siano $f(x) = \ln(x^2+1)-1$ e $g(x) = |x+1|$. Allora $(g \circ f)(x) = $}
+\risposta{$ln(x^2 + 1)$}
+\spiegazione{
+Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnalo però che $|ln(x^2+1)| = ln(x^2+1)$, perchè il logaritmo ha dominio maggiore di 0, e in questo caso il suo argomento è sempre maggiore di 0, quindi le due funzioni si equivalgono.
+}
+\domanda{O}{L'estremo superiore dell'insieme $A={\frac{1}{n+1} +2^{1-2n}, n= 1,2,...}$ è}
+\risposta{1}
+
+\domanda{O}{La funzione $f:\R \to \R$ definita da $f(x) = \begin{cases} e^{-x} & x>0 \\ x^2-1 &x\leq 0 \end{cases}$ è}
+\risposta{Nè suriettiva nè iniettiva}
+\spiegazione{
+    $e^{-x} = \frac{1}{e^x}$, che parte da vicino a uno e tende a 0.
+    \\$x^2-1$ è invece una funzione che parte da -1 e va verso l'alto.
+    \\Essendo la funzione definita in $\R$, ed essendo il minimo -1, la funzione non è suriettiva.
+    Visto che la seconda parte da -1 e va verso l'alto, mentre la prima parte da 1 e va verso 0, si incrociano sicuramente, rendendo la funzione non iniettiva.
+}
 \end{document}

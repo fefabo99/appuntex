@@ -677,12 +677,41 @@ Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementa
 \esempio{
 	$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
 }
+\section{Tecniche di Integrazione}
+
 \subsection{Integrazione per Parti}
 Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
 $$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
 In pratica, l'integrale di una funzione derivabile moltiplicato per una funzione integrabile è integrabile per parti.
 \\Questa tecnica può essere usata per risolvere integrali complessi.
+\esempio{
+	$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
+	\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
+}
+\subsubsection*{Tecnica della moltiplicazione per 1}
+In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
+Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
+\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
 
+\esempio{
+	$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
+	Questo ci permette di considerare:
+	\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
+	\\Di conseguenza, la nostra integrazione prosegue così:
+	$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
+}
+
+\subsection{Integrazione per sostituzione}
+\definizione{
+	$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
+}
+Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
+si può sostituire con una ipotetica $y$ per sepmplificare.
+\esempio{
+	$\int sin(e^x) e^x dx$. consideriamo:
+	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
+	\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$. 
+}
 
 \chapter{Serie Numeriche}
 \section{Introduzione}

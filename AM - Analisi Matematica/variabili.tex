@@ -14,9 +14,10 @@
 
 %%%%%%%%%%% Variabili Strutturali %%%%%%%%%%%%%%%%
 
-\newcommand{\domanda}[2]{\paragraph*{#1} #2:}
+\newcommand{\domanda}[2]{\paragraph*{#1} #2}
 \newcommand{\risposta}[1]{\begin{center} \emph{#1} \end{center}}
-% \newcommand{\spiegazione}[1]{\defaultrule \par #1 \defaultrule}
+\newcommand{\irrisolta}{\begin{center}\textcolor{red}{\small{$\uparrow$ DOMANDA IRRISOLTA $\uparrow$}}\end{center}}
+\newcommand{\parzialmenterisolta}{\begin{center}\textcolor{orange}{\small{$\uparrow$ DOMANDA PARZIALMENTE RISOLTA $\uparrow$}}\end{center}}
 
 \newcommand{\nb}[1]{\underline{\emph{N.B.}} \small{#1}}
 % \newcommand{\esempio}[1]{\defaultrule \paragraph*{Esempio} #1 \defaultrule}
