@@ -338,17 +338,6 @@ Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue
 Per calcolare la monotonia di una funzione, bisogna porre la derivata (che è il "rateo" di crescita della funzione) \emph{Maggiore (o minore o maggiore uguale o minore uguale) di 0}.
 Nei punti in cui la derivata rimane maggiore (minore,...) di 0, la funzione è \emph{monotona crescente (decrescente,...)}
 
-
-\section{Continuità di una funzione}
-La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
-
-\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro capcolati nel punto coincidono con la valutazione della funzione nel punto.
-\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
-$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
-}
-
-
-Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme
 \chapter{Successioni}
 
 \section{Introduzione}
@@ -566,6 +555,33 @@ Bisogna provare a svolgere un paio di limiti.
 		      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
 		\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
 	\end{enumerate}
+
+	\section{Continuità di una funzione}
+	La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
+	
+	\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro calcolati nel punto coincidono con la valutazione della funzione nel punto.
+	\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
+	$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
+	}
+	Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
+
+	\subsection{Punti di discontinuità}
+	Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
+
+	\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
+	
+	\subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
+	Questa definizione enuncia, in estensione alla prima, che è anche punto di disconitinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
+	\\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
+	\subsubsection*{Classificazione dei punti di Discontinuità}
+	Ci sono 3 classificazioni per identificare i punti di discontinuità.
+	Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di disconitinuità di:
+	\paragraph{Prima Specie} se i \emph{limiti sinistro e destro di $x_0$ esistono finiti ma sono diversi}.
+	Questa viene anche chiamata \textbf{Discontinuità a Salto}
+	\paragraph{Seconda Specie} se almeno uno dei due limiti, destro o sinistro, di $x_0$ è \emph{infinito o non esiste}.
+	Questa viene anche chiamata \textbf{Discontinuità Essenziale}
+	\paragraph{Terza Specie} Se il limite di $x_0$ \emph{esiste finito} ma è \emph{diverso da $f(x_0)$} oppure $f(x_0)$ non esiste.
+	Questa viene chiamata \textbf{Discontinuità Eliminabile}, (oppure buco nella funzione).
 
 
 	\chapter{Calcolo Differenziale}
