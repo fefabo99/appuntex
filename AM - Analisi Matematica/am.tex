@@ -117,8 +117,8 @@ $$x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
 \begin{itemize}
 	\item $\Delta > 0 \implies $ 2 soluzioni Reali
- 	\item $\Delta < 0 \implies $ Nessuna soluzione Reale (ma 2 complesse)
-	\item $\Delta = 0 \implies $ 1 Soluzione Reale  
+	\item $\Delta < 0 \implies $ Nessuna soluzione Reale (ma 2 complesse)
+	\item $\Delta = 0 \implies $ 1 Soluzione Reale
 \end{itemize}
 Ricordiamo poi, che una funzione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
 quindi quando sta sopra l'asse delle ascisse.
@@ -136,14 +136,14 @@ un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 \paragraph*{Valori di $\sin(x)$}
 \begin{itemize}
 	\item $\sin(0) = 0$
- \item $\sin(\pi/2) = 1$
- \item $\sin(\pi) = 0$
+	\item $\sin(\pi/2) = 1$
+	\item $\sin(\pi) = 0$
 \end{itemize}
 \paragraph*{Valori di $\cos(x)$}
 \begin{itemize}
 	\item $\cos(0) = 1$
- \item $\cos(\pi/2) = 0$
- \item $\cos(\pi) = -1$
+	\item $\cos(\pi/2) = 0$
+	\item $\cos(\pi) = -1$
 \end{itemize}
 \section{Valore assoluto (modulo) di un numero Reale}
 
@@ -263,7 +263,7 @@ $g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta 
 \subsection*{Funzioni Suriettive}
 Quando l'\emph{insieme immagine e il codomino di una funzione coincidono}, essa si dice che è \emph{suriettiva}
 \definizione{Una funzione $\function$ si dice \textbf{suriettiva} se è $f(X) = Y$.
-Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.}
+	Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine.}
 
 \subsection*{Funzioni Iniettive}
 La funzione $\function$ è detta \textbf{iniettiva} se trasforma elementi distinti in elementi distinti, ovvero:
@@ -527,10 +527,10 @@ Bisogna provare a svolgere un paio di limiti.
 
 	\section{Continuità di una funzione}
 	La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
-	
+
 	\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro calcolati nel punto coincidono con la valutazione della funzione nel punto.
-	\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
-	$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
+		\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
+		$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
 	}
 	Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
 
@@ -538,7 +538,7 @@ Bisogna provare a svolgere un paio di limiti.
 	Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
 
 	\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
-	
+
 	\subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
 	Questa definizione enuncia, in estensione alla prima, che è anche punto di disconitinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
 	\\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
@@ -595,237 +595,289 @@ $T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
 	\end{enumerate}
 	Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
 
-\esempio{
+	\esempio{
 $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
-}
+	}
 
-\subsection{Proprietà degli integrali}
-\begin{itemize}
-	\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
-	\item $\int K f(x) dx = K\int f(x) dx$
-	\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
-\end{itemize}
-
-\section{Le primitive}
-Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
-\\Si noti che:
-\begin{itemize}
-	\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
-	\item Le primitive non sono \emph{mai uniche}
-\end{itemize}
-Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
-
-\subsection{Primitive Elementari}
-Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
-\begin{tabular}{ |c|c|c| }
-	\hline
-	$f(x)$            & $F(x)$                                  \\
-	\hline
-	$cos(x)$          & $sin(x)$                                \\
-	\hline
-	$sin(x)$          & $-cos(x)$                               \\
-	\hline
-	$e^x$             & $e^x$                                   \\
-	\hline
-	$a^x$             & $\frac{a^x}{\ln a} $                    \\
-	\hline
-	$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
-	\hline
-	$\frac{1}{x}$     & $\ln |x| $                              \\
-	\hline
-	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
-	\hline
-\end{tabular}
-
-\subsection{Primitive di Derivate di funzioni composte}
-\definizione{
-	Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
-	In questo caso:
-	$$ [F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c$$
-}
-\esempio{
-	$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
-}
-\section{Tecniche di Integrazione}
-
-\subsection{Integrazione per Parti}
-Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
-$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
-In pratica, l'integrale di una funzione derivabile moltiplicato per una funzione integrabile è integrabile per parti.
-\\Questa tecnica può essere usata per risolvere integrali complessi.
-\esempio{
-	$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
-	\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
-}
-\subsubsection*{Tecnica della moltiplicazione per 1}
-In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
-Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
-\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
-
-\esempio{
-	$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
-	Questo ci permette di considerare:
-	\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
-	\\Di conseguenza, la nostra integrazione prosegue così:
-	$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
-}
-
-\subsection{Integrazione per sostituzione}
-\definizione{
-	$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
-}
-Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
-si può sostituire con una ipotetica $y$ per sepmplificare.
-\esempio{
-	$\int sin(e^x) e^x dx$. consideriamo:
-	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
-	\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$. 
-}
-
-\chapter{Serie Numeriche}
-\section{Introduzione}
-Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
-In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
-
-\paragraph*{Richiamiamo le successioni}
-Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
-Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
-\definizione{
-	Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
-	($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
-	\begin{equation*}
-		s_m = x_0 + ... + x_m
-	\end{equation*}
-	Che equivale alla notazione:
-
-	\begin{equation*}
-		s_m = \sum_{n=0}^m x_n
-	\end{equation*}
-}
-\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
-Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
-\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
-\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
-
-\subsection*{In parole povere...}
-Una serie numerica è il modo di indicare una somma di infiniti numeri.
-Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
-\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
-
-
-\section{Serie Convergenti}
-\subsection{Serie Geometrica}
-La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
-Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
-Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
-risulta:
-\begin{equation}
-	\limite{n}{+\infty} s_n \begin{cases}
-		\text{non esiste} & q \leq -1  \\
-		= \frac{1}{1-q}   & -1 < q < 1 \\
-		= +\infty         & q \geq 1
-	\end{cases}
-\end{equation}
-Per cui
-\begin{equation}
-	\sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
-		indeterminata      & q \leq -1  \\
-		convergente        & -1 < q < 1 \\
-		divergente +\infty & q \geq 1
-	\end{cases}
-\end{equation}
-
-\esempio{
-	$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
-}
-
-\paragraph{In parole povere}
-Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
-\\ \textbf{Attenzione però}, perchè questo vale se la serie parte con $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
-
-\subsection{Serie Telescopica}
-Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
-Allora risulta:
-\begin{equation*}
-	s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
-\end{equation*}
-Da cui
-\begin{equation*}
-	\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
-\end{equation*}
-
-\subsubsection*{Serie di Mengoli}
-La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
-La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
-\begin{equation*}
-	a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
-\end{equation*}
-quindi, la sua somma parizale è:
-\begin{equation*}
-	s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
-\end{equation*}
-questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
-\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
-Questo è l'esempio più semplice di \textbf{serie telescopica}
-
-\section{Criteri di Convergenza}
-Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
-Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
-\definizione{
-	Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
-	\begin{equation*}
-		\limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
-	\end{equation*}
-}
-Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
-Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
-
-\begin{itemize}
-	\item Criterio del Rapporto
-	\item Criterio della Radice
-	\item Criterio del Confronto
-	\item Criterio del Confronto asintotico
-\end{itemize}
-Questi vengono utilizzati per serie a termini generali \emph{non negativi}
-\begin{itemize}
-	\item Criterio dell'assoluta convergenza
-	\item Criterio di Leibniz
-\end{itemize}
-Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
-
-\subsection{Alcune proprietà utili}
-Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
-
-\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
-Allora:
-\begin{enumerate}
-	\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
-	\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
-\end{enumerate}
-\nb{che una costante moltiplicativa non modifica il carattere di una serie}
-
-\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
-Quindi converge o diverge a $+\infty$
-\esempio{
-$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
-\begin{itemize}
-	\item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
-	\item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)
-\end{itemize}
-Per cui questa serie \textbf{diverge a $+\infty$}
-}
-
-\subsection{Criterio del Rapporto}
-Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
-\definizione{
-	Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
+	\subsection{Proprietà degli integrali}
 	\begin{itemize}
-		\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
-		\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
-		\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+		\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
+		\item $\int K f(x) dx = K\int f(x) dx$
+		\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
 	\end{itemize}
-}
-\nb{che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$}
+
+	\section{Le primitive}
+	Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
+	\\Si noti che:
+	\begin{itemize}
+		\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
+		\item Le primitive non sono \emph{mai uniche}
+	\end{itemize}
+	Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
+
+	\subsection{Primitive Elementari}
+	Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
+	\begin{tabular}{ |c|c|c| }
+		\hline
+		$f(x)$            & $F(x)$                                  \\
+		\hline
+		$cos(x)$          & $sin(x)$                                \\
+		\hline
+		$sin(x)$          & $-cos(x)$                               \\
+		\hline
+		$e^x$             & $e^x$                                   \\
+		\hline
+		$a^x$             & $\frac{a^x}{\ln a} $                    \\
+		\hline
+		$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+		\hline
+		$\frac{1}{x}$     & $\ln |x| $                              \\
+		\hline
+		$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
+		\hline
+	\end{tabular}
+
+	\subsection{Primitive di Derivate di funzioni composte}
+	\definizione{
+		Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
+		In questo caso:
+		$$ [F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c$$
+	}
+	\esempio{
+		$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
+	}
+	\section{Tecniche di Integrazione}
+
+	\subsection{Integrazione per Parti}
+	Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
+	$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
+	In pratica, l'integrale di una funzione derivabile moltiplicato per una funzione integrabile è integrabile per parti.
+	\\Questa tecnica può essere usata per risolvere integrali complessi.
+	\esempio{
+		$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
+		\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
+	}
+	\subsubsection*{Tecnica della moltiplicazione per 1}
+	In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
+	Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
+	\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
+
+	\esempio{
+		$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
+		Questo ci permette di considerare:
+		\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
+		\\Di conseguenza, la nostra integrazione prosegue così:
+		$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
+	}
+
+	\subsection{Integrazione per sostituzione}
+	\definizione{
+		$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
+	}
+	Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
+	si può sostituire con una ipotetica $y$ per sepmplificare.
+	\esempio{
+		$\int sin(e^x) e^x dx$. consideriamo:
+		\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
+			\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
+	}
+
+	\subsection{Integrazione di Funzioni Razionali}
+	Sono funzioni razionali tutte quelle funzioni del tipo:
+	$$f(x)=\frac{P(x)}{Q(x)} \text{ con } P(x),Q(x) \text{ Polinomi} $$
+	Questo tipo di integrale si risolve in modi diversi in base al grado/tipo di numeratore e denominatore:
+	\paragraph*{Numeratore è la Derivata del Denominatore}
+	$$\int \frac{f'(x)}{f(x)} = \ln|f(x)|+ c$$
+	\esempio{
+		\\$\int \frac{2x}{x^2-5} = \ln|x^2-5|+c$
+		\\Oppure:
+		\\$\int \frac{x^3}{x^4+1} = \frac{1}{4}\int \frac{4x^3}{x^4+1} = \frac{1}{4} \ln|x^4+1|+c$
+	}
+
+	\paragraph*{Numeratore Costante e Denominatore di I° grado}
+	La risoluzione è sostanzialmente uguale al caso precedente, varrebbe ricordarsi però la formula:
+	$$\int\frac{k}{ax+b} dx = \frac{k}{a} \ln|ax+b|$$
+	\esempio{$\int 	\frac{3}{2x-1} dx = \frac{3}{2} \int \frac{2}{2x-1} = \frac{3}{2} \ln|2x-1|+c$}
+	
+	\paragraph*{Numeratore costante e Denominatore al Quadrato}
+	Bisogna ricordarsi che:
+	$\frac{1}{[f(x)]^2} = [f(x)]^{-2}$ e che 
+	$\int f'(x)[f(x)]^n dx = \frac{[f(x)^{n+1}]}{n+1}$ (primitiva di funzione elementare generalizzata)
+	
+	\esempio{
+		$\int \frac{5}{(2x-1)^2} = 5\int (2x-1)^{-2} = \frac{5}{2} \int 2(2x-1)^{-2} = \frac{5}{2} \cdot \frac{(2x-1)^{-1}}{-1} + c = -\frac{5}{4x-2} + c$
+	}
+	\paragraph*{Funzioni razionali del tipo $\frac{dx-c}{ax^2+bx+c}$ con $\Delta < 0$}
+	In questo caso, bisogna smontare la funzione e ricondursi a integrali del tipo:
+	\begin{itemize}
+		\item $\int\frac{f'(x)}{1+[f(x)]^2} dx = \arctan[f(x)]+c$
+  		\item $\int\frac{f'(x)}{f(x)} = \ln|f(x)| +c $ 
+	\end{itemize}
+
+	\esempio{
+		$\int \frac{3x+1}{x^2+1} dx$.
+		\\Spacco in due la funzione e la gestisco come due integrali separati
+		$\int \frac{3x}{x^2+1} + \int \frac{1}{x^2+1} = \frac{3}{2}\int \frac{2x}{x^2+1} +  \int \frac{1}{x^2+1} = \frac{3}{2}\ln|x^2+1| + \arctan(x) +c$
+	}
+	\esempio{Più complicato:
+	$$\int \frac{18x+3}{9x^2+6x+2}$$
+	\\Bisogna ragionare:
+	\\Voglio ottenere una funzione del tipo $\frac{f'(x)}{f(x)}$, quidni calcolo la derivata del denominatore:
+	$D'=18x+6$ e cerco di trasformare il nuemratore in esso.
+	Per fare ciò, posso vedere quel "$+3$" al numeratore come un "$+6-3$"
+	$$ = \int \frac{18x+6-3}{9x^2+6x+2} = \int \frac{18x+6}{9x^2+6x+2} -\int \frac{-3}{9x^2+6x+2} = ln|9x^2+6x+2| - \int\frac{3}{9x^2+6x+2} +c$$
+	Adesso il secondo integrale lo cerco di trasformare in una funzione del tipo $\frac{f'(x)}{1+[f(x)]^2}$.
+	Guardo il denominatore e cerco di trasformarlo in $\frac{f'(x)}{f(x)}$:
+	$9x^2 = (3x)^2$, $6x = 2\cdot 3x \cdot 1$ (come (2ab)) e $+2 = +1+1$. 
+	Quindi il denominatore diventa: $(3x+1)^2+1$.
+	$$= \ln|9x^2+6x+2| - \arctan(3x+1) +c$$
+
+	}
+
+	\chapter{Serie Numeriche}
+	\section{Introduzione}
+	Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
+	In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
+
+	\paragraph*{Richiamiamo le successioni}
+	Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
+	Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
+	\definizione{
+		Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
+		($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
+		\begin{equation*}
+			s_m = x_0 + ... + x_m
+		\end{equation*}
+		Che equivale alla notazione:
+
+		\begin{equation*}
+			s_m = \sum_{n=0}^m x_n
+		\end{equation*}
+	}
+	\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
+	Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
+	\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
+	\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
+
+	\subsection*{In parole povere...}
+	Una serie numerica è il modo di indicare una somma di infiniti numeri.
+	Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
+	\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
+
+
+	\section{Serie Convergenti}
+	\subsection{Serie Geometrica}
+	La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
+	Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
+	Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
+	risulta:
+	\begin{equation}
+		\limite{n}{+\infty} s_n \begin{cases}
+			\text{non esiste} & q \leq -1  \\
+			= \frac{1}{1-q}   & -1 < q < 1 \\
+			= +\infty         & q \geq 1
+		\end{cases}
+	\end{equation}
+	Per cui
+	\begin{equation}
+		\sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
+			indeterminata      & q \leq -1  \\
+			convergente        & -1 < q < 1 \\
+			divergente +\infty & q \geq 1
+		\end{cases}
+	\end{equation}
+
+	\esempio{
+		$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
+	}
+
+	\paragraph{In parole povere}
+	Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
+	\\ \textbf{Attenzione però}, perchè questo vale se la serie parte con $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
+
+	\subsection{Serie Telescopica}
+	Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
+	Allora risulta:
+	\begin{equation*}
+		s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
+	\end{equation*}
+	Da cui
+	\begin{equation*}
+		\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
+	\end{equation*}
+
+	\subsubsection*{Serie di Mengoli}
+	La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
+	La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
+	\begin{equation*}
+		a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
+	\end{equation*}
+	quindi, la sua somma parizale è:
+	\begin{equation*}
+		s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
+	\end{equation*}
+	questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
+	\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
+	Questo è l'esempio più semplice di \textbf{serie telescopica}
+
+	\section{Criteri di Convergenza}
+	Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
+	Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
+	\definizione{
+		Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
+		\begin{equation*}
+			\limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
+		\end{equation*}
+	}
+	Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
+	Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
+
+	\begin{itemize}
+		\item Criterio del Rapporto
+		\item Criterio della Radice
+		\item Criterio del Confronto
+		\item Criterio del Confronto asintotico
+	\end{itemize}
+	Questi vengono utilizzati per serie a termini generali \emph{non negativi}
+	\begin{itemize}
+		\item Criterio dell'assoluta convergenza
+		\item Criterio di Leibniz
+	\end{itemize}
+	Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
+
+	\subsection{Alcune proprietà utili}
+	Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
+
+	\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
+	Allora:
+	\begin{enumerate}
+		\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
+		\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
+	\end{enumerate}
+	\nb{che una costante moltiplicativa non modifica il carattere di una serie}
+
+	\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
+	Quindi converge o diverge a $+\infty$
+	\esempio{
+$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
+	\begin{itemize}
+		\item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
+		\item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)
+	\end{itemize}
+	Per cui questa serie \textbf{diverge a $+\infty$}
+	}
+
+	\subsection{Criterio del Rapporto}
+	Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
+	\definizione{
+		Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
+		\begin{itemize}
+			\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+			\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+			\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+		\end{itemize}
+	}
+	\nb{che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$}
 
 \esempio{
 	Studiare il carattere di $\serie{0}{+\infty} \frac{n^{2015}}{3^n}$:
