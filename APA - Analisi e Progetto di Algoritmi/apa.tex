@@ -65,7 +65,7 @@ l'approccio generale si può riassumere in 4 passi:
 	\item Caratterizzare la struttura di una soluzione ottimale.
 	\item Definire ricorsivamente il valore di una soluzione ottimale (e quindi di tutte).
 	\item Calcolare il valore delle soluzinoi ottimali, tipicamente in maniera bottom-up,
-	memorizzando i loro valori in tabelle.
+	      memorizzando i loro valori in tabelle.
 	\item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
 \end{enumerate}
 
@@ -112,13 +112,13 @@ Questo tipo di problema si chiama \emph{0/1} perchè un oggetto \emph{O lo prend
 \begin{itemize}
 	\item max$(\Sigma_{e_i \in S}V_i)$ ;
 	\item $\Sigma_{e_i \in S} W_i \leq W$.
-\end{itemize} 
+\end{itemize}
 
 \paragraph{Sottostruttura ottima}
 La sottostruttura ottima del problema non è molto straight-forward. facciamo un esempio:
 \subparagraph*{}Se abbiamo un problema (che non necessariamente ci interessa definire) la cui soluzione S è $\{e_2,e_3,e_4\}$.\\
 Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
-\\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi 
+\\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi
 
 \section{LCS}
 LCS, o Longest Common Susbequence è un problema di programmazione dinamica in cui si richiede di trovare la più grande sottosequenza comune a due sottosequenze.
@@ -143,18 +143,17 @@ La caratterizzazione di questo teorema dimostra che una LCS di due sequenze cont
 Quindi il problema della più lunga sottosequenza comune gode della proprietà della sottostruttura ottima
 
 \spiegazione{
-Se sappiamo che \emph{Z è una (qualsiasi) LCS di X e Y}, allora se ne deduce che:
-\\(1) Se gli ultimi elementi di X e Y sono uguali, allora è anche l'ultimo elemento di Z. Inoltre implica che $Z_{k-1}$, quindi Z se togliamo il suo ultimo elemento, è una LCS di X e Y a cui sono stati tolti l'ultimo elemento ciascuno.
-\\Se gli ultimi elementi di X e Y NON sono uguali invece, qui ci sono due opzioni: (2) o l'ultimo elemento di Z è uguale all'ultimo elemento di Y, in tal caso Z è una lcs di Y e X senza l'ultimo elemento, oppure (3) viceversa 
+	Se sappiamo che \emph{Z è una (qualsiasi) LCS di X e Y}, allora se ne deduce che:
+	\\(1) Se gli ultimi elementi di X e Y sono uguali, allora è anche l'ultimo elemento di Z. Inoltre implica che $Z_{k-1}$, quindi Z se togliamo il suo ultimo elemento, è una LCS di X e Y a cui sono stati tolti l'ultimo elemento ciascuno.
+	\\Se gli ultimi elementi di X e Y NON sono uguali invece, qui ci sono due opzioni: (2) o l'ultimo elemento di Z è uguale all'ultimo elemento di Y, in tal caso Z è una lcs di Y e X senza l'ultimo elemento, oppure (3) viceversa
 }
 \paragraph{La soluzione ricorsiva}
 Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
 \begin{equation*}
 	c[i,j] = \begin{cases}
-		0 & \text{se $i = 0$ o $j = 0$}\\
-		c[i-1,j-1] + 1 & \text{se $x_i = y_j$}\\
+		0                       & \text{se $i = 0$ o $j = 0$} \\
+		c[i-1,j-1] + 1          & \text{se $x_i = y_j$}       \\
 		max(c[i,j-1], c[i-1,j]) & \text{se $x_i \neq y_j$}
-
 	\end{cases}
 \end{equation*}
 
@@ -189,14 +188,14 @@ def LCS-LENGHT(X,Y):
 \paragraph*{Istanza} Date due sequenze:\\
 $X = <x_1,...,x_m>$ di lunghezza $m$\\
 $Y = <y_1,...,y_n>$ di lunghezza $n$\\
-e dato un $L \geq 0$ stabilire se \emph{La lunghezza di una qualunque LCS di $X$ e $Y$ è $\geq L$}. 
+e dato un $L \geq 0$ stabilire se \emph{La lunghezza di una qualunque LCS di $X$ e $Y$ è $\geq L$}.
 \\Quindi TRUE sse $\exists$ una LCS(X,Y) di lunghezza $geq L$
 
 \paragraph*{Istanza di un qualunque sottoproblema}
 \begin{itemize}
 	\item[] $X_i$ (con $0 \leq i \leq m$)
 	\item[] $Y_j$ (con $0 \leq j \leq n$)
-	\item[] $l$ (con $0 \leq l \leq L$)  
+	\item[] $l$ (con $0 \leq l \leq L$)
 \end{itemize}
 Quindi ogni sottoproblema è individuato da una n-pla (i, j, l) con $0 \leq i \leq m$, $0 \leq j \leq n$, $0 \leq l \leq L$.
 La soluzione di ogni sottoproblema sarà un valore \emph{True/False} a se cibda cge esusta i nebi yba LCS di $X_i$ e $Y_j$ di lunghezza $geq l$.
@@ -208,31 +207,31 @@ Per ogni i,j,l come sopra dobbiamo ora calcoalre il valore di $c_{ijl}$.
 \paragraph*{Caso Base}
 \begin{equation}
 	c_{ijl} = \begin{cases}
-		\text{True} & \text{se $l = 0$}\\
+		\text{True}  & \text{se $l = 0$}                     \\
 		\text{False} & \text{se $l>0 \wedge (i<l \vee j<l)$}
 	\end{cases}
 \end{equation}
-\spiegazione{ 
-Se $l=0$ c.. è truè perchè ovviamente qualunque LCS è maggiore o uguale a 0.\\
-Se invece $l>0$, ma una delle due stringhe è minore di $l$ allora automaticamente non può esistere una LCS più lunga di $l$ 
+\spiegazione{
+	Se $l=0$ c.. è truè perchè ovviamente qualunque LCS è maggiore o uguale a 0.\\
+	Se invece $l>0$, ma una delle due stringhe è minore di $l$ allora automaticamente non può esistere una LCS più lunga di $l$
 }
 \paragraph*{Passo Ricorsivo}
 Comprende tute le tuple (i,j,l) con $l>0 \wedge i\geq l \wedge j \geq l$
-	\begin{itemize}
-		\item[Caso 1] sse $x_i = y_j$\\ $c_{ijl} = c_{i-1,j-1,l-1}$ %Non c'è il +1 perchè è True/False pirla%
-		\item[Casi 2] se  $x_i \neq y_j$,
+\begin{itemize}
+	\item[Caso 1] sse $x_i = y_j$\\ $c_{ijl} = c_{i-1,j-1,l-1}$ %Non c'è il +1 perchè è True/False pirla%
+	\item[Casi 2] se  $x_i \neq y_j$,
 		\begin{itemize}
 			\item[2a] LCS($X_i,Y_j$) termina con $z_k \neq x_i$ \\ $c_{i-1,j,l}$
 			\item[2b] LCS($X_i,Y_j$) termina con $z_k \neq y_j$ \\ $c_{i,j-1,l}$
 		\end{itemize}
-	\end{itemize}
+\end{itemize}
 Risolvendo $\exists$ una LCS($X_i,Y_j$) di lunghezza $\geq l$ sse ciò si verifica in almeno uno dei due casi, per cui:
 $c_{ijl} = c_{i-1,j,l} \vee c_{i,j-1,l}$.
 Riassumendo, il passo ricorsivo è:
 Dati $l>0 \wedge i\geq l \wedge j \geq l$
 \begin{equation}
 	C_{ijl} = \begin{cases}
-		C_{i-1,j-1,l-1} &  x_i = y_j\\
+		C_{i-1,j-1,l-1}              & x_i = y_j    \\
 		C_{i-1,j,l} \vee C_{i,j-1,l} & x_i \neq y_j
 	\end{cases}
 \end{equation}
@@ -270,89 +269,89 @@ def LCS-MAGGIORE-L(X,Y,L)
 LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
 di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
 
-\paragraph*{Definizione del Problema} 
+\paragraph*{Definizione del Problema}
 Date due sequenze $X$ e $Y$, rispettivamente di $m$ ed $n$ caratteri, trovare \emph{la lunghezza della più lunga sottosequenza comune di caratteri strettamente crescenti}
 
 \subsection*{Sottoproblema}
 Il sottoproblema non prende in considerazione l'intero input, ma solo i prefissi di $X$ e $Y$ rispettivamente di dimensione $i$ e $j$.
-è così definito: 
+è così definito:
 \\Date due sequenze X e Y, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$.
 \\Ad ogni sottoproblema è associata una \textbf{variabile} $c_{i,j}$ così definita:
 \\$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
-\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
+	\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
 
-\subsection*{Problema ausiliario}
-Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
+	\subsection*{Problema ausiliario}
+	Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
 
-\paragraph*{Definizione di Problema Ausiliario}
-Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
+	\paragraph*{Definizione di Problema Ausiliario}
+	Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
 
-\spiegazione{
-Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
-Se questi non coincidono, la soluzione è la sequenza vuota.
-Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
-}
+	\spiegazione{
+		Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
+		Se questi non coincidono, la soluzione è la sequenza vuota.
+		Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
+	}
 
-\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
-a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
-\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
-\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+	\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
+	a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+	\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
+	\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
 
-\spiegazione{ 
-Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
-a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
-a verificare che $x_s = y_t < x_u = y_v$).
-}
+	\spiegazione{
+		Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
+		a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
+		a verificare che $x_s = y_t < x_u = y_v$).
+	}
 
-\subsection{Equazioni di ricorrenza}
-\paragraph*{Nota bene} %dopo spostare in teoria TODO
-un equazione di ricorrenza è composta da:
-\begin{itemize}
-	\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
-	\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
-\end{itemize}
+	\subsection{Equazioni di ricorrenza}
+	\paragraph*{Nota bene} %dopo spostare in teoria TODO
+	un equazione di ricorrenza è composta da:
+	\begin{itemize}
+		\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
+		\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
+	\end{itemize}
 
-\paragraph*{Caso Base}
-Fano parte del caso base:
-\begin{itemize}
-	\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
-	\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
-\end{itemize}
-Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
-è scrivibile come:
-\begin{center}
-	$$c_{i,j} = 0$$
-	\\se $i=0 \vee j=0 \vee x_i \neq y_j$
-\end{center}
-\spiegazione{
-	Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
-	perchè non abbiamo sottosequenze comuni crescenti.
-}
+	\paragraph*{Caso Base}
+	Fano parte del caso base:
+	\begin{itemize}
+		\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
+		\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
+	\end{itemize}
+	Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
+	è scrivibile come:
+	\begin{center}
+		$$c_{i,j} = 0$$
+		\\se $i=0 \vee j=0 \vee x_i \neq y_j$
+	\end{center}
+	\spiegazione{
+		Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
+		perchè non abbiamo sottosequenze comuni crescenti.
+	}
 
-\paragraph*{Passo ricorsivo}
-Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
-\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
-che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
-Ovvero:
+	\paragraph*{Passo ricorsivo}
+	Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
+	\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
+	che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
+	Ovvero:
 
-\begin{center}
-	$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
-	\\se $i>0\wedge j>0 \wedge x_i = y_j$
-\end{center}
+	\begin{center}
+		$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
+		\\se $i>0\wedge j>0 \wedge x_i = y_j$
+	\end{center}
 
-Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
-così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
+	Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
+	così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
 
-\paragraph*{Soluzione del problema}
-Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
-Quindi la soluzione del problema iniziale è:
-\begin{equation*}
-	max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
-\end{equation*}
+	\paragraph*{Soluzione del problema}
+	Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
+	Quindi la soluzione del problema iniziale è:
+	\begin{equation*}
+		max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
+	\end{equation*}
 
-\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
+	\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
 
-\begin{lstlisting}
+	\begin{lstlisting}
 def LGCS(X,Y)
 	max = 0
 	for i = 1 to m
@@ -371,56 +370,70 @@ def LGCS(X,Y)
 	return max
 \end{lstlisting}
 
-\chapter{Algoritmi Greedy}
-\section{Definizione}
-A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
-\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona. 
-\paragraph{Applicazioni}
-Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
+	\chapter{Algoritmi Greedy}
+	\section{Definizione}
+	A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
+	\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona.
+	\paragraph{Applicazioni}
+	Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
 
-\section{Algoritmo: Scheduling di Attività}
+	\section{Algoritmo: Scheduling di Attività}
 
-\subsection*{Introduzione}
-Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
-\paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
+	\subsection*{Introduzione}
+	Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
+	\paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
 
-\subsection*{Sottostruttura ottima}
-Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
-\\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
-\begin{itemize}
-	\item $S^-_i = \{k \in S : f_k \leq S_i\}$
-	\item $S^+_i = \{k \in S : f_i \leq S_k\}$
-\end{itemize}
-è immediato verificare che:
-\begin{itemize}
-	\item $A \cap S^-_i$ è una soluzione ottima per $S^-_i$
-	\item $A \cap S^+_i$ è una soluzione ottima per $S^+_i$
-\end{itemize}
-Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
+	\subsection*{Sottostruttura ottima}
+	Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
+	\\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
+	\begin{itemize}
+		\item $S^-_i = \{k \in S : f_k \leq S_i\}$
+		\item $S^+_i = \{k \in S : f_i \leq S_k\}$
+	\end{itemize}
+	è immediato verificare che:
+	\begin{itemize}
+		\item $A \cap S^-_i$ è una soluzione ottima per $S^-_i$
+		\item $A \cap S^+_i$ è una soluzione ottima per $S^+_i$
+	\end{itemize}
+	Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
 
-\subsection*{La scelta Greedy}
-Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
-Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
-Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
-\paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
+	\subsection*{La scelta Greedy}
+	Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
+	Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
+	Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
+	\paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
 
-\section{Sistemi di Indipendenza}
-\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
+	\section{Sistemi di Indipendenza}
+	\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
 $$\forall A \in F \wedge B\subseteq A \implies B \in F$$
 \textbf{Ovvero}: dato un insieme di sottoinsiemi di $E$ chiamato $F$ e preso un qualsiasi elemento $A$ (che è un insieme) da $F$, in $F$ abbiamo anche tutti i sottoinsiemi di $A$
 
 \paragraph*{Osservazione} Un grafo può essere visto come un sistema di indipendenza in cui solo lati e vertici costituiscono gli insiemi indipendenti.
+
 \chapter{Algoritmi su Grafi}
+Questo capitolo tratta di molti algoritmi (e rispettive varianti) che operano sui \emph{grafi}.
+
 \section{Riassunto sui grafi}
-Indico un paio di definizioni:
+Innanzitutto, è bene fare un piccolo ripasso su cosa sono i grafi e di che tipo sono.
+
+\paragraph{Definizione di Grafo} Un grafo è un \emph{insieme di elementi detti nodi} (o vertici) che possono essere \emph{collegati fra loro da linee chiamate archi} (o lati o spigoli).
+Più \textbf{formalmente}, si dice grafo una coppia ordinata $G=(V,E)$ di insiemi, con $V$ insieme dei nodi ed $E$ insieme degli archi, tali che gli elementi di $E$ siano coppie di elementi di $V$.
+
+\paragraph{Tipi di grafi} Esistono vari tipi di grafi, che si differenziano per struttura e/o funzione.
+Tra questi abbiamo:
 \begin{itemize}
-	\item Definizione di Grafo: Un grafo è un insieme di elementi detti nodi o vertici che possono essere collegati fra loro da linee chiamate archi o lati o spigoli. Più formalmente, si dice grafo una coppia ordinata $G=(V,E)$ di insiemi, con $V$ insieme dei nodi ed $E$ insieme degli archi, tali che gli elementi di E siano coppie di elementi di V
-	\item Grafo semplice: Grafo non orientato che non comprende cappi e archi multipli
-	\item Grafo completo: è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri vertici, quindi $n_{archi} = n_{vertici} * (n_{vertici} - 1)/2$
-	\item Albero: Grafo non orientato G connesso tc: G è aciclico $\lor$ $|E| = |V| - 1$
-	\item Albero Binario: Albero nel quale ogni nodo ha $\{0,1,2\}$ figli
-	\item DAG: Grafo diretto (orientato) senza cicli, quindi aciclico. Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
+	\item \textbf{Grafo Semplice}: Grafo non orientato che non comprende cappi e archi multipli.
+	\item \textbf{Grafo Completo}: è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri vertici, quindi $n_{archi} = n_{vertici} * (n_{vertici} - 1)/2$.
+	\item \textbf{Albero}: è un grafo non orientato $G$ connesso $tc$: $G$ è \emph{aciclico} $\vee$ $|E| = |V| - 1$.
+	      \\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
+	\item \textbf{DAG}: Grafo diretto (orientato) senza cicli, quindi aciclico.
+	      Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
 \end{itemize}
+
+\subsection*{Altre definizioni}
+\paragraph{Chiusura Transitiva}
+Dato un grafo $G=(N,A)$ (diretto o non) si dice la \emph{chiusura transitiva} quel grafo $G*=(N,A*)$ in cui esiste un arco tra i nodi $i$ e $j$ se esiste un cammino tra $i$ e $j$.
+\spiegazione{La chiusura transitiva di un grafo è un'altro grafo con gli stessi vertici che per ogni nodo $i$ e $j$ ha un arco se e solo se nel grafo originale esisteva un cammino tra di essi.}
 \section{Algoritmi di Visita}
 Esistono due tipi di algoritmi di visita dei grafi, in ampiezza (BFS) e in profondità (DFS)
 
@@ -543,13 +556,13 @@ $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 \\in pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
 
 \subsection*{Ordinamento Topologico}
-Questo paragrafo spiega come utilizzare la visita in profondità per eseguire l'ordinamento topologico di un 
+Questo paragrafo spiega come utilizzare la visita in profondità per eseguire l'ordinamento topologico di un
 grafo \emph{orientato aciclico} o DAG (Directed acyclic graph).
-\\Un ordinamento topologico di un DAG $G<V,E>$ è un ordinamento lineare di tutti i suoi vertici tale che , se $G$ contiene un arco $(u,v)$ 
+\\Un ordinamento topologico di un DAG $G<V,E>$ è un ordinamento lineare di tutti i suoi vertici tale che , se $G$ contiene un arco $(u,v)$
 allora $u$ appare prima di $v$ nell'ordinamento.
 \\In pratica, un ordinamento topologico può essere visto come un ordinamento dei suo vertici lungo una linea orizzontale in modo che tutti gli archi orientati siano diretti da sinistra a destra.
 \\l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
-  
+
 
 \section{Cammini minimi}
 Alcuni algoritmi sui grafi molto importanti sono quelli che calcolano i \emph{cammini minimi} per grafi orientati \textbf{pesati},
@@ -559,14 +572,14 @@ quindi grafi (orientati) che hanno un peso assegnato su ogni arco.
 Sia $G=(V,E)$ un grafo orientato con costi w sugli archi,
 il costo di un cammino $p=<v_1,v_2,...v_k>$ è dato dalla somma del peso di tutti i vertici di quel cammino.
 \\Il \textbf{Cammino minimo} tra una coppia di vertici $x$ e $y$ è \emph{un cammino di costo
-minore o uguale a quello di ogni altro cammino tra gli stessi vertici}.
+	minore o uguale a quello di ogni altro cammino tra gli stessi vertici}.
 \\\textbf{Sottostruttura ottima}: ogni sottocammino di un cammino minimo è anch'esso minimo.
 \\\textbf{Albero dei cammini minimi}: I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
 essere rappresentati tramite un albero radicato in $s$, detto albero dei cammini minimi
 
 \paragraph*{Gli algoritmi} che studieremo sono di due tipi: da sorgente unica, come Dijkstra e Bellman-Ford, oppure quelli che calcolano i cammini minimi per ogni coppia di vertici, come Floyd-Warshall.
 \subsection{Algoritmo di Floyd-Warshall}
-L'algoritmo di Floyd-Warshall calcola il cammino minimo da $i$ a $j$ \emph{per ogni coppia di vertici} $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito.
+L'algoritmo di Floyd-Warshall calcola il \emph{peso} del cammino minimo da $i$ a $j$ \emph{per ogni coppia di vertici} $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito.
 
 \paragraph{Funzionamento}
 L'idea alla base di questo algoritmo è un processo iterativo che, scorrendo tutti i nodi, ad ogni passo $h$ si ha
@@ -585,11 +598,12 @@ L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-
 	\end{cases}
 \end{equation*}
 \spiegazione{
-La variabile $d^{(h)}_{i,j}$, che contiene il peso del cammino minimo da $i$ a $j$ con al più $h$ vertici intermedi e vale:
-il peso del cammino $(i,j)$ se non usiamo vertici intermedi (se non c'è il collegamento questo vale infinito), oppure il minore tra i pesi dei cammini che utilizzano un cammino intermedio.
+	La variabile $d^{(h)}_{i,j}$, che contiene il peso del cammino minimo da $i$ a $j$ con al più $h$ vertici intermedi e vale:
+	il peso del cammino $(i,j)$ se non usiamo vertici intermedi (se non c'è il collegamento questo vale infinito), oppure il minore tra i pesi dei cammini che utilizzano un cammino intermedio,
+	quindi tra il cammino che non usa $h$ come vertice intermedio e la somme dei due cammini da $i$ a $h$ e da $h$ a $j$.
 }
 \paragraph*{Struttura di un cammino minimo}
-L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$ 
+L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$
 è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
 
 \paragraph{Pseudocodice} Algoritmo di Floyd-Warshall
@@ -807,6 +821,25 @@ L'ultimo ciclo controlla se ci sono cicli di peso negativo, in tal caso ritorna 
 \begin{center}
 	$O(|V|*|E|)$
 \end{center}
+
+\section{Strutture dati per insiemi disgiunti}
+Alcune applicazioni richiedono di raggruppare $n$ elementi distinti in una collezione di insiemi disgiunti.
+Queste applicazioni spesso richiedono l'esecuzione di due particolari operazioni: trovare l'unico insieme che contiene un determinato elemento e unire due insiemi.
+
+\paragraph{Definizione}
+Una struttura dati per insiemi disgiunti serve a \emph{mantenere una collezione $S = \{S_1,S_2,...,S_k\}$ di insiemi disgiunti}.
+Ogni insieme $S_i$ è individuato da un rappresentante, che è un elemento dell'insieme.
+
+\paragraph{Operazioni}
+Ogni elemento di un insieme è rappresentato da un oggetto.
+Quindi, indicando con $x$ un oggetto, supportiamo le segenti operazioni:
+\begin{itemize}
+	\item \textbf{Make-set(x)}, che crea un nuovo insieme (e lo aggiunge alla struttura dati) il cui unico elemento e rappresentante è $x$, che non può trovarsi in un altro insieme.
+	\item \textbf{Union(x,y)} unisce gli insiemi dinamici che contengono $x$ e $y$ in un unico insieme.
+	\item \textbf{Find-set(x)} restituisce un puntatore al rappresentenate dell'insieme (unico) che contiene $x$.
+\end{itemize}
+\subsection*{Applicazioni delle strutture dati per insiemi disgiunti}
+
 
 \chapter{NP Completezza} %copiato diretto dagli appunti, va sistemato che non si capisce una sega TODO
 \section{Cenni Teorici}

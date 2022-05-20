@@ -165,92 +165,92 @@ ad esso associati. RISPONDERE PER PUNTI alle seguenti richieste:
 $D^k$ matrice $|V|\cdot|V|$
 \\$d^k_{i,j}$ True sse esiste un cammino da $i$ a $j$ che da luogo ad una alternanza di segno usando ${1,...,k}$ vertici intermedi
 
-\subsection*{Caso Base} Non ci sono vertici intermedi $k=0$
-\begin{equation*}
-	d^0_{i,j} = \begin{cases}
-		TRUE  & \text{se $i=j$}                                                  \\
-		TRUE  & \text{se $i\neq j \land (i,j) \in E \land f(i) \cdot f(j) < 0 $} \\
-		FALSE & \text{altrimenti}
-	\end{cases}
-\end{equation*}
+	\subsection*{Caso Base} Non ci sono vertici intermedi $k=0$
+	\begin{equation*}
+		d^0_{i,j} = \begin{cases}
+			TRUE  & \text{se $i=j$}                                                  \\
+			TRUE  & \text{se $i\neq j \land (i,j) \in E \land f(i) \cdot f(j) < 0 $} \\
+			FALSE & \text{altrimenti}
+		\end{cases}
+	\end{equation*}
 
-\subsection*{Passo Ricorsivo} $k>0$\\
-due casi:
-\begin{itemize}
-	\item $k\notin$ cammino $\rightarrow d^k_{ij} = d^{k-1}_{ij}$
-	\item $k \in$ cammino $\rightarrow d^k_{ij} = d^{k-1}_{ik} \land d^{k-1}_{kj}$
-\end{itemize}
-Quindi, nel passo ricorsivo con $k>0$:
-\begin{equation*}
-	d^k_{ij} = d^{k-1}_{ij} \lor  (d^{k-1}_{ik} \land d^{k-1}_{kj})
-\end{equation*}
+	\subsection*{Passo Ricorsivo} $k>0$\\
+	due casi:
+	\begin{itemize}
+		\item $k\notin$ cammino $\rightarrow d^k_{ij} = d^{k-1}_{ij}$
+		\item $k \in$ cammino $\rightarrow d^k_{ij} = d^{k-1}_{ik} \land d^{k-1}_{kj}$
+	\end{itemize}
+	Quindi, nel passo ricorsivo con $k>0$:
+	\begin{equation*}
+		d^k_{ij} = d^{k-1}_{ij} \lor  (d^{k-1}_{ik} \land d^{k-1}_{kj})
+	\end{equation*}
 
-\subsection*{Soluzione del problema}
-La soluzione del problema è costituita da tutti i valori contenuti in $D^{|V|}$
+	\subsection*{Soluzione del problema}
+	La soluzione del problema è costituita da tutti i valori contenuti in $D^{|V|}$
 
-\section{Esercizio Arco RED mai seguito da arco BLUE}
-Dato un grafo G(V,E,W) orientato e senza cappi in cui ad ogni arco è associato un colore tramite la funzione $col: E\rightarrow \{red,blue\}$
-calcolare $\forall (i,j) \in V^2$ il peso di un cammino minimo da i a j nella quale un arco $red$ non è mai seguito da un arco $blue$
+	\section{Esercizio Arco RED mai seguito da arco BLUE}
+	Dato un grafo G(V,E,W) orientato e senza cappi in cui ad ogni arco è associato un colore tramite la funzione $col: E\rightarrow \{red,blue\}$
+	calcolare $\forall (i,j) \in V^2$ il peso di un cammino minimo da i a j nella quale un arco $red$ non è mai seguito da un arco $blue$
 
-\paragraph{Definiamo il Problema Ausiliario $P'$}
-Dato $G \forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
-colore del $I$ arco pari ad $a$ e dell'iltimo a $b$
+	\paragraph{Definiamo il Problema Ausiliario $P'$}
+	Dato $G \forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
+	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$
 
-\paragraph{Sottoproblema $k$esimo di $P'$} con $k \in \{0,...,n\}$
+	\paragraph{Sottoproblema $k$esimo di $P'$} con $k \in \{0,...,n\}$
 $\forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
-colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-\subparagraph{Introduco la variabile $D*{(k,a,b)}$}
+	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+	\subparagraph{Introduco la variabile $D*{(k,a,b)}$}
 $\forall(i,j)\in V^2$ , $d^{(k,a,b)_{ij}}$ è il peso di un cammino minimo da i a j  con
-colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-Introduco la variabile $D*{(k,a,b)}$
-\subparagraph{Caso Base sottoproblema di $P'$} $k = 0$
+	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+	Introduco la variabile $D*{(k,a,b)}$
+	\subparagraph{Caso Base sottoproblema di $P'$} $k = 0$
 
-\begin{equation*}
-	d^{(0,a,b)}_{ij} \begin{cases}
-		\infty & \text{se $i=j$}                                             \\
-		w_{ij} & \text{se $i\neq j \land (i,j)\in E \land col(i,j) = a = b$} \\
-		\infty & \text{altrimenti}
-	\end{cases}
-\end{equation*}
+	\begin{equation*}
+		d^{(0,a,b)}_{ij} \begin{cases}
+			\infty & \text{se $i=j$}                                             \\
+			w_{ij} & \text{se $i\neq j \land (i,j)\in E \land col(i,j) = a = b$} \\
+			\infty & \text{altrimenti}
+		\end{cases}
+	\end{equation*}
 
-\subparagraph{Passo ricorsivo sottoproblema di $P'$} $k > 0$\\
-Abbiamo due casi\\
-se $k \notin cammino$ allora $d^{(k,a,b)}_{ij} = d^{(k-1,a,b)}_{ij}$\\
-se $k \in cammino$ allora \\
-grafo: i [a]- - -[c] k [d]- - -[b] j con $(c,d) \neq (red,blue)$
-tradotto: Se k appartiene al cammino minimo, allora il colore dell'ultimo arco entrante in k deve essere diverso da red, oppure il colore del primo arco uscente da k deve essere diverso da blue.
-quindi: $d^{(k,a,b)}_{ij} = d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
-Quindi l'equazione di ricorrenza del passo ricorsivo è:\\
+	\subparagraph{Passo ricorsivo sottoproblema di $P'$} $k > 0$\\
+	Abbiamo due casi\\
+	se $k \notin cammino$ allora $d^{(k,a,b)}_{ij} = d^{(k-1,a,b)}_{ij}$\\
+	se $k \in cammino$ allora \\
+	grafo: i [a]- - -[c] k [d]- - -[b] j con $(c,d) \neq (red,blue)$
+	tradotto: Se k appartiene al cammino minimo, allora il colore dell'ultimo arco entrante in k deve essere diverso da red, oppure il colore del primo arco uscente da k deve essere diverso da blue.
+	quindi: $d^{(k,a,b)}_{ij} = d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
+	Quindi l'equazione di ricorrenza del passo ricorsivo è:\\
 $d^{(k,a,b)}_{ij} = min\{d^{(k-1,a,b)}_{ij} ,d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}\}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
 
-\subparagraph{Soluzione Problema Ausiliario $P'$} è formata dalle matrici:\\
+	\subparagraph{Soluzione Problema Ausiliario $P'$} è formata dalle matrici:\\
 $D^{(n,red,red)}$ $D^{(n,red,blu)}$ $D^{(n,blu,red)}$ $D^{(n,blu,blu)}$ \\
-Ovvero tutte le combinazioni possibili di cammini minimi con gli archi a e b = red or blu
+	Ovvero tutte le combinazioni possibili di cammini minimi con gli archi a e b = red or blu
 
-\paragraph{Soluzione Problema di partenza $PB$}
-\begin{equation*}
-	d^{prob}_{ij} = \begin{cases}
-		0                                             & \text{se $i=j$}   \\
-		min\{d^{(n,a,b)}_{ij} \forall (a,b) \in C^2\} & \text{altrimenti}
-	\end{cases}
-\end{equation*}
+	\paragraph{Soluzione Problema di partenza $PB$}
+	\begin{equation*}
+		d^{prob}_{ij} = \begin{cases}
+			0                                             & \text{se $i=j$}   \\
+			min\{d^{(n,a,b)}_{ij} \forall (a,b) \in C^2\} & \text{altrimenti}
+		\end{cases}
+	\end{equation*}
 
-\section{Esercizio k alberi e almeno h vertici} Esercizio 2 esame 12/09/2016\\
-Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $h>0$ e $k>0$, stabilisce se ENTRAMBE le seguenti condizioni sono verificate
-\begin{itemize}
-	\item Esattamente $k$ componenti connesse del grafo sono alberi
-	\item Ogni componente connessa del grafo ha almeno $h$ vertici
-\end{itemize}
+	\section{Esercizio k alberi e almeno h vertici} Esercizio 2 esame 12/09/2016\\
+	Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $h>0$ e $k>0$, stabilisce se ENTRAMBE le seguenti condizioni sono verificate
+	\begin{itemize}
+		\item Esattamente $k$ componenti connesse del grafo sono alberi
+		\item Ogni componente connessa del grafo ha almeno $h$ vertici
+	\end{itemize}
 
-\subsection*{Spiegazione}
-Per creare questo algoritmo occorre modificare DFS:
-\begin{itemize}
-	\item Per capire quanti alberi ci sono, inizializzo un boolean TREE a True. In visit controllo gli archi all'indietro e metto TREE = False se ne trovo. Al ritorno in DFS, se TREE è True incremento un contatore che alla fine di DFS controllerò che equivalga a k
-	\item Per capire il numero di Vertici in una CC, in VISIT incremento un contatore ricorsivamente ogni volta che incontro un nodo white. Una volta tornato in DFS controllo che la CC abbia almeno $h$ vertici.
-\end{itemize}
+	\subsection*{Spiegazione}
+	Per creare questo algoritmo occorre modificare DFS:
+	\begin{itemize}
+		\item Per capire quanti alberi ci sono, inizializzo un boolean TREE a True. In visit controllo gli archi all'indietro e metto TREE = False se ne trovo. Al ritorno in DFS, se TREE è True incremento un contatore che alla fine di DFS controllerò che equivalga a k
+		\item Per capire il numero di Vertici in una CC, in VISIT incremento un contatore ricorsivamente ogni volta che incontro un nodo white. Una volta tornato in DFS controllo che la CC abbia almeno $h$ vertici.
+	\end{itemize}
 
-\subsection*{Pseudocodice}
-\begin{lstlisting}[mathescape=true]
+	\subsection*{Pseudocodice}
+	\begin{lstlisting}[mathescape=true]
     DFS-CONDITIONS(G,h,k)
         for ogni $u \in V$
             col[u] = WHITE
@@ -272,7 +272,7 @@ Per creare questo algoritmo occorre modificare DFS:
             RETURN False
 \end{lstlisting}
 
-\begin{lstlisting}[mathescape=true]
+	\begin{lstlisting}[mathescape=true]
     DFS-VISIT-CONDITIONS(u)
         col[u] = Gray
         n_vertici = 0
@@ -286,19 +286,19 @@ Per creare questo algoritmo occorre modificare DFS:
         return n_vertici + 1
 \end{lstlisting}
 
-\section{Esercizio k grafi completi e h vertici}
-Dati due interi h,k>0 e un grafo non orientato  in cui ad ogni vertice è associato un simbolo (\$ e *)
-stabilisci se: ogni CC del grafo ha almeno h vertici a cui è associato il simbolo \$
-e ci sono al più k componenti connesse del grafo che prese singolarmente sono grafi completi
+	\section{Esercizio k grafi completi e h vertici}
+	Dati due interi h,k>0 e un grafo non orientato  in cui ad ogni vertice è associato un simbolo (\$ e *)
+	stabilisci se: ogni CC del grafo ha almeno h vertici a cui è associato il simbolo \$
+	e ci sono al più k componenti connesse del grafo che prese singolarmente sono grafi completi
 
-\subsection*{spiegazione}
-\begin{itemize}
-    \item h vertici per cc..., ogni volta che trovo un vertice white aumento un counter se è associato al dollaro, e alla fine controllo se è > h
-    \item k cc sono.... un grafo è completo se ci sono $n_{vert} \cdot (n_{vert} -1)/2$ archi. per contare gli archi si incrementa un counter ogni volta che si trova un vertice nella lista di adiacenza.
-\end{itemize}
+	\subsection*{spiegazione}
+	\begin{itemize}
+		\item h vertici per cc..., ogni volta che trovo un vertice white aumento un counter se è associato al dollaro, e alla fine controllo se è > h
+		\item k cc sono.... un grafo è completo se ci sono $n_{vert} \cdot (n_{vert} -1)/2$ archi. per contare gli archi si incrementa un counter ogni volta che si trova un vertice nella lista di adiacenza.
+	\end{itemize}
 
-\subsection*{Pseudocodice}
-\begin{lstlisting}[mathescape=true]
+	\subsection*{Pseudocodice}
+	\begin{lstlisting}[mathescape=true]
 DFS_CUSTOM(G,h,k)
     for ogni $u \in V$
         col[u] = WHITE
@@ -318,7 +318,7 @@ DFS_CUSTOM(G,h,k)
     RETURN True
 \end{lstlisting}
 
-\begin{lstlisting}[mathescape=true]
+	\begin{lstlisting}[mathescape=true]
 DFS_VISIT_CUSTOM(u)
     col[u] = GRAY
     if f(u) == "dollar"
@@ -333,13 +333,13 @@ DFS_VISIT_CUSTOM(u)
     RETURN n_dollar
 \end{lstlisting}
 
-\section{Esercizio conta CC di un grafo}
-Scrivere un algoritmo che determina il numero di componenti connesse di un grafo G =
-(V, E) non orientato.
+	\section{Esercizio conta CC di un grafo}
+	Scrivere un algoritmo che determina il numero di componenti connesse di un grafo G =
+	(V, E) non orientato.
 
-\subsection*{Spiegazione}
-Ogni volta che DFS invoca DFS-VISIT significa che ha trovato una componente connessa, quindi basta mettere un contatore che incrementa ogni volta che si chiama DFS-VISIT da DFS
-\subsection*{Pseudocodice}
+	\subsection*{Spiegazione}
+	Ogni volta che DFS invoca DFS-VISIT significa che ha trovato una componente connessa, quindi basta mettere un contatore che incrementa ogni volta che si chiama DFS-VISIT da DFS
+	\subsection*{Pseudocodice}
 	\begin{lstlisting}[mathescape=true]
     DFS_COUNT_CC(G)
         for ogni $u \in V$
@@ -352,15 +352,15 @@ Ogni volta che DFS invoca DFS-VISIT significa che ha trovato una componente conn
         RETURN count
 \end{lstlisting}
 
-\section{Esercizio Controlla se G è Aciclico}
-Modificare l’algoritmo DFS di visita di un grafo orientato G in maniera tale che stabilisca
-se G è acicilico, ossia se non contiene cicli.
-\subsection*{Spiegazione}
-Un grafo è aciclico se non contiene nessun arco all'indietro (btw se un grafo non orientato è aciclico allora è un albero).
-\\Quindi bisogna semplicemente iniziallizzare un Boolean "acyclic" a TRUE e farlo diventare FALSE qual'ora si incontrasse un arco all'indietro
+	\section{Esercizio Controlla se G è Aciclico}
+	Modificare l’algoritmo DFS di visita di un grafo orientato G in maniera tale che stabilisca
+	se G è acicilico, ossia se non contiene cicli.
+	\subsection*{Spiegazione}
+	Un grafo è aciclico se non contiene nessun arco all'indietro (btw se un grafo non orientato è aciclico allora è un albero).
+	\\Quindi bisogna semplicemente iniziallizzare un Boolean "acyclic" a TRUE e farlo diventare FALSE qual'ora si incontrasse un arco all'indietro
 
-\subsection*{Pseudocodice}
-\begin{lstlisting}[mathescape=true]
+	\subsection*{Pseudocodice}
+	\begin{lstlisting}[mathescape=true]
 DFS-ACYCLIC(G)
     for ogni $u \in V$
         col[u] = WHITE
@@ -373,7 +373,7 @@ DFS-ACYCLIC(G)
     return acyclic    
 \end{lstlisting}
 
-\begin{lstlisting}[mathescape=true]
+	\begin{lstlisting}[mathescape=true]
 DFS-VISIT-ACYCLIC(u)
     col[u] = GRAY
     time++
@@ -389,51 +389,51 @@ DFS-VISIT-ACYCLIC(u)
     f[u] = time
 \end{lstlisting}
 
-\subsection*{In caso di grafo NON ORIENTATO}
-Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
+	\subsection*{In caso di grafo NON ORIENTATO}
+	Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
 
-\chapter{Domande di Teoria}
+	\chapter{Domande di Teoria}
 
-\section{Domande date da Dennunzio}
-\paragraph*{}Queste domande vengono da un file che ha distribuito il Professor Dennunzio.
+	\section{Domande date da Dennunzio}
+	\paragraph*{}Queste domande vengono da un file che ha distribuito il Professor Dennunzio.
 
-\domanda{1}{
-    Siano $X=<x_1,...,x_m>$ e $Y=< y_1,...,y_n>$ due sequenze e sia $Z=<z_1,...,z_k>$
-    una LCS di X e Y. Scrivere la proprieta’ di sottostruttura ottima di Z    
-}
-\risposta{
-    Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
-\begin{enumerate}
-    \item Se $x_m = y_n$, allora $z_k = x_m =y_n$ e $Z_{k-1}$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
-    \item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
-    \item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
-\end{enumerate}
-}
-\reflibro{Teorema 15.1 pag 325}
-\domanda{2}{
-Scrivere le equazioni di ricorrenza per risolvere il problema della LCS di due
-sequenze, specificando bene il significato delle variabili coinvolte 
-}
-\risposta{
-\begin{equation*}
-    c[i,j] = \begin{cases}
-        0                      & \text{se $i = 0$ or $j = 0$}           \\
-        c[i-1,j-1] + 1         & \text{se $i,j > 0$ and $x_i = y_j$}    \\
-        max(c[i,j-1], c[i-1,j]) & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
-    \end{cases}
-\end{equation*}
-$c[i,j]$ è una matrice contenente la lunghezza di una qualsiasi LCS delle sottosequenze di lunghezza rispettivamente $i$ e $j$ di $X$ e $Y$
-}
-\reflibro{“Fase 2: una soluzione ricorsiva” pag. 325}
-\domanda{3}{
-    Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
-    specificando il suo tempo di calcolo\\
-}
-\risposta{
-Tempo di esecuzione di LCS-LENGHT: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
-} 
-%lstlisting non va dentro \risposta per cose di variabili e boh
-\begin{lstlisting}[mathescape=true] 
+	\domanda{1}{
+		Siano $X=<x_1,...,x_m>$ e $Y=< y_1,...,y_n>$ due sequenze e sia $Z=<z_1,...,z_k>$
+		una LCS di X e Y. Scrivere la proprieta’ di sottostruttura ottima di Z
+	}
+	\risposta{
+		Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
+		\begin{enumerate}
+			\item Se $x_m = y_n$, allora $z_k = x_m =y_n$ e $Z_{k-1}$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
+			\item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
+			\item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
+		\end{enumerate}
+	}
+	\reflibro{Teorema 15.1 pag 325}
+	\domanda{2}{
+		Scrivere le equazioni di ricorrenza per risolvere il problema della LCS di due
+		sequenze, specificando bene il significato delle variabili coinvolte
+	}
+	\risposta{
+		\begin{equation*}
+			c[i,j] = \begin{cases}
+				0                       & \text{se $i = 0$ or $j = 0$}           \\
+				c[i-1,j-1] + 1          & \text{se $i,j > 0$ and $x_i = y_j$}    \\
+				max(c[i,j-1], c[i-1,j]) & \text{se $i,j > 0$ and $x_i \neq y_j$} \\
+			\end{cases}
+		\end{equation*}
+		$c[i,j]$ è una matrice contenente la lunghezza di una qualsiasi LCS delle sottosequenze di lunghezza rispettivamente $i$ e $j$ di $X$ e $Y$
+	}
+	\reflibro{“Fase 2: una soluzione ricorsiva” pag. 325}
+	\domanda{3}{
+		Scrivere l’algoritmo che determina la lunghezza della LCS di due sequenze
+		specificando il suo tempo di calcolo\\
+	}
+	\risposta{
+		Tempo di esecuzione di LCS-LENGHT: $\theta(mn)$ perchè il calcolo di ogni posizione della tabella richiede 1.
+	}
+	%lstlisting non va dentro \risposta per cose di variabili e boh
+	\begin{lstlisting}[mathescape=true] 
 LCS-LENGHT(X,Y)
 m = X.lenght
 n = Y.lenght
@@ -455,186 +455,196 @@ for i = 1 to m
             b[i,j] = $\leftarrow $
 return c e b
 \end{lstlisting}
-\reflibro{"Fase 3: Calcolare la lunghezza di una LCS" pag.326}
+	\reflibro{"Fase 3: Calcolare la lunghezza di una LCS" pag.326}
 
-\domanda{4}{
-Definire qual è il sottografo dei predecessori (o albero BFS) prodotto dalla
-visita BFS di un grafo $G=<V,E>$, specificando bene da quali vertici e quali
-archi e’ composto.
-}
-\risposta{
-Il sottografo dei predecessori $G_\pi <V_\pi, E_\pi>$ è un albero BF (o albero di visita in ampiezza) se:
-$V_\pi$ è formato da vertici raggiungibili da $s$ e, per ogni $v \in V_\pi$, c'è un solo cammino semplice da $s$ a $v$ in $G_\pi$ che è anche un cammino minimo da $s$ a $v$ in $G$.
-GLi archi in $E_\pi$ sono detti \emph{archi dell'albero}.
-}
-\reflibro{“Alberi di visita in ampiezza”  pag. 502}
-\domanda{5}{
-Scrivere qual e’ il tempo di calcolo dell’algoritmo BFS motivando BENE la
-risposta (fare riferimento allo pseudocodice).
-}
-\risposta{
-Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
-Di cui $O(V)$ è il tempo delle operazioni con la coda, e $O(E)$ è il tempo per l'ispezione di ADJ.
-}
-\reflibro{"Analisi" pag 499}
-\domanda{6}{
-Spiegare il significato dei colori assegnati ai vertici dall’algoritmo BFS.
-Alla fine dell’esecuzione dell’algoritmo BFS su un grafo $G=<V,E>$, quali colori assumono i vertici?
-}
-\risposta{
-BFS assegna ad ogni vertice del grafo un colore:
-\\\emph{Bianco} per i vertici non ancora scoperti, \emph{Grigio} per i vertici scoperti ma di cui ancora non è stata scandita del tutto la lista di adiacenza
-e \emph{Nero} ad ogni vertice scoperto di cui è stata scandita l'intera lista di adiacenza.
-\\Alla fine dell'esecuzione di BFS, ogni nodo appartenente alla componente connessa del nodo sorgente assumera il colore \emph{nero} 
-}
-\domanda{7}{
-Definire qual e’ il sottografo dei predecessori (o foresta DF) prodotto dalla visita DFS di un grafo $G=<V,E>$,
-specificando bene da quali vertici e quali archi e’ composto.
-}
-\risposta{
-Il sottografo dei predecessori o foresta DF è così definita:
+	\domanda{4}{
+		Definire qual è il sottografo dei predecessori (o albero BFS) prodotto dalla
+		visita BFS di un grafo $G=<V,E>$, specificando bene da quali vertici e quali
+		archi e’ composto.
+	}
+	\risposta{
+		Il sottografo dei predecessori $G_\pi <V_\pi, E_\pi>$ è un albero BF (o albero di visita in ampiezza) se:
+		$V_\pi$ è formato da vertici raggiungibili da $s$ e, per ogni $v \in V_\pi$, c'è un solo cammino semplice da $s$ a $v$ in $G_\pi$ che è anche un cammino minimo da $s$ a $v$ in $G$.
+		GLi archi in $E_\pi$ sono detti \emph{archi dell'albero}.
+	}
+	\reflibro{“Alberi di visita in ampiezza”  pag. 502}
+	\domanda{5}{
+		Scrivere qual e’ il tempo di calcolo dell’algoritmo BFS motivando BENE la
+		risposta (fare riferimento allo pseudocodice).
+	}
+	\risposta{
+		Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
+		Di cui $O(V)$ è il tempo delle operazioni con la coda, e $O(E)$ è il tempo per l'ispezione di ADJ.
+	}
+	\reflibro{"Analisi" pag 499}
+	\domanda{6}{
+		Spiegare il significato dei colori assegnati ai vertici dall’algoritmo BFS.
+		Alla fine dell’esecuzione dell’algoritmo BFS su un grafo $G=<V,E>$, quali colori assumono i vertici?
+	}
+	\risposta{
+		BFS assegna ad ogni vertice del grafo un colore:
+		\\\emph{Bianco} per i vertici non ancora scoperti, \emph{Grigio} per i vertici scoperti ma di cui ancora non è stata scandita del tutto la lista di adiacenza
+		e \emph{Nero} ad ogni vertice scoperto di cui è stata scandita l'intera lista di adiacenza.
+		\\Alla fine dell'esecuzione di BFS, ogni nodo appartenente alla componente connessa del nodo sorgente assumera il colore \emph{nero}
+	}
+	\domanda{7}{
+		Definire qual e’ il sottografo dei predecessori (o foresta DF) prodotto dalla visita DFS di un grafo $G=<V,E>$,
+		specificando bene da quali vertici e quali archi e’ composto.
+	}
+	\risposta{
+	Il sottografo dei predecessori o foresta DF è così definita:
 $G\pi = (V, E\pi )$ , dove:
 $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
-\\In pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
-}
+	\\In pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
+	}
 
-\domanda{8}{
-Descrivere la classificazione degli archi che la visita in profondità produce a partire da un grafo $G=<V,E>$.
-Come si classifica un generico arco $(u,v)$ del grafo?
-}
-\risposta{
-DFS classifica gli alberi in questo modo:
-Arco dell'albero: ogni arco che va a scoprire un nuovo vertice,
-Arco all'indietro: se va in un nodo grigio,
-Arco in avanti: se va in un nodo nero scoperto dopo u,
-Arco di attraversamento: se va in un nodo nero scoperto prima di u.
-}
-\domanda{9}{
-Scrivere qual e’ il tempo di calcolo dell’algoritmo DFS motivando bene la
-risposta (fare riferimento allo pseudocodice)}
-\risposta{
-DFS ha un tempo di esecuzione di $\theta(V+E)$.
-DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco, quindi $\theta(V)$)
-e il ciclo in DFS-VISIT è chiamato una volta per ogni arco (ogni volta che c'è una adiacenza, quindi $\theta(E)$)
-}
-\domanda{11}{
-Dare la definizione di ordinamento topologico, specificando bene a che tipo di
-grafo si applica. Descrivere come si ottiene l’ordinamento topologico
-sfruttando l’algoritmo DFS
-}
-\risposta{
-Un ordinamento topologico di un DAG G è un ordinamento lineare di tutti i suoi vertici tale che, se G contiene un arco (u,v), allora u appare prima di v nell'ordinamento.
-l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
-}
+	\domanda{8}{
+		Descrivere la classificazione degli archi che la visita in profondità produce a partire da un grafo $G=<V,E>$.
+		Come si classifica un generico arco $(u,v)$ del grafo?
+	}
+	\risposta{
+		DFS classifica gli alberi in questo modo:
+		Arco dell'albero: ogni arco che va a scoprire un nuovo vertice,
+		Arco all'indietro: se va in un nodo grigio,
+		Arco in avanti: se va in un nodo nero scoperto dopo u,
+		Arco di attraversamento: se va in un nodo nero scoperto prima di u.
+	}
+	\domanda{9}{
+		Scrivere qual e’ il tempo di calcolo dell’algoritmo DFS motivando bene la
+		risposta (fare riferimento allo pseudocodice)}
+	\risposta{
+		DFS ha un tempo di esecuzione di $\theta(V+E)$.
+		DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco, quindi $\theta(V)$)
+		e il ciclo in DFS-VISIT è chiamato una volta per ogni arco (ogni volta che c'è una adiacenza, quindi $\theta(E)$)
+	}
+	\domanda{11}{
+		Dare la definizione di ordinamento topologico, specificando bene a che tipo di
+		grafo si applica. Descrivere come si ottiene l’ordinamento topologico
+		sfruttando l’algoritmo DFS
+	}
+	\risposta{
+		Un ordinamento topologico di un DAG G è un ordinamento lineare di tutti i suoi vertici tale che, se G contiene un arco (u,v), allora u appare prima di v nell'ordinamento.
+		l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
+	}
 
-\domanda{12}{
-Descrivere la caratterizzazione della struttura di un cammino minimo $p=< v1, …, vl>$ utilizzata dall’algoritmo di Floyd-Warshall.
-}
-\risposta{
-L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$ 
-è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
+	\domanda{12}{
+		Descrivere la caratterizzazione della struttura di un cammino minimo $p=< v1, …, vl>$ utilizzata dall’algoritmo di Floyd-Warshall.
+	}
+	\risposta{
+	L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$
+	è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
 %non l'ho capita bene    
 }
 \domanda{13}{
-Illustrare e motivare le equazioni di ricorrenza su cui si basa l’algoritmo di
-Floyd-Warshall, specificando bene il significato delle variabili coinvolte.}
+	Illustrare e motivare le equazioni di ricorrenza su cui si basa l’algoritmo di
+	Floyd-Warshall, specificando bene il significato delle variabili coinvolte.}
 \risposta{
-    Equazione di ricorrenza:
-    \begin{equation*}
-        d_{ij}^k = \begin{cases}
-            w_{ij}                                        & k=0 \\
-            min\{d_{ij}^{k-1},d_{ik}^{k-1} + d_{kj}^{k-1}\} & k>0
-        \end{cases}
-    \end{equation*}
-    in cui: $w_ij$ è il peso dell'arco da $i$ a $j$, $d_{ij}^k$ è il peso del cammino minimo da $i$ a $j$ usando al più i vertici di indice $k$.
-    $d_{ij}^k$ assume il valore del peso dell'arco diretto tra $i$ e $j$ se non ci sono archi intermedi, altrimenti il minore tra il cammino minimo usando un vertice intermedio in meno e la somma di due cammini minimi usando un vertice intermedio in meno.
+	Equazione di ricorrenza:
+	\begin{equation*}
+		d_{ij}^k = \begin{cases}
+			w_{ij}                                          & k=0 \\
+			min\{d_{ij}^{k-1},d_{ik}^{k-1} + d_{kj}^{k-1}\} & k>0
+		\end{cases}
+	\end{equation*}
+	in cui: $w_ij$ è il peso dell'arco da $i$ a $j$, $d_{ij}^k$ è il peso del cammino minimo da $i$ a $j$ usando al più i vertici di indice $k$.
+	$d_{ij}^k$ assume il valore del peso dell'arco diretto tra $i$ e $j$ se non ci sono archi intermedi, altrimenti il minore tra il cammino minimo usando un vertice intermedio in meno e la somma di due cammini minimi usando un vertice intermedio in meno.
 }
 
 \domanda{14}{
-illustrare un metodo per costruire i cammini minimi nell’algoritmo di Floyd-Warshall.
+	illustrare un metodo per costruire i cammini minimi nell’algoritmo di Floyd-Warshall.
 }
 \risposta{
-Per costruire i cammini minimi in FW calcolo la matrice D dei pesi dei cammini minimi e poi costruisco la matrice dei predecessori della matrice D.
+	Per costruire i cammini minimi in FW calcolo la matrice D dei pesi dei cammini minimi e poi costruisco la matrice dei predecessori della matrice D.
 }
 \domanda{15}{
-Che cos’e’ la chiusura transitiva di un grafo orientato? Descrivere un modo
-per calcolarla.}
+	Che cos'è la \textbf{chiusura transitiva} di un grafo orientato?
+	Descrivere un modo per calcolarla.
+}
 \risposta{
-Dato un grafo orientato si vuole determinare se per ciascuna coppia di ij esuste un cammino da i a j. la chiusura transitiva è definita come il grafo G* = (V,E*) dove E* = {(i,j): esiste un cammino dal vertice i al vertice j in G}\\
-un modo per calcolare la CT consiste nell'assegnare un peso 1 a ogni arco e nell'eseguire FW. se esiste un cammino da i a j si ha dij < n, altrimenti infinito
+	La \emph{chiusura transitiva} di un grafo orientato è un grafo che ha un arco da un nodo $i$ a $j$ se nel grafo originale esiste un cammino tra i due.
+	\\Più formalmente: dato un grafo orientato si vuole determinare se per ciascuna coppia di vertici $i,j$ esiste un cammino da i a j.
+	La chiusura transitiva è definita come il grafo $G* = (V,E*)$ dove $E* = \{(i,j)$: esiste un cammino dal vertice $i$ al vertice $j$ in $G\}$\\
+	\\Un modo per calcolare la CT di un grafo consiste nell'assegnare un peso 1 a ogni arco di $E$ e nell'eseguire FW.
+	se esiste un cammino da $i$ a $j$ si ha $d_{ij}$ < n, altrimenti infinito.
 }
 \domanda{16}{
-escrivere come modificare le equzioni di ricorrenza dell’algoritmo di Floyd-Warshall per calcolare la chiusura transitiva di un grafo orientato.\\
-k=0
+	Descrivere come modificare le equazioni di ricorrenza dell’algoritmo di Floyd-Warshall per calcolare la chiusura transitiva di un grafo orientato.
 }
 \risposta{
-\begin{equation*}
-	t_{ij}^0 = \begin{cases}
-		0  & i \neq j \land (i,j) \notin E \\
-		\  & i = j \lor (i,j) \in E        \\
-	\end{cases}
-\end{equation*}
-k>0
-\begin{equation*}
-	t_{ij}^k = t_{ij}^{k-1} \lor (t_{ik}^{k-1} \land t_{kj}^{k-1})
-\end{equation*}
+	La variabile $t_{ij}^k$ assume valore $1$ se esiste un cammino da $i$ a $j$ utilizzando al più vertici intermedi di indice $k$, 0 altrimenti (equivalgono a \emph{True} e \emph{False})
+	\\Per $k=0$
+	\begin{equation*}
+		t_{ij}^0 = \begin{cases}
+			0 & i \neq j \land (i,j) \notin E \\
+			1 & i = j \lor (i,j) \in E        \\
+		\end{cases}
+	\end{equation*}
+	$k>0$
+	\begin{equation*}
+		t_{ij}^k = t_{ij}^{k-1} \lor (t_{ik}^{k-1} \land t_{kj}^{k-1})
+	\end{equation*}
 }
 
 \domanda{17}{
-Dare la definizione di:
-\begin{enumerate}
-    \item Sistema di Indipendenza.
-    \item Problema associato ad
-    un coppia costituita da un sistema di indipendenza e da funzione peso definita
-    sul sistema di indipendenza.
-\end{enumerate}
-Scrivere inoltre qual è l’algoritmo Greedy associato a tale coppia.
+	Dare la definizione di:
+	\begin{enumerate}
+		\item Sistema di Indipendenza.
+		\item Problema associato ad
+		      un coppia costituita da un sistema di indipendenza e da funzione peso definita
+		      sul sistema di indipendenza.
+	\end{enumerate}
+	Scrivere inoltre qual è l’algoritmo Greedy associato a tale coppia.
 }
 \risposta{
-\begin{enumerate}
-    \item Sistema di indipendenza: Data la coppia $<E,F>$ dove $E$ è un insieme finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia sistema di indipendenza se vale la seguente proprietà:
-    \begin{equation*}
-        \forall A \in F se B \subseteq A \implies B \in F
-    \end{equation*}
-\end{enumerate}
+	\begin{enumerate}
+		\item Sistema di indipendenza: Data la coppia $<E,F>$ dove $E$ è un insieme finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia sistema di indipendenza se vale la seguente proprietà:
+		      \begin{equation*}
+			      \forall A \in F se B \subseteq A \implies B \in F
+		      \end{equation*}
+	\end{enumerate}
 
 }
 \domanda{18}{
-Definire cos’è un matroide, enunciare il Teorema di Rado.}
+	Definire cos’è un matroide, enunciare il Teorema di Rado.}
 \risposta{
-Un \emph{Matroide} è un sistema di independenza che rispetta la seguente proprietà:
-$$
-	\forall A, B \in F \text{ e } |A| = |B| + 1 \implies \exists a \in A\backslash B \text{ tale che } B \cup \{a\} \in F
-$$
-il Teorema di Rado dice: Dato un sitema di indipendenza $<E,F>$ le seguenti proposizioni sono equivalenti:
-\begin{itemize}
-	\item Per ogni funzione peso $w : E \to R+$, l'algoritmo greedy associato fornisce una soluzione ottima
-	\item $<E,F>$ è un matroide
-\end{itemize}
+	Un \emph{Matroide} è un sistema di independenza che rispetta la seguente proprietà:
+	$$
+		\forall A, B \in F \text{ e } |A| = |B| + 1 \implies \exists a \in A\backslash B \text{ tale che } B \cup \{a\} \in F
+	$$
+	il Teorema di Rado dice: Dato un sitema di indipendenza $<E,F>$ le seguenti proposizioni sono equivalenti:
+	\begin{itemize}
+		\item Per ogni funzione peso $w : E \to R+$, l'algoritmo greedy associato fornisce una soluzione ottima
+		\item $<E,F>$ è un matroide
+	\end{itemize}
 }
 \domanda{19}{
-Cos’è una struttura dati per insiemi disgiunti? Definire formalmente quali
-sono le operazioni principali su una struttura dati per insiemi disgiunti.
+	Cos’è una struttura dati per insiemi disgiunti? Definire formalmente quali
+	sono le operazioni principali su una struttura dati per insiemi disgiunti.
+}
+\risposta{
+    Una struttura dati per insiemi disgiunti serve a mantenere una collezione di insiemi disgiunti.
+    Le operazioni principali sono: Make-set(x), che che crea un nuovo insieme con x come unico elemento, Find-set(x) che restituisce un puntatore al rappresentante del set in cui è contenuto x,
+    e Union(x,y) che unisce gli insiemi di cui x e y fanno parte.
 }
 
 \domanda{20}{
-Illustrare i possibili modi con cui è possibile rappresentare una struttura dati per insiemi disgiunti e complessità relative
+	Illustrare i possibili modi con cui è possibile rappresentare una struttura dati per insiemi disgiunti e complessità relative
 }
 
 \domanda{21}{
-Definire formalmente cos'è un albero di compertura minimo(MST)?
-Illustrare l'approccio greedy generico (fornire la procedura GENERIC-MST) per determinare un MST illustrando il principio di funzionamento (cosa fa la proceduara ad ogni iterazione, proprietà invariante di ciclo, nozione di arco sicuro, ecc).
-Come si trova un'arco sicuro?
-definizioni di: taglio, archo che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.
-Teorema che dà una condizione sufficiente affinchè un arco sia sicuro.
+	Definire formalmente cos'è un albero di compertura minimo(MST)?
+	Illustrare l'approccio greedy generico (fornire la procedura GENERIC-MST) per determinare un MST illustrando il principio di funzionamento (cosa fa la proceduara ad ogni iterazione, proprietà invariante di ciclo, nozione di arco sicuro, ecc).
+	Come si trova un'arco sicuro?
+	definizioni di: taglio, archo che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.
+	Teorema che dà una condizione sufficiente affinchè un arco sia sicuro.
 }
 
 \domanda{22}{
-    Illustrare gli algoritmi di Kruskal e Prim facendo riferimento alla procedura GENERICS-MST.
-    Che differenze tra i due rispetto all'insieme A e a cosa è un arco sicuro.
-    Complessità computazionale dei due algoritmi.
+	Illustrare gli algoritmi di Kruskal e Prim facendo riferimento alla procedura GENERICS-MST.
+	Che differenze tra i due rispetto all'insieme A e a cosa è un arco sicuro.
+	Complessità computazionale dei due algoritmi.
 }
 \domanda{23}{
-    Complessità computazionale dell'algoritmo di Floyd-Warshall (giustificare)
+	Complessità computazionale dell'algoritmo di Floyd-Warshall (giustificare)
 }
 \end{document}
