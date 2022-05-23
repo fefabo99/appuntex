@@ -6,6 +6,31 @@
 \date{2022}
 \maketitle
 \tableofcontents
+
+\chapter{Introduzione}
+\section{Gli esami}
+La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli anni precedenti:
+\paragraph*{}
+\begin{tabular}{ |c|c|c|c| }
+	\hline
+	Esame         & Crocette   & Domande Aperte & Note                       \\
+	\hline
+	Febbraio 2019 &            &                &                            \\
+	Giugno 2019   & \checkmark &                &                            \\
+	Luglio 2019   &            &                &                            \\
+	Gennaio 2020  &            &                &                            \\
+	Febbraio 2020 & \checkmark &                &                            \\
+	Giugno 2020   & \checkmark &                & 1 parziale e 2 non risolte \\
+	Luglio 2020   &            &                &                            \\
+	Gennaio 2021  &            &                &                            \\
+	Febbraio 2021 &            &                &                            \\
+	Giugno 2021   & \checkmark &                &                            \\
+	Luglio  2021  &            &                &                            \\
+	Gennaio 2022  &            &                &                            \\
+	Febbraio 2022 &            &                &                            \\
+	\hline
+\end{tabular}
+
 \chapter{Compitini}
 \section{Compitino 2019}
 \subsection{Domande Chiuse}
@@ -13,7 +38,7 @@
 \domanda{1a}{La serie $\serie{1}{+\infty} \frac{ln^4n}{n^{\alpha - 2} + 2n}$ è}
 \risposta{Convergente sse $\alpha > 3$}
 \spiegazione{
-    $\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
+	$\frac{ln^4n}{n^{\alpha - 2} + 2n} = \frac{1}{ln^{-4}n\cdot n^{\alpha-2}+2n} $,  se $\alpha >3$ l'esponente di $n$ è $>1$ rendendo la serie convergente
 }
 
 \domanda{1b}{La serie $\serie{1}{+\infty} \frac{ln^3}{n^{\alpha - 1} + 3n}$ è}
@@ -23,26 +48,26 @@
 \domanda{2a}{La somma della serie $\serie{0}{+\infty} 3\cdot (-\frac{1}{2})^{n+1}$ è uguale a}
 \risposta{$-1$}
 \spiegazione{
-    Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
+	Una serie di tipo $\sum q^n$ con $q^n < 1$ è una serie geometrica, risolvibile quindi come $\frac{1}{1-q}$
 }
 \domanda{2b}{La somma della serie $\serie{0}{+\infty} 3\cdot (-\frac{1}{2})^{n+2}$ è uguale a}
 \risposta{$\frac{1}{2}$}
 
 \domanda{3a}{Il $\limite{n}{+\infty} \frac{3n^2-n+n ln n +(-1)^n}{2n+4n ln n - n^ - \frac 2/n^2}$ vale}
 \risposta{3}
- 
+
 
 \chapter{Esami}
 \section{Febbraio 2021}
 
-\domanda{1}{Sia $a_n = \frac{n \ln (1- \frac{2}{n^3})}{n \sqrt[3]{n} - n^3}$. Allore, per $n \to +\infty$, 
+\domanda{1}{Sia $a_n = \frac{n \ln (1- \frac{2}{n^3})}{n \sqrt[3]{n} - n^3}$. Allore, per $n \to +\infty$,
 }
 \risposta{$a_n \sim \frac{2}{n^5}$}
 \spiegazione{
-$$
-        a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3} \rightarrow \frac{\frac{2}{n^2}}{n^3} \rightarrow \frac{2}{n^2} \cdot \frac{1}{n^3} = \frac{2}{n^5}
-$$
-    Bisogna trovare una successione asintoticamente equivalente sia per il numeratore, che per il denominatore.
+	$$
+		a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3} \rightarrow \frac{\frac{2}{n^2}}{n^3} \rightarrow \frac{2}{n^2} \cdot \frac{1}{n^3} = \frac{2}{n^5}
+	$$
+	Bisogna trovare una successione asintoticamente equivalente sia per il numeratore, che per il denominatore.
 }
 \domanda{2}{Sia $f:\R \to \R$ con $f'(0)=0,f''(x)=ln(e+x)$.Allora $f$ ha in $x=0$}
 \risposta{Un punto di minimo Relativo}
@@ -51,33 +76,33 @@ $$
 \domanda{3}{Sia $f:\R \to \R$ una funzione continua e dispari. Allora, $\int_{-3}{4} f(x) dx$ è uguale a}
 \risposta{$\int_{3}^{4} f(x) dx$}
 \spiegazione{Una funzione dispari è una funzione che ha il grafico simmetrico rispetto all'origine, quindi ha $f(-a) = -f(a)$.
-L'integrale è l'area sottesa della funzione \emph{con il segno}, quindi in una $f(x)$ dispari $\int_{-a}^{a} f(x) dx = 0$ (Spiegazione negli appunti).
-Di conseguenza è intuibile che in questa funzione l'integrale da -3 a 3 si annulla, e rimane solo l'area da 3 a 4.}
- 
+	L'integrale è l'area sottesa della funzione \emph{con il segno}, quindi in una $f(x)$ dispari $\int_{-a}^{a} f(x) dx = 0$ (Spiegazione negli appunti).
+	Di conseguenza è intuibile che in questa funzione l'integrale da -3 a 3 si annulla, e rimane solo l'area da 3 a 4.}
+
 
 \domanda{4}{La derivata della funzione $f(x) = \sqrt[3]{\frac{x^3}{2} +1}$ è}
 \risposta{$\frac{x^2}{2\sqrt[3]{(\frac{x^3}{2}+1)^2}}$}
 \spiegazione{
-    La derivata di una funzione composta è: $f(g(x))' = f'(g(x))\cdot g'(x)$.
-    Per quanto riguarda la radice, è meglio farla a mano trasformandola ($\sqrt[\alpha]{x^\beta} = x^\frac{\beta}{\alpha}$).
-    Il resto sono calcoli Algebrici
-    }
+	La derivata di una funzione composta è: $f(g(x))' = f'(g(x))\cdot g'(x)$.
+	Per quanto riguarda la radice, è meglio farla a mano trasformandola ($\sqrt[\alpha]{x^\beta} = x^\frac{\beta}{\alpha}$).
+	Il resto sono calcoli Algebrici
+}
 
 \domanda{5}{la serie $\serie{1}{+\infty} \frac{1}{n^{(\alpha+1)/2}\ln^2n}$ }
 \risposta{Converge sse $\alpha \geq 1$}
 \spiegazione{Siccome $n^{...}$ si moltiplica al logaritmo, se fosse infinitesimo annullerebbe il denominatore rendendo la serie divergente a infinito.
-Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1$}
+	Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1$}
 
 
 \domanda{6}{La funzione $f(x) = \begin{cases}a \sin x - b^2  & -2 \leq x \leq 0 \\ 1-e^x &0<x\leq 3\end{cases}$ è derivabile in $x=0$ se e solo se:}
 \risposta{$a=-1,b=0$}
 \spiegazione{
-    Una funzione è derivabile in un punto se è continua e se i limiti destro e sinistro della derivata in quel punto coincidono.
-    \\Verificando la continuità, è banale che $b^2=0 \to b=0$.
-    \\Verficiando i limiti della derivata invece:
-    $ f(x) = a sinx \implies f'(x) = a cos(x)$, $\limite{x}{o^-} a cos(x) = a$.
-    \\ $f(x) = 1 -e^x \implies f'(x) = -e^x$, $\limite{x}{o^+} -e^x = -1$.
-    \\Di conseguenza, $a = -1$ per la derivabilità.
+	Una funzione è derivabile in un punto se è continua e se i limiti destro e sinistro della derivata in quel punto coincidono.
+	\\Verificando la continuità, è banale che $b^2=0 \to b=0$.
+	\\Verficiando i limiti della derivata invece:
+	$ f(x) = a sinx \implies f'(x) = a cos(x)$, $\limite{x}{o^-} a cos(x) = a$.
+	\\ $f(x) = 1 -e^x \implies f'(x) = -e^x$, $\limite{x}{o^+} -e^x = -1$.
+	\\Di conseguenza, $a = -1$ per la derivabilità.
 }
 
 
@@ -95,100 +120,100 @@ Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1
 \domanda{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
 \risposta{Converge assolutamente}
 \spiegazione{
-Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
-\\Usiamo quindi il criterio dell'assoluta convergenza.
-$$
-    |\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2})| \sim \frac{3}{n^2} 
-$$
-la corrispondenza asintotica vale perchè l'argomento del seno è infinitesimale. 
-La successione risultante è una serie armonica di grado $> 1$, quindi converge.
+	Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
+	\\Usiamo quindi il criterio dell'assoluta convergenza.
+	$$
+		|\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2})| \sim \frac{3}{n^2}
+	$$
+	la corrispondenza asintotica vale perchè l'argomento del seno è infinitesimale.
+	La successione risultante è una serie armonica di grado $> 1$, quindi converge.
 }
 \domanda{2}{La Successione $a_n = \frac{\ln(2+n^3)-5\sqrt[]{n^2-n}+2^{-n^4+5n}}{5n+3\ln n - n \ln n}}$ per $n \to +\infty$ ha limite:
 \risposta{$\limite{n}{+\infty} = 0$}
 \spiegazione{
-    Si trova una successione asintoticamente equivalente sia per numeratore, che per denominatore.
-    $$ a_n \sim \frac{2^{-n^4}}{5n}$$
-    Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
-    \\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
+	Si trova una successione asintoticamente equivalente sia per numeratore, che per denominatore.
+	$$ a_n \sim \frac{2^{-n^4}}{5n}$$
+	Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
+	\\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
 }
 
 \domanda{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
 \risposta{$$y=-2x+1$$}
 \spiegazione{
-    Per trovare un asintoto obliquo bisogna trovare $m$ e $q$ che compongono la retta $y=mx +q$:
-    \\$
-    m=\limite{x}{+\infty}\frac{f(x)}{x} 
-    = \frac{\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}}{x}
-    = (\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}})\cdot \frac{1}{x}
-    = \frac{2x^3+4x}{2x-x^3} + \frac{e^{-\frac{1}{x}}}{x}
-    = \frac{\cancel{x}(2x^2+4)}{\cancel{x}(2-x^2)} + \frac{e^{-\frac{1}{x}}}{x}
-    \sim \frac{2\cancel{x^2}}{-\cancel{x^2}} + \frac{e^{-\frac{1}{x}}}{x}
-    = -2 + \frac{e^{-\frac{1}{x}}}{x}
-    $. Siccome $\frac{e^{-\frac{1}{x}}}{x}$ tende a $0$, allora $m$ equivale a $-2$
-    \\Adesso dobbiamo trovare $q$
-    \\$
-    q = \limite{x}{+\infty} [f(x) -mx]
-    = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}} +2x
-    \sim \frac{2\cancel{x^3}}{-\cancel{x^2}} + e^{-\frac{1}{x}} +2x
-    =\cancel{-2x} + e^{-\frac{1}{x}} \cancel{+2x} = e^{-\frac{1}{x}} = 1
-    $
-    \\Quindi, l'asintoto obliquo esiste e ha equazione $y=-2x+1$
+	Per trovare un asintoto obliquo bisogna trovare $m$ e $q$ che compongono la retta $y=mx +q$:
+	\\$
+	m=\limite{x}{+\infty}\frac{f(x)}{x}
+	= \frac{\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}}{x}
+	= (\frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}})\cdot \frac{1}{x}
+	= \frac{2x^3+4x}{2x-x^3} + \frac{e^{-\frac{1}{x}}}{x}
+	= \frac{\cancel{x}(2x^2+4)}{\cancel{x}(2-x^2)} + \frac{e^{-\frac{1}{x}}}{x}
+	\sim \frac{2\cancel{x^2}}{-\cancel{x^2}} + \frac{e^{-\frac{1}{x}}}{x}
+	= -2 + \frac{e^{-\frac{1}{x}}}{x}
+	$. Siccome $\frac{e^{-\frac{1}{x}}}{x}$ tende a $0$, allora $m$ equivale a $-2$
+		\\Adesso dobbiamo trovare $q$
+		\\$
+		q = \limite{x}{+\infty} [f(x) -mx]
+		= \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}} +2x
+		\sim \frac{2\cancel{x^3}}{-\cancel{x^2}} + e^{-\frac{1}{x}} +2x
+		=\cancel{-2x} + e^{-\frac{1}{x}} \cancel{+2x} = e^{-\frac{1}{x}} = 1
+	$
+	\\Quindi, l'asintoto obliquo esiste e ha equazione $y=-2x+1$
 }
 
 \domanda{4}{Sia $f(x) = \sqrt{x^2 +2x +3}$. allora $f'(1)$ vale:}
 \risposta{$\frac{2}{\sqrt{6}}$}
 \spiegazione{
-    Basti ricordarsi che:
-    \\La derivata di una radice è: \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
-    \\Questa funzione è una funzione composta ($f(x) = \sqrt{g(x)}$), quindi bisogna derivarla come tale: $f(g(x)) = f'(g(x)) \cdot g'(x)$.
-    \\Una volta calcolata la derivata e semplificata fino a un punto "comodo", basta sostituire $x$ con 1. 
+	Basti ricordarsi che:
+	\\La derivata di una radice è: \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+	\\Questa funzione è una funzione composta ($f(x) = \sqrt{g(x)}$), quindi bisogna derivarla come tale: $f(g(x)) = f'(g(x)) \cdot g'(x)$.
+	\\Una volta calcolata la derivata e semplificata fino a un punto "comodo", basta sostituire $x$ con 1.
 }
 
 \domanda{5}{L'insieme delle soluzioni della disequazione $e^x \sqrt[3]{x-1} \geq 1$ è del tipo}
 \risposta{$(\alpha, +\infty)$ con $\alpha>1$}
 \spiegazione{
-Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzialmente "corretta", quindi quando il termine sinistro è maggiore di 1.
-\\Se si prova un po per esclusione, si vede che per $x=0$ è "falsa" e rimane così anche per valori minori di 0.
-\\$x=1$ ci da 0, quindi deve essere per forza un valore maggiore di 1
+	Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzialmente "corretta", quindi quando il termine sinistro è maggiore di 1.
+	\\Se si prova un po per esclusione, si vede che per $x=0$ è "falsa" e rimane così anche per valori minori di 0.
+	\\$x=1$ ci da 0, quindi deve essere per forza un valore maggiore di 1
 }
 
 \domanda{6}{la funzione $f(x) = \ln(x^2+2x+3)$ è monotona crescente se e solo se}
 \risposta{$x\in (-1,+\infty)$}
 \spiegazione{
-    Per trovare se una funzione è \emph{monotona crescente} bisogna porre la derivata della funzione $\geq 0$.
-    Il risultato è $x\geq -1$, che equivale a $x\in (-1,+\infty)$.
+	Per trovare se una funzione è \emph{monotona crescente} bisogna porre la derivata della funzione $\geq 0$.
+	Il risultato è $x\geq -1$, che equivale a $x\in (-1,+\infty)$.
 }
 \domanda{7}{L'estremo inferiore della successione $\{a_n\}_{n\geq0}$, dove $a_n = 3^{n+(-1)^nn}$ è:}
 \risposta{
-    1
+	1
 }
 \spiegazione{
-    Per vedere l'estremo inferiore di una successione bisognerebbe provare qualche valore di $n$ a partire dal più piccolo (in questo caso 0).
-    Se il termine è infinitesimale, l'estremo inferiore si trova con il limite, altrimenti vedi il valore minore che trovi.
+	Per vedere l'estremo inferiore di una successione bisognerebbe provare qualche valore di $n$ a partire dal più piccolo (in questo caso 0).
+	Se il termine è infinitesimale, l'estremo inferiore si trova con il limite, altrimenti vedi il valore minore che trovi.
 }
 \domanda{8}{$\int_{\pi/2}^{\pi} x \sin x dx$ vale:}
 \risposta{
-    $\pi -1$
+	$\pi -1$
 }
 \spiegazione{
-    Integro per parti, quindi abbiamo:
-    \\$f(x) = x$ e quindi $f'(x) = 1$
-    \\$g'(x)= \sin(x)$ e quindi $g(x) = -\cos(x)$
-    \\Risolvo con la formula dell'\emph{integrazione per parti}: 
-    $$x (-\cos(x)) - \int 1(-\cos(x)) = -x\cos(x)+\sin(x) = \sin(x)-x\cos(x)$$
-    Risolvo l'integrale per gli estremi dati:
-    $F(\pi) = \pi$, $F(\pi/2)=1$. 
-    Quindi l'integrale dato vale $\pi -1$
+	Integro per parti, quindi abbiamo:
+	\\$f(x) = x$ e quindi $f'(x) = 1$
+		\\$g'(x)= \sin(x)$ e quindi $g(x) = -\cos(x)$
+	\\Risolvo con la formula dell'\emph{integrazione per parti}:
+	$$x (-\cos(x)) - \int 1(-\cos(x)) = -x\cos(x)+\sin(x) = \sin(x)-x\cos(x)$$
+	Risolvo l'integrale per gli estremi dati:
+	$F(\pi) = \pi$, $F(\pi/2)=1$.
+	Quindi l'integrale dato vale $\pi -1$
 }
 
 \section{Giugno 2020}
 \domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
 \risposta{Suriettiva ma non Iniettiva}
 \spiegazione{
-    La funzione è \emph{suriettiva} perchè se riempie tutto $\R$. per controllarlo basta vedere i grafici dei due pezzi.
-    \\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due x diverse. Anche qua per controllarlo si possono usare i grafici oppure verificare provando.
-    Per esempio
-    sappiamo che con $f(0) = 2$ e $f(0^+)=1$, quindi rendendo la funzione non monotona. 
+	La funzione è \emph{suriettiva} perchè se riempie tutto $\R$. per controllarlo basta vedere i grafici dei due pezzi.
+	\\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due x diverse. Anche qua per controllarlo si possono usare i grafici oppure verificare provando.
+	Per esempio
+	sappiamo che con $f(0) = 2$ e $f(0^+)=1$, quindi rendendo la funzione non monotona.
 }
 
 \domanda{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
@@ -219,15 +244,15 @@ Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzia
 \domanda{7}{sia $f(x) = \arctan(\sqrt{x})$. Allora $f'(1)=$}
 \risposta{Nessuna delle precedenti ($\frac{1}{4}$)}
 \spiegazione{Trovo la derivata della funzione:
-\\$f'(x) = \frac{1}{1+x} \cdot \frac{1}{2\sqrt{x}} = \frac{1}{2\sqrt{x}(1+x)}$. La derivata vale in $x=1$:
-$f'(1) = \frac{1}{4}$}
+	\\$f'(x) = \frac{1}{1+x} \cdot \frac{1}{2\sqrt{x}} = \frac{1}{2\sqrt{x}(1+x)}$. La derivata vale in $x=1$:
+	$f'(1) = \frac{1}{4}$}
 
 \domanda{8}{Sia $f$ definita e continua su [a,b]. Allora}
 \risposta{Assume il valore $\frac{f(a)+f(b)}{2}$}
 \spiegazione{Non ho trovato nessuna definizione che giustifichi questa cosa, ma da Telegram mi dicono:
-Se una funzione è continua in un intervallo ed ho $y_1 = f(a)$ e $y_2 = f(b)$ allora la funzione può assumere tutti i valori tra $y_1$ e $y_2$.
-$\frac{f(a)+f(b)}{2}$ se lo guardi nell'asse delle y è un valore compreso tra $f(a)$ e $f(b)$.
-\\Un'altra risposta corretta potrebbe essere: Assume tutti i valori tra $f(a)$ e $f(b)$.
+	Se una funzione è continua in un intervallo ed ho $y_1 = f(a)$ e $y_2 = f(b)$ allora la funzione può assumere tutti i valori tra $y_1$ e $y_2$.
+	$\frac{f(a)+f(b)}{2}$ se lo guardi nell'asse delle y è un valore compreso tra $f(a)$ e $f(b)$.
+	\\Un'altra risposta corretta potrebbe essere: Assume tutti i valori tra $f(a)$ e $f(b)$.
 }
 
 \section{Giugno 2021}
@@ -243,7 +268,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 \domanda{O3}{Siano $f(x) = \ln(x^2+1)-1$ e $g(x) = |x+1|$. Allora $(g \circ f)(x) = $}
 \risposta{$ln(x^2 + 1)$}
 \spiegazione{
-Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnalo però che $|ln(x^2+1)| = ln(x^2+1)$, perchè il logaritmo ha dominio maggiore di 0, e in questo caso il suo argomento è sempre maggiore di 0, quindi le due funzioni si equivalgono.
+	Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnalo però che $|ln(x^2+1)| = ln(x^2+1)$, perchè il logaritmo ha dominio maggiore di 0, e in questo caso il suo argomento è sempre maggiore di 0, quindi le due funzioni si equivalgono.
 }
 \domanda{O4}{L'estremo superiore dell'insieme $A={\frac{1}{n+1} +2^{1-2n}, n= 1,2,...}$ è}
 \risposta{1}
@@ -251,16 +276,16 @@ Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnal
 \domanda{O5}{La funzione $f:\R \to \R$ definita da $f(x) = \begin{cases} e^{-x} & x>0 \\ x^2-1 &x\leq 0 \end{cases}$ è}
 \risposta{Nè suriettiva nè iniettiva}
 \spiegazione{
-    $e^{-x} = \frac{1}{e^x}$, che parte da vicino a uno e tende a 0.
-    \\$x^2-1$ è invece una funzione che parte da -1 e va verso l'alto.
-    \\Essendo la funzione definita in $\R$, ed essendo il minimo -1, la funzione non è suriettiva.
-    Visto che la seconda parte da -1 e va verso l'alto, mentre la prima parte da 1 e va verso 0, si incrociano sicuramente, rendendo la funzione non iniettiva.
+	$e^{-x} = \frac{1}{e^x}$, che parte da vicino a uno e tende a 0.
+	\\$x^2-1$ è invece una funzione che parte da -1 e va verso l'alto.
+		\\Essendo la funzione definita in $\R$, ed essendo il minimo -1, la funzione non è suriettiva.
+	Visto che la seconda parte da -1 e va verso l'alto, mentre la prima parte da 1 e va verso 0, si incrociano sicuramente, rendendo la funzione non iniettiva.
 }
 \domanda{O6}{L'integrale definito $\int_{0}^{2} \frac{x}{x^2+1} dx$ Vale:}
 \risposta{$\frac{ln(5)}{2}$}
 \spiegazione{Questa è una funzione razionale che può essere semplicemente trasformata in una del tipo $\frac{f'(x)}{f(x)}$ (che può essere risolta ed equivale a $\ln|f(x)|$) moltiplicando e dividendo per due, quindi:
-\\$\int  \frac{x}{x^2+1} = \frac{1}{2} \int \frac{2x}{x^2+1} = \frac{1}{2} \ln(x^2+1)$
-\\$[\frac{1}{2} \ln(x^2+1)]_{0}^{2} = \frac{ln(5)}{2}$
+	\\$\int  \frac{x}{x^2+1} = \frac{1}{2} \int \frac{2x}{x^2+1} = \frac{1}{2} \ln(x^2+1)$
+		\\$[\frac{1}{2} \ln(x^2+1)]_{0}^{2} = \frac{ln(5)}{2}$
 }
 
 \domanda{O7}{$\limite{n}{+\infty}(\ln n - \sqrt{n}+3e^{-n} +\sin n^2)$ Vale:}
