@@ -48,6 +48,13 @@ $$
 \risposta{Un punto di minimo Relativo}
 \irrisolta
 
+\domanda{3}{Sia $f:\R \to \R$ una funzione continua e dispari. Allora, $\int_{-3}{4} f(x) dx$ è uguale a}
+\risposta{$\int_{3}^{4} f(x) dx$}
+\spiegazione{Una funzione dispari è una funzione che ha il grafico simmetrico rispetto all'origine, quindi ha $f(-a) = -f(a)$.
+L'integrale è l'area sottesa della funzione \emph{con il segno}, quindi in una $f(x)$ dispari $\int_{-a}^{a} f(x) dx = 0$ (Spiegazione negli appunti).
+Di conseguenza è intuibile che in questa funzione l'integrale da -3 a 3 si annulla, e rimane solo l'area da 3 a 4.}
+ 
+
 \domanda{4}{La derivata della funzione $f(x) = \sqrt[3]{\frac{x^3}{2} +1}$ è}
 \risposta{$\frac{x^2}{2\sqrt[3]{(\frac{x^3}{2}+1)^2}}$}
 \spiegazione{
@@ -60,6 +67,29 @@ $$
 \risposta{Converge sse $\alpha \geq 1$}
 \spiegazione{Siccome $n^{...}$ si moltiplica al logaritmo, se fosse infinitesimo annullerebbe il denominatore rendendo la serie divergente a infinito.
 Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1$}
+
+
+\domanda{6}{La funzione $f(x) = \begin{cases}a \sin x - b^2  & -2 \leq x \leq 0 \\ 1-e^x &0<x\leq 3\end{cases}$ è derivabile in $x=0$ se e solo se:}
+\risposta{$a=-1,b=0$}
+\spiegazione{
+    Una funzione è derivabile in un punto se è continua e se i limiti destro e sinistro della derivata in quel punto coincidono.
+    \\Verificando la continuità, è banale che $b^2=0 \to b=0$.
+    \\Verficiando i limiti della derivata invece:
+    $ f(x) = a sinx \implies f'(x) = a cos(x)$, $\limite{x}{o^-} a cos(x) = a$.
+    \\ $f(x) = 1 -e^x \implies f'(x) = -e^x$, $\limite{x}{o^+} -e^x = -1$.
+    \\Di conseguenza, $a = -1$ per la derivabilità.
+}
+
+
+\domanda{7}{Quali tra questi insiemi è un intervallo?}
+\risposta{$\{x \in \R: 2|x| \geq x^2\}$}
+\spiegazione{}
+
+\domanda{8}{Date le funzioni $f(x) = \ln(x), g(x)= x^3, h(x) = 2-x$, la funzione composta $(h \circ g \circ f)(x)$ è:}
+\risposta{$2-\ln(x)$}
+\spiegazione{$(h \circ g \circ f)(x) = h(g(f(x)))$}
+
+
 \section{Giugno 2019}
 
 \domanda{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
