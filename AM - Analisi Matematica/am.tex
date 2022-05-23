@@ -597,7 +597,7 @@ Bisogna provare a svolgere un paio di limiti.
 		\item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
 		\item[\textbf{Arcotangente}] \derivata{\arctan(x)}{\frac{1}{1+x^2}}
 		\item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
-		\item[\textbf{Radice}] \derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+		\item[\textbf{Radice}] Meglio fare il calcolo a mano con le potenze%\derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
 		\item[\textbf{e$^x$}] \derivata{e^x}{e^x}
 		\item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
 		\item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
@@ -605,8 +605,9 @@ Bisogna provare a svolgere un paio di limiti.
 	\end{itemize}
 	\subsection{Derivate composte}
 	\begin{itemize}
-		\item Prodotto : $f(x) \cdot g(x) = f'(x) \cdot g(x) + f(x) \cdot g'(x)$
-		\item Composizione : $f(g(x)) = f'(g(x)) \cdot g'(x)$
+		\item[Composizione] $f(g(x)) \implies f'(g(x)) \cdot g'(x)$
+		\item[Prodotto] $f(x) \cdot g(x) \implies f'(x) \cdot g(x) + f(x) \cdot g'(x)$
+  		\item[Divisione] $h(x)=\frac{f(x)}{g(x)} \implies h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]2}$
 	\end{itemize}
 
 

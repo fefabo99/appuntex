@@ -43,10 +43,23 @@ $$
         a_n = \frac{n \ln(1-\frac{2}{n^3})}{n \sqrt[3]{n}-n^3} \rightarrow \frac{\frac{2}{n^2}}{n^3} \rightarrow \frac{2}{n^2} \cdot \frac{1}{n^3} = \frac{2}{n^5}
 $$
     Bisogna trovare una successione asintoticamente equivalente sia per il numeratore, che per il denominatore.
-    \\
 }
+\domanda{2}{Sia $f:\R \to \R$ con $f'(0)=0,f''(x)=ln(e+x)$.Allora $f$ ha in $x=0$}
+\risposta{Un punto di minimo Relativo}
+\irrisolta
 
+\domanda{4}{La derivata della funzione $f(x) = \sqrt[3]{\frac{x^3}{2} +1}$ è}
+\risposta{$\frac{x^2}{2\sqrt[3]{(\frac{x^3}{2}+1)^2}}$}
+\spiegazione{
+    La derivata di una funzione composta è: $f(g(x))' = f'(g(x))\cdot g'(x)$.
+    Per quanto riguarda la radice, è meglio farla a mano trasformandola ($\sqrt[\alpha]{x^\beta} = x^\frac{\beta}{\alpha}$).
+    Il resto sono calcoli Algebrici
+    }
 
+\domanda{5}{la serie $\serie{1}{+\infty} \frac{1}{n^{(\alpha+1)/2}\ln^2n}$ }
+\risposta{Converge sse $\alpha \geq 1$}
+\spiegazione{Siccome $n^{...}$ si moltiplica al logaritmo, se fosse infinitesimo annullerebbe il denominatore rendendo la serie divergente a infinito.
+Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1$}
 \section{Giugno 2019}
 
 \domanda{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
@@ -214,7 +227,11 @@ Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnal
     Visto che la seconda parte da -1 e va verso l'alto, mentre la prima parte da 1 e va verso 0, si incrociano sicuramente, rendendo la funzione non iniettiva.
 }
 \domanda{O6}{L'integrale definito $\int_{0}^{2} \frac{x}{x^2+1} dx$ Vale:}
-\irrisolta
+\risposta{$\frac{ln(5)}{2}$}
+\spiegazione{Questa è una funzione razionale che può essere semplicemente trasformata in una del tipo $\frac{f'(x)}{f(x)}$ (che può essere risolta ed equivale a $\ln|f(x)|$) moltiplicando e dividendo per due, quindi:
+\\$\int  \frac{x}{x^2+1} = \frac{1}{2} \int \frac{2x}{x^2+1} = \frac{1}{2} \ln(x^2+1)$
+\\$[\frac{1}{2} \ln(x^2+1)]_{0}^{2} = \frac{ln(5)}{2}$
+}
 
 \domanda{O7}{$\limite{n}{+\infty}(\ln n - \sqrt{n}+3e^{-n} +\sin n^2)$ Vale:}
 \irrisolta
