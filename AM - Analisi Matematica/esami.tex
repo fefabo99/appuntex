@@ -206,6 +206,33 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	Quindi l'integrale dato vale $\pi -1$
 }
 
+\subsection{Domande Aperte}
+\domandaaperta{1i}{Data la serie $\serie{1}{+\infty} (\frac{x^2+6}{5x})^n$, Si determino i valori di $x\in\R \backslash \{0\}$ per cui converge, e se ne calcoli la somma.}
+
+\rispostaaperta{
+	La serie è di tipo gemoetrico con ragione $q=\frac{x^2+6}{5x}$, e per convergere deve essere $|q|<1$.
+	$$|\frac{x^2+6}{5x}| < 1 = \frac{x^2+6}{|5x|}<1$$
+	Risolviamo quindi per $x<0$ e per $x>0$.
+	\begin{equation*}
+		\begin{cases}
+			x>0 \\
+			\frac{x^2+6}{5x} < 1 = \frac{x^2+6}{5x} -1 < 0 =\frac{x^2+6-5x}{5x} < 0
+		\end{cases}
+	\end{equation*}
+	Siccome $5x > 0$ è valido sempre per $x>0$, risolviamo solo il numeratore e troviamo $2<x<5$
+	\\Facendo la stessa cosa per $x<0$ (con il denominatore di $q$ invertito di segno) trovo  $-2<x<-3$
+	Quindi, per i valori di x compresi tra $-2<x<-3$ e $2<x<3$ la somma della serie vale:
+	$$
+	S=\frac{1}{1-\frac{x^2+6}{5x}} =\text{non mi viene il risultato, dovrebbe venire} \frac{x^2+6}{5x-x^2-6}
+	$$
+}
+\domandaaperta{1ii}{
+	Si studi la funzione $f(x)=\frac{(x+1)^2}{3x(2x-1)}$ (Limiti ai punti di frontiera del dominio, Eventuali asintoti, monotonia, grafico qualitativo. NON è richiesto lo studio della derivata seconda).
+	\\Si calcolino l'estremo superiore e l'estremo inferiore di $f$ relativamente all'intervallo $[1,+\infty)$, specificando se sono anche massimo e/o minimo su tale intervallo. 
+}
+
+
+
 \section{Giugno 2020}
 \domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
 \risposta{Suriettiva ma non Iniettiva}
