@@ -341,6 +341,42 @@ Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue
 Per calcolare la monotonia di una funzione, bisogna porre la derivata (che è il "rateo" di crescita della funzione) \emph{Maggiore (o minore o maggiore uguale o minore uguale) di 0}.
 Nei punti in cui la derivata rimane maggiore (minore,...) di 0, la funzione è \emph{monotona crescente (decrescente,...)}
 
+
+\section{Studio di Funzione}
+Una parte importantissima dell'Analisi Matematica (che fa parte di un intero esercizio d'esame) è lo \emph{Studio di Funzione},
+che mette insieme quasi tutti gli argomenti del corso.
+
+Lo studio di funzione è composto di 5 passaggi:
+\begin{enumerate}
+	\item Definizone del Dominio
+ \item Segno e intersezione con gli assi
+ \item Limiti e Asintoti
+ \item Segno della derivata
+\end{enumerate}
+
+\subsection{Definizione del Dominio}
+Una funzione $f:\R \to \R$ non sempre è definita in tutto $\R$, spesso ci sono degli intervalli (o dei punti) in cui non è definibile.
+Per trovare questi punti in cui non è definibile bisogna:
+\begin{itemize}
+	\item porre tutti i \textbf{Denominatori $\neq 0$}
+ \item porre tutti gli \textbf{Argomenti delle Radici pari $\geq 0$}
+ \item porre tutti gli \textbf{Argomenti dei Logaritmi $>0$}
+ \item ogni funzione del tipo $f(x)^{g(x)}$, $f(x)$ va posto maggiore di 0
+ \item gli argomenti di $\arcsin$ e $\arccos$ vanno posti $-1 < x <1$
+\end{itemize}
+Ovviamente, una volta definito il dominio della funzione vado a eliminare dal piano cartesiano le zone in cui $f(x)$ non è definita.
+\subsection*{Simmetrie/Periodicità}
+Questa fase è facoltativa ma ogni tanto ci aiuta.
+\begin{equation}
+	f(-x) = \begin{cases}
+		f(x) \implies \text{Funzione Pari}\\
+		-f(x) \implies \text{Funzione Dispari}\\
+		NIL \implies \text{Funzione ne Pari ne Dispari}
+	\end{cases}
+\end{equation}
+Le \emph{Funzioni Periodiche} sono generalmente quelle goniometriche.
+\subsection{Segno e Intersezione con gli Assi}
+Il segno della funzione ci permette di vedere dove la funzione è positiva
 \chapter{Successioni}
 
 \section{Introduzione}
@@ -467,11 +503,21 @@ Mentre per il passo induttivo si può provare come segue:
 }
 
 \chapter{Limiti e Continuità}
+
+\section{Forme di Indecisione}
+Le forme di Indecisione (o forme indeterminate) sono operazioni che coinvolgono infiniti e infinitesimi nel calcolo dei limiti per le quali \emph{non è possibile determinare un risultato a priori}.
+\\Le operazioni problematiche nel calcolo dei limiti sono essenzialmente sette:
+\begin{center}
+	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[0^0]$ $[\infty^0]$
+\end{center}
+
 \section{Limiti Notevoli}
 \begin{itemize}
 	\item $\limite{x}{0} \ln(1+x) \sim x$
 	\item $\limite{x}{0} \ln(1-x) \sim -x$
 \end{itemize}
+
+
 
 \section{Asintoti Verticali e Orizzontali}
 \subsection*{Asintoti Verticali}
