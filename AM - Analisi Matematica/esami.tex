@@ -230,7 +230,70 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	Si studi la funzione $f(x)=\frac{(x+1)^2}{3x(2x-1)}$ (Limiti ai punti di frontiera del dominio, Eventuali asintoti, monotonia, grafico qualitativo. NON è richiesto lo studio della derivata seconda).
 	\\Si calcolino l'estremo superiore e l'estremo inferiore di $f$ relativamente all'intervallo $[1,+\infty)$, specificando se sono anche massimo e/o minimo su tale intervallo. 
 }
+\rispostaaperta{
+	\paragraph*{Dominio della funzione} $3x(2x-1)\neq 0 \to x\neq 0 \wedge x\neq \frac{1}{2}$, quindi
+	la funzione è definita in $\R\backslash\{0,\frac{1}{2}\}$
+	\paragraph*{Limiti agli estremi del dominio}
+	$$\limite{x}{\pm\infty} f(x) = \frac{\infty}{\infty} \text{ Indecisione!}$$
+	Riformulo quindi la funzione
+	$$\limite{x}{\pm\infty} f(x) = \frac{x^2+1+2x}{6x^2-3x} \sim \frac{\cancel{x^2}}{6\cancel{x^2}} = \frac{1}{6}$$
+	$$\limite{x}{0^-} f(x)= \frac{1}{0^+(-1)} = \frac{1}{0^-} = -\infty$$
+	$$\limite{x}{0^+} f(x)= \frac{1}{0^-(-1)} = \frac{1}{0^+} = +\infty$$
+	$$\limite{x}{\frac{1}{2}^+} = \frac{\frac{9}{4}}{\frac{3}{2}(0^+)} = \frac{\frac{9}{4}}{0^+} = +\infty $$
+	$$\limite{x}{\frac{1}{2}^+} = \frac{\frac{9}{4}}{\frac{3}{2}(0^-)} = \frac{\frac{9}{4}}{0^-} = -\infty $$
 
+	\paragraph*{Asintoti}
+	Dai limiti, si deduce che:
+	\begin{itemize}
+		\item $\frac{1}{6}$ è Asintoto Orizzontale per $x\to \pm \infty$.
+  		\item $0,\frac{1}{2}$ sono Asintoti Verticali.
+	\end{itemize}
+
+	\paragraph*{Monotonia}
+	Per calcolare la monotonia di una funzione bisogna verificare i punti in cui la derivata della funzione è maggiore o uguale a zero.
+	faccio la \emph{derivata prima}
+	$f(x) = \frac{(x+1)^2}{3x(2x-1)}$, quindi usando le formule base per le derivate ottengo:
+	$$
+	f'(x) = \frac{2(x+1)(3x(2x-1))-((12x-3)(x+1)^2)}{(3x(2x-1))^2}
+	$$
+	Risolvo alcuni calcoli aritmetici:
+	$$
+	= \frac{6x(x+1)(2x-1)-((12x-3)(x+1)^2)}{9x^2(2x-1)^2}
+	$$
+	Raccolgo $(x+1)$ nel numeratore:
+	$$
+	= \frac{(x+1)((6x(2x-1))-((12x-3)(x+1)))}{9x^2(2x-1)^2}
+	$$
+	Risolvo alcuni calcoli aritmetici:
+	$$
+	= \frac{(x+1)((12x^2-6x)-(12x^2+12x-3x+3))}{9x^2(2x-1)^2}
+	$$
+	$$
+	=\frac{(x+1)(\cancel{12x^2}-6x-\cancel{12x^2}-12x+3x+3)}{9x^2(2x-1)^2}
+	$$
+	$$
+	=\frac{(x+1)(-15x+3)}{9x^2(2x-1)^2}
+	$$
+	Raccolgo il 3 dal secondo membro del numeratore:
+	$$
+	=\frac{(x+1)3(-5x+1)}{9x^2(2x-1)^2}
+	$$
+	Finisco con un calcolo aritmetico:
+	$$
+	=\frac{(x+1)(-5x+1)}{3x^2(2x-1)^2}
+	$$
+	
+}
+\domandaaperta{2}{
+	Si enunci il teorema di esistenza del limite per successioni monotone.
+	\\Data la successione:
+	$$
+	a_n = ln(n+1)-ln n = ln(\frac{n+1}{n}) \text{ con } n\geq 1
+	$$
+	\textbf{i.} si verifichi, utilizzando la definizione, che è monotona (crescente o decrescente?);
+	\\\textbf{ii.} si calcoli $\limite{n}{+\infty}(\ln(n+1)-\ln n)$
+	\\\textbf{iii.} si calcoli la somma della serie $\serie{1}{+\infty}(\ln(n+1)-\ln n)$
+}
 
 
 \section{Giugno 2020}
@@ -246,9 +309,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \domanda{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
 \risposta{è definita per ogni $x\geq 0$}
 \spiegazione{$g\circ f = g(f(x)) = ln(1+e^{\sqrt{x}})$, quindi bisogna vedere dove è definita quella funzione.
-\\Sappiamo che l'argomento di una radice va posto maggiore o uguale a zero.
-\\Forse anche il logaritmo (VEDERE)}
-\parzialmenterisolta
+\\Sappiamo che l'argomento di una radice va posto maggiore o uguale a zero, e quello di un logaritmo va posto maggiore di 0}
 
 \domanda{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
 \risposta{$\frac{e}{e^2-1}$}
