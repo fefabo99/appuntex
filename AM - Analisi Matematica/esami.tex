@@ -1,5 +1,8 @@
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage{fstyle}
+
+\graphicspath{ {./img/} }
+
 \begin{document}
 \title{Esami di Analisi Matematica}
 \author{Fabio Ferrario}
@@ -222,10 +225,14 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	Siccome $5x > 0$ è valido sempre per $x>0$, risolviamo solo il numeratore e troviamo $2<x<5$
 	\\Facendo la stessa cosa per $x<0$ (con il denominatore di $q$ invertito di segno) trovo  $-2<x<-3$
 	Quindi, per i valori di x compresi tra $-2<x<-3$ e $2<x<3$ la somma della serie vale:
+
 	$$
-	S=\frac{1}{1-\frac{x^2+6}{5x}} =\text{non mi viene il risultato, dovrebbe venire} \frac{x^2+6}{5x-x^2-6}
+	S=\frac{1}{1-\frac{x^2+6}{5x}} - 1 =\frac{5x}{5x-x^2+6} - 1 = \frac{x^2+6}{5x-x^2-6}
 	$$
-}
+	\nb{il "$-1$" va messo perchè la formula della serie geometrica si applica solo alle serie che partono da 0,
+	quindi per le serie che partono da 1 la formula diventa $\frac{1}{1-q} - (q)^0$, ovvero si toglie il termine con $n=0$.
+	}
+	}
 \domandaaperta{1ii}{
 	Si studi la funzione $f(x)=\frac{(x+1)^2}{3x(2x-1)}$ (Limiti ai punti di frontiera del dominio, Eventuali asintoti, monotonia, grafico qualitativo. NON è richiesto lo studio della derivata seconda).
 	\\Si calcolino l'estremo superiore e l'estremo inferiore di $f$ relativamente all'intervallo $[1,+\infty)$, specificando se sono anche massimo e/o minimo su tale intervallo. 
@@ -282,7 +289,18 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	$$
 	=\frac{(x+1)(-5x+1)}{3x^2(2x-1)^2}
 	$$
-	
+	\subparagraph*{Pongo la derivata $\geq 0$}
+	Per trovare gli intervalli in cui la funzione è crescente.
+	$$
+	\frac{(x+1)(-5x+1)}{3x^2(2x-1)^2} \geq 0
+	$$
+	Studio il segno dei 4 polinomi della derivata e li unisco:
+	$x+1\geq 0 \to x\geq -1$, $-5x+1\geq 0 \to x\leq \frac{1}{5}$ per il numeratore,
+	\\ $3x^2>0 \to \forall x$, $(2x-1)^2>0 \to \forall x$ per il denominatore.
+	Unisco i risultati e ottengo:
+	\\\includegraphics[width=\textwidth]{disequaz-giugno-2019.png}
+	quindi $f'(x)\geq 0$ se e solo se $x\in [-1,0)\cup (0.\frac{1}{5})$ (nota che zero è escluso perchè è punto di disconitinuità).
+	\\In particolare, $x=-1$ è punto di minimo relativo, $x=\frac{1}{5}$ è punto di massimo relativo.
 }
 \domandaaperta{2}{
 	Si enunci il teorema di esistenza del limite per successioni monotone.
