@@ -244,16 +244,16 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	$$\limite{x}{\pm\infty} f(x) = \frac{\infty}{\infty} \text{ Indecisione!}$$
 	Riformulo quindi la funzione
 	$$\limite{x}{\pm\infty} f(x) = \frac{x^2+1+2x}{6x^2-3x} \sim \frac{\cancel{x^2}}{6\cancel{x^2}} = \frac{1}{6}$$
-	$$\limite{x}{0^-} f(x)= \frac{1}{0^+(-1)} = \frac{1}{0^-} = -\infty$$
-	$$\limite{x}{0^+} f(x)= \frac{1}{0^-(-1)} = \frac{1}{0^+} = +\infty$$
+	$$\limite{x}{0^+} f(x)= \frac{1}{0^+(-1)} = \frac{1}{0^-} = -\infty$$
+	$$\limite{x}{0^-} f(x)= \frac{1}{0^-(-1)} = \frac{1}{0^+} = +\infty$$
 	$$\limite{x}{\frac{1}{2}^+} = \frac{\frac{9}{4}}{\frac{3}{2}(0^+)} = \frac{\frac{9}{4}}{0^+} = +\infty $$
-	$$\limite{x}{\frac{1}{2}^+} = \frac{\frac{9}{4}}{\frac{3}{2}(0^-)} = \frac{\frac{9}{4}}{0^-} = -\infty $$
+	$$\limite{x}{\frac{1}{2}^-} = \frac{\frac{9}{4}}{\frac{3}{2}(0^-)} = \frac{\frac{9}{4}}{0^-} = -\infty $$
 
 	\paragraph*{Asintoti}
 	Dai limiti, si deduce che:
 	\begin{itemize}
 		\item $\frac{1}{6}$ è Asintoto Orizzontale per $x\to \pm \infty$.
-  		\item $0,\frac{1}{2}$ sono Asintoti Verticali.
+  		\item $x=0,x=\frac{1}{2}$ sono Asintoti Verticali.
 	\end{itemize}
 
 	\paragraph*{Monotonia}
@@ -301,18 +301,43 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	\\\includegraphics[width=\textwidth]{disequaz-giugno-2019.png}
 	quindi $f'(x)\geq 0$ se e solo se $x\in [-1,0)\cup (0,\frac{1}{5}]$ (nota che zero è escluso perchè è punto di disconitinuità).
 	\\In particolare, $x=-1$ è punto di minimo relativo, $x=\frac{1}{5}$ è punto di massimo relativo.
+
+	\paragraph*{Grafico Qualitativo}
+	Per tracciare il grafico, conosco i punti di discontinuità, i limiti e gli asintoti.
+	\\Per comodità, trovo: $f(-1)=0$ e $f(\frac{1}{5})=-4$ e traccio il grafico:
+	\includegraphics[width=\textwidth]{grafico-giugno-2019.png}
 }
 \domandaaperta{2}{
 	Si enunci il teorema di esistenza del limite per successioni monotone.
 	\\Data la successione:
 	$$
-	a_n = ln(n+1)-ln n = ln(\frac{n+1}{n}) \text{ con } n\geq 1
+	a_n = \ln(n+1)-\ln n = \ln(\frac{n+1}{n}) \text{ con } n\geq 1
 	$$
 	\textbf{i.} si verifichi, utilizzando la definizione, che è monotona (crescente o decrescente?);
 	\\\textbf{ii.} si calcoli $\limite{n}{+\infty}(\ln(n+1)-\ln n)$
 	\\\textbf{iii.} si calcoli la somma della serie $\serie{1}{+\infty}(\ln(n+1)-\ln n)$
 }
+\rispostaaperta{
+	\paragraph*{Teorema di esistenza del limite:}
+	Se una successione è monotona crescente allora il limite esiste e coincide con l'estremo superiore della successione.
+	\\Se invece è monotona decrescente allora il limite esiste e coincide con l'estremo inferiore della successione.
+	\paragraph*{i}
+	Si vuole dimostrare che la successione sia monotona (crescente o decrescente).
+	\\Notiamo che la successione si può semplificare in: $a_n=\ln(1+\frac{1}{n})$, il che ci rende le cose molto più facili:
+	\\intuitivamente notiamo che $a_{n+1}<a_n$, quindi:
+	$$a_{n+1} = \ln(1+\frac{1}{n+1}) < ln(1+\frac{1}{n}) = a_n$$
+	e, siccome $\frac{1}{n+1}<\frac{1}{n}$ e la funzione logaritmo è crescente ($\ln(n)<\ln(n+1)$)
+	ne consegue che la serie $\{a_n\}$ è \emph{Monotona Decrescente}.
+	\paragraph*{ii}
+	$limite{n}{+\infty} a_n = \ln(1+\frac{1}{n}) = \ln(1) = 0$.
+	\\Volendo si può dire anche che per un $x\to0$ il logaritmo di $(1+x)$ è asintotico ad $x$, in questo caso quindi sarebbe asintotico a $\frac{1}{n}$, ovvero 0.
 
+	\paragraph*{iii}
+	La serie $a_n$ è a termini positivi e $\ln(n+1) - \ln(n) \sim \frac{1}{n}$ (vedi sopra), pertanto è divergente ($+\infty$)s.
+
+
+
+	}
 
 \section{Giugno 2020}
 \domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
