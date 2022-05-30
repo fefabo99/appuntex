@@ -343,10 +343,10 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
 \risposta{Suriettiva ma non Iniettiva}
 \spiegazione{
-	La funzione è \emph{suriettiva} perchè se riempie tutto $\R$. per controllarlo basta vedere i grafici dei due pezzi.
-	\\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due x diverse. Anche qua per controllarlo si possono usare i grafici oppure verificare provando.
-	Per esempio
-	sappiamo che con $f(0) = 2$ e $f(0^+)=1$, quindi rendendo la funzione non monotona.
+	La funzione è \emph{suriettiva} perchè riempie tutto $\R$.
+	Per controllarlo basta vedere i grafici dei due segmenti della funzione.
+	\\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due $x$ diverse.
+	Per verificarlo basti vedere che nel grafico della funzione id due segmenti si accavallano su alcuni valori di $y$.
 }
 
 \domanda{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
@@ -356,8 +356,18 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 
 \domanda{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
 \risposta{$\frac{e}{e^2-1}$}
-\spiegazione{Il risultato mi viene $\frac{e^3}{e^2-1}$, quindi bisogna CAPIRE cosa ho sbagliato}
-\parzialmenterisolta
+\spiegazione{
+La serie si può riscrivere come:
+\\$\serie{1}{\infty} e^{1-2n} = e\sum (\frac{1}{e^2})^n$
+\\Essendo una serie geometrica con argomento minore del modulo di 1, si può risolvere con la formula risolutiva.
+Siccome però la serie parte da 1, bisogna togliere la somma con n=0, quindi:
+\\$= e \frac{1}{1-\frac{1}{e^2}} -1 = \frac{e}{1-\frac{1}{e^2}}-1 
+= \frac{e}{\frac{e^2-1}{e^2}}-1 
+= e\frac{e^2}{e^2-1}-1 = \frac{e^3}{e^2-1}-1 = \frac{e^3-e^2+1}{e^2-1}
+=\frac{e+1}{e^2-1}
+$
+\\Il risultato mi viene $\frac{e+1}{e^2-1}$ ma dovrebbe essere $\frac{e}{e^2-1}$, quindi bisogna capire cosa ho sbagliato}
+\irrisolta
 
 \domanda{4}{Sia $f:\R \to \R$ la funzione definita da $f(x) = \int_{1}^{x} t^2 e^{\sqrt[3]{t}} dt$. Allora:}
 \risposta{$f$ è Crescente}
