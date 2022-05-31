@@ -911,8 +911,10 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 
 	\paragraph{In parole povere}
 	Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
-	\\ \textbf{Attenzione però}, perchè questo vale se la serie parte con $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
-
+	\\\nb{La formula risolutiva risolve le serie che partono da $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
+	\\Nota anche che se la serie presenta una costante moltiplicativa, questa va poi moltiplicata anche alle somme che vai a rimuovere!
+	\\$k\cdot \sum_{n=1} q^n = k(\frac{1}{1-q} - q^0) = \frac{k}{1-q}-k(q^0)$
+	}
 	\subsection{Serie Telescopica}
 	Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
 	Allora risulta:
