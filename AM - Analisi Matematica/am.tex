@@ -181,9 +181,6 @@ un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 	\item $\cos(\pi) = -1$
 \end{itemize}
 
-
-
-
 \section{Valore assoluto (modulo) di un numero Reale}
 
 \definizione{ Per ogni $x \in R$ si pone
@@ -272,11 +269,15 @@ Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio 
 
 \subsection*{Insieme immagine}
 Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
-In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
-L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}.
-Vale sempre $f(X) \subseteq Y$, quindi l'immagine è \emph{sempre} conenuta nel codomino, ma in generale è $f(X) \subset Y$, cioè immagine e codominio sono diversi.
-\paragraph{In parole povere} L'insieme immagine di una funzione è l'insieme di tutti i valori della funzione per ogni elemento del dominio.
-L'insieme immagine è \emph{sempre} contenuta nel dominio, ma non sempre vi coincide.
+\\In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
+\\L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}.
+\\Vale sempre $f(X) \subseteq Y$, quindi \textbf{l'immagine è sempre conenuta nel codomino}, ma in generale è $f(X) \subset Y$, cioè immagine e codominio sono diversi.
+
+\paragraph{In parole povere}
+L'immagine di una funzione è l'insieme dei valori assunti da una funzione sul proprio dominio,
+ed è quindi contenuta nel codominio (o insieme di arrivo) della funzione, con il quale può al più coincidere.
+\paragraph{Come si calcola?}
+Per trovare l'insieme immagine, il modo più facile è guardare il grafico della funzione
 
 \subsubsection{Immagine Inversa}
 Dualmente al concetto di immagine c'è quello di antiimmagine.
@@ -689,10 +690,18 @@ Bisogna provare a svolgere un paio di limiti.
 
 
 
-	\section{Polinomio di Taylor}
+	\section{Formule di Taylor e di Mclaurin}
+	Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado k arbitrario centrato in $x_0$ nel caso dell aformula di Taylor,
+	e in 0 nel caso di quella di McLaurin.
+	\subsection*{Polinomio di Taylor}
+	Una funzione $f(x)$, che passi per un punto $x_0$ e che abbia in quel punto tutte le derivate necessarie,
+	si può approssimare nel punto $x_0$ mediante un polinomio così definito:
+	$$P_k(x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
+	L'errore che si commette in questa approssimazione non è maggiore della prima derivata che si trascura
 	\subsection*{Polinomio di McLaurin}
-$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2}x^2$
-
+	Nel caso in cui il punto $x_0$ sia l'origine ($x_0=0$) si ottiene la formula di McLaurin:
+	$$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3+...+ \frac{f^{(k)}(0)}{k!}x^k$$
+	Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
 	\chapter{Calcolo Integrale}
 	\section{Gli integrali}
 	\definizione{

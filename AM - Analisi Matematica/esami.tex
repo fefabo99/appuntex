@@ -334,10 +334,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 
 	\paragraph*{iii}
 	La serie $a_n$ è a termini positivi e $\ln(n+1) - \ln(n) \sim \frac{1}{n}$ (vedi sopra), pertanto è divergente ($+\infty$)s.
-
-
-
-	}
+}
 
 \section{Giugno 2020}
 \domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
@@ -395,6 +392,62 @@ $
 	\\Un'altra risposta corretta potrebbe essere: Assume tutti i valori tra $f(a)$ e $f(b)$.
 }
 
+\subsection{Domande Aperte}
+\domandaaperta{1}{
+	Si determinino $a$ e $b$ affinchè la funzione:
+	\begin{equation*}
+		f(x)= \begin{cases}
+			a\frac{\ln(x-1)}{x-2} +bx & x>2\\
+			2x^2-2x+1 &0 \leq x \leq 2\\
+			a(x+1)+3\frac{e^{bx}-1}{x} & x<0
+		\end{cases}
+	\end{equation*}
+	Sia continua in $\R$
+}
+\domandaaperta{2}{
+Data la funzione $f(x) = xe^{x-x^2+4}$
+}
+\domandaaperta{a}{
+Si calcolino $\limite{x}{-\infty}f(x)$ e $\limite{x}{+\infty} f(x)$
+}
+\rispostaaperta{
+$\limite{x}{+\infty} f(x) = 0^+$, perchè $e^{x-x^2+4} \sim e^{-x^2}$, quindi $+\infty \cdot 0 = 0^+$.
+$\limite{x}{-\infty} f(x) = 0^-$, perchè $e^{x-x^2+4} \sim e^{-x^2}$, quindi $-\infty \cdot 0 = 0^-$.
+}
+\domandaaperta{b}{
+Si determini il più ampio intervallo del tipo ($-\infty,k)$ su cui $f$ è monotona e si specifichi se $f$ è crescente o decrescente
+}
+\rispostaaperta{Per controllare la monotonia, faccio la derivata di $f(x)$ e la pongo $\geq 0$:
+\\$f'(x)= e^{x-x^2+4}+xe^{x-x^2+4}-2x^2e^{x-x^2+4} =e^{x-x^2+4}(1+x-2x^2)$.
+\\$f'(x)\geq 0 \to [-\frac{1}{2},1]$
+\\$f'(x)\leq 0 \to (-\infty,-\frac{1}{2}]\cup[1,+\infty)$, di conseguenza l'intervallo più alto in cui $f$ è monotona è:
+$(-\infty,-\frac{1}{2}]$ in cui è decrescente.
+}
+\domandaaperta{c}{
+	L'insieme immagine $Im(f)$ è:
+}
+\rispostaaperta{
+	Per trovare l'insieme immagine della funzione si può guardare il grafico della funzione (che in questo caso sarebbe una menata) oppure procedere un po a ragionamento.
+	\\Tramite lo studio della monotonia sappiamo che la funzione ha punto di minimo a $x=-\frac{1}{2}$ e di massimo a $x=1$.
+	Sappiamo anche che a sinistra la funzione va ad "appoggiarsi" a $0^-$ e da destra si "appoggia" a $0^+$.
+	\\Di conseguenza riusciamo a capire che l'immagine della funzione è $[f(-\frac{1}{2}), f(1)]$, quindi $[-\frac{1}{2}e^{\frac{13}{4}}, e^4]$ 
+}
+\domandaaperta{3}
+{Data la funzione $f(x) = \ln(1+2x)-2\sin x-6x^3$}
+\domandaaperta{a}{Il polinomio di McLaurin del terzo ordine per $f$ è:}
+\rispostaaperta{Per calcolare il polinomio di McLaurin del terzo ordine devo trovare la derivata prima, seconda e terza di $f(x)$ e il loro valore in $x=0$:
+$$f'(x)= \frac{2}{1+2x} - 2\cos x - 18x^2 \implies f'(0) = 0$$
+$$f''(x)=-\frac{4}{(2x+1)^2} + 2\sin x - 36x \implies f''(0)=-4$$
+$$f'''(x)=\frac{16}{(2x+1)^3}+2\cos x -36 \implies f'''(0)=-18$$
+Uso la formula per calcolare il polinomio di McLaurin:
+$$P= -2x^2 -3x^3$$
+}
+\domandaaperta{b}{$\int^{2}_{0} f(x) dx$ vale: }
+\domandaaperta{4}{Data la successione $\{a(n)\}_{n\in\N}$, si enunci, con le debite ipotesi, il criterio del rapporto per successioni.
+\\Utilizzando tale criterio, si calcoli:
+$$\limite{n}{+\infty} \frac{(2n)!}{(n+4)!}$$
+}
+
 \section{Giugno 2021}
 \domanda{O1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 + 4x$. sull'intervallo $I = (-1,1)$ la funzione $f$ è:}
 \spiegazione{Studiare CONCAVITA' e CONVESSITA'}
@@ -429,10 +482,29 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 }
 
 \domanda{O7}{$\limite{n}{+\infty}(\ln n - \sqrt{n}+3e^{-n} +\sin n^2)$ Vale:}
-\irrisolta
+\risposta{$-\infty$}
+\spiegazione{Bisogna trovare il limite più importante e in questo caso abbiamo:
+\begin{itemize}
+	\item $+\sin n^2$ che oscilla tra $0$ e $1$, quindi ignorabile
+ \item $+3e^{-n}$ che è infinitesimo, quindi ignorabile
+\end{itemize}
+Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radice è un infinito di ordine maggiore, vince lei e diventa $-\infty$
+	}
 \domanda{O8}{Siano $f,g : \R \to \R$ derivabili. se $f(2) = -2, f'(2)=4,g'(-2) = -4}$, allora $(g\circ f)'(2)$ Vale:
-\irrisolta
 
+\subsection{Domande Aperte}
+
+\domandaaperta{1}{Sia $\serie{1}{+\infty}(n^{\frac{1}{n}}-1)^n$}
+\domandaaperta{a}{Per studiare la serie uso il criterio:}
+\domandaaperta{b}{Applicando tale criterio ottengo il limite:}
+\domandaaperta{c}{Qual'è il valore di tale limite? la serie converge o diverge?}
+
+\domandaaperta{2}{Data la funzione $f(x) = x\sin x^2$}
+\domandaaperta{a}{Si scrivano tutte le primitive}
+\domandaaperta{b}{Si determini la primitiva $\phi$ tale che $\phi(\sqrt{3\pi/2}) = 0$}
+\domandaaperta{c}{si calcoli $\int^{\sqrt{2\pi}}_{\sqrt{3\pi/2}}f(x)dx$}
+
+\domandaaperta{3}{Devo ancora scriverla lol}
 
 \chapter{Cheatsheet}
 \section*{Serie}
@@ -451,4 +523,10 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 		\text{Irregolare} & q\leq 1
 	\end{cases}
 \end{equation*}
+\section*{Limiti}
+\paragraph*{Ordine degli infiniti}
+Nel calcolo dei limiti, quando bisogna trovare l'infinito di ordine maggiore:
+$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
+con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
+\nb{la radice è "più grande" del logaritmo}
 \end{document}
