@@ -264,7 +264,8 @@ def LCS-MAGGIORE-L(X,Y,L)
 \end{lstlisting}
 
 \section{LIS}
-%TODO
+%TODO, serve per risolvere l'esercizio uno dell'esame di gennaio 2022
+LIS, o Longest Increasing Subsequence è un algoritmo che calcola la più lunga sottosequenza crescente di una determinata sequenza.
 \section{LGCS / LICS} %Pagina 24 degli appunti pdf che ho preso da Elearning
 LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
 di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
@@ -278,80 +279,80 @@ Il sottoproblema non prende in considerazione l'intero input, ma solo i prefissi
 \\Date due sequenze X e Y, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$.
 \\Ad ogni sottoproblema è associata una \textbf{variabile} $c_{i,j}$ così definita:
 \\$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
-	\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
+\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
 
-	\subsection*{Problema ausiliario}
-	Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
+\subsection*{Problema ausiliario}
+Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
 
-	\paragraph*{Definizione di Problema Ausiliario}
-	Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
+\paragraph*{Definizione di Problema Ausiliario}
+Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
 
-	\spiegazione{
-		Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
-		Se questi non coincidono, la soluzione è la sequenza vuota.
-		Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
-	}
+\spiegazione{
+	Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
+	Se questi non coincidono, la soluzione è la sequenza vuota.
+	Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
+}
 
-	\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
-	a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
-	\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
-	\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
+a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
+\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
 
-	\spiegazione{
-		Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
-		a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
-		a verificare che $x_s = y_t < x_u = y_v$).
-	}
+\spiegazione{
+	Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
+	a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
+	a verificare che $x_s = y_t < x_u = y_v$).
+}
 
-	\subsection{Equazioni di ricorrenza}
-	\paragraph*{Nota bene} %dopo spostare in teoria TODO
-	un equazione di ricorrenza è composta da:
-	\begin{itemize}
-		\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
-		\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
-	\end{itemize}
+\subsection*{Equazioni di ricorrenza}
+\paragraph*{Nota bene} %dopo spostare in teoria TODO
+un equazione di ricorrenza è composta da:
+\begin{itemize}
+	\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
+	\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
+\end{itemize}
 
-	\paragraph*{Caso Base}
-	Fano parte del caso base:
-	\begin{itemize}
-		\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
-		\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
-	\end{itemize}
-	Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
-	è scrivibile come:
-	\begin{center}
-		$$c_{i,j} = 0$$
-		\\se $i=0 \vee j=0 \vee x_i \neq y_j$
-	\end{center}
-	\spiegazione{
-		Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
-		perchè non abbiamo sottosequenze comuni crescenti.
-	}
+\paragraph*{Caso Base}
+Fano parte del caso base:
+\begin{itemize}
+	\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
+	\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
+\end{itemize}
+Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
+è scrivibile come:
+\begin{center}
+	$$c_{i,j} = 0$$
+	\\se $i=0 \vee j=0 \vee x_i \neq y_j$
+\end{center}
+\spiegazione{
+	Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
+	perchè non abbiamo sottosequenze comuni crescenti.
+}
 
-	\paragraph*{Passo ricorsivo}
-	Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
-	\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
-	che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
-	Ovvero:
+\paragraph*{Passo ricorsivo}
+Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
+\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
+che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
+Ovvero:
 
-	\begin{center}
-		$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
-		\\se $i>0\wedge j>0 \wedge x_i = y_j$
-	\end{center}
+\begin{center}
+	$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
+	\\se $i>0\wedge j>0 \wedge x_i = y_j$
+\end{center}
 
-	Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
-	così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
+Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
+così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
 
-	\paragraph*{Soluzione del problema}
-	Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
-	Quindi la soluzione del problema iniziale è:
-	\begin{equation*}
-		max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
-	\end{equation*}
+\paragraph*{Soluzione del problema}
+Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
+Quindi la soluzione del problema iniziale è:
+\begin{equation*}
+	max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
+\end{equation*}
 
-	\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
+\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
 
-	\begin{lstlisting}
+\begin{lstlisting}
 def LGCS(X,Y)
 	max = 0
 	for i = 1 to m
@@ -370,41 +371,41 @@ def LGCS(X,Y)
 	return max
 \end{lstlisting}
 
-	\chapter{Algoritmi Greedy}
-	\section{Definizione}
-	A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
-	\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona.
-	\paragraph{Applicazioni}
-	Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
+\chapter{Algoritmi Greedy}
+\section{Definizione}
+A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
+\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona.
+\paragraph{Applicazioni}
+Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
 
-	\section{Algoritmo: Scheduling di Attività}
+\section{Algoritmo: Scheduling di Attività}
 
-	\subsection*{Introduzione}
-	Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
-	\paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
+\subsection*{Introduzione}
+Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
+\paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
 
-	\subsection*{Sottostruttura ottima}
-	Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
-	\\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
-	\begin{itemize}
-		\item $S^-_i = \{k \in S : f_k \leq S_i\}$
-		\item $S^+_i = \{k \in S : f_i \leq S_k\}$
-	\end{itemize}
-	è immediato verificare che:
-	\begin{itemize}
-		\item $A \cap S^-_i$ è una soluzione ottima per $S^-_i$
-		\item $A \cap S^+_i$ è una soluzione ottima per $S^+_i$
-	\end{itemize}
-	Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
+\subsection*{Sottostruttura ottima}
+Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
+\\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
+\begin{itemize}
+	\item $S^-_i = \{k \in S : f_k \leq S_i\}$
+	\item $S^+_i = \{k \in S : f_i \leq S_k\}$
+\end{itemize}
+è immediato verificare che:
+\begin{itemize}
+	\item $A \cap S^-_i$ è una soluzione ottima per $S^-_i$
+	\item $A \cap S^+_i$ è una soluzione ottima per $S^+_i$
+\end{itemize}
+Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
 
-	\subsection*{La scelta Greedy}
-	Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
-	Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
-	Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
-	\paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
+\subsection*{La scelta Greedy}
+Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
+Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
+Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
+\paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
 
-	\section{Sistemi di Indipendenza}
-	\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
+\section{Sistemi di Indipendenza}
+\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
 $$\forall A \in F \wedge B\subseteq A \implies B \in F$$
 \textbf{Ovvero}: dato un insieme di sottoinsiemi di $E$ chiamato $F$ e preso un qualsiasi elemento $A$ (che è un insieme) da $F$, in $F$ abbiamo anche tutti i sottoinsiemi di $A$
 
@@ -425,9 +426,9 @@ Tra questi abbiamo:
 	\item \textbf{Grafo Semplice}: Grafo non orientato che non comprende cappi e archi multipli.
 	\item \textbf{Grafo Completo}: è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri vertici, quindi $n_{archi} = n_{vertici} * (n_{vertici} - 1)/2$.
 	\item \textbf{Albero}: è un grafo non orientato $G$ connesso $tc$: $G$ è \emph{aciclico} $\vee$ $|E| = |V| - 1$.
-	      \\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
+			\\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
 	\item \textbf{DAG}: Grafo diretto (orientato) senza cicli, quindi aciclico.
-	      Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
+			Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
 \end{itemize}
 
 \subsection*{Altre definizioni}
@@ -522,7 +523,7 @@ def DFS(G)
         if col[u] == White
             DFS-VISIT(u)
 \end{lstlisting}
-\begin{lstlisting}
+	\begin{lstlisting}
 def DFS-VISIT(G,u)
 col[u] = Gray
 time++
@@ -768,39 +769,39 @@ DIJKSTRA(G, w, s)
             RELAX(u, v, w)
 \end{lstlisting}
 
-\paragraph{Spiegazione codice}
+	\paragraph{Spiegazione codice}
 $Q$ è una coda che contiene tutti i vertici del grafo ed $S$ è l'insieme delle soluzioni.
-Viene estratto il vertice con distanza minore dalla sorgente (al primo giro sarà sempre $s$ dato che è
-a distanza 0) e viene aggiunto all'insieme delle soluzioni. Viene poi fatto il rilassamento per ogni vertice adiacente
-a quello aggiunto alla soluzione, aggiornandone la stima della distanza dalla sorgente e il predecessore.
-viene ripetuto per ogni nodo rimanente nella coda Q.
+	Viene estratto il vertice con distanza minore dalla sorgente (al primo giro sarà sempre $s$ dato che è
+	a distanza 0) e viene aggiunto all'insieme delle soluzioni. Viene poi fatto il rilassamento per ogni vertice adiacente
+	a quello aggiunto alla soluzione, aggiornandone la stima della distanza dalla sorgente e il predecessore.
+	viene ripetuto per ogni nodo rimanente nella coda Q.
 
-\paragraph{Greedy}
-Dijkstra segue l'approccio Greedy, quindi sceglie sempre il vertice più "leggero" o "vicino" in V$\backslash$S
-da aggiungere all'insieme S. Vi è un'analogia con il criterio per l'ordinamento negli algoritmi Greedy
+	\paragraph{Greedy}
+	Dijkstra segue l'approccio Greedy, quindi sceglie sempre il vertice più "leggero" o "vicino" in V$\backslash$S
+	da aggiungere all'insieme S. Vi è un'analogia con il criterio per l'ordinamento negli algoritmi Greedy
 
-\paragraph{Tempo di esecuzione}
-\begin{itemize}
-	\item $O(E + |V|*log|V|)$ Se utiliziamo lo Heap di Fibonacci per estrarre velocemente il nodo a distanza minore nella coda
-	\item $O(|V|^2)$ Altrimenti (implementazione naive)
-\end{itemize}
+	\paragraph{Tempo di esecuzione}
+	\begin{itemize}
+		\item $O(E + |V|*log|V|)$ Se utiliziamo lo Heap di Fibonacci per estrarre velocemente il nodo a distanza minore nella coda
+		\item $O(|V|^2)$ Altrimenti (implementazione naive)
+	\end{itemize}
 
-\subsection{Algoritmo di Bellman-Ford}
+	\subsection{Algoritmo di Bellman-Ford}
 
-\paragraph{Attenzione}
-Bellman-Ford funziona anche se i pesi degli archi sono negativi
+	\paragraph{Attenzione}
+	Bellman-Ford funziona anche se i pesi degli archi sono negativi
 
 
-\paragraph{Funzionamento}
-Bellman-Ford ritorna in Output un valore booleano che indica se esiste oppure no un ciclo di peso
-negativo che è raggiungibile dalla sorgente. Se tale ciclo non esiste, l'algoritmo fornisce i cammini minimi
-e i loro pesi. L'algoritmo restituisce true se e solo se il grafo non contiene cicli di peso negativo che sono
-raggiungibili dalla sorgente.\\
-In Bellman-Ford il rilassamento viene eseguito $|V|-1$ volte per arco indipendentemente dalla morfologia del grafo.
-Bellman-Ford NON segue un approccio Greedy.
+	\paragraph{Funzionamento}
+	Bellman-Ford ritorna in Output un valore booleano che indica se esiste oppure no un ciclo di peso
+	negativo che è raggiungibile dalla sorgente. Se tale ciclo non esiste, l'algoritmo fornisce i cammini minimi
+	e i loro pesi. L'algoritmo restituisce true se e solo se il grafo non contiene cicli di peso negativo che sono
+	raggiungibili dalla sorgente.\\
+	In Bellman-Ford il rilassamento viene eseguito $|V|-1$ volte per arco indipendentemente dalla morfologia del grafo.
+	Bellman-Ford NON segue un approccio Greedy.
 
-\paragraph{Pseudocodice} algoritmo di Bellman-Ford
-\begin{lstlisting}
+	\paragraph{Pseudocodice} algoritmo di Bellman-Ford
+	\begin{lstlisting}
 BELLMAN-FORD(G, w, s)
     INITIALIZE(G, s)
     for i = 1 to |V|-1
@@ -812,65 +813,65 @@ BELLMAN-FORD(G, w, s)
     RETURN TRUE
 \end{lstlisting}
 
-\paragraph{Spiegazione codice}
-Dopo aver inizializzato il grafo, Bellman-Ford procede rilassando ogni arco $|V|-1$ volte,
-Se il grafo ha N nodi è certo che dopo N-1 giri tutti i nodi hanno a loro assegnato il costo minimo per essere raggiunti dal nodo sorgente.
-L'ultimo ciclo controlla se ci sono cicli di peso negativo, in tal caso ritorna FALSE
+	\paragraph{Spiegazione codice}
+	Dopo aver inizializzato il grafo, Bellman-Ford procede rilassando ogni arco $|V|-1$ volte,
+	Se il grafo ha N nodi è certo che dopo N-1 giri tutti i nodi hanno a loro assegnato il costo minimo per essere raggiunti dal nodo sorgente.
+	L'ultimo ciclo controlla se ci sono cicli di peso negativo, in tal caso ritorna FALSE
 
-\paragraph{Tempo di esecuzione}
-\begin{center}
-	$O(|V|*|E|)$
-\end{center}
+	\paragraph{Tempo di esecuzione}
+	\begin{center}
+		$O(|V|*|E|)$
+	\end{center}
 
-\section{Strutture dati per insiemi disgiunti}
-Alcune applicazioni richiedono di raggruppare $n$ elementi distinti in una collezione di insiemi disgiunti.
-Queste applicazioni spesso richiedono l'esecuzione di due particolari operazioni: trovare l'unico insieme che contiene un determinato elemento e unire due insiemi.
+	\section{Strutture dati per insiemi disgiunti}
+	Alcune applicazioni richiedono di raggruppare $n$ elementi distinti in una collezione di insiemi disgiunti.
+	Queste applicazioni spesso richiedono l'esecuzione di due particolari operazioni: trovare l'unico insieme che contiene un determinato elemento e unire due insiemi.
 
-\paragraph{Definizione}
-Una struttura dati per insiemi disgiunti serve a \emph{mantenere una collezione $S = \{S_1,S_2,...,S_k\}$ di insiemi disgiunti}.
-Ogni insieme $S_i$ è individuato da un rappresentante, che è un elemento dell'insieme.
+	\paragraph{Definizione}
+	Una struttura dati per insiemi disgiunti serve a \emph{mantenere una collezione $S = \{S_1,S_2,...,S_k\}$ di insiemi disgiunti}.
+	Ogni insieme $S_i$ è individuato da un rappresentante, che è un elemento dell'insieme.
 
-\paragraph{Operazioni}
-Ogni elemento di un insieme è rappresentato da un oggetto.
-Quindi, indicando con $x$ un oggetto, supportiamo le segenti operazioni:
-\begin{itemize}
-	\item \textbf{Make-set(x)}, che crea un nuovo insieme (e lo aggiunge alla struttura dati) il cui unico elemento e rappresentante è $x$, che non può trovarsi in un altro insieme.
-	\item \textbf{Union(x,y)} unisce gli insiemi dinamici che contengono $x$ e $y$ in un unico insieme.
-	\item \textbf{Find-set(x)} restituisce un puntatore al rappresentenate dell'insieme (unico) che contiene $x$.
-\end{itemize}
-\subsection*{Applicazioni delle strutture dati per insiemi disgiunti}
+	\paragraph{Operazioni}
+	Ogni elemento di un insieme è rappresentato da un oggetto.
+	Quindi, indicando con $x$ un oggetto, supportiamo le segenti operazioni:
+	\begin{itemize}
+		\item \textbf{Make-set(x)}, che crea un nuovo insieme (e lo aggiunge alla struttura dati) il cui unico elemento e rappresentante è $x$, che non può trovarsi in un altro insieme.
+		\item \textbf{Union(x,y)} unisce gli insiemi dinamici che contengono $x$ e $y$ in un unico insieme.
+		\item \textbf{Find-set(x)} restituisce un puntatore al rappresentenate dell'insieme (unico) che contiene $x$.
+	\end{itemize}
+	\subsection*{Applicazioni delle strutture dati per insiemi disgiunti}
 
 
-\chapter{NP Completezza} %copiato diretto dagli appunti, va sistemato che non si capisce una sega TODO
-\section{Cenni Teorici}
-Lo studio della NP-Completezza inizia formalizzando il concetto dei problemi risolvibili in tempo polinomiale.
-In primo luogo, sebbene sia ragionevole considerare intrattabile un problema che richiede $\theta(n^{100})$, ci sono pochissimi problemi nella pratica che richiedono un tempo polinomiale così alto.
-Una volta che viene scoperto un algoritmo con un tempo polinomiale, spesso seguono altri alogritmi più efficienti.
-In secondo luogo, per molti modelli di calcolo, un problema che può essere risolto in tempo polinomiale in un modello può essere riolsto sempre in tempo polinomiale in un altro modello.
-In terzo luogo, la classe dei problemi risolvibili in tempo polinomiale ha delle interessanti proprietà in chiusura, in quanto i polinomi sono chiusi rispetto all'addizione, alla moltiplicazione e alla composizione.
+	\chapter{NP Completezza} %copiato diretto dagli appunti, va sistemato che non si capisce una sega TODO
+	\section{Cenni Teorici}
+	Lo studio della NP-Completezza inizia formalizzando il concetto dei problemi risolvibili in tempo polinomiale.
+	In primo luogo, sebbene sia ragionevole considerare intrattabile un problema che richiede $\theta(n^{100})$, ci sono pochissimi problemi nella pratica che richiedono un tempo polinomiale così alto.
+	Una volta che viene scoperto un algoritmo con un tempo polinomiale, spesso seguono altri alogritmi più efficienti.
+	In secondo luogo, per molti modelli di calcolo, un problema che può essere risolto in tempo polinomiale in un modello può essere riolsto sempre in tempo polinomiale in un altro modello.
+	In terzo luogo, la classe dei problemi risolvibili in tempo polinomiale ha delle interessanti proprietà in chiusura, in quanto i polinomi sono chiusi rispetto all'addizione, alla moltiplicazione e alla composizione.
 
-\paragraph*{Problema di decisione}
-Un problema di decisione è un problema tale per cui la risposta è \emph{si o no}.
-\paragraph*{Classe di complessità}
-Nella teroia della complessità computazionale, una classe di complessità è un insieme di problemi di una certa complessità.
-Un esempio tipico di definizione di classe di complessità a la forma:
-L'insieme di problemi che, se esistem la soluzione, possono essere risolti d una macchina astratta $M$ usando $O(f(n))$ della risorsa $R$, con $n$ dimensione dell'input
-\section{P}
+	\paragraph*{Problema di decisione}
+	Un problema di decisione è un problema tale per cui la risposta è \emph{si o no}.
+	\paragraph*{Classe di complessità}
+	Nella teroia della complessità computazionale, una classe di complessità è un insieme di problemi di una certa complessità.
+	Un esempio tipico di definizione di classe di complessità a la forma:
+	L'insieme di problemi che, se esistem la soluzione, possono essere risolti d una macchina astratta $M$ usando $O(f(n))$ della risorsa $R$, con $n$ dimensione dell'input
+	\section{P}
 $P$ è una classe di complessità che rappresenta l'insieme di tutti i problemi di decisione che possono essere risolti in tempo polinomiale, ovvero quei problemi tali che dato un input, riescono a dare un output si o no in tempo polinomiale.
-I problemi P sono i problemi che possono essere risolti da una macchina di Turing deterministica in tempo polinomiale.
-\section{NP}
-NP è una classe di complessità che rappresenta l'insieme di tutti i problemi di decisione per i quali le istanze che danno si come risposta possono essere verificate in tempo polinomiale.
-Ovvero: se la Sibilla Cumana mi dice che, dato un input $x$, la risposta è si, posso verificare la correttezza dell'affermazione in tempo polinomiale.
-I problemi NP sono i problemi che possono essere risolti da una macchina di Turing non-deterministica in tempo polinomiale.
-\section{NP-Completo}
-NP-completo è una classe di complessità che rappresenta l'insieme di tutti i problemi $x\in NP$ tali che è possibile una riduzione da un qualsiasi altro problema $y \in NP$ a x in tempo polinomiale.
-Intuitivamente, possiamo risolvere $y$ velocemente se sappiamo risolvere $x$ velocemente.
-\section{NP-Hard}
-Un problema $x$ è NP-Hard se e solo se esiste un problema $y$ NP-completo tale che $y$ è riducibile a x in tempo polinomiale.
-Intuitivamente questi sono i problemi che sono almeno difficili quanto i problemi NP-completi.
-I problemi NP-hard non necessariamente sono in NP e non necessariamente sono problemi di decisione.
-I problemi NP-hard e NP sono i problemi NP-completi.
-Non tutti i problemi NP-hard sono NP-completi: affinchè un problema NP-hard $x$ sia NP-complete, x deve essere in NP.
+	I problemi P sono i problemi che possono essere risolti da una macchina di Turing deterministica in tempo polinomiale.
+	\section{NP}
+	NP è una classe di complessità che rappresenta l'insieme di tutti i problemi di decisione per i quali le istanze che danno si come risposta possono essere verificate in tempo polinomiale.
+	Ovvero: se la Sibilla Cumana mi dice che, dato un input $x$, la risposta è si, posso verificare la correttezza dell'affermazione in tempo polinomiale.
+	I problemi NP sono i problemi che possono essere risolti da una macchina di Turing non-deterministica in tempo polinomiale.
+	\section{NP-Completo}
+	NP-completo è una classe di complessità che rappresenta l'insieme di tutti i problemi $x\in NP$ tali che è possibile una riduzione da un qualsiasi altro problema $y \in NP$ a x in tempo polinomiale.
+	Intuitivamente, possiamo risolvere $y$ velocemente se sappiamo risolvere $x$ velocemente.
+	\section{NP-Hard}
+	Un problema $x$ è NP-Hard se e solo se esiste un problema $y$ NP-completo tale che $y$ è riducibile a x in tempo polinomiale.
+	Intuitivamente questi sono i problemi che sono almeno difficili quanto i problemi NP-completi.
+	I problemi NP-hard non necessariamente sono in NP e non necessariamente sono problemi di decisione.
+	I problemi NP-hard e NP sono i problemi NP-completi.
+	Non tutti i problemi NP-hard sono NP-completi: affinchè un problema NP-hard $x$ sia NP-complete, x deve essere in NP.
 è importante notare che poichè un qualsiasi problema NP-completo può essere ridottoa a qualsiasi altro problema NP-completo in tempo polinomiale e tutti i problemi in NP sono riducibili in tempo polinomiale a problemi NP-completi.
 Tutti i problemi NP possono essere ridotti a un qualsiasi problema NP-hard in tempo polinomiale.
 La conseguenza di queste osservaizoni è che se esiste una soluzione in tempo polinomiale a un qualsiasi problema NP-hard, allora esiste una soluzione a tutti i problemi NP in tempo polinomiale!
