@@ -369,6 +369,9 @@ in modo chiaro tali valutazioni.
 \\Se la variabile è discreta si parlerà di \textbf{Densità discreta}.
 \\Se la variabile è continua di parlerà di \textbf{Funzione di ripartizione}.
 
+\section{Notazione} Con $X_i$ indichiamo la Variabile Aleatoria $X_i: \Omega \rightarrow \mathbb{R}$
+\\ con $x_i$ indichiamo l'osservazione relativa alla V.A $X$
+
 \section{Variabili aleatorie discrete}
 Una variabile aleatoria X (reale) si dice \textbf{discreta} se i valori che può
 assumere sono un insieme finito:
@@ -567,4 +570,18 @@ generare una v.a. con distribuzione arbitraria!
 \begin{equation*}
     X(\Omega) = {x \in R: f_x(x) > 0S}
 \end{equation*}
+
+\paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densitò di una V.A. Continua non è la densità discreta 
+e soprattutto NON è la probabilità di assumere il valore x.
+
+\subsection{Proprietà}
+La densitò di una V.A. assolutamente continua X è una funzione $f_x:\mathbb{R} \rightarrow \mathbb{R}$ (integrabile)
+tale che:
+\begin{equation*}
+    f_x(x) \geq 0 \textrm{ } \forall x \in  \mathbb{R}
+\end{equation*}
+\begin{equation*}
+    \int_{-\infty}^{+\infty} f_x(x)  \,dx = 1
+\end{equation*}
+
 \end{document}
