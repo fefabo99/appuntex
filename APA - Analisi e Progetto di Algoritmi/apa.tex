@@ -265,7 +265,37 @@ def LCS-MAGGIORE-L(X,Y,L)
 
 \section{LIS}
 %TODO, serve per risolvere l'esercizio uno dell'esame di gennaio 2022
-LIS, o Longest Increasing Subsequence è un algoritmo che calcola la più lunga sottosequenza crescente di una determinata sequenza.
+LIS, o Longest Increasing Subsequence è un algoritmo che calcola la lunghezza della più lunga sottosequenza crescente di una determinata sequenza.
+A differenza di LCS, LIS viene calcolata su una sola sequenza, in questo caso una sottosequenza è un qualunque sequenza di caratteri che fanno parte della nostra sequenza.
+
+\paragraph*{Definizione del Problema}
+Data una sequenza $X$ di $n$ caratteri, si vuole trovare la lunghezza della più lunga sottosequenza di caratteri \emph{strettamente crescenti} (in ordine lessicografico).
+\\\textbf{Istanza:} $X=<x_1,...,x_n>$, \textbf{Soluzione:} La più lunga sotto sequenza di $X$ strettamente crescente.
+
+
+\subsection*{Sottoproblema} Il sottoproblema di taglia $i$ è la più lunga sottosequenza strettamente crescente che termini con l'\emph{i-esimo} carattere di $X$.
+\\Nel caso di $i=1$, la soluzione è ovviamente $1$, siccome ogni sottosequenza di dimensione 1 è strettamente crescente (e decrescente).
+Mentre per i sottoproblemi di taglia maggiore di 1, ipotizzando di aver già risolto i sottoproblemi più piccoli ci basta vedere quale sia la massima lunghezza di una LIS compatibile con li carattere $x_i$ (ovvero che sia abbia l'ultimo carattere minore di $x_i$)
+e aggiungerci 1.
+
+\paragraph{Definizione delle variabili}
+Definiaimo $S[i]$ come la soluzione al sottopbroblema di taglia $i$, ovvero come la lunghezza della 
+più lunga sottosequenza strettamente crescente che \emph{termini} con l'i-esimo carattere di $X$
+
+\subsection*{Equazioni di ricorrenza}
+\paragraph*{Caso Base} con $i=1$,
+ $$S[i]=\begin{cases}
+	 1
+ \end{cases}$$
+visto che è la lunghezza massima di una sottosequenza di dimensione 1.
+\paragraph*{Passo Ricorsivo} con $1<i\leq n$,
+$$
+S[i] = \begin{cases}
+	1+\text{max}\{S[j] | 0 \leq j < i | x_j < x_i \}
+\end{cases}
+$$
+Ovvero, la soluzione è la lun
+
 \section{LGCS / LICS} %Pagina 24 degli appunti pdf che ho preso da Elearning
 LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
 di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
