@@ -506,8 +506,20 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 
 \domandaaperta{3}{Devo ancora scriverla lol}
 
-\chapter*{Esercizi}
-\section{Esercitazione 10 - Integrali}
+\chapter{Esercizi}
+\section{Integrali}
+\esercizio{}{
+	$\int \frac{72}{\sqrt{x+49} + \sqrt{x+1}}$
+}
+\procedimento{
+	Per questo esercizio bisogna fare un po di ragionamenti:
+	\\Devo semplificare questa funzione, per fare ciò moltiplico e divido il tutto per la differenza del denominatore, quindi:
+	$\int \frac{72}{\sqrt{x+49} + \sqrt{x+1}} \cdot \frac{\sqrt{x+49} - \sqrt{x+1}}{\sqrt{x+49} - \sqrt{x+1}}$
+	\\Così ottengo : $\frac{3}{2}  \int (\sqrt{x+49} - \sqrt{x+1})$.
+	\\A questo punto, posso separare gli integrali e risolverli singolarmente:
+	$ = \frac{3}{2} \int (x+49)^{\frac{1}{2}} - \frac{3}{2} \int (x+1)^{\frac{1}{2}}$
+	}	
+\subsection*{Esercitazione 10}
 \esercizio{1}{$\int x^2 + 3x + 2 dx$}
 \risposta{$\frac{2x^3+9x^2+12x}{6} + c$}
 \procedimento{

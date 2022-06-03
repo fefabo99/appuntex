@@ -759,14 +759,28 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 	\end{tabular}
 
 	\subsection{Primitive di Derivate di funzioni composte}
+	Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
 	\definizione{
 		Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
 		In questo caso:
-		$$ [F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c$$
+		$$
+		[F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c
+		$$
 	}
-	\esempio{
+	\paragraph*{Ovvero} se abbiamo una funzione del tipo $f(g(x)) \cdot g'(x)$ il suo integrale sarà semplicemente $F(g(x)) + c$, quindi bisogna trovare \emph{la primitiva solo della funzione esterna}.
+	\\\'E comunque ovvio che si possono effettuare "giochetti" per smontare e rimontare la nostra funzione in modo da ottenere una formad i questo tipo.
+	\esempio{ 
 		$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
 	}
+	\esempio{
+		$\int x (x^2)^3 dx = \frac{1}{2}\int 2x (x^2-1)^3 dx = \frac{1}{2}\frac{(x^2)^4}{4} + c = ...$
+	}
+	Da quest'ultimo esempio si può notare sia che abbiamo moltiplicato e diviso per due in modo da ottenere la derivata della funzione interna,
+	ma si può anche dedurre che:
+	$$
+	\int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
+	$$
+
 	\section{Tecniche di Integrazione}
 
 	\subsection{Integrazione per Parti}
