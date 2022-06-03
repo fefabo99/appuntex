@@ -296,7 +296,31 @@ S[i] = \begin{cases}
 	1+\text{max}\{S[j] | 0 \leq j < i | x_j < x_i \}
 \end{cases}
 $$
-Ovvero, la soluzione è la lun
+Ovvero, la soluzione è la più grande tra le soluzioni precedenti in cui l'ultimo carattere è minore del carattere $i$ aumentata di uno.
+\subsection*{Soluzione}
+la soluzione di LIS è il max$\{S[i]| 0 < i \leq n\}$.
+\\A differenza di LCS, in LIS la soluzione non sarà mai allo stesso posto ma alla posizione del carattere in cui termina la sottosequenza più grande.
+\subsection*{Pseudocodice}
+\begin{lstlisting}
+	def LIS(X):
+		S[1] = 1
+		for i = 2 to n
+			max = 0
+			for j = 0 to i
+				if S[j] > max AND X[j] < X[i]
+					max = S[j]
+			S[i] = max + 1
+		return max(S) 
+
+\end{lstlisting}
+
+\subsection*{Tempo e Spazio}
+Il tempo dell'algoritmo è pari a $\Theta(n^2)$
+\\Lo spazio è pari a $\Theta(n)$
+
+\paragraph*{Per ricostruire la sequenza} potremmo ripercorrere l'array $S$ all'indietro controllando,
+ogni volta che troviamo un valore minore di quello analizzato se il carattere nella posizione di tale valore sia compatibile con quello nella posizione che stiamo analizzando.
+
 
 \section{LGCS / LICS} %Pagina 24 degli appunti pdf che ho preso da Elearning
 LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
