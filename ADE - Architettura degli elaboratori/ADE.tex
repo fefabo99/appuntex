@@ -1356,6 +1356,32 @@ Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
 \section{Datapath: Automa per il controllo}
 Un automa che ripete all'infinito la sua esecuzione, serve per controllare il datapath.
 Spiega nel dettaglio il ciclo Fetch Decode Execute. 
+
+\section{Riassumendo}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Datapath.png}    
+\end{center}
+\paragraph*{Memoria} Contiene istruzioni e dati sulla base dell'indirizzo in input
+restituisce in output l'istruzione o il dato letto.
+\paragraph*{Register File} 32 registri che contengono i dati utilizzati nel corso
+dell'esecuzione delle istruzioni, restituisce in output il contenuto dei due registri
+letti (indicati dai due input - ReadRegister1 e ReadRegister2) e scrivere, se il segnale
+di scrittura è attivo, il dato in input WriteData nel registro indicato dall'indirizzo
+in input (WriteRegister).
+\paragraph*{ALU} per tutte le istruzioni incrementa il PC (PC+4) e calcola il valore
+di branch (che sarà usato solo nel caso di istruzioni di branch).
+Inoltre:
+\begin{itemize}
+    \item Istruz R-Type: esegue operazioni aritmetico logiche su due operandi in funzione
+    del "function code" indicato dai 6 bit meno significativi dell'istruzione
+    \item Istr. accesso a memoria: calcola l'indirizzo di memoria cui accedere
+    \item Istr. branch: confronta i due registri in input
+\end{itemize}
+\paragraph*{Sign Extended}: opera l'estensione di segno dai 16 bit in input ai 32 bit in output.
+\paragraph*{Shift Left 2} opera uno shift a sinistra dei bit in input (con l'effetto di 
+moltiplicare per 4 l'input)
+
+
 %END------------------------------------------------------------------------
 
 \end{document}
