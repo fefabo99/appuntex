@@ -404,6 +404,17 @@ Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fa
 Tramite il segno della derivata, si determina la Crescenza/Decrescenza della funzione.
 Ponendo la derivata $>0$ si trovano gli intervalli in cui la funzione è crescente.
 
+\subsection*{Retta tangente al grafico}
+Ogni tanto ci viene chiesto di determinare l'\emph{equazione della retta tangente al grafico di una funzione in un punto}.
+\\Una retta è tangente al grafico nel punto $x_0$ se hanno uno e un solo punto in comune, che sarà $x_0$ appunto.
+
+\paragraph{Come si calcola}
+Bisogna innanzitutto avere la derivata della funzione. Poi, tenendo conto dell'equazione generica della retta $y=mx+q$ bisogna:
+\begin{itemize}
+	\item Trovare $m= f'(x_0)$
+ \item Trovare $q = f(x_0)-f'(x_0) \cdot x_0$
+ \item Infine, "monti" l'equazione della retta $y=mx+1$
+\end{itemize}
 \chapter{Successioni}
 
 \section{Introduzione}
@@ -539,7 +550,7 @@ Mentre per il passo induttivo si può provare come segue:
 Le forme di Indecisione (o forme indeterminate) sono operazioni che coinvolgono infiniti e infinitesimi nel calcolo dei limiti per le quali \emph{non è possibile determinare un risultato a priori}.
 \\Le operazioni problematiche nel calcolo dei limiti sono essenzialmente sette:
 \begin{center}
-	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[0^0]$ $[\infty^0]$
+	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
 \end{center}
 
 \section{Limiti Notevoli}
@@ -785,8 +796,12 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 
 	\subsection{Integrazione per Parti}
 	Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
-	$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
-	In pratica, l'integrale di una funzione derivabile moltiplicato per una funzione integrabile è integrabile per parti.
+	\definizione{
+		Siano $f$ e $g$ due funzioni, allora
+		$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
+
+	}
+	In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione integrabile è integrabile per parti.
 	\\Questa tecnica può essere usata per risolvere integrali complessi.
 	\esempio{
 		$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$

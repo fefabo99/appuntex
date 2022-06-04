@@ -201,7 +201,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \spiegazione{
 	Integro per parti, quindi abbiamo:
 	\\$f(x) = x$ e quindi $f'(x) = 1$
-		\\$g'(x)= \sin(x)$ e quindi $g(x) = -\cos(x)$
+	\\$g'(x)= \sin(x)$ e quindi $g(x) = -\cos(x)$
 	\\Risolvo con la formula dell'\emph{integrazione per parti}:
 	$$x (-\cos(x)) - \int 1(-\cos(x)) = -x\cos(x)+\sin(x) = \sin(x)-x\cos(x)$$
 	Risolvo l'integrale per gli estremi dati:
@@ -209,7 +209,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	Quindi l'integrale dato vale $\pi -1$
 }
 
-\subsection{Domande Aperte}
+\subsection*{Domande Aperte}
 \domandaaperta{1i}{Data la serie $\serie{1}{+\infty} (\frac{x^2+6}{5x})^n$, Si determino i valori di $x\in\R \backslash \{0\}$ per cui converge, e se ne calcoli la somma.}
 
 \rispostaaperta{
@@ -392,7 +392,7 @@ $
 	\\Un'altra risposta corretta potrebbe essere: Assume tutti i valori tra $f(a)$ e $f(b)$.
 }
 
-\subsection{Domande Aperte}
+\subsection*{Domande Aperte}
 \domandaaperta{1}{
 	Si determinino $a$ e $b$ affinchè la funzione:
 	\begin{equation*}
@@ -492,7 +492,7 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 	}
 \domanda{O8}{Siano $f,g : \R \to \R$ derivabili. se $f(2) = -2, f'(2)=4,g'(-2) = -4}$, allora $(g\circ f)'(2)$ Vale:
 
-\subsection{Domande Aperte}
+\subsection*{Domande Aperte}
 
 \domandaaperta{1}{Sia $\serie{1}{+\infty}(n^{\frac{1}{n}}-1)^n$}
 \domandaaperta{a}{Per studiare la serie uso il criterio:}
@@ -505,7 +505,73 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 \domandaaperta{c}{si calcoli $\int^{\sqrt{2\pi}}_{\sqrt{3\pi/2}}f(x)dx$}
 
 \domandaaperta{3}{Devo ancora scriverla lol}
+\section{Luglio 2020}
+\domanda{1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 - 3x$, sull'intervallo I = (-1,1) $f$ è}
+\risposta{Decrescente}
+\spiegazione{Guardando i punti $f(-1),f(0),f(1)$ si nota che la funzione non è Suriettiva (in quell'intervallo) ed è decrescente}
+\domanda{2}{Il dominio della funzione $f(x)= ln(4-x^2)$ è}
+\risposta{(-2,2)}
+\spiegazione{Gli argomenti dei logaritmi devono essere $>0$}
+\domanda{3}{La somma della serie $\serie{1}{+\infty} 4^{-n}$ vale}
+\risposta{$\frac{1}{3}$}
+\domanda{4}{$\int_{1}^{2} (\frac{1}{x} + 2x) dx =$}
+\risposta{$\ln(2)+3$}
+\spiegazione{
+	$F(x)= \int \frac{1}{x} dx + 2\int x dx = ln|x| + \frac{2x^2}{2} +c$,
+	Calcolo poi $F(2) - F(1)$ e trovo il risultato.
 
+}
+\domanda{5}{
+	$\limite{n}{+\infty}(n^2-n^3+3e^{-n} + \cos n^2)$ vale
+}
+\risposta{$-\infty$}
+\spiegazione{$a_n \sim -n^3$}
+\domanda{6}{SUP $A=\{\frac{2}{2n^2+1} + e^{1-n},n=1,2,...\}$ è}
+\risposta{$\frac{2}{3}$}
+
+\domanda{7}{Detta $g$ funzione inersa di $f(x) = x3+x+1$, allora $g'(3)=$}
+\irrisolta
+
+\domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
+\irrisolta
+\subsection*{Domande Aperte}
+\domandaaperta{1}{Sia $f:\R \to \R$ definita da $f(x) = (x^2 - x) e^x$, Allora:}
+\domandaaperta{i.}{$f$ ha asintoto orizzontale di equazione ... per $x \to $...}
+\rispostaaperta{
+	Il dominio di $f$ è tutto $\R$, perchè non ci sono punti in cui non è definita.
+	Quindi per trovare gli astintoti faccio i limiti per $x \to \pm \infty$:
+	\\ $\limite{x}{+\infty} f(x) = \infty \cdot 0$, che è una forma di indecisione.
+	Provo quindi a rimodellare: $f(x) = (x^2-x)\cdot \frac{1}{e^x} = \frac{(x^2 - x)}{e^x} \sim \frac{x^2}{e^x}$.
+	Essendo $e^x$ un infinito di ordine superiore a $x^2$, il limite tende a $0$.
+	\\ $\limite{x}{-\infty} f(x) = ... = \frac{x^2}{e^x}$, siccome $e^{-\infty}$ tende a 0, il limite tente a $+\infty$.
+	\\Da questi limiti capiamo che $f$ ha un \emph{asintoto orizzontale di equazione $y=0$ per $x\to\infty$} 
+}
+\domandaaperta{ii.}{Ha punto di minimo per $x=$... e punto di massimo per $x=...$}
+\rispostaaperta{
+	Per trovvare massimo e minimo devo calcolare la derivata:
+	$f'(x)= e^-x(-x^2+3x-1)$ (il calcolo è sufficientemente banale) e porla maggiore di zero:
+	\\$f'(x)>0$: $e^{-x}> 0 \to \forall x$,
+	$-x^2+3x-1>0 \to x^2-3x+1<0 \to x_1 = \frac{3+\sqrt{5}}{2} \wedge x_2 = \frac{3-\sqrt{5}}{2}$.
+	Siccome $a>0$ abbiamo una concavità verso l'alto, quindi $f'(x)<0$ con x compreso tra $\frac{3-\sqrt{5}}{2}$ e $\frac{3+\sqrt{5}}{2}$.
+	In questo caso $\frac{3-\sqrt{5}}{2}$ è punto di minimo e $\frac{3+\sqrt{5}}{2}$ è punto di massimo.
+}
+\domandaaperta{iii.}{l'equazione della retta tangente al grafico nel punto di ascissa -1 è ...}
+\rispostaaperta{Per calcolare la retta tangente al grafico:
+\begin{itemize}
+	\item trovo $m = f'(-1) = -5e$
+ \item trovo $q = f'(-1) \cdot -1 ' f(-1) = -3e$
+ \item trovo l'equazione della retta: $y = -5ex-3e$
+\end{itemize}
+
+}
+\domandaaperta{iv.}{Il più ampio intervallo di convessità del tipo $(k,+\infty)$ si ha per $k=$...}
+\rispostaaperta{
+	Per trovare i punti di convessità/concavità bisogna fare la derivata seconda.
+	$f''(x) = e^{-x}(x^2-5x+4)$ e la pongo $> 0$
+	$f''(x) > 0 $ con $(-\infty, 1 ) \cup (4, +\infty)$.
+	Quindi il più grande intervallo di convessità a più infinito è: $(4, +\infty)$.
+}
+\domandaaperta{v.}{$\int_{0}^{1} \frac{f(x)}{x}dx =$}
 \chapter{Esercizi}
 \section{Integrali}
 \esercizio{}{
