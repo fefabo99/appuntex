@@ -1381,7 +1381,46 @@ Inoltre:
 \paragraph*{Shift Left 2} opera uno shift a sinistra dei bit in input (con l'effetto di 
 moltiplicare per 4 l'input)
 
-
+\subsection{Funzioni dei registri}
+\paragraph*{PC}: contiene i 32 bit che indicano l'indirizzi dell'istruzione da eseguire
+\paragraph*{Instruction Register} Contiene i 32 bit che corrispondono alla codifica
+dell'istruzione prelevata da memoria per l'esecuzione
+\paragraph*{Memory Data Register} contiene il dato letto da memoria prima della sua scrittura
+nel registro destinazione (e.g. nel caso di esecuzione di istruzione load)
+\paragraph*{A e B} Contengono i valori letti dai registri del RegisterFile
+\paragraph*{ALUOut} Contiene l'output della ALU
+\subsection{Ruolo di ciascuno dei multiplexer}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Datapath Multiplexer.png}
+\end{center}
+\paragraph*{A} seleziona l'indirizzo di memoria a cui acedere tra:
+\begin{itemize}
+    \item PC (nel caos is voglia leggere un'istruzione)
+    \item output della ALU (nel caso di esecuzione dell'istruzione "load")
+\end{itemize}
+\paragraph*{B} Seleziona il gruppo di bit dell'IR che indirca il registro in cui scrivere
+i due tipi di istruzione I-Type (IT[20:16]) e R-type (IR[15:11])
+\paragraph*{C}Seleziona la sorgente per il dato da scrivere in memoria tra:
+\begin{itemize}
+    \item ALUOut (per istruzioni R-type)
+    \item MemoryDataRegister (per istruzioni load)
+\end{itemize}
+\paragraph*{D} Seleziona il primo operando dell'operazione aritmetico-logica eseguita
+dalla ALU tra PC (per incrementeo +4) e registro A (per istruzioni R-type)
+\paragraph*{E} Seleziona il secondo operando dell'operazione aritmetico-logica eseguita
+dalla ALU
+\begin{itemize}
+    \item B (per istruzioni R-type)
+    \item 4 (per aggiornamenti del PC)
+    \item sign-extended IR[15:0] (per istruzioni di accesso a memoria - lw/sw)
+    \item sign-extended 2-shifted (j)
+\end{itemize}
+\paragraph*{F} Seleziona il valore per l'aggiornamento del PC
+\begin{itemize}
+    \item output dell'ALU: PC + 4
+    \item contenuto di ALUOut: 2 shifted 26-bit beq field
+    \item jump target address (IR[25:0] shifted left 2 bits e concatenato con PC + 4[31:28])
+\end{itemize}
 %END------------------------------------------------------------------------
 
 \end{document}
