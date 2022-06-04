@@ -900,7 +900,7 @@ campo funct. Per gli altri tipi di istruzione non esiste.
 Istruzoni per la somma di valori ricorrenti (costanti), in questo caso la costante viene direttamente
 passata nel codice dell'operazione, riservando 16 bit per il valore (campo passato in complemento a 2).
 Vengono chiamate I-type perchè si tratta di operazioni immediate.
-Il valore è considerato come un intero con segno ($2^15$ valori rappresentabili)
+Il valore è considerato come un intero con segno ($2^{15}$ valori rappresentabili)
 Il formato è il seguente:
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{I-type format.png}
@@ -921,7 +921,7 @@ Istruzione composta da:
     \item Registro di destinazione
     \item Indirizzo di memoria il cui contenuto viene copiato nel registro destinazione
 \end{itemize}
-\paragraph{Problema} La memoria è grande, in MIPS ho $2^32$ locazioni, 
+\paragraph{Problema} La memoria è grande, in MIPS ho $2^{32}$ locazioni, 
 per specificare un indirizzo occorrone 32 bit, ma non ci stanno in una istruzione di appunto
 32 bit. 
 \paragraph*{Soluzione} Usare il formato I-type (opcode, 2 registri, 1 immediato), dove un
@@ -1357,7 +1357,7 @@ Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
 Un automa che ripete all'infinito la sua esecuzione, serve per controllare il datapath.
 Spiega nel dettaglio il ciclo Fetch Decode Execute. 
 
-\section{Riassumendo}
+\section{Riassumendo il Datapath}
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{Datapath.png}    
 \end{center}
@@ -1419,8 +1419,160 @@ dalla ALU
 \begin{itemize}
     \item output dell'ALU: PC + 4
     \item contenuto di ALUOut: 2 shifted 26-bit beq field
-    \item jump target address (IR[25:0] shifted left 2 bits e concatenato con PC + 4[31:28])
+    \item jump target address (IR[25:0] shifted left 2 bits e concatenato con PC + 4)
 \end{itemize}
+
+\subsubsection{Segnali di controllo fetch, decode, execute}
+L'attivazione dei segnali di controllo per un datapath multiciclo può essere descritta
+da un \textbf{automa a stati finiti}.
+\\ I segnali di controllo (next state per l'automa) sono definiti \textbf{in funzione dello stato
+corrente e dell'Opcode}.
+\\ \textbf{Per tutti i tipi di istruzioni}, nella fase di fetch (stato 0) sono impostati i
+seguenti segnali:
+\begin{itemize}
+    \item IorD = 0 per selezionare PC come sorgente per l'indirizzo di memoria
+    \item MemRead: per leggere un'istruzione da memoria
+    \item IRWrite per scrivere l'istruzione letta nell'Instruction register
+    \item ALUSrcA, ALUSrcB, ALUOp, PCWrite e PCSource sono impostati per calcolare
+    PC + 4 e memorizzare il nuovo valore nel PC
+\end{itemize}
+\textbf{Per tutti i tipi di istruzioni}, nella fase di decode (stato 1) sono impostati
+i segnali ALUSrca, ALUSrcB e ALUOp per calcolare il valore di branch
+\\ Nella fase di execute sono impostati i segnali di controllo, \textbf{in funzione del tipo di
+istruzione in esecuzione}.
+\begin{itemize}
+    \item Le istruzioni di \textbf{jump o branch}, dopo lo stato 1 richiedono un ciclo di clock per
+    il loro completamento
+    \item Le istruzioni di tipo R-type e le istruzioni di memorizzazione (store), richiedono
+    due cicli di clock per l'esecuzione di una sequenza di due stati d'impostazione dei segnali
+    \item Le istruzioni di lettura da memoria richiedono tre cicli di clock per l'esecuzione
+    di una sequenza di tre stati d'impostazione dei segnali
+\end{itemize}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Datapath automa.png}
+\end{center}
+% Fare esercizi con numero di cicli effettuati per eseguire istruzioni assembly
+
+\section{Eccezioni}
+Durante l'esecuzione delle istruzioni si possono verificare eventi inattesi: eccezioni
+e/o interruzioni.
+\paragraph*{Eccezione} Evento sincrono generato all'interno del processore e provocato
+da problemi nell'esecuzioni di un'istruzione. Per esempio un overflow, una istruzione
+no nvalida, errori, pagine non presenti in memoria, ecc.
+\begin{itemize}
+    \item Causate da eventi interno al processore
+    \item Sincrone rispetto al programma in esecuzione
+    \item La condizione di eccezione deve essere risolta da un gestore di eccezioni (es. handler)
+    \item Se la condizione do eccezione è risolvibile il programma riprendere l'esecuzione, altrimenti
+    il programma termina prima della sua fine.
+\end{itemize}
+
+\paragraph*{Interruzione} Evento asincrono che giunge dall'esterno del processore.
+Di solito arriva da un'unità di I/O utilizzato per comunicare alla CPU il verificarsi
+di certi eventi.
+Esempi: la terminazione di un'operazione di I/O la cui esecuzioni era stat richiesta dalla
+CPU.
+\begin{itemize}
+    \item Causate da eventi esterni al processore
+    \item Asincrone rispetto al programma in esecuzione
+    \item Sono gestite tra due istruzioni consecutive
+    \item Si sospende l'esecuzione del programma utente, si gestisce l'interruzione e poi
+    si riprende l'esecuzione del programma utente
+\end{itemize}
+
+\subsection{Gestione di eccezioni e interruzioni}
+Il controllo del processore deve gestire gli eventi inattesi.
+Tutti i processori eseguono i seguenti passi per gestire un eccezione/interruzione:
+\begin{itemize}
+    \item Interruzione dell'esecuzione del programma corrente
+    \item Salvataggio parziale dello stato in esecuzione corrente (e.g. PC) - per
+    riprendere eventualmente l'esecuzione del programma corrente se possibile
+    \item Salto a una routine del sistema operativo (SO) per gestire l'eccezione/interruzione
+    (tale routine è chiamata di solito handler o gestore delle eccezioni)
+    \item Esecuzione della routine del SO
+    \item Se possibile, ripristino dello stato di esecuzione del programma
+    e continuazione dell'esecuzione del programma
+\end{itemize}
+\paragraph*{Come capire l'evento inatteso verificatosi?}
+Due possibili soluzioni:
+\begin{enumerate}
+    \item Indirizzo fisso - Registro dedicato (e.g., Cause) - il controllo della CPU,
+    prima di saltare all'handler del SO (a un indirizzo fisso), deve salvare in un registro
+    interno un identificatore numerico del tipo di eccezione verificatosi.
+    L'handler accederò al registro interno per determinare la causa dell'eccezione
+    \item Interruzioni vettorizzate - esistono handler diversi per eccezioni/interruzioni differenti.
+    il controllo della CPU sceglie l'handler corretto, saltando all'indirizzo corretto.
+    A questo scopo, viene predisposto un vettore di indirizzi, uno per ogni tipo
+    di eccezione/interruzione, da indirizzare tramite il codice numerico dell'eccezione/interruzione
+\end{enumerate}
+\paragraph*{MIPS} In MIPS viene adottata la prima soluzione, usando un registro, denominato
+Cause, per memorizzare il motivo dell'eccezione. L'indirizzo dell'istruzione corrente che ha causato
+l'eccezione viene salvato nel registro Exception Program Counter (EPC).
+
+\subsection*{Esempio di gestione delle eccezioni in MIPS}
+Passi da eseguire:
+\begin{itemize}
+    \item Individuare l'evento inatteso, la causa dell'eccezione e salvarla in un registro
+    dedicato denominato Cause
+    \item interrompere l'esecuzione corrente
+    \item Salvare l'indirizzo dell'istruzione corrente nel EPC (EPC = PC - 4)
+    \item Saltare a un gestore delle eccezioni del SO che si trova a un indirizzo
+    fisso per gestire l'eccezione
+\end{itemize}
+\paragraph*{Osservazioni}
+\begin{itemize}
+    \item Il MIPS non salva nessun altro registro oltre al PC
+    \item è compito della routine salvare altre porzioni dello stato corrente del programma
+    se necessario
+    \item Esistono CPU dove questo salvataggio avviene prima di saltare alla routine (es approcci CISC)
+\end{itemize}
+
+\paragraph*{Necessario aggiungere 2 stati} 
+\begin{itemize}
+    \item Devono salvare in EPC il valore PC - 4
+    \item Salvare nel registro Cause la causa dell'eccezione (0 o 1 in questo caso perchè
+    consideriamo 2 esempi di eccezioni)
+    \item Salvare in PC l'indirizzo del gestore delle eccezioni
+\end{itemize}
+\subsection*{Pratica MIPS}
+Per tutti i tipi di eccezione avviene
+\begin{itemize}
+    \item Salvataggio dell'indirizzo dell'istruzione che ha causato l'eccezione (in EPC)
+    \item Cambiamento del normale flusso di esecuzione di un programma: aggiornamento di PC
+    con il valore 0x80000180 che corrisponde all'indirizzo dello spazio kernel text in cui
+    ha inizio la procedura di gestore delle eccezioni - exception handler.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Eccezioni e interruzioni.png}
+\end{center}
+\paragraph*{Il registro Cause e possibile cause di eccezione}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Possibili cause di eccezione.png}
+\end{center}
+
+\subsubsection*{Exception Handler}
+\'E la porzione di codice assembly che contiene il codice che gestisce le eccezioni
+e si trova alla locazione fissa 0x80000180 in area ktext riservata al sistema operativo.
+Dal momento che viene eseguito dopo l'interruzione di un programma utente in un punto
+qualsiasi, è tenuto a \textbf{preservare TUTTi i registri macchina}. Ad esso sono riservati
+i due registri \textbf \$k01, \$k02 che può utilizzare senza doverne preservare i contenuti.
+Al termine del trattamento dell'eccezione, l'exception handler ritorna il controllo al programma
+interrotto (istruzione eret).
+MIPS rileva e tratta eccezioni PRIMA del completamento dell'esecuzione della istruzione corrente.
+\begin{itemize}
+    \item Se è una interruzione, dopo la sua gestione, l'esecuzione del programma deve
+    riprendere dall'istruzione corrente (salvata nel registro EPC)
+    \item si si tratta di una eccezione ed è possibile proseguire l'esecuzione deve riprendere
+    dall'istruzione successiva (EPC+4).
+\end{itemize}
+
+%Fare esercizi gestione eccezioni (exception handler)
+
+
+
+
+
+
 %END------------------------------------------------------------------------
 
 \end{document}
