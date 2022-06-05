@@ -90,7 +90,7 @@ Facendo il grafico dei segni ottengo:
 \\\includegraphics[width=\textwidth]{esempio-disequaz-prodotto.png}
 \\Di conseguenza, la soluzione della disequazione è: $S= (-\infty,-1]\cup[2,+\infty)$
 } 
-\subsection{Disequazioni di secondo grado}
+\subsection*{Disequazioni di secondo grado}
 Le disequazioni (come le equazioni) di secondo grado si risolvono, una volta ridotte alla forma standard $ax^2+bx+c$, usando la formula risolutiva:
 $$x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
 A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
@@ -360,7 +360,7 @@ Lo studio di funzione è composto di 5 passaggi:
  \item Segno della derivata
 \end{enumerate}
 
-\subsection{Definizione del Dominio}
+\subsection*{Definizione del Dominio}
 Una funzione $f:\R \to \R$ non sempre è definita in tutto $\R$, spesso ci sono degli intervalli (o dei punti) in cui non è definibile.
 Per trovare questi punti in cui non è definibile bisogna:
 \begin{itemize}
@@ -381,7 +381,8 @@ Questa fase è facoltativa ma ogni tanto ci aiuta.
 	\end{cases}
 \end{equation}
 Le \emph{Funzioni Periodiche} sono generalmente quelle goniometriche.
-\subsection{Segno e Intersezione con gli Assi}
+
+\subsection*{Segno e Intersezione con gli Assi}
 Il segno della funzione ci permette di vedere dove la funzione è positiva.
 L'intersezione con gli assi invece ci aiuta a disegnare la funzione.
 \begin{itemize}
@@ -390,7 +391,7 @@ L'intersezione con gli assi invece ci aiuta a disegnare la funzione.
  \item $f(0)$ è l'intersezione con l'asse delle ordinate
 \end{itemize}
 
-\subsection{Limiti e asintoti}
+\subsection*{Limiti e asintoti}
 I limiti ci servono a capire come si comporta la funzione ai limiti del dominio e nei punti di disconitinuità.
 Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fanno parte del dominio e agli estremi di esso.
 
@@ -400,7 +401,7 @@ Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fa
  \item Se $\limite{x}{\pm \infty} = l$ l è asintoto ORIZZONTALE
  \item Se $\limite{x}{\pm \infty} = \pm \infty$ potrebbe eistere Asintoto Obliquo
 \end{itemize}
-\subsection{Segno della Derivata}
+\subsection*{Segno della Derivata}
 Tramite il segno della derivata, si determina la Crescenza/Decrescenza della funzione.
 Ponendo la derivata $>0$ si trovano gli intervalli in cui la funzione è crescente.
 
@@ -646,6 +647,19 @@ Bisogna provare a svolgere un paio di limiti.
 		      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
 		\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
 	\end{enumerate}
+	\section{Confronto tra infiniti/infinitesimi}
+	\subsection*{o-piccolo}
+	L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infitisemio di una funzione rispetto ad una funzione campione,
+	al terndere di $x$ ad un determinato valore di infinito.
+
+	\definizione{
+		Siano $f(x)$ e $g(x)$ due funzioni (definite sullo stesso insieme) e sia $x_0$ un punto di accumulazione del dominio, eventualmente infinito.
+		Se il $\limite{x}{x_0}$ del rapporto delle due funzioni $f$ e $g$ è uguale a zero,
+		allora diremo che \emph{$f(x)$ è un o-piccolo di $g(x)$ per $x$ che tende a $x_0$.}
+		$$
+		\limite{x}{x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = 0_{x_0}g(x)
+		$$
+	}
 
 	\section{Continuità di una funzione}
 	La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
@@ -656,7 +670,7 @@ Bisogna provare a svolgere un paio di limiti.
 	}
 	Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
 
-	\subsection{Punti di discontinuità}
+	\subsection*{Punti di discontinuità}
 	Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
 
 	\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
@@ -692,7 +706,7 @@ Bisogna provare a svolgere un paio di limiti.
 		\item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
 		\item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
 	\end{itemize}
-	\subsection{Derivate composte}
+	\subsection*{Derivate composte}
 	\begin{itemize}
 		\item[Composizione] $f(g(x)) \implies f'(g(x)) \cdot g'(x)$
 		\item[Prodotto] $f(x) \cdot g(x) \implies f'(x) \cdot g(x) + f(x) \cdot g'(x)$

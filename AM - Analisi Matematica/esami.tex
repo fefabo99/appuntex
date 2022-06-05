@@ -529,7 +529,7 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 \domanda{6}{SUP $A=\{\frac{2}{2n^2+1} + e^{1-n},n=1,2,...\}$ è}
 \risposta{$\frac{2}{3}$}
 
-\domanda{7}{Detta $g$ funzione inersa di $f(x) = x3+x+1$, allora $g'(3)=$}
+\domanda{7}{Detta $g$ funzione inversa di $f(x) = x^3+x+1$, allora $g'(3)=$}
 \irrisolta
 
 \domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
@@ -564,7 +564,9 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 \end{itemize}
 
 }
-\domandaaperta{iv.}{Il più ampio intervallo di convessità del tipo $(k,+\infty)$ si ha per $k=$...}
+\domandaaperta{iv.}{
+	Il più ampio intervallo di convessità del tipo $(k,+\infty)$ si ha per $k=$...
+	}
 \rispostaaperta{
 	Per trovare i punti di convessità/concavità bisogna fare la derivata seconda.
 	$f''(x) = e^{-x}(x^2-5x+4)$ e la pongo $> 0$
@@ -572,6 +574,29 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 	Quindi il più grande intervallo di convessità a più infinito è: $(4, +\infty)$.
 }
 \domandaaperta{v.}{$\int_{0}^{1} \frac{f(x)}{x}dx =$}
+\irrisolta
+
+\domandaaperta{2}{Data la serie $\serie{1}{+\infty} q^n$, dove $q\in\R$, la serie converge sse $q\in ...$? e diverge sse $q\in ...$?}
+\rispostaaperta{Converge se $q\in (-1,1)$, diverge se $q\in [1,+\infty]$.}
+\domandaaperta{i}{Si consideri la serei $\serie{0}{\infty}(2e^x-3)^n$, con $x \in \R$.
+Per quali valori di $x$ converge? E per quali invece diverge a $+\infty$?}
+\rispostaaperta{La serie converge se $q\in (-1,1)$, quindi converge se $2e^x-3<|1|$, quindi deve essere minore di 1 e maggiore di meno 1:
+\\$2e^x-3<1 \to e^x< 2 \to x<\ln 2$ (per fare sparire un esponenziale bisogna fare il logaritmo naturale di tutto.)
+\\$2e^x-3>-1 \to e^x> 1 \to x>\ln 1 \to x>0$
+\\Quindi converge sse $x\in (0,\ln 2)$
+\\Di conseguenza, diverge se $x\in [\ln 2, +\infty)$
+}
+
+\domandaaperta{3}{Siano $\{a_n\},\{b_n\}$ due successioni positive.
+Che cosa significa la scrittura $a_n = o(b_n)$, per $n\to +\infty$?
+}
+\rispostaaperta{
+	$a_n = o(b_n)$ se $\limite{n}{+\infty}\frac{a_n}{b_n} = 0$
+}
+\domandaaperta{3a}{Date le successioni $a_n = \frac{n^2+\ln n}{n\sqrt{n}+e^{-n}}$ e $b_n = \frac{n\sqrt{n}-\ln n}{n+e^n}$, si stabilisca se $a_n = o(b_n)$, oppure $b_n = o(a_n)$, oppure nessuna delle due.  }
+\irrisolta
+
+
 \chapter{Esercizi}
 \section{Integrali}
 \esercizio{}{
