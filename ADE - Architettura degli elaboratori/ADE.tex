@@ -1568,8 +1568,138 @@ MIPS rileva e tratta eccezioni PRIMA del completamento dell'esecuzione della ist
 
 %Fare esercizi gestione eccezioni (exception handler)
 
+%Caricare gestore eccezioni e programma che genera overflow
 
+\chapter{Gestione Input-Output}
+Con I/O definiamo l'insieme di architetture e dispositivi per il trasferimento di informazioni da 
+e verso l'elaboratore. Si tratta di dispositivi eterogenei per
+\begin{itemize}
+    \item Velocità di trasferimento
+    \item Latenze
+    \item Sincronizzazione
+    \item Modalità di interazione (sia con l'uomo che con la macchina)
+\end{itemize}
+\section{Bus di Sistema}
+Esistono vari tipi di bus nei computer di oggi. In questo corso tratteremo il bus di sistema
+che collega la CPU con la memoria e con le periferiche.
+Il bus di sistema è composto da:
+\begin{itemize}
+    \item Bus di dati: le linee per trasferire dati e istruzioni da/verso dispositivi
+    \item Bus di controllo: trasporta informazioni per la definizione delle operazioni
+    da compiere per la sincronizzazione fra i dispositivi
+    \item Bus degli indirizzi: la CPU trasmette gli indirizzi di memoria o di perificheria che
+    identificano i dati da leggere/scrivere dalla memoria/periferiche
+\end{itemize}
+Tutte le unità dell'elaboratore sono connesse al bus
+\paragraph*{Vantaggi} Elevata flessibilità, semplicità, basso costo
+\paragraph*{Svantaggi} Gestione complessa del canale condiviso
 
+\section{Periferiche}
+Sono dispositivi per I/O di informazioni collegati alla CPU tramite il bus di sistema e/o interfacce,
+le interfacce sono standardizzate per la comunicazione e hanno una componente hardware (e.g. il controller
+della periferica) e una componente software (e.g. driver).
+La struttura di un'interfaccia contiene reistri di dati (oppure buffer) e ha associato registri di stato.
+
+\subsection*{Periferiche mappate in memoria}
+Una parte della memoria riservata al sistema viene usata per la comunicazione con le periferiche.
+Ogni periferica ha uno spazio dedicato nella memoria e viene assegnato un identificatore unico alla stessa
+(es. indirizzo unico).
+\\ I registri dell'interfaccia della periferica sono mappati in memoria, ma sono riservati, per questo non sono accessibili da
+un programma utente, per potervi accedere è necessario passare dal SO.
+\\ L'accesso alla periferica è simile all'accesso alla memoria (e.g. lw, sw) dal punto di vista della CPU.
+Non tute le architetture degli elaboratori usano questa soluzione.
+\subsection*{Un selettore generale per mappare dispositivi in memoria}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{selettore per mappare periferiche.png}
+\end{center}
+\subsection*{Registri di interfaccia della periferica}
+Il \textbf{registro di stato della periferica} rappresenta lo stato della stessa e viene letto dalla CPU. Un esempio di stato è 
+"periferica pronta per ricevere dati, dati richiesti disponibili per il trasferimento.
+Il \textbf{registro dei dati della periferica} rappresenta i dati di input o di output in base al tipo della stessa.
+\subsection{Passi di I/O}
+\begin{enumerate}
+    \item CPU interroga lo stato della periferica
+    \item La periferica restituisce il suo stato
+    \item Se la periferica è pronta per trasmettere/ricevere dati, la CPU richiede il trasferimento dei dati
+    \item La CPU invia o riceve i dati
+\end{enumerate}
+\subsection{Tecniche di gestione I/O}
+\begin{itemize}
+    \item I/O gestito da programma (Programmed I/O)
+    \item I/O guidato da interrupt (Interrupt Driven I/O)
+    \item Accesso Diretto alla Memoria (Direct Memory Access - DMA)
+\end{itemize}
+Per valutare le prestazioni del trasferimento dati è necessario ricorrere a delle misure che permettono
+di valutare l'efficienza della gestione delle operazioni di I/O.
+\begin{itemize}
+    \item Banda passante - rappresenta la quantità dei dati che si può trasferire per unità di tmepo;
+    rappresenta una misura di flusso
+    \item Latenza - rappresenta il tempo che interoccre tra l'istante in cui una periferica è pronta
+    per il trasferimento e l'istante in cui il dato viene trasferito, è una misura di tmepo
+\end{itemize}
+
+\subsection*{I/O Gestito da programma}
+In questa casistica è il programma a gestire l'I/O e la periferica ha un ruolo passivo.
+La CPU si occupa sia del controllo sia del trasferimento dati, predisponendo il controllore
+della periferica all'esecuzione dell'I/O. 
+\\ La CPU si ferma e interroga il registro di stato della periferica in attesa che sia pronta (e.g.
+ready bit assume un determinato valore).
+\paragraph*{Vantaggio} Risposta veloce al ready bit
+\paragraph*{Svantaggio} la CPU resta bloccata in stato di busy waiting
+\begin{center}
+    \includegraphics*[width=100mm, scale=0.5]{IO gestito da programma.png}
+\end{center}
+\paragraph*{Prestazioni I/O gestito da programma}
+\begin{itemize}
+    \item Banda passante alta perchè la CPU trasferisce subito il dato (molti dati per l'unità
+    di tempo) e la gestione della periferica richiede poche istruzioni
+    \item Latenza minima in quanto la CPU noterà subito lo stato della periferica (tempo massimo:
+    un ciclo intero di busy waiting)
+\end{itemize}
+Esempio: se si trasferiscono più dati si ha un ciclo interno per il trasferimento di ogni byte 
+e un ciclo esterno per il trasferimento di tutti i byte.
+
+\subsection*{I/O gestito da interrupt}
+L'Interrupt è un evento asincrono che genera l'interruzione del normale funzionamento del processore.
+\begin{itemize}
+    \item La periferica segnala alla CPU di aver bisogno di attenzione mediante un segnale sul bus di controllo,
+    tale segnale è una segnale \textbf{interrupt request}
+    \item Quando il processore se ne accorge (in una fase di fetch) informa al periferica con un segnale 
+    interrupt acknowledge. 
+    \item La CPU interrompe l'esecuzione del programma corrente (salvando il contesto dell'esecuzione del programma per poter 
+    riprendere la sua esecuzione) ed esegue la procedura di risposta all'interrupt.
+    \item Terminata l'esecuzione della procedura di interrupt, la CPU riprendere l'esecuzione del programma
+    interrotto, infine il programma utente continua la sua esecuzione.
+\end{itemize}
+
+\paragraph*{Vantaggio} La CPU non fa più busy waiting come per I/O gestito da programma
+\paragraph*{Svantaggio} La CPU deve comunque gestire le operazioni di trasferimento
+Per evitare l'intervento della CPU nella fase di trasferimento dati è stato introdotto il protocollo di trasferimento
+DMA - Direct Memory Access.
+
+\paragraph*{Prestazioni}
+\begin{itemize}
+    \item Banda passante: minor banda passante in quanto il trasferimento di ogni dato necessità di più tempo
+    \item Latenza: maggior latenza per la maggior quantità di operazioni da eseguire 
+\end{itemize}
+
+\subsection*{DMA - accesso diretto alla memoria}
+Usato quando si trasferiscono velocemente grandi quantità di dati.
+Con \textbf{DMA} la periferica diventa autonoma negli accessi alla memoria dato che è essa a
+gestire i trasferimenti, non è più la CPU a intervenire. Necessità di 2 registri in più
+per ogni periferica oltre al registro di stato e registro dei dati.
+\begin{itemize}
+    \item Un registro che indichi l'indirizzo di memoria da/dove trasferire i dati
+    \item Un registro che indichi la quantità dei dati da trasferire
+\end{itemize}
+Anche questi 2 registri aggiuntivi sono \textbf{mappati in memoria}.
+\\ Alla fine del trasferimento la periferica invia un interrupt alla CPU per segnalare il completamento 
+del trasferimento.
+\paragraph*{Prestazioni}
+\begin{itemize}
+    \item Banda passante: massima perchè la CPU non deve eseguire nessuna istruzione
+    \item Latenza: minima dato che nessuna istruzione è eseguita dalla CPU
+\end{itemize}
 
 
 
