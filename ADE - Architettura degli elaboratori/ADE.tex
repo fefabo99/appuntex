@@ -1553,8 +1553,10 @@ Per tutti i tipi di eccezione avviene
 \subsubsection*{Exception Handler}
 \'E la porzione di codice assembly che contiene il codice che gestisce le eccezioni
 e si trova alla locazione fissa 0x80000180 in area ktext riservata al sistema operativo.
-Dal momento che viene eseguito dopo l'interruzione di un programma utente in un punto
-qualsiasi, è tenuto a \textbf{preservare TUTTi i registri macchina}. Ad esso sono riservati
+Quando si presenta un eccezione viene caricato nel PC l'indirizzo dell'Handler, così che
+venga eseguito il codice che si occupa di capire di che eccezione si tratta.
+\\ Dal momento che viene eseguito dopo l'interruzione di un programma utente in un punto
+qualsiasi, è tenuto a \textbf{preservare TUTTI i registri macchina}. Ad esso sono riservati
 i due registri \textbf \$k01, \$k02 che può utilizzare senza doverne preservare i contenuti.
 Al termine del trattamento dell'eccezione, l'exception handler ritorna il controllo al programma
 interrotto (istruzione eret).
@@ -1701,7 +1703,7 @@ del trasferimento.
     \item Latenza: minima dato che nessuna istruzione è eseguita dalla CPU
 \end{itemize}
 
-
+%Gestione I/O con interruzione e DMA 1:14:00
 
 %END------------------------------------------------------------------------
 
