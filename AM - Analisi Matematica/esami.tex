@@ -530,7 +530,29 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 \risposta{$\frac{2}{3}$}
 
 \domanda{7}{Detta $g$ funzione inversa di $f(x) = x^3+x+1$, allora $g'(3)=$}
-\irrisolta
+\risposta{$g'(3)=\frac{1}{4}$}
+\spiegazione{
+	Siccome la funzione $f(x) = x^3+x+1$ non è facilmente invertibile (è impossibile ottenere l'espressione di $f^{-1}(x)$)
+	bisogna usare il \emph{teorema della derivata della funzione inversa}.
+	\\Da questo teorema sappiamo che $g'(y)=\frac{1}{f'(x)}$, e sappiamo anche che $y=x^3+x+1$ (formula dell'inversa).
+	Avendo $y=3$ possiamo metterla a sistema per trovare $x$:
+	$$
+	\begin{cases}
+		y=3 \\
+		y=x^3+x+1
+	\end{cases}
+	\to
+	...
+	\to
+	\begin{cases}
+		y=3 \\
+		x=1
+	\end{cases}
+	$$
+	Quindi abbiamo $g'(3)=\frac{1}{f'(1)}$.
+	\\$f'(x) = 3x^2+1 \implies f'(1)=4$.
+	\\Riempiendo i valori della formula troviamo $g'(3)=\frac{1}{4}$.
+}
 
 \domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
 \irrisolta

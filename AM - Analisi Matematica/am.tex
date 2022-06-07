@@ -317,12 +317,57 @@ Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un 
 Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
 Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca.
 
-\subsection*{Funzione Inversa}
+\section{Funzione Inversa}
 Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
 dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
 se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
-\paragraph*{} se $f$ è funzione reale di variabile reale biiettiva, il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $x=y$.
+\paragraph*{Graficamente} se $f$ è funzione reale di variabile reale biiettiva (ovvero è invertibile),
+ il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $y=x$.
 
+\subsection*{Come si calcola}
+In linea generale, per calcolare l'inversa di una funzione bisogna:
+\begin{itemize}
+	\item mettere la funzione nella forma $y=...$
+ \item Isolare la $x$
+ \item Una volta isolata la $x$, si sotituisce $y$ con $x$, e $x$ con $f(x)$ per trovare la funzione
+\end{itemize}
+\esempio{$f(x) = x^3$, allora $f^{-1}(x)$:
+\\$y=x^3 \to x^3 = y \to x=\sqrt[3]{y} \to f(x) = \sqrt[3]{x}$
+}
+
+\subsection*{Derivata della Funzione Inversa}
+In molti casi l'inversa di una funzione non è facilmente calcolabile,
+esiste però un modo per calcolare la derivata di una funzione inversa senza saperne l'espressione analitica.
+\definizione{
+	Consideriamo una funzione $y=f(x)$ biunivoca e derivabile in un punto $x_0$ e supponiamo inoltre che $f'(x_0)\neq 0$.
+	Allora la funzione inversa $x = f^{-1}(y)$ è derivabile nel punto $y_0 = f(x_0)$, e la sua derivata in tale punto è:
+	$$ (f^{-1})'(y_0) = \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1}(y_0))}$$
+}
+\paragraph*{Ovvero} Questo teorema ci serve all'esame per quelle funzioni di cui dobbiamo trovare la derivata dell'inversa che però sono pressochè impossibili da derivare.
+\\Sia $f(x)$ una funzione (ovviamente invertibile e derivabile) e sia $g$ la sua inversa. 
+$g'(y_0)$ (con un $y_0$ fornito) è trovabile in questo modo.
+\\Dal teorema sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$, e sappiamo (tramite la formula per trovare l'inversa) che
+$y=f(x)$. Se $y=y_0$ (che è il valore di $y$ in cui dobbiamo trovare $g'$), allora $y_0= f(x)$ ci da un certo valore di $x=x_0$.
+Avendo adesso il valore di $y_0$ e di $x_0$ basta riempire la formula per trovare $g'(y_0)$.
+\\Questo procedimento è meglio comprensibile con un esempio:
+\esempio{detta $g$ la funzione inversa di $f(x) = x^{\frac{1}{3}}$, allora $g'(1) =$
+\\Dal teorema ho $g'(1) = \frac{1}{f'(x_0)}$, e so che $y=x^{\frac{1}{3}}$.
+Ponendoli a sistema per trovare $x$ ottengo:
+$$
+\begin{cases}
+	y= 1 \\
+	y=x^{\frac{1}{3}}
+\end{cases}
+\begin{cases}
+	y = 1 \\
+	x = 1
+\end{cases}
+$$
+Quindi, $g'(1) = \frac{1}{f'(1)}$.
+$f'(x) = \frac{1}{3x^{\frac{2}{3}}}$,
+$f'(1) = \frac{1}{3}$.
+\\Applicando quindi la formula ottengo $g'(1) = 3$.
+}
 \section*{Funzioni Pari/Dispari}
 Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
 \paragraph*{Pari}
