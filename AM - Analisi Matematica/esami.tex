@@ -117,6 +117,54 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \risposta{$2-\ln(x)$}
 \spiegazione{$(h \circ g \circ f)(x) = h(g(f(x)))$}
 
+\section{Febbraio 2022}
+\domanda{O1}{$f(x) = \ln(x^3-1)$, $g(x) = |x|$, la funzione $(f \circ g)(x)$ è:}
+\risposta{$ln(|x|^3-1)$}
+\spiegazione{$(f\circ g)(x) = f(g(x))$}
+
+\domanda{O2}{La funzione $f(x) = \begin{cases} 4\frac{e^{2x-1}}{x} & x<0 \\ x^2 + \frac{a}{2} & x\geq0\end{cases}$ ha in $x=0$ una discontinuità di prima specie sse:}
+\risposta{$a\neq 16$}
+\spiegazione{Una discontinuità di prima specie la si ha quando i limiti destro e sinistro di $x_0$ esistono finiti e non coincidono.
+\\$f(0) = \frac{a}{2}$, quindi basta mettere $a$ in modo che sia diverso dal limite destro.
+\\$\limite{x}{0^-} f(x) = \frac{0}{0}$, che è una forma di indecisione.
+Usando il limite notevole dell'esponenziale decido di  moltiplicare e dividere per $2x$:
+$ 4\frac{e^{2x-1}}{2x} \cdot \frac{2x}{x} = 4 \cdot 1 \cdot \frac{2x}{x} = 8$
+Di conseguenza $a\neq 16$.
+}
+\domanda{O3}{$f:\R \to \R$ derivabile e tale che $f(1)=4$ e $f'(1)=-2$. Se $g(x)= \ln(f^2(x)+1)$, allora $g'(1)$ vale:}
+
+\risposta{$-\frac{16}{17}$}
+\spiegazione{Si può trovare $g'(1)$ senza sapere $f$. Basta derivare $g(x)$ mantenendo $f(x)$ come se fosse un incognita:
+$g'(x)=\frac{1}{f^2(x)+1}\cdot 2f(x) \cdot f'(x) = \frac{2f(x) \cdot f'(x)}{f^2(x)+1}$
+Valuto $g'(1)$ sostituendo a $f(x)$ e $f'(x)$ le loro valutazioni in uno e trovo $g'(1)=-\frac{16}{17}$
+}
+\domanda{O4}{L'insieme $A=\{\frac{\ln n}{n},n=1,2,...\}$}
+\risposta{Ha minimo 0}
+
+\domanda{O5}{Una primitiva della funzione $f(x)=\frac{e^2x}{e^2x+1}$ è:}
+\irrisolta
+
+\domanda{O6}{$\limite{n}{+\infty} n^2\sin(\frac{1}{n+n^2})$ vale}
+\risposta{1}
+\spiegazione{
+	Sappiamo che per $x\to0, \sin(x)\sim x$, quindi:
+	$\sim n^2\cdot \frac{1}{n+n^2}= \frac{n^2}{n+n^2} \sim \frac{n^2}{n^2} = 1$
+}
+
+\domanda{O7}{$f(x) = e^{3x-x^3}$ è monotona decrescente sse}
+\risposta{$x\in(-\infty,-1] \vee x\in [1,+\infty)$}
+\spiegazione{Per trovare la monotonia faccio la derivata
+$f'(x)=e^{3x-x^3}(3-3x^2)$ e la pongo $\geq 0$
+$e^{3x-x^3}\geq 0 \forall x$, $3-3x^2\geq 0 \to 3x^2-3\leq 0 \to x\leq \pm 1$
+Quindi $x \geq 0$ tra $-1$ e $1$.  
+
+}
+
+\domanda{O8}{La serie $\sum_{n=1}^{+\infty} \frac{5}{2n^{2-a}+4}$ converge sse }
+\risposta{$a<1$}
+\spiegazione{
+	$\sim \frac{1}{n^{2-a}}$, perchè converga il denominatore deve avere esponente $>1$, quindi $a<1$.
+}
 
 \section{Giugno 2019}
 
@@ -560,8 +608,17 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 	\\Riempiendo i valori della formula troviamo $g'(3)=\frac{1}{4}$.
 }
 
-\domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
-\irrisolta
+\domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
+\risposta{$a=1$}
+\spiegazione{
+Perchè una funzione sia continua in un punto, i limiti destro e sinsitro di quel punto devono coincidere. 
+\\$f(0) = a$, quindi $a$ deve essere uguale al limite destro di $0$.
+\\Sappiamo che $\limite{x}{0} \frac{\ln(1+x)}{x} = 1$ (limite notevole del logaritmo),
+quindi moltiplico e divido per $x$ in modo da ottenere il limite notevole:
+\\$\limite{x}{0^+} \frac{\ln(1+x)}{x+x^3} = \frac{\ln(1-x)}{x}\cdot \frac{x}{x+x^3}\sim 1\cdot \frac{x}{x+x^3}$.
+\\Raccolgo la $x$: $= \frac{x(1)}{x(1-x^2)} = \frac{1}{1+x^2} = 1$
+}
+
 \subsection*{Domande Aperte}
 \domandaaperta{1}{Sia $f:\R \to \R$ definita da $f(x) = (x^2 - x) e^x$, Allora:}
 \domandaaperta{i.}{$f$ ha asintoto orizzontale di equazione ... per $x \to $...}
@@ -601,6 +658,7 @@ Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radic
 	$f''(x) > 0 $ con $(-\infty, 1 ) \cup (4, +\infty)$.
 	Quindi il più grande intervallo di convessità a più infinito è: $(4, +\infty)$.
 }
+
 \domandaaperta{v.}{$\int_{0}^{1} \frac{f(x)}{x}dx =$}
 \irrisolta
 
