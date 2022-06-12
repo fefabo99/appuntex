@@ -599,6 +599,49 @@ Le forme di Indecisione (o forme indeterminate) sono operazioni che coinvolgono 
 	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
 \end{center}
 
+\paragraph{Risoluzione}Tutti questi possono essere risolti usando \textbf{Limiti Notevoli}, compresi alcuni \textbf{trucchi algebrici} per ricondursi ad essi,
+come sommare e sottrarre la stessa quantità e dividere e moltiplicare per la stessa quantità
+ma anche eventuali prorpietà dei logaritmi e delle potenze, formule trigonometriche etc...
+\\In particolare però, questi si risolvono usando \emph{anche}:
+\paragraph*{}$$\frac{0}{0}$$
+\begin{itemize}
+	\item Confronto tra infinitesimi
+	\item Scomposizione/Raccoglimento/Semplificazione
+	\item Teorema di De l'Hôpital
+\end{itemize}
+\paragraph*{}$$\frac{\infty}{\infty}$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Scomposizione/Raccoglimento/Semplificazione
+	\item Teorema di De l'Hôpital
+\end{itemize}
+\paragraph*{}$$1^\infty$$
+\begin{itemize}
+	\item Limiti Notevoli (in particolare il limite neperiano)
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+\paragraph*{}$$0\cdot \infty$$
+\begin{itemize}
+	\item Trucchi per ricondursi a $\frac{0}{0}$ o $\frac{\infty}{\infty}$
+\end{itemize}
+\paragraph*{}$$\infty-\infty$$
+\begin{itemize}
+	\item Razionalizzazione Inversa
+	\item Prodotti notevoli al contrario
+\end{itemize}
+\paragraph*{}$$\infty^0$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Confronto tra infinitesimi
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+\paragraph*{}$$0^0$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Confronto tra infinitesimi
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+
 \section{Limiti Notevoli}
 Per risolvere le forme indeterminate non sono sufficienti gli strumenti che l'algebra dei limiti e degli infiniti/infinitesimi ci forniscono.
 Esistono dunque alcuni limiti notevoli che ci permetteranno di risolvere buona parte delle forme indeterminate.
@@ -703,6 +746,11 @@ Bisogna provare a svolgere un paio di limiti.
 		\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
 	\end{enumerate}
 	\section{Confronto tra infiniti/infinitesimi}
+	\subsection*{Ordine di infiniti}
+	Nel calcolo dei limiti, quando bisogna trovare l'infinito di ordine maggiore:
+	$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
+	con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
+	\nb{la radice è "più grande" del logaritmo}
 	\subsection*{o-piccolo}
 	L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infitisemio di una funzione rispetto ad una funzione campione,
 	al terndere di $x$ ad un determinato valore di infinito.
