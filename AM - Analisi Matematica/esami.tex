@@ -123,8 +123,16 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \risposta{Ha minimo 0}
 
 \domanda{O5}{Una primitiva della funzione $f(x)=\frac{e^{2x}}{e^{2x}+1}$ è:}
-\spiegazione{Forse dovrei provare per sostituzione}
-\irrisolta
+\risposta{$\frac{\ln(e^{2x}+1)}{2}+7$}
+\spiegazione{Si può notare che l'espressione $e^{2x}$ è ripetuta, si deduce quindi che è conveniente provare per sostituzione.
+\\Pongo $y=e^{2x}$ e isolo la $x$: $x=\frac{\ln y}{2}$.
+\\Ora derivo a sinistra e destra e "moltiplico" ripsettivamente per $dx$ e $dy$, quindi: $\ddx[x] = dx$
+e $\ddx[\frac{\ln y}{2}] = \frac{1}{2} \cdot \ddx[\ln y] = \frac{1}{2y} dy$
+\\Sostituisco con $y$ e $dy$ nella funzione originale:
+$$\int \frac{\cancel{y}}{y+1} \cdot \frac{1}{2\cancel{y}} dy = \frac{1}{2} \int \frac{1}{y+1}dy$$
+Sappiamo che $\int \frac{1}{y+1}dy = ln(y+1) +c$, quindi:
+$$=  \frac{ln(y+1)}{2} +c \to \text{Sostituisco}\to \frac{\ln(e^{2x}+1)}{2}+c$$
+}
 
 \domanda{O6}{$\limite{n}{+\infty} n^2\sin(\frac{1}{n+n^2})$ vale}
 \risposta{1}

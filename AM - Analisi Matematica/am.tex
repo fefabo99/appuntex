@@ -466,7 +466,7 @@ Bisogna innanzitutto avere la derivata della funzione. Poi, tenendo conto dell'e
 \section{Introduzione}
 \definizione{
 	Una \emph{Successione di numeri reali} è una funzione $a: \N \to \R$.\\
-	La variablie Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$
+	La variabile Indipendente viene di solito indicata con $n$ mentre per la funzione alla notazione $a(n)$ si preferisce $a_n$
 }
 \esempio{
 	$a_n = 2n-3$ è una successione.
@@ -900,17 +900,74 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 		$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
 	}
 
-	\subsection{Integrazione per sostituzione}
+	\subsection{Integrazione per Sostituzione}
+	Lo scopo dell'integrazione per sostituzione è quello di trasformare l'integrale in modo da renderlo più semplice
+	e riconducibile a formule immediate.
+	\\ Ma quando si usa? Di solito ci si accorge che può essere usato in casi in cui c'è un espressione della $x$ che si ripete,
+	oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
+
 	\definizione{
+		Siano $f:I\to \R$ una funzione continua, e $g:J\to \R$ una funzione derivabile con derivata continua.
+		Si ha che:
 		$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
+		Nel caso in cui la funzione $g(y)$ sia \textbf{invertibile}, allora vale la seguente formula di integrazione:
+		$$\int f(x)dx = \int f(g(y))g'(y)dy$$
+		Queste due formule sono equivalenti e bisogna scegliere quale usare in base a come si presenta la funzione integranda.
 	}
-	Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
-	si può sostituire con una ipotetica $y$ per sepmplificare.
-	\esempio{
-		$\int sin(e^x) e^x dx$. consideriamo:
-		\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
-			\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
+
+	Vedendo queste due definizioni non si capisce molto,
+	ma in sostanza si può usare la sostituzione in due casi differenti.
+	Questi due casi hanno dei passaggi diversi,
+	\subsubsection*{Primo Tipo}
+	Supponiamo di voler calcolare un integrale che si presenta nella forma:
+	$$\int f(g(x)) g'(x) dx$$
+	\begin{enumerate}
+		\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
+		\item Sostituiamo i nuovi valori nell'integrale, cos' da ottenere la forma $\int f(y) dy$
+		\item Calcoliamo l'integrale nella nuova variabile (sperando che sia più semplice) ottendendo così $F(y) + c$
+		\item Sostiuiamo a $y$ l'espressione della funzione $g(x)$.
+	\end{enumerate}
+	\esempio{Calcola l'integrale di $2xe^{x^2}$.
+	\\Si può ben notare che $2x$ è la derivata di $x^2$, quindi questa funzione si presenta nella forma $g'(x)f(g(x))$.
+	Poniamo quindi $y=g(x)=x^2$ e $dy=g'(x)dx= 2x dx$.
+	\\Sostituiamo, $\int 2xe^{x^2} = \int e^y dy = e^y +c$.
+	\\Ri sostiuiamo $y$ con $x^2$ e troviamo $e^{x^2} + c$.
 	}
+	\subsubsection*{Secondo Tipo}
+	Supponiamo di voler calcolare l'integrale: $$\int f(x)dx$$
+	In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
+	Qui però dobbiamo richiedere che la funzione $g$ sia non solto derivabile, ma anche invertibile!
+	\\I passi da effettuare sono i seguenti:
+	\begin{enumerate}
+		\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
+		\item Sostiuiamo il tutto nell'integrale in modo da ricavare $f(g(y))g'(y)$
+		\item Calcoliamo l'integrale ottenuto (nella speranza che sia di più facile risoluzione)
+		\item Sostiuiamo di nuovo per tornare nella variabile $x$. Per farlo però è necessario esprimere la variahbile $y$ in funzione di $x$ determinando la funzione inversa $y=g^{-1}(x)$
+		\item 
+	\end{enumerate}
+
+	\paragraph*{O in modo più semplice}
+	I passaggi che ho riportato qui sopra li ho trovati su youmath e seguono la definizione.
+	Sono molto confusionali e il processo in se è molto difficile, quindi riporto alcuni passaggi per rendere il tutto più semplice.
+	\\Qui dobbiamo andare a cercare all'interno di $f(x)$ un'espressione di $x$ che vogliamo rimuovere e sostiuire con $y$ per semplificare il tutto.
+	Quindi, avendo $\int f(x)$ che contiene una $g(x)$ (possibilmente ripetuta) che voglio togliere per semplificare il tutto
+	\begin{enumerate}
+		\item Decido che $y=g(x)$
+		\item Inverto $g(x)$ in modo da isolare la $x$, ottenendo $x=g^{-1}(y)$
+		\item Derivo entrambi i membri e "moltiplico" $dx$ e $dy$ in modo da ottenere: $dx=(g^{-1})'(y)dy$
+		\item All'interno della funzione sostiuisco $g(x)$ con $y$ e $dx$ con $(g^{-1})'(y)dy$
+		\item A questo punto mi (dovrei) trovare un integrale più facile, che posso risolvere
+		\item Una volta risolto sostiuisco $y$ con $g(x)$.
+	\end{enumerate}
+
+
+	% Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
+	% si può sostituire con una ipotetica $y$ per sepmplificare.
+	% \esempio{
+	% 	$\int sin(e^x) e^x dx$. consideriamo:
+	% 	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
+	% 		\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
+	% }
 
 	\subsection{Integrazione di Funzioni Razionali}
 	Sono funzioni razionali tutte quelle funzioni del tipo:
