@@ -185,14 +185,33 @@ Quindi $x \geq 0$ tra $-1$ e $1$.
 	\\$\frac{2x}{x^2+1}\geq 1 \to 2x\geq x^2+1$, $x_{12}= 1$
 		\\è indeterminata sse: $\frac{2x}{x^2+1}\leq -1 \to x=-1$.
 		\\per $x=-2$ la somma della serie vale: $\frac{5}{9}$}
+
 \domandaaperta{3}{Data la funzione funzione $f(x)=x-\frac{\ln^2x}{x} : (0,+\infty) \to \R$:
 	\begin{itemize}
 		\item Si scrivano tutte le primitive
-		\item Si determini, se esiste, la primitiva $\phi$ tale che $\phi(e) = 2\phi(1)$
+		\item Si determini, se esiste, la primitiva $\varphi$ tale che $\varphi(e) = 2\varphi(1)$
 		\item Si calcoli $\int_{e}^{e^2}f(x) dx$.
 	\end{itemize}
 }
-\irrisolta
+\rispostaaperta{Primitive:
+$$\int x-\frac{\ln^2x}{x} dx = \int x dx - \int \frac{\ln^2x}{x} dx = \frac{x^2}{2} - \int \frac{\ln^2x}{x} dx +c$$
+Per risolvere il secondo integrale procedo per sostituzione. Pongo: $y=\ln(x)$, $x=e^y$, $dx = e^y dy$.
+\\Sostituisco:
+$$\frac{x^2}{2} + c - \int \frac{y}{\cancel{e^y}} \cancel{e^y} dy = \frac{x^2}{2} +c  - \int y^2 dy = \frac{x^2}{2} - \frac{y^3}{3} +c$$
+Ritorno con $x$ e ottengo:
+$$\frac{x^2}{x} - \frac{\ln^3}{3} + c$$
+}
+\rispostaaperta{$\varphi(e)=2\varphi(1)$
+\\Devo trovare i valori di $c$ per cui questi due valori si equivalgono. Valuto quindi le due funzioni e poi isolo la $c$.
+$$\varphi(e)=\frac{e^2}{2}-\frac{1}{3}+c \wedge 2\varphi(1) = 2(\frac{1}{2}+c)$$
+$$2(\frac{1}{2}+c) = \frac{e^2}{2}-\frac{1}{3}+c \to 	c - \frac{c}{2} = \frac{e^2}{4}-\frac{1}{6} -\frac{1}{2} \to c=\frac{3e^2-8}{6}$$
+Di conseguenza la primitiva per cui $\varphi(e)=2\varphi(1)$ è: $\frac{x^2}{x} - \frac{\ln^3}{3} +\frac{3e^2-8}{6}$
+}
+\rispostaaperta{$\int_{e}^{e^2}f(x) dx$:
+\\$F(e)= \frac{e^2}{2} - \frac{1}{3}$
+\\$F(e^2) = \frac{(e^2)^2}{2} - \frac{(2\ln(e))^3}{3} = \frac{e^4}{2} - \frac{8}{3}$
+$$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
+}
 
 \chapter{Esami Secondo Semestre}
 
