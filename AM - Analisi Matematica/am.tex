@@ -1248,17 +1248,19 @@ Questo criterio, molto simile a quello del Rapporto, dice che:
 		\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
 	\end{itemize}
 }
+\nb{Usando questo criterio capiterà spesso di trovare $\limite{n}{+\infty} \sqrt[n]{n}$ o $\limite{n}{+\infty} (\sqrt[n]{n^\alpha})$
+Tali limiti valgono semre 1}
 \esempio{
 	Studiare il carattere di $\serie{2}{+\infty} \frac{1}{(\log n)^{\frac{n}{2}}}$:
 	\begin{equation*}
 		\limite{n}{+\infty} \sqrt[n]{\frac{1}{(\log n)^{\frac{n}{2}}}} =
 		(\frac{1}{(\log n)^{\frac{n}{2}}})^{\frac{1}{n}} =
 		\frac{1}{(\log n)^{\frac{n}{2n}}} =
-		\frac{1}{sqrt{(\log n)}}
+		\frac{1}{\sqrt{(\log n)}}
 	\end{equation*}
 	siccome $\limite{n}{+\infty} \log n = +\infty$
 	\begin{equation*}
-		\limite{n}{+\infty} \frac{1}{sqrt{(\log n)}} = 0
+		\limite{n}{+\infty} \frac{1}{\sqrt{(\log n)}} = 0
 	\end{equation*}
 	$0 < 1$, per cui la serie \emph{Converge}
 }
