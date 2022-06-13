@@ -32,10 +32,10 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	\hline
 	Esame       & Crocette & Aperte & Note                                 \\
 	\hline
-	Giugno 2019 & 8/8      & 3/3    & Manca un pezzo della domanda $1ii$   \\
+	Giugno 2019 & 8/8      & 3/3    &   \\
 	Giugno 2020 & 7/8      & 2/4    &                                      \\
 	Giugno 2021 & 6/8      & 0/3    &                                      \\
-	Luglio 2019 & 8/8      & 0/2    & La domanda aperta 1 è da trascrivere \\
+	Luglio 2019 & 8/8      & 1.5/2    & \\
 	Luglio 2020 & 8/8      & 2.5/3  &                                      \\
 	Luglio 2021 & 5/7      & 1.9/2  &                                      \\
 	\hline
@@ -55,7 +55,16 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 }
 \domanda{2}{Sia $f:\R \to \R$ con $f'(0)=0,f''(x)=ln(e+x)$.Allora $f$ ha in $x=0$}
 \risposta{Un punto di minimo Relativo}
-\irrisolta
+\spiegazione{Qua si può andare a ragionamento.
+\\Se pongo $f''(x)\geq 0 \to \ln(e+x)\geq 0 \to e+x>0 \to x>-e$, quindi scopro che la funzione è:
+\begin{itemize}
+	\item Concava ($\cap$) prima di $-e$
+	\item Convessa ($\cup$) dopo di $-e$
+\end{itemize}
+Quindi il punto $x=0$ è nella zona di convessità.
+Sappiamo (per definizione) che quando $f'(x)=0$ quello è un punto di stazionamento.
+In una zona di convessità un punto di stazionamento è il \emph{minimo relativo}, ovvero il punto subito prima della zona in cui la funzione cresce.
+}
 
 \domanda{3}{Sia $f:\R \to \R$ una funzione continua e dispari. Allora, $\int_{-3}^{4} f(x) dx$ è uguale a}
 \risposta{$\int_{3}^{4} f(x) dx$}
@@ -92,7 +101,9 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 
 \domanda{7}{Quali tra questi insiemi è un intervallo?}
 \risposta{$\{x \in \R: 2|x| \geq x^2\}$}
-\spiegazione{}
+\spiegazione{In teoria dovrebbe essere "un solo intervallo", quindi \emph{non l'unione di due intervalli}}
+\irrisolta
+
 
 \domanda{8}{Date le funzioni $f(x) = \ln(x), g(x)= x^3, h(x) = 2-x$, la funzione composta $(h \circ g \circ f)(x)$ è:}
 \risposta{$2-\ln(x)$}
@@ -970,6 +981,20 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 }
 
 \chapter{Cheatsheet}
+\section*{Funzioni}
+\paragraph*{Dominio}
+\begin{itemize}
+	\item Denominatore $\leq 0$
+	\item Logaritmo: Argomento $>0$
+	\item Radice$^n$: Argomento $\geq 0$ (sse $n$ pari)
+	\item $[f(x)]^{g(x)} \to f(x)>0$
+\end{itemize}
+
+\paragraph*{Retta Tangente} al grafico in $x_0$: $y=mx + q$ con
+\\$m= f'(x_0)$
+\\$q=f(x_0)-f'(x_0)\cdot x_0$
+
+
 \section*{Serie}
 \paragraph*{Serie Armonica Generalizzata}
 \begin{equation*}
@@ -987,6 +1012,19 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	\end{cases}
 \end{equation*}
 \paragraph*{Criteri di Convergenza}
+\paragraph*{Condizione Necessaria} ma non sufficiente di convergenza è che il termene generale $a_n$ sia infinitesimo $\limite{n}{+\infty} a_n = 0$
+
+\paragraph*{Criterio del Rapporto}
+$a_n>0$ defnitivamente. $limite{n}{+\infty} \frac{a_{n+1}}{a_n}=l$ allora $\sum a_n$:
+\\Converge se $l<$, diverge se $l>1$, inconclusivo se $l=1$
+\paragraph*{Criterio della Radice}
+$a_n>0$ defnitivamente. $limite{n}{+\infty} \sqrt[n]{a_n}=l$ allora $\sum a_n$:
+\\Converge se $l<$, diverge se $l>1$, inconclusivo se $l=1$
+\paragraph*{Criterio del Confronto}
+$0\leq a_n \leq b_n$  definitivamente.
+\\Se $b_n$ converge allora $a_n$ converge.
+\\Se $a_n$ diverge positivamente, allora anche $b_n$
+\paragraph*{Criterio del confronto asintotico} 
 
 \section*{Limiti}
 \paragraph*{Ordine degli infiniti}
@@ -996,9 +1034,35 @@ $$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
 \paragraph*{Forme di indecisione}
 	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
 
+\section*{Calcolo Differenziale}
+\paragraph*{Formule di Taylor e McLaurin} di grado $k$ e centrato in $x_0$:
+$$P_k(x)=f(x_0)+f'(x_0)(x-x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
+Nel caso in cui $x_0=0$ si ottiene la formula di Mclaurin.
+\paragraph*{Derivata dell'inversa} Data $g(x) = f^{-1}(x)$, $g'(y_0)=$
+\begin{enumerate}
+	\item trovo $x_0$ ponendo $y_0=f(x)$
+	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
+\end{enumerate}
+
+
 \section*{Calcolo Integrale}
-\paragraph*{Le primitive}
+\paragraph*{Primitive elementari}
+\begin{tabular}{ |c|c| }
+	\hline
+	Funzione & Primitiva\\
+	\hline
+	$k$ & $kx$\\
+	$x^a$,$a\neq-1$ & $\frac{x^{a+1}}{a+1}$\\
+	$\frac{1}{x}$ & $\log|x|$\\
+	$\sin x$ & $-\cos x$\\
+	$\cos x $&$\sin x$\\
+	$a^x$ & $\frac{a^x}{\log a}$\\
+	\hline
+\end{tabular}
 \paragraph*{I metodi di risoluzione}
-\paragraph*{Le proprietà degli integrali}
+\paragraph*{Proprietà degli integrali}
+\begin{itemize}
+	\item Somma di integrali: $\int f(x)+g(x) dx = \int f(x) dx + \int g(x) dx$  
+\end{itemize}
 
 \end{document}

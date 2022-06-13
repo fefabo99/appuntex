@@ -106,12 +106,9 @@ Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappre
 \\\includegraphics[width=\textwidth]{parabole-delta.png}
 
 \paragraph*{Tabella delle soluzioni} Allego una piccola tabella utile a capire le soluzioni di una disequazione.
-\includegraphics[width=\textwidth]{disequazioni.png}
+\\\includegraphics[width=\textwidth]{disequazioni.png}
 
 \paragraph*{Fratte} per le disequazioni fratte, il metodo è lo stesso, però \emph{il denominatore non può mai essere uguale a zero, quindi deve essere strettamente minore o maggiore.}
-
-\paragraph*{Legge di annullamento del prodotto}
-Segnare sta cosa
 
 \subsection*{Disequazioni con valore assoluto}
 Quando troviamo una disequazione con valore assoluto, bisogna porre a sistema la disequazione con \emph{l'argomento del modulo posto prima maggiore, poi minore di zero}.
@@ -168,18 +165,20 @@ un piccolissimo richiamino di trigonometria (DA COMPLETARE)
 \begin{itemize}
 	\item $\frac{\cos(x)}{\sin(x)} = \cot(x)$
 \end{itemize}
-\paragraph*{Valori di $\sin(x)$}
-\begin{itemize}
-	\item $\sin(0) = 0$
-	\item $\sin(\pi/2) = 1$
-	\item $\sin(\pi) = 0$
-\end{itemize}
-\paragraph*{Valori di $\cos(x)$}
-\begin{itemize}
-	\item $\cos(0) = 1$
-	\item $\cos(\pi/2) = 0$
-	\item $\cos(\pi) = -1$
-\end{itemize}
+\paragraph*{Valori di Seno e Coseno} Al variare di $\alpha$
+\\\includegraphics[width=\textwidth]{senocoseno.png}
+% \paragraph*{Valori di $\sin(x)$}
+% \begin{itemize}
+% 	\item $\sin(0) = 0$
+% 	\item $\sin(\pi/2) = 1$
+% 	\item $\sin(\pi) = 0$
+% \end{itemize}
+% \paragraph*{Valori di $\cos(x)$}
+% \begin{itemize}
+% 	\item $\cos(0) = 1$
+% 	\item $\cos(\pi/2) = 0$
+% 	\item $\cos(\pi) = -1$
+% \end{itemize}
 
 \section{Valore assoluto (modulo) di un numero Reale}
 
@@ -337,19 +336,25 @@ In linea generale, per calcolare l'inversa di una funzione bisogna:
 
 \subsection*{Derivata della Funzione Inversa}
 In molti casi l'inversa di una funzione non è facilmente calcolabile,
-esiste però un modo per calcolare la derivata di una funzione inversa senza saperne l'espressione analitica.
+esiste però un modo per \emph{calcolare la derivata di una funzione inversa senza saperne l'espressione analitica}.
 \definizione{
 	Consideriamo una funzione $y=f(x)$ biunivoca e derivabile in un punto $x_0$ e supponiamo inoltre che $f'(x_0)\neq 0$.
-	Allora la funzione inversa $x = f^{-1}(y)$ è derivabile nel punto $y_0 = f(x_0)$, e la sua derivata in tale punto è:
+	\\Allora la funzione inversa $x = f^{-1}(y)$ è derivabile nel punto $y_0 = f(x_0)$, e la sua derivata in tale punto è:
 	$$ (f^{-1})'(y_0) = \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1}(y_0))}$$
 }
 \paragraph*{Ovvero} Questo teorema ci serve all'esame per quelle funzioni di cui dobbiamo trovare la derivata dell'inversa che però sono pressochè impossibili da derivare.
 \\Sia $f(x)$ una funzione (ovviamente invertibile e derivabile) e sia $g$ la sua inversa. 
-$g'(y_0)$ (con un $y_0$ fornito) è trovabile in questo modo.
-\\Dal teorema sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$, e sappiamo (tramite la formula per trovare l'inversa) che
-$y=f(x)$. Se $y=y_0$ (che è il valore di $y$ in cui dobbiamo trovare $g'$), allora $y_0= f(x)$ ci da un certo valore di $x=x_0$.
-Avendo adesso il valore di $y_0$ e di $x_0$ basta riempire la formula per trovare $g'(y_0)$.
-\\Questo procedimento è meglio comprensibile con un esempio:
+$g'(y_0)$ (con un $y_0$ fornito) è trovabile in questo modo:
+\\Dal teorema sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$, e sappiamo (tramite la formula della funzione inversa) che $y=f(x)$. 
+\\Se $y=y_0$ (che è il valore di $y$ in cui dobbiamo trovare $g'$), allora $y_0= f(x)$ ci da un certo valore di $x=x_0$.
+\\Avendo adesso il valore di $y_0$ e di $x_0$ basta riempire la formula per trovare $g'(y_0)$.
+\\Si può riassumere questo processo nei seguenti passaggi: 
+Data $g(x) = f^{-1}(x)$ e avendo $y_0$, sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$.
+Quindi:
+\begin{enumerate}
+	\item trovo $x_0$ ponendo $y_0=f(x)$
+	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
+\end{enumerate}
 \esempio{detta $g$ la funzione inversa di $f(x) = x^{\frac{1}{3}}$, allora $g'(1) =$
 \\Dal teorema ho $g'(1) = \frac{1}{f'(x_0)}$, e so che $y=x^{\frac{1}{3}}$.
 Ponendoli a sistema per trovare $x$ ottengo:
@@ -652,13 +657,10 @@ $$\limite{x}{0} \frac{\ln(1+x)}{x} = 1 ; \limite{h(x)}{0} \frac{\ln(1+h(x))}{h(x
 \paragraph*{Funzione Esponenziale}
 $$\limite{x}{0} \frac{e^x-1}{x} = 1; \limite{h(x)}{0} \frac{e^{h(x)}-1}{h(x)} = 1$$
 
-
 % \begin{itemize}
 % 	\item $\limite{x}{0} \ln(1+x) \sim x$
 % 	\item $\limite{x}{0} \ln(1-x) \sim -x$
 % \end{itemize}
-
-
 
 \section{Asintoti Verticali e Orizzontali}
 \subsection*{Asintoti Verticali}
@@ -819,7 +821,7 @@ Bisogna provare a svolgere un paio di limiti.
 
 
 	\section{Formule di Taylor e di Mclaurin}
-	Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado k arbitrario centrato in $x_0$ nel caso dell aformula di Taylor,
+	Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado $k$ arbitrario centrato in $x_0$ nel caso della formula di Taylor,
 	e in 0 nel caso di quella di McLaurin.
 	\subsection*{Polinomio di Taylor}
 	Una funzione $f(x)$, che passi per un punto $x_0$ e che abbia in quel punto tutte le derivate necessarie,
@@ -1167,9 +1169,9 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 	Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
 	Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
 	\definizione{
-		Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \underline{\emph{termine generale $a_n$ sia infinitesimo}}.
+		Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo}.
 		\begin{equation*}
-			\limite{n}{+\infty1} a_n = 0 \text{ Necessario per la convergenza}
+			\limite{n}{+\infty} a_n = 0 \text{ Necessario per la convergenza}
 		\end{equation*}
 	}
 	Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
@@ -1262,9 +1264,8 @@ Questo criterio, molto simile a quello del Rapporto, dice che:
 }
 
 \subsection{Criterio del Confronto}
-
 \definizione{
-	Supponiamo che $0 \geq a_n \geq b_n$ Definitivamente.
+	Supponiamo che  $0 \leq a_n \leq b_n$ definitivamente.
 	Allora valgono le seguenti implicazioni:
 	\begin{enumerate}
 		\item $\sum b_n$ converge $\implies \sum a_n$ converge
