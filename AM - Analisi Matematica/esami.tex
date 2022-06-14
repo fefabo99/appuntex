@@ -246,6 +246,7 @@ $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 	$$ a_n \sim \frac{2^{-n^4}}{5n}$$
 	Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
 	\\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
+	\\Si noti che anche se $(\frac{1}{2})^{n^4}$ tende a zero, nella gerarchia degli infiniti è comunque più grande, quindi sovrasta.
 }
 
 \domanda{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
@@ -857,7 +858,14 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	}
 
 	\domandaaperta{v.}{$\int_{0}^{1} \frac{f(x)}{x}dx =$}
-	\irrisolta
+	\rispostaaperta{
+		$\int \frac{(x^2-x)}{x}\cdot e^{-x} = \int \frac{x(x^2-1)}{x}\cdot e^{-x} = \int (x-1)e^{-x}$
+		\\Integro per parti, con: $f(x)=x-1$, $f'(x)=1$, $g'(x)=e^{-x}$, $g(x)=-e^{-x}$.
+		Usando la formula ottengo: 
+		\\$(x-1)-e^{-x}-\int -e^{-x} = (x-1)-e^{-x} -e^{-x} = -xe^{-x} +\cancel{e^{-x}} - \cancel{e^{-x}} + c$
+		$$F(x)=-xe^{-x}$$
+		Faccio il calcolo con gli estremi: $F(1)-F(0)=-\frac{1}{e}$
+	}
 
 	\domandaaperta{2}{Data la serie $\serie{1}{+\infty} q^n$, dove $q\in\R$, la serie converge sse $q\in ...$? e diverge sse $q\in ...$?}
 	\rispostaaperta{Converge se $q\in (-1,1)$, diverge se $q\in [1,+\infty]$.}
@@ -986,91 +994,5 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 \procedimento{
 	$\int x^2 + 3x + 2 dx = \int x^2 dx + 3\int x dx + 2 \int dx  = \frac{x^3}{3} + \frac{3x^2}{2} + 2x + c = ...$
 }
-
-\chapter{Cheatsheet}
-\section*{Funzioni}
-\paragraph*{Dominio}
-\begin{itemize}
-	\item Denominatore $\leq 0$
-	\item Logaritmo: Argomento $>0$
-	\item Radice$^n$: Argomento $\geq 0$ (sse $n$ pari)
-	\item $[f(x)]^{g(x)} \to f(x)>0$
-\end{itemize}
-
-\paragraph*{Retta Tangente} al grafico in $x_0$: $y=mx + q$ con
-\\$m= f'(x_0)$
-\\$q=f(x_0)-f'(x_0)\cdot x_0$
-
-
-\section*{Serie}
-\paragraph*{Serie Armonica Generalizzata}
-\begin{equation*}
-	\sum \frac{1}{n^\alpha} \begin{cases}
-		\text{Diverge}  & \alpha\leq 1 \\
-		\text{Converge} & \alpha> 1
-	\end{cases}
-\end{equation*}
-\paragraph*{Serie Geometrica}
-\begin{equation*}
-	\serie{0}{+\infty} q^n \begin{cases}
-		\text{Diverge}    & q\geq 1 \\
-		\text{Converge}   & -1<q<1  \\
-		\text{Irregolare} & q\leq 1
-	\end{cases}
-\end{equation*}
-\paragraph*{Criteri di Convergenza}
-\paragraph*{Condizione Necessaria} ma non sufficiente di convergenza è che il termene generale $a_n$ sia infinitesimo $\limite{n}{+\infty} a_n = 0$
-
-\paragraph*{Criterio del Rapporto}
-$a_n>0$ defnitivamente. $limite{n}{+\infty} \frac{a_{n+1}}{a_n}=l$ allora $\sum a_n$:
-\\Converge se $l<$, diverge se $l>1$, inconclusivo se $l=1$
-\paragraph*{Criterio della Radice}
-$a_n>0$ defnitivamente. $limite{n}{+\infty} \sqrt[n]{a_n}=l$ allora $\sum a_n$:
-\\Converge se $l<$, diverge se $l>1$, inconclusivo se $l=1$
-\paragraph*{Criterio del Confronto}
-$0\leq a_n \leq b_n$  definitivamente.
-\\Se $b_n$ converge allora $a_n$ converge.
-\\Se $a_n$ diverge positivamente, allora anche $b_n$
-\paragraph*{Criterio del confronto asintotico} 
-
-\section*{Limiti}
-\paragraph*{Ordine degli infiniti}
-$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
-\nb{la radice è "più grande" del logaritmo}
-
-\paragraph*{Forme di indecisione}
-	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
-
-\section*{Calcolo Differenziale}
-\paragraph*{Formule di Taylor e McLaurin} di grado $k$ e centrato in $x_0$:
-$$P_k(x)=f(x_0)+f'(x_0)(x-x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
-Nel caso in cui $x_0=0$ si ottiene la formula di Mclaurin.
-\paragraph*{Derivata dell'inversa} Data $g(x) = f^{-1}(x)$, $g'(y_0)=$
-\begin{enumerate}
-	\item trovo $x_0$ ponendo $y_0=f(x)$
-	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
-\end{enumerate}
-
-
-\section*{Calcolo Integrale}
-\paragraph*{Primitive elementari}
-\begin{tabular}{ |c|c| }
-	\hline
-	Funzione & Primitiva\\
-	\hline
-	$k$ & $kx$\\
-	$x^a$,$a\neq-1$ & $\frac{x^{a+1}}{a+1}$\\
-	$\frac{1}{x}$ & $\log|x|$\\
-	$\sin x$ & $-\cos x$\\
-	$\cos x $&$\sin x$\\
-	$a^x$ & $\frac{a^x}{\log a}$\\
-	\hline
-	$e^{-x}$ & $-e^{-x}$\\
-\end{tabular}
-\paragraph*{I metodi di risoluzione}
-\paragraph*{Proprietà degli integrali}
-\begin{itemize}
-	\item Somma di integrali: $\int f(x)+g(x) dx = \int f(x) dx + \int g(x) dx$  
-\end{itemize}
 
 \end{document}
