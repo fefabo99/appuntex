@@ -17,7 +17,7 @@
 \newcommand{\risposta}[1]{#1}
 \newcommand{\reflibro}[1]{}
 \newcommand{\spiegazione}[1]{\begin{box_spiegazione} \small{ \emph{Spiegazione: }#1}\end{box_spiegazione}}
-\newcommand{\riassunto}[1]{\begin{box_riassunto} #1 \end{box_riassunto}}
+\newcommand{\riassunto}[2]{\begin{box_riassunto}[frametitle={RIASSUMENDO #1}] #2 \end{box_riassunto}}
 
 % Colors
 \definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
@@ -59,8 +59,8 @@
 ]{box_domanda}
 
 \newmdenv[
-    frametitle={\colorbox{white}{\space RIASSUMENDO \space}},
-    frametitleaboveskip=-\ht\strutbox,
+    % frametitle={\colorbox{white}{\space RIASSUMENDO \space}},
+    % frametitleaboveskip=-\ht\strutbox,
     linewidth=0.5pt,
     innerbottommargin=14pt,
 ]{box_riassunto}
