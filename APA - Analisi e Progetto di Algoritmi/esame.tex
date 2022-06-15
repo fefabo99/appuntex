@@ -622,29 +622,60 @@ $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 	sono le operazioni principali su una struttura dati per insiemi disgiunti.
 }
 \risposta{
-    Una struttura dati per insiemi disgiunti serve a mantenere una collezione di insiemi disgiunti.
-    Le operazioni principali sono: Make-set(x), che che crea un nuovo insieme con x come unico elemento, Find-set(x) che restituisce un puntatore al rappresentante del set in cui è contenuto x,
-    e Union(x,y) che unisce gli insiemi di cui x e y fanno parte.
+    Una struttura dati per insiemi disgiunti è un tipo di struttura dati che serve a mantenere una collezione di insiemi disgiunti
+	in cui ogni insieme è identificato da un \emph{rappresentante} (che è un elemento dell'insieme)
+	e ogni elemento di un insieme è rappresentato da un oggetto $x$.
+    \\Le operazioni principali sono:
+	\begin{itemize}
+		\item \emph{Make-set(x)}: Crea un nuovo insieme con $x$ come unico elemento.
+		\item \emph{Find-set(x)}: Restituisce un puntatore al rappresentante del set in cui è contenuto $x$.
+		\item \emph{Union(x,y)}: Unisce gli insiemi di cui $x$ e $y$ fanno parte.
+	\end{itemize}
 }
 
 \domanda{20}{
 	Illustrare i possibili modi con cui è possibile rappresentare una struttura dati per insiemi disgiunti e complessità relative
 }
-
-\domanda{21}{
-	Definire formalmente cos'è un albero di compertura minimo(MST)?
-	Illustrare l'approccio greedy generico (fornire la procedura GENERIC-MST) per determinare un MST illustrando il principio di funzionamento (cosa fa la proceduara ad ogni iterazione, proprietà invariante di ciclo, nozione di arco sicuro, ecc).
-	Come si trova un'arco sicuro?
-	definizioni di: taglio, archo che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.
-	Teorema che dà una condizione sufficiente affinchè un arco sia sicuro.
+\risposta{
+	Una semplice rappresentazione di questi insiemi è data dalle \emph{liste concatenate}.
+	Il primo oggetto di ogni lista viene utilizzato come rappresentante.
+	Ogni oggetto nella lista ha i seguenti campi:
+	\begin{itemize}
+		\item info: l'informazione contenuta nel nodo
+		\item rappr: il puntatore al rappresentante
+		\item succ: il puntatore al nodo successivo
+	\end{itemize} 
 }
+
+\domanda{21a}{Definire formalmente cos'è un albero di compertura minimo(MST).}
+\domanda{21b}{
+	Illustrare l'approccio greedy generico, fornendo la procedura GENERIC-MST,
+	per determinare un MST illustrando il principio di funzionamento (cosa fa la proceduara ad ogni iterazione,
+	proprietà invariante di ciclo, nozione di arco sicuro, ecc).
+}
+\domanda{21c}{Come si trova un'arco sicuro?}
+\domanda{21d}{Dare le definizioni di: taglio, arco che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.}
+\domanda{21e}{Enunciare il Teorema che da una condizione sufficiente affinchè un arco sia sicuro.}
+
 
 \domanda{22}{
 	Illustrare gli algoritmi di Kruskal e Prim facendo riferimento alla procedura GENERICS-MST.
 	Che differenze tra i due rispetto all'insieme A e a cosa è un arco sicuro.
 	Complessità computazionale dei due algoritmi.
 }
-\domanda{23}{
-	Complessità computazionale dell'algoritmo di Floyd-Warshall (giustificare)
+\domanda{23}{Complessità computazionale dell'algoritmo di Floyd-Warshall (giustificare)}
+\risposta{L'algoritmo di Floyd-Warshall ha una complessità di $O(|V|^3)$.
+Questo algoritmo contiene tre cicli \emph{for} di dimensione $|V|$,
+in cui confronta il cammino di ogni nodo con ogni altro nodo usando al più ogni "livello" di nodi intermedi.
+
 }
+
+\section{Domande dagli Esami}
+\domanda{}{Descrivere come usare la DFS per calcolare le componenti connesse di un grafo non orientato.}
+\risposta{
+Per il funzionamento dell'algoritmo, ogni volta che \emph{DFS} chiama \emph{DFS-VISIT} su un nodo bianco, significa che ha trovato una nuova componente connessa.
+Se si volesse trovare il numero di CC di un grafo, basta mettere un contatore che viene incrementato ogni volta che \emph{DFS} chiama \emph{DFS-VISIT}}
+
+\domanda{Descrivere come la visita BFS produce un'albero BFS dando descrizione dell'algoritmo e delle variabili che utilizza}
+
 \end{document}

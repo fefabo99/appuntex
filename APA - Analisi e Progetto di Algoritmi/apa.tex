@@ -612,6 +612,15 @@ $G\pi = (V, E\pi )$ , dove:
 $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 \\in pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
 
+\riassunto{
+DFS è un algoritmo di visita (in profondità) che visita tutte le componenti connesse di un grafo $G$.
+DFS inizia mettendo bianco ogni vertice di $G$, poi chiama DFS-VISIT per un nodo $u$ e visita l'intera lista di adiacenza di quel nodo usando delle chiamate ricorsive su ogni nodo bianco.
+Quando il controllo ritorna a DFS significa che ha controllato l'intera componente connessa di $u$.
+L'algoritmo cerca il prossimo nodo bianco e il ciclo ricomincia.
+Ogni volta che DFS trova un nodo bianco significa che ha trovato una nuova compoente connessa
+DFS ha un tempo di $\theta(V+E)$, in particolare chiama $DFS-VISIT$ una volta per vertice, con il ciclo al suo interno chiamato una volta per arco.
+}
+
 \subsection*{Ordinamento Topologico}
 Questo paragrafo spiega come utilizzare la visita in profondità per eseguire l'ordinamento topologico di un
 grafo \emph{orientato aciclico} o DAG (Directed acyclic graph).
@@ -683,7 +692,7 @@ di ogni nodo con ogni altro nodo aumentando di volta in volta il (possibile) num
 
 \paragraph{Tempo di esecuzione}
 \begin{center}
-	$O(|V|^2)$
+	$O(|V|^3)$
 \end{center}
 
 \subsection*{Variante di FW: Cammini minimi $\leq L$}
