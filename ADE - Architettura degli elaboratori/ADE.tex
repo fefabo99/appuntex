@@ -1705,6 +1705,43 @@ del trasferimento.
 
 %Gestione I/O con interruzione e DMA 1:14:00
 
+\chapter{Gerarchie di memoria e cache}
+L'ideale sarebe avere a disposizione una quantità illimitata di memoria e contemporaneamente
+veloce, ma ciò non è possibile, dato che le memorie veloci costano molto di più a parità
+di bit rispetto alle memorie lente.
+Solitamente una memoria più capiente è più lenta, mentre una più veloce è meno capiente.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Gerarchie memorie.png}
+\end{center}
+\paragraph*{CPU} La memoria interna alla CPU è costituita dai registri ed è caratterizzata
+da alta velocità e limitate dimensioni.
+\paragraph*{Memoria centrale} La memoria centrale è caratterizzata da dimensioni molto
+maggiori della memoria interna alla CPU, ma con tempi di accesso più elevati. accessibile
+direttamente tramite indirizzi. 
+\\ Nei sistemi attuali è presente un livello intermedio in termini di capienza e velocità,
+tra CPU e memoria centrale, esso è \textbf{la memoria cache}.
+\paragraph*{Memorie secondarie} Sono ad alta capacità, con bassi costi e non volatili.
+
+\section{Principio di località}
+Un programma in un certo istante di tempo, accede soltanto a una porzione relativamente
+piccola del suo spazio di indirizzamento e questa è la base del comportamento dei programmi
+in un calcolatore.
+\paragraph*{Definizione} "Durante l'esecuzione di una data istruzione presente in memoria, 
+con molta probabilità le successive istruzioni saranno ubicate nelle vicinanze
+ di quella in corso.
+Nell'arco di esecuzione di un programma si tende a fare riferimenti continui 
+alle stesse istruzioni."
+\\ Fonte Wikipedia 
+\\ Esistono due tipi di località:
+\begin{itemize}
+    \item Temporale: quando si fa riferimento a un elemento c'è tendenza a fare
+    riferimento allo stesso elemento dopo poco tempo
+    \item Spaziale: quando si fa riferimento a un elemento c'è la tendenza a fare riferimenti
+    poco dopo ad altri elementi che hanno l'indirizzo vicino ad esso
+\end{itemize}
+\paragraph*{Importante}I programmi NON vedono la gerarchia ma referenziano i dati come Se
+fossero sempre in memoria centrale.
+Il principio di località viene sfruttato strutturando la memoria in modo gerarchico.
 %END------------------------------------------------------------------------
 
 \end{document}
