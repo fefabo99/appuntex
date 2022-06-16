@@ -617,7 +617,7 @@ DFS è un algoritmo di visita (in profondità) che visita tutte le componenti co
 DFS inizia mettendo bianco ogni vertice di $G$, poi chiama DFS-VISIT per un nodo $u$ e visita l'intera lista di adiacenza di quel nodo usando delle chiamate ricorsive su ogni nodo bianco.
 Quando il controllo ritorna a DFS significa che ha controllato l'intera componente connessa di $u$.
 L'algoritmo cerca il prossimo nodo bianco e il ciclo ricomincia.
-Ogni volta che DFS trova un nodo bianco significa che ha trovato una nuova compoente connessa
+Ogni volta che DFS trova un nodo bianco significa che ha trovato una nuova compoente connessa.
 DFS ha un tempo di $\theta(V+E)$, in particolare chiama $DFS-VISIT$ una volta per vertice, con il ciclo al suo interno chiamato una volta per arco.
 }
 
