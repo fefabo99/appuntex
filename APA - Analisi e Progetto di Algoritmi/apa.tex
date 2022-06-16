@@ -508,9 +508,9 @@ Il tempo di scoperta di $u$ indica quanti "passaggi", quindi quanti nodi ho scop
 
 \subsection{Algoritmo BFS}
 BFS (Breadth-First search) è un algoritmo di visita di un grafo in ampiezza.
-\\BFS scopre tutti i vertici raggiungibili partendo dal vertice sorgente, ma soltanto della componente connessa alla sorgente.
+\\L'algoritmo scopre tutti i vertici raggiungibili partendo da un vertice sorgente $s$, quindi soltanto della sua componente connessa.
 \\La scoperta avviene in ampiezza, ovvero parte da tutti i vertici a distanza 1 dalla sorgente, poi 2 e così via.
-\\Alla fine dell'esecuzione di BFS, tutti i vertici della compoente connessa a cui appartiene il vertice sorgente avranno colore NERO.
+\\Alla fine dell'esecuzione, tutti i vertici della componente connessa di $s$ avranno colore NERO.
 
 \paragraph{Pseudocodice} Algoritmo BFS
 \begin{lstlisting}
@@ -535,22 +535,30 @@ def BFS(G, s)
     
 \end{lstlisting}
 \paragraph{Spiegazione Codice}
-BFS inizializza tutti i nodi del grafo (tranne s) in modo da renderli "elaborabili".
+BFS inizializza tutti i nodi del grafo (tranne $s$) in modo da renderli "elaborabili", quindi li mette bianchi, con distanza infinita e con padre NULL.
 In seguito crea una coda Q che andrà a contenere tutti i nodi grigi, quindi quelli di cui va ancora completata la lista di adiacenza,
 dove inserisce s, che è il primo nodo Grigio.
-\\Nel ciclo while l'algoritmo prende il primo nodo da Q e va a scoprire tutti i nodi bianchi (quindi non ancora elaborati) nella sua lista di adiacenza,
-inserendoli di volta in volta in Q. Quando la lista di adiacenza è stata scandita per intero, vuol dire che il nodo è stato scoperto del tutto e quindi diventa nero.
+\\Nel ciclo while l'algoritmo prende il primo nodo da Q e va a scoprire tutti i nodi bianchi (quindi non ancora elaborati) nella sua lista di adiacenza, inserendoli di volta in volta in Q.
+Quando la lista di adiacenza è stata scandita per intero, vuol dire che il nodo è stato "scoperto del tutto" e quindi diventa Nero.
 Il ciclo ricomincia finchè Q non sarà vuota.
 
 \paragraph*{Tempo di esecuzione}
 Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
-Di cui $O(V)$ è il tempo delle operazioni con la cosa, e $O(E)$ è il tempo per l'ispezione di ADJ.
+Di cui $O(V)$ è il tempo delle operazioni con la coda, e $O(E)$ è il tempo per l'ispezione di ADJ.
 
 \paragraph{Sottografo dei predecessori}
-La visita in ampiezza costruisce un albero BF \emph{(Albero di ricerca in ampiezza)}, che alla radice ha il vertice sorgente $s$.
+La visita in ampiezza costruisce un albero BF \emph{(Albero di ricerca in ampiezza)}, che ha alla radice il vertice sorgente $s$.
 Quando durante l'ispezione della lista di adiacenza di un vertice $u$ viene scoperto un vertice \emph{ bianco $v$},
 il vertice $v$ e l'arco $(u,v)$ che lo collega a $u$ vengono aggiunti all'albero.
 Il vertice $u$ viene detto \emph{padre} di $v$.
+
+\riassunto{BFS}{
+	L'algoritmo BFS effettua una visita in ampiezza di un grafo partendo da un nodo sorgente $s$ fornito.
+	Utilizza una coda $Q$, che andrà a contenere tutti i nodi grigi, quindi quelli di cui ha iniziato la scannerizzazione di ADJ.
+	Quindi parte dal primo nodo in $Q$ (che sarà $s$) e ne scannerizza la lista di adiacenza, inserendo ogni nodo bianco (trasformato in grigio) all'interno di $Q$.
+	Una volta finito il nodo diventa nero.
+	Grazie all'assegnazione di un valore $\pi$ ai nodi BFS è in grado di costruire un albero BFS.
+}
 
 
 \subsection{Algoritmo DFS}

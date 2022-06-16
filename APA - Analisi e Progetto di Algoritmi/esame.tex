@@ -26,7 +26,7 @@ Un possibile tipo di esercizio d'esame è problema in cui is chiede di creare un
 che, dato un grafo pesato e una funzione che associa un numero o un colore a ogni arco o vertice, stabilisce {il peso di}/{se seiste} un cammino minimo da $i$ a $j$
 che rispetti alcuni vincoli.
 
-\paragraph{La trafila e sostanzialmente sempre la stessa}, bisogna trovare un sottoproblema $k$-esimo e capire se le informazioni date da i vertici $(i,k)$ e $(k,j)$
+\paragraph{Il procedimento}è sostanzialmente sempre lo stesso, bisogna trovare un sottoproblema $k$-esimo e capire se le informazioni date da i vertici $(i,k)$ e $(k,j)$
 sono sufficienti a risolvere il problema. in caso contrario bisogna definire un problema ausiliario.
 
 \subparagraph{Variabili associate} del sottoproblema (quindi quelle introdotto) sono sempre: il matricione $D^k$ in cui $d^k_{ij}$ è il peso/l'esistenza del cammino da i a j
@@ -392,7 +392,52 @@ DFS-VISIT-ACYCLIC(u)
 	\subsection*{In caso di grafo NON ORIENTATO}
 	Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
 
-	\chapter{Domande di Teoria}
+\chapter{Esami}
+\section{12 Settembre 2016}
+\subsection{Esercizio 1}
+\paragraph*{Testo}Sia $A$ l'insieme dei numeri interi escluso 0.
+\\Dato un grafo non orientato $(V,E,f)$ in cui ad ogni vertice è associato un numero intero diverso da zero
+(mediante la funzione $f: V\to A)$, mediante la tecnica della programmazione dinamica, si vuole stabilire, per ogni coppia di vertici $(i,j)$,
+se esiste un cammino da $i$ a $j$ avente vertici che danno luogo ad una alternanza del segno dei numeri ad essi associati.
+RISPONDERE PER PUNTI alle seguenti richieste
+\begin{enumerate}
+	\item Esplicitare e definire le variabili che servono per risolvere il problema
+	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo
+	\item Scrivere la/le equazione/i di ricorrenza per il PASSO RICORSIVO, giiustificando perchè è/sono fatte in quel modo
+	\item scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
+\end{enumerate}
+
+\paragraph*{1:} 
+Introduco la funzione $s: A\to \{+,-\}$.
+\subparagraph*{Sottoproblema $k$-esimo}
+Dato un grafo $(V,E,f)$ e $k\in \{0,...,n\}, \forall(i,j) \in V\times V$ si vuole stabilire se esiste un cammino $p$
+da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non ci siano due vertici consecutivi a cui è associato un numero con lo stesso segno.
+\\Ad ogni sottoproblema di dimensione $k$ è associata una variabile:  
+\subparagraph*{Variabile}
+Sia $k\in\{0,...,n\}$, $\forall (i,j) \in V\times V$, introduciamo la variabile $d^{(k)}_{(i,j)}$ così definita:
+\begin{itemize}
+	\item TRUE, se esiste un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{\,...,k\}$ e in cui non ci siano due vertici consecutivi a cui è associato un numero con lo stesso segno.
+	\item FALSE, altrimenti
+\end{itemize}
+Pertanto al sottoproblema $k$-esimo è associata la macrovariabile $D^{(k)}$ il cui generico elemento è $d^{(k)}_{(i,j)}$.
+\paragraph*{2:} CASO BASE $k=0$.
+\\Si consideri la generica coppia di vertici $(i,j)$.
+Nel problema si vuole stabilire se esiste un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non ci siano due vertici consecutivi a cui è associato lo stesso segno.
+Se $k$ è pari a 0, allora non esistono vertici intermedi.
+Per cui sono possibili due situazioni:
+\begin{itemize}
+	\item Può esistere al massimo un arco che collega $i$ e $j$ (se essi sono due vertici distinti), In tal caso la variabile vale TRUE sse $s(f(i))\neq s(f(j))$.
+	\item Se non esiste alcun arco tra $i$ e $j$ e sono nel caso degenere per cui $i=j$, allora la variabile vale TRUE.
+\end{itemize}
+In tutti gli altri casi la vasiabile vale false.
+$$d^{(0)}_{(i,j)}= \begin{cases}
+	TRUE & \text{se } i\neq j \wedge (i,j)\in E \wedge s(f(i)) \neq s(f(j)) \vee i=j \\
+	FALSE & \text{Altrimenti}
+\end{cases}
+$$
+
+
+\chapter{Domande di Teoria}
 
 	\section{Domande date da Dennunzio}
 	\paragraph*{}Queste domande vengono da un file che ha distribuito il Professor Dennunzio.
