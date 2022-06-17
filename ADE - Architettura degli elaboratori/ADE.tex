@@ -1742,6 +1742,82 @@ alle stesse istruzioni."
 \paragraph*{Importante}I programmi NON vedono la gerarchia ma referenziano i dati come Se
 fossero sempre in memoria centrale.
 Il principio di località viene sfruttato strutturando la memoria in modo gerarchico.
+\begin{itemize}
+    \item Velocità - Più è veloce, più è vicina al processore, più è costosa
+    \item Dimensione - Più è grande, più è lontana dal processore, meno è costosa
+\end{itemize}
+Un livello di memoria più vicino al processore contiene un sottoinsieme di dati memorizzati in ogni livello sottostante
+e tutti i dati si trovano nel livello più basso.
+
+\section{Definizioni}
+\begin{itemize}
+    \item \textbf{Blocco/linea} - La più piccola quantità di informazione che può essere presente/assente in una gerarchia
+    di memoria
+    \item \textbf{Hit (successo nell'accesso)} - L'informazione richiesta dal processore si trova in uno dei 
+    blocchi nel livello superiore della memoria
+    \item \textbf{Miss (fallimento nell'accesso)} - Il dato non è presente nel livello immediatamente superiore
+    di memoria e occore accedere al livello più distante
+    \item \textbf{Hit rate (frequenza di hit)} - Frazione degli accessi alla memoria nei quali l'informazione
+    richiesta è stata trovata nel livello superiore di memoria
+    \item \textbf{Miss rate (frequenza di miss)} - Frazione degli accessi alla memoria nei quali l'informazione
+    richiesta NON è stata trovata nel livello superiore di memoria (1 - HitRate)
+    \item \textbf{Tempo di hit} - Tempo di accesso al livello superiore della memoria
+    \\ Comprende anche il tempo necessario a stabilire se il tempo di accesso si risolva in un successo 
+    in un fallimento
+    \item \textbf{Tempo di miss} - Il tempo necessario a sostituire un blocco del livello superiore con un nuovo 
+    blocco dal livello inferiore della gerarchia, e trasferire i dati di questo blocco al processore
+    \item \textbf{Frequenza di hit} = $\frac{\mbox{Accessi risolti con successo}}{\mbox{Numero totale di accessi}}$
+    \item \textbf{Frequenza di miss} = $\frac{\mbox{Accessi risolti senza successo}}{\mbox{Numero totale di accessi}}$
+\end{itemize}
+
+\paragraph*{Remind} Una gerarchia di memoria può essere composta da più livelli, ma i dati venogno trasferiti solo
+tra due livelli vicini.
+
+\section{Cache}
+La Cache è il livello della memoria gerarchia che si trova tra il processore e la memoria principale.
+Proviene dal termine francese cachè, che significa nascosto. La memoria cache e il suo utilizzo sono generalmente
+trasparenti al programmatore (quindi nascosta).
+L'algoritmo per la gestione della cache, l'algoritmo di caching, si basa sui principi di località spaziale e temporale.
+\begin{itemize}
+    \item Mantiene i dati richiesti recentemente "vicino" alla CPU (località temporale)
+    \item Muove blocchi contigui di memoria che contendono il dato richiesto (località spaziale)
+\end{itemize}
+
+\subsection{Tipi di cache}
+\subsection*{Direct Mapped}
+A ciascun blocco della memoria corrisponde una specifica locazione nella cache, viene direttamente assegnato
+uno specifico blocco.
+Associa una sola locazione della cache a ogni parola della memoria definendo una corrispondenza tra l'indirizzo
+in memoria della parola e la locazione nella cache.
+\begin{center}
+    \includegraphics[width=60mm, scale=0.5]{Direct mapped cache.png}
+    \includegraphics[width=60mm, scale=0.5]{Direct mapped cache conflict.png}
+\end{center}
+Nella prima figura viene illustrato il funzionamento delle direct mapped cache, a ciascun
+blocco di cache possono appartenere diversi blocchi di memoria.
+Nella seconda figura notiamo che se un programma utilizza 2 indirizzi diversi si verifica
+che lo stesso programma ha associati 2 indirizzi diversi, problema di associazione molti a uno.
+
+\subsection*{Fully associative}
+Una cache completamente associativa ci permette di memorizzare i dati in qualsasi blocco inutilizzato della cache,
+anzichè forzare l'assegnazione di uno specifico blocco di memoria come nella direct mapped. Si risolve così la problematica
+del conflitto. In questo caso la corrispondenza è 1 a 1.
+\\ Il problema è che è molto costosa perchè l'indirizzo viene unicamente riservato a un elemento, quindi la cache occupa
+più spazio rispetto al direct mapped. Inoltre per cercare un blocco nella cache è necessario cercarlo in tutte le linee
+della cache. La ricerca sequenziale è troppo lenta e la ricerca in parallelo è molto costosa.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Fully associative.png}
+\end{center}
+
+\subsection*{Set Associative Mapping}
+Ibrido tra Direct Mapped e Fully Associative.
+Un indirizzo di memoria viene mappato su un gruppo della cache detto Set. Si ragiona quindi su sottoinsiemi,
+non direttamente su indirizzo.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Set associative cache.png}
+\end{center}
+Ciascun blocco della memoria ha a disposizione un numero fisso ($>=2$) di locazioni cache.
+ 
 %END------------------------------------------------------------------------
 
 \end{document}
