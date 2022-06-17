@@ -86,13 +86,14 @@ DFS_VISIT_COUNT(u)
 \section{FW: Esattamente 3 vertici BLU} Es 2 esame 2017\\
 Grafo G dove ad ogni vertice è associato un colore {R,V,B}. Stabilire per ogni coppia di vertici se esiste un cammino con esattamente 3 vertici blu
 
+\paragraph*{Problema ausiliario} Anche se non l'ho scritto in questo esercizio viene introdotto un problema ausiliario, quello in cui il cammino ha esattamente $b$ vertici blu.
 \subsection*{Variabili Introdotte}
 $D^{n,b}$ Matrice $|V|\cdot|V|$\\
-$d^{(k,b)}_{ij}$ = True se esiste un cammino da i a j con esattamente b vertici BLU che usa al più {1,...,k} vertici intermedi.\\
+$d^{(k,b)}_{ij}$ = True se esiste un cammino da $i$ a $j$ con esattamente $b$ vertici BLU con vertici intermedi appartenenti a $\{1,..,k\}$.\\
 con $b = \{0,...,3\}$ e $k=\{0,...,|V|\}$
 
 \subsection*{Caso Base} k=0\\
-Tre casi, con $b \in \{0,1,2\}$ perchè $b < k+2$ siccome con 0 vertici intermedi il cammino ij ha al più due vertici
+Tre casi, con $b \in \{0,1,2\}$ perchè $b < k+2$ siccome con 0 vertici intermedi il cammino $(i,j)$ ha al più due vertici
 
 \begin{equation*}
 	d_{ij}^{(0,0)} = \begin{cases}
@@ -145,7 +146,7 @@ Quindi l'equazione del passo ricorsivo è:
 \end{equation*}
 
 \subsection*{Soluzione del problema}
-La soluzione del Problema è contenuta in tutti i valor di $D^{|V|,3}$
+La soluzione del Problema è contenuta in tutti i valori di $D^{|V|,3}$
 
 \section{Cammino minimo vertici con segno alternato} Esercizio 1 esame 12/09/2016\\
 Sia A l'insieme dei numeri interi escluso 0.\\
@@ -429,12 +430,32 @@ Per cui sono possibili due situazioni:
 	\item Può esistere al massimo un arco che collega $i$ e $j$ (se essi sono due vertici distinti), In tal caso la variabile vale TRUE sse $s(f(i))\neq s(f(j))$.
 	\item Se non esiste alcun arco tra $i$ e $j$ e sono nel caso degenere per cui $i=j$, allora la variabile vale TRUE.
 \end{itemize}
-In tutti gli altri casi la vasiabile vale false.
+In tutti gli altri casi la variabile vale false.
 $$d^{(0)}_{(i,j)}= \begin{cases}
 	TRUE & \text{se } i\neq j \wedge (i,j)\in E \wedge s(f(i)) \neq s(f(j)) \vee i=j \\
 	FALSE & \text{Altrimenti}
 \end{cases}
 $$
+\paragraph*{3} PASSO RICORSIVO $k\geq 0$
+Si consideri la generica coppia $(i,j)$ e sia $k\in\{1,...,n\}$.
+\\Si possono presentare due diverse situazioni:
+\begin{itemize}
+	\item $k\notin p$: Se $k$ non è un vertice intermedio di $p$ (tra $i$ e $j$), allora tutti i vertici intermedi di p appartengono all'insieme $\{1,...,k-1\}$.
+	Esiste un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non si siano due vertici consecutivi a cui è associato un numero con lo stesso segno se esiste
+	un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k-1\}$ con le medesime condizioni
+	$$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,j)} \text{ sse } k\notin p$$
+	Per semplicità chiamo questo caso $C_1$
+	\item$k\in p$: se $k$ è un vertice intermedio di $p$ (tra $i$ e $j$), suddivido $p$ in due sottocammini $p_1$ da $i$ a $k$ e $p_2$ da $k$ a $j$,
+	entrambi aventi vertici intermedi appartenenti all'insime $\{1,...,k-1\}$.
+	Per la proprietà della sottostruttura ottima si avrà:
+	$$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,k)} \wedge d^{(k-1)}_{(k,j)} \text{ sse } k\in p$$
+	Per semplicità chiamo questo caso $C_2$
+\end{itemize}
+Poichè non posso sapere a priori se $k$ sia o meno vertice intermedio di $p$, avrò il caso passo:
+$$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = C_1 \vee C_2$$
+\paragraph*{4}Soluzione:
+La soluzione del problema PB è costituita da tutti i valori contenuti in $D^{(n)}$.
+
 
 
 \chapter{Domande di Teoria}
@@ -693,6 +714,13 @@ $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 }
 
 \domanda{21a}{Definire formalmente cos'è un albero di compertura minimo(MST).}
+\risposta{
+	Sia $G(V,E)$ un grafo \emph{Pesato} tramite la funzione $w:E\to \mathbb{R}$, \emph{Connesso} e \emph{non orientato}.
+	\\Se $G_{c}(V,T)$ è un albero con $T\subseteq E$ ed è aciclico, allora $G_c$ è un albero di copertura di $G$.
+	\\Un albero di copertura minimo (MST) di $G$ è un Albero Aciclico $G_{MST}(V,T)$ con $T\subseteq E$ tale che:
+	$$w(T) = \text{min}\{w(A) | A \subseteq E \wedge (V,A) \text{ albero di copertura di }G\}$$ 
+
+}
 \domanda{21b}{
 	Illustrare l'approccio greedy generico, fornendo la procedura GENERIC-MST,
 	per determinare un MST illustrando il principio di funzionamento (cosa fa la proceduara ad ogni iterazione,
@@ -700,8 +728,23 @@ $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 }
 \domanda{21c}{Come si trova un'arco sicuro?}
 \domanda{21d}{Dare le definizioni di: taglio, arco che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.}
-\domanda{21e}{Enunciare il Teorema che da una condizione sufficiente affinchè un arco sia sicuro.}
+\risposta{
+Sia $G(V,E)$ un grafo non orientato e connesso, valgono le seguenti definizioni:	
+\\\emph{Taglio}:Si definisce \emph{Taglio del Grafo} $G$ una partizione $(S,V-S)$, dell'insieme dei vertici del grafo $V$.
+\\\emph{Arco che attraversa un Taglio}: Sia $(S,V-S)$ un taglio di $G$. Si dice che un arco $(u,v)\in E$ attrversa il taglio se: $u\in S \wedge v\in V-S \vee u\in V-S \wedge v\in S$ }
+\\\emph{Taglio che rispetta un insieme di archi}: Si dice che il taglio $(S,V-S)$ rispetta l'insieme A se nessun arco di A attraversa il taglio.
 
+
+\domanda{21e}{Enunciare il Teorema che da una condizione sufficiente affinchè un arco sia sicuro.}
+\risposta{Sia $G(V,E)$ un grafo connesso, non orientato e pesato. Siano inolre:
+\begin{enumerate}
+	\item $A\subseteq E$ un sottoinsieme di archi di un MST, che indichiamo con T, di G.
+	\item (S,V-S) un taglio definito su G che rispetta A;
+	\item $(u,v)\in E$ un arco del grafo di peso minimo che attraversa il taglio definito su $G$.
+\end{enumerate}
+Allora $(u,v)$ è un arco sicuro per A, cioè se ad A aggiungiamo anche l'arco (u,v) allora A continua a rappresentare un sottoinsieme di archi di un MST.
+
+}
 
 \domanda{22}{
 	Illustrare gli algoritmi di Kruskal e Prim facendo riferimento alla procedura GENERICS-MST.
