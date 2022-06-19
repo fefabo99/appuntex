@@ -148,6 +148,60 @@ Quindi l'equazione del passo ricorsivo è:
 \subsection*{Soluzione del problema}
 La soluzione del Problema è contenuta in tutti i valori di $D^{|V|,3}$
 
+\section{FW: Esattamente 3 Archi Blu}
+Questa è una variante dell'esercizio di settembre 2017 in cui si richiede:
+\\Grafo $G$ dove ad ogni vertice `e associato un colore R,V,B. Stabilire per ogni
+coppia di vertici se esiste un cammino con esattamente 3 vertici blu.
+\paragraph*{Sottoproblema $\{k,b\}$}
+Dato un grafo $G(V,E,f)$, $k\in \{0,...,n\}$, $b\in \{0,...,3\}$, si vuole stabilire se per ogni coppia $(i,j)\in V\times V$
+esiste un cammino da $i$ a $j$ con vertici intermedi apaprtenenti a $\{0,...,k\}$ in cui ci sono esattamente $b$ archi blu.
+
+\paragraph*{Variabili Introdotte}
+Siano $k\in \{0,...,n\}$, $b\in \{0,...,3\}$ si consideri il sottoproblema di dimensione $(k,b)$.
+Per ogni $(i,j)\in V\times V$ introduciamo la variabile $d_{i,j}^{k,b}$ così definita:
+\\$d_{(i,j)}^{(k,b)}$ : True sse esiste un cammino dal vertice $i$ al vertice $j$ con esattamente $b$ archi blu
+che utilizza vertici intermedi appartenenti a $\{1,...,k\}$.
+\\Al sottoproblema $(k,b)$ associamo la variabile $D^{k,b}$ il cui generico elemento $d^{(k,b)}_{(i,j)}$ corrisponde alla coppia $(i,j)$.
+
+\paragraph*{Caso Base} Con $k=0$.
+\\Con $k=0$ Le possibilità sono due: o abbiamo un vertice intermedio (se $(i,j)\in E$ e $i\neq j$) oppure non abbiamo vertici intermedi ($i=j$).
+Quindi sappiamo che quando $b\in\{2,3\}$ la variabile è automaticamente false. Di conseguenza nel caso base $k=0$ abbiamo $d_{(i,j)}^{0,b}$ con $b\in \{0,...,3\}$:
+$$
+d_{(i,j)}^{0,0}= \begin{cases}
+	TRUE & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) \neq B\\
+	TRUE & \text{sse } i=j \\
+	FALSE & \text{Altrimenti}
+\end{cases}
+$$
+$$
+d_{(i,j)}^{0,1}= \begin{cases}
+	TRUE & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) = B\\
+	FALSE & \text{Altrimenti}
+\end{cases}
+$$
+$$
+d_{(i,j)}^{0,2}= \begin{cases}
+	FALSE
+\end{cases}
+$$
+$$
+d_{(i,j)}^{0,3}= \begin{cases}
+	FALSE
+\end{cases}
+$$
+
+\paragraph*{Passo Ricorsivo} con $k>0$.
+Consideriamo la generica coppia $(i,j)$. Supponiamo che $b\leq k+1$ (altrimenti $b$ supererebbe il numero di archi nel cammino).
+Considerando un generico cammino $p$ da $i$ a $j$ che usa vertici intermedi appartenenti a $\{0,...,k\}$ bisogna considerare due casi: $k\in p$ e $k \notin p$.
+\\Se $k \notin p$: $d_{(i,j)}^{k,b} = \begin{cases}d_{(i,j)}^{k-1,b} \end{cases}$
+\\Per comodità chiameremo questo caso $e_1$.
+\\Se invece $k\in p$: $d_{(i,j)}^{k,b} = \begin{cases} d_{(i,k)}^{k-1,b_1} \wedge d_{(k,j)}^{k-1,b_2}\end{cases}$ tale che $b_1 + b_2 = b$.
+\\Per comodità chiameremo questo caso $e_2$.
+\\L'equazione del passo ricorsivo sarà quindi: $$d_{(i,j)}^{k,b} = e_1 \vee e_2$$
+
+\paragraph*{Soluzione}
+Considerando tutti i $d_{(i,j)}^{n,3}$ è possibile trovare la soluzione del problema.
+
 \section{Cammino minimo vertici con segno alternato} Esercizio 1 esame 12/09/2016\\
 Sia A l'insieme dei numeri interi escluso 0.\\
 Dato un grafo non orientato (V,E,f) in cui ad ogni vertice è associato un numero intero
