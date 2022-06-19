@@ -914,6 +914,20 @@ BELLMAN-FORD(G, w, s)
 	\end{itemize}
 	\subsection*{Applicazioni delle strutture dati per insiemi disgiunti}
 
+	\section{Alberi di Copertura Minimi}
+	\paragraph*{Alberi di Copertura}
+	Sia $G=(V,E)$ un grafo non orientato e connesso.
+	Si definisce albero ricoprente di G un sottografo $T\subseteq G$ Tale che:
+	\begin{itemize}
+		\item $T$ è un albero;
+		\item $T$ contiene tutti i vertici di $G$
+	\end{itemize}
+	\subparagraph*{Ovvero} Un albero di copertura di un grafo è un albero con gli stessi vertici di $G$, quindi rimane 
+	la possibilità di avere un cammino che porta da ogni nodo a ogni nodo ma vengono tolti gli archi "ridondanti".
+
+	\paragraph*{Peso di un albero di copertura} Se $G$ è pesato, il peso del suo albero di copertura è dato
+	dalla somma dei costi degli archi contenuti nell'albero.
+	\\Un albero di copertura minimo è un albero di copertura il cui peso totale è il minimo
 
 	\chapter{NP Completezza} %copiato diretto dagli appunti, va sistemato che non si capisce una sega TODO
 	\section{Cenni Teorici}
