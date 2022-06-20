@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{fancyvrb}
 \usepackage{hyperref}
+\usepackage{amsmath}
 \graphicspath{ {./images/} }
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
@@ -1817,7 +1818,156 @@ non direttamente su indirizzo.
     \includegraphics[width=100mm, scale=0.5]{Set associative cache.png}
 \end{center}
 Ciascun blocco della memoria ha a disposizione un numero fisso ($>=2$) di locazioni cache.
- 
+La dimensione dell'insieme influenza la velocità di ricerca.
+
+\subsection{Campi della cache}
+Campi che mi permettono di verificare la presenza di un dato all'interno della cache.
+\begin{itemize}
+    \item Tag (etichetta) - Contiene informazioni necessarie a verificare se una parola
+    della cache corrisponde o meno alla parola cercata. I bit più significativi rappresentano questo campo
+    \item Indice - Utilizzato per selezionare il blocco della cache, corrisponde all'indirizzo
+    di memoria della cache. Rappresentato dai bit meno significativi.
+    \item Bit di validità - Campo che indica se il blocco di memoria associato contiene un dato valido
+    (true/false). Serve per verificare se la cache sta restituendo valori validi (per esempio in fase di
+    accensione della CPU la cache è alimentata, ma non ha valori validi).
+\end{itemize}
+
+Se Tag (i Bit più significativi), Bit di validità e indirizzo di memoria (Bit meno significativi)
+coincidono genero un hit, quindi sono nel blocco di cache che mi serve.
+
+\paragraph{Esempio} Consideriamo la seguente situazione
+\begin{itemize}
+    \item Indirizzo su 32 bit
+    \item Cache a mappatura diretta
+    \item Dimensione cache di $2^n$ blocchi, dove n bit vengono usati per l'indice
+    \item Dimensione del blocco della cache è di $2^m$ parola, ossia $2^{m+2}$ byte,
+    per cui m bit vengono usati per individuare una parola all'interno di un blocco, mentre
+    2 bit per individuare una parola all'interno di un blocco, mentre 2 bit per individuare un
+    byte all'interno della parola
+\end{itemize}
+La dimensione del campo tag è: $32 - (n+m+2)$.
+\\ Il numero totale di bit contenuti in una cache a mappatura diretta è:
+\begin{equation*}
+    2^n (\mbox{dimensione blocco} + \mbox{dimensione tag} + \mbox{bit validità})
+\end{equation*}
+\begin{equation*}
+    2^n * (2^m * 32 + (32 - (n + m + 2)) + 1)
+\end{equation*}
+
+\paragraph{Mappatura di un indirizzo} Consideriamo una cache con 64 blocchi di 16 byte ciascuno.
+L'indirizzo 1200 (in byte) può essere ricavato come:
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{mappatura indirizzo esempio.png}
+\end{center}
+
+\subsection*{Scelta della dimensione del blocco di cahce}
+La dimensione del blocco di cache è in stretta relazione con la frequenza di miss.
+Minore è il numero di blocchi, maggiore è la probabilità di generare un miss e viceversa.
+Quindi blocchi più grandi generano meno miss.
+\\ Un'ampia dimensione per il blocco permette di sfruttare la località spaziale, ottimo per
+esempio per le istruzioni di un programma che spesso sono fisicamente vicine fra loro.
+\paragraph{Svantaggi di un blocco grande}
+\begin{itemize}
+    \item Blocchi di grossa dimensione comportano maggiori miss penalty, è necessario quindi
+    più tempo per trasferire il blocco
+    \item Se la dimensione del blocco è troppo grossa rispetto alla dimensione della cache,
+    il miss rate aumenta, dato che il numero di blocchi nella cache è insufficiente
+\end{itemize}
+\paragraph{Miss Penalty} Differenza tra il tempo di accesso al livello inferiore e il tempo di
+accesso alla cache.
+
+\subsection*{Cache set-associative}
+I blocchi appartenenti alla cache sono ragruppati in set. In una cache set associative a N
+vie (\textbf{N-way set associative}) ogni set raggruppa N blocchi.
+\\ Ogni indirizzo di memoria corrisponde ad un unic set della cache (accesso diretto tramite indice)
+e può essere ospitato in un blocco qualunque appartenente a quel set. 
+Stabilito il set, per determinare se un certo indirizzo è presente in un blocco del set è necessario
+confrontare in parallelo i tag di tutti i blocchi. Ogni indirizzo di memoria corrisponde
+ad un unico set della cache (accesso diretto tramite indice) e può essere ospitato in
+un blocco qualunque appartenente a quel set. Stabilito il set, per determinare se un certo
+indirizzo è presente in un blocco del set è necessario confrontare in parallelo i tag di
+tutti i blocchi.
+
+\paragraph{Svantaggi} Cache N-way set associative a confronto con cache ad accesso diretto:
+\begin{itemize}
+    \item N comparatori invece di 1
+    \item ulteriore ritardo fornito dal multiplexer
+    \item Il blocco è disponibile dopo la decisione Hit/Miss e la selezione del set
+\end{itemize}
+In una cache ad accesso diretto, il blocco è disponibile prima della decisione Hit/Miss.
+
+\subsection{Confronto tra le tecniche di indirizzamento}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Cache - confronto tecniche di indirizzamento.png}
+\end{center}
+
+\paragraph{Osservazioni aumento grado di associatività}
+\begin{itemize}
+    \item Vantaggio principale - Diminuzione del miss rate
+    \item Svantaggi - Maggior costo implementativo e incremento dell'hit time
+\end{itemize}
+
+La scelta tra il tipo di cache dipende dal costo dell'associatività rispetto alla riduzione
+del miss rate.
+
+\section{Gestione della cache}
+La gestione della cache consiste in queste 4 decisioni da prendere
+\begin{enumerate}
+    \item Dove posizionare un blocco? - \textbf{Tecnica di indirizzamento}
+    \item Come reperire un blocco? - \textbf{Tecnica di indirizzamento}
+    \item Quale blocco sostituire in corrispondenza di un miss? - \textbf{Algoritmo di sostituzione}
+    \item Come gestire un'operazione di scrittura? - \textbf{Strategia di aggiornamento}
+\end{enumerate}
+
+\subsection{Algoritmi per la sostituzione di blocchi}
+\subsubsection*{Direct associative}
+Nella cache ad acceso diretto se il blocco di memoria è mappato in una linea di cache già
+occupata (conflict miss), si elimina il contenuto precedente della linea e si rimpiazza con
+il nuovo blocco.
+
+\subsubsection*{Fully-associative e Set-associative}
+Nel caso delle fully-associative ogni blocco è un potenziale candidato per la sostituzione.
+Nel caso della set-associatve a N vie bisogna scegliere tra gli N blocchi del set
+
+\subsection*{Politiche di sostituzione}
+\paragraph{Random} (Scelta casuale) - Semplice da implementare
+\paragraph{Least Recently Used (LRU)}
+\begin{itemize}
+    \item Sfruttando la località temporale il blocco sostituito è quello che non si
+    utilizza da più tempo
+    \item Ad ogni blocco si associa un contatore all'indietro, che viene portato al valore
+    massimo in caso di accesso e decrementato di 1 ogni volta che si accede ad un altro blocco
+\end{itemize}
+\paragraph{First In First Out (FIFO)} Si approssima la strategia LRU selezionando il blocco
+più vecchio anzichè quello non usato da più tempo.
+
+\subsection{Gestione dei miss in lettura e Accesso in scrittura}
+Se un blocco non è presente nella cache bisogna mettere in stallo l'intera CPU. In generale
+al verificarsi di un miss nella cache delle istruzioni sono necessari i seguenti passi:
+\begin{enumerate}
+    \item Inviare PC - 4 (uscita della ALU) alla memoria
+    \item Lettura della memoria
+    \item Scrittura nella cache (dato, tag e bit di validità)
+    \item Riavviare l'esecuzione dell'istruzione che ha causato il miss
+\end{enumerate}
+
+Scrivere un dato nella cache significa creare un'incoerenza se non si aggiornano i livelli
+inferiori della gerarchia di memorie.
+Talle aggiornamento richiede lo stallo della CPU.
+
+\subsection*{Tecniche scrittura Cache}
+\begin{itemize}
+    \item Write-through
+    \item Write-back
+    \item Utilizzo di un Write Buffer
+\end{itemize}
+
+\paragraph{Write-Through}
+
+
+
+
+
 %END------------------------------------------------------------------------
 
 \end{document}
