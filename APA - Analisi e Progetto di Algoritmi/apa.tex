@@ -266,7 +266,6 @@ def LCS-MAGGIORE-L(X,Y,L)
 \end{lstlisting}
 
 \section{LIS}
-%TODO, serve per risolvere l'esercizio uno dell'esame di gennaio 2022
 LIS, o Longest Increasing Subsequence è un algoritmo che calcola la lunghezza della più lunga sottosequenza crescente di una determinata sequenza.
 A differenza di LCS, LIS viene calcolata su una sola sequenza, in questo caso una sottosequenza è un qualunque sequenza di caratteri che fanno parte della nostra sequenza.
 
@@ -293,7 +292,7 @@ visto che è la lunghezza massima di una sottosequenza di dimensione 1.
 \paragraph*{Passo Ricorsivo} con $1<i\leq n$,
 $$
 S[i] = \begin{cases}
-	1+\text{max}\{S[j] | 0 \leq j < i | x_j < x_i \}
+	1+\text{max}\{S[j]\} | 0 \leq j < i | x_j < x_i
 \end{cases}
 $$
 Ovvero, la soluzione è la più grande tra le soluzioni precedenti in cui l'ultimo carattere è minore del carattere $i$ aumentata di uno.

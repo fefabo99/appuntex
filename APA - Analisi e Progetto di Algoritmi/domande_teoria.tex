@@ -279,12 +279,14 @@ $E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
 \domanda{21c}{Come si trova un'arco sicuro?}
 \domanda{21d}{Dare le definizioni di: taglio, arco che attraversa un taglio, taglio che rispetta un sottoinsieme di archi, arco leggero.}
 \risposta{
-Sia $G(V,E)$ un grafo non orientato e connesso, valgono le seguenti definizioni:	
-\\\emph{Taglio}:Si definisce \emph{Taglio del Grafo} $G$ una partizione $(S,V-S)$, dell'insieme dei vertici del grafo $V$.
-\\\emph{Arco che attraversa un Taglio}: Sia $(S,V-S)$ un taglio di $G$. Si dice che un arco $(u,v)\in E$ attrversa il taglio se: $u\in S \wedge v\in V-S \vee u\in V-S \wedge v\in S$ }
-\\\emph{Taglio che rispetta un insieme di archi}: Si dice che il taglio $(S,V-S)$ rispetta l'insieme A se nessun arco di A attraversa il taglio.
-
-
+Sia $G(V,E)$ un grafo non orientato e connesso, valgono le seguenti definizioni:
+\begin{itemize}
+	\item \emph{Taglio}:Si definisce \emph{Taglio del Grafo} $G$ una partizione $(S,V-S)$, dell'insieme dei vertici del grafo $V$.
+	\item \emph{Arco che attraversa un Taglio}: Sia $(S,V-S)$ un taglio di $G$. Si dice che un arco $(u,v)\in E$ attrversa il taglio se: $u\in S \wedge v\in V-S \vee u\in V-S \wedge v\in S$
+	\item \emph{Taglio che rispetta un insieme di archi}: Si dice che il taglio $(S,V-S)$ rispetta l'insieme A se nessun arco di A attraversa il taglio.
+	\item \emph{Arco Leggero}: Se un arco attraversa un taglio, ed è l'arco col peso minimo di quelli che attraversano il taglio, allora è un arco leggero. 
+\end{itemize}
+}
 \domanda{21e}{Enunciare il Teorema che da una condizione sufficiente affinchè un arco sia sicuro.}
 \risposta{Sia $G(V,E)$ un grafo connesso, non orientato e pesato. Siano inolre:
 \begin{enumerate}

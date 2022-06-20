@@ -250,20 +250,20 @@ $D^k$ matrice $|V|\cdot|V|$
 	La soluzione del problema è costituita da tutti i valori contenuti in $D^{|V|}$
 
 	\section{Esercizio Arco RED mai seguito da arco BLUE}
-	Dato un grafo G(V,E,W) orientato e senza cappi in cui ad ogni arco è associato un colore tramite la funzione $col: E\rightarrow \{red,blue\}$
+	Dato un grafo $G(V,E,W)$ orientato e senza cappi in cui ad ogni arco è associato un colore tramite la funzione $col: E\rightarrow \{red,blue\}$
 	calcolare $\forall (i,j) \in V^2$ il peso di un cammino minimo da i a j nella quale un arco $red$ non è mai seguito da un arco $blue$
 
 	\paragraph{Definiamo il Problema Ausiliario $P'$}
-	Dato $G \forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
-	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$
+	Dato $G$, $\forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da $i$ a $j$ con
+	colore del primo arco pari ad $a$ e dell'ultimo a $b$
 
-	\paragraph{Sottoproblema $k$esimo di $P'$} con $k \in \{0,...,n\}$
-$\forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
-	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-	\subparagraph{Introduco la variabile $D*{(k,a,b)}$}
-$\forall(i,j)\in V^2$ , $d^{(k,a,b)_{ij}}$ è il peso di un cammino minimo da i a j  con
-	colore del $I$ arco pari ad $a$ e dell'iltimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-	Introduco la variabile $D*{(k,a,b)}$
+	\paragraph{Sottoproblema $k$-esimo di $P'$} con $k \in \{0,...,n\}$.
+	\\$\forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
+	colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+	\subparagraph{Introduco la variabile $D^{(k,a,b)}$}
+	$\forall(i,j)\in V^2$ , $d^{(k,a,b)}_{ij}$ è il peso di un cammino minimo da i a j  con
+	colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+	Introduco la variabile $D^{(k,a,b)}$
 	\subparagraph{Caso Base sottoproblema di $P'$} $k = 0$
 
 	\begin{equation*}
@@ -516,4 +516,141 @@ $$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = C_1 \vee C_2$$
 \paragraph*{4}Soluzione:
 La soluzione del problema PB è costituita da tutti i valori contenuti in $D^{(n)}$.
 
+\section{18 Gennaio 2022}
+\subsection{E1}
+\paragraph*{Testo}
+Si consideri la sequenza $X$ sull'alfabeto $A$ di lunghezza $n$ ed una funzione $\phi:A\to Z$ che associa ad ogni carattere un numero intero.
+Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza di $X$ in cui i numeri associati ai caratteri appaiono alternando un pari ad un dispari.
+RISPONDERE PER PUNTI alle seguenti richieste
+\begin{enumerate}
+	\item Esplicitare e definire le variabili che servono per risolvere il problema
+	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo
+	\item Scrivere la/le equazione/i di ricorrenza per il PASSO RICORSIVO, giiustificando perchè è/sono fatte in quel modo
+	\item Scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
+	\item Scrivere quindi, in pseudocodice, l'algoritmo relativo.
+\end{enumerate}
+
+\paragraph*{Sottoproblema e Variabili}
+Per il sottoproblema di taglia $i$ introduco la variabile $S$ di dimensione $n$ il cui generico elemento
+$S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
+
+\paragraph*{Caso Base} $i=1$.
+\\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
+$$
+S[1]= \begin{cases}
+	1
+\end{cases}
+$$
+\paragraph*{Passo Ricorsivo} $i>1$
+Nel caso in cui $i>1$ si introduce $0<j<1$. 
+$S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia rispettata, aumentata di 1.
+Quindi:
+$$
+S[i]= \begin{cases}
+	1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
+\end{cases}
+$$
+\paragraph*{Soluzione}
+La soluzione del problema è il massimo di tutti gli $S[i]$.
+
+\paragraph*{Pseudocodice}
+\begin{lstlisting}[style=small]
+def E1(X):
+	S[1] = 1
+	for i = 2 to n
+		max = 0
+		for j = 0 to i
+			if S[j] > max AND X[j]%2 $\neq$ X[i]%2
+				max = S[j]
+		S[i] = max + 1
+	return max(S) 
+\end{lstlisting}
+
+\section{20 Settembre 2018}
+\subsection{E1: FW}
+\paragraph{Testo}
+Sia dato un grafo colorato $G=(V,E,col)$, dove la funzione $col:E\to \{rosso,nero\}$ associa ad ogni arco di $G$ il colore rosso oppure il colore nero.
+Si vuole valutare con un algoritmo di programmazione dinamica se, per ogni coppia di vertici, esiste un cammino nel quale non vi sono archi consecutivi neri. Si chiede di:
+\begin{enumerate}
+	\item Esplicitare quali sono le variabili che vanno definite
+	\item Scivere l'equazone di ricorrenza per il caso BASE, giustificando perchè è fatta in quel modo.
+	\item Scrivere la/le equazione/i di ricorrenza per il passo ricorsivo, giustificando perchè è/sono fatta/e in quel modo
+	\item Scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
+\end{enumerate}
+\paragraph*{Sottoproblema k-esimo}
+Introduco il sottoproblema k-esimo, in cui dato un grafo colorato $G=(V,E,col)$, dove la funzione $col:E\to \{rosso,nero\}$ associa ad ogni arco di $G$ il colore rosso oppure il colore nero,
+si vuole stabilire  $\forall k\in \{0,...,|V|\}$ se per ogni coppia di vertici $(i,j) \in V^2$ esiste un cammino $p$ da $i$ a $j$ che utilizza vertici appartenenti a $\{0,...,k\}$ in cui non esisto archi consecutivi di colore nero.
+
+\paragraph*{Variabile}
+Introduco quindi la variabile $d_{ij}^k$ che $\forall (i,j) \in V^2$ e $\forall k\in {0,...,|V|}$ vale True sse esiste un cammino $p$ da $i$ a $j$ che utilizza vertici intermedi appartenenti a $\{1,...,k\}$ in cui non vi sono due archi consecutivi di colore nero.
+
+\paragraph*{Problema Ausiliario} 
+Siccome mi mancano informazioni, introduco il problema ausiliario $P'$:
+Sia dato un grafo colorato $G=(V,E,col)$, dove la funzione $col:E\to \{rosso,nero\}$ associa ad ogni arco di $G$ il colore rosso oppure il colore nero,
+si vuole determinare per ogni coppia di $(i,j) \in V^2$ e per ogni coppia di $(a,b)\in \{rosso,nero\}\times \{rosso,nero\}$ se esiste un cammino $p$ da $i$ a $j$ tale che 
+non vi siano archi consecutivi neri, e che il colore del primo arco sia uguale ad $a$ e quello dell'ultimo arco sia uguale a $b$.
+
+\paragraph*{Sottoproblema k-esimo di $P'$}
+Si vuole stabilire $\forall k \in {0,...,|V|}$ se dato un grafo colorato $G=(V,E,col)$, dove la funzione $col:E\to \{rosso,nero\}$ associa ad ogni arco di $G$ il colore rosso oppure il colore nero,
+per ogni coppia di $(i,j) \in V^2$ e per ogni coppia di $(a,b)\in \{rosso,nero\}\times \{rosso,nero\}$,  se esiste un cammino $p$ da $i$ a $j$ che utilizza vertici intermedi appartenenti a $\{1,...,k\}$ tale che
+non vi siano archi consecutivi neri, e che il colore del primo arco sia uguale ad $a$ e quello dell'ultimo arco sia uguale a $b$.
+
+\paragraph*{Variabile}
+Introduco quindi la variabile $d_{ij}^{k,a,b}$ che vale true sse...
+
+\paragraph*{Caso Base} con $k=0$, abbiamo al massimo un arco intermedio.
+Se $i=j$, non abbiamo archi intermedi quindi la condizione non è mai rispettata.
+Se invece $i\neq j$ abbiamo un arco intermedio, e la condizione è rispettata soltanto se quell'arco esiste e $col(i,j)=a=b$.
+Quindi, con $k=0$
+$$
+d_{ij}^{0,a,b}= \begin{cases}
+	True & \text{sse } i\neq j \wedge (i,j) \in E \wedge col(i,j) = a = b\\
+	False & \text{Altrimenti} 
+\end{cases}
+$$
+\paragraph*{Passo Ricorsivo} con $k>0$\\
+Quando $k>0$ dobbiamo riconoscere due casi distinti:
+\begin{itemize}
+	\item Se $k\notin p$, allora il valore di $d_{ij}^{k,a,b}$ è dato dal valore della variabile con $k-1$
+	\item Se $k \in p$, il valore di $d_{ij}^{k,a,b}$ è dato dall'unione dei valori dei cammini da $i$ a $k$ e da $k$ a $j$ se rispetta le condizioni date.
+\end{itemize}
+Quindi, per $k>0$:
+\\Se $k \notin p$
+$$d_{ij}^{k,a,b} = \begin{cases}
+	d_{ij}^{k-1,a,b}
+\end{cases}
+$$
+per comodità chiameremo questo caso $e_1$
+\\Se invece $k\in p$
+$$d_{ij}^{k,a,b} = \begin{cases}
+	d_{ik}^{k,a,c} \wedge d_{kj}^{k,d,b} & \text{se } i\neq j c\neq nero \vee d \neq nero
+\end{cases}
+$$
+Con $a,b,c,d \in {rosso,nero}$. Chiameremo questo caso $e_2$.
+\\Quindi il passo ricorsivo è:
+$$
+	d_{ij}^{k,a,b} = \begin{cases}
+		e_1 \vee e_2
+	\end{cases} 
+$$
+
+\paragraph*{Soluzione $P'$}
+La soluzione del problema ausiliario è contenuta nelle quattro macrovariabili:
+\begin{center}
+	$D^{rr}$,$D^{rn}$,$D^{nn}$,$D^{nr}$
+\end{center}
+\paragraph*{Solzuone Problema}
+La soluzione del problema iniziale è formata da tutte le soluzioni del problema ausiliario, quindi:
+$$
+D^{rr}\vee D^{rn}\vee D^{nn}\vee D^{nr}
+$$
+
+\subsection{E2: DFS}
+\paragraph*{Testo}
+Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $V1$ e $V2$, 
+decide se il grafo consiste di al più $V1$ componenti connesse ciascuna delle quali, presa singolarmente, è un grafo completo con massimo $V2$ vertici. 
+
+\paragraph*{Specifiche}
+Si chiede quindi di modificare DFS, controllando che abbia al più $V1$ componenti connesse che sono grafi completi con un massimo di $V2$ vertici.
+Un \emph{grafo completo} è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri. Per calcolarlo, con $a$ archi e e $v$ vertici: $a = v\cdot \frac{v-1}{2}$  
 \end{document}
