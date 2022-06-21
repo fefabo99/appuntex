@@ -503,7 +503,7 @@ Sia BFS che DFS per funzionare assegnano un colore ad ogni vertice per capire se
 \paragraph{Predecessore del nodo $\pi[u]$}
 Il predecessore di $u$ è il nodo che mi ha permesso di scoprirlo, quindi quello da cui sono "passato" nella mia ricerca per scoprire $u$
 \paragraph{Tempo di scoperta del nodo $d[u]$}
-Il tempo di scoperta di $u$ indica quanti "passaggi", quindi quanti nodi ho scoperto prima, mi ci sono voluti per arrivare a $u$
+Il tempo di scoperta di $u$ indica quanti "passaggi" (quindi quanti nodi ho scoperto prima) mi ci sono voluti per arrivare a $u$
 
 \subsection{Algoritmo BFS}
 BFS (Breadth-First search) è un algoritmo di visita di un grafo in ampiezza.
@@ -775,7 +775,7 @@ ciascun vertice $v \in V$ in un grafo orientato pesato $G = (V, E)$
 
 \paragraph{Differenze}
 Dijkstra funziona soltanto se tutti i pesi degli archi sono NON NEGATIVI, mentre
-Bellman-Ford non ha bisogno di questa premessa
+Bellman-Ford non ha bisogno di questa premessa.
 
 \paragraph{Funzionamento comune}
 Come tutti gli algoritmi per cammini minimi entrambi si basano sulla
@@ -821,8 +821,8 @@ dell'arco che va da $u$ a $v$, allora sostituisci la distanza di $v$ con $u.d + 
 e imposta $u$ come padre di $v$
 
 \subsection{Algoritmo di Dijkstra}
-Dijkstra ritorna in output l'insieme S contenente tutti i cammini minimi per ogni nodo del grafo
-In Dijkstra il rilassamento viene eseguito esattamente una volta per arco.
+L'algoritmo di Dijkstra ritorna in output l'insieme S contenente tutti i cammini minimi per ogni nodo del grafo.
+In Dijkstra il rilassamento viene eseguito esattamente \emph{una volta per arco}.
 
 \paragraph{Attenzione}
 Dijkstra funziona solo se w $\geq$  0 $\forall$ w $\in$ W
@@ -836,21 +836,21 @@ DIJKSTRA(G, w, s)
     Q = G.V
     While Q $\neq \phi$
         u = extract-min(Q)
-        S = S $\cup {u}$
+        S = S $\cup$ ${u}$
         for ogni vertice  $v \in Adj[u]$ 
             RELAX(u, v, w)
 \end{lstlisting}
 
 	\paragraph{Spiegazione codice}
-$Q$ è una coda che contiene tutti i vertici del grafo ed $S$ è l'insieme delle soluzioni.
+	$Q$ è una coda che contiene tutti i vertici del grafo ed $S$ è l'insieme delle soluzioni.
 	Viene estratto il vertice con distanza minore dalla sorgente (al primo giro sarà sempre $s$ dato che è
 	a distanza 0) e viene aggiunto all'insieme delle soluzioni. Viene poi fatto il rilassamento per ogni vertice adiacente
 	a quello aggiunto alla soluzione, aggiornandone la stima della distanza dalla sorgente e il predecessore.
 	viene ripetuto per ogni nodo rimanente nella coda Q.
 
 	\paragraph{Greedy}
-	Dijkstra segue l'approccio Greedy, quindi sceglie sempre il vertice più "leggero" o "vicino" in V$\backslash$S
-	da aggiungere all'insieme S. Vi è un'analogia con il criterio per l'ordinamento negli algoritmi Greedy
+	Dijkstra segue l'approccio Greedy, quindi sceglie sempre il vertice più "leggero" o "vicino" in $V \setminus  S$
+	da aggiungere all'insieme $S$. Vi è un'analogia con il criterio per l'ordinamento negli algoritmi Greedy
 
 	\paragraph{Tempo di esecuzione}
 	\begin{itemize}

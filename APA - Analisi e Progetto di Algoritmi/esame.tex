@@ -516,56 +516,6 @@ $$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = C_1 \vee C_2$$
 \paragraph*{4}Soluzione:
 La soluzione del problema PB è costituita da tutti i valori contenuti in $D^{(n)}$.
 
-\section{18 Gennaio 2022}
-\subsection{E1}
-\paragraph*{Testo}
-Si consideri la sequenza $X$ sull'alfabeto $A$ di lunghezza $n$ ed una funzione $\phi:A\to Z$ che associa ad ogni carattere un numero intero.
-Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza di $X$ in cui i numeri associati ai caratteri appaiono alternando un pari ad un dispari.
-RISPONDERE PER PUNTI alle seguenti richieste
-\begin{enumerate}
-	\item Esplicitare e definire le variabili che servono per risolvere il problema
-	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo
-	\item Scrivere la/le equazione/i di ricorrenza per il PASSO RICORSIVO, giiustificando perchè è/sono fatte in quel modo
-	\item Scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
-	\item Scrivere quindi, in pseudocodice, l'algoritmo relativo.
-\end{enumerate}
-
-\paragraph*{Sottoproblema e Variabili}
-Per il sottoproblema di taglia $i$ introduco la variabile $S$ di dimensione $n$ il cui generico elemento
-$S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
-
-\paragraph*{Caso Base} $i=1$.
-\\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
-$$
-S[1]= \begin{cases}
-	1
-\end{cases}
-$$
-\paragraph*{Passo Ricorsivo} $i>1$
-Nel caso in cui $i>1$ si introduce $0<j<1$. 
-$S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia rispettata, aumentata di 1.
-Quindi:
-$$
-S[i]= \begin{cases}
-	1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
-\end{cases}
-$$
-\paragraph*{Soluzione}
-La soluzione del problema è il massimo di tutti gli $S[i]$.
-
-\paragraph*{Pseudocodice}
-\begin{lstlisting}[style=small]
-def E1(X):
-	S[1] = 1
-	for i = 2 to n
-		max = 0
-		for j = 0 to i
-			if S[j] > max AND X[j]%2 $\neq$ X[i]%2
-				max = S[j]
-		S[i] = max + 1
-	return max(S) 
-\end{lstlisting}
-
 \section{20 Settembre 2018}
 \subsection{E1: FW}
 \paragraph{Testo}
@@ -653,4 +603,100 @@ decide se il grafo consiste di al più $V1$ componenti connesse ciascuna delle q
 \paragraph*{Specifiche}
 Si chiede quindi di modificare DFS, controllando che abbia al più $V1$ componenti connesse che sono grafi completi con un massimo di $V2$ vertici.
 Un \emph{grafo completo} è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri. Per calcolarlo, con $a$ archi e e $v$ vertici: $a = v\cdot \frac{v-1}{2}$  
+\section{18 Gennaio 2022}
+\subsection{E1}
+\paragraph*{Testo}
+Si consideri la sequenza $X$ sull'alfabeto $A$ di lunghezza $n$ ed una funzione $\phi:A\to Z$ che associa ad ogni carattere un numero intero.
+Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza di $X$ in cui i numeri associati ai caratteri appaiono alternando un pari ad un dispari.
+RISPONDERE PER PUNTI alle seguenti richieste
+\begin{enumerate}
+	\item Esplicitare e definire le variabili che servono per risolvere il problema
+	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo
+	\item Scrivere la/le equazione/i di ricorrenza per il PASSO RICORSIVO, giiustificando perchè è/sono fatte in quel modo
+	\item Scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
+	\item Scrivere quindi, in pseudocodice, l'algoritmo relativo.
+\end{enumerate}
+
+\paragraph*{Sottoproblema e Variabili}
+Per il sottoproblema di taglia $i$ introduco la variabile $S$ di dimensione $n$ il cui generico elemento
+$S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
+
+\paragraph*{Caso Base} $i=1$.
+\\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
+$$
+S[1]= \begin{cases}
+	1
+\end{cases}
+$$
+\paragraph*{Passo Ricorsivo} $i>1$
+Nel caso in cui $i>1$ si introduce $0<j<1$. 
+$S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia rispettata, aumentata di 1.
+Quindi:
+$$
+S[i]= \begin{cases}
+	1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
+\end{cases}
+$$
+\paragraph*{Soluzione}
+La soluzione del problema è il massimo di tutti gli $S[i]$.
+
+\paragraph*{Pseudocodice}
+\begin{lstlisting}[style=small]
+def E1(X):
+	S[1] = 1
+	for i = 2 to n
+		max = 0
+		for j = 0 to i
+			if S[j] > max AND X[j]%2 $\neq$ X[i]%2
+				max = S[j]
+		S[i] = max + 1
+	return max(S) 
+\end{lstlisting}
+
+\section{10 Febbraio 2022}
+\subsection{Esercizio 1: LGCS}
+\paragraph{Testo}
+Sono date due sequenze $X$ e $Y$ di interi di lunghezza $n$ ed $m$.
+Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza \emph{crescente} comune a $X$ e $Y$ in cui due numeri consecutivi non siano entrambi pari.
+\\Rispondere alle seguenti richieste:
+\begin{enumerate}
+	\item Definire le variabili che servono per risolvere il problema.
+	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo.
+	\item Scrivere l'equazione di ricorrenza per il PASSO RICORSIVO, giustificando perchè è fatta in quel modo.
+	\item Dare la soluzione del problema, espressa rispetto alle variabili introdotte.
+	\item Scrivere in pseudocodice l'algoritmo.
+\end{enumerate}
+
+\paragraph*{Sottoproblema e variabile}
+Per risolvere il problema introduco il sottoproblema di taglia $(i,j)$ così definito:
+Date due sequenze X e Y si determini la lunghezza di una delle più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$ in cui non vi sono due 
+numeri pari consecutivi.
+\\Ad ogni sottoproblema è associata la varibile $c_{ij}$ così definita:
+\\$c_{ij}=$ La lunghezza di una delle più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ in cui due numeri consecutivi non siano entrambi pari.
+
+\paragraph*{Problema Ausiliario}
+Introduco il problema asuiliario:
+Date due sequenze X e Y si detemrini la lunghezza di una delle più lunghe sottosequenze crescenti comuni in cui non vi sono due numeri consecutivi pari
+e che terminani con $x_m$ e $y_n$ \emph{se questi coincidono}.
+\\Di questo problema ausiliario considero i sottoproblemi di taglia $(i,j)$ definiti come:
+\\date due sequenze ... comuni a $X_i$ e $Y_j$ ... che termini con $x_i$ e $y_j$ se essi coincidono.
+\\Il sottoproblema è associato alla variabile $c_{ij}$ così definito:
+$c_{ij}$=...
+
+\paragraph*{Caso Base}
+Il caso base lo si ha sia nel caso in cui $i = 0 \vee j=0$, che nel caso in cui $x_i$ e $x_j$ non coincidano. quindi:
+$$c_{ij} = \begin{cases}
+	0 & \text{se } i=0 \vee j=0 \vee x_i\neq y_j
+\end{cases}
+$$
+\paragraph*{Passo Ricorsivo}
+Il Passo ricorsivo lo si ha per ogni $i>0 \wedge j>0 \wedge x_i=y_j$.
+In questo caso la variabile cambia se $x_i$ è pari o dispari, quindi:
+$$c_{ij}= \begin{cases}
+	1 + max{c_{hk}|0<h<i,0<k<j, x_h<x_j, x_h\%2 = 1 \vee x_i\%2=1}
+\end{cases}
+$$
+
+\paragraph*{Soluzione}
+La soluzione del problema è il massimo di tutti i $c_{ij}$ con $0<i\leq m \wedge 0<j \leq n$
 \end{document}
