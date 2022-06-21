@@ -1962,14 +1962,86 @@ Talle aggiornamento richiede lo stallo della CPU.
     \item Utilizzo di un Write Buffer
 \end{itemize}
 
-\paragraph{Write-Through}
- % Slide 39
-% 1:35:08
+\subsection*{Write-Through} Scrittura simultanea nel blocco della cache e nella
+memoria inferiore.
+\paragraph*{Vantaggi} 
+\begin{itemize}
+    \item Soluzione più semplice da implementare
+    \item Si mantiene la coerenza delle informazioni nella gerarchia di memorie
+\end{itemize} 
 
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Le operazioni di scrittura vengono effettuate alla velocità della memoria
+    di livello inferiore, quindi diminuiscono le prestazioni
+    \item Aumento il traffico sul bus di sistema
+\end{itemize}
 
+\subsection*{Write-back} (o copy-back): i dati sono scritto solo nel blocco della cache.
+Il blocco modificata viene scritto nel livello inferiore della gerarchia solo quando
+deve essere sostituito. Subito dopo la scrittura cache e memoria non sono consistenti,
+dato che per un breve lasso di tempo non sono coerenti.
+Il blocco cache può essere quindi in due stati: stato clean (non modificato), dirty (modificato).
+Il bit che denota questo stato è detto dirty bit.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Le scritture avvengono alla velocità della cache
+    \item Scritture successive sullo stesso blocco alterano solo la cache
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Ogni sostituzione del blocco può provocare un trasferimento in memoria
+\end{itemize}
 
+\subsection*{Write buffer} Viene interposto tra la cache e la memoria di livello inferiore un
+buffer di scrittura.
+Il processore scrive i dati sia nella cache che nel write buffer. Il controller della memoria
+scrive il contenuto del write buffer in memoria.
+\paragraph*{Gestito in modalità FIFO} Il numero tipi di elementi del buffer è 4.
+Efficiente se la frequenza di scrittura $<< \frac{1}{\mbox{write cycle della DRAM}}$
+Altrimenti il buffer può andare in saturazione e il processore deve aspettare che le 
+scritture giungano a completamento (write stall).
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Write buffer cache.png}
+\end{center}
+Per ovviare al problema si inserisce una cache di secondo livello.
 
+\subsection{Write miss}
+Anche le scritture possono generare un write miss, si verifica quando si tenta di scrivere
+in un blocco che non è presente nella cache.
+\paragraph*{Possibili soluzioni}
+\begin{itemize}
+    \item \textbf{Write allocate} - Il blocco viene caricato in cache e si effettua la scrittura
+    \item \textbf{No-write allocate} - Il blocco viene scritto direttamente nella memoria di
+    livello inferiore, senza essere trasferito in cache
+\end{itemize}
+Le cache Write backe tendono ad utilizzare Write allocate.
+\\ Le cache Write-Through prediligono No-write allocate.
 
+\subsection{Riassumendo}
+\begin{itemize}
+    \item Una cache con blocchi di dimensioni maggiori sfruttano maggiormente la località
+    spaziale diminuendo la frequenza di miss.
+    \item La frequenza di miss torna a crescere se la dimensione dei blocchi diventa troppo
+    grande rispetto alla dimensione della cache.
+    \item Quindi i blocchi vengono scaricati dalla cache prima ancora che molti dati
+    in essi contenuti siano stati utilizzati
+    \item Quindi la località spaziale tra le parole di un blocco diminuisce e il
+    miglioramento legato alla frequenza di miss si riduce
+    \item Creasce anche il costo di una miss: la penalità di una miss è determinata
+    dal tempo necessario a prelevare un blocco dal livello sottostante e a scriverlo nella cache
+    \item Il tempo per prelevare un blocco è dato dalla somma tra la latenza per ottenere
+    la prima parola del blocco e il tempo di trasferimento del resto del blocco
+\end{itemize}
+
+\paragraph*{Cose fondamentali}
+\begin{itemize}
+    \item Gerarchia memoria
+    \item Definizioni miss
+    \item Tecniche di indirizzamento
+    \item Grafico hit miss
+    \item Esercizi su Indirizzamento
+\end{itemize}
 %END------------------------------------------------------------------------
 
 \end{document}
