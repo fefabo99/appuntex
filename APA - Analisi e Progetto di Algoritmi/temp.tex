@@ -1,60 +1,46 @@
 %Questo documento serve a creare dei PDF temporanei
 %Che posso condividere
 
-
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage{fstyle}
 
 \begin{document}
+\section{h vertici "pari" e k cc complete} Esercizio 20 giugno 2018
+Dati un grafo a cui ogni vertice è associato un numero intero stabilire se:
+\begin{itemize}
+	\item ogni componente connessa del grafo ha almeno $h$ vertici a cui è associato un numero pari
+	\item ci sono k componenti connesse del grafo che, singolarmente, sono grafi completi.
+\end{itemize}
+\begin{lstlisting}[style = small]
+	DFS(G,h,k)
+		for u $\in$ V
+			col[u] = white
+		n_comp = 0 #globale
+		foreach u $\in$ V
+			if col[u] == white
+				nv,np,na = 0 #globali
+				DFS_VISIT(G,u)
+				if np < h
+					return False
+				na = na/2
+				if na = nv(nv-1)/2
+					n_comp ++
+		if n_comp == k
+			return True
+		return False
+\end{lstlisting}
 
-\section*{18 Gennaio 2022}
-\subsection*{E1}
-\paragraph*{Testo}
-Si consideri la sequenza $X$ sull'alfabeto $A$ di lunghezza $n$ ed una funzione $\phi:A\to Z$ che associa ad ogni carattere un numero intero.
-Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza di $X$ in cui i numeri associati ai caratteri appaiono alternando un pari ad un dispari.
-RISPONDERE PER PUNTI alle seguenti richieste
-\begin{enumerate}
-	\item Esplicitare e definire le variabili che servono per risolvere il problema
-	\item Scrivere l'equazione di ricorrenza per il CASO BASE, giustificando perchè è fatta in quel modo
-	\item Scrivere la/le equazione/i di ricorrenza per il PASSO RICORSIVO, giiustificando perchè è/sono fatte in quel modo
-	\item Scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
-	\item Scrivere quindi, in pseudocodice, l'algoritmo relativo.
-\end{enumerate}
-
-\paragraph*{Sottoproblema e Variabili}
-Per il sottoproblema di taglia $i$ introduco la variabile $S$ di dimensione $n$ il cui generico elemento
-$S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
-
-\paragraph*{Caso Base} $i=1$.
-\\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
-$$
-S[1]= \begin{cases}
-	1
-\end{cases}
-$$
-\paragraph*{Passo Ricorsivo} $i>1$
-Nel caso in cui $i>1$ si introduce $0<j<1$. 
-$S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia rispettata, aumentata di 1.
-Quindi:
-$$
-S[i]= \begin{cases}
-	1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
-\end{cases}
-$$
-\paragraph*{Soluzione}
-La soluzione del problema è il massimo di tutti gli $S[i]$.
-
-\paragraph*{Pseudocodice}
-\begin{lstlisting}[style=small]
-def E1(X):
-	S[1] = 1
-	for i = 2 to n
-		max = 0
-		for j = 0 to i
-			if S[j] > max AND X[j]%2 $\neq$ X[i]%2
-				max = S[j]
-		S[i] = max + 1
-	return max(S) 
-	
+\begin{lstlisting}[style = small]
+	DFS_VISIT(G,u)
+		color[u]=gray
+		for w $\in$ adj[u]
+			na ++
+			if w==white
+				nv ++
+				DFS_visit(G,w)
+		if u is pari
+			np ++
+		col[u]=black
+		nv++
 \end{lstlisting}
 \end{document}

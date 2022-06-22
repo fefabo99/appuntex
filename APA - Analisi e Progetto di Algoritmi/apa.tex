@@ -480,8 +480,9 @@ Tra questi abbiamo:
 \begin{itemize}
 	\item \textbf{Grafo Semplice}: Grafo non orientato che non comprende cappi e archi multipli.
 	\item \textbf{Grafo Completo}: è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri vertici, quindi $n_{archi} = n_{vertici} * (n_{vertici} - 1)/2$.
-	\item \textbf{Albero}: è un grafo non orientato $G$ connesso $tc$: $G$ è \emph{aciclico} $\vee$ $|E| = |V| - 1$.
-			\\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
+	\item \textbf{Albero}: è un grafo non orientato $G$ connesso $tc$:
+		\\$G$ è \emph{aciclico} $\vee$ $|E| = |V| - 1$.
+		\\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
 	\item \textbf{DAG}: Grafo diretto (orientato) senza cicli, quindi aciclico.
 			Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
 \end{itemize}
@@ -586,18 +587,18 @@ def DFS(G)
         if col[u] == White
             DFS-VISIT(u)
 \end{lstlisting}
-	\begin{lstlisting}
-def DFS-VISIT(G,u)
-col[u] = Gray
-time++
-d[u] = time
-for ogni w $\in$ Adj[u]
-    if color[w] == White
-        $\pi$[w] = u
-        DFS-VISIT(G,w)
-col[u] = Black
-time ++
-f[u] = time    
+\begin{lstlisting}
+	def DFS-VISIT(G,u)
+		col[u] = Gray
+		time++
+		d[u] = time
+		for ogni w $\in$ Adj[u]
+			if color[w] == White
+				$\pi$[w] = u
+				DFS-VISIT(G,w)
+		col[u] = Black
+		time ++
+		f[u] = time    
 \end{lstlisting}
 
 \paragraph{Spiegazione pseudocodice}

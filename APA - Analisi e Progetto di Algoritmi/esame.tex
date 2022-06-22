@@ -58,6 +58,11 @@ del nodo in esame. Quindi dopo ongi chiamata di DFS-VISIT, DFS si ritrova con il
 DFS-VISIT funziona come di norma (senza usare i padri che non servono) ma inizializza un contatore (che poi ritornerà) e ogni volta
 che fa una chiamata ricorsiva aggiorna il valore.
 
+\paragraph*{Gli elementi da contare}
+\begin{itemize}
+	\item Conta i \textbf{Vertici in una CC}: Ogni volta che DFS\_VISIT trova un nodo WHITE nella lista di adiacenza, incrementa di 1 il contatore. 
+\end{itemize}
+
 \subsection*{Pseudocodice}
 
 \begin{lstlisting}[mathescape=true]
@@ -81,12 +86,12 @@ DFS_VISIT_COUNT(u)
     RETURN count + 1
 \end{lstlisting}
 
-\chapter{Esercizi d'esame}
+\chapter{Esercizi FW}
 
-\section{FW: Esattamente 3 vertici BLU} Es 2 esame 2017\\
+\section{Esattamente 3 vertici Blu} Es 2 esame 2017\\
 Grafo G dove ad ogni vertice è associato un colore {R,V,B}. Stabilire per ogni coppia di vertici se esiste un cammino con esattamente 3 vertici blu
 
-\paragraph*{Problema ausiliario} 
+\paragraph*{Problema ausiliario}
 Questo esercizio non necessita di un problema ausiliario, viene semplicemente aggiunta una specifica al sottoproblema di dimensione $k$ in cui si "limita" il numero di vertici blu.
 
 \paragraph*{Sottoproblema}
@@ -136,12 +141,12 @@ Se $k \in cammino$ allora dobbiamo distinguere due casi:
 \begin{equation*}
 	d_{ij}^{(k,b)} = d_{ik}^{(k-1,b_1)} \land d_{kj}^{(k-1,b_2)}
 \end{equation*}
-in cui $b_1 + b_2 == b$, che per comodità chiameremo $e2_b$
-\paragraph{$col(k) \neq B$}
+in cui $b_1 + b_2 == b$, che per comodità chiameremo $e2_a$
+\paragraph{$col(k) = B$}
 \begin{equation*}
 	d_{ij}^{(k,b)} = d_{ik}^{(k-1,b_1)} \land d_{kj}^{(k-1,b_2)}
 \end{equation*}
-in cui $b_1 + b_2 == b+1$, che per comodità chiameremo $e2_a$
+in cui $b_1 + b_2 == b+1$, che per comodità chiameremo $e2_b$
 
 Quindi l'equazione del passo ricorsivo è:
 \begin{equation*}
@@ -154,10 +159,10 @@ Quindi l'equazione del passo ricorsivo è:
 \subsection*{Soluzione del problema}
 La soluzione del Problema è contenuta in tutti i valori di $D^{|V|,3}$
 
-\section{FW: Esattamente 3 Archi Blu}
+\section{Esattamente 3 Archi Blu}
 Questa è una variante dell'esercizio di settembre 2017 in cui si richiede:
 \\Grafo $G$ dove ad ogni vertice `e associato un colore R,V,B. Stabilire per ogni
-coppia di vertici se esiste un cammino con esattamente 3 vertici blu.
+coppia di vertici se esiste un cammino con esattamente 3 archi blu.
 \paragraph*{Sottoproblema $\{k,b\}$}
 Dato un grafo $G(V,E,f)$, $k\in \{0,...,n\}$, $b\in \{0,...,3\}$, si vuole stabilire se per ogni coppia $(i,j)\in V\times V$
 esiste un cammino da $i$ a $j$ con vertici intermedi apaprtenenti a $\{0,...,k\}$ in cui ci sono esattamente $b$ archi blu.
@@ -166,34 +171,34 @@ esiste un cammino da $i$ a $j$ con vertici intermedi apaprtenenti a $\{0,...,k\}
 Siano $k\in \{0,...,n\}$, $b\in \{0,...,3\}$ si consideri il sottoproblema di dimensione $(k,b)$.
 Per ogni $(i,j)\in V\times V$ introduciamo la variabile $d_{i,j}^{k,b}$ così definita:
 \\$d_{(i,j)}^{(k,b)}$ : True sse esiste un cammino dal vertice $i$ al vertice $j$ con esattamente $b$ archi blu
-che utilizza vertici intermedi appartenenti a $\{1,...,k\}$.
-\\Al sottoproblema $(k,b)$ associamo la variabile $D^{k,b}$ il cui generico elemento $d^{(k,b)}_{(i,j)}$ corrisponde alla coppia $(i,j)$.
+	che utilizza vertici intermedi appartenenti a $\{1,...,k\}$.
+	\\Al sottoproblema $(k,b)$ associamo la variabile $D^{k,b}$ il cui generico elemento $d^{(k,b)}_{(i,j)}$ corrisponde alla coppia $(i,j)$.
 
-\paragraph*{Caso Base} Con $k=0$.
-\\Con $k=0$ Le possibilità sono due: o abbiamo un vertice intermedio (se $(i,j)\in E$ e $i\neq j$) oppure non abbiamo vertici intermedi ($i=j$).
-Quindi sappiamo che quando $b\in\{2,3\}$ la variabile è automaticamente false. Di conseguenza nel caso base $k=0$ abbiamo $d_{(i,j)}^{0,b}$ con $b\in \{0,...,3\}$:
+	\paragraph*{Caso Base} Con $k=0$.
+	\\Con $k=0$ Le possibilità sono due: o abbiamo un vertice intermedio (se $(i,j)\in E$ e $i\neq j$) oppure non abbiamo vertici intermedi ($i=j$).
+	Quindi sappiamo che quando $b\in\{2,3\}$ la variabile è automaticamente false. Di conseguenza nel caso base $k=0$ abbiamo $d_{(i,j)}^{0,b}$ con $b\in \{0,...,3\}$:
 $$
-d_{(i,j)}^{0,0}= \begin{cases}
-	TRUE & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) \neq B\\
-	TRUE & \text{sse } i=j \\
-	FALSE & \text{Altrimenti}
-\end{cases}
-$$
-$$
-d_{(i,j)}^{0,1}= \begin{cases}
-	TRUE & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) = B\\
-	FALSE & \text{Altrimenti}
-\end{cases}
+	d_{(i,j)}^{0,0}= \begin{cases}
+		TRUE  & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) \neq B \\
+		TRUE  & \text{sse } i=j                                           \\
+		FALSE & \text{Altrimenti}
+	\end{cases}
 $$
 $$
-d_{(i,j)}^{0,2}= \begin{cases}
-	FALSE
-\end{cases}
+	d_{(i,j)}^{0,1}= \begin{cases}
+		TRUE  & \text{sse } i\neq j \wedge (i,j)\in E \wedge (i,j) = B \\
+		FALSE & \text{Altrimenti}
+	\end{cases}
 $$
 $$
-d_{(i,j)}^{0,3}= \begin{cases}
-	FALSE
-\end{cases}
+	d_{(i,j)}^{0,2}= \begin{cases}
+		FALSE
+	\end{cases}
+$$
+$$
+	d_{(i,j)}^{0,3}= \begin{cases}
+		FALSE
+	\end{cases}
 $$
 
 \paragraph*{Passo Ricorsivo} con $k>0$.
@@ -259,59 +264,61 @@ $D^k$ matrice $|V|\cdot|V|$
 
 	\paragraph{Sottoproblema $k$-esimo di $P'$} con $k \in \{0,...,n\}$.
 	\\$\forall(a,b) \in C^2$ calcolare $\forall(i,j) \in V^2$ il peso di un cammino minimo da i a j con
-	colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-	\subparagraph{Introduco la variabile $D^{(k,a,b)}$}
-	$\forall(i,j)\in V^2$ , $d^{(k,a,b)}_{ij}$ è il peso di un cammino minimo da i a j  con
-	colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
-	Introduco la variabile $D^{(k,a,b)}$
-	\subparagraph{Caso Base sottoproblema di $P'$} $k = 0$
+colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+\subparagraph{Introduco la variabile $D^{(k,a,b)}$}
+$\forall(i,j)\in V^2$ , $d^{(k,a,b)}_{ij}$ è il peso di un cammino minimo da i a j  con
+colore del primo arco pari ad $a$ e dell'ultimo a $b$ e con vertici intermedi $\in \{0,...,k\}$\\
+Introduco la variabile $D^{(k,a,b)}$
+\subparagraph{Caso Base sottoproblema di $P'$} $k = 0$
 
-	\begin{equation*}
-		d^{(0,a,b)}_{ij} \begin{cases}
-			\infty & \text{se $i=j$}                                             \\
-			w_{ij} & \text{se $i\neq j \land (i,j)\in E \land col(i,j) = a = b$} \\
-			\infty & \text{altrimenti}
-		\end{cases}
-	\end{equation*}
+\begin{equation*}
+	d^{(0,a,b)}_{ij} \begin{cases}
+		\infty & \text{se $i=j$}                                             \\
+		w_{ij} & \text{se $i\neq j \land (i,j)\in E \land col(i,j) = a = b$} \\
+		\infty & \text{altrimenti}
+	\end{cases}
+\end{equation*}
 
-	\subparagraph{Passo ricorsivo sottoproblema di $P'$} $k > 0$\\
-	Abbiamo due casi\\
-	se $k \notin cammino$ allora $d^{(k,a,b)}_{ij} = d^{(k-1,a,b)}_{ij}$\\
-	se $k \in cammino$ allora \\
-	grafo: i [a]- - -[c] k [d]- - -[b] j con $(c,d) \neq (red,blue)$
-	tradotto: Se k appartiene al cammino minimo, allora il colore dell'ultimo arco entrante in k deve essere diverso da red, oppure il colore del primo arco uscente da k deve essere diverso da blue.
-	quindi: $d^{(k,a,b)}_{ij} = d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
-	Quindi l'equazione di ricorrenza del passo ricorsivo è:\\
+\subparagraph{Passo ricorsivo sottoproblema di $P'$} $k > 0$\\
+Abbiamo due casi\\
+se $k \notin cammino$ allora $d^{(k,a,b)}_{ij} = d^{(k-1,a,b)}_{ij}$\\
+se $k \in cammino$ allora \\
+grafo: i [a]- - -[c] k [d]- - -[b] j con $(c,d) \neq (red,blue)$
+tradotto: Se k appartiene al cammino minimo, allora il colore dell'ultimo arco entrante in k deve essere diverso da red, oppure il colore del primo arco uscente da k deve essere diverso da blue.
+quindi: $d^{(k,a,b)}_{ij} = d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
+Quindi l'equazione di ricorrenza del passo ricorsivo è:\\
 $d^{(k,a,b)}_{ij} = min\{d^{(k-1,a,b)}_{ij} ,d^{(k-1,a,c}_{ik} + d^{(k-1,d,b}_{kj}\}$ con $c,d \in C^2$ tc $c\neq red \vee b\neq blue$
 
-	\subparagraph{Soluzione Problema Ausiliario $P'$} è formata dalle matrici:\\
+\subparagraph{Soluzione Problema Ausiliario $P'$} è formata dalle matrici:\\
 $D^{(n,red,red)}$ $D^{(n,red,blu)}$ $D^{(n,blu,red)}$ $D^{(n,blu,blu)}$ \\
-	Ovvero tutte le combinazioni possibili di cammini minimi con gli archi a e b = red or blu
+Ovvero tutte le combinazioni possibili di cammini minimi con gli archi a e b = red or blu
 
-	\paragraph{Soluzione Problema di partenza $PB$}
-	\begin{equation*}
-		d^{prob}_{ij} = \begin{cases}
-			0                                             & \text{se $i=j$}   \\
-			min\{d^{(n,a,b)}_{ij} \forall (a,b) \in C^2\} & \text{altrimenti}
-		\end{cases}
-	\end{equation*}
+\paragraph{Soluzione Problema di partenza $PB$}
+\begin{equation*}
+	d^{prob}_{ij} = \begin{cases}
+		0                                             & \text{se $i=j$}   \\
+		min\{d^{(n,a,b)}_{ij} \forall (a,b) \in C^2\} & \text{altrimenti}
+	\end{cases}
+\end{equation*}
+\chapter{Esercizi DFS}
 
-	\section{Esercizio k alberi e almeno h vertici} Esercizio 2 esame 12/09/2016\\
-	Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $h>0$ e $k>0$, stabilisce se ENTRAMBE le seguenti condizioni sono verificate
-	\begin{itemize}
-		\item Esattamente $k$ componenti connesse del grafo sono alberi
-		\item Ogni componente connessa del grafo ha almeno $h$ vertici
-	\end{itemize}
+\section{Esercizio k alberi e almeno h vertici} Esercizio 2 esame 12/09/2016\\
+Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $h>0$ e $k>0$, stabilisce se ENTRAMBE le seguenti condizioni sono verificate
+\begin{itemize}
+	\item Esattamente $k$ componenti connesse del grafo sono alberi
+	\item Ogni componente connessa del grafo ha almeno $h$ vertici
+\end{itemize}
 
-	\subsection*{Spiegazione}
-	Per creare questo algoritmo occorre modificare DFS:
-	\begin{itemize}
-		\item Per capire quanti alberi ci sono, inizializzo un boolean TREE a True. In visit controllo gli archi all'indietro e metto TREE = False se ne trovo. Al ritorno in DFS, se TREE è True incremento un contatore che alla fine di DFS controllerò che equivalga a k
-		\item Per capire il numero di Vertici in una CC, in VISIT incremento un contatore ricorsivamente ogni volta che incontro un nodo white. Una volta tornato in DFS controllo che la CC abbia almeno $h$ vertici.
-	\end{itemize}
+\subsection*{Spiegazione}
+Per creare questo algoritmo occorre modificare DFS:
+\begin{itemize}
+	\item Un grafo è un albero se \emph{G è aciciclo $\vee$ $|E| = |V| - 1$}.
+		\\Per capire quanti alberi ci sono, inizializzo un boolean TREE a True. In visit controllo gli archi all'indietro e metto TREE = False se ne trovo. Al ritorno in DFS, se TREE è True incremento un contatore che alla fine di DFS controllerò che equivalga a k.
+	\item Per capire il numero di Vertici in una CC, in VISIT incremento un contatore ricorsivamente ogni volta che incontro un nodo white. Una volta tornato in DFS controllo che la CC abbia almeno $h$ vertici.
+\end{itemize}
 
-	\subsection*{Pseudocodice}
-	\begin{lstlisting}[mathescape=true]
+\subsection*{Pseudocodice}
+\begin{lstlisting}[mathescape=true]
     DFS-CONDITIONS(G,h,k)
         for ogni $u \in V$
             col[u] = WHITE
@@ -327,13 +334,14 @@ $D^{(n,red,red)}$ $D^{(n,red,blu)}$ $D^{(n,blu,red)}$ $D^{(n,blu,blu)}$ \\
                     n_trees = n_trees + 1
                 else
                     tree = true
+					#reset senza incrementare n_trees
         if n_trees == k
             RETURN True
         else
             RETURN False
 \end{lstlisting}
 
-	\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}[mathescape=true]
     DFS-VISIT-CONDITIONS(u)
         col[u] = Gray
         n_vertici = 0
@@ -347,19 +355,57 @@ $D^{(n,red,red)}$ $D^{(n,red,blu)}$ $D^{(n,blu,red)}$ $D^{(n,blu,blu)}$ \\
         return n_vertici + 1
 \end{lstlisting}
 
-	\section{Esercizio k grafi completi e h vertici}
-	Dati due interi h,k>0 e un grafo non orientato  in cui ad ogni vertice è associato un simbolo (\$ e *)
-	stabilisci se: ogni CC del grafo ha almeno h vertici a cui è associato il simbolo \$
-	e ci sono al più k componenti connesse del grafo che prese singolarmente sono grafi completi
+\section{h vertici "pari" e k cc complete} Esercizio 20 giugno 2018
+Dati un grafo a cui ogni vertice è associato un numero intero stabilire se:
+\begin{itemize}
+	\item ogni componente connessa del grafo ha almeno $h$ vertici a cui è associato un numero pari
+	\item ci sono k componenti connesse del grafo che, singolarmente, sono grafi completi.
+\end{itemize}
+\begin{lstlisting}[style = small]
+	DFS(G,h,k)
+		for u $\in$ V
+			col[u] = white
+		n_comp = 0 #globale
+		foreach u $\in$ V
+			if col[u] == white
+				nv,np,na = 0 #globali
+				DFS_VISIT(G,u)
+				if np < h
+					return False
+				na = na/2
+				if na = nv(nv-1)/2
+					n_comp ++
+		if n_comp == k
+			return True
+		return False
+\end{lstlisting}
 
-	\subsection*{spiegazione}
-	\begin{itemize}
-		\item h vertici per cc..., ogni volta che trovo un vertice white aumento un counter se è associato al dollaro, e alla fine controllo se è > h
-		\item k cc sono.... un grafo è completo se ci sono $n_{vert} \cdot (n_{vert} -1)/2$ archi. per contare gli archi si incrementa un counter ogni volta che si trova un vertice nella lista di adiacenza.
-	\end{itemize}
+\begin{lstlisting}[style = small]
+	DFS_VISIT(G,u)
+		color[u]=gray
+		for w $\in$ adj[u]
+			na ++
+			if w==white
+				nv ++
+				DFS_visit(G,w)
+		if u is pari
+			np ++
+		col[u]=black
+		nv++
+\end{lstlisting}
+\section{Esercizio k grafi completi e h vertici}
+Dati due interi $h,k>0$ e un grafo non orientato  in cui ad ogni vertice è associato un simbolo (\$ e *)
+stabilisci se: ogni CC del grafo ha almeno $h$ vertici a cui è associato il simbolo \$
+e ci sono al più $k$ componenti connesse del grafo che prese singolarmente sono grafi completi.
 
-	\subsection*{Pseudocodice}
-	\begin{lstlisting}[mathescape=true]
+\subsection*{spiegazione}
+\begin{itemize}
+	\item \emph{$h$ vertici per cc...}, ogni volta che trovo un vertice white aumento un counter se è associato al dollaro, e alla fine controllo se è $> h$.
+	\item \emph{k cc sono....}, un grafo è completo se ci sono $n_{vert} \cdot (n_{vert} -1)/2$ archi. per contare gli archi si incrementa un counter ogni volta che si trova un vertice nella lista di adiacenza.
+\end{itemize}
+
+\subsection*{Pseudocodice}
+\begin{lstlisting}[mathescape=true]
 DFS_CUSTOM(G,h,k)
     for ogni $u \in V$
         col[u] = WHITE
@@ -379,7 +425,7 @@ DFS_CUSTOM(G,h,k)
     RETURN True
 \end{lstlisting}
 
-	\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}[mathescape=true]
 DFS_VISIT_CUSTOM(u)
     col[u] = GRAY
     if f(u) == "dollar"
@@ -394,14 +440,67 @@ DFS_VISIT_CUSTOM(u)
     RETURN n_dollar
 \end{lstlisting}
 
-	\section{Esercizio conta CC di un grafo}
-	Scrivere un algoritmo che determina il numero di componenti connesse di un grafo G =
-	(V, E) non orientato.
+\section{3 alberi con k archi e h cc complete}
+\paragraph*{Testo}Scriver un algoritmo che, dati un grafo non orientato e due interi positivi $h>0$ e $k>0$,
+stabilisce se ENTRAMBE le seguenti condizioni sono verificate:
+\begin{itemize}
+	\item Esattamente 3 componenti connesse del grafo sono alberi con $k$ archi.
+	\item Ci sono al più $h$ componenti connesse del grafo che, prese singolarmente sono grafi completi.
+\end{itemize}
 
-	\subsection*{Spiegazione}
-	Ogni volta che DFS invoca DFS-VISIT significa che ha trovato una componente connessa, quindi basta mettere un contatore che incrementa ogni volta che si chiama DFS-VISIT da DFS
-	\subsection*{Pseudocodice}
-	\begin{lstlisting}[mathescape=true]
+\paragraph*{Spiegazione}
+\begin{itemize}
+	\item Per controllare che la cc è un albero, controllo se trovo degli archi all'indietro. In quel caso sono sicuro che non sia un albero.
+	\item Per controllare che un grafo è connesso, devo avere il numero degli archi uguale a: $|E| = |V|\cdot (|V|-1)/2$
+\end{itemize}
+
+\paragraph*{Pseudocodice}
+\begin{lstlisting}[style=small]
+	DFS(G)
+		for ogni u $\in$ V
+			col[u] = White
+			$\pi$[u] = NIL
+		NT = 0, NC= 0, tree = True #globale
+		for ogni v $\in$ V
+			if col[v] == White
+				n_vertici, n_archi = DFS_VISIT(G,v)
+			n_archi = n_archi/2
+			if tree == True
+				if n_archi == k
+					NT ++
+			elif n_archi == n_vertici * (n_vertici-1)/2
+				NC++
+			tree = True
+		if NT == 3 AND NC == h
+			return True
+		return False
+\end{lstlisting}
+
+\begin{lstlisting}[style=small]
+	DFS_VISIT(G,v)
+		col[v] = Gray
+		n_vertici = 0
+		n_archi = 0
+		for ogni w $\in$ adj[v]\$\pi$[v]
+			n_archi ++
+			if col[w] == White
+				n_vertici ++
+				n_vertici n_archi += DFS_VISIT(G,w)
+			elif col[w] == Gray
+				tree = False
+		col[v] = Black
+		return n_vertici+1, n_archi
+	
+\end{lstlisting}
+
+\section{Esercizio conta CC di un grafo}
+Scrivere un algoritmo che determina il numero di componenti connesse di un grafo G =
+(V, E) non orientato.
+
+\subsection*{Spiegazione}
+Ogni volta che DFS invoca DFS-VISIT significa che ha trovato una componente connessa, quindi basta mettere un contatore che incrementa ogni volta che si chiama DFS-VISIT da DFS
+\subsection*{Pseudocodice}
+\begin{lstlisting}[mathescape=true]
     DFS_COUNT_CC(G)
         for ogni $u \in V$
             col[u] = WHITE
@@ -413,15 +512,15 @@ DFS_VISIT_CUSTOM(u)
         RETURN count
 \end{lstlisting}
 
-	\section{Esercizio Controlla se G è Aciclico}
-	Modificare l’algoritmo DFS di visita di un grafo orientato G in maniera tale che stabilisca
-	se G è acicilico, ossia se non contiene cicli.
-	\subsection*{Spiegazione}
-	Un grafo è aciclico se non contiene nessun arco all'indietro (btw se un grafo non orientato è aciclico allora è un albero).
-	\\Quindi bisogna semplicemente iniziallizzare un Boolean "acyclic" a TRUE e farlo diventare FALSE qual'ora si incontrasse un arco all'indietro
+\section{Esercizio Controlla se G è Aciclico}
+Modificare l’algoritmo DFS di visita di un grafo orientato G in maniera tale che stabilisca
+se G è acicilico, ossia se non contiene cicli.
+\subsection*{Spiegazione}
+Un grafo è aciclico se non contiene nessun arco all'indietro (btw se un grafo non orientato è aciclico allora è un albero).
+\\Quindi bisogna semplicemente iniziallizzare un Boolean "acyclic" a TRUE e farlo diventare FALSE qual'ora si incontrasse un arco all'indietro
 
-	\subsection*{Pseudocodice}
-	\begin{lstlisting}[mathescape=true]
+\subsection*{Pseudocodice}
+\begin{lstlisting}[mathescape=true]
 DFS-ACYCLIC(G)
     for ogni $u \in V$
         col[u] = WHITE
@@ -434,7 +533,7 @@ DFS-ACYCLIC(G)
     return acyclic    
 \end{lstlisting}
 
-	\begin{lstlisting}[mathescape=true]
+\begin{lstlisting}[mathescape=true]
 DFS-VISIT-ACYCLIC(u)
     col[u] = GRAY
     time++
@@ -450,8 +549,8 @@ DFS-VISIT-ACYCLIC(u)
     f[u] = time
 \end{lstlisting}
 
-	\subsection*{In caso di grafo NON ORIENTATO}
-	Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
+\subsection*{In caso di grafo NON ORIENTATO}
+Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
 
 \chapter{Esami}
 \section{12 Settembre 2016}
@@ -468,12 +567,12 @@ RISPONDERE PER PUNTI alle seguenti richieste
 	\item scrivere qual'è la soluzione del problema, espressa rispetto alle variabili introdotte.
 \end{enumerate}
 
-\paragraph*{1:} 
+\paragraph*{1:}
 Introduco la funzione $s: A\to \{+,-\}$.
 \subparagraph*{Sottoproblema $k$-esimo}
 Dato un grafo $(V,E,f)$ e $k\in \{0,...,n\}, \forall(i,j) \in V\times V$ si vuole stabilire se esiste un cammino $p$
 da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non ci siano due vertici consecutivi a cui è associato un numero con lo stesso segno.
-\\Ad ogni sottoproblema di dimensione $k$ è associata una variabile:  
+\\Ad ogni sottoproblema di dimensione $k$ è associata una variabile:
 \subparagraph*{Variabile}
 Sia $k\in\{0,...,n\}$, $\forall (i,j) \in V\times V$, introduciamo la variabile $d^{(k)}_{(i,j)}$ così definita:
 \begin{itemize}
@@ -492,24 +591,24 @@ Per cui sono possibili due situazioni:
 \end{itemize}
 In tutti gli altri casi la variabile vale false.
 $$d^{(0)}_{(i,j)}= \begin{cases}
-	TRUE & \text{se } i\neq j \wedge (i,j)\in E \wedge s(f(i)) \neq s(f(j)) \vee i=j \\
-	FALSE & \text{Altrimenti}
-\end{cases}
+		TRUE  & \text{se } i\neq j \wedge (i,j)\in E \wedge s(f(i)) \neq s(f(j)) \vee i=j \\
+		FALSE & \text{Altrimenti}
+	\end{cases}
 $$
 \paragraph*{3} PASSO RICORSIVO $k\geq 0$
 Si consideri la generica coppia $(i,j)$ e sia $k\in\{1,...,n\}$.
 \\Si possono presentare due diverse situazioni:
 \begin{itemize}
 	\item $k\notin p$: Se $k$ non è un vertice intermedio di $p$ (tra $i$ e $j$), allora tutti i vertici intermedi di p appartengono all'insieme $\{1,...,k-1\}$.
-	Esiste un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non si siano due vertici consecutivi a cui è associato un numero con lo stesso segno se esiste
-	un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k-1\}$ con le medesime condizioni
-	$$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,j)} \text{ sse } k\notin p$$
-	Per semplicità chiamo questo caso $C_1$
-	\item$k\in p$: se $k$ è un vertice intermedio di $p$ (tra $i$ e $j$), suddivido $p$ in due sottocammini $p_1$ da $i$ a $k$ e $p_2$ da $k$ a $j$,
-	entrambi aventi vertici intermedi appartenenti all'insime $\{1,...,k-1\}$.
-	Per la proprietà della sottostruttura ottima si avrà:
-	$$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,k)} \wedge d^{(k-1)}_{(k,j)} \text{ sse } k\in p$$
-	Per semplicità chiamo questo caso $C_2$
+	      Esiste un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k\}$ e in cui non si siano due vertici consecutivi a cui è associato un numero con lo stesso segno se esiste
+	      un cammino $p$ da $i$ a $j$ avente vertici intermedi appartenenti a $\{1,...,k-1\}$ con le medesime condizioni
+	      $$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,j)} \text{ sse } k\notin p$$
+	      Per semplicità chiamo questo caso $C_1$
+	      \item$k\in p$: se $k$ è un vertice intermedio di $p$ (tra $i$ e $j$), suddivido $p$ in due sottocammini $p_1$ da $i$ a $k$ e $p_2$ da $k$ a $j$,
+	      entrambi aventi vertici intermedi appartenenti all'insime $\{1,...,k-1\}$.
+	      Per la proprietà della sottostruttura ottima si avrà:
+	      $$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = d^{(k-1)}_{(i,k)} \wedge d^{(k-1)}_{(k,j)} \text{ sse } k\in p$$
+	      Per semplicità chiamo questo caso $C_2$
 \end{itemize}
 Poichè non posso sapere a priori se $k$ sia o meno vertice intermedio di $p$, avrò il caso passo:
 $$\forall(i,j)\in V\times V, d^{(k)}_{(i,j)} = C_1 \vee C_2$$
@@ -534,10 +633,10 @@ si vuole stabilire  $\forall k\in \{0,...,|V|\}$ se per ogni coppia di vertici $
 \paragraph*{Variabile}
 Introduco quindi la variabile $d_{ij}^k$ che $\forall (i,j) \in V^2$ e $\forall k\in {0,...,|V|}$ vale True sse esiste un cammino $p$ da $i$ a $j$ che utilizza vertici intermedi appartenenti a $\{1,...,k\}$ in cui non vi sono due archi consecutivi di colore nero.
 
-\paragraph*{Problema Ausiliario} 
+\paragraph*{Problema Ausiliario}
 Siccome mi mancano informazioni, introduco il problema ausiliario $P'$:
 Sia dato un grafo colorato $G=(V,E,col)$, dove la funzione $col:E\to \{rosso,nero\}$ associa ad ogni arco di $G$ il colore rosso oppure il colore nero,
-si vuole determinare per ogni coppia di $(i,j) \in V^2$ e per ogni coppia di $(a,b)\in \{rosso,nero\}\times \{rosso,nero\}$ se esiste un cammino $p$ da $i$ a $j$ tale che 
+si vuole determinare per ogni coppia di $(i,j) \in V^2$ e per ogni coppia di $(a,b)\in \{rosso,nero\}\times \{rosso,nero\}$ se esiste un cammino $p$ da $i$ a $j$ tale che
 non vi siano archi consecutivi neri, e che il colore del primo arco sia uguale ad $a$ e quello dell'ultimo arco sia uguale a $b$.
 
 \paragraph*{Sottoproblema k-esimo di $P'$}
@@ -553,10 +652,10 @@ Se $i=j$, non abbiamo archi intermedi quindi la condizione non è mai rispettata
 Se invece $i\neq j$ abbiamo un arco intermedio, e la condizione è rispettata soltanto se quell'arco esiste e $col(i,j)=a=b$.
 Quindi, con $k=0$
 $$
-d_{ij}^{0,a,b}= \begin{cases}
-	True & \text{sse } i\neq j \wedge (i,j) \in E \wedge col(i,j) = a = b\\
-	False & \text{Altrimenti} 
-\end{cases}
+	d_{ij}^{0,a,b}= \begin{cases}
+		True  & \text{sse } i\neq j \wedge (i,j) \in E \wedge col(i,j) = a = b \\
+		False & \text{Altrimenti}
+	\end{cases}
 $$
 \paragraph*{Passo Ricorsivo} con $k>0$\\
 Quando $k>0$ dobbiamo riconoscere due casi distinti:
@@ -567,21 +666,21 @@ Quando $k>0$ dobbiamo riconoscere due casi distinti:
 Quindi, per $k>0$:
 \\Se $k \notin p$
 $$d_{ij}^{k,a,b} = \begin{cases}
-	d_{ij}^{k-1,a,b}
-\end{cases}
+		d_{ij}^{k-1,a,b}
+	\end{cases}
 $$
 per comodità chiameremo questo caso $e_1$
 \\Se invece $k\in p$
 $$d_{ij}^{k,a,b} = \begin{cases}
-	d_{ik}^{k,a,c} \wedge d_{kj}^{k,d,b} & \text{se } i\neq j c\neq nero \vee d \neq nero
-\end{cases}
+		d_{ik}^{k,a,c} \wedge d_{kj}^{k,d,b} & \text{se } i\neq j c\neq nero \vee d \neq nero
+	\end{cases}
 $$
 Con $a,b,c,d \in {rosso,nero}$. Chiameremo questo caso $e_2$.
 \\Quindi il passo ricorsivo è:
 $$
 	d_{ij}^{k,a,b} = \begin{cases}
 		e_1 \vee e_2
-	\end{cases} 
+	\end{cases}
 $$
 
 \paragraph*{Soluzione $P'$}
@@ -592,17 +691,17 @@ La soluzione del problema ausiliario è contenuta nelle quattro macrovariabili:
 \paragraph*{Solzuone Problema}
 La soluzione del problema iniziale è formata da tutte le soluzioni del problema ausiliario, quindi:
 $$
-D^{rr}\vee D^{rn}\vee D^{nn}\vee D^{nr}
+	D^{rr}\vee D^{rn}\vee D^{nn}\vee D^{nr}
 $$
 
 \subsection{E2: DFS}
 \paragraph*{Testo}
-Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $V1$ e $V2$, 
-decide se il grafo consiste di al più $V1$ componenti connesse ciascuna delle quali, presa singolarmente, è un grafo completo con massimo $V2$ vertici. 
+Scrivere un algoritmo che, dati un grafo non orientato e due interi positivi $V1$ e $V2$,
+decide se il grafo consiste di al più $V1$ componenti connesse ciascuna delle quali, presa singolarmente, è un grafo completo con massimo $V2$ vertici.
 
 \paragraph*{Specifiche}
 Si chiede quindi di modificare DFS, controllando che abbia al più $V1$ componenti connesse che sono grafi completi con un massimo di $V2$ vertici.
-Un \emph{grafo completo} è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri. Per calcolarlo, con $a$ archi e e $v$ vertici: $a = v\cdot \frac{v-1}{2}$  
+Un \emph{grafo completo} è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri. Per calcolarlo, con $a$ archi e e $v$ vertici: $a = v\cdot \frac{v-1}{2}$
 \section{18 Gennaio 2022}
 \subsection{E1}
 \paragraph*{Testo}
@@ -624,18 +723,18 @@ $S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X
 \paragraph*{Caso Base} $i=1$.
 \\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
 $$
-S[1]= \begin{cases}
-	1
-\end{cases}
+	S[1]= \begin{cases}
+		1
+	\end{cases}
 $$
 \paragraph*{Passo Ricorsivo} $i>1$
-Nel caso in cui $i>1$ si introduce $0<j<1$. 
+Nel caso in cui $i>1$ si introduce $0<j<1$.
 $S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia rispettata, aumentata di 1.
 Quindi:
 $$
-S[i]= \begin{cases}
-	1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
-\end{cases}
+	S[i]= \begin{cases}
+		1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
+	\end{cases}
 $$
 \paragraph*{Soluzione}
 La soluzione del problema è il massimo di tutti gli $S[i]$.
@@ -668,33 +767,34 @@ Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghe
 \end{enumerate}
 
 \paragraph*{Sottoproblema e variabile}
-Per risolvere il problema introduco il sottoproblema di taglia $(i,j)$ così definito:
-Date due sequenze X e Y si determini la lunghezza di una delle più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$ in cui non vi sono due 
+Per risolvere il problema introduco il sottoproblema di taglia $(i,j)$ con $0\leq i \leq n$,$0\leq j \leq m$ così definito:
+Date due sequenze X e Y si determini la lunghezza di una delle più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$ in cui non vi sono due
 numeri pari consecutivi.
 \\Ad ogni sottoproblema è associata la varibile $c_{ij}$ così definita:
 \\$c_{ij}=$ La lunghezza di una delle più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ in cui due numeri consecutivi non siano entrambi pari.
 
-\paragraph*{Problema Ausiliario}
-Introduco il problema asuiliario:
-Date due sequenze X e Y si detemrini la lunghezza di una delle più lunghe sottosequenze crescenti comuni in cui non vi sono due numeri consecutivi pari
-e che terminani con $x_m$ e $y_n$ \emph{se questi coincidono}.
-\\Di questo problema ausiliario considero i sottoproblemi di taglia $(i,j)$ definiti come:
-\\date due sequenze ... comuni a $X_i$ e $Y_j$ ... che termini con $x_i$ e $y_j$ se essi coincidono.
-\\Il sottoproblema è associato alla variabile $c_{ij}$ così definito:
-$c_{ij}$=...
+	\paragraph*{Problema Ausiliario}
+	Introduco il problema asuiliario:
+	\\Date due sequenze X e Y  rispettivamente di $n$ e $m$ numeri interi, si determini la lunghezza di una delle più lunghe sottosequenze crescenti comuni in cui non vi sono due numeri consecutivi pari
+	e che terminano con $x_m$ e $y_n$ \emph{se questi coincidono}.
+	\\Di questo problema ausiliario considero i sottoproblemi di taglia $(i,j)$ definiti come:
+	\\date due sequenze X e Y rispetivamente di n e m numeri interi, si determini la lunghezza di una delle più lunghe sottosequenze crescenti comuni
+	ai prefissi $X_i$ e $Y_j$ in cui non vi sono due numeri pari consecutivi e che termini con $x_i$ e $y_j$ se essi coincidono.
+	\\Il sottoproblema è associato alla variabile $c_{ij}$ così definito:
+	\\$c_{ij}$= La lunhgezza di una delle più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ in cui non vi sono due numeri consecutivi pari e che terminano con $x_i$ e $y_j$ se questi coincidono.
 
 \paragraph*{Caso Base}
-Il caso base lo si ha sia nel caso in cui $i = 0 \vee j=0$, che nel caso in cui $x_i$ e $x_j$ non coincidano. quindi:
+Il caso base lo si ha sia nel caso in cui $i = 0 \vee j=0$, che nel caso in cui $x_i$ e $y_j$ non coincidano. quindi:
 $$c_{ij} = \begin{cases}
-	0 & \text{se } i=0 \vee j=0 \vee x_i\neq y_j
-\end{cases}
+		0 & \text{se } i=0 \vee j=0 \vee x_i\neq y_j
+	\end{cases}
 $$
 \paragraph*{Passo Ricorsivo}
 Il Passo ricorsivo lo si ha per ogni $i>0 \wedge j>0 \wedge x_i=y_j$.
 In questo caso la variabile cambia se $x_i$ è pari o dispari, quindi:
 $$c_{ij}= \begin{cases}
-	1 + max{c_{hk}|0<h<i,0<k<j, x_h<x_j, x_h\%2 = 1 \vee x_i\%2=1}
-\end{cases}
+		1 + max\{c_{hk}|0<h<i,0<k<j, x_h<x_i, x_h\%2 = 1 \vee x_i\%2=1\}
+	\end{cases}
 $$
 
 \paragraph*{Soluzione}
