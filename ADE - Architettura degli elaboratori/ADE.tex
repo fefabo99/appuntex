@@ -300,12 +300,14 @@ Vedere tabella per convertire stringhe in numeri.
 \chapter{Circuiti logici}
 
 Nell'elettronica digitale sia gli ingressi che le uscite possono assumere solo i valori 
-di segnale alto (1 per convenzione) o basso (0)
+di segnale alto (1 per convenzione) o basso (0).
 
-Un circuito o rete combinatoria è quel circuito
+Un circuito combinatorio è senza memoria. Il suo output dipende solo dall'input inserito da noi, non ci sono
+condizioni pregresse.
 
-Un circuito o rete sequenziale implica la presenza di una componente che sincronizzi il circuito. 
-Presenza Clock.
+Un circuito sequenziale l'output non è influenzato solo dall'input, ma anche dallo stato in cui si trova
+il circuito. Vi è quindi la presenza di uno stato, che a livello elettronico implica la presenza di una memoria
+che memorizzi dei valori.
 
 \section{Porte Logiche}
 Le porte logiche sono i componenti elettronici che permettono di svolgere le operazioni logiche
@@ -417,7 +419,8 @@ corrisponde una uscita (contenuto della cella di memoria con quell'indirizzo).
 
 \paragraph{ROM vs PLA}
 \begin{itemize}
-    \item ROM - fully decoded VS PLA - partially decoded
+    \item ROM fully decoded
+    \item PLA - partially decoded
     \item ROM dimensione più grande rispetto a PLA
     \item PLA più efficienti
     \item ROM possono implementare qualsiasi funzone logica
