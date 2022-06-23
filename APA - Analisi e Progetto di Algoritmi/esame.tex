@@ -553,6 +553,59 @@ DFS-VISIT-ACYCLIC(u)
 Se il grafo non è orientato, l'algorimto è lo stesso ma nel controllo degli adiacenti di u in visit bisogna togliere il padre di u
 
 \chapter{Esami}
+\section{20 Giugno 2018}
+\subsection*{Esercizio 1: FW}
+\paragraph*{testo} Sia dato un grafo $G(V,E,f)$ (senza cappi) in cui ad ogni vertice è associato un colore tramite la funzione
+$f:V\to C$, dove $C$ è l'insieme dei colori $R,B,N$. 
+Mediante la tecinca della programmazione dinamica, si vuole stabilire, per ogni coppia di vertici $(i,j)$, se esiste un cammino da i a j
+che contenga esattamente 3 vertici rossi.
+
+\paragraph*{Sottoproblema} di dimensione $k\in {0,...,|V|}$ e $r\in {0,...,3}$.
+dato un grafo si vuole stabilire se esiste un cammino p da i a j con esattamente r vertici rossi che usa 
+archi intermedi appartenenti a $\{0,...,k\}$.
+\\A ogni sottoproblema è associata la variabile $d_{ij}^{kr}$ che assume valore true sse ...
+
+\paragraph*{Caso Base} con $k=0$, ho al più due vertici, quindi:
+$$d_{ij}^{00} = \begin{cases}
+	True & i\neq j \wedge f(i)\neq r \wedge f(j)\neq r\\
+	True & i = j \wedge f(i)\neq r\\
+	False & \text{Altrimenti} 
+\end{cases}
+$$
+
+$$d_{ij}^{01} = \begin{cases}
+	True & i\neq j \wedge f(i) = r XOR f(j) = r\\
+	True & i = j \wedge f(i) =  r\\
+	False & \text{Altrimenti} 
+\end{cases}
+$$
+$$d_{ij}^{02} = \begin{cases}
+	True & i\neq j \wedge f(i)= r \wedge f(j)= r\\
+	False & \text{Altrimenti} 
+\end{cases}
+$$
+In tutti i casi in cui $r = 3$ con $k=0$ la variabile vale false.
+
+\paragraph*{Passo ricorsivo}
+Se $k>0$ ho tre possibilità:
+\\$$k\notin p \implies d_{ij}^{kr} = d_{ij}^{k-1,r}$$
+Chiameremo questo caso $e_1$
+\\Se $k\in p$ distinuguo due casi:
+\\$k\in p \wedge f(k)= r$
+$$d_{ij}^{kr} = \vee \{d_{ik}^{k-1,r_1} \wedge d_{kj}^{k-1,r_2}\}$$
+$(r_1,r_2) \in r^2 | r_1+r_2 = r+1$
+\\$k\in p \wedge f(k)\neq r$
+$$d_{ij}^{kr} = \vee \{d_{ik}^{k-1,r_1} \wedge d_{kj}^{k-1,r_2}\}$$
+$(r_1,r_2) \in r^2 | r_1+r_2 = r$
+\\Per semplicità chiamerò questi casi $e_{2a}$ e $e_{2b}$
+\\L'equazione di ricorrenza per il caso passo quindi sarà:
+$$d_{ij}^{kr} = \begin{cases}
+	e_1 \vee e_{2a} & f(k)=r\\
+	e_1 \vee e_{2b} & f(k)\neq r
+\end{cases}
+$$
+\paragraph*{soluzione}
+Per ogni (i,j) la soluzione sarà in $d_{ij}^{n3}$.
 \section{12 Settembre 2016}
 \subsection{Esercizio 1}
 \paragraph*{Testo}Sia $A$ l'insieme dei numeri interi escluso 0.
@@ -702,8 +755,40 @@ decide se il grafo consiste di al più $V1$ componenti connesse ciascuna delle q
 \paragraph*{Specifiche}
 Si chiede quindi di modificare DFS, controllando che abbia al più $V1$ componenti connesse che sono grafi completi con un massimo di $V2$ vertici.
 Un \emph{grafo completo} è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri. Per calcolarlo, con $a$ archi e e $v$ vertici: $a = v\cdot \frac{v-1}{2}$
+
+\begin{lstlisting}[style=small]
+	DFS(G,V1,V2)
+		for u $\in$ V
+			col[u] = white
+		ncc = 0 #globale
+		for u $\in$ V
+			if u == white
+				nv=0,na=0
+				dfs_visit(G,u)
+				na=na/2
+				if na=nv(nv-1)/2
+					if nv<V2
+						return false
+				else 
+					return false
+			ncc++
+			if ncc > V1
+			return false
+		return true
+\end{lstlisting}
+
+\begin{lstlisting}[style = small]
+	DFS_VISIT(G,u)
+		col[u]=gray
+		nv++
+		for w $\in$ adj[u]
+			na++
+			if col[w] == white
+				DFS_VISIT(G,w)
+\end{lstlisting}
+
 \section{18 Gennaio 2022}
-\subsection{E1}
+\subsection{Esercizio 1: LIS}
 \paragraph*{Testo}
 Si consideri la sequenza $X$ sull'alfabeto $A$ di lunghezza $n$ ed una funzione $\phi:A\to Z$ che associa ad ogni carattere un numero intero.
 Si vuole calcolare, mediante la tecnica della programmazione dinamica, la lunghezza di una più lunga sottosequenza di $X$ in cui i numeri associati ai caratteri appaiono alternando un pari ad un dispari.
@@ -718,7 +803,7 @@ RISPONDERE PER PUNTI alle seguenti richieste
 
 \paragraph*{Sottoproblema e Variabili}
 Per il sottoproblema di taglia $i$ introduco la variabile $S$ di dimensione $n$ il cui generico elemento
-$S[i]$ con $i\in {1,...,n}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
+$S[i]$ con $i\in \{1,...,n\}$ è la lunghezza della più lunga sottosequenza di $X$ che termina con l'$i$-esimo elemento di $X$.
 
 \paragraph*{Caso Base} $i=1$.
 \\Con una sottosequenza di dimensione 1 le condizioni sono sempre rispettate, quindi:
@@ -733,7 +818,7 @@ $S[i]$ sarà il massimo di tutti gli $S[j]$ in cui $S[j]\%2 \neq S[i]\%2$ sia ri
 Quindi:
 $$
 	S[i]= \begin{cases}
-		1 + max(S[j]) | 0 < j < i, S[j]\%2 \neq S[i]\%2
+		1 + max\{S[j] | 0 < j < i, S[j]\%2 \neq S[i]\%2 \}
 	\end{cases}
 $$
 \paragraph*{Soluzione}

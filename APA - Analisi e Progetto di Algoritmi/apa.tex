@@ -536,11 +536,11 @@ def BFS(G, s)
 \end{lstlisting}
 \paragraph{Spiegazione Codice}
 BFS inizializza tutti i nodi del grafo (tranne $s$) in modo da renderli "elaborabili", quindi li mette bianchi, con distanza infinita e con padre NULL.
-In seguito crea una coda Q che andrà a contenere tutti i nodi grigi, quindi quelli di cui va ancora completata la lista di adiacenza,
+In seguito crea una coda $Q$ che andrà a contenere tutti i nodi grigi, quindi quelli di cui va ancora completata la lista di adiacenza,
 dove inserisce s, che è il primo nodo Grigio.
-\\Nel ciclo while l'algoritmo prende il primo nodo da Q e va a scoprire tutti i nodi bianchi (quindi non ancora elaborati) nella sua lista di adiacenza, inserendoli di volta in volta in Q.
+\\Nel ciclo while l'algoritmo prende il primo nodo da $Q$ e va a scoprire tutti i nodi bianchi (quindi non ancora elaborati) nella sua lista di adiacenza, inserendoli di volta in volta in $Q$.
 Quando la lista di adiacenza è stata scandita per intero, vuol dire che il nodo è stato "scoperto del tutto" e quindi diventa Nero.
-Il ciclo ricomincia finchè Q non sarà vuota.
+Il ciclo ricomincia finchè $Q$ non sarà vuota.
 
 \paragraph*{Tempo di esecuzione}
 Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
