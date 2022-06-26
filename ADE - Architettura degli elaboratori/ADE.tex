@@ -905,7 +905,7 @@ Noi utilizzeremo MIPS attraverso QTSPIM.
 Essendo RISC è semplice, uniforme e più semplice da capire. 
 Utilizza 32 registri di 32 bit e istruzioni di 32 bit.
 
-Ogni istruzione ha un formato diverso, quindi raggruppa di 32 bit in modo diverso.
+Ogni istruzione ha un formato diverso, quindi raggruppa i 32 bit in modo diverso.
 In MIPS le istruzioni sono divise in tre formati
 \begin{itemize}
     \item R-type - Istruzioni relative ai registri
@@ -922,7 +922,7 @@ Formato istruzione.
 \paragraph*{OpCode} In questo caso l'opcode dice che è di tipo R dato che le R-type Instruction
 hanno tutte OpCode 000000. Per identificare l'istruzione è necessario controllare il 
 campo funct. Per gli altri tipi di istruzione non esiste.
-\subsubsection*{Shift left)}
+\subsubsection*{Shift left}
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{Shift left.png}
 \end{center}
@@ -953,7 +953,7 @@ Istruzione composta da:
     \item Indirizzo di memoria il cui contenuto viene copiato nel registro destinazione
 \end{itemize}
 \paragraph{Problema} La memoria è grande, in MIPS ho $2^{32}$ locazioni, 
-per specificare un indirizzo occorrone 32 bit, ma non ci stanno in una istruzione di appunto
+per specificare un indirizzo occorono 32 bit, ma non ci stanno in una istruzione di appunto
 32 bit. 
 \paragraph*{Soluzione} Usare il formato I-type (opcode, 2 registri, 1 immediato), dove un
 registro è la destinazione, un registro contiene un indirizzo base e il valore immediato
@@ -1031,7 +1031,7 @@ della CPU.
     \item \$v0, \$v1 (2,3): registri valore per la restituzione dei risultati
     \item \$t0 - \$t9 (8-15, 24, 25): chiamati \textbf{caller-saved register} sono utilizzati per memorizzare quantità temporanee
     che non serve che vengano preservate tra le calls
-    \item \$s0 - \$s7 (16-23): chiamati \textbf{callee-saved register} utilizzati per contenere valori per un tempo lungo, valori
+    \item \$s0 - \$s7 (16-23): chiamati \textbf{caller-saved register} utilizzati per contenere valori per un tempo lungo, valori
     che devono essere preservati attraverso le calls.
     \item \$gp (28): puntatore globale che punta a metà di un blocco di memoria da 64K 
     \item \$sp (29): stack pointer, punta l'ultima posizione sullo stack
@@ -1131,9 +1131,9 @@ ad alto livello a linguaggio macchina (essendo l'assemblatore spesso integrato c
 \end{itemize}
 
 \subsection{Il processo di assemblaggio}
-L'assemblaggio è un procedimento sequenziali che esamina, riga per riga il codice sorgente
+L'assemblaggio è un procedimento sequenziale che esamina, riga per riga il codice sorgente
 Assembly, traducendo ciascuna riga in un'istruzione del linguaggio macchina.
-Viene applicato modulo per modulo al programma costituisce per ogni modulo la tabella dei 
+Viene applicato modulo per modulo al programma e costituisce per ogni modulo la tabella dei 
 simboli del modulo.
 2 passi importanti \begin{itemize}
     \item Traduce i codici mnemonici (simbolici) delle istruzioni nei corrispondenti
@@ -1148,7 +1148,7 @@ il programma sorgente due volte.
 a 2 passi.
 \\ Ogni modulo assemblato di default parte dall'indirizzo 0
 \paragraph*{Tabella dei simboli} Contiene i riferimenti simbolici presenti nel modulo
-da tradurre e al termine del primo passo, conterrà gli indirizzi numerici di
+da tradurre e al termine del primo passo, conterrà gli indirizzi numerici
 di tutti i simboli, tranne quelli esterni al modulo in esame.
 Per le etichette associate a direttive dell'assemblatore che definiscono costanti
 simboliche viene creata la coppia "etichetta, valore" e in ogni istruzione che
@@ -1175,7 +1175,7 @@ Il linker principlamente effettua le seguenti operazioni:\begin{itemize}
     \item Corregge i riferimenti interni ed esterni e risolve i riferimenti in sospeso (a etichette esterne)
     \item Genera il file eseguibile
 \end{itemize}
-Quindi ora abbiamo il file il linguaggio macchina pronto per essere eseguito.
+Quindi ora abbiamo il file in linguaggio macchina pronto per essere eseguito.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{linker.png}
 \end{center}
@@ -1197,7 +1197,7 @@ Nel dettaglio: \begin{itemize}
     startup termina il programma con una chiamata alla funzione di sistema exit
 \end{itemize}
 
-L'assemblatore riceve delle ridettive in fase di assemblaggio, queste non corrispondono
+L'assemblatore riceve delle direttive in fase di assemblaggio, queste non corrispondono
 a istruzioni macchina e servono per: \begin{itemize}
     \item associare etichette simboliche a indirizzi
     \item allocare spazio di memoria per le variabili
@@ -1205,7 +1205,7 @@ a istruzioni macchina e servono per: \begin{itemize}
 \end{itemize}
 
 \subsection{Pseudoistruzioni}
-Istruzione assemblu che non ha una corrispondente istruzione macchina, viene tradotta
+Istruzione assembly che non ha una corrispondente istruzione macchina, viene tradotta
 dall'assembler in una sequenza di istruzioni.
 
 \section{Uso dello stack}
@@ -1379,7 +1379,7 @@ Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
     \item Decode: decodifica dell'istruzione E lettura registri E calcolo
     dell'indirizzo per un eventuale branch
     \item Execute: eseguire le operazionmi relative a R\_type OPPURE calcolo di memoria
-    OPPURE completa branch OPPURE completa kump
+    OPPURE completa branch OPPURE completa jump
     \item Execute: completa R\_type OPPURE accesso alla memoria
     \item Execute: scrittura registro (solo per l'istruzione lw)
 \end{itemize}
@@ -1403,7 +1403,7 @@ in input (WriteRegister).
 di branch (che sarà usato solo nel caso di istruzioni di branch).
 Inoltre:
 \begin{itemize}
-    \item Istruz R-Type: esegue operazioni aritmetico logiche su due operandi in funzione
+    \item Istr. R-Type: esegue operazioni aritmetico logiche su due operandi in funzione
     del "function code" indicato dai 6 bit meno significativi dell'istruzione
     \item Istr. accesso a memoria: calcola l'indirizzo di memoria cui accedere
     \item Istr. branch: confronta i due registri in input
@@ -1426,7 +1426,7 @@ nel registro destinazione (e.g. nel caso di esecuzione di istruzione load)
 \end{center}
 \paragraph*{A} seleziona l'indirizzo di memoria a cui acedere tra:
 \begin{itemize}
-    \item PC (nel caos is voglia leggere un'istruzione)
+    \item PC (nel caso si voglia leggere un'istruzione)
     \item output della ALU (nel caso di esecuzione dell'istruzione "load")
 \end{itemize}
 \paragraph*{B} Seleziona il gruppo di bit dell'IR che indirca il registro in cui scrivere
