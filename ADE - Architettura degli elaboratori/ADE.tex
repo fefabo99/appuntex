@@ -1352,6 +1352,38 @@ Nello schema è implicito il clock, ci sono 2 metodologie principali
     \item Svantaggi: spreco di tempo, perchè per far sì che tutte le istruzioni vengano eseguite in 
     un clock solo devo avere un clock più lento.
 \end{itemize}
+\subsection*{Codici controllo ALU}
+La ALU ha 4 input di controllo. Questi bit non sono codificati.
+Sono 6 delle 16 possibili combinazioni sono utilizzate per questo subset. La ALU 
+MIPS ha le seguenti 6 combinazioni.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{ALU Control.png}
+\end{center}
+Dipendentemente dalla classe di istruzioni la ALU avrà bisogno di eseguire
+una di queste 5 funzioni (NOR serve per oltre parti del MIPS instruction set).
+Per una load e una store word utilizziamo la ALU per calcolare l'indirizzo tramite add.
+Per le R-type la ALU necessità di una delle 5 funzioni (AND, OR, subratrct, add o set on less than).
+Per Branch-equal la ALU necessita di utilizzare la subtract.
+
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{ALUOPcode.png}
+\end{center}
+
+\subsection*{Funzione Multiplexor e segnali di controllo}
+Qui di seguito è riportato lo schemda del Datapath MIPS con aggiunti i Multiplexor e i
+segnali di controllo.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{ALU control signal scheme.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Multiplexor ALU signal control.png}
+\end{center}
+FIGURE 5.16 The effect of each of the seven control signals. When the 1-bit control to a two-
+way multiplexor is asserted, the multiplexor selects the input corresponding to 1. Otherwise, if the control is
+deasserted, the multiplexor selects the 0 input. Remember that the state elements all have the clock as an
+implicit input and that the clock is used in controlling writes. The clock is never gated externally to a state
+element, since this can create timing problems.
+
 
 \paragraph*{Multi-ciclo} \begin{itemize}
     \item Ciclo di lunghezza fissa più corretto
