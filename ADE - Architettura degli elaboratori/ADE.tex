@@ -1423,10 +1423,33 @@ Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
     \item ALUout - l'output della ALU (dato che l'ALU è un circuito combinatorio non è in 
     grado di memorizzare un risultato)
 \end{itemize}
+Questo perchè non è più presente un ciclo di lunghezza pari all'istruzione più lunga,
+ma ho una lunghezza più breve, è necessario quindi spezzare l'istruzione in più cicli,
+preservando però le informazioni tra un ciclo e l'altro.
+
+\paragraph*{1 ALU al posto di 3} Con la tecnica multiciclo è possibile eliminare i 2 adder
+e far svolgere le operazioni di add direttamente alla ALU. Per far questo è necessario aggiungere
+dei multiplexor.
+\begin{enumerate}
+    \item Per scegliere tra il valore A del registro o il PC
+    \item Il multiplexor della seconda ALU diventa da 2 a 4 vie - la prima via aggiuntiva
+    è il numero costante 4 utilizzato per incrementare il PC, la seconda è relativa all'estensione
+    di segno e lo shift utilizzato per le branch address.
+\end{enumerate}
+Qui di seguito il Datapath senza control line e senza supporto alla jump
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Multicycle Datapath.png}
+\end{center}
+Qui di seguito sono state aggiunte le control line e il  multiplexor per il supporto alla
+jump.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Datapath final.png}
+\end{center}
 
 \section{Dettaglio esecuzione istruzioni MIPS}
+Qualsiasi istruzione MIPS necessità dai 3 ai 5 step per essere completata.
 \begin{itemize}
-    \item Fetch dell'istruzione e incremento PC + 4
+    \item Fetch dell'istruzione e incremento PC + 4. IR = Memory[PC], PC = PC + 4
     \item Decode: decodifica dell'istruzione E lettura registri E calcolo
     dell'indirizzo per un eventuale branch
     \item Execute: eseguire le operazionmi relative a R\_type OPPURE calcolo di memoria
@@ -1435,6 +1458,116 @@ Servono dei registri aggiuntivi (oltre ai 32 che abbiamo già visto)
     \item Execute: scrittura registro (solo per l'istruzione lw)
 \end{itemize}
 
+\subsection{Fetch e Decode}
+Dato che non ho ancora capito che istruzione sto leggendo la Fetch e Decode vengono sempre eseguite 
+nello stesso modo per tutte le istruzioni.
+\subsubsection*{1. Fetch} Nella Fetch salvo il PC nell'IR e incremento di 4 l'IR. Devo quindi settare l'ALU
+in modalità add.
+\paragraph*{Dettaglio Fetch preso dal libro}
+To implement this step, we will need to assert the control signals MemRead and
+IRWrite, and set IorD to 0 to select the PC as the source of the address. We also
+increment the PC by 4, which requires setting the ALUSrcA signal to 0 (sending the
+PC to the ALU), the ALUSrcB signal to 01 (sending 4 to the ALU), and ALUOp to 00
+(to make the ALU add). Finally, we will also want to store the incremented instruc-
+tion address back into the PC, which requires setting PC source to 00 and setting
+PCWrite. The increment of the PC and the instruction memory access can occur in
+parallel. The new value of the PC is not visible until the next clock cycle. (The incre-
+mented PC will also be stored into ALUOut, but this action is benign.)
+
+\subsubsection*{2. Decode}
+Anche se non so ancora di che istruzione si tratta (dato che è proprio questo il passo che mi
+consentirà di capirlo) non posso effettuare letture che poi non posso scartare, dato che
+potrebbero darmi degli errori, posso però leggere dei dati che se mi servono (perchè sono corretti) posso tenere
+al limite verranno scartati dato che il multiplexor selezionerà solo le sezioni coerenti con l'istruzione in esecuzione.
+Quindi acquisico i valori di Registro A e B e calcoliamo anche il branch target address con la ALU.
+In poche parole mi sto preparando sia per un'istruzione R-type che per una branch.
+
+\subsection{3. Execution, memory address computation, or branch completion}
+In questo caso l'esecuzione è determinata dall'OPCode dell'istruzione.
+\subsubsection*{Memory Reference}
+ALUOut $<=$ A + sign-extend (IR[15:0])
+\\
+\\ Operation: The ALU is adding the operands to form the memory address. This
+requires setting ALUSrcA to 1 (so that the first ALU input is register A) and setting
+ALUSrcB to 10 (so that the output of the sign extension unit is used for the second
+ALU input). The ALUOp signals will need to be set to 00 (causing the ALU to add).
+
+\subsubsection*{R-type (arithmetic-logical instruction)}
+ALUOut $<=$ A op B
+\\
+\\ Operation: The ALU is performing the operation specified by the function code
+on the two values read from the register file in the previous cycle. This requires
+setting ALUSrcA = 1 and setting ALUSrcB = 00, which together cause the registers
+A and B to be used as the ALU inputs. The ALUOp signals will need to be set to 10
+(so that the funct field is used to determine the ALU control signal settings).
+
+\subsubsection*{Branch}
+if (A == B) PC $<=$ ALUOut
+\\
+\\ Operation: The ALU is used to do the equal comparison between the two registers
+read in the previous step. The Zero signal out of the ALU is used to determine whether
+or not to branch. This requires setting ALUSrcA = 1 and setting ALUSrcB = 00 (so that
+the register file outputs are the ALU inputs). The ALUOp signals will need to be set to
+01 (causing the ALU to subtract) for equality testing. The PCWriteCond signal will
+need to be asserted to update the PC if the Zero output of the ALU is asserted. By setting
+PCSource to 01, the value written into the PC will come from ALUOut, which
+holds the branch target address computed in the previous cycle. For conditional
+branches that are taken, we actually write the PC twice: once from the output of the
+ALU (during the Instruction decode/register fetch) and once from ALUOut (during
+the Branch completion step). The value written into the PC last is the one used for the
+next instruction fetch.
+
+\subsubsection*{Jump}
+{x, y} is the Verilog notation for concatenation of
+bit fields x and y
+\\ PC $<=$ {PC [31:28], (IR[25:0]],2'b00)};
+\\ Operation: The PC is replaced by the jump address. PCSource is set to direct the
+jump address to the PC, and PCWrite is asserted to write the jump address into
+the PC.
+
+\subsection{4. Memory access or R-type instruction completion step}
+During this step, a load or store instruction accesses memory and an arithmetic-logical
+instruction writes its result. When a value is retrieved from memory, it is
+stored into the memory data register (MDR), where it must be used on the next
+clock cycle.
+Memory reference:
+\\ MDR $ <= $ Memory [ALUOut];
+\\ or
+\\ Memory [ALUOut] <= B;
+\\ Operation: If the instruction is a load, a data word is retrieved from memory and
+is written into the MDR. If the instruction is a store, then the data is written into
+memory. In either case, the address used is the one computed during the previous
+step and stored in ALUOut. For a store, the source operand is saved in B. (B is
+actually read twice, once in step 2 and once in step 3. Luckily, the same value is
+read both times, since the register number—which is stored in IR and used to read
+from the register file—does not change.) The signal MemRead (for a load) or
+MemWrite (for store) will need to be asserted. In addition, for loads and stores,
+the signal IorD is set to 1 to force the memory address to come from the ALU,
+rather than the PC. Since MDR is written on every clock cycle, no explicit control
+signal need be asserted.
+\paragraph*{Arithmetic-logical instruction (R-type)}
+Reg[IR[15:11]] $<=$ ALUOut;
+Operation: Place the contents of ALUOut, which corresponds to the output of the
+ALU operation in the previous cycle, into the Result register. The signal RegDst
+must be set to 1 to force the rd field (bits 15:11) to be used to select the register file
+entry to write. RegWrite must be asserted, and MemtoReg must be set to 0 so that
+the output of the ALU is written, as opposed to the memory data output.
+
+\subsection*{5. Memory read completion step}
+During this step, loads complete by writing back the value from memory.
+\paragraph*{Load}
+Reg[IR[20:16]] $<=$ MDR;
+\paragraph*{Operation} Write the load data, which was stored into MDR in the previous cycle,
+into the register file. To do this, we set MemtoReg = 1 (to write the result from
+memory), assert RegWrite (to cause a write), and we make RegDst = 0 to choose
+the rt (bits 20:16) field as the register number.
+This five-step sequence is summarized in Figure 5.30. From this sequence we
+can determine what the control must do on each clock cycle.
+
+\subsection{Riassunto Esecuzione Istruzioni}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Tabella Esecuzione Istruzioni.png}
+\end{center}
 \section{Datapath: Automa per il controllo}
 Un automa che ripete all'infinito la sua esecuzione, serve per controllare il datapath.
 Spiega nel dettaglio il ciclo Fetch Decode Execute. 
