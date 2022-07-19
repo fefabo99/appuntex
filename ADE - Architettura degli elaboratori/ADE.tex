@@ -1889,9 +1889,13 @@ Non tute le architetture degli elaboratori usano questa soluzione.
     \includegraphics[width=100mm, scale=0.5]{selettore per mappare periferiche.png}
 \end{center}
 \subsection*{Registri di interfaccia della periferica}
-Il \textbf{registro di stato della periferica} rappresenta lo stato della stessa e viene letto dalla CPU. Un esempio di stato è 
-"periferica pronta per ricevere dati, dati richiesti disponibili per il trasferimento.
-Il \textbf{registro dei dati della periferica} rappresenta i dati di input o di output in base al tipo della stessa.
+\begin{itemize}
+    \item Il \textbf{registro di stato della periferica} rappresenta lo stato della stessa e viene letto dalla CPU. Un esempio di stato è 
+    "periferica pronta per ricevere dati", "dati richiesti disponibili per il trasferimento".
+    \item Il \textbf{registro dei dati della periferica} rappresenta i dati di input o di output in base al tipo della periferica 
+    (di ingresso come per la tastiera o uscita come la stampante). 
+\end{itemize}
+
 \subsection{Passi di I/O}
 \begin{enumerate}
     \item CPU interroga lo stato della periferica
@@ -1908,10 +1912,10 @@ Il \textbf{registro dei dati della periferica} rappresenta i dati di input o di 
 Per valutare le prestazioni del trasferimento dati è necessario ricorrere a delle misure che permettono
 di valutare l'efficienza della gestione delle operazioni di I/O.
 \begin{itemize}
-    \item Banda passante - rappresenta la quantità dei dati che si può trasferire per unità di tmepo;
+    \item Banda passante - rappresenta la quantità dei dati che si può trasferire per unità di tempo;
     rappresenta una misura di flusso
     \item Latenza - rappresenta il tempo che interoccre tra l'istante in cui una periferica è pronta
-    per il trasferimento e l'istante in cui il dato viene trasferito, è una misura di tmepo
+    per il trasferimento e l'istante in cui il dato viene trasferito, è una misura di tempo
 \end{itemize}
 
 \subsection*{I/O Gestito da programma}
@@ -1931,6 +1935,7 @@ ready bit assume un determinato valore).
     di tempo) e la gestione della periferica richiede poche istruzioni
     \item Latenza minima in quanto la CPU noterà subito lo stato della periferica (tempo massimo:
     un ciclo intero di busy waiting)
+    \item CPU resta però in attesa che la periferica risponda, in uno stato di busy waiting
 \end{itemize}
 Esempio: se si trasferiscono più dati si ha un ciclo interno per il trasferimento di ogni byte 
 e un ciclo esterno per il trasferimento di tutti i byte.
@@ -1952,6 +1957,18 @@ L'Interrupt è un evento asincrono che genera l'interruzione del normale funzion
 \paragraph*{Svantaggio} La CPU deve comunque gestire le operazioni di trasferimento
 Per evitare l'intervento della CPU nella fase di trasferimento dati è stato introdotto il protocollo di trasferimento
 DMA - Direct Memory Access.
+
+Quando una periferica genera un interrupt la CPU
+esegue una serie di istruzioni predefinite (definite da chi ha creato il sistema)
+contenuta a partire dalla locazione di memoria prestabilita dentro quella
+dedicata al kernel che sono:
+\begin{itemize}
+    \item Save che salva lo stato della computazione al momento dell’interrupt
+    \item Identificazione della periferica interrompente
+    \item Gestione della periferica, con il trasferimento del dato
+    \item Restore che ripristina lo stato della computazione a prima dell’interruzione
+    \item Ritorno dall’interrupt (eret)
+\end{itemize}
 
 \paragraph*{Prestazioni}
 \begin{itemize}
@@ -1976,6 +1993,26 @@ del trasferimento.
     \item Banda passante: massima perchè la CPU non deve eseguire nessuna istruzione
     \item Latenza: minima dato che nessuna istruzione è eseguita dalla CPU
 \end{itemize}
+
+\subsubsection*{Implementazione DMA}
+4 Registri presenti nella periferica:
+\begin{enumerate}
+    \item Registro controllo della periferica
+    \item Registro dati della periferica
+    \item Registro contenente la locazione di memoria corrente dalla quale trasferire
+    i dati alla/dalla periferica
+    \item Registro quantità dei dati da trasferire
+\end{enumerate}
+Tutti questi registri sono mappati in memoria e impostati dalla CPU prima del trasferimento
+dato che la periferica è autonoma.
+\\ La \textbf{CPU si occupa solo di far partire il trasferimento} dato che la periferica è
+capace di controllare da sola se il trasferimento è ultimato o c'è altri dati, in quanto 
+ha un contatore dei bit rimanenti. Una volta terminato il trasferimento è la periferica che
+notifica la CPU attraverso un interrupt.
+\\ Con il DMA si ha latenza minima e banda passante massima in quanto la CPU
+non deve eseguire istruzioni. L’attesa è quella dell’arbitraggio del bus, ovvero
+del blocco del bus da parte della CPU (nell’ordine del tempo di un’istruzione
+nel caso peggiore) e l’unica latenza è il tempo per ottenere l’accesso al bus.
 
 %Gestione I/O con interruzione e DMA 1:14:00
 
@@ -2152,7 +2189,7 @@ accesso alla cache.
 \subsection*{Cache set-associative}
 I blocchi appartenenti alla cache sono ragruppati in set. In una cache set associative a N
 vie (\textbf{N-way set associative}) ogni set raggruppa N blocchi.
-\\ Ogni indirizzo di memoria corrisponde ad un unic set della cache (accesso diretto tramite indice)
+\\ Ogni indirizzo di memoria corrisponde ad un unico set della cache (accesso diretto tramite indice)
 e può essere ospitato in un blocco qualunque appartenente a quel set. 
 Stabilito il set, per determinare se un certo indirizzo è presente in un blocco del set è necessario
 confrontare in parallelo i tag di tutti i blocchi. Ogni indirizzo di memoria corrisponde
@@ -2226,7 +2263,7 @@ al verificarsi di un miss nella cache delle istruzioni sono necessari i seguenti
 
 Scrivere un dato nella cache significa creare un'incoerenza se non si aggiornano i livelli
 inferiori della gerarchia di memorie.
-Talle aggiornamento richiede lo stallo della CPU.
+Tale aggiornamento richiede lo stallo della CPU.
 
 \subsection*{Tecniche scrittura Cache}
 \begin{itemize}
@@ -2237,7 +2274,7 @@ Talle aggiornamento richiede lo stallo della CPU.
 
 \subsection*{Write-Through} Scrittura simultanea nel blocco della cache e nella
 memoria inferiore.
-\paragraph*{Vantaggi} 
+\paragraph*{Vantaggi} Talle
 \begin{itemize}
     \item Soluzione più semplice da implementare
     \item Si mantiene la coerenza delle informazioni nella gerarchia di memorie
@@ -2250,8 +2287,8 @@ memoria inferiore.
     \item Aumento il traffico sul bus di sistema
 \end{itemize}
 
-\subsection*{Write-back} (o copy-back): i dati sono scritto solo nel blocco della cache.
-Il blocco modificata viene scritto nel livello inferiore della gerarchia solo quando
+\subsection*{Write-back} (o copy-back): i dati sono scritti solo nel blocco della cache.
+Il blocco modificato viene scritto nel livello inferiore della gerarchia solo quando
 deve essere sostituito. Subito dopo la scrittura cache e memoria non sono consistenti,
 dato che per un breve lasso di tempo non sono coerenti.
 Il blocco cache può essere quindi in due stati: stato clean (non modificato), dirty (modificato).
@@ -2288,7 +2325,7 @@ in un blocco che non è presente nella cache.
     \item \textbf{No-write allocate} - Il blocco viene scritto direttamente nella memoria di
     livello inferiore, senza essere trasferito in cache
 \end{itemize}
-Le cache Write backe tendono ad utilizzare Write allocate.
+Le cache Write back tendono ad utilizzare Write allocate.
 \\ Le cache Write-Through prediligono No-write allocate.
 
 \subsection{Riassumendo}
@@ -2301,7 +2338,7 @@ Le cache Write backe tendono ad utilizzare Write allocate.
     in essi contenuti siano stati utilizzati
     \item Quindi la località spaziale tra le parole di un blocco diminuisce e il
     miglioramento legato alla frequenza di miss si riduce
-    \item Creasce anche il costo di una miss: la penalità di una miss è determinata
+    \item Cresce anche il costo di una miss: la penalità di una miss è determinata
     dal tempo necessario a prelevare un blocco dal livello sottostante e a scriverlo nella cache
     \item Il tempo per prelevare un blocco è dato dalla somma tra la latenza per ottenere
     la prima parola del blocco e il tempo di trasferimento del resto del blocco
