@@ -1533,7 +1533,7 @@ clock cycle.
 Memory reference:
 \\ MDR $ <= $ Memory [ALUOut];
 \\ or
-\\ Memory [ALUOut] <= B;
+\\ Memory [ALUOut] $ <= $ B;
 \\ Operation: If the instruction is a load, a data word is retrieved from memory and
 is written into the MDR. If the instruction is a store, then the data is written into
 memory. In either case, the address used is the one computed during the previous
@@ -1545,6 +1545,7 @@ MemWrite (for store) will need to be asserted. In addition, for loads and stores
 the signal IorD is set to 1 to force the memory address to come from the ALU,
 rather than the PC. Since MDR is written on every clock cycle, no explicit control
 signal need be asserted.
+
 \paragraph*{Arithmetic-logical instruction (R-type)}
 Reg[IR[15:11]] $<=$ ALUOut;
 Operation: Place the contents of ALUOut, which corresponds to the output of the
@@ -1556,7 +1557,7 @@ the output of the ALU is written, as opposed to the memory data output.
 \subsection*{5. Memory read completion step}
 During this step, loads complete by writing back the value from memory.
 \paragraph*{Load}
-Reg[IR[20:16]] $<=$ MDR;
+Reg[IR[20:16]] $ <= $ MDR;
 \paragraph*{Operation} Write the load data, which was stored into MDR in the previous cycle,
 into the register file. To do this, we set MemtoReg = 1 (to write the result from
 memory), assert RegWrite (to cause a write), and we make RegDst = 0 to choose
@@ -1570,7 +1571,49 @@ can determine what the control must do on each clock cycle.
 \end{center}
 \section{Datapath: Automa per il controllo}
 Un automa che ripete all'infinito la sua esecuzione, serve per controllare il datapath.
-Spiega nel dettaglio il ciclo Fetch Decode Execute. 
+Utilizzato per rappresentare l'unità dedicata ai segnali di controllo dei multiplexor,
+rappresenta nel dettaglio il ciclo Fetch Decode Execute, illustrando i 5 passaggi descritti
+nella sezione precedente.
+\\ Nell'automa a stati finiti ogni stato corrisponde a un clock.
+
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{FSM Automa Datapath.png}
+\end{center}
+
+\paragraph*{Memory Reference}
+In questa sezione dell'automa notiamo che come nell'esecuzione la Load e la Store differiscono
+per il numero di passaggi eseguiti, infatti la Store ne richiede i totale 4 mentre la Load 5 (dato che
+deve leggere e poi scrivere un valore).
+Qui di seguito l'automa relativo a questa tipologia di istruzione.
+
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{MemRef Automa.png}
+\end{center}
+
+\paragraph*{R-type instruction}
+In questo caso ho un singolo ramo dato che il numero di istruzioni da eseguire è identico
+per tutte le R-type e sarà il function code a comunicare alla ALU la funzione da eseguire.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{R-type Automa.png}
+\end{center}
+
+\paragraph*{Branch instruction}
+In questo caso è necessario un solo passaggio.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Branch Automa.png}
+\end{center}
+
+\paragraph*{Jump instruction}
+Anche in questo caso è necessario un solo passaggio dove asserisco lo shift dei due bit per la concatenzione
+con il PC.
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Jump Automa.png}
+\end{center}
+
+\subsection*{FSM control completo}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Complete Automa.png}
+\end{center}
 
 \section{Riassumendo il Datapath}
 \begin{center}
@@ -1583,6 +1626,7 @@ dell'esecuzione delle istruzioni, restituisce in output il contenuto dei due reg
 letti (indicati dai due input - ReadRegister1 e ReadRegister2) e scrivere, se il segnale
 di scrittura è attivo, il dato in input WriteData nel registro indicato dall'indirizzo
 in input (WriteRegister).
+
 \paragraph*{ALU} per tutte le istruzioni incrementa il PC (PC+4) e calcola il valore
 di branch (che sarà usato solo nel caso di istruzioni di branch).
 PC viene incrementato di 4 byte dato che le istruzioni hanno lunghezza 32 bit = 4 byte,
@@ -1688,7 +1732,7 @@ no nvalida, errori, pagine non presenti in memoria, ecc.
 \paragraph*{Interruzione} Evento asincrono che giunge dall'esterno del processore.
 Di solito arriva da un'unità di I/O utilizzato per comunicare alla CPU il verificarsi
 di certi eventi.
-Esempi: la terminazione di un'operazione di I/O la cui esecuzioni era stat richiesta dalla
+Esempi: la terminazione di un'operazione di I/O la cui esecuzioni era stata richiesta dalla
 CPU.
 \begin{itemize}
     \item Causate da eventi esterni al processore
@@ -1697,6 +1741,10 @@ CPU.
     \item Si sospende l'esecuzione del programma utente, si gestisce l'interruzione e poi
     si riprende l'esecuzione del programma utente
 \end{itemize}
+
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Exception and interrupt.png}
+\end{center}
 
 \subsection{Gestione di eccezioni e interruzioni}
 Il controllo del processore deve gestire gli eventi inattesi.
@@ -1774,8 +1822,8 @@ e si trova alla locazione fissa 0x80000180 in area ktext riservata al sistema op
 Quando si presenta un eccezione viene caricato nel PC l'indirizzo dell'Handler, così che
 venga eseguito il codice che si occupa di capire di che eccezione si tratta.
 \\ Dal momento che viene eseguito dopo l'interruzione di un programma utente in un punto
-qualsiasi, è tenuto a \textbf{preservare TUTTI i registri macchina}. Ad esso sono riservati
-i due registri \textbf \$k01, \$k02 che può utilizzare senza doverne preservare i contenuti.
+qualsiasi, il programma è tenuto a \textbf{preservare TUTTI i registri macchina, NON è responsabilità dell'hardware}.
+Ad esso sono riservati i due registri \textbf \$k01, \$k02 che può utilizzare senza doverne preservare i contenuti.
 Al termine del trattamento dell'eccezione, l'exception handler ritorna il controllo al programma
 interrotto (istruzione eret).
 MIPS rileva e tratta eccezioni PRIMA del completamento dell'esecuzione della istruzione corrente.
@@ -1785,6 +1833,14 @@ MIPS rileva e tratta eccezioni PRIMA del completamento dell'esecuzione della ist
     \item si si tratta di una eccezione ed è possibile proseguire l'esecuzione deve riprendere
     dall'istruzione successiva (EPC+4).
 \end{itemize}
+
+\subsection{Datpath e FSM con gestione eccezioni}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Datapath exception.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{Automa Exception.png}
+\end{center}
 
 %Fare esercizi gestione eccezioni (exception handler)
 
