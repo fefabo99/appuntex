@@ -1293,6 +1293,70 @@ e nei registri \$a0-\$a3 gli argomenti.
     \includegraphics[width=100mm, scale=0.5]{tabella syscall.png}
 \end{center}
 
+\section{Domande Esame}
+\subsection{Descrivere i passi per la gestione delle etichette irrisolte e il ruolo
+del linker in questa fase}
+L'assembler traduce un file in linguaggio assebmly in un file binari in linguaggio macchina
+e dati binari. La traduzione si divide in 2 parti: 
+\begin{enumerate}
+    \item Trovare spazi di memoria attraverso etichette così che la relazione
+    tra nomi simbolici e indirizzi sia nota quando le istruzioni verranno tradotte
+    \item Tradurre ogni riga di codice assembly associando il corrispondente numerico di
+    opcodes, registri e etichette in un'istruzione corretta.
+\end{enumerate}
+Il file prodotto dall'assembler sarà un file oggetto contennte le istruzioni macchina e i dati.
+Tuttavia il file non è ancora eseguibile dato che fa riferimento a procedure o dati contenuti
+in altri file. Un'etichetta (label) è esterna (global) se l'oggetto etichettato se si può fare riferimento
+ad essa anche in altri file oltre a quello in cui è definita. Viceversa è locale se ci si può riferire
+ad essa solo in locale. Le \textbf{etichette locali (local labels)} nascondono il proprio nome dato
+che non devono essere viste esternamente, questo permette al compilatore di non aver bisogno di produrre nomi univoci
+in tutti i file.
+\\ Se una linea inizia con una label, l'assembler registra nella \textbf{symbol table} il
+\textbf{nome dell'etichetta} e \textbf{l'indirizzo di memoria della word che l'istruzione occupa}.
+L'assembler quindi calcola quante words of memory l'istruzione occuperà.
+Dopo aver registrato tutte le label e gli indirizzi l'assembler inizia il secondo passaggio,
+qui vengono usate le informazioni della \textbf{symbol table} per produrre codice assembly
+con tutti i riferimenti registrati nella tabella, \textbf{i riferimenti esterni restano irrisolti}.
+\paragraph*{Object File Format} Quindi ora ci troviamo con degli object files contenenti 6
+sezioni distinte
+\begin{enumerate}
+    \item l'object file header, che descrive la dimensione e la posizoone delle altre parti del file
+    \item il \textbf{text segment} che contiene il codice in linguaggio macchina per le routines
+    del file sorgente. Queste routines potrebbero essere ineseguibili a causa dei riferimenti irrisolti.
+    \item Il \textbf{data segment} che contiene la rappresentazione binaria dei dati del file sorgente.
+    Come per il text segment anche qua i dati potrebbero essere incompleti a causa dei riferimenti irrisolti.
+    \item \textbf{relocation information}: identifica istruzioni e data words che dipendono
+    da indirizzi assoluti. Questi riferimenti devono cambiare se il programma è spostato in memoria.
+    \item \textbf{symbol table} che associa gli indirizzi con le etichette esterne nel file sorgente e lista
+    i riferimenti irrisolti
+    \item debugging information: informazioni su come il programma è stato compilato
+\end{enumerate}
+La produzione di diversi file oggetti è causata dalla compilazione separata, che permette di
+dividere un programma in pezzi che vengono immagazzinati in diversi file, questo permette
+di trattare il programma in moduli che possono essere compilati indipendentemente.
+Lo strumento che unisce insieme questi file è chiamato \textbf{linker} ed esegue 3 operazioni:
+\begin{enumerate}
+    \item Cerca fra le librerie dei programmi per trovare le routines utilizzata dal programma in oggetto
+    \item Determina la locazione che il codice proveniente da ogni modulo occuperà e rialloca le istruzioni
+    sistemando i riferimenti assoluti
+    \item Risolve i riferimenti fra i files
+\end{enumerate}
+L'obiettivo principale del linker è quindi assicurarsi che il programma in questione non contenga 
+etichette indefinite. Per effettuare questa risoluzione verifica se i file oggetto abbiano
+deli riferimenti a etichette con lo stesso nome. Riferimenti irrisolti indicano che il simbolo è 
+usato, ma non definito nel programma.
+Per quanto riguarda le librerire il linker cerca nelle librerie di sistema per verificare se ci sono
+subroutine predefiniti e strutture dati a cui il programma fa riferimento.
+Quando un programma usa una libreria il linker estrae il suo routine's code della libreria
+e lo incorpora nel text segment del programma. Queste nuove routine possono dipendere da altre librerire per questo il linker
+continua a cercare tra le altre librerie.
+\paragraph*{File eseguibile} Se tutti i riferimenti sono risolti allora il linker determina
+lo spazio di memoria che occuperà ogni modulo, dato che l'assebler compilando i moduli
+singolarmente non può sapere quando spazio occuperanno in totale. Quando il linker
+alloca i moduli in memoria tutti i riferimenti assoluti vanno riallocati per far riferimento
+alla loro reale locazione.
+Infine viene prodotto un \textbf{file eseguibile} che può essere eseguito su un computer.
+
 \chapter{Datapath}
 Il datapath è un insieme di unità di calcolo, come ad esempio
 ALU, i registri e i moltiplicatori necessari per l'esecuzione delle istruzioni nella
