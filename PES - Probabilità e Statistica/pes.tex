@@ -5,6 +5,7 @@
 \usepackage{fancyvrb}
 \usepackage{amssymb}
 \usepackage{amsmath}
+\usepackage{hyperref}
 \graphicspath{ {./images/} }
 
 \begin{document}
@@ -14,6 +15,7 @@
 
 \maketitle
 \tableofcontents
+
 \chapter{Introduzione}
 Il corso di probabilità e statistica per l'informatica è diviso in 2 parti
 \begin{enumerate}
@@ -75,16 +77,17 @@ salienti dei dati.
 
 \subsection{Indici di posizione}
 Per definire il centro dell'insieme dei dati definiamo la 
-\paragraph{\textbf{Media Campionaria}} \scalebox{2}{$\frac{x_1 + x_2 + \dots + x_n}{N}$} %Aggiungere sommatoria
+\paragraph{\textbf{Media Campionaria}} \scalebox{1.5}{$\frac{x_1 + x_2 + \dots + x_n}{N}$} %Aggiungere sommatoria
 
 Per misurare il valore in posizione centrale (considerando l'insieme di dati ordinato), utilizziamo la
 \paragraph{\textbf{Mediana}}
 \begin{itemize}
-    \item Se N dispari - {$X_\frac{N+1}{2}$}
-    \item Se N pari - $m = \frac{x_\frac{N}{2}+x_(\frac{N}{2}+1)}{2}$
+    \item Se N dispari $\rightarrow$ {$X_\frac{N+1}{2}$}
+    \item Se N pari $\rightarrow$ $m = \frac{X_{\frac{N}{2}}+X_{\frac{N}{2}+1}}{2}$
 \end{itemize}
 
-La mediana è insesibile alle code
+La mediana è insesibile alle code, se per esempio quindi aumento anche di molto il valore dell'ultima cifra lasciando invariate
+le altre la mediana non cambierà (a differenza della media).
 
 \section{Coefficiente di correlazione lineare}
 Posso misurare il grado di correlazione tra una coppia di dati attraverso il coefficiente di correlazione lineare. 
@@ -311,7 +314,7 @@ Lancio di due dadi, i risultati sono eventi indipendenti
 senza reimmissione. La probabilità che la prima pallina sia rossa e che la seconda sia rossa
 sono \textbf{dipendenti}!
 
-\subsection{Eventi indipendenti $\neq$ Eventi disgiunti!}
+\subsection{Eventi indipendenti != Eventi disgiunti!}
 \begin{center}
     \includegraphics[width=120mm, scale=0.5]{differenza_disgiunti_indipendenti.png}
 \end{center}
@@ -606,7 +609,7 @@ campione aleatorio, cioè del tipo $g(x_1, \dots ,x:n)$
 \begin{equation*}
     \bar{X_n}:\frac{1}{n}\sum_{n=1}^n X_i
 \end{equation*}
-\subsection{Distribuzione di X}
+\section{Distribuzione di X}
 \begin{equation*}
     \mathbb{P} (a  < \bar{X_nx} \leq b) = \mathbb{P} (\frac{a - \mu}{\frac{\sigma}{\sqrt{n}}} 
     < \frac{X_n - \mu}{\frac{\sigma}{\sqrt{n}}} \leq \frac{b - \mu}{\frac{\sigma}{\sqrt{n}}})   
