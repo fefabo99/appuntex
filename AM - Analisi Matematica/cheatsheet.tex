@@ -8,9 +8,9 @@
 \author{Fabio Ferrario}
 \date{2022}
 \maketitle
-\section*{Funzioni}
+\section*{Studio di Funzione}
 Per lo studio di una funzione bisogna trovare:
-\paragraph*{Dominio} della funzione\\
+\paragraph*{Dominio} della funzione, poni:\\
 
 \begin{tabular}{ l|l } 
 	Denominatore & $\leq 0$   \\ 
@@ -18,13 +18,24 @@ Per lo studio di una funzione bisogna trovare:
 	Radice$^n$& Argomento $\geq 0$ (\emph{sse $n$ pari})	 \\ 
 	$[f(x)]^{g(x)}$ &   $f(x)>0$
 \end{tabular}
+\paragraph*{Limiti ai punti di frontiera del dominio}
+Trovato il dominio, trova \emph{i limiti ai punti di frontiera}, 
+quindi porre i limiti ad ogni punto in cui il dominio si interrompe (sia da destra che da sinistra) e eventualmente a $\pm \infty$.
+\paragraph*{Asintoti}
+Trovati tutti i limiti, se trovi:
+\begin{itemize}
+	\item $\limite{x}{\alpha^\pm} f(x) = \pm \infty \implies$ Asintoto \emph{Verticale}.
+	\item $\limite{x}{\pm \infty} f(x) = l \implies$ Asintoto \emph{Orizzontale} (di equazione $y=l$)
+\end{itemize}
+Bisogna anche controllare la presenza di \textbf{Asintoti Obliqui}:
+\begin{itemize}
+	\item $m = \limite{x}{\pm \infty} \frac{f(x)}{x} \implies$ se $m$ \emph{esiste e non è nullo} trovo $q$:
+	\item $q = \limite{x}{\pm \infty} [f(x) - mx]\implies$  se $q$ esiste allora $y=mx+q$ è \emph{asintoto obliquo}
+\end{itemize}
 
-\paragraph*{Asintoto Obliquo}
-$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ è asintoto obliquo
-
-	\paragraph*{Retta Tangente} al grafico in $x_0$: $y=mx + q$ con
+\paragraph*{Retta Tangente} al grafico in $x_0$: $y=mx + q$ con
 	\\$m= f'(x_0)$
-\\$q=f(x_0)-f'(x_0)\cdot x_0$
+	\\$q=f(x_0)-f'(x_0)\cdot x_0$
 
 
 	\section*{Serie}
