@@ -425,11 +425,23 @@ $x_1, x_2, \dots, x_n$. Si definisce
 \begin{equation}
     E[X]:= \sum_{i = 1}^{n} x_i (p_X)^{x_i} = \sum_{i = 1}^{n} x_i P(X= x_i)
 \end{equation}
-\paragraph{Valore Medio} è la somma dei valori assunti da X "pesati" con le rispettive probabilità
-Si può notare da alcuni esempi che il valore medio E[X] non è necessariamente
+\paragraph{Valore Medio} è la somma dei valori assunti da X "pesati" con le rispettive probabilità.
+
+\paragraph*{Esempio figli}In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
+il valore medio, per esempio il valore medio della v.a. "X = numero di figli maschi"
+su una coppia con 2 figli è 1, perchè mediamente una coppia con 2 figli ha almeno 1 figlio maschio.
+
+\paragraph*{Esempio dado} Sia "X = risultato del lancio di un dado regolare a 6 facce".
+$E[X] = 3.5$. 
+\\ Non è un valore assunto dalla v.a. dato che i numeri sul dado sono solo interi.
+\\ Si può notare dall'esempio precedente che il valore medio E[X] non è necessariamente
 uno dei valori $x_i$ assunti da X!
 A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
 ci aspettiamo di osservare.
+\\ Ma allora qual è l'interpretazione del valore medio $E[X]$? A cosa serve?
+\\ Di seguito è riportata l'interpretazione frequentista di E che spiega a livello
+pratica cosa rappresenta.
+
 \subsubsection{Interpretazione frequentista di E[X]}
 Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
 e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
@@ -501,11 +513,154 @@ se gli eventi {X = x} e {Y = y} sono indipendenti, ossia:
     P(X=x, Y=y) = P(X = x)P(Y = y)
 \end{equation*}
 Per ogni scelta di x e y.
+\\ Intuitivamente conoscere il valore assunto da X non modifica la proabilità dei valori
+di Y e viceversa.
+\\ Molto spesso l'indipendenza è assunta in partenza.
+
 \paragraph{Teorema} Se X e Y sono v.a. indipendenti, allora:
 \begin{equation*}
     VAR[X+Y] = VAR[X] + VAR[Y]
 \end{equation*}
 
+\section{Distribuzioni notevoli discrete}
+Consideriamo una variabile aleatoria X, definita nello spazio di probabilità
+$(\Omega, P)$ di un certo esperimento aleatorio:
+\begin{equation*}
+    X:\Omega \rightarrow \mathbb{R} 
+\end{equation*}
+Possiamo calcolare la probabilità $P(X \in A)$ per ogni $A \subseteq \mathbb{R}$
+(ad esempio per ogni intervallo A $A=(a,b)$).
+L'insieme di tali probabilità definisce la distriuzione (di probabilità) della v.a. X.
+Per v.a. discrete, la distribuzione di X è determinata dalla discreta $p_x$:
+\begin{equation*}
+    P(X \in A) = \sum_{x_i \in A} P(X=x_i) = \sum_{x_i \in A} p_X(x_i)  
+\end{equation*}
+Per tale ragione con abuso di notazione, per una v.a. discreta si può chiamare
+\textbf{distribuzione} la \textbf{densità discreta}.
+
+\section{Classificazione distribuzioni discrete più importanti}
+\subsection*{Bernoulli}
+Si chiama Bernoulli una v.a. X che può \textbf{assumere soltanto i valori 0 e 1} cioè
+\begin{equation*}
+    X(\Omega) = \{0,1\}
+\end{equation*}
+Dato che la somma di tutti i valori che può assumere è 1 si ottiene
+\begin{equation*}
+    p_x (x) = P(X=x) = 
+    \begin{cases}
+    p \text{ se } x=1\\
+    1-p \text{ se } x=0
+    \end{cases} 
+    \text{ cioè }
+    \begin{cases}
+        P(X=1) = p\\
+        P(X=0)= 1-p
+    \end{cases}
+\end{equation*}
+Quindi X è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
+forma, per un $p \in [0,1]$.
+\\ Scriveremo $X \sim \text{Be}(p)$.
+\paragraph*{Valore Medio} $E[X] = p$
+\paragraph*{Varianza} $\text{Var}[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
+
+\subsection*{Binomiale}
+Consideriamo un esperimento aleatorio costituito da "prove ripetute e indipendenti",
+dove ciascua prova può avere due soli esiti "successo" = 1, "insuccesso" = 0, con una
+probabilità di successo $p \in [0,1]$ fissata.
+\paragraph*{Esempi} \begin{itemize}
+    \item Lancio ripetutamente una moneta o un dado
+    \item Guardo se i figli/e di una coppia sono M o F
+    \item estraggo persona da una popolazione molto ampia (successo = elettore del candidato A)
+\end{itemize}
+Siano \begin{itemize}
+    \item $n \in \mathbb{N}$ numero totale di prove
+    \item $p \in [0,1]$ probabilità di successo in ciascuna prova
+\end{itemize}
+Consideriamo quindi la v.a. X:= numero di successo che si verificano nelle n prove.
+\\ La distribuzione di X è detta binomiale di parametri n e p e indicata con $X \sim \text{Bin}(n,p)$
+\paragraph*{Osservazione} Per n=1 ritroviamo Bernoulli: $\text{Bin}(1,p) = \text{Be}(p)$
+\\ La distribuzione di X per costruzione è
+\begin{equation*}
+    X(\Omega) = \{0,1,2,\dots,n\}
+\end{equation*}
+Inoltre la densità discreta è data da:
+\begin{equation*}
+    p_x (k) = P(X=k) = \binom{n}{k}p^l (1-p)^{n-k} \text{ per } k = 0,1,\dots, n
+\end{equation*}
+Dove: \begin{itemize}
+    \item $\binom{n}{k} \rightarrow$ scelte di quali prove hanno successo $\rightarrow$ combinazioni
+    \item $p^k \rightarrow$ probabilità di k successi fissati
+    \item $(1-p)^{n-k} \rightarrow$ probabilità di (n-k) insuccessi fissati
+\end{itemize}
+
+In definitiva, \textbf{una v.a. X è binomiale} di parametri n e p, $X \sim \text{Bin}(n,p)$,
+se ha questa densità discreta.
+\\
+\\ Se $X \sim \text{Bin}(n,p)$
+\paragraph*{Valore Medio} $E[X_i] = np$ 
+\paragraph*{Varianza} $Var[X_i]=np(1-p)$
+
+\subsection*{Poisson}
+Una v.a. \textbf{X si dice Poisson di parametro $\lambda \in (0, \infty)$}, e si
+scrive $X \sim \text{Pois}(\lambda)$, se $X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}$ :
+\begin{equation*}
+    p_X (k) = P(X=k) = e^{-k} \frac{\lambda^k}{k!} \text{ per } k = 0,1,2,\dots
+\end{equation*}
+Si può ottenere una v.a. di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
+di una v.a. binomiale $Y \sim \text{Bin}(n,p)$ quando
+\begin{equation*}
+    n \rightarrow \infty, p \rightarrow 0 \text{con} np=\lambda \text{ cioè } p = \frac{\lambda}{n}
+\end{equation*}
+\paragraph*{Valore Medio e Varianza}
+Se $X \sim \text{Pois}(\lambda)$
+\begin{itemize}
+    \item $E[X] = \lambda$
+    \item $\text{Var}[X] = \lambda$
+\end{itemize}
+
+\paragraph*{Poisson in pratica ed Esempi}
+Le v.a. di Poisson sono approssimazoni per v.a. che contano il "numero di successi"
+quando si considera una grande quantità di prova la cui probabilità di accesso è "piccola".
+\\ Qui di seguito alcuni esempi: 
+\begin{itemize}
+    \item Numero di accessi a una pagina web in un'ora
+    \item Numero di nascite in un ospedale in una giornata
+    \item Numero di cliente in un ufficio postale in una mattinata
+\end{itemize}
+
+\subsection*{Geometrica}
+Una v.a. \textbf{X si dice geometrica di parametro $p \in (0,1]$} e si scrive 
+\textbf{$X \sim \text{Geo}p$}, se \textbf{$X(\Omega)=\mathbb{N} = {1,2,3,\dots}$} :
+\begin{equation*}
+    p_x (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
+\end{equation*}
+Si può ottenere una v.a. Geo(p) a partire da una successione infinita di prove ripetute
+e indipendenti, con probabilità di successo p, e considrando la v.a.
+\begin{center}
+    T := istante del primo successo
+\end{center}
+Dove l'istante è il numero della prova.
+\\ Ad esempio, indicando con $X_i \sim \text{Be}(p)$ per $i=1,2,3,\dots$ la v.a. che vale 1
+se la i-esima prova ha successo, si ha
+\begin{equation*}
+    P(T=1) = P(X_1 = 1) = p
+\end{equation*}
+\begin{equation*}
+    P(T=2) = P(X_1 = 0, X_2 = 1) = P(X_1 = 0)P(X_2 = 1) = (1-p)p
+\end{equation*}
+e in generale
+\begin{equation*}
+    P(T=k) = P(X_1=0, \dots, X_{k-1} = 0, X_k = 1) = (1-p)^{k-1}p
+\end{equation*}
+\paragraph*{Valore Medio e Varianza} se $X\sim \text{Geo}(p)$
+\begin{itemize}
+    \item $E[X] = \frac{1}{p}$
+    \item $\text{Var}[X] = \frac{1-p}{p^2}$
+\end{itemize}
+
+
+
+% VA Continue
 \section{Variabili aleatorie continue}
 Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
 \\ Variabile aleatoria $\to$ funzione $X:\Omega \to R$

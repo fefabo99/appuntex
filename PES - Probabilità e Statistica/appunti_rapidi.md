@@ -7,7 +7,7 @@ Forumla per la covarianza
 ## Proprietà della covarianza
 
 Per ogni v.a. X: VAR[X] = Cov[X, X]
-*Simmetrica* 
+*Simmetrica*
 **Bilinearità** -> Per ciascun argomento la funziona è lineare (se tengo l'altro fissato)
 
 ### Corollario
@@ -69,5 +69,16 @@ Eventi A e B indipendenti con P(A) = P(B) = 1/2
 
 Quanto vale P(A unito B)?
 
-Se fossero stati disgiunti l'interesezione era nulla. 
+Se fossero stati disgiunti l'interesezione era nulla.
+
 **Essere indipendenti != da essere disgiunti!**
+
+---
+
+## Appunti Esercizi
+
+Ricordati di scomporre le probabilità nei loro singoli eventi e di non confondere l'evento con la sua probabilità.
+
+Di base il ragionamento da fare è sempre di considerare lo spazio campionario determinato da un evento, per esempio nell'esercizio della famiglia con 3 figli, quando definisco l'evento almeno un maschio vado a definire tutte le varie possibili combinazione che contengono almeno un figlio maschio.
+
+---
