@@ -691,7 +691,7 @@ con $-\infty \leq s \leq t \leq +\infty$
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{va continue integrale.png}
 \end{center}
-\subsection*{Analogie tra v.a ass. continua e X discreta}
+\subsection*{Analogie tra v.a ass. continua e discreta}
 Ci sono analogie formali tra le 2: \begin{itemize}
     \item X ass. continua $P(X \in [s, t]) = \int_{s}^{t} f_x (x) \,dx$ \textbf{Integrale}
     \item X discreta $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_x (x_i)$ \textbf{Somma}
@@ -704,6 +704,7 @@ Ma anche importanti differenze!
 \begin{equation*}
     P(X \in [s,t]) = P(X \in (s, t))
 \end{equation*}
+In particolare: $f_x (x)$ \textbf{NON è} $P(X=x)$, tranne dove $f_x (x) = 0$
 \paragraph*{Proprietà} La densità di una v.a. assolutamente continua X è una funzione 
 $f_x : R \to R$ (integrabile) tale che: \begin{itemize}
     \item $f_x (x) \geq 0$ $\forall x \in R$
@@ -720,7 +721,7 @@ Fissato un intervallo limitato $[a, b]$ $(-\infty < a < b < -\infty)$.
 \\ Una v.a. X si dice uniforme continua i [a, b] e si scrive $X \sim U(a, b)$
 se X è ass. cont con densità
 \begin{equation*}
-    f_x^(x) =
+    f_x^{x} =
     \begin{cases}
         c \text{ se } x \in [a, b]\\
         0 \text{ se } x \notin [a, b]
