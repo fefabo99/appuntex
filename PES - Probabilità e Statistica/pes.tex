@@ -658,9 +658,8 @@ e in generale
     \item $\text{Var}[X] = \frac{1-p}{p^2}$
 \end{itemize}
 
-
-
 % VA Continue
+
 \section{Variabili aleatorie continue}
 Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
 \\ Variabile aleatoria $\to$ funzione $X:\Omega \to R$
@@ -691,6 +690,25 @@ con $-\infty \leq s \leq t \leq +\infty$
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{va continue integrale.png}
 \end{center}
+In altre parole una variabile aleatoria continua può assumere qualunque valore in un
+certo intervallo. Esempi di variabile aleatoria continua possono essere il tempo impiegato a
+portare a termine un esperimento scientifico o il peso di un individuo.
+\\ Ogni v.a. X ha una curva associata. Questa curva, nota come funzione di densità
+di probabilità, può essere usata per ottenere le probabilità associate a una v.a.
+\\ Visto che \textbf{X assume sempre un valore, otteniamo che l'area totale sottesa dalla curva
+deve essere uguale a 1.}
+\\ Inoltre visto che l'area sotto il grafico di una funzione di densità di probabilità
+tra i punti a e b non varia se gli estremi sono inclusi o esclusi otteniamo che:
+\begin{equation*}
+    P\{a \leq X \leq b\} = P\{a < X < b \}
+\end{equation*}
+Questo significa che la probabilità che una variabile aleatoria continua rientri in un
+intervallo non cambia se includiamo o no gli estremi.
+\\ La curva di densità di probabilità di una v.a. X non scende mai sotto all'asse x ha la
+proprietà che l'area delimitata da essa e dall'asse x è sempre uguale a 1.
+\\ La curva determina le probabilità di X in questo modo l'area sottesa dalla curva tra i punti a
+e b è uguale alla probabilità che X assuma un valore compreso tra a e b.
+
 \subsection*{Analogie tra v.a ass. continua e discreta}
 Ci sono analogie formali tra le 2: \begin{itemize}
     \item X ass. continua $P(X \in [s, t]) = \int_{s}^{t} f_x (x) \,dx$ \textbf{Integrale}
@@ -736,7 +754,7 @@ con $c = \frac{1}{b-a}$
 \end{equation*} 
 \includegraphics[width=100mm, scale = 0.5]{va unif continua.png}
 \paragraph*{Osservazione} Si può mostrare che a partire da una v.a. U(0,1) è possibile
-generare una v.a. con distribuzione arbitraria!
+generare una v.a. con distrigià buzione arbitraria!
 
 \paragraph*{Valori assunti da una V.A assolutamente continua}
 \begin{equation*}
@@ -746,7 +764,7 @@ generare una v.a. con distribuzione arbitraria!
 \paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densitò di una V.A. Continua non è la densità discreta 
 e soprattutto NON è la probabilità di assumere il valore x.
 
-\subsection{Proprietà}
+\subsection{Valori assunti da una V.A. assolutamente continua}
 La densità di una V.A. assolutamente continua X è una funzione $f_x:\mathbb{R} \rightarrow \mathbb{R}$ (integrabile)
 tale che:
 \begin{equation*}
@@ -755,6 +773,38 @@ tale che:
 \begin{equation*}
     \int_{-\infty}^{+\infty} f_x(x)  \,dx = 1
 \end{equation*}
+
+Le v.a. assolutamente continue sono necessariamente definite su uno spazio campionario
+$\Omega$ infinito più che numerabile.
+
+\begin{equation*}
+    X(\Omega) = \{ x \in \mathbb{R} : f_x (x) > 0
+\end{equation*}
+
+\section{Valore medio e Varianza di V.A. Assolutamente Continue}
+Le definizioni di $E[X]$ e $\text{Var}[X]$ per X ass. continua ricalcano quelle date per
+v.a. discrete.
+\begin{equation*}
+    E[X] = \int_{-\infty}^{+\infty} x f_x(x) \,dx 
+\end{equation*}
+\subsection*{Varianza}
+\begin{equation*}
+    \text{Var}[X] = E[X^2]-E[X]^2
+\end{equation*}
+\begin{equation*}
+    E[X^2] = \int_{-\infty}^{+\infty} x^2 f_x(x) \,dx
+\end{equation*}
+Si definisce $SD[X] := \sqrt[]{\text{Var}[X]}$
+\paragraph*{Tutte le proprietà valide nelle v.a. discrete continuano a valere}
+In particolare:
+\begin{equation*}
+    E[X+c] = E[X] + c \qquad E[cX] = cE[X] \qquad E[X+Y] = E[X] + E[Y]
+\end{equation*}
+\begin{equation*}
+    \text{Var}[X+c] = \text{Var}[X] \qquad \text{Var}[cX] = c^2 \text{Var}[X]
+\end{equation*}
+Se X e y \textbf{sono indipendenti}
+% Teoremi di convergenza
 
 \chapter{Teoremi di convergenza}
 Siano $X_1, X_2 \dots $ successione di Variabili aleatorie indipendenti identicamente distribuite (V.A I.I.D.).
