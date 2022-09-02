@@ -1,10 +1,11 @@
-\documentclass[12pt, a4paper, openany]{article}
+\documentclass[12pt, a4paper]{article}
 \usepackage{fstyle}
 \usepackage{enumitem}
-\setlist{nolistsep,leftmargin=*}
 
 \graphicspath{ {./img/} }
 \def\arraystretch{2} %define table vertical spacing
+\setlist{nolistsep,leftmargin=*} %remove list spacing
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
 
 \begin{document}
 \title{CheatSheet di Analisi Matematica}
@@ -15,14 +16,14 @@
 Per lo studio di una funzione bisogna trovare:
 \paragraph*{Dominio} della funzione, poni:\\
 
-\begin{tabular}{ l|l } 
-	Denominatore & $\leq 0$   \\ 
-	Logaritmo & Argomento $>0$\\ 
-	Radice$^n$& Argomento $\geq 0$ (\emph{sse $n$ pari})	 \\ 
-	$[f(x)]^{g(x)}$ &   $f(x)>0$
+\begin{tabular}{ l|l }
+	Denominatore    & $\leq 0$                                 \\
+	Logaritmo       & Argomento $>0$                           \\
+	Radice$^n$      & Argomento $\geq 0$ (\emph{sse $n$ pari}) \\
+	$[f(x)]^{g(x)}$ & $f(x)>0$
 \end{tabular}
 \paragraph*{Limiti ai punti di frontiera del dominio}
-Trovato il dominio, trova \emph{i limiti ai punti di frontiera}, 
+Trovato il dominio, trova \emph{i limiti ai punti di frontiera},
 quindi porre i limiti ad ogni punto in cui il dominio si interrompe (sia da destra che da sinistra) e eventualmente a $\pm \infty$.
 \paragraph*{Asintoti}
 Trovati tutti i limiti, se trovi:
@@ -53,129 +54,152 @@ trova $y=mx + q$ ponendo:
 
 
 \section*{Serie}
-	\subsection*{Serie Notevoli}
-	\paragraph*{Serie Armonica Generalizzata}
-	\begin{equation*}
-		\sum \frac{1}{n^\alpha} \begin{cases}
-			\text{Diverge}  & \alpha\leq 1 \\
-			\text{Converge} & \alpha> 1
-		\end{cases}
-	\end{equation*}
-	\paragraph*{Serie Geometrica}
-	\begin{equation*}
-		\serie{0}{+\infty} q^n \begin{cases}
-			\text{Diverge}    & q\geq 1 \\
-			\text{Converge}   & -1<q<1  \\
-			\text{Irregolare} & q\leq 1
-		\end{cases}
-	\end{equation*}
-	\subsection*{Criteri di Convergenza}
+\subsection*{Serie Notevoli}
+\paragraph*{Serie Armonica Generalizzata}
+\begin{equation*}
+	\sum \frac{1}{n^\alpha} \begin{cases}
+		\text{Diverge}  & \alpha\leq 1 \\
+		\text{Converge} & \alpha> 1
+	\end{cases}
+\end{equation*}
+\paragraph*{Serie Geometrica}
+\begin{equation*}
+	\serie{0}{+\infty} q^n \begin{cases}
+		\text{Diverge}    & q\geq 1 \\
+		\text{Converge}   & -1<q<1  \\
+		\text{Irregolare} & q\leq 1
+	\end{cases}
+\end{equation*}
+\subsection*{Criteri di Convergenza}
 
-	\emph{Condizione necessaria ma non sufficiente} di convergenza è che il termene generale $a_n$ sia infinitesimo $\limite{n}{+\infty} a_n = 0$.
-	\\Avendo $a_n>0$ (positiva) \emph{definitivamente} posso usare i seguenti criteri:
-	\begin{itemize}
-		\item \textbf{Rapporto}: $\limite{n}{+\infty} \frac{a_n+1}{a_n} = l$
-		\item \textbf{Radice}: $\limite{n}{+\infty} \sqrt[n]{a_n} = l$
-	\end{itemize}
-	In entrambi questi casi $\sum a_n$:\\
-	\emph{Converge} se $l<1$, \emph{Diverge} se $l>1$ e il criterio è \emph{inconclusivo} se $l=1$
+\emph{Condizione necessaria ma non sufficiente} di convergenza è che il termene generale $a_n$ sia infinitesimo $\limite{n}{+\infty} a_n = 0$.
+\\Avendo $a_n>0$ (positiva) \emph{definitivamente} posso usare i seguenti criteri:
+\begin{itemize}
+	\item \textbf{Rapporto}: $\limite{n}{+\infty} \frac{a_n+1}{a_n} = l$
+	\item \textbf{Radice}: $\limite{n}{+\infty} \sqrt[n]{a_n} = l$
+\end{itemize}
+In entrambi questi casi $\sum a_n$:\\
+\emph{Converge} se $l<1$, \emph{Diverge} se $l>1$ e il criterio è \emph{inconclusivo} se $l=1$
 
-	\begin{itemize}
-		\item \textbf{Confronto}: $a_n\leq b_n$ definitivamente $\implies$
-		\begin{itemize}
-			\item se $b_n$ converge, allora $a_n$ converge.
-			\item se $a_n$ diverge positivamente, allora anche $b_n$
-		\end{itemize}
-	\end{itemize}
+\begin{itemize}
+	\item \textbf{Confronto}: $a_n\leq b_n$ definitivamente $\implies$
+	      \begin{itemize}
+		      \item se $b_n$ converge, allora $a_n$ converge.
+		      \item se $a_n$ diverge positivamente, allora anche $b_n$
+	      \end{itemize}
+\end{itemize}
 
-	\paragraph*{Criterio dell'Assoluta Convergenza}
-	$\sum a_n$ Converge assolutamente se converge $\sum |a_n|$.
-	Se una serie converge assolutamente, allora converge.
+\paragraph*{Criterio dell'Assoluta Convergenza}
+$\sum a_n$ Converge assolutamente se converge $\sum |a_n|$.
+Se una serie converge assolutamente, allora converge.
 
-	\section*{Limiti}
-	\begin{multicols}{2}
-		\paragraph*{Limiti Notevoli}
-		\columnbreak
-		\begin{tabularx}{0.8\textwidth}{ |X|X| }
-			\hline
-			Logaritmo & $\limite{x}{0} \frac{\ln(1+x)}{x} = 1 $\\
-			\hline
-			$f$ Esponenziale & $\limite{x}{0} \frac{e^x-1}{x} = 1$\\
-			\hline
-			Costante e Frazione & $\limite{x}{0}\frac{ax -1}{x} = \ln(a)$\\
-			\hline
-			Seno & $\limite{x}{0}\frac{\sin(x)}{x} = 1$ \\
-			\hline
-			Coseno & $\limite{x}{0} \frac{1-\cos(x)}{x} = 0 $\\
-			\hline
-		\end{tabularx}
-	\end{multicols}
-	\begin{multicols}{2}
-	\paragraph*{Equivalenze Asintotiche}
+\section*{Limiti}
+\begin{multicols}{2}
+	\paragraph*{\underline{Limiti Notevoli}}
 	\columnbreak
-	\begin{tabularx}{0.67\textwidth}{|Xcl|}
+	\begin{tabularx}{0.8\textwidth}{ |X|X| }
 		\hline
-		\multicolumn{3}{|c|}{\textbf{con \emph{x} $\to$ 0}}\\
+		Logaritmo           & $\limite{x}{0} \frac{\ln(1+x)}{x} = 1 $  \\
 		\hline
+		$f$ Esponenziale    & $\limite{x}{0} \frac{e^x-1}{x} = 1$      \\
 		\hline
-		$\sin x$ &$\sim$ & $x$ \\
+		Costante e Frazione & $\limite{x}{0}\frac{ax -1}{x} = \ln(a)$  \\
 		\hline
-		$1-\cos x$&$\sim$ & $\frac{1}{2}x^2$\\
+		Seno                & $\limite{x}{0}\frac{\sin(x)}{x} = 1$     \\
 		\hline
-		$\tan x$ & $\sim$ & $x$\\
-		\hline
-		$\ln(1+x)$ & $\sim$ & $x$ \\
-		\hline
-		$(1+x)^\alpha -1 $&$\sim$& $\alpha x$ \\
+		Coseno              & $\limite{x}{0} \frac{1-\cos(x)}{x} = 0 $ \\
 		\hline
 	\end{tabularx}
 \end{multicols}
-
-
-
-	%\begin{itemize}
-	%	\item $\sin x \sim x$
-	%	\item $1-cos x \sim \frac{1}{2}x^2$
-	%	\item $\tan x \sim x$
-	%	\item $\ln(1+x) \sim x$
-	%	\item $(1+x)^\alpha -1 \sim \alpha x$
-	%\end{itemize}
-
-	\paragraph*{Ordine degli infiniti}
+\begin{multicols}{2}
+	\paragraph*{\underline{Equivalenze Asintotiche}}
+	\columnbreak
+	\begin{tabularx}{0.67\textwidth}{|XYX|}
+		\hline
+		\multicolumn{3}{|c|}{\textbf{con \emph{x} $\to$ 0}} \\
+		\hline
+		\hline
+		$\sin x$           & $\sim$ & $x$                   \\
+		\hline
+		$1-\cos x$         & $\sim$ & $\frac{1}{2}x^2$      \\
+		\hline
+		$\tan x$           & $\sim$ & $x$                   \\
+		\hline
+		$\ln(1+x)$         & $\sim$ & $x$                   \\
+		\hline
+		$(1+x)^\alpha -1 $ & $\sim$ & $\alpha x$            \\
+		\hline
+	\end{tabularx}
+\end{multicols}
+\begin{multicols}{2}
+	\paragraph*{\underline{Ordine degli infiniti}}$\infty$
+	\columnbreak
 	$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
-	\nb{la radice è "più grande" del logaritmo}
+\end{multicols}
+\begin{center}
+	\small{NB: la radice è "più grande" del logaritmo}
+\end{center}
+
+\paragraph*{\underline{Forme di indecisione}}.\\
+\begin{tabularx}{\textwidth}{|l|X|}
+	\hline
+	\multicolumn{2}{|c|}{
+		$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
+	}                                                                                         \\
+	\hline
+	\multicolumn{2}{|X|}{
+		\small{Tutte le forme possono essere risolte usando \textbf{Limiti Notevoli} e \textbf{Trucchi algebrici} per ricondursi ad essi.
+			In particolare però, questi si risolvono usando anche:}
+	}                                                                                         \\
+	\hline
+	$[\frac{0}{0}]$           & Conf. infinitesmi | Scomp/Racc/Semp | De l'Hopital            \\
+	\hline
+	$[\frac{\infty}{\infty}]$ & Conf. infinti | Scomp/Racc/Semp | De l'Hopital                \\
+	\hline
+	$[1^\infty]$              & Identità Logaritmo-Esponenziale                               \\
+	\hline
+	$[\infty - \infty]$       & Riconduzione a $\frac{0}{0}$ o $\frac{\infty}{\infty}$        \\
+	\hline
+	$[\infty \cdot 0]$        & Razionalizzazione inversa | Prodotti notevoli al contrario    \\
+	\hline
+	$[0^0]$ / $[\infty^0]$    & Conf. infiniti/infinitesimi|Identità Logaritmo-Esponenziale \\
+	\hline
+\end{tabularx}
 
 
-	\paragraph*{Forme di indecisione}
-$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
+\section*{Calcolo Differenziale}
 
-	\section*{Calcolo Differenziale}
-	\paragraph*{Formule di Taylor e McLaurin} di grado $k$ e centrato in $x_0$:
-	$$P_k(x)=f(x_0)+f'(x_0)(x-x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
-	Nel caso in cui $x_0=0$ si ottiene la formula di Mclaurin.
-	\paragraph*{Derivata dell'inversa} Data $g(x) = f^{-1}(x)$, $g'(y_0)=$
+\paragraph*{\underline{Derivata dell'inversa di una funzione}}
+Dati:\\
+$y_o$ e $f(x)$, avendo $g(x) = f^{-1}(x)$ allora:
+Per calcolare $g'(y_0)$
 \begin{enumerate}
 	\item trovo $x_0$ ponendo $y_0=f(x)$
 	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
 \end{enumerate}
 
+\paragraph*{Formule di Taylor e McLaurin} di grado $k$ e centrato in $x_0$:
+$$P_k(x)=f(x_0)+f'(x_0)(x-x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
+Nel caso in cui $x_0=0$ si ottiene la formula di Mclaurin.
+
+
 
 \section*{Calcolo Integrale}
-\paragraph*{Primitive elementari}
-\begin{tabular}{ |c|c| }
+\paragraph*{\underline{Primitive elementari}}
+\begin{tabularx}{0.7\textwidth}{ |Y|Y| }
 	\hline
-	Funzione        & Primitiva             \\
+	\textbf{Funzione} & \textbf{Primitiva}    \\
 	\hline
-	$k$             & $kx$                  \\
-	$x^a$,$a\neq-1$ & $\frac{x^{a+1}}{a+1}$ \\
-	$\frac{1}{x}$   & $\log|x|$             \\
-	$\sin x$        & $-\cos x$             \\
-	$\cos x $       & $\sin x$              \\
-	$a^x$           & $\frac{a^x}{\log a}$  \\
+	$k$               & $kx$                  \\
+	$x^a$,$a\neq-1$   & $\frac{x^{a+1}}{a+1}$ \\
+	$\frac{1}{x}$     & $\log|x|$             \\
+	$\sin x$          & $-\cos x$             \\
+	$\cos x $         & $\sin x$              \\
+	$a^x$             & $\frac{a^x}{\log a}$  \\
 	\hline
-	$e^{-x}$        & $-e^{-x}$             \\
+	$e^{-x}$          & $-e^{-x}$             \\
 	\hline
-\end{tabular}
+\end{tabularx}
 \paragraph*{I metodi di risoluzione}
 \paragraph*{Proprietà degli integrali}
 \begin{itemize}
