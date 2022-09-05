@@ -769,7 +769,7 @@ La densità di una V.A. assolutamente continua X è una funzione $f_x:\mathbb{R}
 tale che:
 \begin{equation*}
     f_x(x) \geq 0 \textrm{ } \forall x \in  \mathbb{R}
-\end{equation*}
+\end{equation*}HL-L2350DW
 \begin{equation*}
     \int_{-\infty}^{+\infty} f_x(x)  \,dx = 1
 \end{equation*}
@@ -789,9 +789,6 @@ v.a. discrete.
 \end{equation*}
 \subsection*{Varianza}
 \begin{equation*}
-    \text{Var}[X] = E[X^2]-E[X]^2
-\end{equation*}
-\begin{equation*}
     E[X^2] = \int_{-\infty}^{+\infty} x^2 f_x(x) \,dx
 \end{equation*}
 Si definisce $SD[X] := \sqrt[]{\text{Var}[X]}$
@@ -804,6 +801,33 @@ In particolare:
     \text{Var}[X+c] = \text{Var}[X] \qquad \text{Var}[cX] = c^2 \text{Var}[X]
 \end{equation*}
 Se X e y \textbf{sono indipendenti}
+
+\section{Funzione di Ripartizione}
+\begin{equation*}
+    F_x (x) = P(X \leq x)
+\end{equation*}
+\begin{itemize}
+    \item $F_x$ è ben definita per ogni v.a. $X: \Omega \rightarrow \mathbb{R}$, sia che la v.a.
+    sia discreta, ass. continua, o nè l'una nè l'altra.
+    \item $F_x$ determina la distribuzione della v.a.
+    \item $F_x$ è legata alla densità discreta/densità di X
+\end{itemize}
+La funzione di ripartizione è utile soprattutto per v.a. assolutamente continue, su cui
+ci concentreremo nel seguito. Mostriamo comunque un esempio per una v.a. discreta.
+\paragraph*{Esempio Bernoulli} Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
+\begin{equation*}
+    X(\Omega) = {0, 1} \qquad p_x{0}=1-p, \qquad p_x(1) = p
+\end{equation*}
+Allora $F_x(x) = P(X \leq x)$ vale:
+\begin{equation*}
+    F_X(x) =
+    \begin{cases}
+        0 \quad \text{se} x < 0 \\
+        1-p \quad \text{se} 0 \leq x < 1 \\
+        1 se \quad x \leq 1
+    \end{cases}
+\end{equation*}
+
 % Teoremi di convergenza
 
 \chapter{Teoremi di convergenza}
