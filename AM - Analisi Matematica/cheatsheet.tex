@@ -227,7 +227,26 @@ $$\int f(x)g'(x)dx = f(x)g(x)-\int f'(x)g(x)dx$$
 	\includegraphics[width=0.4\textwidth]{integrazione-per-parti.png}
 \end{center}
 
-\paragraph*{Integrazione per Sostituzione}
+\paragraph*{\underline{Integrazione per Sostituzione}} 
+\subparagraph*{\emph{Metodo Generale e Semplificato}} per itnegrali generali $f(x)$:
+\\Trovo una funzione $g(x)$ \emph{Derivabile e Invertibile} da sostituire ad $x$.
+\begin{enumerate}
+	\item decido che $y=g(x)$
+	\item Inverto $g(x)$ per isolare la x, ottenendo $x=g^{-1}(y)$
+	\item Derivo entrambi i membri e aggiungo $dx$ e $dy$: $\to dx=(g^{-1})'(y)dy$
+	\item all'interno di $f(x)$ sosdtituisco $g(x) \to y$ e $dx \to (g^{-1})'(y)dy$
+	\item Risolvo l'integrale
+	\item Sostiuisco $y \to g(x)$ 
+\end{enumerate}
+\subparagraph*{Metodo dalla definizione}: Abbiamo un integrale nella forma
+$$\int f((g(x))g'(x) dx$$
+\begin{enumerate}
+	\item $y=g(x)\to dy=g'(y)dx$
+	\item Sostituiamo per ottenere $\int f(y)dy$
+	\item Calcolo l'integrale nella nuova variabile
+	\item Sostituisco $y\to g(x)$
+\end{enumerate}
+
 
 
 
