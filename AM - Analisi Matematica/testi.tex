@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, openany]{book}
+\documentclass[12pt, a4paper]{article}
 \usepackage{fstyle}
 
 \graphicspath{ {./img/} }
@@ -9,7 +9,7 @@
 \date{2022}
 \maketitle
 
-\chapter*{Febbraio 2021}
+\section*{Febbraio 2021}
 
 \domanda{1}{Sia data la serie $\serie{1}{+\infty} a_n$, con $a_n \geq 0$.
 Per la convergenza della serie la condizione $a_n \sim \frac{1}{n^2}$ è}
@@ -35,7 +35,7 @@ Per la convergenza della serie la condizione $a_n \sim \frac{1}{n}$ è}
 è continua in $x=0$ sse:}
 \rispostechiuse{$b = 1$ e per ogni $a$}{$a=0$,$b=1$}{per ogni $a,b \in \R$}{per nessun valore di $a,b$}
 
-\chapter*{Luglio 2021}
+\section*{Luglio 2021}
 \subsection{Domande Chiuse}
 \domanda{O1}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{2x} + \frac{3}{2} &x>0\end{cases}$ è continua se:}
 \rispostechiuse{$a = 3/2$}{$a = 2$}{$a = 5/2$}{$a=0$}
@@ -88,7 +88,7 @@ Per la convergenza della serie la condizione $a_n \sim \frac{1}{n}$ è}
     \end{enumerate}
 }
 
-\chapter*{Settembre 2019}
+\section*{Settembre 2019}
 \subsection{Domande Chiuse}
 \domanda{1}{La serie $\serie{1}{+\infty}(-1)^n \frac{1}{n^3}$}
 \rispostechiuse{converge asolutamente}{converge, ma non assolutamente}{diverge}{è irregolare}
@@ -126,6 +126,50 @@ $$\serie{2}{+\infty}(\frac{1}{x-1})^n$$
 \end{enumerate}
 }
 
+\section*{Settembre 2020}
+\subsection*{Domande Chiuse}
+\domanda{1}{Dato l'insieme $A=\{\frac{(-1)^n2n}{n+1}, n\geq 1 \}$, allora}
+\rispostechiuse{inf $A = -2$}{sup $A = 4/3$}{max $A=2$}{inf $A=-1$}
+\domanda{2}{$\lim_{n\to +\infty} \cos \frac{1}{n}\cdot \frac{\ln(1+\frac{1}{n})}{\frac{2}{n}+ \frac{1}{n^3}}=$}
+\rispostechiuse{1/2}{1}{$+\infty$}{0}
+\domanda{3}{La somma della serie $\serie{2}{+\infty} \frac{4}{3^n}$ vale}
+\rispostechiuse{2/3}{6}{2}{-3}
+\domanda{4}{sia $(x)=\frac{1}{x}+\sqrt{x}$. Allora $\frac{d}{dx}\ln(f(x))$ per $x=4$ è}
+\rispostechiuse{1/12}{7/36}{5/36}{1/36}
+\domanda{5}{sia $f(x)\begin{cases}x^2-x >& x\leq1 \\ \frac{e^x-e}{3(x-1^2)} & x > 1\end{cases}$ Allora in $x=1$ la funzione $f$:}
+\rispostechiuse{Ha discontinuità di seconda specie}{Ha discontinuità di prima specie}{Ha discontinuità eliminabile}{Ha punto di continuità}
+\domanda{6}{Siano $f(x)=e^x-2$ e $g(x)= e^{|x|}$. Allora $g \circ f(x) = $}
+\rispostechiuse{$e^{|e^x-2|}$}{$e^{|x|-2}$}{$e^{e^{|x|}}-2$}{$(e^x-2)\cdot e^{|x|}$}
+\domanda{7}{Sia $f(x) = x^2\ln x$. Allora $f$ è crescente in:}
+\rispostechiuse{$(0,e^{-1/2})$}{$(e^{-1/2},+\infty)$}{nessun intervallo}{$(0,+infty)$}
+\domanda{8}{$\int_0^1 \frac{3x}{x^2+1}dx=$}
+\rispostechiuse{$\frac{3}{2}\ln 2$}{$3\ln 2$}{$\frac{\pi}{12}$}{$\frac{\pi}{4}$}
 
+\subsection*{Domande Aprerte}
+\domandaaperta{1}{data la funzione $f(x)=(1-x)e^{\frac{1}{x}}$,
+
+\begin{enumerate}
+\item il suo dominio è:
+\item i limiti ai punti di frontiera del dominio sono (4):
+\item GLi eventuali asintoti verticali sono
+\item Gli eventuali asintoti obliqui sono
+\item il più ampio intervallo di monotonia del tipo $(-\infty,k)$ si ha per $k=...$ (la monotonia è del tipo?)
+\end{enumerate}
+}
+\domandaaperta{2}{Data la funzione $f(x) = \frac{\ln x}{x} : (0,+\infty) \to \R$
+\begin{enumerate}
+	\item Si scivano le primitive $\Phi$:
+	\item si determini la primitiva $\Phi$ tale che $\Phi(e^2)=2\Phi(e)$
+	\item si calcoli $\int_e^{e^2} \frac{\ln x}{x}dx =$
+\end{enumerate}
+}
+\domandaaperta{3}{Sia $\serie{1}{+\infty}$ una serie numerica
+\begin{enumerate}
+	\item La serie si dice convergente se:
+	\item se $a_n = \ln n - \ln(n+1)$, si calcoli la somma parziale $s_n$:
+	\item Usando la definizione di serie convergente, si verifichi se la serie $\serie{1}{+\infty}(\ln n - ln(n+1))$ converge oppure no:
+\end{enumerate}
+
+}
 
 \end{document}
