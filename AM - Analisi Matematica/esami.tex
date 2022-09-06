@@ -235,22 +235,32 @@ $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 	Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
 	\\Usiamo quindi il criterio dell'assoluta convergenza.
 	$$
-		|\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = |sin(\frac{3}{n^2})| \sim \frac{3}{n^2}
+		|\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})| = sin(\frac{3}{n^2}) \sim \frac{3}{n^2}
 	$$
-	la corrispondenza asintotica vale perchè l'argomento del seno è infinitesimale.
+	la corrispondenza asintotica vale perchè \emph{l'argomento del seno è infinitesimo}.
 	La successione risultante è una serie armonica di grado $> 1$, quindi converge.
 }
-\domanda[Equivalenza Asintotica]{2}{La Successione $a_n = \frac{\ln(2+n^3)-5\sqrt[]{n^2-n}+2^{-n^4+5n}}{5n+3\ln n - n \ln n}$ per $n \to +\infty$ ha limite:}
+\domanda[CONFRONTO TRA INFINITI]{2}{La Successione $a_n = \frac{\ln(2+n^3)-5\sqrt[]{n^2-n}+2^{-n^4+5n}}{5n+3\ln n - n \ln n}$ per $n \to +\infty$ ha limite:}
 \risposta{$\limite{n}{+\infty} = 0$}
 \spiegazione{
-	Si trova una successione asintoticamente equivalente sia per numeratore, che per denominatore.
-	$$ a_n \sim \frac{2^{-n^4}}{5n}$$
-	Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
-	\\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
-	\\Si noti che anche se $(\frac{1}{2})^{n^4}$ tende a zero, nella gerarchia degli infiniti è comunque più grande, quindi sovrasta.
+	Il denominatore è inequivocabile che sia $\sim 5n$, essendo \emph{l'infinito di ordine maggiore}.
+	\\Al numeratore invece sembra più complicata:
+	\begin{itemize}
+		\item[a] $2^{-n^4+5n} \to 0$
+		\item[b] $-5\sqrt{n^2-n}\to -\infty$
+		\item[c] $\ln(2+n^3) \to +\infty$
+	\end{itemize}
+	Tra i tre termini possiamo ignorare "a", mentre tra "b" e "c" l'infinito più rapido tra \emph{logaritmo e radice è la radice}.
+	\\Quindi abbiamo $\sim \frac{-5\sqrt{n^2-n}}{5n}$, ed essndo $\alpha \gg \sqrt{\beta}$, la successione \emph{tende a 0}.
+	%%VECCHIA SPIEGAZIONE, probabilmente sbagliata
+	%Si trova una successione asintoticamente equivalente sia per numeratore, che per denominatore.
+	%$$ a_n \sim \frac{2^{-n^4}}{5n}$$
+	%Si noti che nel numeratore, $2^{-n^4 +5n}$ il $+5n$ è "sovrastato" da $-n^4$, quindi è ignorabile.
+	%\\Siccome al numeratore abbiamo un valore infinitesimo,($ = (\frac{1}{2})^{n^4}$), la successione tende a $0$
+	%\\Si noti che anche se $(\frac{1}{2})^{n^4}$ tende a zero, nella gerarchia degli infiniti è comunque più grande, quindi sovrasta.
 }
 
-\domanda{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
+\domanda[ASINTOTO OBLIQUO]{3}{La funzione $f(x) = \frac{2x^3+4x}{2-x^2} + e^{-\frac{1}{x}}$, per $x\to +\infty$, ha asintoto obliquo di equazione:}
 \risposta{$$y=-2x+1$$}
 \spiegazione{
 	Per trovare un asintoto obliquo bisogna trovare $m$ e $q$ che compongono la retta $y=mx +q$:
@@ -273,7 +283,7 @@ $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 	\\Quindi, l'asintoto obliquo esiste e ha equazione $y=-2x+1$
 }
 
-\domanda{4}{Sia $f(x) = \sqrt{x^2 +2x +3}$. allora $f'(1)$ vale:}
+\domanda[DERIVATA]{4}{Sia $f(x) = \sqrt{x^2 +2x +3}$. allora $f'(1)$ vale:}
 \risposta{$\frac{2}{\sqrt{6}}$}
 \spiegazione{
 	Basti ricordarsi che:
@@ -282,7 +292,7 @@ $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 	\\Una volta calcolata la derivata e semplificata fino a un punto "comodo", basta sostituire $x$ con 1.
 }
 
-\domanda{5}{L'insieme delle soluzioni della disequazione $e^x \sqrt[3]{x-1} \geq 1$ è del tipo}
+\domanda[DISEQUAZIONE]{5}{L'insieme delle soluzioni della disequazione $e^x \sqrt[3]{x-1} \geq 1$ è del tipo}
 \risposta{$(\alpha, +\infty)$ con $\alpha>1$}
 \spiegazione{
 	Ci si chiede l'intervallo dei valori di $x$ per cui la disequazione è sostanzialmente "corretta", quindi quando il termine sinistro è maggiore di 1.
@@ -290,21 +300,19 @@ $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 	\\$x=1$ ci da 0, quindi deve essere per forza un valore maggiore di 1
 }
 
-\domanda{6}{la funzione $f(x) = \ln(x^2+2x+3)$ è monotona crescente se e solo se}
+\domanda[MONOTONIA]{6}{la funzione $f(x) = \ln(x^2+2x+3)$ è monotona crescente se e solo se}
 \risposta{$x\in (-1,+\infty)$}
 \spiegazione{
 	Per trovare se una funzione è \emph{monotona crescente} bisogna porre la derivata della funzione $\geq 0$.
 	Il risultato è $x\geq -1$, che equivale a $x\in (-1,+\infty)$.
 }
-\domanda{7}{L'estremo inferiore della successione $\{a_n\}_{n\geq0}$, dove $a_n = 3^{n+(-1)^nn}$ è:}
-\risposta{
-	1
-}
+\domanda[ESTREMO SUCCESSIONE]{7}{L'estremo inferiore della successione $\{a_n\}_{n\geq0}$, dove $a_n = 3^{n+(-1)^nn}$ è:}
+\risposta{1}
 \spiegazione{
 	Per vedere l'estremo inferiore di una successione bisognerebbe provare qualche valore di $n$ a partire dal più piccolo (in questo caso 0).
 	Se il termine è infinitesimale, l'estremo inferiore si trova con il limite, altrimenti vedi il valore minore che trovi.
 }
-\domanda{8}{$\int_{\pi/2}^{\pi} x \sin x dx$ vale:}
+\domanda[INTEGRALE]{8}{$\int_{\pi/2}^{\pi} x \sin x dx$ vale:}
 \risposta{
 	$\pi -1$
 }
@@ -448,21 +456,21 @@ $$
 
 	\section{Giugno 2020}
 	\subsection{Domande Chiuse}
-	\domanda{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
+	\domanda[SURIETTIVITÀ/INIETTIVITÀ]{1}{La funzione $f:\R \to \R$ definita da $f(x)=\begin{cases}e^x & x>0 \\ x+2 & x\leq 0\end{cases}$ è}
 	\risposta{Suriettiva ma non Iniettiva}
 	\spiegazione{
 		La funzione è \emph{suriettiva} perchè riempie tutto $\R$.
 		Per controllarlo basta vedere i grafici dei due segmenti della funzione.
 		\\Non è iniettiva invece perchè ci sono dei punti del codomino "raggiungibili" con due $x$ diverse.
-		Per verificarlo basti vedere che nel grafico della funzione id due segmenti si accavallano su alcuni valori di $y$.
+		Per verificarlo basti vedere che nel grafico della funzione dei due segmenti si accavallano su alcuni valori di $y$.
 	}
 
-	\domanda{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
+	\domanda[COMPOSIZIONE]{2}{Siano $f(x) = e^{\sqrt{x}}$ e $g(x)= \ln(1+x)$. Allora $(g \circ f)$}
 	\risposta{è definita per ogni $x\geq 0$}
 	\spiegazione{$g\circ f = g(f(x)) = ln(1+e^{\sqrt{x}})$, quindi bisogna vedere dove è definita quella funzione.
 	\\Sappiamo che l'argomento di una radice va posto maggiore o uguale a zero, e quello di un logaritmo va posto maggiore di 0}
 
-	\domanda{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
+	\domanda[SERIE GEOMETRICA]{3}{La somma della serie $\serie{1}{+\infty} e^{1-2n}$ vale}
 	\risposta{$\frac{e}{e^2-1}$}
 	\spiegazione{
 		La serie si può riscrivere come:
@@ -480,16 +488,16 @@ $$
 	\risposta{$f$ è Crescente}
 	\irrisolta
 
-	\domanda{5}{$\limite{n}{+\infty} \frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}}$ vale:}
+	\domanda[CONFRONTO TRA INFINITI]{5}{$\limite{n}{+\infty} \frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}}$ vale:}
 	\risposta{-1}
 	\spiegazione{$\frac{n^2 \ln^3 n - n^3 \ln^2 n +4 \arctan n}{n^3 \ln^2 n - n^2 \ln^5 n- e^{-n^2}} \sim \frac{-n^3 \ln^2 n}{n^3 \ln^2 n} = -1$}
 
-	\domanda{6}{Il massimo dell'insime $A = {\frac{2+(-1)^n}{2^n+(-1)^{n+1}}}$ è}
+	\domanda[MASSIMO DI UN INSIEME]{6}{Il massimo dell'insime $A = {\frac{2+(-1)^n}{2^n+(-1)^{n+1}}}$ è}
 	\risposta{1}
 	\spiegazione{per $n=2$ l'insieme vale 1, mentre per tutti gli altri valori di n è minore.}
 
 
-	\domanda{7}{sia $f(x) = \arctan(\sqrt{x})$. Allora $f'(1)=$}
+	\domanda[DERIVATA]{7}{sia $f(x) = \arctan(\sqrt{x})$. Allora $f'(1)=$}
 	\risposta{Nessuna delle precedenti ($\frac{1}{4}$)}
 	\spiegazione{Trovo la derivata della funzione:
 		\\$f'(x) = \frac{1}{1+x} \cdot \frac{1}{2\sqrt{x}} = \frac{1}{2\sqrt{x}(1+x)}$. La derivata vale in $x=1$:
@@ -561,7 +569,7 @@ $$\limite{n}{+\infty} \frac{(2n)!}{(n+4)!}$$
 
 \section{Giugno 2021}
 \subsection{Domande Chiuse}
-\domanda{O1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 + 4x$. sull'intervallo $I = (-1,1)$ la funzione $f$ è:}
+\domanda[CONCAVITÀ/CONVESSITÀ]{O1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 + 4x$. sull'intervallo $I = (-1,1)$ la funzione $f$ è:}
 \risposta{Ne concava ne convessa}
 \spiegazione{Per studiare la concavità/convessità di una funzione bisogna fare la derivata seconda:
 	$$f(x)= x^3+4x \to f'(x) = 3x^2+4 \to f''(x)=6x$$
@@ -599,7 +607,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 		\\$[\frac{1}{2} \ln(x^2+1)]_{0}^{2} = \frac{ln(5)}{2}$
 }
 
-\domanda{O7}{$\limite{n}{+\infty}(\ln n - \sqrt{n}+3e^{-n} +\sin n^2)$ Vale:}
+\domanda[CONFRONTO TRA INFINITI]{O7}{$\limite{n}{+\infty}(\ln n - \sqrt{n}+3e^{-n} +\sin n^2)$ Vale:}
 \risposta{$-\infty$}
 \spiegazione{Bisogna trovare il limite più importante e in questo caso abbiamo:
 	\begin{itemize}
