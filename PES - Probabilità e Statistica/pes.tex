@@ -477,6 +477,11 @@ Valida per ogni funzione $f:R \to R$. In particolare
     E[X^2] = \sum_{i = 1}^{n} x_i^2 p_X^{x_i} = \sum_{i = 1}^{n} x_i^2P(X=x_i)
 \end{equation}
 
+\paragraph*{Nota per gli esercizi} Queste proprietà servono nel caso in cui ci venga
+richiesto di calcolare una nuova media Y in funzione di X, in questo modo applicando
+le proprietà non sarà necessario ricalcolare il tutto, ma partendo da Y e applicando
+le proprietà di possiamo ricondurre a X e avere già il risultato.
+
 \section{Varianza e Deviazione standard con valore medio}
 \paragraph{Varianza} $VAR[X] := E[(X-u)^2] >= 0$ con $u:=E[X]$
 \paragraph{Deviazione Standard} $SD[X] := \sqrt{VAR[X]}$
@@ -502,6 +507,10 @@ Per ogni costante reale $c \in R$
 \begin{center}
     Inoltre $X = c \Leftrightarrow VAR[X] = 0$
 \end{center}
+
+\paragraph*{Note per gli esercizi} Stesso discordo della media, le proprietà sono super
+utili nel caso ci viene richiesto di calcolare una varianza Y in funzione di X e già
+calcolata in precedenza.
 
 \subsection{Dipendenza e indipendenza variabili aleatorie}
 Siano X e Y due variabili aleatorie, che dipendono entrambe dallo 
@@ -803,14 +812,24 @@ In particolare:
 Se X e y \textbf{sono indipendenti}
 
 \section{Funzione di Ripartizione}
+Le funzioni di ripartizione ci permettono di capire di che tipo di variabile aleatoria
+stiamo parlando.
 \begin{equation*}
     F_x (x) = P(X \leq x)
 \end{equation*}
+A livello probabilistico è la probabilità che X sia minore o uguale a x.
 \begin{itemize}
     \item $F_x$ è ben definita per ogni v.a. $X: \Omega \rightarrow \mathbb{R}$, sia che la v.a.
     sia discreta, ass. continua, o nè l'una nè l'altra.
     \item $F_x$ determina la distribuzione della v.a.
     \item $F_x$ è legata alla densità discreta/densità di X
+    \begin{equation*}
+        F_X(x) = 
+        \begin{cases}
+        \sum_{x_i \in (- \infty, x]} p_X (x_i) \quad \text{se X è discreta}\\
+        \int_{-\infty}^{x} f_x(t)\,dt \quad \text{se X è assolut. continua} 
+        \end{cases}
+    \end{equation*}
 \end{itemize}
 La funzione di ripartizione è utile soprattutto per v.a. assolutamente continue, su cui
 ci concentreremo nel seguito. Mostriamo comunque un esempio per una v.a. discreta.
@@ -822,11 +841,35 @@ Allora $F_x(x) = P(X \leq x)$ vale:
 \begin{equation*}
     F_X(x) =
     \begin{cases}
-        0 \quad \text{se} x < 0 \\
-        1-p \quad \text{se} 0 \leq x < 1 \\
-        1 se \quad x \leq 1
+        0 \quad \text{se} \quad x < 0 \\
+        1-p \quad \text{se} \quad 0 \leq x < 1 \\
+        1 \quad se \quad x \leq 1
     \end{cases}
 \end{equation*}
+
+\subsection*{Teorema di ripartzione di V.A. Discrete}
+\begin{itemize}
+    \item X è v.a. discreta $\Leftrightarrow$ $F_x$ è costante a tratti.
+    \item Valori assunti{$x_i$} $\Leftrightarrow$ Punti di discontinuità  di $F_x$
+    \item Densità discreta $\Leftrightarrow$ Ampiezze dei salti
+\end{itemize}
+\begin{equation*}
+    p_X (x_i) = F_X(x_i) - F_X(X_{\bar{i}})
+\end{equation*}
+\begin{equation*}
+    F_X(x_{\bar{i}}) = \lim_{t \to x_{\bar{i}} F_X(t)}  
+\end{equation*}
+\subsection*{Funzione di ripartizione di V.A. Assolut. Continue}
+X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
+è derivabile a tratti.
+
+\begin{equation}
+    \text{Densità} \qquad f_X(x) = (F_X)'(x)
+\end{equation}
+
+
+
+
 
 % Teoremi di convergenza
 
