@@ -666,7 +666,11 @@ e in generale
     \item $E[X] = \frac{1}{p}$
     \item $\text{Var}[X] = \frac{1-p}{p^2}$
 \end{itemize}
-
+\paragraph*{Note per gli esercizi}
+Quando ho un esercizio che riguarda l'estrazione di un elemento n volte, tramite una seria
+di prove ripetute e indipendenti, con probabilità di successo p, come lancio di dai o
+estrazioni di una pallina colorata con reimmissione allora si tratta di una v.a. con
+distribuzione geoemtrica.
 % VA Continue
 
 \section{Variabili aleatorie continue}
@@ -743,9 +747,9 @@ $f_x : R \to R$ (integrabile) tale che: \begin{itemize}
  è più che numberabile!
  
 %Esempio estrazione v.a. uniforme continua
-
-Fissato un intervallo limitato $[a, b]$ $(-\infty < a < b < -\infty)$.
-\\ Una v.a. X si dice uniforme continua i [a, b] e si scrive $X \sim U(a, b)$
+\subsection{Variabile uniforme continua}
+Fissiamo un intervallo limitato $[a, b]$ $(-\infty < a < b < -\infty)$.
+\\ Una v.a. X si dice uniforme continua in [a, b] e si scrive $X \sim U(a, b)$
 se X è ass. cont con densità
 \begin{equation*}
     f_x^{x} =
@@ -778,7 +782,7 @@ La densità di una V.A. assolutamente continua X è una funzione $f_x:\mathbb{R}
 tale che:
 \begin{equation*}
     f_x(x) \geq 0 \textrm{ } \forall x \in  \mathbb{R}
-\end{equation*}HL-L2350DW
+\end{equation*}
 \begin{equation*}
     \int_{-\infty}^{+\infty} f_x(x)  \,dx = 1
 \end{equation*}
@@ -810,7 +814,28 @@ In particolare:
     \text{Var}[X+c] = \text{Var}[X] \qquad \text{Var}[cX] = c^2 \text{Var}[X]
 \end{equation*}
 Se X e y \textbf{sono indipendenti}
-
+\section{V.A. Esponenziale}
+Misuro il tempo di emissione X di una particella radioattiva da un atomo, con 
+"tempo medio di emissione" $\tau$. Sia $\lambda = \frac{1}{\tau}$.
+Descriviamo X con una v.a. assolutamente continua:
+\begin{equation*}
+    f_X(x) =
+    \begin{cases}
+        \lambda e^{-\lambda x} \quad \text{se} \, x \geq 0 \\
+        0 \quad \text{se} \, x < 0 
+    \end{cases}
+\end{equation*}
+Una v.a. X con tale densità è detta Esponenziale di parametro $\lambda \in (0, \infty)$
+e si scrive $X \sim \text{Exp}(\lambda)$.
+\\ Per ogni intervallo $[s, t] \subseteq [0, \infty]$:
+\begin{equation*}
+    P(X \in [s, t]) = \int_{s}^{t} f_x(x)\,dx = \int_{s}^{t} \lambda e^{-lambda x}\,dx=
+    [- e^{-\lambda x}]_{s}^{t} =
+\end{equation*}
+\begin{equation*}
+    = e^{-\lambda s} - e^{-\lambda t}
+\end{equation*}
+\includegraphics[width=100mm, scale=0.5]{va esponenziale.png}
 \section{Funzione di Ripartizione}
 Le funzioni di ripartizione ci permettono di capire di che tipo di variabile aleatoria
 stiamo parlando.
@@ -867,9 +892,87 @@ X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
     \text{Densità} \qquad f_X(x) = (F_X)'(x)
 \end{equation}
 
-
-
-
+\section{Variabili aleatorie Normali}
+L'ultima classe che vedremo e la più importante, è quella delle variabili aleatorie
+normali o Gaussiane.
+\\ Una v.a. Z si dice \textbf{Normale Standard} (si scrive $Z \sim N(0,1)$), se è
+assolutamente continua con densità:
+\begin{equation*}
+    f_Z(z)= \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}} 
+    \quad \forall z \in \mathbb{R}
+\end{equation*}
+\begin{equation*}
+    \rightarrow Z(\Omega) = (-\infty, + \infty)
+\end{equation*}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{va normale.png}
+\end{center}
+Come si può notare la forma "a campana" è simmetrica rispetto all'orgine.
+\begin{equation}
+    \text{"STANDARD"} =
+    \begin{cases}
+        E[Z] = 0 \\
+        \text{Var}[Z] = 1
+    \end{cases}
+\end{equation}
+Dato un intervallo $[s,t] \subseteq \mathbb{R}$
+\begin{equation*}
+    P(Z\in [s,t]) = \int_{s}^{t} f_z(z)\,dz \qquad 
+    \text{(come per ogni v.a. assolutamente continua)}
+\end{equation*}
+Purtroppo questo integrale non si può calcolare esattamente (la densità $f_Z(z)$
+non ammette primitiva esplicita).
+\\ Introduciamo la funzione di ripartizione di Z, indicata $\Phi$.
+\begin{equation*}
+    \Phi(z) = F_Z(z) = P(Z \leq z) = \int_{-\infty}^{z}f_z(t)\,dt
+\end{equation*}
+Anche questa funzione non di può calcolare esattamente, ma i valori di $\Phi(z)$ per
+$z \geq 0$ sono riportati in una tavola.
+\\ I valori di $\Phi(z)$ per $z < 0$ si ricavano con la formula
+\begin{equation*}
+    \Phi(z) = 1 - \Phi(-z)
+\end{equation*}
+Grazie alla tavola, è come se conoscessimo $\Phi(z) = F_Z(z)$.
+Possiamo allora calcolare la probabilità degli intervalli:
+\begin{equation*}
+    P(Z\in [s,t]) = F_Z(t) - F_Z(s) = \Phi(t) - \Phi(s)
+\end{equation*}
+Siano ora $\mu \in \mathbb{R}$, $\sigma \in (0, \infty)$.
+Una v.a. X si dice \textbf{Normale con media $\mu$ e varianza $\sigma^2$}, si scrive
+\textbf{$X \sim N(\mu, \sigma^2)$}, se X è assolutamente continua con
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{va normale media e var.png}
+\end{center}
+La densità di $f_X$ di X si ottiene dalla densità di $f_Z$ di $Z \sim N(0,1)$
+mediante una traslazione e un riscalamento:
+\begin{center}
+    $f_X:$ grafico "a campana" centrata in $\mu$, "ampiezza" $\sigma$
+\end{center}
+Ci si può sempre ricondurre a una v.a. Normale Standard Z:
+\begin{equation*}
+    X \sim N(\mu, \sigma^2) \rightarrow Z = \frac{X-\mu}{\sigma} \sim N(0,1)
+\end{equation*}
+\paragraph*{Viceversa}
+\begin{equation*}
+    Z \sim N(0,1) \rightarrow X = \sigma Z + \mu \sim N(\mu, \sigma^2)
+\end{equation*}
+Si deduce, in particolare che $\mu$ e $\sigma^2$ sono media e varianza:
+\begin{equation*}
+    X \sim N(\mu, \sigma^2) \rightarrow E[X] = \mu \quad \text{Var}[X] = \sigma^2
+\end{equation*}
+Il fatto che ci si può ricondurre a una v.a. normale standard è un caso particolare
+della seguente proprietà:
+\paragraph*{Teorema} Se X è normale $\rightarrow$ $Y = aX+b$ è normale 
+$\forall a \neq 0, b \in \mathbb{R}$
+\paragraph*{Teorema} X e Y normali indipendenti $\rightarrow X+Y$ è normale.
+\begin{equation*}
+    X \sim N(\mu_x, \sigma^{2}_x), \, Y \sim N(\mu_y, \sigma^{2}_y)\, \text{indip.}\,
+    \rightarrow X+Y \sim N(\mu_x+\mu_y, \sigma^{2}_x + \sigma^{2}_y)
+\end{equation*}
+\section{Legge dei grandi numeri}
+Completare
+%Dato che è un tema prettamente teorico verrà scritto alla fine della stesura completa
+%degli appunti
 
 % Teoremi di convergenza
 
