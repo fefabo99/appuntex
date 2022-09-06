@@ -96,6 +96,7 @@ Se una serie converge assolutamente, allora converge.
 \section*{Limiti}
 
 
+
 \paragraph*{\underline{Equivalenza asintotica tra funzioni}} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti  
 
 \paragraph*{\underline{$o$-piccolo}} Se il limite ($\to x_0$) del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$.
@@ -281,13 +282,14 @@ $$\int f(x)g'(x)dx = f(x)g(x)-\int f'(x)g(x)dx$$
 	\item Sostiuisco $y \to g(x)$
 \end{enumerate}
 \subparagraph*{Metodo dalla definizione}: Abbiamo un integrale nella forma
-$$\int f((g(x))g'(x) dx$$
+$$\int f(g(x))g'(x) dx$$
 \begin{enumerate}
 	\item $y=g(x)\to dy=g'(y)dx$
 	\item Sostituiamo per ottenere $\int f(y)dy$
 	\item Calcolo l'integrale nella nuova variabile
 	\item Sostituisco $y\to g(x)$
 \end{enumerate}
+
 
 
 
