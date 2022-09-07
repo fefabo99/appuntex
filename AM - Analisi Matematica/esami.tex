@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper, openany]{book}
+\documentclass[12pt, a4paper]{article}
 \usepackage{fstyle}
 
 \graphicspath{ {./img/} }
@@ -10,7 +10,7 @@
 \maketitle
 \tableofcontents
 
-\chapter{Introduzione}
+\part{Introduzione}
 \section{Gli esami}
 La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli anni precedenti:
 \paragraph*{Primo Semestre}
@@ -41,7 +41,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	\hline
 \end{tabular}
 
-\chapter{Esami Primo Semestre}
+\part{Esami Primo Semestre}
 \section{Febbraio 2021}
 \subsection{Domande Chiuse}
 \domanda{1}{Sia $a_n = \frac{n \ln (1- \frac{2}{n^3})}{n \sqrt[3]{n} - n^3}$. Allore, per $n \to +\infty$,
@@ -225,11 +225,11 @@ Di conseguenza la primitiva per cui $\varphi(e)=2\varphi(1)$ è: $\frac{x^2}{x} 
 $$F(e^2)-F(e) = \frac{e^4}{2} - \frac{e^2}{2} - \frac{7}{3}$$
 }
 
-\chapter{Esami Secondo Semestre}
+\part{Esami Secondo Semestre}
 
 \section{Giugno 2019}
 \subsection{Domande Chiuse}
-\domanda[Convergenza Assoluta]{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
+\domanda[CONVERGENZA ASSOLUTA]{1}{La serie $\serie{1}{+\infty}(-1)^n sin(\frac{3}{n^2})$}
 \risposta{Converge assolutamente}
 \spiegazione{
 	Siccome abbiamo sia $(-1)^n$, che una successione $\sin(a_n)$, sappiamo che questa serie è a \emph{segno variabile}.
@@ -578,21 +578,21 @@ $$\limite{n}{+\infty} \frac{(2n)!}{(n+4)!}$$
 	\\Di conseguenza, $f(x)$ non è ne concava ne convessa in $I$.
 
 }
-\domanda{O2}{La somma della serie $\serie{0}{+\infty} (\frac{2}{3})^{2n}$ vale}
+\domanda[SERIE GEOMETRICA]{O2}{La somma della serie $\serie{0}{+\infty} (\frac{2}{3})^{2n}$ vale}
 \risposta{$\frac{9}{5}$}
 \spiegazione{La serie è simile a una geometrica, però c'è quel $2n$ da mandare via, quindi:
 $$ (\frac{2}{3})^{2n}= [(\frac{2}{3})^{2}]^n = (\frac{4}{9})^{n}$$
 Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la formula $\sum (q)^n = \frac{1}{1-q}$ ci da $\frac{9}{5}$
 }
-\domanda{O3}{Siano $f(x) = \ln(x^2+1)-1$ e $g(x) = |x+1|$. Allora $(g \circ f)(x) = $}
+\domanda[composizione di funzioni]{O3}{Siano $f(x) = \ln(x^2+1)-1$ e $g(x) = |x+1|$. Allora $(g \circ f)(x) = $}
 \risposta{$ln(x^2 + 1)$}
 \spiegazione{
 	Sappiamo che $(g \circ f)(x) = g(f(x))$, quindi lo svoglimento è banale. Segnalo però che $|ln(x^2+1)| = ln(x^2+1)$, perchè il logaritmo ha dominio maggiore di 0, e in questo caso il suo argomento è sempre maggiore di 0, quindi le due funzioni si equivalgono.
 }
-\domanda{O4}{L'estremo superiore dell'insieme $A={\frac{1}{n+1} +2^{1-2n}, n= 1,2,...}$ è}
+\domanda[Estremo di un insieme]{O4}{L'estremo superiore dell'insieme $A={\frac{1}{n+1} +2^{1-2n}, n= 1,2,...}$ è}
 \risposta{1}
 
-\domanda{O5}{La funzione $f:\R \to \R$ definita da $f(x) = \begin{cases} e^{-x} & x>0 \\ x^2-1 &x\leq 0 \end{cases}$ è}
+\domanda[iniettività/suriettività]{O5}{La funzione $f:\R \to \R$ definita da $f(x) = \begin{cases} e^{-x} & x>0 \\ x^2-1 &x\leq 0 \end{cases}$ è}
 \risposta{Nè suriettiva nè iniettiva}
 \spiegazione{
 	$e^{-x} = \frac{1}{e^x}$, che parte da vicino a uno e tende a 0.
@@ -600,7 +600,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 		\\Essendo la funzione definita in $\R$, ed essendo il minimo -1, la funzione non è suriettiva.
 	Visto che la seconda parte da -1 e va verso l'alto, mentre la prima parte da 1 e va verso 0, si incrociano sicuramente, rendendo la funzione non iniettiva.
 }
-\domanda{O6}{L'integrale definito $\int_{0}^{2} \frac{x}{x^2+1} dx$ Vale:}
+\domanda[integrale]{O6}{L'integrale definito $\int_{0}^{2} \frac{x}{x^2+1} dx$ Vale:}
 \risposta{$\frac{ln(5)}{2}$}
 \spiegazione{Questa è una funzione razionale che può essere semplicemente trasformata in una del tipo $\frac{f'(x)}{f(x)}$ (che può essere risolta ed equivale a $\ln|f(x)|$) moltiplicando e dividendo per due, quindi:
 	\\$\int  \frac{x}{x^2+1} = \frac{1}{2} \int \frac{2x}{x^2+1} = \frac{1}{2} \ln(x^2+1)$
@@ -616,8 +616,19 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	\end{itemize}
 	Ci restano solo  $\ln n - \sqrt{n}$, entrambi infiniti, ma contando che la radice è un infinito di ordine maggiore, vince lei e diventa $-\infty$
 }
-\domanda{O8}{Siano $f,g : \R \to \R$ derivabili. se $f(2) = -2, f'(2)=4,g'(-2) = -4}$, allora $(g\circ f)'(2)$ Vale:
-	\irrisolta
+\domanda[Derivata di funzione composta]{O8}{Siano $f,g : \R \to \R$ derivabili. se $f(2) = -2, f'(2)=4,g'(-2) = -4}$, allora $(g\circ f)'(2)$ Vale:
+\risposta{-16}
+\spiegazione{Avendo queste funzioni valutate, si può cercare di "indovinare" la loro espressione.
+\\Quindi, partendo dalle derivate si cerca il l'espressione più semplice che verifica la sua valutazione, si "antideriva" e si somma/sottrae una costante per avere il risultato desideato:
+
+\begin{itemize}
+	\item $f'(2)=4 \implies f'(x)=2x$
+	\item $f(2)=-2 \wedge f'(x)=2x \implies f(x) = x^2 -6$
+	\item $g'(-2) = -4 \implies g'(x)=2x \implies g(x)=x^2$
+\end{itemize}
+A questo punto si compone, si deriva (con la formula della derivata di una funzione composta) e si valuta la derivata per ottenere il risultato.
+}
+
 
 \subsection{Domande Aperte}
 
@@ -653,24 +664,28 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	}
 	\section{Giugno 2022}
 	\subsection{Domande Chiuse}
-	\domanda{1}{La serie $serie{1}{+\infty} (-1)^n \frac{1}{n\sqrt{n}}$}
+	\domanda[convergenza assoluta]{1}{La serie $\serie{1}{+\infty} (-1)^n \frac{1}{n\sqrt{n}}$}
 	\risposta{Converge assolutamente}
 	\spiegazione{Per il criterio della convergenza assoluta}
+
+	\pagebreak
 	\section{Luglio 2019}
 	\subsection{Domande Chiuse}
-	\domanda{1}{La serie $\serie{2}{+\infty} \frac{n^\alpha}{n^3\ln n}$ converge sse:}
+	\domanda[Convergenza di una serie]{1}{La serie $\serie{2}{+\infty} \frac{n^\alpha}{n^3\ln n}$ converge sse:}
 	\risposta{$\alpha<2$}
 	\spiegazione{
 		Queste serie ipoteticamente potrebbe essere asintotica a $\sim \frac{n^\alpha}{n^3} = \frac{1}{n^{3-\alpha}}$
 		\\Siccome per convergere, una serie del tipo $\frac{1}{n^\beta}$ deve avere $\beta>1$, $3-\alpha>1 \to \alpha-2$.
 	}
 
-	\domanda{2}{$\limite{n}{+\infty} \frac{n^2-3\ln^{10}n-n\sqrt{n^3+1}}{2n^2+e^{\frac{1}{n}}-n\sqrt{n}}$ è}
+	\domanda[confronto tra infiniti]{2}{$\limite{n}{+\infty} \frac{n^2-3\ln^{10}n-n\sqrt{n^3+1}}{2n^2+e^{\frac{1}{n}}-n\sqrt{n}}$ è}
 	\risposta{$-\infty$}
 	\spiegazione{Bisogna trovare sia al numeratore che al denominatore l'infinito "più forte".
 	\\Al denominatore è ovviamente $n^2$, mentre al numeratore abbiamo:
 	\\ $-n\sqrt{n^3+1} \sim -n\sqrt{n^3} =- n\cdot n^{\frac{3}{2}} = -n^{\frac{5}{2}}\gg n^2$.
-	\\Al numeratore prevale quindi il $n\sqrt{n^3+1}$, di conseguenza la serie:
+	\\Al numeratore prevale quindi il $n\sqrt{n^3+1}$
+	\\Al denominatore è bene notare che $e^\frac{1}{n}$ tened a 1 (radice $n$-esima).
+	\\di conseguenza la serie:
 	$$\sim \frac{-n\sqrt{n^3}}{n^2} = -\infty$$  }
 
 	\domanda{3}{La funzione $f(x)=\ln(x^2+3x+4)$ è monotona sull'intervallo}
@@ -680,7 +695,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	La funzione è monotona crescente nell'intervallo $[-\frac{3}{2},+\infty)$.
 	$(-1,6)$ è contenuto nell'intervallo di monotonia.}
 
-	\domanda{4}{Sia $f(x) = xe^{\sqrt{x}}$. Allora $f'(4)$ vale:}
+	\domanda[derivata]{4}{Sia $f(x) = xe^{\sqrt{x}}$. Allora $f'(4)$ vale:}
 	\risposta{$2e^2$}
 	\spiegazione{Questa funzione è nella forma $f(x) = g(x)\cdot l(h(x))$.
 		Vedendola in questo modo abbiamo:
@@ -690,20 +705,23 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 			\\Ottenute tutte le derivate, otteniamo $f'(x)= e^{\sqrt{x}} + \frac{xe^{\sqrt{x}}}{2\sqrt{x}}$
 			che in $x=4$ vale $2e^2$.
 	}
-	\domanda{5}{L'insieme delle soluzioni della disequazione $\sqrt{2x^2-1}>-1$ è}
+	\domanda[disequazione]{5}{L'insieme delle soluzioni della disequazione $\sqrt{2x^2-1}>-1$ è}
 	\risposta{$(-\infty,-\frac{1}{\sqrt{2}}]\cup[\frac{1}{\sqrt{2}},+\infty)$}
-	\spiegazione{Una radice di indice pari è sempre positiva, quindi è anche sempre maggiore di $-1$.
-		Bisogna però vedere in valori in cui l'argomento della radice è maggiore o uguale a 0.
-		Quindi $2x^2-1\geq 0$, quindi ottengo l'intervallo della risposta.}
-	\domanda{6}{Tutti e soli i punti di flesso di $f:\R \to \R$, $f(x)=x^4-3x^2+14$ sono:}
+	\spiegazione{Una \emph{radice di indice pari è sempre positiva}, quindi è anche sempre maggiore di $-1$.\\
+		Bisogna però vedere in valori in cui l'argomento della radice è maggiore o uguale a 0 (nei valori in cui l'argomento è \emph{minore di 0} la radice, e quindi la disequazione, \emph{non esiste}).
+		\\Quindi $2x^2-1\geq 0$, quindi ottengo l'intervallo della risposta.}
+	
+	\domanda[Punti di flesso]{6}{Tutti e soli i punti di flesso di $f:\R \to \R$, $f(x)=x^4-3x^2+14$ sono:}
 	\risposta{$x=\pm \frac{1}{\sqrt{2}}$}
 	\spiegazione{Faccio la derivata seconda (che in questo caso è banale) è la pongo maggiore o uguale a zero.
 		I punti in cui la derivata seconda cambia di segno sono i punti di flesso}
-	\domanda{7}{Sia $f:[a,b] \to \R$. Per l'integrabilità di $f$ su $[a,b]$ la condizione che $f$ sia continua è:}
+	
+	\domanda[Condizione di Integrabilità]{7}{Sia $f:[a,b] \to \R$. Per l'integrabilità di $f$ su $[a,b]$ la condizione che $f$ sia continua è:}
 	\risposta{Sufficiente ma non necessaria}
 	\spiegazione{Per definizione esistono tre classi principali di funzioni integrabili.
 		Una di queste sono le funzioni continue in un intervallo, che è condizione sufficiente ma non è necessaria per la derivabilità.}
-	\domanda{8}{$\int_{1}^{e^2} \frac{\ln^2x}{x}dx$ vale}
+	
+	\domanda[integrale]{8}{$\int_{1}^{e^2} \frac{\ln^2x}{x}dx$ vale}
 	\risposta{$\frac{8}{3}$}
 	\spiegazione{
 		Integro per sostituzione: $t= \ln x$, $\frac{dt}{dx} = \frac{1}{x} dx$.
@@ -769,15 +787,17 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 			\item Se $l=1$ il criterio è inconclusivo
 		\end{itemize}
 	}
+
 	\section{Luglio 2020}
 	\subsection{Domande Chiuse}
-	\domanda{1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 - 3x$, sull'intervallo I = (-1,1) $f$ è}
+	\domanda[crescenza/decrescenza]{1}{Sia $f:\R \to \R$ definita da $f(x) = x^3 - 3x$, sull'intervallo I = (-1,1) $f$ è}
 	\risposta{Decrescente}
 	\spiegazione{Guardando i punti $f(-1),f(0),f(1)$ si nota che la funzione non è Suriettiva (in quell'intervallo) ed è decrescente}
-	\domanda{2}{Il dominio della funzione $f(x)= ln(4-x^2)$ è}
+	
+	\domanda[dominio]{2}{Il dominio della funzione $f(x)= ln(4-x^2)$ è}
 	\risposta{(-2,2)}
 	\spiegazione{Gli argomenti dei logaritmi devono essere $>0$}
-	\domanda{3}{La somma della serie $\serie{1}{+\infty} 4^{-n}$ vale}
+	\domanda[Serie geometrica]{3}{La somma della serie $\serie{1}{+\infty} 4^{-n}$ vale}
 	\risposta{$\frac{1}{3}$}
 	\domanda{4}{$\int_{1}^{2} (\frac{1}{x} + 2x) dx =$}
 	\risposta{$\ln(2)+3$}
@@ -786,15 +806,15 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 		Calcolo poi $F(2) - F(1)$ e trovo il risultato.
 
 	}
-	\domanda{5}{
+	\domanda[confronto tra infiniti]{5}{
 		$\limite{n}{+\infty}(n^2-n^3+3e^{-n} + \cos n^2)$ vale
 	}
 	\risposta{$-\infty$}
 	\spiegazione{$a_n \sim -n^3$}
-	\domanda{6}{SUP $A=\{\frac{2}{2n^2+1} + e^{1-n},n=1,2,...\}$ è}
+	\domanda[limite di un insieme]{6}{SUP $A=\{\frac{2}{2n^2+1} + e^{1-n},n=1,2,...\}$ è}
 	\risposta{$\frac{2}{3}$}
 
-	\domanda{7}{Detta $g$ funzione inversa di $f(x) = x^3+x+1$, allora $g'(3)=$}
+	\domanda[Derivata dell'inversa]{7}{Detta $g$ funzione inversa di $f(x) = x^3+x+1$, allora $g'(3)=$}
 	\risposta{$g'(3)=\frac{1}{4}$}
 	\spiegazione{
 		Siccome la funzione $f(x) = x^3+x+1$ non è facilmente invertibile (è impossibile ottenere l'espressione di $f^{-1}(x)$)
@@ -819,7 +839,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 			\\Riempiendo i valori della formula troviamo $g'(3)=\frac{1}{4}$.
 	}
 
-	\domanda{8}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
+	\domanda[Continuità di una funzione]{8}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{x+x^3} & x>0 \end{cases}$ è continua se:}
 	\risposta{$a=1$}
 	\spiegazione{
 		Perchè una funzione sia continua in un punto, i limiti destro e sinsitro di quel punto devono coincidere.
@@ -898,27 +918,40 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 		$a_n = o(b_n)$ se $\limite{n}{+\infty}\frac{a_n}{b_n} = 0$
 	}
 	\domandaaperta{3a}{Date le successioni $a_n = \frac{n^2+\ln n}{n\sqrt{n}+e^{-n}}$ e $b_n = \frac{n\sqrt{n}-\ln n}{n+e^n}$, si stabilisca se $a_n = o(b_n)$, oppure $b_n = o(a_n)$, oppure nessuna delle due.  }
-	\irrisolta
+	\rispostaaperta{
+		Per controllare se una delle due successioni è $o$-piccolo dell'altra bisogna vedere se un limite di uno dei rapporti tende a 0.
+		\\Si può andare a tentativi, ma guardando subito il rapporto di $\frac{b_n}{a_n}$ si nota che:
+		$$\frac{b_n}{a_n} = \frac{\frac{n\sqrt{n}-\ln n}{n+e^n}}{\frac{n^2+\ln n}{n\sqrt{n}+e^{-n}}} = \frac{n\sqrt{n}-\ln n}{n+e^n} \cdot \frac{n\sqrt{n}+e^{-n}}{n^2+\ln n}$$.
+		Da qui si può vedere che nel limite di $n\to +\infty$ il denominatore di $b_n$ tende fortemente a $+\infty$ (grazie a $e^n$).
+		Questo porta l'intera successione a tendere a $0$, quindi $b_n = o(a_n)$
+	}
 
 
 \section{Luglio 2021}
 \subsection{Domande Chiuse}
 
-\domanda{O1}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{2x} + \frac{3}{2} &x>0\end{cases}$ è continua se:}
+\domanda[Continuità di una funzione]{O1}{La funzione $f(x)=\begin{cases} \sin x^2 + a & x\leq 0 \\ \frac{\ln(1+x)}{2x} + \frac{3}{2} &x>0\end{cases}$ è continua se:}
 \risposta{$a=2$}
 \spiegazione{Calcolo il limite per x che tende a $0^+$:
 	\\$\limite{x}{0} \frac{\ln(1+x)}{2x} + \frac{3}{2} \sim \frac{\cancel{x}}{2\cancel{x}} + \frac{3}{2} = \frac{4}{2} = 2$
 	\\Siccome $f(0) = a$, perchè la funzione sia continua $a=2$
 }
-\domanda{O2}{Sia $f(x) = x^2+2x+2$. allora $\frac{d}{dx} \ln(f(x))$ per $x=1$ è }
+\domanda[Derivata]{O2}{Sia $f(x) = x^2+2x+2$. allora $\frac{d}{dx} \ln(f(x))$ per $x=1$ è }
 \risposta{$\frac{4}{5}$}
 \spiegazione{la derivata di $\ln(f(x)) = \frac{2x+2}{x^2+2x+2}$, che per $x=1$ vale $\frac{4}{5}$}
 
-\domanda{O3}{La funzione $f(x) = x^5+x^3-1$ ha quanti flessi?}
+\domanda[Punti di flesso]{O3}{La funzione $f(x) = x^5+x^3-1$ ha quanti flessi?}
 \risposta{1 flesso}
-\spiegazione{Faccio la derivata seconda della funzione, la pongo maggiore di 0 e noto che ha un flesso}
+\spiegazione{Calcolo la derivata seconda, che è banale $f''(x)=20x^3+6x$ e la pongo maggiore di 0:
+\\$f''(x)>0 = 20x^3+6x>0 \to x(20x^2+6)$
+\begin{itemize}
+	\item $x>0$
+	\item $20x^2+6>0$ non ha soluzioni perchè ha $\Delta<0$
+\end{itemize}
+Di conseguenza $f''(x)>0$ per $x>0$, quindi ha 1 flesso.
+}
 
-\domanda{O4}{$\int_{0}^{1} xe^x dx =$}
+\domanda[integrale]{O4}{$\int_{0}^{1} xe^x dx =$}
 \risposta{1}
 \spiegazione{
 		Integro per parti:
@@ -935,7 +968,7 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 \risposta{$2-e$}
 \irrisolta
 
-\domanda{O7}{La serie $\serie{1}{+\infty} \frac{n^2}{n\ln n + 2n^{\alpha+1}}$}
+\domanda[Convergenza di una serie]{O7}{La serie $\serie{1}{+\infty} \frac{n^2}{n\ln n + 2n^{\alpha+1}}$}
 \risposta{Converge sse $\alpha > 2$}
 \spiegazione{Con $\alpha > 2$ la serie si può semplificare (asintoticamente e aritmeticamente) in $\frac{1}{n^\alpha}$ con un $\alpha>1$, quindi converge}
 
@@ -982,12 +1015,13 @@ Ora è una normale serie geometrica con argomento $< |1|$, che risolta con la fo
 	\end{enumerate}
 }
 \rispostaaperta{
-	\paragraph*{1} Integrando per parti (banale) trovo $F(x) = \sin x - \cos x + C$
+	\paragraph*{1} Integrando per parti (banale) trovo $F(x) = \sin x - x\cos x + C$
+	\paragraph*{2} DA FARE
 	\paragraph*{3} $\int_{0}^{\pi} f(x) dx = F(\pi) - F(0) = \pi$
 }
 
 
-\chapter{Esercizi}
+\part{Esercizi}
 \section{Integrali}
 \esercizio{}{
 	$\int \frac{72}{\sqrt{x+49} + \sqrt{x+1}}$

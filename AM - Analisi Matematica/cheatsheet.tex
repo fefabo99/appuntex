@@ -97,10 +97,11 @@ Se una serie converge assolutamente, allora converge.
 
 
 
-\paragraph*{\underline{Equivalenza asintotica tra funzioni}} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti  
+\paragraph*{\underline{Equivalenza asintotica tra funzioni}} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti
 
 \paragraph*{\underline{$o$-piccolo}} Se il limite ($\to x_0$) del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$.
-$$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o_{x_0} g(x)$$
+Nota, che per $x_0$ si intende un valore arbitrario che può essere anche 0 o $\pm \infty$
+$$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x_0 $$
 
 \paragraph*{\underline{Limiti Notevoli}}
 \begin{tabularx}{0.8\textwidth}{ |X|X| }
@@ -118,6 +119,9 @@ $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o_{x_0} g(x)$$
 	Seno                      & $\limite{x}{0}\frac{\sin(x)}{x} = 1$                      \\
 	\hline
 	Coseno                    & $\limite{x}{0} \frac{1-\cos(x)}{x} = 0 $                  \\
+	\hline
+	\hline
+	$\ln(x)$                  & $\limite{x}{0} ln(x) = 0 $\\
 	\hline
 \end{tabularx}
 
@@ -237,7 +241,8 @@ $$\frac{\Delta y}{ \Delta x}\frac{f(x_0+h)-f(x_0)}{h} $$
 
 
 \section*{Calcolo Integrale}
-
+\paragraph*{Condizione di integrabilità} Per l'integrabilità di una funzione su un intervallo la condizione
+che essa sia \emph{continua è sufficiente ma non necessaria}
 \begin{multicols}{3}
 	\paragraph*{\underline{Primitive elementari}}
 	Funzioni il cui integrale è immediatamente calcolabile.
