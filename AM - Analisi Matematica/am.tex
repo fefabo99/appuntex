@@ -110,9 +110,13 @@ Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappre
 
 \paragraph*{Fratte} per le disequazioni fratte, il metodo è lo stesso, però \emph{il denominatore non può mai essere uguale a zero, quindi deve essere strettamente minore o maggiore.}
 
-\subsection*{Disequazioni con valore assoluto}
+\subsection*{Disequazioni con \emph{Valore Assoluto}}
 Quando troviamo una disequazione con valore assoluto, bisogna porre a sistema la disequazione con \emph{l'argomento del modulo posto prima maggiore, poi minore di zero}.
 Così facendo avremo due sistemi di disequazioni, che risolti separatamente ci daranno i due risultati della disequazione
+\subparagraph{in parole più semplici} Noi vogliamo vedere la soluzione della disequazione con l'argomento del modulo sia "così com'è" che con i segni invertiti e poi unire i risultati.
+Quindi il risultato del modulo posto a maggiore o minore di zero non ci interessa! 
+\nb{(\textbf{non sono sicuro} di questo ragionamento. per ora diamolo per buono )}
+
 \esempio{
 	$|2x-3| > x + 6$. Dobbiamo eliminare il valore assoluto.
 	\\quindi ponendo l'argomento del modulo \emph{maggiore o uguale a zero}:
@@ -459,9 +463,29 @@ Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fa
  \item Se $\limite{x}{\pm \infty} = l$ l è asintoto ORIZZONTALE
  \item Se $\limite{x}{\pm \infty} = \pm \infty$ potrebbe eistere Asintoto Obliquo
 \end{itemize}
-\subsection*{Segno della Derivata}
-Tramite il segno della derivata, si determina la Crescenza/Decrescenza della funzione.
-Ponendo la derivata $>0$ si trovano gli intervalli in cui la funzione è crescente.
+\subsection*{Monotonia: Crescenza/Decrescenza}
+La monotonia di una funzione è \emph{l'intervallo in cui una funzione è crescente o decrscente}.
+Per determinare la monotonia di una funzione, bisogna trovarne la derivata e determinare il suo segno, quindi porla $>0$.
+Nei punti in cui la derivata di una funzione è \emph{maggiore di 0} la funzione è \emph{crescente}, nei punti in cui invece è \emph{mionre di 0} la funzione è \emph{decrescente}.
+
+\subsection*{Massimi e Minimi}
+Tramite lo studio della monotonia si possono anche trovare i punti di massimo e minimo di una funzione %TODO
+
+\subsection*{Concavità e Convessità}
+\paragraph*{Cosa sono} Una funzione convessa è tale se il segmento che congiunge due punti qualsiasi del suo grafico giace 
+sopra il grafico stesso o coincide con una sua parte. Il contrario vale per le funzioni concave.
+\begin{itemize}
+	\item CONC\textbf{A}VA $\cap$
+	\item CON\textbf{V}ESSA $\cup$
+\end{itemize}
+\paragraph*{Come si calcola}
+Per trovare la concavità di una funzione, bisogna fare la derivata seconda e porla $>0$ per trovarne il segno.
+Nei punti in cui la derivata seconda è positiva la funzione è CONVESSA, nei punti in cui è negativa la funzione è CONCAVA.
+
+\begin{itemize}
+	\item - CONC\textbf{A}VA $\cap \implies f''(x)$ positiva 
+	\item + CON\textbf{V}ESSA $\cup \implies f''(x)$ negativa
+\end{itemize}
 
 \subsection*{Retta tangente al grafico}
 Ogni tanto ci viene chiesto di determinare l'\emph{equazione della retta tangente al grafico di una funzione in un punto}.

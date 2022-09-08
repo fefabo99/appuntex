@@ -44,7 +44,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 \part{Esami Primo Semestre}
 \section{Febbraio 2021}
 \subsection{Domande Chiuse}
-\domanda{1}{Sia $a_n = \frac{n \ln (1- \frac{2}{n^3})}{n \sqrt[3]{n} - n^3}$. Allore, per $n \to +\infty$,
+\domanda[Equivalenza asintotica]{1}{Sia $a_n = \frac{n \ln (1- \frac{2}{n^3})}{n \sqrt[3]{n} - n^3}$. Allora, per $n \to +\infty$,
 }
 \risposta{$a_n \sim \frac{2}{n^5}$}
 \spiegazione{
@@ -53,7 +53,7 @@ La professoressa Pini ha fornito, tramite E-Learning alcune prove d'esame degli 
 	$$
 	Bisogna trovare una successione asintoticamente equivalente sia per il numeratore, che per il denominatore.
 }
-\domanda{2}{Sia $f:\R \to \R$ con $f'(0)=0,f''(x)=ln(e+x)$.Allora $f$ ha in $x=0$}
+\domanda[Massimo/minimo]{2}{Sia $f:\R \to \R$ con $f'(0)=0,f''(x)=ln(e+x)$.Allora $f$ ha in $x=0$}
 \risposta{Un punto di minimo Relativo}
 \spiegazione{Qua si può andare a ragionamento.
 \\Se pongo $f''(x)\geq 0 \to \ln(e+x)\geq 0 \to e+x>0 \to x>-e$, quindi scopro che la funzione è:
@@ -66,28 +66,28 @@ Sappiamo (per definizione) che quando $f'(x)=0$ quello è un punto di stazioname
 In una zona di convessità un punto di stazionamento è il \emph{minimo relativo}, ovvero il punto subito prima della zona in cui la funzione cresce.
 }
 
-\domanda{3}{Sia $f:\R \to \R$ una funzione continua e dispari. Allora, $\int_{-3}^{4} f(x) dx$ è uguale a}
+\domanda[Proprietà degli integrali]{3}{Sia $f:\R \to \R$ una funzione continua e dispari. Allora, $\int_{-3}^{4} f(x) dx$ è uguale a}
 \risposta{$\int_{3}^{4} f(x) dx$}
 \spiegazione{Una funzione dispari è una funzione che ha il grafico simmetrico rispetto all'origine, quindi ha $f(-a) = -f(a)$.
 	L'integrale è l'area sottesa della funzione \emph{con il segno}, quindi in una $f(x)$ dispari $\int_{-a}^{a} f(x) dx = 0$ (Spiegazione negli appunti).
 	Di conseguenza è intuibile che in questa funzione l'integrale da -3 a 3 si annulla, e rimane solo l'area da 3 a 4.}
 
 
-\domanda{4}{La derivata della funzione $f(x) = \sqrt[3]{\frac{x^3}{2} +1}$ è}
+\domanda[derivata]{4}{La derivata della funzione $f(x) = \sqrt[3]{\frac{x^3}{2} +1}$ è}
 \risposta{$\frac{x^2}{2\sqrt[3]{(\frac{x^3}{2}+1)^2}}$}
 \spiegazione{
 	La derivata di una funzione composta è: $f(g(x))' = f'(g(x))\cdot g'(x)$.
 	Per quanto riguarda la radice, è meglio farla a mano trasformandola ($\sqrt[\alpha]{x^\beta} = x^\frac{\beta}{\alpha}$).
-	Il resto sono calcoli Algebrici
+	Il resto sono calcoli Algebrici.
 }
 
-\domanda{5}{la serie $\serie{1}{+\infty} \frac{1}{n^{(\alpha+1)/2}\ln^2n}$ }
+\domanda[convergenza di una serie]{5}{la serie $\serie{1}{+\infty} \frac{1}{n^{(\alpha+1)/2}\ln^2n}$ }
 \risposta{Converge sse $\alpha \geq 1$}
 \spiegazione{Siccome $n^{...}$ si moltiplica al logaritmo, se fosse infinitesimo annullerebbe il denominatore rendendo la serie divergente a infinito.
 	Quindi, l'esponente di alpha deve essere positivo, di conseguenza $\alpha \geq 1$}
 
 
-\domanda{6}{La funzione $f(x) = \begin{cases}a \sin x - b^2  & -2 \leq x \leq 0 \\ 1-e^x &0<x\leq 3\end{cases}$ è derivabile in $x=0$ se e solo se:}
+\domanda[continuità di una funzione]{6}{La funzione $f(x) = \begin{cases}a \sin x - b^2  & -2 \leq x \leq 0 \\ 1-e^x &0<x\leq 3\end{cases}$ è derivabile in $x=0$ se e solo se:}
 \risposta{$a=-1,b=0$}
 \spiegazione{
 	Una funzione è derivabile in un punto se è continua e se i limiti destro e sinistro della derivata in quel punto coincidono.
@@ -99,13 +99,15 @@ In una zona di convessità un punto di stazionamento è il \emph{minimo relativo
 }
 
 
-\domanda{7}{Quali tra questi insiemi è un intervallo?}
+\domanda[intervalli]{7}{Quali tra questi insiemi è un intervallo?}
 \risposta{$\{x \in \R: 2|x| \geq x^2\}$}
-\spiegazione{In teoria dovrebbe essere "un solo intervallo", quindi \emph{non l'unione di due intervalli}}
-\irrisolta
+\spiegazione{La domanda chiede quali delle disequazioni proposte genera \emph{un solo intervallo}.
+\\Risolvendo ogni disequazione (usando il metodo per risolvere le disequazioni con il modulo) si trova che solo una genera un intervallo unico, infatti:
+$$\{x \in \R: 2|x| \geq x^2\} = [-2,0]\cup[0,2] = [-2,2]$$
+}
 
 
-\domanda{8}{Date le funzioni $f(x) = \ln(x), g(x)= x^3, h(x) = 2-x$, la funzione composta $(h \circ g \circ f)(x)$ è:}
+\domanda[composizione di funzioni]{8}{Date le funzioni $f(x) = \ln(x), g(x)= x^3, h(x) = 2-x$, la funzione composta $(h \circ g \circ f)(x)$ è:}
 \risposta{$2-\ln(x)$}
 \spiegazione{$(h \circ g \circ f)(x) = h(g(f(x)))$}
 
@@ -1019,27 +1021,4 @@ Di conseguenza $f''(x)>0$ per $x>0$, quindi ha 1 flesso.
 	\paragraph*{2} DA FARE
 	\paragraph*{3} $\int_{0}^{\pi} f(x) dx = F(\pi) - F(0) = \pi$
 }
-
-
-\part{Esercizi}
-\section{Integrali}
-\esercizio{}{
-	$\int \frac{72}{\sqrt{x+49} + \sqrt{x+1}}$
-}
-\procedimento{
-	Per questo esercizio bisogna fare un po di ragionamenti:
-	\\Devo semplificare questa funzione, per fare ciò moltiplico e divido il tutto per la differenza del denominatore, quindi:
-	$\int \frac{72}{\sqrt{x+49} + \sqrt{x+1}} \cdot \frac{\sqrt{x+49} - \sqrt{x+1}}{\sqrt{x+49} - \sqrt{x+1}}$
-	\\Così ottengo : $\frac{3}{2}  \int (\sqrt{x+49} - \sqrt{x+1})$.
-	\\A questo punto, posso separare gli integrali e risolverli singolarmente:
-	$ = \frac{3}{2} \int (x+49)^{\frac{1}{2}} - \frac{3}{2} \int (x+1)^{\frac{1}{2}}$
-}
-
-\subsection{Esercitazione 10}
-\esercizio{1}{$\int x^2 + 3x + 2 dx$}
-\risposta{$\frac{2x^3+9x^2+12x}{6} + c$}
-\procedimento{
-	$\int x^2 + 3x + 2 dx = \int x^2 dx + 3\int x dx + 2 \int dx  = \frac{x^3}{3} + \frac{3x^2}{2} + 2x + c = ...$
-}
-
 \end{document}
