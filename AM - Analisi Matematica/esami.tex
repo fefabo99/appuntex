@@ -1021,4 +1021,66 @@ Di conseguenza $f''(x)>0$ per $x>0$, quindi ha 1 flesso.
 	\paragraph*{2} DA FARE
 	\paragraph*{3} $\int_{0}^{\pi} f(x) dx = F(\pi) - F(0) = \pi$
 }
+
+\section{Settembre 2019}
+\subsection{Domande Aperte}
+\domandaaperta{1}{
+Data la funzione
+$$f(x)=\frac{ln x}{4x^2}$$
+\begin{enumerate}
+	\item Si studi $f$ e se ne tracci un grafico qualitativo (dominio, limiti ai punti di frontiera del dominio, eventuali asintoti, monotonia, punti di estremo relativo e/o assoluto, convessità/concavità);
+	\item si scriva l'equazione della retta tangente al grafico di $f$ nel upnto di ascissa $x=e$;
+	\item si calcoli $\int_1^4 f(x)dx$
+\end{enumerate}
+}
+\rispostaaperta{\textbf{1.1}
+\paragraph*{Dominio} Denominatori $\neq 0$ e argomento dei logaritmi $> 0$, quindi:
+\begin{itemize}
+	\item $4x^2\neq 0 \to x\neq 0$
+	\item $x>0$
+\end{itemize} 
+$$DOM (0,+\infty)$$
+
+\paragraph*{Limiti} ai Punti di frontiera del dominio:
+\begin{itemize}
+	\item $\limite{x}{+\infty} f(x) = \frac{\infty \ll}{\infty \gg} = 0$
+	\item $\limite{x}{0^+} f(x)= \frac{-\infty}{0} = -\infty$
+\end{itemize}
+
+\paragraph*{Asintoti}
+\begin{itemize}
+	\item $y=0^+$ è Asintoto Orizzontale per $x\to +\infty$
+	\item $x=0 $ è Asintoto Verticale
+\end{itemize}
+\paragraph*{Derivata}
+$$f'(x) = \frac{1}{4} \cdot \frac{\frac{1}{x} \cdot x^2 - 2xln(x)}{x^4} = ... = \frac{1-2\ln(x)}{4x^3}$$
+
+\paragraph*{Monotonia} $f'(x)>0$
+Il denominatore è \emph{Sempre maggiore di 0}, mentre il numeratore:
+$$N>0 \to ... \to \ln(x)<\frac{1}{2} \to x<e^{\frac{1}{2}} \to x<\sqrt{e}$$
+Quindi $f'(x)>$ solo per $x<\sqrt{e}$. $\sqrt{e}$ è anche punto di MASSIMO GLOBALE.
+
+\paragraph*{Derivata Seconda}$f''(x) = $ ometto il calcolo (da mettere)
+$$f''(x)= \frac{6\ln(x)-5}{x^4}$$
+}
+
+
+
+
+\domandaaperta{2}{Data la serie
+$$\serie{2}{+\infty}(\frac{1}{x-1})^n$$
+
+\begin{enumerate}
+	\item Si determinino i valori di $x\in \R\{1\}$  per cui la serie converge;
+	\item per i valori determinati al punto 1, si calcoli la somma della serie. 
+\end{enumerate}
+}
+\rispostaaperta{\textbf{2.1}\\
+	Perchè la serie, che è di tipo geometrica, converga abbiamo bisogno che il suo "argomento" q sia compreso tra $-1$ e $1$.
+	\\Quindi $|\frac{1}{x-1}| < 1 \implies x>2 \wedge x<0$.
+}
+\rispostaaperta{\textbf{2.2}\\
+La serie parte da $n=2$, quindi alla formula risolutiva bisogna togliere $q^1$ e $q^0$.
+$$\serie{2}{+\infty}(\frac{1}{x-1})^n = \frac{1}{1-q} - q - q^0 = \frac{1}{(x-2)(x-1)}$$
+}
 \end{document}
