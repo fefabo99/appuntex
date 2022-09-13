@@ -1014,6 +1014,104 @@ campione aleatorio, cioè del tipo $g(x_1, \dots ,x:n)$
     \frac{\sigma}{\sqrt{n}} = \sqrt{\text{Var}}
 \end{equation*}
 
+\section{Teorema del limite centrale}
+Siano $X_1, ..., X_n$ v.a i.i.d. (Variabili aleatorie indipendenti identicamente distribuite)
+$E(i) = \mu$ e $\text{Var}X_i = \sigma^2$ (con media e varianza finite).
+\begin{equation*}
+    \mathbb{P} (\frac{X_n-\mu}{\frac{\sigma}{\sqrt{n}}} \leq t) \rightarrow \Phi (t) \quad n \rightarrow + \infty   
+\end{equation*}
+Dove $\Phi$ è la funzione di ripartizione di una V.A $Z\sim N(0,1)$
+\begin{equation*}
+    \Phi(t) = \mathbb{P}(Z \leq t)
+\end{equation*}
+\paragraph*{Condizione per usare l'approssimazione normale} Abbiamo definito 
+che solo con $n \geq 30$ si può usare l'approx per semplicità, in realtà non è semplice
+dare un criterio univoco dato che dipende dall'asimmetria del campione di partenza.
+\paragraph*{Nota per i campioni discreti} Quando ho un campione discreto è sempre necessario
+applicare la correzione di continuità 
 %https://it.wikipedia.org/wiki/Standardizzazione_(statistica)
+
+\section*{Note per esercizi}
+\begin{itemize}
+    \item Riconosci la distribuzione notevole
+    \item Ricava media e Var
+    \item Scrivi la formula che ti serve (es P che una va sia $\leq$ di n)
+    \item Effettua la correzione di continuità se si tratta di una VA discreta
+    \item Verifica se $n\geq 30$, questo per verificare se si può applicare il TLC (teorema del limite centrale)
+    \item Sottrai media e dividi per $\sqrt{\text{Var}}$
+    \item Se hai > come segno, anzichè $\mathbb{P}$ dovrai trovare $1-\mathbb{P}$ e invertire il segno in <
+    \item Se trovi un valore $z$ negativo all'interno di $\Phi(z)$ dovrai calcolare $1 - \Phi(-z)$, quindi rendere positivo
+    z, calcolare il suo $\Phi$ e sottrarlo a 1
+\end{itemize}
+
+\chapter{Stima di parametri}
+In questo capitolo vedremo come usare i dati campionari per stimare una media,
+una varianza o una proporzione della popolazione. Verranno discusse le stime puntuali
+che sono stime a valore singolo del parametro. Verrà considerato poi l'errore standard di
+queste stime. Inoltre considereremo gli intervallo di confidenza, che contengono il parametro
+con un certo livello di confidenza.
+\section{Statistica inferenziale}
+La \textbf{statistica inferenziale} ha lo scopo di definire in modo non ambiguo e
+quantitativo la plausibilità di un'inferenza.
+\\ La plausibilità di un'inferenza dipende dal modo con cui è stato selezionato
+il campione di n individui della popolazione.
+La corretta metodologia di campionamento è la \textbf{scelta casuale}.
+\\ Per la casualità dle campionamento utilizzo il calcolo delle probabilità.
+\\ Quando parleremo di popolazione tratteremo sempre N molto grandi rispetto alla numerosità
+del campione. 
+\paragraph*{Popolazione} V.A. i.i.d. con la stessa distribuzione $\leftrightarrow$
+legge F.
+\\ Consideriamo il caso in cui F è nota a meno di qualche parametro incongito.
+\paragraph*{Modello statistico parametrico} Famiglia di leggi note a meno di uno o
+più parametri.
+\begin{itemize}
+    \item Caso discreto: $p(x; \Theta) \quad$ 
+    Densità discreta $p(x;\Theta):\mathbb{P}_\Theta (X=x)$
+    \item Caso continuo: densità $f(x; \Theta)$
+\end{itemize}
+\paragraph*{Attenzione} Non confondere le V.A. con le osservazioni
+\begin{itemize}
+    \item $X_1, ..., X_n \quad$ sono le v.a.
+    \item $x_1, ..., X_n \quad$ sono le osservazioni
+\end{itemize}
+\paragraph*{Esempi di modelli statistici}
+Esempi di modelli statistici sono:
+\begin{itemize}
+    \item Modello di Bernoulli
+    \item Modello esponenziale
+    \item Modello normale
+\end{itemize}
+Dato $(X_1, ..., X_n)$ campione casuale, si definisce \textbf{Statistica} una
+funzione del campione, ossia una v.a. T della forma
+\begin{equation*}
+    T=f(X_1, ..., X_n)
+\end{equation*}
+\paragraph*{Esempi di statistiche}
+\begin{itemize}
+    \item $\bar{X}_n = \frac{X_1+...+X_n}{n} \quad$ Media campionaria (v.a.)
+    \item $S^{2}_n = \frac{1}{n-1} \sum_{i=1}^n(X_i - \bar{X}_n)^2 \quad$ Varianza campionaria (v.a.)
+\end{itemize}
+\section{Statistica parametrica e Stimatori} 
+Il primo obiettivo della statistica inferenziale è fornire una stima dei
+parametri incogniti.   
+\paragraph*{Stimatori} Uno \textbf{Stimatore} è una statistica il cui valore
+dipende dal particolare campione che è stato estratto. Il valore dello stimatore,
+\textbf{la Stima}, viene usato per predire il valore di un parametro della popolazione.
+particolari statistiche che servono a stimare i parametri incogniti.
+\paragraph*{Stimatori Puntuali} Sono valori singoli che speriamo siano prossimi
+ai parametri stimati.
+\paragraph*{Stimatori intervallari} Meglio noti come \textbf{Intervalli di confidenza},
+in questo caso non rappresentano un singolo valore, ma un intervallo in cui ci
+aspettiamo che il parametro rientri. Ci occupiamo anche di determinare quanta
+confidenza associare a un dato intervallo, cioè quanto possiamo essere sicuro che il parametro
+si trovi in questo intervallo.
+\paragraph*{Definizione Stimatore Corretto} Uno \textbf{Stimatore} T si dice \textbf{Non Distorto o Corretto}
+se:
+\begin{equation*}
+    \mathbb{E}_\Theta{T}: \mathbb{E}_\Theta(g(X_1, ..., X_n)) = \Theta
+\end{equation*}
+Dove $E_\Theta$ è il valore medio rispetto alla probabilità di $P_\Theta$.
+\paragraph*{In parole povere} Uno stimatore il cui valore atteso è uguale al parametro
+che si vuole stimare si dice \textbf{corretto} per quel parametro.
 
 \end{document}
