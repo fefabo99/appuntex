@@ -47,16 +47,19 @@
 \newcommand{\esercizio}[2]{\paragraph*{#1} #2}
 \newcommand{\procedimento}[1]{\begin{box_giallochiaro} \small{ \emph{procedimento: }#1}\end{box_giallochiaro}}
 
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
 \newcommand{\rispostechiuse}[4]{
     \begin{center}
-        \begin{tabular}{p{0.25\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}|p{0.25\textwidth}}
-            \parbox[t]{0.2\textwidth}{\textbf{(a)} #1} &
-            \parbox[t]{0.2\textwidth}{\textbf{(b)} #2} &
-            \parbox[t]{0.2\textwidth}{\textbf{(c)} #3} &
-            \parbox[t]{0.2\textwidth}{\textbf{(d)} #4}
-        \end{tabular}
+        \begin{tabularx}{\textwidth}{Y|Y|Y|Y}
+            \textbf{(a)} & \textbf{(b)}  & \textbf{(c)}  & \textbf{(d)} \\
+             #1 & #2 & #3 &#4
+        \end{tabularx}
     \end{center}
+
 }
+
+\newcommand{\rispostagiusta}{\textbf{[=]}}
 
 
 %Colors
