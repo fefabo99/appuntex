@@ -1129,5 +1129,69 @@ distorto di $\lambda$.
 \begin{equation*}
     \text{Var}_\Theta (T) \rightarrow 0
 \end{equation*}
+Quando abbiamo un campione casuale estratto da una popolazione con media $\mu$
+e varianza $\sigma^2$ finite si ha sempre che $\bar{X}_n$ \textbf{è uno stimatore consistente
+di $\mu$}:
+\begin{equation*}
+    \text{Var}_\sigma(\bar{X}_n) = \frac{\sigma^2}{n} \rightarrow 0 \quad n \rightarrow + \infty
+\end{equation*}
+\\ Stimatore di $\Theta = g(X_1, ..., X_n) \rightarrow$ V.A.
+\\ Stima di $\Theta: f(x_1, ..., X_n) \rightarrow$ Numero.
+\\ Stima di $\mu$ per un campione casuale $X_1, ..., X_n$ di cui osserviamo
+$x_1, ..., x_n$.
+\begin{equation*}
+    \hat{\mu} = \bar{x}_n = \frac{x_1+...+x_n}{n}
+\end{equation*}
+\section{Errore standard}
+Supponiamo di considerare un campione casuale con media $\mu$ incognita
+e varianza $\sigma$ nota:
+\begin{equation*}
+    \text{Var}\bar{X}_n= \frac{\sigma^2}{n}
+\end{equation*}
+\begin{equation*}
+    \text{SD}(\bar{X}_n) = \frac{\sigma}{\sqrt{n}} \quad \text{deviazione standard SD}
+\end{equation*}
+Se si pensa $\bar{X}_n$ come stimatore di $\mu$, SD$(\bar{X}_n)$ prende il nome Di
+\textbf{errore standard}, esso rappresenta l'errore commesso stimando $\mu$ con $\bar{X}_n$.
+\\ Ora consideriamo un modello statistico con \textbf{varianza incognita}.
+\\ In statistica descrittiva: siano n osservazioni $(x_1, ..., x_n)$;
+\begin{equation*}
+    s^{2}_n=\frac{1}{n-1}\sum_{k=1}^n(x_k-\bar{x}_n)^2
+\end{equation*}
+\'E sensato introdurre in un modello statistico con varianza $\sigma^2$ incognita lo
+stimatore
+\begin{equation*}
+    S^{2}_n=\frac{1}{n-1}\sum_{k=1}^n(X_k-\bar{X}_n)^2
+\end{equation*}
+Se nel modello statistico con varianza $\sigma^2$ incognita \textbf{la media è nota}, si ha che
+lo stimatore:
+\begin{equation*}
+    \bar{S}^{2}_n = \frac{1}{n}\sum_{i=1}^n(X_u - \mu)^2
+\end{equation*}
+è uno stimatore corretto di $\sigma^2$.
+\section{Chi quadrato}
+\subsection*{Distribuzione delle statistiche campionarie}
+\paragraph*{Campione normale}
+$X_1, ..., X_n$ campione casuale $\mathcal{N}(\mu, \sigma^2)$
+\begin{equation*}
+    \bar{X}_n \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})
+\end{equation*}
+Standardizzando otteniamo
+\begin{equation*}
+    \frac{\bar{X}_n-\mu}{\frac{\sigma}{\sqrt{n}}} \sim \mathcal{N}(0,1)
+\end{equation*}
+Per caratterizzare la legge di $S_{n}^2$ e di $\bar{S}_{n}^2$ dobbiamo
+introdurre una nuova distribuzione continua
+\begin{equation*}
+    \chi^2(n)
+\end{equation*}
+Si dice legge \textbf{chi quadrato con n gradi di libertà} la legge di una v.a.
+\begin{equation*}
+    Y = \sum_{i=1}^n Z_{i}^2 \,, \quad z_1, ..., z_n \quad \text{i.i.d.}\quad \mathcal{N}(0,1)
+\end{equation*}
+%Video Lezione 10 T1 minuto 32:29 - https://elearning.unimib.it/mod/kalvidres/view.php?id=926811
+
+
+
 
 \end{document}
