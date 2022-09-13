@@ -1113,5 +1113,21 @@ se:
 Dove $E_\Theta$ è il valore medio rispetto alla probabilità di $P_\Theta$.
 \paragraph*{In parole povere} Uno stimatore il cui valore atteso è uguale al parametro
 che si vuole stimare si dice \textbf{corretto} per quel parametro.
+\paragraph*{$\bar{X}_n$ è lo stimatore non distorto di}
+\begin{itemize}
+    \item p in un modello di Bernoulli
+    \item $\lambda$ in un modello di Poisson
+    \item $\frac{1}{\lambda}$ in un modello esponenziale
+    \item $\mu$ in un modello normale
+\end{itemize}
+\paragraph*{Osservazione} La proprietà di essere non distorto NON è stabile per
+trasformazioni, ad esempio nel modlelo esponenziale $X_n$ è stimatore non distorto
+di $\frac{1}{\lambda}$, ma si ha che $\frac{1}{\bar(X)_n}$ NON è uno stimatore non
+distorto di $\lambda$.
+\paragraph*{Stimatore consistente} Uno stimatore non distorto di $\Theta$ si dice
+\textbf{Consistente} se, quando $n \rightarrow + \infty$
+\begin{equation*}
+    \text{Var}_\Theta (T) \rightarrow 0
+\end{equation*}
 
 \end{document}
