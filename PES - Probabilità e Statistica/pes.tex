@@ -1266,9 +1266,49 @@ La simmetria di T student è la stessa della normale.
     \includegraphics[width=120mm,scale=0.5]{Simmetria t di student.png}
 \end{center}
 
+\section{Stima per intervalli - Intervalli di confidenza}
+Stima per intervalli della media - campione normale $\mathcal{N}(\mu, \sigma^2)$, con
+$\sigma^2$ nota.
 
-
-
-
-
+La qualità dlela stima dipende Da
+\begin{itemize}
+    \item Livelli di confidenza: maggiore è il livello, più è affidabile è la stima
+    \item Ampiezza dell'intervallo = $2E$: più è piccolo, più è precisa la stima
+\end{itemize}
+\begin{equation*}
+    E=Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation*}
+E crece se $\alpha$ diminuisce (ossia se la confidenza aumenta) fissati n e $\sigma$
+E diminuisce al crescere di n (come $\frac{1}{\sqrt[]{n}})$
+\subsection*{Estremi Inferiori e Superiori di Confidenza Per la media di una popolazione normale con varianza nota.}
+Per la media di una popolazione normale con varianza nota.
+\\ Determinare se la media di una popolazione è maggiore o minore di un certo
+valore.
+\\ Useremo ancora $\frac{\bar{X}_n - \mu}{\frac{\sigma}{\sqrt[]{n}}} = 
+\sqrt[]{n} \frac{\bar{X}_n - \mu}{\sigma} \sim \mathcal{N}(0,1)$ 
+\\ Confidenza: $100(1-\alpha) \%$
+\begin{gather*}
+    \mathbb{P}(\frac{(\bar{X}_n - \mu)}{\frac{\sigma}{\sqrt[]{n}}} < z_\alpha) 
+    = 1 - \alpha \\
+    \mathbb{P}(\mu > \bar{X}_n - z_\alpha \frac{\sigma}{\sqrt[]{n}} = \ - \alpha)
+\end{gather*}
+Un estremo inferiore di confidenza al $100(1-\alpha)\%$ per la media di una
+popolazione normale con varianza nota è dato da
+\begin{equation*}
+    \bar{X}_n - z_\alpha \frac{\sigma}{\sqrt[]{n}}
+\end{equation*}
+La sua realizzazione (dai dati campionari) è:
+\begin{equation*}
+    \bar{x}_n - z_\alpha\frac{\sigma}{\sqrt[]{n}}
+\end{equation*}
+\subsection*{Intervalli di confidenza per la media di una popolazione normale con varianza incognita}
+Completare -----------------------------------
+Possiamo dire:
+\begin{itemize}
+    \item Confidenza maggiore $\rightarrow$ E aumenta (a parità del campione), però la
+    stima è più affidabile
+    \item Estremo inferiore di confidenza al $100(1-\alpha) \%$
+    \item Estremo superiore di confidenza al $100(1-\alpha) \%$
+\end{itemize}
+\subsection*{Intervalli di confidenza per la varianza di una popolazione normale}
 \end{document}
