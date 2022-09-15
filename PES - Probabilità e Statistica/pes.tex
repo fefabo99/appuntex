@@ -1190,6 +1190,70 @@ Si dice legge \textbf{chi quadrato con n gradi di libertà} la legge di una v.a.
     Y = \sum_{i=1}^n Z_{i}^2 \,, \quad z_1, ..., z_n \quad \text{i.i.d.}\quad \mathcal{N}(0,1)
 \end{equation*}
 %Video Lezione 10 T1 minuto 32:29 - https://elearning.unimib.it/mod/kalvidres/view.php?id=926811
+Dove Y è una v.a. $\geq 0$ con densità $f_r(t) = c_n t^{\frac{n}{2}-1} e^{-\frac{t}{2}} 
+\qquad \text{per} \quad t>0$
+\\ Si ha $\mathbb{E}(Y) = n$ e $\text{Var}(Y)=2n$
+\\ Per $n = 2$ è la legge $\text{exp}(\frac{1}{2})$
+\\ Per n grande vale l'approssimazione della legge $\chi^2(n)$ con una
+$\mathcal{N}(n,2n)$
+\paragraph*{Proposizione} Sia $(X_1, ..., X_n)$ campione casuale estratto
+da una popolazione $\mathcal{N}(\mu, \sigma^2)$.
+\begin{enumerate}
+    \item $\sum_{i=1}^n(\frac{X_i-\mu}{\sigma})^2 \sim \chi^2(n)$
+    \item $\sum_{i=1}^n(\frac{X_i-\bar{X}_n}{\sigma}) \sim \chi^2(n-1)$
+    \item se $S_{n}^2 = \frac{1}{n-1}\sum_{i=1}^n(X_i - \bar{X}_n)^2$
+    \\ $(n-1)\frac{S_{n}^2}{\sigma^2} \sim \chi^2(n-1)$
+    \item $S_{n}^2$ e $\bar{X}_n$ sono indipendenti
+\end{enumerate}
+Riassumendo $\chi^2$ ci serve per la distribuzione della legge delle varianze campionarie
+\section{Legge t di student}
+Si dice legge di \textbf{t di student con n gradi di libertà} la legge di una v.a.
+\begin{equation*}
+    T = \frac{z}{\sqrt{\frac{Y}{n}}}
+\end{equation*}
+\begin{equation*}
+    z \sim \mathcal{N}(0,1)
+\end{equation*}
+\begin{equation*}
+    Y \sim \chi^2(n)
+\end{equation*}
+Z e Y sono indipendenti.
+\begin{equation*}
+    \mathbb{E}(T)=0 \quad \text{Var}[T] = 1
+\end{equation*}
+T è una v.a. continua con densità
+\begin{equation*}
+    f_T(t) = c_n(1+\frac{t^2}{n})^{\frac{-(n+1)}{2}}
+\end{equation*}
+$c_n$ è una costante che fa risultare l'integrale della $f = 1$.
+\paragraph*{Proposizione} Sia $X_1, ..., X_n$ un campione casuale estratto da
+una popolazione $\mathcal{N}(\mu, \sigma^2)$. Allora
+\begin{equation*}
+    \frac{\bar{X}_n-\mu}{\sqrt{\frac{s^2_{n}}{n}}} \sim t(n-1)
+\end{equation*}
+\section{Parte pratica}
+Cosa dovremo saper calcolare di queste variabili aleatorie? I loro percentili.
+\\ X v.a.
+\\ $P(X\leq q_\alpha) = \alpha$ Fissato $\alpha$, trovare $q_\alpha$.
+\\ $q_\alpha$ = $\alpha$ - esimo quantile o $100\alpha$ - percentile di X.
+\begin{itemize}
+    \item $Z \sim \mathcal{N}(0,1) \qquad z_\alpha$ t.c. $\mathbb{P}(Z>z_\alpha) = \alpha$
+    \item $T \sim t(n) \qquad t_{\alpha, n}$ t.c. $\mathbb{P}(T>t_{\alpha, n}) = \alpha$
+    \item $Y \sim \chi^2{n} \qquad \chi^2_{\alpha, n}$ t.c. $\mathbb{P}(Y>\chi^2_{\alpha,n}) = \alpha$
+    \item $z_\alpha$, $t_{n, \alpha}$, $\chi^2_{m, \alpha} 
+    \qquad 100(1-\alpha) \text{percentili} \quad (\text{di}\quad Z, T, Y)$
+\end{itemize}
+\begin{equation*}
+    Z \sim \mathcal{N}(0,1) \qquad \alpha \quad \text{definito da}
+\end{equation*}
+\begin{gather*}
+    P(Z>z_\alpha) = \alpha \\
+    P(Z\leq Z_\alpha) = 1-\alpha \\
+    z_\alpha = 100(1-\alpha) \qquad \text{percentili di Z}\\
+    z_\alpha = \Phi^{-1}{1-\alpha} \\
+    P(Y > X^2_{\alpha, n}) = \alpha
+\end{gather*}
+
 
 
 
