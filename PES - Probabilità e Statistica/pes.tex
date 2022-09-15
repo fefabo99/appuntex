@@ -1206,8 +1206,15 @@ da una popolazione $\mathcal{N}(\mu, \sigma^2)$.
     \item $S_{n}^2$ e $\bar{X}_n$ sono indipendenti
 \end{enumerate}
 Riassumendo $\chi^2$ ci serve per la distribuzione della legge delle varianze campionarie
-\section{Legge t di student}
-Si dice legge di \textbf{t di student con n gradi di libertà} la legge di una v.a.
+\section{Distribuzione t di student}
+\paragraph*{Definizione Wikipedia} 
+Nella teoria delle probabilità la distribuzione di Student, o t di Student, 
+è una distribuzione di probabilità continua che governa il rapporto tra due variabili aleatorie, 
+la prima con distribuzione normale e la seconda, al quadrato, segue una distribuzione chi quadrato.
+\\ Questa distribuzione interviene nella stima della media di una popolazione che segue la distribuzione normale, 
+e viene utilizzata negli omonimi test t di Student per la significatività e per ogni intervallo 
+di confidenza della differenza tra due medie. 
+\paragraph*{Definizione matematica}Si dice legge di \textbf{t di student con n gradi di libertà} la legge di una v.a.
 \begin{equation*}
     T = \frac{z}{\sqrt{\frac{Y}{n}}}
 \end{equation*}
@@ -1253,6 +1260,12 @@ Cosa dovremo saper calcolare di queste variabili aleatorie? I loro percentili.
     z_\alpha = \Phi^{-1}{1-\alpha} \\
     P(Y > X^2_{\alpha, n}) = \alpha
 \end{gather*}
+La simmetria di T student è la stessa della normale.
+\\ Mentre per la $\chi^2$ non ci sono simmetrie.
+\begin{center}
+    \includegraphics[width=120mm,scale=0.5]{Simmetria t di student.png}
+\end{center}
+
 
 
 
