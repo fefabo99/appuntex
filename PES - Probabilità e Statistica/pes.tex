@@ -1311,4 +1311,82 @@ Possiamo dire:
     \item Estremo superiore di confidenza al $100(1-\alpha) \%$
 \end{itemize}
 \subsection*{Intervalli di confidenza per la varianza di una popolazione normale}
+
+%Verifica di Ipotesi%
+
+\chapter{Verifica di Ipotesi}
+\paragraph*{Ipotesi statistica} Un'ipotesi Statistica è un'affermazione sulla
+distribuzione della popolazione in esame.
+\\ Può essere espressa in termini di un parametro (\textbf{Test Parametrici}), oppure
+può riguardare la natura della distribuzione della popolazione o altre
+caratteristiche (\textbf{Test Non Parametrici}): es verificare se una popolazione
+ha distr. normale, verifica l'indipendenza.
+\\ Verificare un'ipotesi statistica significa verificare se è compatibile con i dati
+del campione.
+\\ Un'ipotesi statistica denotata con $H_0$ è detta \textbf{Ipotesi Nulla}.
+\\ La negazione di $H_0$ è denotata con $H_1$ e viene definita \textbf{Ipotesi Alternativa}.
+L'ipotesi nulla viene rifiutata se risulta incompatibile con i dati del campione,
+altrimenti NON viene rifiutata.
+\\ Lo scopo della \textbf{Verifica di Ipotesi} è trovare una regola che sulla base dei
+dati campionari permetta di rifiutare o meno. Per questo si utilizzerà un'opportuna
+statistica detta \textbf{Statistica del Test}. A seconda del suo valore assunto sui dati
+campionari si rifiuterà o meno.
+\\ Un test per la verifica dell'ipotesi nulla $H_0$ contro l'ipotesi alternativa 
+$H_1$ consiste nel trovare una \textbf{regione C}, detta \textbf{Regione Critica o Regione di Rifiuto}
+tale che se $(x_1, ..., x_n) \in C$ si rifiuta $H_0$, quindi si accetta $H_1$,
+tale regione sarà calcolata utilizzando la statistica del test.
+\section{Possibili errori durante il calcolo della regione critica}
+Durante il calcolo della regione critica possiamo incorrere in due tipi di errore
+\begin{itemize}
+    \item Errore di prima specie (o tipo): si rifiuta $H_0$ e $H_0$ è vera
+    \item Errore di seconda specie (o tipo): si accetta $H_0$ e $H_0$ è falsa
+\end{itemize}
+La regione critica ideale dovrebbe rendere piccola la probabilità di commettere
+entrambi gli errori, ma questo in genere è impossibile: restringendo la regione
+critica diminuisce la prob. di commettere un errore di prima specie, ma non
+può aumentare la prob. di commettere un errore di seconda specie e viceversa.
+\\ Di solito si controlla la prob. di errore di prima specie.
+\paragraph*{$\alpha =$ livello di significatività del test} Fissare $\alpha$ piccolo
+$(\alpha = 0.10, 0.05, 0.01)$ e chiedere che la prob. di rifiutare $H_0$ quando è
+vera sia $\leq \alpha$. Ossia un test per la verifica di $H_0$ con regione critica C
+ha livello significatività $\alpha$ se:
+\begin{equation}
+    \mathbb{P}_H((x_1, ..., x_n)\in C) \leq \alpha
+\end{equation}
+Controllare errore di I specie $\rightarrow$ assimetria tra $H_0$ e $H_1$.
+\\ Se $(x_1, ..., x_n) \in C$ ossia si rifiuta $H_0$ i dati sperimentali sono
+in contraddizione significativa con $H_0$.
+\\ Se $(x_1, ..., x_n) \notin C$ i dati sperimentali non sono
+in contraddizione signficativa con $H_0$.
+Non è detto che siano in contraddizione con $H_1$, ma solo che non escludono
+in modo significativo che $H_0$ sia vera.
+\\ La conclusione forte è il rifiuto di $H_0$.
+\\paragraph*{Implicazione} Se si vuole dimostrare con dati sperimentali una certa ipotesi
+sulla distribuzione della popolazione, ossia di una variabile, si adotterà questa
+ipotesi come \textbf{Ipotesi Alternativa}.
+\\paragraph*{Osservazione} L'appartenenza di $(x_1, ..., x_n)$ alla regione
+critica dipende dalla scelta del livello di significatività di $\alpha$.
+\\ Esiste un $\bar{\alpha}$ t.c.
+\begin{itemize}
+    \item per $\alpha > \bar{\alpha}$ si rifiuta $H_0$
+    \item per $\alpha \leq \bar{\alpha}$ si accetta $H_0$
+\end{itemize}
+$\bar{\alpha}$ viene detto \textbf{p-value} ($\sigma$ p dei dati, $sigma$ valore p
+del test.
+\\ Più piccolo è il p-value, più i dati sono in contraddizione con $H_0$.
+\paragraph*{Definizione p-value} Minimo livello di significatività t.c. i dati
+consentono di rifiutare $H_0$.
+\\paragraph*{Legame tra Test di Ipotesi e I.C.}
+Nel test ipotesi bilatero: rifiuto $H_0 \, (\mu=\mu_0)$ a livello $\alpha$ se $\bar{x_n}$
+non appartiene all'intervallo di confidenza di livello $100(1-\alpha)\%$ per $\mu$.
+C'è anche un legame tra estermi superiori e inferiori di confidenza e regione critiche dei
+test unilateri.
+\paragraph*{Efficacia di un test} 1 - prob di errore di II tipo.
+
+\section*{Test Non Parametrici} Non si fanno inferenze nei parametri ma nella
+distribuzione di una o più popolazioni.
+\subsection{Test Chi quadro di buon adattamento}
+Test adattamento: verificare se una certa popolazione abbia o meno una certa distribuzione,
+ipotizzato sulla base di dati sperimentali (incluso verificare che una popolazione
+abbia distribuzione normale).
 \end{document}
