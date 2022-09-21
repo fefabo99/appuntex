@@ -72,12 +72,11 @@ Come già detto, questi appunti sono in funzione del corso di Analisi Matematica
 
 \paragraph*{Nota} i grafici fatti a mano sono stati fatti con \emph{webwhiteboard.com}
 \chapter{Analisi 0}
-\paragraph{introduzione}
-Questa piccola sezione contiene alcuni argomenti che non fanno parte del programma di Analisi matematica ma possono essere propedeutici ad essa.
+Questo piccolo capitolo contiene alcuni argomenti che non fanno parte del programma di Analisi Matematica
+ma possono essere utili alla comprensione degli argomenti.
 
 \section{Disequazioni}
 Nel corso di Analisi Matematica troviamo spesso delle disequazioni da risolvere, è bene quindi sapere come risolverle.
-In caso non si sia presa in mano la matematica per un po di tempo, potrebbe essere una buona idea ripassarle.
 
 \paragraph*{Le disequazioni} sono come delle equazioni in cui ci si chiede "per quali valori di $x$ questa espressione è maggiore (minore) di un certo valore".
 Vengono risolte esattamente come le equazioni, ma il significato del risultato è diverso.
@@ -90,6 +89,10 @@ Facendo il grafico dei segni ottengo:
 \\\includegraphics[width=\textwidth]{esempio-disequaz-prodotto.png}
 \\Di conseguenza, la soluzione della disequazione è: $S= (-\infty,-1]\cup[2,+\infty)$
 } 
+\nb{
+	Per le \emph{disequazioni fratte}, \textbf{il denominatore non può mai essere uguale a zero},
+	quindi deve essere \textbf{strettamente maggiore (minore)}.
+}
 \subsection*{Disequazioni di secondo grado}
 Le disequazioni (come le equazioni) di secondo grado si risolvono, una volta ridotte alla forma standard $ax^2+bx+c$, usando la formula risolutiva:
 $$x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
@@ -99,16 +102,15 @@ A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
 	\item $\Delta < 0 \implies $ Nessuna soluzione Reale (ma 2 complesse)
 	\item $\Delta = 0 \implies $ 1 Soluzione Reale
 \end{itemize}
-Ricordiamo poi, che una funzione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
+Ricordiamo poi, che un'equazione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
 quindi quando sta sopra l'asse delle ascisse.
 \paragraph*{}
 Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappresentazione" della parabola
 \\\includegraphics[width=\textwidth]{parabole-delta.png}
 
-\paragraph*{Tabella delle soluzioni} Allego una piccola tabella utile a capire le soluzioni di una disequazione.
+\paragraph*{Tabella delle soluzioni} Questa tabella è utile a capire quali sono le soluzioni di una disequazione.
 \\\includegraphics[width=\textwidth]{disequazioni.png}
 
-\paragraph*{Fratte} per le disequazioni fratte, il metodo è lo stesso, però \emph{il denominatore non può mai essere uguale a zero, quindi deve essere strettamente minore o maggiore.}
 
 \subsection*{Disequazioni con \emph{Valore Assoluto}}
 Quando troviamo una disequazione con valore assoluto, bisogna porre a sistema la disequazione con \emph{l'argomento del modulo posto prima maggiore, poi minore di zero}.
@@ -148,10 +150,13 @@ Quindi il risultato del modulo posto a maggiore o minore di zero non ci interess
 	Quindi il risultato è: $x>9 \vee x<-1$
 }
 
-\section{Richiamo dei Logaritmi}
+\section{Richiamo sui Logaritmi}
 \definizione{
-	Il logaritmo è un operatore matematico idicato generalmente con $\log_a(b)$;
-	\\Detta $a$ la base e $b$ l'argomento, il logaritmo in base a di b è definito come \emph{l'esponente a cui elevare la base per ottenere l'argomento.}
+	Il logaritmo è un operatore matematico indicato generalmente con $\log_a(b)$;
+	\\Detta $a$ la base e $b$ l'argomento, il logaritmo in base a di b è definito come:
+	\begin{center}
+		\emph{L'esponente a cui elevare la base per ottenere l'argomento.}
+	\end{center}
 	$$\log_a(b)=c \implies a^c=b$$
 
 	}
@@ -170,7 +175,7 @@ Per i logaritmi valgono le seguenti prorpietà:
 Due funzioni trigonometriche fondamentali sono \emph{Seno e Coseno}, che vengono definite
 a partire dalla circonferenza goniometrica e che \emph{associa a ciascun angolo un determinato
 valore numerico compreso tra -1 e +1}.
-\\Le seguenti immagini evidenziano il significato geometrico del seno e del coseno
+\\Le seguenti immagini evidenziano il significato geometrico del seno e del coseno:
 \begin{center}
 	\includegraphics[width=50mm, scale=0.5]{seno_geom.png}
 	\includegraphics[width=50mm, scale=0.5]{coseno_geom.png}
