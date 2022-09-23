@@ -691,7 +691,7 @@ Utilizza un decoder che decodifica il numero del registro da scrivere (Write Reg
 \\ Se Write non è asserito nessun valore sarà scritto nel registro
 \paragraph*{Alcune note}
 \begin{itemize}
-    \item Ogni registro può contenere valori di qualsiasi tipo purcè usino il numero
+    \item Ogni registro può contenere valori di qualsiasi tipo purchè usino il numero
     di bit a disposizione nel registro
     \item Spetterà a chi definisce il programma in binario usare i dati
     memorizzati nei registri in modo coerente con il loro tipo
@@ -1139,7 +1139,7 @@ simboli del modulo.
 2 passi importanti \begin{itemize}
     \item Traduce i codici mnemonici (simbolici) delle istruzioni nei corrispondenti
     codici binari
-    \item Traduce i riferimenti simbolici (variabili, registri, etichete di salt, parametri)
+    \item Traduce i riferimenti simbolici (variabili, registri, etichete di salto, parametri)
     nei corrispondenti indirizzi numerici.
 \end{itemize}
 Poichè le etichette di salto generano il problema dei riferimenti in avanti (ossia,
@@ -1153,7 +1153,7 @@ da tradurre e al termine del primo passo, conterrà gli indirizzi numerici
 di tutti i simboli, tranne quelli esterni al modulo in esame.
 Per le etichette associate a direttive dell'assemblatore che definiscono costanti
 simboliche viene creata la coppia "etichetta, valore" e in ogni istruzione che
-fa riferimento al simbolo viene sostitito il valore.
+fa riferimento al simbolo viene sostituito il valore.
 \\ Discorso simile per le etichette che definiscono variabili (spazio di memoria +
 eventuale inizializzazione). In questo caso l'assemblatore riserva spazio, eventualmente
 inizializza la zona di memoria e crea nella tabella la coppia "etichetta, indirizzo".
@@ -1245,7 +1245,7 @@ Prima di chiamare una procedura, la procedura chiamante deve eseguire i seguenti
 \begin{itemize}
     \item Impostare gli argomenti da passare alla procedura in \$a0 - \$a3, eventuali
     altri argomenti sono nella memoria o nello stack
-    \item Salvare eventualmente i registri \$a0 - \$a3 e \$t0 - \$t0 in quanto la procedura
+    \item Salvare eventualmente i registri \$a0 - \$a3 e \$t0 - \$t7 in quanto la procedura
     chiamata può usare liberamente questi registri
     \item Infine chiamare la procedura tramite istruzione \textit{jal "nome procedura"}
 \end{itemize}
@@ -1297,7 +1297,7 @@ e nei registri \$a0-\$a3 gli argomenti.
 \section{Domande Esame}
 \subsection{Descrivere i passi per la gestione delle etichette irrisolte e il ruolo
 del linker in questa fase}
-L'assembler traduce un file in linguaggio assebmly in un file binari in linguaggio macchina
+L'assembler traduce un file in linguaggio assembly in un file binari in linguaggio macchina
 e dati binari. La traduzione si divide in 2 parti: 
 \begin{enumerate}
     \item Trovare spazi di memoria attraverso etichette così che la relazione
@@ -1307,8 +1307,8 @@ e dati binari. La traduzione si divide in 2 parti:
 \end{enumerate}
 Il file prodotto dall'assembler sarà un file oggetto contennte le istruzioni macchina e i dati.
 Tuttavia il file non è ancora eseguibile dato che fa riferimento a procedure o dati contenuti
-in altri file. Un'etichetta (label) è esterna (global) se l'oggetto etichettato se si può fare riferimento
-ad essa anche in altri file oltre a quello in cui è definita. Viceversa è locale se ci si può riferire
+in altri file. Un'etichetta (label) è esterna (global) se l'oggetto etichettato può far riferimento
+anche in altri file oltre a quello in cui l'etichetta è definita. Viceversa è locale se ci si può riferire
 ad essa solo in locale. Le \textbf{etichette locali (local labels)} nascondono il proprio nome dato
 che non devono essere viste esternamente, questo permette al compilatore di non aver bisogno di produrre nomi univoci
 in tutti i file.
@@ -1321,7 +1321,7 @@ con tutti i riferimenti registrati nella tabella, \textbf{i riferimenti esterni 
 \paragraph*{Object File Format} Quindi ora ci troviamo con degli object files contenenti 6
 sezioni distinte
 \begin{enumerate}
-    \item l'object file header, che descrive la dimensione e la posizoone delle altre parti del file
+    \item l'object file header, che descrive la dimensione e la posizione delle altre parti del file
     \item il \textbf{text segment} che contiene il codice in linguaggio macchina per le routines
     del file sorgente. Queste routines potrebbero essere ineseguibili a causa dei riferimenti irrisolti.
     \item Il \textbf{data segment} che contiene la rappresentazione binaria dei dati del file sorgente.
@@ -1332,7 +1332,7 @@ sezioni distinte
     i riferimenti irrisolti
     \item debugging information: informazioni su come il programma è stato compilato
 \end{enumerate}
-La produzione di diversi file oggetti è causata dalla compilazione separata, che permette di
+La produzione di diversi file oggetto è causata dalla compilazione separata, che permette di
 dividere un programma in pezzi che vengono immagazzinati in diversi file, questo permette
 di trattare il programma in moduli che possono essere compilati indipendentemente.
 Lo strumento che unisce insieme questi file è chiamato \textbf{linker} ed esegue 3 operazioni:
@@ -1347,12 +1347,12 @@ etichette indefinite. Per effettuare questa risoluzione verifica se i file ogget
 deli riferimenti a etichette con lo stesso nome. Riferimenti irrisolti indicano che il simbolo è 
 usato, ma non definito nel programma.
 Per quanto riguarda le librerire il linker cerca nelle librerie di sistema per verificare se ci sono
-subroutine predefiniti e strutture dati a cui il programma fa riferimento.
+subroutine predefinite e strutture dati a cui il programma fa riferimento.
 Quando un programma usa una libreria il linker estrae il suo routine's code della libreria
 e lo incorpora nel text segment del programma. Queste nuove routine possono dipendere da altre librerire per questo il linker
 continua a cercare tra le altre librerie.
 \paragraph*{File eseguibile} Se tutti i riferimenti sono risolti allora il linker determina
-lo spazio di memoria che occuperà ogni modulo, dato che l'assebler compilando i moduli
+lo spazio di memoria che occuperà ogni modulo, dato che l'assembler compilando i moduli
 singolarmente non può sapere quando spazio occuperanno in totale. Quando il linker
 alloca i moduli in memoria tutti i riferimenti assoluti vanno riallocati per far riferimento
 alla loro reale locazione.
