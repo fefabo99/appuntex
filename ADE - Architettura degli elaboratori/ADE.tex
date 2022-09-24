@@ -5,6 +5,7 @@
 \usepackage{fancyvrb}
 \usepackage{hyperref}
 \usepackage{amsmath}
+\usepackage{csquotes}
 
 \graphicspath{ {./images/} }
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
@@ -1384,9 +1385,9 @@ di fare una macchina: più veloce è questo ciclo, più veloce sarà la macchina
 \begin{enumerate}
     \item Send the program counter (PC) to the memory that contains the code and
     fetch the instruction from that memory.
-    \item Read one or two registers, using fields of the instruction to select the regis-
-    ters to read. For the load word instruction, we need to read only one regis-
-    ter, but most other instructions require that we read two registers.    
+    \item Read one or two registers, using fields of the instruction to select the registers to read.
+     For the load word instruction, we need to read only one register,
+    but most other instructions require that we read two registers.    
 \end{enumerate}
 \subsection*{Fetch} \begin{itemize}
     \item Legge l'istruzione dalla memoria e la salva in un registro dedicato
@@ -1411,7 +1412,7 @@ Esegue i passi necessari per eseguire l'istruzione
     \includegraphics[width=100mm, scale=0.5]{Fetch PC+4.png}
 \end{center}
 Ciclo che ci permette in sostanza di caricare l'indirizzo di memoria iniziale e
-poi incrementare il PC d 4 per passare all'istruzione successiva
+poi incrementare il PC di 4 per passare all'istruzione successiva
 \section*{Decode}
 Il processore MIPS legge i vari campi dell'istruzione e identifica il tipo di istruzione
 da eseguire (OPCODE e FUNC CODE se necessario)
@@ -1425,7 +1426,7 @@ Nello schema è implicito il clock, ci sono 2 metodologie principali
     \item Svantaggi: spreco di tempo, perchè per far sì che tutte le istruzioni vengano eseguite in 
     un clock solo devo avere un clock più lento.
 \end{itemize}
-Inoltre consideriamo come la metodologia utilizzata è la edge-triggered clocking methodology.
+Inoltre consideriamo come metodologia utilizzata la edge-triggered clocking methodology.
 Questo consente di effettuare i cambiamenti di stato su ogni picco del clock, è possibile
 quindi effettuare operazioni di lettura e scrittura sullo stesso registro all'interno dello stesso clock
 cycle.
@@ -1454,7 +1455,7 @@ Qui di seguito un remind del formato delle istruzioni R-type, Load or Store e Br
     \includegraphics[width=100mm, scale=0.5]{Instruction format.png}
 \end{center}
 \subsection*{Funzione Multiplexor e segnali di controllo}
-Qui di seguito è riportato lo schemda del Datapath MIPS con aggiunti i Multiplexor e i
+Qui di seguito è riportato lo schema del Datapath MIPS con aggiunti i Multiplexor e i
 segnali di controllo.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{ALU control signal scheme.png}
@@ -1533,11 +1534,11 @@ To implement this step, we will need to assert the control signals MemRead and
 IRWrite, and set IorD to 0 to select the PC as the source of the address. We also
 increment the PC by 4, which requires setting the ALUSrcA signal to 0 (sending the
 PC to the ALU), the ALUSrcB signal to 01 (sending 4 to the ALU), and ALUOp to 00
-(to make the ALU add). Finally, we will also want to store the incremented instruc-
-tion address back into the PC, which requires setting PC source to 00 and setting
+(to make the ALU add). Finally, we will also want to store the incremented instruction
+ address back into the PC, which requires setting PC source to 00 and setting
 PCWrite. The increment of the PC and the instruction memory access can occur in
-parallel. The new value of the PC is not visible until the next clock cycle. (The incre-
-mented PC will also be stored into ALUOut, but this action is benign.)
+parallel. The new value of the PC is not visible until the next clock cycle. (The incremented
+PC will also be stored into ALUOut, but this action is benign.)
 
 \subsubsection*{2. Decode}
 Anche se non so ancora di che istruzione si tratta (dato che è proprio questo il passo che mi
@@ -1785,7 +1786,7 @@ Durante l'esecuzione delle istruzioni si possono verificare eventi inattesi: ecc
 e/o interruzioni.
 \paragraph*{Eccezione} Evento sincrono generato all'interno del processore e provocato
 da problemi nell'esecuzioni di un'istruzione. Per esempio un overflow, una istruzione
-no nvalida, errori, pagine non presenti in memoria, ecc.
+non valida, errori, pagine non presenti in memoria, ecc.
 \begin{itemize}
     \item Causate da eventi interno al processore
     \item Sincrone rispetto al programma in esecuzione
@@ -1830,7 +1831,7 @@ Due possibili soluzioni:
     \item Indirizzo fisso - Registro dedicato (e.g., Cause) - il controllo della CPU,
     prima di saltare all'handler del SO (a un indirizzo fisso), deve salvare in un registro
     interno un identificatore numerico del tipo di eccezione verificatosi.
-    L'handler accederò al registro interno per determinare la causa dell'eccezione
+    L'handler accederà al registro interno per determinare la causa dell'eccezione
     \item Interruzioni vettorizzate - esistono handler diversi per eccezioni/interruzioni differenti.
     il controllo della CPU sceglie l'handler corretto, saltando all'indirizzo corretto.
     A questo scopo, viene predisposto un vettore di indirizzi, uno per ogni tipo
@@ -1895,7 +1896,7 @@ MIPS rileva e tratta eccezioni PRIMA del completamento dell'esecuzione della ist
 \begin{itemize}
     \item Se è una interruzione, dopo la sua gestione, l'esecuzione del programma deve
     riprendere dall'istruzione corrente (salvata nel registro EPC)
-    \item si si tratta di una eccezione ed è possibile proseguire l'esecuzione deve riprendere
+    \item se si tratta di una eccezione ed è possibile proseguire l'esecuzione deve riprendere
     dall'istruzione successiva (EPC+4).
 \end{itemize}
 
@@ -1939,7 +1940,7 @@ Tutte le unità dell'elaboratore sono connesse al bus
 Sono dispositivi per I/O di informazioni collegati alla CPU tramite il bus di sistema e/o interfacce,
 le interfacce sono standardizzate per la comunicazione e hanno una componente hardware (e.g. il controller
 della periferica) e una componente software (e.g. driver).
-La struttura di un'interfaccia contiene reistri di dati (oppure buffer) e ha associato registri di stato.
+La struttura di un'interfaccia contiene registri di dati (oppure buffer) e ha associato registri di stato.
 
 \subsection*{Periferiche mappate in memoria}
 Una parte della memoria riservata al sistema viene usata per la comunicazione con le periferiche.
@@ -1979,7 +1980,7 @@ di valutare l'efficienza della gestione delle operazioni di I/O.
 \begin{itemize}
     \item Banda passante - rappresenta la quantità dei dati che si può trasferire per unità di tempo;
     rappresenta una misura di flusso
-    \item Latenza - rappresenta il tempo che interoccre tra l'istante in cui una periferica è pronta
+    \item Latenza - rappresenta il tempo che intercorre tra l'istante in cui una periferica è pronta
     per il trasferimento e l'istante in cui il dato viene trasferito, è una misura di tempo
 \end{itemize}
 
@@ -2102,13 +2103,15 @@ tra CPU e memoria centrale, esso è \textbf{la memoria cache}.
 Un programma in un certo istante di tempo, accede soltanto a una porzione relativamente
 piccola del suo spazio di indirizzamento e questa è la base del comportamento dei programmi
 in un calcolatore.
-\paragraph*{Definizione} "Durante l'esecuzione di una data istruzione presente in memoria, 
+\paragraph*{Definizione} 
+\begin{displayquote}Durante l'esecuzione di una data istruzione presente in memoria, 
 con molta probabilità le successive istruzioni saranno ubicate nelle vicinanze
  di quella in corso.
 Nell'arco di esecuzione di un programma si tende a fare riferimenti continui 
-alle stesse istruzioni."
-\\ Fonte Wikipedia 
-\\ Esistono due tipi di località:
+alle stesse istruzioni. 
+{\textit{Wikipedia}} 
+\end{displayquote}
+Esistono due tipi di località:
 \begin{itemize}
     \item Temporale: quando si fa riferimento a un elemento c'è tendenza a fare
     riferimento allo stesso elemento dopo poco tempo
