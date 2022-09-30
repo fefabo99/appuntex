@@ -74,7 +74,7 @@
 \section{Gerarchie di memoria: cache}
 \begin{itemize}
     \item Cache a mappature diretta
-    \item Cahce fully associative
+    \item Cache fully associative
     \item Cache n-way set associative
 \end{itemize}
 
@@ -2238,7 +2238,7 @@ L'indirizzo 1200 (in byte) può essere ricavato come:
     \includegraphics[width=100mm, scale=0.5]{mappatura indirizzo esempio.png}
 \end{center}
 
-\subsection*{Scelta della dimensione del blocco di cahce}
+\subsection*{Scelta della dimensione del blocco di cache}
 La dimensione del blocco di cache è in stretta relazione con la frequenza di miss.
 Minore è il numero di blocchi, maggiore è la probabilità di generare un miss e viceversa.
 Quindi blocchi più grandi generano meno miss.
@@ -2342,7 +2342,7 @@ Tale aggiornamento richiede lo stallo della CPU.
 
 \subsection*{Write-Through} Scrittura simultanea nel blocco della cache e nella
 memoria inferiore.
-\paragraph*{Vantaggi} Talle
+\paragraph*{Vantaggi}
 \begin{itemize}
     \item Soluzione più semplice da implementare
     \item Si mantiene la coerenza delle informazioni nella gerarchia di memorie
@@ -2398,7 +2398,7 @@ Le cache Write back tendono ad utilizzare Write allocate.
 
 \subsection{Riassumendo}
 \begin{itemize}
-    \item Una cache con blocchi di dimensioni maggiori sfruttano maggiormente la località
+    \item Una cache con blocchi di dimensioni maggiori sfrutta maggiormente la località
     spaziale diminuendo la frequenza di miss.
     \item La frequenza di miss torna a crescere se la dimensione dei blocchi diventa troppo
     grande rispetto alla dimensione della cache.
