@@ -92,4 +92,72 @@ Per il corso di ROPR sono necessari alcuni prerequisiti, che verranno ripassati 
 \end{itemize}
 Un ripasso sui principali requisiti può essere trovato su E-Learning
 
+\chapter*{Lezioni}
+\section*{Lezione 1 04/10}
+\paragraph*{Organizzazione}Il corso è erogato in maniera verticale, quindi la prima parte con il professor Stella e la seconda con la professoressa Messina.
+Di conseguenza i due turni sono uguali. Non ci saranno streaming ma ci sono delle videolezioni registrate.
+
+Libro di testo, gran parte delle lezioni \underline{seguono} il libro di testo, quindi tanto vale prenderlo. 
+
+\paragraph*{Che cos'è la ricerca operativa}
+è una disciplina trasversale a molte altre discipline (informatica, economia, ingegneria, \dots).
+
+Utilizza strumenti matematici per risolvere problemi complessi dove è necessario prendere delle decisioni
+\begin{itemize}
+    \item Come instradare il flusso dei dati in una rete
+    \item come gestire un portafoglio di asset finanziari
+    \item come apprendere un modello di ML
+    \item \dots
+\end{itemize}
+
+\paragraph*{Prerequisiti} Sono importanti, alcuni ripassi si trovano su elearning.
+\paragraph*{Modalità d'esame} come sopra. Chi è \emph{fuori corso PUÒ FARE I PARZIALI}.
+
+\subsection*{Stella}
+\paragraph*{Regola del contratto \small{lol}} si può usare il pc, il telefono o dormire (emoji con la faccia piatta) ma non si può parlare, disturbare e lanciare aeroplanini (ha messo hulk)
+
+\paragraph*{Modelli nella ricerca operativa} La RO si occupa di Problemi di Ottimizzazione:
+Data la funzione $f:R^n \to R$, un problema di ottimizzazione è formulabile come segue:
+$$opt f(x) s.a. x\in X, X\subseteq R^n$$ 
+(opt = ottimizzazione, s.a. = soggetto a), 
+dove $opt \in \{min,max\}$, 
+ci sono problemi di minimizzazione (min f(x)) e massimizzazione (max f(x)).
+\\La funzione $f:R^n...$ è detta funzione obiettivo, $X$ è la regione ammissibile e $x\in X$ sono le variabili decisionali.
+
+Quindi un problema di ottimizzazione consinste nel determinare (se esistono) uno o più punti di min max $x^*$(x star è una particolare assegniazione che gode di una certa proprietà),
+{DISEGNO 1 slide 2}
+\paragraph*{Ottimizzazione Vincolata/non Vincolata} Ci possiamo accontentare di avere come spazio \emph{tutto $R^n$}, però possiamo anche definire delle regioni di vincolo:
+\\$X=R^n$ è ottimizzazione NON VINCOLATA, la ricerca viene effettuata in tutto $R^n$.
+\\$X\subset R^n$ è ottimizzazione VINCOLATA, la ricerca è soggetta al muoversi all'interno di una certa regione ($x \in [a, +\infty)$ per esempio)
+Nel caso dell'ottimizzazione vincolata semplicemente si considera la regione dello spazio definita da un determinato intervallo, quindi le soluzione valide di solito cambiano.
+\paragraph*{Ottimizzazione Intera e BInaria}, non esiste solo l'ottimizzazione in cui le variabili assumono valori nello spazio reale, ma alcune hanno delle caratteristiche particolari.
+$X\in Z^n$ richiede che le mie soluzioni \emph{siano valori interi}, quindi ottimizzazione intera.
+$x\in \{0,1\}^n$ è un caso molto "reale", si chiama ottimizzazione binaria (vero falso, spento acceso,...). Entrambe queste ottimizzazioni formano le ottimizzazioni a numeri intere.
+Esiste anche l'ottimizzazione mista, in cui alcune variabili sono intere e altre binarie.
+\paragraph*{Come si specigicano i vincoli} Quando andiamo a specificare come è fatto lo spazio con delle equaz o disequaz allora parliamo di \emph{programmazione matematica}.
+In questo caso i vincoli sono espressi con delle speressioni del tipo {SLIDE 6}, quindi intendiamo che $g_i(x)$ può essere maggiore, minore o uguale a Zero. NB i vincoli dipendono dalle stesse variabili da cui dipende la funzone obiettivo 
+$g_i :X\to R$ è una funzione generica che lega tra loro variabili decisionali. In generale possimao avere più vincoli che definiscono la \emph{regione ammissibile}.
+{SLIDE 7 equazione }Osserviamo quindi che abbiamo m vincoli e n variabili, se x è in X allora è una soluzione ammissibili
+\paragraph*{esempio} consideriamo il seguente porblema: $min (x^2+y^2) s.a x+y\leq 3, x\geq 0, y\geq0$. 
+x e y sono variabili di decisione, $(x^2+y^2)$ è la funzone obiettivo e ci sono tre vincoli. la regione ammissibile è tutto R limitato dai vincoli (combinati).
+\paragraph*{Possibilita PM} Quindi abbiamo le seguenti Possibilita:
+\begin{itemize}
+    \item Problema non ammissibile, $X = \emptyset$ (problema mal posto con regione ammissibile vuota)
+    \item Problema illimitato, ovvero per ogni soluzione che trovo ne posso trovare un'altra che è MIGLIORE di quella che ho trovato, (può essere illim superiormente o infer)
+    \item Problema con soluzione ottima unica
+    \item Problema con più soluzioni ottime (anche infinite), tutte le ottime hanno lo stesso valore della funzione obiettivo.
+\end{itemize}
+\paragraph*{esempio di problema illimitato } max($x^2+y^2$) s.a. $x\geq 0,y\geq 0$ non ha un "soffitto", quindi il problema è illimitato superiormente. Un problema per essere illimitato dipende sia dalla regione ammissibile che dal tipo di ottimo (max,min).
+
+
+\paragraph*{Ottimi Globali e Locali} I punti di ottimo possono essere Locali o Globali (se la funzione è convessa Locale=Globale). NB un minimo globale è anche locale, un minimo locale non necessariamente è globale.
+Ad oggi sappiamo dire se una soluzione sia Globale, sappiamo solo con certezza che sia locale (a meno di usare brute force).
+La risoluzione di un problema di programmazione matematica consiste nel trovare una soluzione ammissibile che sia ottimo GLOBALE.
+Alla fine della fiera la definizione di globale e locale corrisponde a quella di Analisi Matematica.
+I punti di ottimo globali possono essere multipli.
+
+\paragraph*{Programmazione lineare} Con lo stella, la prog lineare è la PM in cui ogni funzione (obiettivo e vincoli) sono funzioni LINEARI (polinomio di grado 1).
+Se una funzione vincolo è di secondo grado ma è riscrivibile (scomponibili) in più vincoli a grado uno allora può essere lineare ($x^2-1 =(x-1) \cdot (x+1)$, quindi $x^2-1 =(x-1) \geq 0 \to $ {SLIDE 30})
+{ESEMPIO del cuba libre slide 31}
+
 \end{document}
