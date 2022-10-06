@@ -242,11 +242,11 @@ Date le formule, espoicitando rispetto a t ed indicando con h l'altezza si ha: $
 Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni sia uniformemente accelerato che a velocità costante.
 Quando studio il movimento 2D o studio il suo movimento in un piano o studio il cambiamento delle coordinate nel tmepo.
 Le stesse formule monodimensionali valgono anche per il moto bidimensionale, però bisogna usare i vettori.
-\\Quindi per semplice estensione del caso 1d, la velocità media sarà: $v^_ = \frac{\Delta r}{\Delta t}$, poichè t è uno scalare, $v_m$ ha la stessa direzione e verso di $\Delta r$.
+\\Quindi per semplice estensione del caso 1d, la velocità media sarà: $v^- = \frac{\Delta r}{\Delta t}$, poichè t è uno scalare, $v_m$ ha la stessa direzione e verso di $\Delta r$.
 \\La velocità istantanea sarà $v = lim_{\Delta \to 0 } \frac{\Delta r}{\Delta t} = \frac{dr}{dt}$ (NB: r è il vettore posizione)
 \\In 2D la velocità è la tangente alla traiettoria, che anche se è a modulo costante cambia in direzione punto per punto.
 \\Anche se la velocità è costante di modulo, quando cambia di direzione si verifica una \emph{accelerazione}.
-$a^_ = \frac{v_f-v_i}{t_f-t_i}= \frac{\Delta v}{\Delta t}$ è l'acelerazione media è ha la stessa direazione del vettore $\Delta v$.
+$a^- = \frac{v_f-v_i}{t_f-t_i}= \frac{\Delta v}{\Delta t}$ è l'acelerazione media è ha la stessa direazione del vettore $\Delta v$.
 \\Quando l'acelerazione varia nel tempo, è utile definire l'acelerazione istantanea $a = ... = \frac{d^2 \overrightarrow{r} }{dt^2}$
 \paragraph*{definizione acelerazione 2D} L'acelerazione di una particella in moto in uno spazio 2D può dunque corrispondere:
 \begin{itemize}
@@ -292,6 +292,63 @@ Una palla è lanciata con velocità iniziale $v_x = 20 m/s$ e $v_y=40m/s$. Quant
 \end{enumerate}
 
 \section*{Lezione 3 06-10-22}
+\paragraph*{Secondo esercizio} Spariamo a un bersglio di distanza 30m. il proiettile colpisce il bersaglio 1.9cm sotto il centro. determinare il itempo di volo del proiettile e la velocità alla bocca del fucile
 
+Equazioni del moto parabolico : $x_f = v_{xi}t = (v_i cos \theta_i) t | y_f = ...$ Slide 29.
+
+\subsection{il moto circolare uniforme} è il moto di un punto materiale lungo una circonferenza, con un modulo della veloctià costante.
+altra definizione: \emph{Dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.}
+\\Siccome c'è una variazione della direzione del vettore velocità $\to$ c'è in gioco una acelerazione. (infatti è definita acelerazione la variazione nel tempo del vettore velocità).
+\begin{itemize}
+    \item Consideriamo una circonferenza di raggio r
+    \item il punto materiale si muove a elocità di moulo costante lungo la traiettoria circolare
+    \item il vettore velocità è tangente alla traiettorie circolare
+    \item la variazione del vettore velocità $\Delta v$ nel limite di $\Delta t$ sempre più piccoli ha una direzione sempre più rivolta al centro della circonferenza.
+\end{itemize}
+\paragraph*{L'acelerazione istantanea} è diretta al centro della circonferenza, e per questo motivo si chiama acelerazione centripeta. il suo modulo è: $a_r = \frac{v^2}{r}$ (il pedice r indice che è diretta lungo il raggio r) con r raggio del cerchio.
+\\Si chiama velocità tangenziale la velocità diretta lungo la circonferenza.
+\\DEFINIZIONE: In un moto circolare uniforme l'accelerazione è diretta verso il centro del cerchio ed ha un modulo pari a $v^2/4$ dove v è il modulo della velocità tangenziale (costante) e r è il raggio del cerchio
+\paragraph*{L'equazione angolare oraria} supponiamo che la traiettoria del punto materiale sia di raggio R, centro 0 e giaccia nel piano xy.
+Dal punto di vista angolare, l'equazione oraria del moto ha una forma del tipo $\theta = \theta(t)$ che esprime il fatto che il punto materiale <<spazza>> nel taempo l'angolo $\theta$.
+\\Esprimiamo la velocità angolare media come di consueto, cioè in questo caso come la variazione dell'angolo $\theta = \theta(t)$ nel tempo.
+$$\omega = \frac{\Delta \theta}{\Delta t} = \frac{\theta_f - \theta_i}{t_f - t_i}$$
+Se consideriamo il limite per intervalli piccoli del tempo tendenti a zero otteniamo la derivata rispoetto al tempo e la definizione di velictà angolare istantanea. SLIDE 34.
+V angolare media e istantanea coincideranno perchè è moto circolare uniforme.
+\\possimao ricavarci le equazioni del moto per l'integrazione dell'equazione differenziale. Queste equazioni sono analoghe a quelle del moto rettilineo
+\paragraph*{Frequenza e periodo} \begin{itemize}
+    \item Il tempo impiegato dal punto a percorre l'intera circonferenza si chiama periodo (T)
+    \item il numero di periodi nell'unità di tempo (al secondo) è detto frequenza
+\end{itemize}
+$\nu = \frac{1}{T}$ la frequenza è indicata con il carattere greco nu $\nu$ (oppure con f)
+\begin{itemize}
+    \item La velocità tangenziale è lo spazio percorso dal punto nell'intervallo di tempo . $v= \frac{2\pi r}{T}$ ($2\pi r$ è la circonferenza)
+\end{itemize}
+la velocità angolare è lo spazio angolare percorso dal punto materiale nel tempo $ \omega_0 = 2 \pi \nu = \frac{2 \pi }{T}$ [rad $\cdot t^{-1}$]
+\\nel moto circ uni $\omega_0$ è anche detta pulsazione 
+\\relazione della velocità tangenziale v con la velocità angolare omega = $v = \omega \cdot r$. quinid la velocità aumenta con il raggio 
+
+\subsection*{Moto circolare generico} è il moto di un punto materiale lungo una circonferenza con un modulo della velocità che cambia nel tempo (per esempio una ruota che acelera e rallenta).
+In questo caso l'accelerazione tangenziale è quella che genera la variazione di velocità (Riassunto SLIDE 39).
+
+\paragraph*{Es 4.8 da resnick sul pendolo}
+accelerazione tangenziale è dato da a sin(phi), a lungo r è a per il coseno di phi. a = ar + at. (SLIDE 41)
+
+\paragraph*{Sistema di coorinate polari} (questa parte non verrà chiesta ma la fa per noi, perchè se ci danno un programma in cui ci chideono le coordinate polari dobbiamo saperle.)
+SLIDE 45 c'è il raggio vettore
+
+\paragraph*{Equazione generica del moto cirolare uniforme in forma parametrica} Supponiamo che la traiettoria del punto materiale sia di raggio R, centro 0 e giaccia nel piano xy e viaggi a velocità angolare $\omega$ costante.
+Dla punto di vista angolare, l'equazione oraria ha una forma del tipo :Le sue equazioni parametriche, intermini dell'angolo $\theta$ (detto anomalia) che il vettore posizione forma con l'asse x sono:
+$$\begin{cases}
+    x(t) = R \cos \theta(t)\\
+    y(t) = R \sin \theta (t)
+\end{cases}
+$$
+cioè, le coordinate x e y sono trovabili con il raggio e l'angolo (theta) nel momento in cui si sta cercando la posizione..
+\\Ricordando che l'equazione oraria è $\theta = \theta_0 + \omega t$ sostituiamo e otteniamo $x(t) = R \cos (\theta_0 + \omega t)$ e $y(t)=...$.
+quindi $r(s) = R\cos\theta(t) i è R\sin\theta(t) j$
+
+\subsection*{Il moto armonico}
+SLIDE 49 (nota che nelle formule $\omega$ salta fuori perchè si deriva una funzione composta $\omega t \to \omega$)
+Il moto armonico si chiama così perchè dopo un certo tempo assume lo stesso valore di partenza
 
 \end{document}
