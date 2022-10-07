@@ -6,8 +6,8 @@
 \begin{document}
 
 \title{Analisi Matematica}
-\author{Fabio Ferrario}
-\date{2022}
+\author{Fabio Ferrario\\\\Elia Ronchetti\\\href{https://t.me/ulerich}{@ulerich}\\}
+\date{2022/2023}
 \maketitle
 
 \tableofcontents
@@ -100,11 +100,15 @@ A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
 \begin{itemize}
 	\item $\Delta > 0 \implies $ 2 soluzioni Reali
 	\item $\Delta < 0 \implies $ Nessuna soluzione Reale (ma 2 complesse)
-	\item $\Delta = 0 \implies $ 1 Soluzione Reale
+	\item $\Delta = 0 \implies $ 1 Soluzione Reale (2 soluzioni coincidenti)
 \end{itemize}
 Ricordiamo poi, che un'equazione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
 quindi quando sta sopra l'asse delle ascisse.
-\paragraph*{}
+\paragraph*{Formula Ridotta}
+Quando il coefficiente di primo gradi è pari è possibile applicare la seguente forumula detta \textbf{ridotta}
+\begin{equation*}
+	x_{1,2} = \frac{-\frac{b}{2}\pm \sqrt{\frac{b}{2}}^2 - ac}{a}
+\end{equation*}
 Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappresentazione" della parabola
 \\\includegraphics[width=\textwidth]{parabole-delta.png}
 
@@ -116,7 +120,7 @@ Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappre
 Quando troviamo una disequazione con valore assoluto, bisogna porre a sistema la disequazione con \emph{l'argomento del modulo posto prima maggiore, poi minore di zero}.
 Così facendo avremo due sistemi di disequazioni, che risolti separatamente ci daranno i due risultati della disequazione
 \subparagraph{in parole più semplici} Noi vogliamo vedere la soluzione della disequazione con l'argomento del modulo sia "così com'è" che con i segni invertiti e poi unire i risultati.
-Quindi il risultato del modulo posto a maggiore o minore di zero non ci interessa! 
+Quindi il risultato del modulo posto maggiore o minore di zero non ci interessa! 
 \nb{(\textbf{non sono sicuro} di questo ragionamento. per ora diamolo per buono )}
 
 \esempio{
@@ -149,6 +153,10 @@ Quindi il risultato del modulo posto a maggiore o minore di zero non ci interess
 	\end{equation*}
 	Quindi il risultato è: $x>9 \vee x<-1$
 }
+Nel caso in cui avessi un valore assoluto dentro un altro parto sempre da quello più
+esterno a definire le condizioni e creare i sistemi.
+\\ Quando ottengo che una soluzione di un sistema non esiste posso
+non considerarla nell'unione finale delle varie soluzioni dei sistemi. 
 
 \section{Richiamo sui Logaritmi}
 \definizione{
@@ -158,9 +166,11 @@ Quindi il risultato del modulo posto a maggiore o minore di zero non ci interess
 		\emph{L'esponente a cui elevare la base per ottenere l'argomento.}
 	\end{center}
 	$$\log_a(b)=c \implies a^c=b$$
-
+	\\ Il logaritmo è l'operazione inversa rispetto all'elevamento a potenza.
 	}
-
+	\begin{center}
+		\includegraphics[width=70mm, scale=0.5]{logaritmi-grafico.png}
+		\end{center}
 \subsection*{Proprietà dei logaritmi}
 Per i logaritmi valgono le seguenti prorpietà:
 \begin{itemize}
@@ -169,6 +179,9 @@ Per i logaritmi valgono le seguenti prorpietà:
  \item Teorema della potenza: $\log_a(b^c) = c \log_a(b)$
 \end{itemize}
 
+\paragraph*{Condizioni di esistenza} Durante la risoluzione di una disequazione dobbiamo ricordarci
+di porre come condizione di esistenza l'argomento del logaritmo maggiore di 0, come si può osservare dal grafico
+il logaritmo non assume mai 0 come valore sull'asse delle x.
 \section{Richiamo di Trigonometria}
 
 \paragraph*{Seno e Coseno}
@@ -197,8 +210,14 @@ Seguono alcune formule trigonometriche note che possono essere utili durante gli
 	\item $\frac{\cos(x)}{\sin(x)} = \frac{1}{\tan(x)} = \cot(x)$
 \end{itemize}
 
+\paragraph*{Proprietà}
+\begin{itemize}
+	\item $\sin(\alpha + \beta) = sin(\alpha) + \sin(\beta)$
+\end{itemize}
 \section{Valore assoluto (modulo) di un numero Reale}
-
+\paragraph*{Definizione Valore assoluto} Il \textbf{valore assoluto}, detto anche \emph{modulo}, è una funzione che
+associa ad un numero negativo il numero stesso con segno positivo, a zero associa zero e lascia invariati i 
+numeri positivi. 
 \definizione{ Per ogni $x \in R$ si pone
 	\begin{equation}
 		|x| = \begin{cases}
@@ -208,6 +227,7 @@ Seguono alcune formule trigonometriche note che possono essere utili durante gli
 	\end{equation}
 	$|x|$ si dice valore assoluto, o modulo, di x
 }
+Il valore assoluto di un numero è quindi \textbf{sempre positivo o eventualmente nullo}. 
 \paragraph{ATTENZIONE} dire che "il modulo di un numero è il numero senza il segno" non ha senso in questo contesto, quindi non va usata perchè vale solo se x è "semplice"
 \paragraph{In parole povere} il modulo di $x$ è $x$ se x è positivo, il suo opposto se è negativo\\
 quindi $|3 - \pi| = \pi - 3$ perchè $3-\pi$ è negativo ($3 - 3.14$) quindi il suo modulo è il suo opposto.
