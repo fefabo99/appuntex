@@ -9,6 +9,10 @@ Qui di seguito viene riportato un link a una cartella GoogleDrive contenente i P
 
 [Link Cartella](https://drive.google.com/drive/u/0/folders/1BuaDtuZ-GcNLsGHGdKBsQfyBsgs0Ookn)
 
+## Alcuni Tool utilizzati per la scrittura degli appunti
+
+Qualcuno dei grafici fatti a mano sono stati fatti con [Web Whiteboard] {webwhiteboard.com}
+
 ## Contatti e modifiche
 
 Per qualsiasi segnalazione scrivere pure su Telegram a @ulerich o fare direttamente una Pull Request.

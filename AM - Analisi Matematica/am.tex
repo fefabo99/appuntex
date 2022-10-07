@@ -6,7 +6,12 @@
 \begin{document}
 
 \title{Analisi Matematica}
-\author{Fabio Ferrario\\\\Elia Ronchetti\\\href{https://t.me/ulerich}{@ulerich}\\}
+\author{
+	Fabio Ferrario\\
+	\small{\href{https://t.me/fefabo}{@fefabo}}
+	\\\\Elia Ronchetti\\
+	\small{\href{https://t.me/ulerich}{@ulerich}}
+}
 \date{2022/2023}
 \maketitle
 
@@ -17,8 +22,9 @@
 Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
 \\Come fonte ho utilizzato:
 \begin{itemize}
-	\item Appunti di altri studenti
-	\item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione)
+	\item Appunti di altri studenti.
+	\item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione).
+	\item Esercitazioni in aula della professoressa Susanna Caimi.
 \end{itemize}
 \section*{Il Corso}
 Come già detto, questi appunti sono in funzione del corso di Analisi Matematica di UNIMIB, a.a. 2021/22, insegnato dalla Professoressa Pini.
@@ -66,14 +72,15 @@ Come già detto, questi appunti sono in funzione del corso di Analisi Matematica
 \end{enumerate}
 
 \subsection*{Prerequisiti}
-\emph{Algebra elementare}: Calcolo letterale, equazioni e disequazioni di primo e secondo grado
-\\\emph{Trigonometria elementare}
-\\\emph{Esponenziali e logaritmi}
+\begin{itemize}
+	\item \emph{Algebra elementare}: Calcolo letterale, equazioni e disequazioni di primo e secondo grado
+	\item \emph{Trigonometria elementare}
+	\item \emph{Esponenziali e logaritmi}
+\end{itemize}
 
-\paragraph*{Nota} i grafici fatti a mano sono stati fatti con \emph{webwhiteboard.com}
+
 \chapter{Analisi 0}
-Questo piccolo capitolo contiene alcuni argomenti che non fanno parte del programma di Analisi Matematica
-ma possono essere utili alla comprensione degli argomenti.
+Questo capitolo contiene alcuni argomenti che non fanno parte del programma di Analisi Matematica ma che possono essere utili alla comprensione degli argomenti.
 
 \section{Disequazioni}
 Nel corso di Analisi Matematica troviamo spesso delle disequazioni da risolvere, è bene quindi sapere come risolverle.
@@ -95,7 +102,11 @@ Facendo il grafico dei segni ottengo:
 }
 \subsection*{Disequazioni di secondo grado}
 Le disequazioni (come le equazioni) di secondo grado si risolvono, una volta ridotte alla forma standard $ax^2+bx+c$, usando la formula risolutiva:
-$$x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+\[ x_{1 2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a} \]
+\paragraph*{Formula Ridotta}
+Quando il \emph{coefficiente di primo grado è pari} è possibile applicare la seguente forumula detta \textbf{ridotta}:
+\[ x_{1,2} = \frac{-\frac{b}{2}\pm \sqrt{\frac{b}{2}}^2 - ac}{a} \]
+
 A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
 \begin{itemize}
 	\item $\Delta > 0 \implies $ 2 soluzioni Reali
@@ -104,11 +115,8 @@ A seconda del valore di $\Delta = b^2-4ac$, la disequazione (equazione) ammette:
 \end{itemize}
 Ricordiamo poi, che un'equazione del tipo $y=ax^2 +bx +c$ è una \emph{parabola}, quindi con una disequazione (ponendo $f(x)>0$) ci si chiede semplicemente per quali valori di $x$ la funzione è maggiore di 0,
 quindi quando sta sopra l'asse delle ascisse.
-\paragraph*{Formula Ridotta}
-Quando il coefficiente di primo gradi è pari è possibile applicare la seguente forumula detta \textbf{ridotta}
-\begin{equation*}
-	x_{1,2} = \frac{-\frac{b}{2}\pm \sqrt{\frac{b}{2}}^2 - ac}{a}
-\end{equation*}
+
+
 Il $\Delta$, e il valore del parametro $a$ della funzione determinano la "rappresentazione" della parabola
 \\\includegraphics[width=\textwidth]{parabole-delta.png}
 
