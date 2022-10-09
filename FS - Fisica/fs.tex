@@ -161,26 +161,26 @@ Ogni esercizio ha l'indicazione del punteggio e le risposte devono essere comple
 \paragraph*{Prova orale}
 Totalmente facoltativa, ha un punteggio di $\pm 5$ ed è necessaria per il raggiungimento della \emph{lode}.
 
-\chapter*{Introduzione alla Fisica}
+\chapter{Introduzione alla Fisica}
 
-\subsection*{Introduzione alla Fisica}
+\subsection{Introduzione alla Fisica}
 La fisica studia i fenomeni naturali e le leggi che li governano.
 Si basa sulla \emph{Semplificazione} dei concetti, tramite \emph{Modelli e Approssimazioni}.
 
-\paragraph*{Antica $\neq$ Moderna} In antichità la fisica era legata alla filosofia e alla religione
+\paragraph{Antica $\neq$ Moderna} In antichità la fisica era legata alla filosofia e alla religione
 e vigeva il principio di autorità, \emph{"ipse dixit"} (Aristotele).
 \\La fisica moderna invece nasce con Galileo, separando ciò che è oggettivo da ciò che è soggettivo.
 Si basa sulle cose \textbf{Misurabili}.
-\paragraph*{Il metodo scientifico} è un sistema che permette a chiunque abbia i mezzi di ripetere un esperimento.
+\paragraph{Il metodo scientifico} è un sistema che permette a chiunque abbia i mezzi di ripetere un esperimento.
 La scienza non è una religione, vale infatti il principio di Falsicabilità:
 \begin{center}
     \emph{Principio di Falsicabilità}: Se un esperimento da risultati contrastanti alle teorie correnti, allora c'è bisogno di una nuova teoria.
     \\Ovvero ogni teoria è valida finchè non ne esiste una migliore.
 \end{center}
-\section*{Le unità di misura}
+\section{Le unità di misura}
 Il Sistema Internazionale definisce varie unità di misure standard: lunghezza, massa, mole, etc\dots
 \\In una formula, le dimensioni devono essere \underline{Bilanciate}.
-\subsection*{Le cifre significative}
+\subsection{Le cifre significative}
 Un concetto molto importante è quello delle cifre significative.
 \\Ogni Misurazione è affetto da \textbf{incertezze}:
 \begin{enumerate}
@@ -190,9 +190,9 @@ Un concetto molto importante è quello delle cifre significative.
     \item \emph{Aleatorietà} della sperimentazione
 \end{enumerate}
 L'incertezza può essere \emph{determinata} oppure \emph{stimata}, in base al caso in esame.
-\paragraph*{Contare gli 0} Quando facciamo una misurazione, il numero di cifre significative è sempre importante, anche quando si tratta di 0,
+\paragraph{Contare gli 0} Quando facciamo una misurazione, il numero di cifre significative è sempre importante, anche quando si tratta di 0,
 infatti vale che $39,0 \neq 39,00$ \emph{Perchè} 3 cifre significative $\neq$ 4 cifre significative.
-\paragraph*{Proprietà delle cifre significative}
+\paragraph{Proprietà delle cifre significative}
 \begin{itemize}
     \item \textbf{Moltiplicando (o dividendo)} quantità affette da incertezza, il numero determinato ha \emph{lo stesso numero di cifre significative della Meno accurata delle quantità}
     \item \textbf{Sommando (o sottraendo)} Vale la stessa proprietà.
@@ -200,10 +200,10 @@ infatti vale che $39,0 \neq 39,00$ \emph{Perchè} 3 cifre significative $\neq$ 4
 
 
 
-\paragraph*{Ordini di grandezza} 
+\paragraph{Ordini di grandezza} 
 è un'approssimazione di un numero e indica la potenza di 10 più vicina al numero dato
 
-\subsection*{Vettori e scalari} Esistono due tipi di grandezze nella fisica:
+\subsection{Vettori e scalari} Esistono due tipi di grandezze nella fisica:
 \begin{itemize}
     \item \textbf{Grandezze Scalari}: determinate da un solo numero (la misura) ed una unità di misura.
     \item \textbf{Grandezze Vettoriali}: determinate da più valori $\to$ \emph{Modulo (grandezza), direzione e verso}
@@ -211,7 +211,7 @@ infatti vale che $39,0 \neq 39,00$ \emph{Perchè} 3 cifre significative $\neq$ 4
         \item Quando diventa necessario conoscere un punto specifico di localizzazione del vettore (l'origine) si usa la dizione Vettore Applicato.
     \end{itemize}
 \end{itemize}
-\paragraph*{I Vettori e le proprietà}
+\paragraph{I Vettori e le proprietà}
 I vettori vengono indicati in grassetto o con freccia sormontata: \textbf{a,AB}, \overrightarrow{AB} o \overrightarrow{v}, con il modulo generalmente scritto in corsivo \emph{v}, oppure AB o $|$\overrightarrow{AB}$|$
 \\subparagraph*{Algebra Vettoriale}
 \begin{itemize}
@@ -221,6 +221,99 @@ I vettori vengono indicati in grassetto o con freccia sormontata: \textbf{a,AB},
 \end{itemize}
 Somma e differenza di vettori:
 
+\chapter{Cinematica di un Punto 1D}
+\paragraph{introduzione}
+Sia dato un sistema di riferimento orientato x.
+Sia dato un punto materiale.
+Avremo queste tre formule (dei \emph{moduli}):
+\begin{itemize}
+    \item \textbf{Spostamento}: $s=\Delta x = x_2-x_1$
+    \item \textbf{Velocità Media}: $v_m = \frac{(x_f-x_i)}{(t_f-ti)} = \frac{\Delta x}{\Delta t}$
+    \item \textbf{Velocità Istantanea}: $v_x = \lim_{t\to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$
+\end{itemize}
+\paragraph{Spostamento $\neq$ Distanza}
+Lo \emph{spostamento} è un vettore che si annulla quando il punto torna alla posizione di partenza (in un tempo diverso),
+mentre la distanza è uno scalare che indica \emph{tutta la distanza che il punto ha già percorso}.
+\paragraph{L'accelerazione} L'acelerazione è la variazione della velocità nel tempo.
+Le formule dell'acelerazione sono:
+\begin{itemize}
+    \item \textbf{Accelerazione Media}: $a_m = \frac{v_f-v_i}{t_f-t_i} = \frac{\Delta v}{\Delta t}$
+    \item \textbf{Accelerazione Istantanea}: $a_x = \lim_{\Delta t \to 0} = \frac{\Delta v}{\Delta t} = \frac{dv_x(t)}{dt}= \frac{d}{dt}\frac{dx}{dt} = \frac{d^2x}{dt^2}$
+\end{itemize}
+\emph{L'accelerazione è la derivata della velocità}.
+\subsection{I tipi di Moto}
+Esistono tre tipi di moto del punto materiale 1D, ed essi variano in base all'accelerazione e alla velocità:
+\paragraph*{Moto Vario} Se l'accelerazione varia continuamente, il moto non è facile da analizzare. Infatti non lo vedremo in questo corso.
+\paragraph*{Moto rettilineo uniforme}\emph{Velocità costante, accelerazione: 0}.
+\\Questo tiop di moto si verifica quando la velocità è costante e ha le seguenti formule per velocità istantanea e spostamento:
+\begin{itemize}
+    \item $x(t)= x_i + v_x \cdot t$
+    \item $v_x = k$, con $k\in R$ quindi COSTANTE.
+\end{itemize}
+\paragraph*{Moto Uniformemente accelerato} \emph{Con accelerazione costante}.
+\\In questo caso l'accelerazione istantanea = accelerazione media in ogni istante, e la velocità cambia \emph{linearmente} durante il moto.
+\begin{itemize}
+    \item $x(t) = x_i + v_x\cdot t +\frac{1}{2} a_x \cdot t^2$
+    \item $v_x(t) = v_{ix} + a_x \cdot t$
+    \item $a_x = k1$ con $k1 \in R$.
+\end{itemize}
+Notare che se $a_x=0$ si ottiene il moto rettilineo uniforme.
+
+\paragraph*{La Caduta di un Grave}
+Un caso particolare del moto rettilineo uniforme è la caduta di un grave, in cui la velocità iniziale è \emph{zero} e
+l'accelerazione è quella di gravità, ovvero $g\approx 9,81m/s^2$ ed è $\pm$ costante in tutto il mondo.
+Essendo il grave in caduta l'accelerazione è negativa, quindi usando le formule del moto uniformemente accelerato e applicando $a=-g=-9,81m/s^2$ otteniamo:
+\begin{center} %box formule da inserire
+    $y(t)=-\frac{1}{2} g\cdot t^2$\\$ v(t) = -g \cdot t$
+\end{center}
+Se esplicitiamo la fromula rispetto a t (per sapere quanto ci mette a cadere un grave) e indichiamo con h l'altezza da cui cade otteniamo:
+$$t_c =\sqrt{\frac{2h}{g}}$$
+Nota che la massa di un oggetto è irrilevante, quindi (nel vuoto) ci mettono tutti lo stesso tempo ad arrivare a terra.
+
+\paragraph*{le equazioni Cinematiche}
+Siccome la \emph{Derivazione è la funzione inversa dell'integrazione e viceversa} e l'accelerazione è la derivata della velocità che è la derivata dello spostamento
+possiamo da una ottenere l'altra e viceversa:
+\begin{itemize} %\to da sostituire con \implies o la doppia implicazione
+    \item $a_x = \frac{dv_x}{dt} \to dv_x = a_xdt \to v_x = \int a_x dt + C$
+    \begin{itemize}
+        \item se $a_x$ è costante allora $v_x = ... = a_x t + C$ (con C velocità iniziale)
+    \end{itemize}
+    \item $v_x = \frac{dx}{dt} \to dx = v_xdt \to x = \int v_xdt + C$
+    \begin{itemize}
+        \item se la velocità non è costante allora $v_x(t) = v_i + a_x \cdot t$ 
+    \end{itemize}
+\end{itemize}
+\section*{La cinematica nel punto materiale 2D}
+Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni.
+Quando studio il movimento 2D posso studiarlo in due modi: o studio il suo movimento in un piano o studio il cambiamento delle sue coordinate nel tempo.
+\subparagraph*{Movimento in un piano} Per studiare il movimento nel piano (quindi senza usare le coordinate) posso considerare ogni 
+punto come un vettore $r$ avente punto di applicazione in 0.
+%immagine lez2slide11
+In questo caso posso considerare lo spostamento da A a B nel tempo $\Delta t = t_f-t_i$ come $\Delta r = r_f-r_i$
+
+\paragraph*{Estensione del caso 1D} Le stesse formule monodimenisonali valgono anche per il moto bidimensionale, bisogna solo usare i vettori.
+\\Per estensione del caso 1D quindi la velocità media sarà:
+\begin{center}
+    $\overline{v} = \frac{\Delta r}{\Delta t}$ poichè t è uno scalare, $\overline{v}$ ha la stessa direzione e verso di $\Delta r$
+\end{center}
+Analogamente la velocità istantanea sarà
+\begin{center}
+    $v = lim_{\Delta \to 0 } \frac{\Delta r}{\Delta t} = \frac{dr}{dt}$
+\end{center}
+Il vettore velocità è quindi la derivata del vettore posizione rispetto al tempo e in un punto avrà direzione della tangente
+alla curva dello spostamento in quel punto.
+\\Quando un punto materiale viaggia su una traiettoria curva in 2D, il vettore velocità \emph{varia di direzione punto per punto anche se il modulo rimane costante} e si verifica quindi una \textbf{accelerazione}.
+\\L'accelerazione media si calcola:
+\[\overline{a}=\frac{v_f-v_i}{t_f-t_i}= \frac{\Delta v}{\Delta t}\]
+Analogamente ai casi simili già visti, $a_m$ avrà la stessa direzione del vettore $\Delta v$
+%inserire accelerazione istantanea lez2slide13
+\paragraph*{riassumento}L'accelerazione di una particella in moto in uno spazio 2d può dunque corrispondere à:
+\begin{enumerate}
+    \item una variazione del modulo di v
+    \item una variazione di direzione a modulo costante di v
+    \item una combinazione delle due
+\end{enumerate}
+Un utile notazione diversa degli stessi concetti la si ha considerando le componenti cartesiane, in cui l'accelerazione è la somma delle acc di tutte le dimensioni cartesiane.
 \chapter{Lezioni}
 \section*{Lezione 2 05-10-22}
 \paragraph*{Recap} Avevamo visto i grafici di velocità e accelerazione, e avevamo visto come ricavare acc dalla velocità.
@@ -231,7 +324,7 @@ Si era visto il moto uniformemente accelerato con la velocità che cambia linear
 \paragraph*{Applicazione della proprietà degli integrali} a velocità e accelerazione, lo spazio percorso dal corpo è calcolato con l'integrale dello spostamento/tempo.
 L'integrale sotto la curva accelerazione/tempo corrisponde alla velocità del moto
 \subsection*{La caduta di un grave} L'acelerazione di gravità è $\pm$ costante ed uguale a $g\approx 9,81m/s^2$. Per un oggetto che cade la forza $g$ va applicata in negativo (va verso il basso).
-Date le formule, espoicitando rispetto a t ed indicando con h l'altezza si ha: $t_c=\sqrt{\frac{2h}{g}}$. NB: La caduta non dipende dalla massa del grave
+Date le formule, esplicitando rispetto a t ed indicando con h l'altezza si ha: $t_c=\sqrt{\frac{2h}{g}}$. NB: La caduta non dipende dalla massa del grave
 
 \paragraph*{le equazioni cinematiche} $a:x = \frac{dv_x}{dt} \to dv_x = a_xdt$ (con d = differenziale).
 \\per trovare $v_x$ bisogna fare l'integrale (antiderivata) $to v_x = \int a_xdt+c$.
@@ -345,7 +438,7 @@ $$\begin{cases}
 $$
 cioè, le coordinate x e y sono trovabili con il raggio e l'angolo (theta) nel momento in cui si sta cercando la posizione..
 \\Ricordando che l'equazione oraria è $\theta = \theta_0 + \omega t$ sostituiamo e otteniamo $x(t) = R \cos (\theta_0 + \omega t)$ e $y(t)=...$.
-quindi $r(s) = R\cos\theta(t) i è R\sin\theta(t) j$
+quindi $r(s) = R\cos\theta(t) i$ è $R\sin\theta(t) j$
 
 \subsection*{Il moto armonico}
 SLIDE 49 (nota che nelle formule $\omega$ salta fuori perchè si deriva una funzione composta $\omega t \to \omega$)
