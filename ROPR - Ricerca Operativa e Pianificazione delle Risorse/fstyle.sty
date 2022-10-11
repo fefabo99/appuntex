@@ -1,0 +1,94 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{fstyle}[2022/05/18 Fabio's Latex style]
+
+%Imports
+
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[makeroom]{cancel}
+\usepackage[framemethod=tikz]{mdframed} 
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{bbding}
+\usepackage{tabularx}
+\usepackage{multicol}
+
+
+%Renewed Commands
+\newcommand{\defaultrule}{\par\noindent\rule{\textwidth}{0.1pt}} %Rule di default
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}} % Liste numerate
+
+%New commands
+\newcommand{\spiegazione}[1]{\begin{box_giallochiaro} \small{ \emph{Spiegazione: }#1}\end{box_giallochiaro}}
+\newcommand{\esempio}[1]{\begin{box_grigiochiaro} \textbf{Esempio: }#1\end{box_grigiochiaro}}
+\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
+\newcommand{\quickDefinizione}[1]{\paragraph{Quick Definizione} #1}
+\newcommand{\R}{\mathbb{R}} % Spazio dei numeri Reali
+\newcommand{\N}{\mathbb{N}} % Spazio dei numeri Naturali
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\function}{f: X \rightarrow Y} % Funzione standard f: X -> Y
+\newcommand{\limite}[2]{\underset{#1 \to #2}{\lim}} % Limite
+\newcommand{\serie}[2]{\sum_{n=#1}^{#2}} % Serie
+\newcommand{\derivata}[2]{$f(x) = #1 \to f'(x) = #2 $}
+\newcommand{\nb}[1]{\underline{\emph{\textbf{N.B.}}} \small{#1}}
+\newcommand{\shortDefinition}[1]
+
+\newcommand{\domanda}[3][-]{\paragraph*{\underline{#2}}\hfill\textcolor{viola}{\underline{\uppercase{#1}}}\\ #3}
+\newcommand{\risposta}[1]{\begin{center} \emph{#1} \end{center}}
+
+\newcommand{\domandaaperta}[2]{\paragraph*{#1} #2}
+\newcommand{\rispostaaperta}[1]{\begin{box_grigiochiaro} \textbf{Risposta: }#1\end{box_grigiochiaro}}
+
+\newcommand{\irrisolta}{\begin{center}\textcolor{red}{\small{$\uparrow$ DOMANDA IRRISOLTA $\uparrow$}}\end{center}}
+\newcommand{\parzialmenterisolta}{\begin{center}\textcolor{orange}{\small{$\uparrow$ DOMANDA PARZIALMENTE RISOLTA $\uparrow$}}\end{center}}
+
+\newcommand{\esercizio}[2]{\paragraph*{#1} #2}
+\newcommand{\procedimento}[1]{\begin{box_giallochiaro} \small{ \emph{procedimento: }#1}\end{box_giallochiaro}}
+
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
+\newcommand{\rispostechiuse}[4]{
+    \begin{center}
+        % \begin{tabularx}{\textwidth}{Y|Y|Y|Y}
+        %     \textbf{(a)} & \textbf{(b)}  & \textbf{(c)}  & \textbf{(d)} \\
+        %      #1 & #2 & #3 &#4
+        % \end{tabularx}
+        \begin{tabularx}{\textwidth}{X|X}
+            \textbf{(a)} #1 &  \textbf{(c)} #3\\
+            \textbf{(b)} #2 &  \textbf{(d)} #4
+        \end{tabularx}
+    \end{center}
+
+}
+
+\newcommand{\rispostagiusta}{\textbf{[=]}}
+
+
+%Colors
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
+\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
+\definecolor{viola}{rgb}{0.41, 0.03, 0.31}
+
+%Mdframed environments
+\newmdenv[
+    backgroundcolor=giallochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_giallochiaro}
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_grigiochiaro}
+\newmdenv[
+    frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
+    frametitleaboveskip=-\ht\strutbox,
+    linewidth=0.5pt,
+    innerbottommargin=14pt,
+]{box_definizione}
+
+
