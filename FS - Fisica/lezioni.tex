@@ -28,36 +28,36 @@ Date le formule, esplicitando rispetto a t ed indicando con h l'altezza si ha: $
 \\Per risolverlo: Se $a_x = costante \to v_x = a_x \int dt + C = a_xt+C$ (C è la costante di integrazione determinata dalle condizioni di contorno, cioè la velocità iniziale)
 \\$v_x = dx/dt \to dx=v_xdt$ con l'integrazione $x = \int v_xdt + C$, anche qui se la velocità è costante l'integrale è banale, altrimenti bisogna risolvere con $v_x(t) = v_i + a_x \cdot t$.
 
-\subsection*{Cinematica del punto materiale in 2D}
-Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni sia uniformemente accelerato che a velocità costante.
-Quando studio il movimento 2D o studio il suo movimento in un piano o studio il cambiamento delle coordinate nel tmepo.
-Le stesse formule monodimensionali valgono anche per il moto bidimensionale, però bisogna usare i vettori.
-\\Quindi per semplice estensione del caso 1d, la velocità media sarà: $v^- = \frac{\Delta r}{\Delta t}$, poichè t è uno scalare, $v_m$ ha la stessa direzione e verso di $\Delta r$.
-\\La velocità istantanea sarà $v = lim_{\Delta \to 0 } \frac{\Delta r}{\Delta t} = \frac{dr}{dt}$ (NB: r è il vettore posizione)
-\\In 2D la velocità è la tangente alla traiettoria, che anche se è a modulo costante cambia in direzione punto per punto.
-\\Anche se la velocità è costante di modulo, quando cambia di direzione si verifica una \emph{accelerazione}.
+    \subsection*{Cinematica del punto materiale in 2D}
+    Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni sia uniformemente accelerato che a velocità costante.
+    Quando studio il movimento 2D o studio il suo movimento in un piano o studio il cambiamento delle coordinate nel tmepo.
+    Le stesse formule monodimensionali valgono anche per il moto bidimensionale, però bisogna usare i vettori.
+    \\Quindi per semplice estensione del caso 1d, la velocità media sarà: $v^- = \frac{\Delta r}{\Delta t}$, poichè t è uno scalare, $v_m$ ha la stessa direzione e verso di $\Delta r$.
+    \\La velocità istantanea sarà $v = lim_{\Delta \to 0 } \frac{\Delta r}{\Delta t} = \frac{dr}{dt}$ (NB: r è il vettore posizione)
+    \\In 2D la velocità è la tangente alla traiettoria, che anche se è a modulo costante cambia in direzione punto per punto.
+    \\Anche se la velocità è costante di modulo, quando cambia di direzione si verifica una \emph{accelerazione}.
 $a^- = \frac{v_f-v_i}{t_f-t_i}= \frac{\Delta v}{\Delta t}$ è l'acelerazione media è ha la stessa direazione del vettore $\Delta v$.
-\\Quando l'acelerazione varia nel tempo, è utile definire l'acelerazione istantanea $a = ... = \frac{d^2 \overrightarrow{r} }{dt^2}$
-\paragraph*{definizione acelerazione 2D} L'acelerazione di una particella in moto in uno spazio 2D può dunque corrispondere:
-\begin{itemize}
-    \item ad una variazione del modulo di \textbf{v}
-    \item alla variazione di direzione a modulo di \textbf{v} costante
-    \item Entrambe le cose combinate
-\end{itemize}
-\paragraph*{Moto uniformemente acelerato in 2D} %bisogna capire cos'è il raggio vettore %Segnarsi le formule da imparare a memoria
-Per passare da 1D a 2D è semplice: si scompone il moto 2d in 2 moti 1d sugli assi x e y
-(RIASSUNTO A SLIDE 16)
+    \\Quando l'acelerazione varia nel tempo, è utile definire l'acelerazione istantanea $a = ... = \frac{d^2 \overrightarrow{r} }{dt^2}$
+    \paragraph*{definizione acelerazione 2D} L'acelerazione di una particella in moto in uno spazio 2D può dunque corrispondere:
+    \begin{itemize}
+        \item ad una variazione del modulo di \textbf{v}
+        \item alla variazione di direzione a modulo di \textbf{v} costante
+        \item Entrambe le cose combinate
+    \end{itemize}
+    \paragraph*{Moto uniformemente acelerato in 2D} %bisogna capire cos'è il raggio vettore %Segnarsi le formule da imparare a memoria
+    Per passare da 1D a 2D è semplice: si scompone il moto 2d in 2 moti 1d sugli assi x e y
+    (RIASSUNTO A SLIDE 16)
 
-\paragraph*{Esempio} L'equazione vettoriale del moto di una particella è $r = (2\alpha t^2)i +\beta(2t + t_0)j + 4\delta k$, con a.b.d e t0 costanti. Trovare le componenti cartesiane della velocità e del suo modulo.
+    \paragraph*{Esempio} L'equazione vettoriale del moto di una particella è $r = (2\alpha t^2)i +\beta(2t + t_0)j + 4\delta k$, con a.b.d e t0 costanti. Trovare le componenti cartesiane della velocità e del suo modulo.
 Quindi: abbiamo il raggio vettore del moto di una particella, trovare le componenti cartesiane.
 per trovare la velocità bisogna trovare la derivata delle tre copmonenti (ijk) quindi:
 $$ \begin{cases}
-    x^1 = 4\alpha t \\ y^1 = 2\beta \\ z^1 = 0 
-\end{cases}
-\to 
-\begin{cases}
-   v= 4(\alpha t )
-\end{cases}
+        x^1 = 4\alpha t \\ y^1 = 2\beta \\ z^1 = 0
+    \end{cases}
+    \to
+    \begin{cases}
+        v= 4(\alpha t )
+    \end{cases}
 $$ finire con slide 17
 
 \subsection*{Il moto di un proiettile}
@@ -69,7 +69,7 @@ Il moto di un proiettile è "facile" determinarlo sotto due condizioni:
 Sotto queste condizioni il moto ha un'accelerazione costante ed è di tipo parabolico come già visto nel caso unidimensionale.
 \\Se si lancia un proiettile con vettore velocità iniziale $v_i$ che forma un angolo $\theta_i$ con l'asse delle x:
 \\si ha che $a_x = 0$, $a_y = -g$, e $v_{xi} = v_i \cos \theta_i$, $v_{yi} = sin \theta_i$. $x_i$ e $y_i$ sono uguale a 0 (origine).
-\\IMMAGINE slide 19 
+\\IMMAGINE slide 19
 \\RIASSUMENDO : l'unica forza che agisce sul proiettile è quella di gravità, ed agisce come acelerazione nella direzione verticale.
 Il moto di un proiettile può essere considerato come l asovrapposizione di due moti indipendenti: una a velictà costante lungo x e uno a caduta libera lungo la direzione verticale.
 
@@ -78,7 +78,7 @@ Una palla è lanciata con velocità iniziale $v_x = 20 m/s$ e $v_y=40m/s$. Quant
 \begin{enumerate}
     \item I moti sono indipendenti, quindi mi occupo delle due componenti x,y separatamente
     \item su $v_x$ la velocità rimane costante ma non su $v_y$
-    \item SLIDE 26 
+    \item SLIDE 26
 \end{enumerate}
 
 \section*{Lezione 3 06-10-22}
@@ -114,8 +114,8 @@ $\nu = \frac{1}{T}$ la frequenza è indicata con il carattere greco nu $\nu$ (op
     \item La velocità tangenziale è lo spazio percorso dal punto nell'intervallo di tempo . $v= \frac{2\pi r}{T}$ ($2\pi r$ è la circonferenza)
 \end{itemize}
 la velocità angolare è lo spazio angolare percorso dal punto materiale nel tempo $ \omega_0 = 2 \pi \nu = \frac{2 \pi }{T}$ [rad $\cdot t^{-1}$]
-\\nel moto circ uni $\omega_0$ è anche detta pulsazione 
-\\relazione della velocità tangenziale v con la velocità angolare omega = $v = \omega \cdot r$. quinid la velocità aumenta con il raggio 
+\\nel moto circ uni $\omega_0$ è anche detta pulsazione
+\\relazione della velocità tangenziale v con la velocità angolare omega = $v = \omega \cdot r$. quinid la velocità aumenta con il raggio
 
 \subsection*{Moto circolare generico} è il moto di un punto materiale lungo una circonferenza con un modulo della velocità che cambia nel tempo (per esempio una ruota che acelera e rallenta).
 In questo caso l'accelerazione tangenziale è quella che genera la variazione di velocità (Riassunto SLIDE 39).
@@ -129,9 +129,9 @@ SLIDE 45 c'è il raggio vettore
 \paragraph*{Equazione generica del moto cirolare uniforme in forma parametrica} Supponiamo che la traiettoria del punto materiale sia di raggio R, centro 0 e giaccia nel piano xy e viaggi a velocità angolare $\omega$ costante.
 Dla punto di vista angolare, l'equazione oraria ha una forma del tipo :Le sue equazioni parametriche, intermini dell'angolo $\theta$ (detto anomalia) che il vettore posizione forma con l'asse x sono:
 $$\begin{cases}
-    x(t) = R \cos \theta(t)\\
-    y(t) = R \sin \theta (t)
-\end{cases}
+        x(t) = R \cos \theta(t) \\
+        y(t) = R \sin \theta (t)
+    \end{cases}
 $$
 cioè, le coordinate x e y sono trovabili con il raggio e l'angolo (theta) nel momento in cui si sta cercando la posizione..
 \\Ricordando che l'equazione oraria è $\theta = \theta_0 + \omega t$ sostituiamo e otteniamo $x(t) = R \cos (\theta_0 + \omega t)$ e $y(t)=...$.
@@ -143,7 +143,7 @@ Il moto armonico si chiama così perchè dopo un certo tempo assume lo stesso va
 
 \section*{Lezione 4 10-10-22}
 \paragraph*{Recap moto armonico} %si comincia con un video di flippin physics che fa ridere
-Il moto armoinico è un moto che dopo un certo tempo ritorna al punto di partenza. 
+Il moto armoinico è un moto che dopo un certo tempo ritorna al punto di partenza.
 La proiezione del moto circolare uniforme (sia su asse x che su y) sono dei moti 1D che si ritrovano in tanti fenomeni fisici.
 Ricordo le equazioni parametriche dell'MCU $x(t) = A \cos(\theta_0 + \omega t)$ e y con il seno, con $\omega$ velocità angolare.
 La velocità è la derivata dello spazio rispetto al tempo, e l'accelerazione è la derivata della velocità rispetto al tempo, da qui si ottengono le formule (SLIDE 3).
@@ -152,9 +152,146 @@ Quindi agli estremi accelerazione masssima e velocità 0, al centro velocità ma
 Se si fa una proiezione di un punto su un solo asse si ottiene un grafico sinusoidale.
 \subparagraph{velocità}$v_x(t)?-A \omega \sin (\theta_0+\omega t)$ anche il grafico della velocità è periodico (periodo 2pi).
 I valori della velocità sono sfasati rispoetto al grafico della posizione.
-anche l'accelerazione è periodica e sfasata rispetto alla velocità. 
+anche l'accelerazione è periodica e sfasata rispetto alla velocità.
 %FINE RIASSUNTO
 \subsection*{Dinamica. Sistemi di riferimento}%Nuovo argomento, non più cinematica
 Abbiamo visto l'importanza della scelta del sistema di riferimento, le equazioni del moto variano al variare dei sistemi scelti.
-\emph{Come si passa da un sistema di riferimento a un altro?} 
+\emph{Come si passa da un sistema di riferimento a un altro?}
+
+
+\chapter{Lezione 5 12-10-22}
+Oggi vedremo le tre leggi della dinamica, e in particolare le forze. ci saranno anche degli esperimenti.
+\section{Le Forze}
+\paragraph*{Introduzione}
+Per determinare le cause di un moto dovremmo considerare si ala massa del corpo, che le forze che agiuscono su questa massa.
+
+In alcuni casi le forze determinano degli spostamenti, un moto ma in altri casi no (stiamo seduti senza cadere al suolo).
+
+Newton disse che le forze determinano i cambiamenti di velocità delle masse, cioè delle
+accelerazioni.
+
+\definizione{
+    Un oggetto che stia fermo, o sia in moto rettilineo uniforme, accelera se e solo se
+    la forza totale, come somma vettoriale delle forze, detta anche la risultante delle
+    forze, è diversa da zero
+}
+
+Le forze possono agire:
+\begin{itemize}
+    \item A contatto, come l'urto di un oggetto con un altro
+    \item A distanza (forze di campo), come la gravitazione
+\end{itemize}
+
+%LE forze fondamentali non saranno all'esame
+\paragraph*{Alcune condizioni di studio della dinamica}
+\begin{itemize}
+    \item Le forze sono grandezze vettoriali, caratterizzate da intensità (modulo), direzione, verso,
+          e un punto di applicazione
+    \item Le forze possono deformare i corpi su cui agiscono. Nella nostra descrizione, a meno
+          non sia espressamente detto, le forze NON modificano i corpi che sono rigidi ed
+          indeformabili. Faranno eccezione le molle, e gli urti anelastici.
+    \item non verranno considerati gli attriti (a meno di esplicitamente specificato).
+    \item tutte le molle sono perfettamente elastiche.
+    \item
+\end{itemize}
+
+\paragraph*{Paragrafo su newton} Perchè una persona con un CV simile naque in inghilterra? perchè dominava i mari (bisognava essere cartografi, horologi).
+Disclaimer: la fisica newtoniana è $\pm$ giusta, vale solo per velocità minori di quella della luce e per dimensioni maggiori di quella di un atomo.
+
+\subsection*{Prima legge di newton - il principio di inerzia}
+Si consideri un oggetto fermo su un piano. Lo si spinge orizzontalmente, si muoverà solo quando la forza applicata supererà la forza di attrito del tavolo.
+\\Per mantenere il corpo a velocità costante, bisognerà applicare una forza che eguagli la forza di attrito con il piano, quindi la forza di attrito va nella direzione opposta alla nostra.
+\\Se applichi una forza maggiore, l'oggetto accellererà
+
+\definizione{
+    Quando un punto materiale non è soggetto a forze esterne, oppure la loro risultante è
+    nulla, allora il punto materiale ha una velocità costante (o nulla).
+}
+oppure: Un corpo permane nel suo stato di quiete o di moto rettilineo uniforme a meno che
+non intervenga una forza esterna a modificare tale stato.
+\\Ogni \textbf{sistema isolato} è in quiete o si muove di moto rettilineo uniforme.
+
+\subsection*{Sistemi inerziali}
+\definizione{Si definisce inerzia la resistenza naturale di un oggetto alle modificazioni della sua velocità}
+Un sistema di riferimento si dice inerziale \emph{se esso non accelera}, in esso vale il primo principio della dinamica.
+\\Se in un sistema inerziale un osservatore nota che l'accelerazione di un oggetto è
+nulla, o, in modo equivalente, che la risultante delle forze è nulla, allora esse
+saranno nulle in qualunque altro sistema inerziale. Le leggi della meccanica classica sono invarianti solo per osservatori inerziali.
+\subparagraph*{La terra non è un sistema inerziale} a causa della rotazione e rivoluzione.
+Ma le accelerazioni in gioco sono molto piccole rispetto a quelle dovute alla gravità
+(dell’ordine di qualche punto percentuale). Per cui la Terra è \emph{in ottima approssimazione un
+    sistema inerziale}.
+\section*{La massa}
+\definizione{
+    La massa di un oggetto specifica quanta inerzia ha l'oggetto all'azione di una forza.
+    Più grande è la massa, meno l'oggetto accelera come conseguenza della forza applicata.
+    L'unità di misura in SI è il \emph{kg}
+}
+Due oggetti, di massa $m_1$ e $m_2$, soggetti alla stessa forza essa determina delle
+accelerazioni a1 ed a2. si ottiene sperimentalmente che $m1a1=m2a2$.
+
+La massa è una caratteristica dell'oggetto e non dipende dall'ambiente circostante.
+È diversa dal peso che invece dipenderà dal luogo dove l'oggetto è misurato.
+
+\subsection*{La seconda legge di Newton}
+Cosa succede se la risultante delle forze applicate ad un corpo è diversa da zero?
+
+\definizione{
+    L’ accelerazione di un oggetto è direttamente proporzionale alla risultante delle forze agenti
+    ed è inversamente proporzionale alla massa.
+}
+Si possono quinid correlare la massa e le forze agenti in base alla II legge di newton, che si esprime matematicamente come:
+\[\sum \overrightarrow{F} = m\overrightarrow{a}\]
+La forza è un vettore e quinid l'espressione precedente è valida \emph{per tutte e tre le componenti cartesiane della forza}
+\\Consideriamo il modulo della formula scritta in modo compatto: $F=ma$, l'unità di misura è il Newton.
+\definizione{
+    1 Newton è quella forza che impressa ad una massa di 1 kg, determina una sua accelerazione
+    di 1 m/s2
+    \[1 [N] = 1[kg \cdot m/s^2]\]
+}
+Nota che con la stessa forza, all'incrementare della massa l'accelerazione decrementa.
+
+\paragraph*{Esercizio Halliday} Notare che si usando Sin e Cos per la proiezione del vettore (ripassati la trigonometria coglione)
+
+\subsection*{La forza gravitazionale e il peso}
+La Terra attrae tutti gli oggetti. La forza esercitata dalla Terra verso un oggetto è detta forza di
+gravità Fg
+La forza di gravità è diretta verso il centro della Terra e la sua ampiezza è chiamata peso di un
+oggetto.
+\\Per la seconda legge di Newton: Un corpo di massa m, che è soggetto solo alla forza di gravità, si muove di moto uniformemente
+accelerato, con accelerazione costante, indicata con g, verso il centro della Terra.
+Tale accelerazione si chiama Accelerazione di gravità il cui modulo è pari a -9.81 $m/s^2$
+\\Il peso di un oggetto, che è pari all’ampiezza (modulo) della forza di gravità: Fg = mg.
+
+Il peso dipende da g, e quindi dal luogo geografico. Il peso non è quindi una proprietà intrinseca
+dell’oggetto come la massa.
+\subsection*{Sistemi di riferimento non inerziali}
+\subsection{La terza legge di newton}
+\definizione{
+    Se due corpi interagiscono tra di loro, la forza F12 esercitata dal corpo 1 sul corpo 2 è eguale in
+    ampiezza, ed ha la stessa direzione e verso opposto della forza F21 esercitata dal corpo 2 sul corpo 1.
+    \[\overrightarrow{F_{12}} = -\overrightarrow{F_{21}}\]   
+}
+La terza legge di Newton può essere anche riformulata nel modo seguente.
+Ad ogni azione corrisponde una reazione eguale in modulo ed avente la stessa direzione ma
+verso opposto dell’azione.
+N.B: L’azione e la reazione agiscono su oggetti diversi!
+
+\paragraph*{La forza normale}
+Si consideri il caso di un oggetto su un tavolo. Si è definita forza di gravità la forza esercitata dalla Terra su
+ogni oggetto. Perché non accelera nella direzione di Fg ? A causa della presenza del tavolo!
+Esso esercita una forza nella stessa direzione di Fg e quindi sarà una forza normale (e verso opposto). Si
+tratta di una forza di contatto, che può assume il modulo massimo pari al punto di rottura del tavolo. La
+forza normale diventa zero quando l'oggetto è tolto dal tavolo.
+La forza normale NON è la forza di reazione della terza legge di Newton, anche se lo sembra,
+perchè è esercitata sullo stesso corpo, mentre si era indicato che la reazione è su un corpo
+diverso!
+
+\subsection*{La tensione}
+
+\subsection{il piano inclinato}
+
+
+%NOTA ricordati di fare la trigonometria, quando ti viene dato un angolo e devi scomporre i due assi cartesiani, si fa Vettore x coseno(angolo) per il segmento adiacente all'angolo
+% e vettore x sin(angolo) per il segmento che è opposto all'angolo.
 \end{document}
