@@ -1,0 +1,160 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[inline]{enumitem}
+\usepackage{style}
+
+
+\begin{document}
+
+\title{Fisica}
+\author{Fabio Ferrario}
+\date{2022/2023}
+\maketitle
+
+
+\chapter{Lezioni}
+\section*{Lezione 2 05-10-22}
+\paragraph*{Recap} Avevamo visto i grafici di velocità e accelerazione, e avevamo visto come ricavare acc dalla velocità.
+Si era visto il moto uniformemente accelerato con la velocità che cambia linearmente nel tempo.
+
+\paragraph*{Moto vario 1D} Se la velocità varia linearmente, allora l'accelerazione è \emph{costante}.
+\paragraph*{Area sotto una curva} Significato fisico dell'area sotto una curva è l'integrale della curva f(x), l'area è definita positiva se è sopra l'asse delle x e negativa se è sotto l'asse delle x.
+\paragraph*{Applicazione della proprietà degli integrali} a velocità e accelerazione, lo spazio percorso dal corpo è calcolato con l'integrale dello spostamento/tempo.
+L'integrale sotto la curva accelerazione/tempo corrisponde alla velocità del moto
+\subsection*{La caduta di un grave} L'acelerazione di gravità è $\pm$ costante ed uguale a $g\approx 9,81m/s^2$. Per un oggetto che cade la forza $g$ va applicata in negativo (va verso il basso).
+Date le formule, esplicitando rispetto a t ed indicando con h l'altezza si ha: $t_c=\sqrt{\frac{2h}{g}}$. NB: La caduta non dipende dalla massa del grave
+
+\paragraph*{le equazioni cinematiche} $a:x = \frac{dv_x}{dt} \to dv_x = a_xdt$ (con d = differenziale).
+\\per trovare $v_x$ bisogna fare l'integrale (antiderivata) $to v_x = \int a_xdt+c$.
+\\Per risolverlo: Se $a_x = costante \to v_x = a_x \int dt + C = a_xt+C$ (C è la costante di integrazione determinata dalle condizioni di contorno, cioè la velocità iniziale)
+\\$v_x = dx/dt \to dx=v_xdt$ con l'integrazione $x = \int v_xdt + C$, anche qui se la velocità è costante l'integrale è banale, altrimenti bisogna risolvere con $v_x(t) = v_i + a_x \cdot t$.
+
+\subsection*{Cinematica del punto materiale in 2D}
+Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni sia uniformemente accelerato che a velocità costante.
+Quando studio il movimento 2D o studio il suo movimento in un piano o studio il cambiamento delle coordinate nel tmepo.
+Le stesse formule monodimensionali valgono anche per il moto bidimensionale, però bisogna usare i vettori.
+\\Quindi per semplice estensione del caso 1d, la velocità media sarà: $v^- = \frac{\Delta r}{\Delta t}$, poichè t è uno scalare, $v_m$ ha la stessa direzione e verso di $\Delta r$.
+\\La velocità istantanea sarà $v = lim_{\Delta \to 0 } \frac{\Delta r}{\Delta t} = \frac{dr}{dt}$ (NB: r è il vettore posizione)
+\\In 2D la velocità è la tangente alla traiettoria, che anche se è a modulo costante cambia in direzione punto per punto.
+\\Anche se la velocità è costante di modulo, quando cambia di direzione si verifica una \emph{accelerazione}.
+$a^- = \frac{v_f-v_i}{t_f-t_i}= \frac{\Delta v}{\Delta t}$ è l'acelerazione media è ha la stessa direazione del vettore $\Delta v$.
+\\Quando l'acelerazione varia nel tempo, è utile definire l'acelerazione istantanea $a = ... = \frac{d^2 \overrightarrow{r} }{dt^2}$
+\paragraph*{definizione acelerazione 2D} L'acelerazione di una particella in moto in uno spazio 2D può dunque corrispondere:
+\begin{itemize}
+    \item ad una variazione del modulo di \textbf{v}
+    \item alla variazione di direzione a modulo di \textbf{v} costante
+    \item Entrambe le cose combinate
+\end{itemize}
+\paragraph*{Moto uniformemente acelerato in 2D} %bisogna capire cos'è il raggio vettore %Segnarsi le formule da imparare a memoria
+Per passare da 1D a 2D è semplice: si scompone il moto 2d in 2 moti 1d sugli assi x e y
+(RIASSUNTO A SLIDE 16)
+
+\paragraph*{Esempio} L'equazione vettoriale del moto di una particella è $r = (2\alpha t^2)i +\beta(2t + t_0)j + 4\delta k$, con a.b.d e t0 costanti. Trovare le componenti cartesiane della velocità e del suo modulo.
+Quindi: abbiamo il raggio vettore del moto di una particella, trovare le componenti cartesiane.
+per trovare la velocità bisogna trovare la derivata delle tre copmonenti (ijk) quindi:
+$$ \begin{cases}
+    x^1 = 4\alpha t \\ y^1 = 2\beta \\ z^1 = 0 
+\end{cases}
+\to 
+\begin{cases}
+   v= 4(\alpha t )
+\end{cases}
+$$ finire con slide 17
+
+\subsection*{Il moto di un proiettile}
+Il moto di un proiettile è "facile" determinarlo sotto due condizioni:
+\begin{itemize}
+    \item L'acelerazione di gravita è costante lungo tutto il percorso del proiettile
+    \item La resistenza dell'aria è considerata trascurabile
+\end{itemize}
+Sotto queste condizioni il moto ha un'accelerazione costante ed è di tipo parabolico come già visto nel caso unidimensionale.
+\\Se si lancia un proiettile con vettore velocità iniziale $v_i$ che forma un angolo $\theta_i$ con l'asse delle x:
+\\si ha che $a_x = 0$, $a_y = -g$, e $v_{xi} = v_i \cos \theta_i$, $v_{yi} = sin \theta_i$. $x_i$ e $y_i$ sono uguale a 0 (origine).
+\\IMMAGINE slide 19 
+\\RIASSUMENDO : l'unica forza che agisce sul proiettile è quella di gravità, ed agisce come acelerazione nella direzione verticale.
+Il moto di un proiettile può essere considerato come l asovrapposizione di due moti indipendenti: una a velictà costante lungo x e uno a caduta libera lungo la direzione verticale.
+
+\paragraph*{eserizio da reisnick}
+Una palla è lanciata con velocità iniziale $v_x = 20 m/s$ e $v_y=40m/s$. Quanto tempo rimarrà in aria e quale sarà la distanza percorsa?
+\begin{enumerate}
+    \item I moti sono indipendenti, quindi mi occupo delle due componenti x,y separatamente
+    \item su $v_x$ la velocità rimane costante ma non su $v_y$
+    \item SLIDE 26 
+\end{enumerate}
+
+\section*{Lezione 3 06-10-22}
+\paragraph*{Secondo esercizio} Spariamo a un bersglio di distanza 30m. il proiettile colpisce il bersaglio 1.9cm sotto il centro. determinare il itempo di volo del proiettile e la velocità alla bocca del fucile
+
+Equazioni del moto parabolico : $x_f = v_{xi}t = (v_i cos \theta_i) t | y_f = ...$ Slide 29.
+
+\subsection{il moto circolare uniforme} è il moto di un punto materiale lungo una circonferenza, con un modulo della veloctià costante.
+altra definizione: \emph{Dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.}
+\\Siccome c'è una variazione della direzione del vettore velocità $\to$ c'è in gioco una acelerazione. (infatti è definita acelerazione la variazione nel tempo del vettore velocità).
+\begin{itemize}
+    \item Consideriamo una circonferenza di raggio r
+    \item il punto materiale si muove a elocità di moulo costante lungo la traiettoria circolare
+    \item il vettore velocità è tangente alla traiettorie circolare
+    \item la variazione del vettore velocità $\Delta v$ nel limite di $\Delta t$ sempre più piccoli ha una direzione sempre più rivolta al centro della circonferenza.
+\end{itemize}
+\paragraph*{L'acelerazione istantanea} è diretta al centro della circonferenza, e per questo motivo si chiama acelerazione centripeta. il suo modulo è: $a_r = \frac{v^2}{r}$ (il pedice r indice che è diretta lungo il raggio r) con r raggio del cerchio.
+\\Si chiama velocità tangenziale la velocità diretta lungo la circonferenza.
+\\DEFINIZIONE: In un moto circolare uniforme l'accelerazione è diretta verso il centro del cerchio ed ha un modulo pari a $v^2/4$ dove v è il modulo della velocità tangenziale (costante) e r è il raggio del cerchio
+\paragraph*{L'equazione angolare oraria} supponiamo che la traiettoria del punto materiale sia di raggio R, centro 0 e giaccia nel piano xy.
+Dal punto di vista angolare, l'equazione oraria del moto ha una forma del tipo $\theta = \theta(t)$ che esprime il fatto che il punto materiale <<spazza>> nel taempo l'angolo $\theta$.
+\\Esprimiamo la velocità angolare media come di consueto, cioè in questo caso come la variazione dell'angolo $\theta = \theta(t)$ nel tempo.
+$$\omega = \frac{\Delta \theta}{\Delta t} = \frac{\theta_f - \theta_i}{t_f - t_i}$$
+Se consideriamo il limite per intervalli piccoli del tempo tendenti a zero otteniamo la derivata rispoetto al tempo e la definizione di velictà angolare istantanea. SLIDE 34.
+V angolare media e istantanea coincideranno perchè è moto circolare uniforme.
+\\possimao ricavarci le equazioni del moto per l'integrazione dell'equazione differenziale. Queste equazioni sono analoghe a quelle del moto rettilineo
+\paragraph*{Frequenza e periodo} \begin{itemize}
+    \item Il tempo impiegato dal punto a percorre l'intera circonferenza si chiama periodo (T)
+    \item il numero di periodi nell'unità di tempo (al secondo) è detto frequenza
+\end{itemize}
+$\nu = \frac{1}{T}$ la frequenza è indicata con il carattere greco nu $\nu$ (oppure con f)
+\begin{itemize}
+    \item La velocità tangenziale è lo spazio percorso dal punto nell'intervallo di tempo . $v= \frac{2\pi r}{T}$ ($2\pi r$ è la circonferenza)
+\end{itemize}
+la velocità angolare è lo spazio angolare percorso dal punto materiale nel tempo $ \omega_0 = 2 \pi \nu = \frac{2 \pi }{T}$ [rad $\cdot t^{-1}$]
+\\nel moto circ uni $\omega_0$ è anche detta pulsazione 
+\\relazione della velocità tangenziale v con la velocità angolare omega = $v = \omega \cdot r$. quinid la velocità aumenta con il raggio 
+
+\subsection*{Moto circolare generico} è il moto di un punto materiale lungo una circonferenza con un modulo della velocità che cambia nel tempo (per esempio una ruota che acelera e rallenta).
+In questo caso l'accelerazione tangenziale è quella che genera la variazione di velocità (Riassunto SLIDE 39).
+
+\paragraph*{Es 4.8 da resnick sul pendolo}
+accelerazione tangenziale è dato da a sin(phi), a lungo r è a per il coseno di phi. a = ar + at. (SLIDE 41)
+
+\paragraph*{Sistema di coorinate polari} (questa parte non verrà chiesta ma la fa per noi, perchè se ci danno un programma in cui ci chideono le coordinate polari dobbiamo saperle.)
+SLIDE 45 c'è il raggio vettore
+
+\paragraph*{Equazione generica del moto cirolare uniforme in forma parametrica} Supponiamo che la traiettoria del punto materiale sia di raggio R, centro 0 e giaccia nel piano xy e viaggi a velocità angolare $\omega$ costante.
+Dla punto di vista angolare, l'equazione oraria ha una forma del tipo :Le sue equazioni parametriche, intermini dell'angolo $\theta$ (detto anomalia) che il vettore posizione forma con l'asse x sono:
+$$\begin{cases}
+    x(t) = R \cos \theta(t)\\
+    y(t) = R \sin \theta (t)
+\end{cases}
+$$
+cioè, le coordinate x e y sono trovabili con il raggio e l'angolo (theta) nel momento in cui si sta cercando la posizione..
+\\Ricordando che l'equazione oraria è $\theta = \theta_0 + \omega t$ sostituiamo e otteniamo $x(t) = R \cos (\theta_0 + \omega t)$ e $y(t)=...$.
+quindi $r(s) = R\cos\theta(t) i$ è $R\sin\theta(t) j$
+
+\subsection*{Il moto armonico}
+SLIDE 49 (nota che nelle formule $\omega$ salta fuori perchè si deriva una funzione composta $\omega t \to \omega$)
+Il moto armonico si chiama così perchè dopo un certo tempo assume lo stesso valore di partenza
+
+\section*{Lezione 4 10-10-22}
+\paragraph*{Recap moto armonico} %si comincia con un video di flippin physics che fa ridere
+Il moto armoinico è un moto che dopo un certo tempo ritorna al punto di partenza. 
+La proiezione del moto circolare uniforme (sia su asse x che su y) sono dei moti 1D che si ritrovano in tanti fenomeni fisici.
+Ricordo le equazioni parametriche dell'MCU $x(t) = A \cos(\theta_0 + \omega t)$ e y con il seno, con $\omega$ velocità angolare.
+La velocità è la derivata dello spazio rispetto al tempo, e l'accelerazione è la derivata della velocità rispetto al tempo, da qui si ottengono le formule (SLIDE 3).
+\\Si noti che la velocità massima (solo sull'asse y) di un moto armonico la si ha verso il centro, mentre l'accelerazione è massima agli estremi.
+Quindi agli estremi accelerazione masssima e velocità 0, al centro velocità massima e accelerazione 0.
+Se si fa una proiezione di un punto su un solo asse si ottiene un grafico sinusoidale.
+\subparagraph{velocità}$v_x(t)?-A \omega \sin (\theta_0+\omega t)$ anche il grafico della velocità è periodico (periodo 2pi).
+I valori della velocità sono sfasati rispoetto al grafico della posizione.
+anche l'accelerazione è periodica e sfasata rispetto alla velocità. 
+%FINE RIASSUNTO
+\subsection*{Dinamica. Sistemi di riferimento}%Nuovo argomento, non più cinematica
+Abbiamo visto l'importanza della scelta del sistema di riferimento, le equazioni del moto variano al variare dei sistemi scelti.
+\emph{Come si passa da un sistema di riferimento a un altro?} 
+\end{document}
