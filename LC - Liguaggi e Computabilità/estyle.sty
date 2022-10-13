@@ -1,0 +1,40 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{estyle}[2022/10/13 Elia's Latex style]
+
+%Import
+\usepackage[italian]{babel}
+\usepackage{fancyvrb}
+\usepackage{csquotes}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[makeroom]{cancel}
+\usepackage[framemethod=tikz]{mdframed} 
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{bbding}
+\usepackage{tabularx}
+\usepackage{multicol}
+
+%Commands
+\newcommand{\esempio}[1]{\begin{box_grigiochiaro} \textbf{Esempio: }#1\end{box_grigiochiaro}}
+\newcommand{\definizione}[1]{\begin{box_definizione} #1 \end{box_definizione}}
+
+%Colors
+\definecolor{giallochiaro}{rgb}{1,1,0.95}
+\definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
+\definecolor{viola}{rgb}{0.41, 0.03, 0.31}
+
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_grigiochiaro}
+\newmdenv[
+    frametitle={\colorbox{orange}{\space DEFINIZIONE \space}},
+    frametitleaboveskip=-\ht\strutbox,
+    linewidth=0.5pt,
+    innerbottommargin=14pt,
+]{box_definizione}
