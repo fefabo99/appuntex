@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{style}[2022/05/18 Fabio's Fisica Latex style]
+\ProvidesPackage{generalStyle}[2022/05/18 Fabio's Fisica Latex style]
 
 %Imports
 
@@ -55,10 +55,6 @@
 \newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
 \newcommand{\rispostechiuse}[4]{
     \begin{center}
-        % \begin{tabularx}{\textwidth}{Y|Y|Y|Y}
-        %     \textbf{(a)} & \textbf{(b)}  & \textbf{(c)}  & \textbf{(d)} \\
-        %      #1 & #2 & #3 &#4
-        % \end{tabularx}
         \begin{tabularx}{\textwidth}{X|X}
             \textbf{(a)} #1 &  \textbf{(c)} #3\\
             \textbf{(b)} #2 &  \textbf{(d)} #4
@@ -66,9 +62,7 @@
     \end{center}
 
 }
-
 \newcommand{\rispostagiusta}{\textbf{[=]}}
-
 
 %Colors
 \definecolor{giallochiaro}{rgb}{1,1,0.95}
