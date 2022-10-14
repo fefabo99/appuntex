@@ -28,9 +28,76 @@ Preso un alfabeto $\Sigma=\{a,b,c\}$ posso formare delle stringhe come
 definito con la lettera $\Sigma$}
 \esempio{$\Sigma = \{0,1\}$}
 \definizione{Una \textbf{stringa} è una sequenza finita di simboli dell'alfabeto.
-\\ In questo caso è ammesso l'insieme vuoto, si parla di stringa vuota e viene definita
-come $\epsilon$}
+    \\ In questo caso è ammesso l'insieme vuoto, si parla di stringa vuota e viene definita
+    come $\epsilon$
+    \begin{center}
+        $L \subseteq \Sigma^*$
+    \end{center}
+}
 La lunghezza di una stringa viene denotata dai seguenti simboli $|\text{stringa}|$.
 \esempio{$|0111|=4$}
-Per definizione 
+$\Sigma^n$ è una stringa di lunghezza.
+\definizione{Un \textbf{Linguaggio} (su un alfabeto $\Sigma$ è un sottoinsieme di $\Sigma^*$)}
+\paragraph*{Notazioni particolari}
+\begin{itemize}
+    \item $\Sigma^0 = \{\epsilon\}$
+    \item $\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup ...$ oppure $\Sigma^*=\Sigma^+ \cup \Sigma^0 = \Sigma^+ \cup \{\epsilon\}$
+    \item $\Sigma^+ = \Sigma^1 \cup \Sigma^2 \cup \Sigma^3 \cup ...$ oppure $\Sigma^+ = \Sigma^* - \{\epsilon\}$
+\end{itemize}
+\paragraph*{Notazioni stringhe} Per definire una stringa utiizzo una lettera come per esempio
+$w = abb$ dove in w sono contenuti dei simboli dell'alfabeto $\Sigma=\{a,b,c\}$.
+\\ Definita un'altra stringa $y=cca$ definisco la concatenazione di due stringhe come $wy = abbcca$.
+La concatenazione \textbf{NON} è commutativa.
+\chapter{Le Grammatiche}
+Una grammatica è una quadrupla
+\begin{equation*}
+    G=(V, T, P,S)
+\end{equation*}
+Dove
+\begin{itemize}
+    \item V è l'insieme delle Variabili
+    \item T è l'insieme dei simboli Terminali
+    \item P è l'insieme delle regole di Produzione
+    \item S $\in$ V, è lo Start symbol
+\end{itemize}
+\definizione{Grammatica: termine che designa una struttura formale per un linguaggio L in grado di generare tutte e sole le stringhe del linguaggio.
+    Per questo si parla di grammatica G generativa del linguaggio L o di linguaggio L generato dalla grammatica G, indicandolo con L(G).}
+\textit{Definizione Treccani} \href{https://www.treccani.it/enciclopedia/grammatica_%28Enciclopedia-della-Matematica%29/}{Link alla definizione}
+\section{Gerarchia di Chomsky}
+La gerarchia di Chomsky è un insieme di classi di grammatiche formali che generano linguaggi formali.
+Suddivide le grammatiche in 4 tipi:
+\begin{itemize}
+    \item Tipo 0 - Linguaggi ricorsivamente enumerabili
+    \item Tipo 1 - Linguaggi Contestuali
+    \item Tipo 2 - Linguaggi Context-Free (Liberi dal contesto)
+    \item Tipo 3 - Linguaggi Regolari
+\end{itemize}
+\subsection{Tipo 0}
+Sono definiti nel seguente modo:
+\begin{center}
+    $\alpha \rightarrow \beta$, con $\alpha$ e $\beta \in (V \cup T)^*$
+\end{center}
+\esempio{$0S1S0 \rightarrow 00SS1S01$}
+Sono detti \textbf{ricorsivamente enumerabili} e vengono accettati dalle 
+\textbf{Macchine di Turing deterministiche e non deterministiche}.
+\subsection{Tipo 1}
+Verranno solo visti un paio di esempi, ma non saranno trattati in questo corso.
+\\ Definiti nel seguente modo:
+\begin{center}
+    $\alpha_1 \, A \, \alpha_2 \rightarrow \alpha_1 \, \beta \, \alpha_2$
+    \\ $A\in V \qquad \alpha_1, \alpha_2, \beta \in (V \cup T)^*$
+\end{center}
+In questo linguaggio sono presenti più vincoli rispetto al tipo 0.
+Questi linguaggi sono detti contestuali, questo perchè posso sostituire le variabili solo in un determinato contesto, in questo caso
+solo se sono presenti sia $\alpha_1$ e $\alpha_2$ tra $\beta$.
+\\ Sono accettati dalle \textbf{Macchine di Turing con nastro "lineare"}.
+\subsection{Tipo 2}
+$A\rightarrow \gamma \qquad A \in V$, $\gamma \in \, (V \cup T)^*$.
+\\ Detti anche \textbf{Context-Free (Liberi dal Contesto)}.
+\\ Riconosciuti da \textbf{Automi a Pila non deterministici}
+\subsection{Tipo 3}
+$A \rightarrow aB$ oppure $A \rightarrow a$ oppure
+\\ $A \rightarrow Ba$ oppure $A \rightarrow a$.
+\\Sono detti \textbf{Regolari} e sono riconosciuti da \textbf{Automi
+a stati finiti deterministici e non deterministici}.
 \end{document}
