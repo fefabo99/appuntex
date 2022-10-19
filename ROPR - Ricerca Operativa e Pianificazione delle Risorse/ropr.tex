@@ -2,6 +2,7 @@
 \usepackage[inline]{enumitem}
 \usepackage{../generalStyle}
 
+\graphicspath{ {./img/} }
 
 \begin{document}
 
@@ -177,6 +178,9 @@ Definiamo quindi:
     \item \textbf{Vertice Ammissibile}: Un vertice è detto ammissibile se \emph{fa parte} della regione ammissibile
     \item \textbf{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
 \end{itemize}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{img/Simplesso1.jpg}
+\end{center}
 \paragraph*{Test di Ottimalità}
 L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui godono:
 \definizione{
@@ -185,4 +189,35 @@ L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui 
     migliore, allora la \textbf{souzione} in questione è \textbf{ottimale}.
 }
 
+\section{La Procedura Algebrica}
+Il metodo del simplesso è utilizzabile sia in forma algebrica che geometrica.
+Siccome questo algoritmo è usualmente eseguito su un calcolatore, che è in grado di interpretare solo istruzioni algebriche,
+è necessario tradurre la procedura geometrica in una procedura algebrica, che si basa sulla risoluzione di un sistema di equazioni lineari.
+\paragraph*{Forma Aumentata}
+Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{forma standard} alla \emph{forma aumentata}:
+\\Per fare ciò bsiogna fare le seguenti operazioni:
+\begin{enumerate}
+    \item Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}:
+    $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$ 
+    \item Per ogni vincolo aggiungo una \textbf{Variabile di Slack}
+    \\Ogni vincolo riceve una variabile di slack unica, quindi se abbiamo:
+    \[
+        \begin{cases}
+            x_1 \leq 3 \\
+            x_2 \leq 2 \\
+            x_1 + x_2 \leq 5
+        \end{cases}
+        \to
+        \begin{cases}
+            x_1 + x_3 = 3 \\
+            x_2 + x_4= 2 \\
+            x_1 + x_2 + x_5 = 5 
+        \end{cases}
+    \]
+    $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
+    Assumendi che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
+    affinchè questa sia verificata con il segno di uguaglianza }
+    
+    
+\end{enumerate}
 \end{document}
