@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage[inline]{enumitem}
-\usepackage{fstyle}
+\usepackage{../generalStyle}
 
 
 \begin{document}
@@ -161,5 +161,28 @@ Ad oggi \emph{non} sappiamo dire se una soluzione sia Globale, sappiamo solo con
 \\La risoluzione di un problema di programmazione matematica consiste nel trovare una soluzione ammissibile che sia ottimo GLOBALE.
 Alla fine della fiera la definizione di globale e locale corrisponde a quella di Analisi Matematica.
 I punti di ottimo globali possono essere multipli.
+
+\chapter{Metodo del Simplesso}
+Il metodo del simplesso è una pocedura algebrica che si basa su dei \emph{concetti geometrici}.
+\paragraph*{Alcuni Termini}
+Questo metodo si basa su alcune terminologie che ci servono per capire come funziona.
+Definiamo quindi:
+\begin{itemize}
+    \item \textbf{Frontiera del vincolo}: è la "linea" di demarcazione di un vincolo.
+    \item \textbf{Vertice}: un vertice è un punto di intersezione di coppie di frontiere di vincoli.
+    \begin{itemize}
+        \item \textbf{Vertici Adiacenti}: Due vertici si dicono adiacenti se condividono $n-1$ frontiere di vincoli.
+        \item \textbf{Spigolo}: segmento che collega due vertici adiacenti
+    \end{itemize}
+    \item \textbf{Vertice Ammissibile}: Un vertice è detto ammissibile se \emph{fa parte} della regione ammissibile
+    \item \textbf{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
+\end{itemize}
+\paragraph*{Test di Ottimalità}
+L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui godono:
+\definizione{
+    Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
+    \\Se una soluzione vertice non ammette soluzioni vertice a egli adiacenti con valore della funzione obiettivo
+    migliore, allora la \textbf{souzione} in questione è \textbf{ottimale}.
+}
 
 \end{document}
