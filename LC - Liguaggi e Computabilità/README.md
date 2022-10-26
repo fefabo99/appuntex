@@ -8,6 +8,10 @@ Qui di seguito viene riportato un link a una cartella GoogleDrive contenente gli
 
 [Link Cartella](https://drive.google.com/drive/folders/1gdH43dnEfCeLGmq08HEBwQoKORGgcQdY?usp=sharing)
 
+### Ultimo argomento trattato
+
+26/10/22 Conclusione ER e inizio Automi a Stati Finiti (DFA)
+
 ### Disclaimer
 
 Gli appunti forniti non hanno la garanzia di essere corretti, possono contenere errori. Nel caso vengano rilevati degli errori segnalare direttamente all'autore o fare una PR.
