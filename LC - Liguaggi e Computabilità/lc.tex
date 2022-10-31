@@ -1,6 +1,5 @@
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage{../generalStyle}
-%\usepackage{estyle}
 
 \graphicspath{ {./img/} }
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
@@ -204,4 +203,65 @@ un linguaggio ambiguo può essere generato solo da Grammatiche ambigue.
 ambigua. Gli esempi pratici li trovate nelle ultime pagine di questo PDF - 
 {\href{https://drive.google.com/drive/folders/1gdH43dnEfCeLGmq08HEBwQoKORGgcQdY}{\textbf{Lezione 4}}}.
 \section{Grammatiche Regolari (Tipo 3)}
+\begin{enumerate}
+    \item \eps può comparire solo in $S \rightarrow \epsilon$, dove S è lo start symbol
+    \item le regole di produzione sono tutte lineari a destra oppure tutte lineari a sinistra
+\end{enumerate}
+\esempio{Lineare a Destra
+\\ $A \rightarrow aB
+\\ A \rightarrow a$ dove $A,B \in V$ $a \in T$ }
+\esempio{Lineare a Sinistra
+\\ $A \rightarrow Ba
+\\ A \rightarrow a$ dove $A,B \in V$ $a \in T$}
+Non si possono mischiare questi due esempi, o sono lineare a sinistra o a destra.
+\chapter{Espressioni Regolari}
+\definizione{Un'espressione regolare (in lingua inglese regular expression o, in forma abbreviata, regexp, regex o RE) 
+è una sequenza di simboli (quindi una stringa) che identifica un insieme di stringhe.
+Possono definire tutti e soli i linguaggi regolari.}
+\section{Operazioni Tra Linguaggi}
+\subsection*{Unione}
+Dati $L,M \rightarrow L \cup M$
+\esempio{L = \{001, 10,111\}
+\\ M = \{\eps, 001\} 
+\\ L $\cup$ M = \{\eps, 001, 10, 111\}}
+Gli elementi in comune non si ripetono
+\subsection*{Concatenazione} $L,M \rightarrow LM$
+\esempio{L = \{001, 10, 111\}
+\\ M = \{\eps, 001\}
+\\ LM = \{001, 001001, 10, 10001, 111, 111001\}}
+Tutte le possibili concatenazioni
+\subsection*{Chiusura di Kleene} $L = \emptyset$
+\esempio{$\emptyset^0 = \{\epsilon\}
+\\L^0 = \{\epsilon\}\forall L
+\\ \emptyset^i = \emptyset \forall_i \geq 1
+\\ \emptyset^* = \emptyset^0 \cup \emptyset^1 \cup \emptyset^2 \cup \dots =
+\\ \{\epsilon\} \cup \emptyset \cup \emptyset \cup \dots =
+\\ \{\epsilon\}$}
+\section*{Espressioni Regolari}
+\paragraph*{NB} In questo contesto \eps e $\emptyset$ sono ER (Espressioni
+Regolari) NON sono stringhe.
+\begin{enumerate}
+    \item \eps e \empt sono ER \ra L(\eps) = \{\eps\} L(\empt) = \empt
+    \item Se $a \in \Sigma$ allora a è una ER (Dove $\Sigma$ è alfabeto)
+    \item Variabili che rappresentano linguaggi sono ER
+\end{enumerate}
+\paragraph*{Induzione}
+\begin{enumerate}
+    \item \textbf{Unione} \ra se E,F sono ER allora E+F è una ER \\
+    $L(E+F) = L(E)\cup L(F)$
+    \item \textbf{Concatenazione} \ra se E,F sono ER allora EF è una ER \\
+    $L(EF) = L(E)*L(F)$
+    \item \textbf{Chiusura} \ra Se E è ima ER allora E* è una ER \\
+    $L(E^*) = (L(F))^*$
+    \item \textbf{Parentesi} \ra Se E è una ER allora (E) è una ER \\
+    $L((E)) = L(E)$
+\end{enumerate}
+\paragraph*{Proprietà}
+\begin{itemize}
+    \item \textbf{Unione} \ra Commutativa, Associativa \\
+    $L+M = M+L$ \\ $(L+M)+N = L+(M+N) = L+M+N$
+    \item \textbf{Concatenazione} \ra Associativa, NON è commutativa \\
+    $(LM)N=L(MN)$ \\ $01 \neq 10$
+\end{itemize}
+%Finito Lezione 6 - Iniziare Lezione 7 (Proprietà Algebriche ER)
 \end{document}
