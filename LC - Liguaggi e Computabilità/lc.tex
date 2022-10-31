@@ -2,7 +2,7 @@
 \usepackage{../generalStyle}
 %\usepackage{estyle}
 
-\graphicspath{ {./images/} }
+\graphicspath{ {./img/} }
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
 
 \begin{document}
@@ -162,4 +162,46 @@ sottopattern e questo mi impedisce di produrre una CFG.
 \section{Linguaggi di Tipo 1 (Contestuali)}
 %Iniziata trascrizione lezione 4 - Vedere PDF Grammatiche di Tipo 1 su elearning
 % https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf
+Le Grammatiche di Tipo 1 sono dipendenti dal contesto, questo significa che durante
+la produzione di una stringa viene sostituito un simoblo alla volta, ma solo quando
+è in presenza di un altro simbolo. Vedremo che nella testa delle regole di produzione
+avrò la concatenazione di due variabili.
+Nell'esempio riportato a questo 
+{\href{https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf}{\textbf{link}}}
+vengono mostrate le regole di produzioni necessarie per generare un esempio di linguaggio
+di tipo 1. 
+
+\section{La Grammatiche Ambigue}
+\subsection{Albero Sintattico}
+Data una CFG $G= (V,T,P,S)$ un modo per rappresentare le regole di produzione applicate è rappresentare l'albero sintattico.
+Esso consiste in un alberto dove le foglie sono etichettate con una variabile, da un simbolo
+terminale o da $\epsilon$. Ogni nodo interno è etichettato con una variabile, 
+se è etichettato da $\epsilon$ è l'unica foglia del suo genitore.
+\\ Qui di seguito un esempio di albero per la derivazione della stringa $iee$
+\begin{center}
+    \includegraphics[width=50mm, scale=0.5]{albero_sintattico.png}
+\end{center}
+Se un nodo interno è etichettato con A e i figli sono etichettati da sinistra
+con $X_1, X_2, ..., X_n$ allora $A \rightarrow X_1, X_2, X_k \in P$.
+La definizione è importante per l'argomento che adesso andremo a trattare
+\section*{Ambiguità}
+Se una grammatica consente la generazione della stessa stringa attraverso due alberi sintattici
+diversi allora quella è una grammatica ambigua.
+\definizione{
+    \begin{enumerate}
+        \item $\exists w \in T^*$ tale che w ha due alberi sintattici diversi
+        $rightarrow$ Grammatica Ambigua
+        \item $\forall w \in T^*$ w ha un solo albero sintattico $\rightarrow$
+        Grammatica NON Ambigua 
+    \end{enumerate}
+}
+\paragraph*{NB} Ottenere la stessa stringa con derivazioni diverse non è un problema,
+il problema è quando ottengo \textbf{Alberi sintattici diversi!}.
+Se una Grammatica è ambigua posso risolvere il problema e renderla non ambigua, mentre
+se un linguaggio è ambiguo NON posso risolvere il problema dato che
+un linguaggio ambiguo può essere generato solo da Grammatiche ambigue.
+\paragraph*{Problema} Non esiste un algoritmo in grado di identificare una grammatica
+ambigua. Gli esempi pratici li trovate nelle ultime pagine di questo PDF - 
+{\href{https://drive.google.com/drive/folders/1gdH43dnEfCeLGmq08HEBwQoKORGgcQdY}{\textbf{Lezione 4}}}.
+\section{Grammatiche Regolari (Tipo 3)}
 \end{document}
