@@ -796,458 +796,421 @@ Una funzione può avere al massimo 2 asintoti obliqui diversi, uno a $+\infty$ e
 La stessa retta può essere asintoto obliquo destro e sinistro.
 \paragraph*{Come trovare} un asintoto obliquo a $\pm \infty$? %SISTEMARE che si capisca meglio
 Bisogna provare a svolgere un paio di limiti.
-\\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ è asintoto obliquo
-
-	\nb{
-		Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
-	}
-	\section{Equivalenze Asintotiche}
-	Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
-	Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
-
-	\definizione{
-		Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
-		$$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
-		e si scrive $f(x) \sim g(x)$ per $x\to x_0$
-	}
-	Dai limiti notevoli si ricava facilmente che, per $x \to 0$
-	\begin{itemize}
-		\item $\sin x \sim x$
-		\item $1 - \cos x \sim \frac{1}{2}x^2$
-		\item $\tan x \sim x$
-		\item $ln(1+x) \sim x$
-		\item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
-	\end{itemize}
-	\nb{
-		Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
-		una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$}
-	}
-	\esempio{
-		\\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
-			\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
-	}
-	\subsection*{Alcune Proprietà}
-	\begin{enumerate}
-		\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
-		      \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
-		\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
-		      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
-		\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
-	\end{enumerate}
-	\section{Confronto tra infiniti/infinitesimi}
-	\subsection*{Ordine di infiniti}
-	Nel calcolo dei limiti, quando bisogna trovare l'infinito di ordine maggiore:
-	$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
-	con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
-	\nb{la radice è "più grande" del logaritmo}
-	\subsection*{o-piccolo}
-	L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infitisemio di una funzione rispetto ad una funzione campione,
-	al tendere di $x$ ad un determinato valore di infinito.
-
-	\definizione{
-		Siano $f(x)$ e $g(x)$ due funzioni (definite sullo stesso insieme) e sia $x_0$ un punto di accumulazione del dominio, eventualmente infinito.
-		Se il $\limite{x}{x_0}$ del rapporto delle due funzioni $f$ e $g$ è uguale a zero,
-		allora diremo che \emph{$f(x)$ è un o-piccolo di $g(x)$ per $x$ che tende a $x_0$.}
-		$$
-		\limite{x}{x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o_{x_0}g(x)
-		$$
-	}
-
-	\section{Continuità di una funzione}
-	La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
-
-	\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro calcolati nel punto coincidono con la valutazione della funzione nel punto.
-		\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
-		$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
-	}
-	Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
-
-	\subsection*{Punti di discontinuità}
-	Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
-
-	\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
-
-	\subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
-	Questa definizione enuncia, in estensione alla prima, che è anche punto di disconitinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
-	\\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
-	\subsubsection*{Classificazione dei punti di Discontinuità}
-	Ci sono 3 classificazioni per identificare i punti di discontinuità.
-	Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di disconitinuità di:
-	\paragraph{Prima Specie} se i \emph{limiti sinistro e destro di $x_0$ esistono finiti ma sono diversi}.
-	Questa viene anche chiamata \textbf{Discontinuità a Salto}
-	\paragraph{Seconda Specie} se almeno uno dei due limiti, destro o sinistro, di $x_0$ è \emph{infinito o non esiste}.
-	Questa viene anche chiamata \textbf{Discontinuità Essenziale}
-	\paragraph{Terza Specie} Se il limite di $x_0$ \emph{esiste finito} ma è \emph{diverso da $f(x_0)$} oppure $f(x_0)$ non esiste.
-	Questa viene chiamata \textbf{Discontinuità Eliminabile}, (oppure buco nella funzione).
-
-	\section{Calcolo dei limiti}
-	Qui di seguito verranno riportate alcune definizioni e teoremi utili per il calcolo 
-	dei limiti, può tornare utile guardare la sezione relativa alle
-	\hyperref[sec:forme_di_indecisione]{forme di indecisione}. 
-	\definizione{Un \textbf{intorno} di un punto $x_0 \in \mathbb{R}$ è un intervallo
-	aperto che contiene $x_0$}
-	\definizione{Diremo che una funzione $f(x)$ ha una certa proprietà \textbf{definitivamente}
-	per $x \rightarrow c$ se esiste un intorno U di c tale che la proprietà vale per $f(x)$
-	per ogni $x \in U, \, x \neq c$}. 
-	\subsection*{Teorema del confronto}
-	\definizione{Se:
-	\begin{enumerate}
-		\item Per $x \rightarrow c, \, f(x) \rightarrow l$ e $g(x) \rightarrow l$
-		\item $f(x) \leq h(x) \leq g(x)$ definitivamente per $x \rightarrow c$
-	\end{enumerate}
-	allora anche $h(x) \rightarrow l$ per $x \rightarrow c$}
-	\definizione{
-	Se $a_n \leq b_n \leq c_n$ definitivamente e $a_n \rightarrow l$, $c_n \rightarrow l \in \mathbb{R}$
-	\\ allora anche $b_n \rightarrow l$.
+\\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow 
+q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ 
+è asintoto obliquo
+\nb{
+	Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
 }
-	\paragraph*{Corollario} Se:
-	\begin{enumerate}
-		\item Per $x \rightarrow c, \, g(x) \rightarrow 0$
-		\item $|h(x)|\leq g(x)$ definitivamente per $x \rightarrow c$
-	\end{enumerate}
-	Allora anche $h(x) \rightarrow 0$, per $x\rightarrow c$.
-	\paragraph*{Another Corollario}Se $f(x) \rightarrow 0$ per $x \rightarrow 0$ e $g(x$)
-	è limitata definitivamente per $x \rightarrow c$, allora $f(x)g(x) \rightarrow 0$
-	per $x \rightarrow c$.
-	\subsection*{Teorema di permanenza del segno - 1 forma}
+\section{Equivalenze Asintotiche}
+Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
+Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
+\definizione{
+	Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
+	$$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
+	e si scrive $f(x) \sim g(x)$ per $x\to x_0$
+	}
+Dai limiti notevoli si ricava facilmente che, per $x \to 0$
+\begin{itemize}
+	\item $\sin x \sim x$
+	\item $1 - \cos x \sim \frac{1}{2}x^2$
+	\item $\tan x \sim x$
+	\item $ln(1+x) \sim x$
+	\item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
+\end{itemize}
+\nb{
+	Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
+	una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$}
+	}
+\esempio{
+	\\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
+		\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
+		}
+\subsection*{Alcune Proprietà}
+\begin{enumerate}
+	\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
+	      \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
+	\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
+	      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
+	\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
+\end{enumerate}
+\section{Confronto tra infiniti/infinitesimi}
+\subsection*{Ordine di infiniti}
+Nel calcolo dei limiti, quando bisogna trovare l'infinito di ordine maggiore:
+$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
+con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
+\nb{la radice è "più grande" del logaritmo}
+\subsection*{o-piccolo}
+L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infitisemio di una funzione rispetto ad una funzione campione,
+al tendere di $x$ ad un determinato valore di infinito.
+\definizione{
+	Siano $f(x)$ e $g(x)$ due funzioni (definite sullo stesso insieme) e sia $x_0$ un punto di accumulazione del dominio, eventualmente infinito.
+	Se il $\limite{x}{x_0}$ del rapporto delle due funzioni $f$ e $g$ è uguale a zero,
+	allora diremo che \emph{$f(x)$ è un o-piccolo di $g(x)$ per $x$ che tende a $x_0$.}
+	$$
+	\limite{x}{x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o_{x_0}g(x)
+	$$
+}
+
+\section{Continuità di una funzione}
+La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
+\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro calcolati nel punto coincidono con la valutazione della funzione nel punto.
+	\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
+	$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
+}
+Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
+\subsection*{Punti di discontinuità}
+Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
+\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
+\subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
+Questa definizione enuncia, in estensione alla prima, che è anche punto di disconitinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
+\\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
+\subsubsection*{Classificazione dei punti di Discontinuità}
+Ci sono 3 classificazioni per identificare i punti di discontinuità.
+Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di disconitinuità di:
+\paragraph{Prima Specie} se i \emph{limiti sinistro e destro di $x_0$ esistono finiti ma sono diversi}.
+Questa viene anche chiamata \textbf{Discontinuità a Salto}
+\paragraph{Seconda Specie} se almeno uno dei due limiti, destro o sinistro, di $x_0$ è \emph{infinito o non esiste}.
+Questa viene anche chiamata \textbf{Discontinuità Essenziale}
+\paragraph{Terza Specie} Se il limite di $x_0$ \emph{esiste finito} ma è \emph{diverso da $f(x_0)$} oppure $f(x_0)$ non esiste.
+Questa viene chiamata \textbf{Discontinuità Eliminabile}, (oppure buco nella funzione).
+\section{Calcolo dei limiti}
+Qui di seguito verranno riportate alcune definizioni e teoremi utili per il calcolo 
+dei limiti, può tornare utile guardare la sezione relativa alle
+\hyperref[sec:forme_di_indecisione]{forme di indecisione}. 
+\definizione{Un \textbf{intorno} di un punto $x_0 \in \mathbb{R}$ è un intervallo
+aperto che contiene $x_0$}
+\definizione{Diremo che una funzione $f(x)$ ha una certa proprietà \textbf{definitivamente}
+per $x \rightarrow c$ se esiste un intorno U di c tale che la proprietà vale per $f(x)$
+per ogni $x \in U, \, x \neq c$}. 
+\subsection*{Teorema del confronto}
+\definizione{Se:
+\begin{enumerate}
+	\item Per $x \rightarrow c, \, f(x) \rightarrow l$ e $g(x) \rightarrow l$
+	\item $f(x) \leq h(x) \leq g(x)$ definitivamente per $x \rightarrow c$
+\end{enumerate}
+allora anche $h(x) \rightarrow l$ per $x \rightarrow c$}
+\definizione{
+Se $a_n \leq b_n \leq c_n$ definitivamente e $a_n \rightarrow l$, $c_n \rightarrow l \in \mathbb{R}$
+\\ allora anche $b_n \rightarrow l$.
+}
+\paragraph*{Corollario} Se:
+\begin{enumerate}
+	\item Per $x \rightarrow c, \, g(x) \rightarrow 0$
+	\item $|h(x)|\leq g(x)$ definitivamente per $x \rightarrow c$
+\end{enumerate}
+Allora anche $h(x) \rightarrow 0$, per $x\rightarrow c$.
+\paragraph*{Another Corollario}Se $f(x) \rightarrow 0$ per $x \rightarrow 0$ e $g(x$)
+è limitata definitivamente per $x \rightarrow c$, allora $f(x)g(x) \rightarrow 0$
+per $x \rightarrow c$.
+\subsection*{Teorema di permanenza del segno - 1 forma}
 \definizione{
 	Se $x \rightarrow c$ e $f(x) \rightarrow l > 0$ allora $f(x) > 0$ definitivamente per $x \rightarrow c$.
 	}
 \subsection*{Teorema di permanenza del segno - 2 forma}
 \definizione{
 	Se per $x \rightarrow c, \, f(x)\rightarrow l > 0$ definitivamente per $x \rightarrow c$
-	allora $l \geq 0$}
-	
+	allora $l \geq 0$
+	}
 
 %Calcolo Differenziale------------------------------------------------------------------
-	\chapter{Calcolo Differenziale}
-	\section{Criterio di Derivabilità}
-	\quickDefinizione{Una funzione è derivabile in un punto $x_0$ se essa è continua in quel punto e se il limite sinistro e destro della derivata in quel punto coincidono.}
-	\section{Derivate note}
-	Non esistono veramente delle derivate note, però alcune funzioni hanno delle derivate che vale la pena ricordare per velocizzare il processo di derivazione:
-
-	\begin{itemize}
-		\item[\textbf{Seno}] \derivata{\sin(x)}{\cos(x)}
-		\item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
-		\item[\textbf{Arcotangente}] \derivata{\arctan(x)}{\frac{1}{1+x^2}}
-		\item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
-		\item[\textbf{Radice}] Meglio fare il calcolo a mano con le potenze%\derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
-		\item[\textbf{e$^x$}] \derivata{e^x}{e^x}
-		\item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
-		\item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
-		\item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
-	\end{itemize}
-	\subsection*{Derivate composte}
-	\begin{itemize}
-		\item[Composizione] $f(g(x)) \implies f'(g(x)) \cdot g'(x)$
-		\item[Prodotto] $f(x) \cdot g(x) \implies f'(x) \cdot g(x) + f(x) \cdot g'(x)$
-  		\item[Divisione] $h(x)=\frac{f(x)}{g(x)} \implies h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]2}$
-	\end{itemize}
-
-
-
-	\section{Formule di Taylor e di Mclaurin}
-	Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado $k$ arbitrario centrato in $x_0$ nel caso della formula di Taylor,
-	e in 0 nel caso di quella di McLaurin.
-	\subsection*{Polinomio di Taylor}
-	Una funzione $f(x)$, che passi per un punto $x_0$ e che abbia in quel punto tutte le derivate necessarie,
-	si può approssimare nel punto $x_0$ mediante un polinomio così definito:
-	$$P_k(x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
-	L'errore che si commette in questa approssimazione non è maggiore della prima derivata che si trascura
-	\subsection*{Polinomio di McLaurin}
-	Nel caso in cui il punto $x_0$ sia l'origine ($x_0=0$) si ottiene la formula di McLaurin:
-	$$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3+...+ \frac{f^{(k)}(0)}{k!}x^k$$
-	Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
-	\chapter{Calcolo Integrale}
-	\section{Gli integrali}
-	\definizione{
+\chapter{Calcolo Differenziale}
+\section{Criterio di Derivabilità}
+\quickDefinizione{Una funzione è derivabile in un punto $x_0$ se essa è continua in quel punto e se il limite sinistro e destro della derivata in quel punto coincidono.}
+\section{Derivate note}
+Non esistono veramente delle derivate note, però alcune funzioni hanno delle derivate che vale la pena ricordare per velocizzare il processo di derivazione:
+\begin{itemize}
+	\item[\textbf{Seno}] \derivata{\sin(x)}{\cos(x)}
+	\item[\textbf{Coseno}] \derivata{\cos(x)}{-\sin(x)}
+	\item[\textbf{Arcotangente}] \derivata{\arctan(x)}{\frac{1}{1+x^2}}
+	\item[\textbf{Logaritmo}] \derivata{\ln(x)}{\frac{1}{x}}
+	\item[\textbf{Radice}] Meglio fare il calcolo a mano con le potenze%\derivata{\sqrt[\alpha]{x}}{\frac{1}{\alpha \sqrt[\alpha]{x}}}
+	\item[\textbf{e$^x$}] \derivata{e^x}{e^x}
+	\item[\textbf{e$^{-x}$}] \derivata{e^{-x}}{-e^{-x}}
+	\item[\textbf{1/x}] \derivata{\frac{1}{x^2}}{-\frac{2}{x^3}}
+	\item[\textbf{x$^\alpha$}] \derivata{x^\alpha}{\alpha x^{\alpha - 1}}
+\end{itemize}
+\subsection*{Derivate composte}
+\begin{itemize}
+	\item[Composizione] $f(g(x)) \implies f'(g(x)) \cdot g'(x)$
+	\item[Prodotto] $f(x) \cdot g(x) \implies f'(x) \cdot g(x) + f(x) \cdot g'(x)$
+	\item[Divisione] $h(x)=\frac{f(x)}{g(x)} \implies h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]2}$
+\end{itemize}
+\section{Formule di Taylor e di Mclaurin}
+Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado $k$ arbitrario centrato in $x_0$ nel caso della formula di Taylor,
+e in 0 nel caso di quella di McLaurin.
+\subsection*{Polinomio di Taylor}
+Una funzione $f(x)$, che passi per un punto $x_0$ e che abbia in quel punto tutte le derivate necessarie,
+si può approssimare nel punto $x_0$ mediante un polinomio così definito:
+$$P_k(x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
+L'errore che si commette in questa approssimazione non è maggiore della prima derivata che si trascura
+\subsection*{Polinomio di McLaurin}
+Nel caso in cui il punto $x_0$ sia l'origine ($x_0=0$) si ottiene la formula di McLaurin:
+$$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3+...+ \frac{f^{(k)}(0)}{k!}x^k$$
+Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
+\chapter{Calcolo Integrale}
+\section{Gli integrali}
+\definizione{
 	L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
-	}
-	\subsection{Classi di Funzioni Integrabili}
-	Le classi di funzioni integrabili sono famiglie di funzioni dotate di particolari proprietà che ne garantisconto l'integrabilità \emph{su un intervallo chiuso e limitato}.
-	Riporto qui le 3 principali condizioni \emph{Sufficienti (ma non necessarie) per l'integrabilità}:
-	\\Sia $[a,b]$ un intervallo chiuso e limitato.
-	\begin{enumerate}
-		\item Se la funzione $f:[a.b] \to \R$ è \textbf{Continua}, allora essa è integrabile su $[a,b]$.
-		\item Se la funzione $f:[a.b] \to \R$ è \textbf{Limitata} e con un \textbf{numero finito di discontinuità}, allora essa è integrabile su $[a,b]$
-		\item Se una funzione $f$ è \textbf{Monotona} e definita in $[a,b]$, allora essa è integrabile su $[a,b]$ 
-	\end{enumerate}
-
-
-	\subsection{Il calcolo degli integrali}
-	Per calcolare $\int_{a}^{b} f(x) dx$ devo:
-	\begin{enumerate}
-		\item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
-		\item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
-		\item Sottrarre i due valori ($F(b)-F(a)$)
-	\end{enumerate}
-	Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
-
-	\esempio{
-$\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
-	}
-
-	\subsection{Proprietà degli integrali}
-	\begin{itemize}
-		\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
-		\item $\int K f(x) dx = K\int f(x) dx$
-		\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
-	\end{itemize}
-
-	\section{Le primitive}
-	Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
-	\\Si noti che:
-	\begin{itemize}
-		\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
-		\item Le primitive non sono \emph{mai uniche}
-	\end{itemize}
-	Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
-
-	\subsection{Primitive Elementari}
-	Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
-	\begin{tabular}{ |c|c|c| }
-		\hline
-		$f(x)$            & $F(x)$                                  \\
-		\hline
-		$cos(x)$          & $sin(x)$                                \\
-		\hline
-		$sin(x)$          & $-cos(x)$                               \\
-		\hline
-		$e^x$             & $e^x$                                   \\
-		\hline
-		$a^x$             & $\frac{a^x}{\ln a} $                    \\
-		\hline
-		$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
-		\hline
-		$\frac{1}{x}$     & $\ln |x| $                              \\
-		\hline
-		$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
-		\hline
-	\end{tabular}
-
-	\subsection{Primitive di Derivate di funzioni composte}
-	Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
-	\definizione{
-		Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
-		In questo caso:
-		$$
-		[F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c
-		$$
-	}
-	\paragraph*{Ovvero} se abbiamo una funzione del tipo $f(g(x)) \cdot g'(x)$ il suo integrale sarà semplicemente $F(g(x)) + c$, quindi bisogna trovare \emph{la primitiva solo della funzione esterna}.
-	\\\'E comunque ovvio che si possono effettuare "giochetti" per smontare e rimontare la nostra funzione in modo da ottenere una formad i questo tipo.
-	\esempio{ 
-		$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
-	}
-	\esempio{
-		$\int x (x^2)^3 dx = \frac{1}{2}\int 2x (x^2-1)^3 dx = \frac{1}{2}\frac{(x^2)^4}{4} + c = ...$
-	}
-	Da quest'ultimo esempio si può notare sia che abbiamo moltiplicato e diviso per due in modo da ottenere la derivata della funzione interna,
-	ma si può anche dedurre che:
+}
+\subsection{Classi di Funzioni Integrabili}
+Le classi di funzioni integrabili sono famiglie di funzioni dotate di particolari proprietà che ne garantisconto l'integrabilità \emph{su un intervallo chiuso e limitato}.
+Riporto qui le 3 principali condizioni \emph{Sufficienti (ma non necessarie) per l'integrabilità}:
+\\Sia $[a,b]$ un intervallo chiuso e limitato.
+\begin{enumerate}
+	\item Se la funzione $f:[a.b] \to \R$ è \textbf{Continua}, allora essa è integrabile su $[a,b]$.
+	\item Se la funzione $f:[a.b] \to \R$ è \textbf{Limitata} e con un \textbf{numero finito di discontinuità}, allora essa è integrabile su $[a,b]$
+	\item Se una funzione $f$ è \textbf{Monotona} e definita in $[a,b]$, allora essa è integrabile su $[a,b]$ 
+\end{enumerate}
+\subsection{Il calcolo degli integrali}
+Per calcolare $\int_{a}^{b} f(x) dx$ devo:
+\begin{enumerate}
+	\item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
+	\item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
+	\item Sottrarre i due valori ($F(b)-F(a)$)
+\end{enumerate}
+Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
+\esempio{
+	$\it_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
+}
+\subsection{Proprietà degli integrali}
+\begin{itemize}
+	\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
+	\item $\int K f(x) dx = K\int f(x) dx$
+	\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
+\end{itemize}
+\section{Le primitive}
+Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
+\\Si noti che:
+\begin{itemize}
+	\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
+	\item Le primitive non sono \emph{mai uniche}
+\end{itemize}
+Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
+\subsection{Primitive Elementari}
+Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
+\begin{tabular}{ |c|c|c| }
+	\hline
+	$f(x)$            & $F(x)$                                  \\
+	\hline
+	$cos(x)$          & $sin(x)$                                \\
+	\hline
+	$sin(x)$          & $-cos(x)$                               \\
+	\hline
+	$e^x$             & $e^x$                                   \\
+	\hline
+	$a^x$             & $\frac{a^x}{\ln a} $                    \\
+	\hline
+	$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+	\hline
+	$\frac{1}{x}$     & $\ln |x| $                              \\
+	\hline
+	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
+	\hline
+\end{tabular}
+\subsection{Primitive di Derivate di funzioni composte}
+Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
+\definizione{
+	Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
+	In questo caso:
 	$$
-	\int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
+	[F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c
 	$$
-
-	\section{Tecniche di Integrazione}
-
-	\subsection{Integrazione per Parti}
-	Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
-	\definizione{
+}
+\paragraph*{Ovvero} se abbiamo una funzione del tipo $f(g(x)) \cdot g'(x)$ il suo integrale sarà semplicemente $F(g(x)) + c$, quindi bisogna trovare \emph{la primitiva solo della funzione esterna}.
+\\\'E comunque ovvio che si possono effettuare "giochetti" per smontare e rimontare la nostra funzione in modo da ottenere una formad i questo tipo.
+\esempio{ 
+	$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
+}
+\esempio{
+	$\int x (x^2)^3 dx = \frac{1}{2}\int 2x (x^2-1)^3 dx = \frac{1}{2}\frac{(x^2)^4}{4} + c = ...$
+}
+Da quest'ultimo esempio si può notare sia che abbiamo moltiplicato e diviso per due in modo da ottenere la derivata della funzione interna,
+ma si può anche dedurre che:
+$$
+\int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
+$$
+\section{Tecniche di Integrazione}
+\subsection{Integrazione per Parti}
+Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
+\definizione{
 		Siano $f$ e $g$ due funzioni, allora
 		$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
-
-	}
-	In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione integrabile è integrabile per parti.
-	\\Questa tecnica può essere usata per risolvere integrali complessi.
-	\esempio{
-		$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
-		\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
-	}
-	\subsubsection*{Tecnica della moltiplicazione per 1}
-	In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
-	Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
-	\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
-
-	\esempio{
-		$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
-		Questo ci permette di considerare:
-		\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
-		\\Di conseguenza, la nostra integrazione prosegue così:
-		$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
-	}
-
-	\subsection{Integrazione per Sostituzione}
-	Lo scopo dell'integrazione per sostituzione è quello di trasformare l'integrale in modo da renderlo più semplice
-	e riconducibile a formule immediate.
-	\\ Ma quando si usa? Di solito ci si accorge che può essere usato in casi in cui c'è un espressione della $x$ che si ripete,
-	oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
-
-	\definizione{
-		Siano $f:I\to \R$ una funzione continua, e $g:J\to \R$ una funzione derivabile con derivata continua.
-		Si ha che:
-		$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
-		Nel caso in cui la funzione $g(y)$ sia \textbf{invertibile}, allora vale la seguente formula di integrazione:
-		$$\int f(x)dx = \int f(g(y))g'(y)dy$$
-		Queste due formule sono equivalenti e bisogna scegliere quale usare in base a come si presenta la funzione integranda.
-	}
-
-	Vedendo queste due definizioni non si capisce molto,
-	ma in sostanza si può usare la sostituzione in due casi differenti.
-	Questi due casi hanno dei passaggi diversi,
-	\subsubsection*{Primo Tipo}
-	Supponiamo di voler calcolare un integrale che si presenta nella forma:
-	$$\int f(g(x)) g'(x) dx$$
-	\begin{enumerate}
-		\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
-		\item Sostituiamo i nuovi valori nell'integrale, cos' da ottenere la forma $\int f(y) dy$
-		\item Calcoliamo l'integrale nella nuova variabile (sperando che sia più semplice) ottendendo così $F(y) + c$
-		\item Sostiuiamo a $y$ l'espressione della funzione $g(x)$.
-	\end{enumerate}
-	\esempio{Calcola l'integrale di $2xe^{x^2}$.
+}
+In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione integrabile è integrabile per parti.
+\\Questa tecnica può essere usata per risolvere integrali complessi.
+\esempio{
+	$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
+	\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
+}
+\subsubsection*{Tecnica della moltiplicazione per 1}
+In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
+Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
+\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
+\esempio{
+	$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
+	Questo ci permette di considerare:
+	\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
+	\\Di conseguenza, la nostra integrazione prosegue così:
+	$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
+}
+\subsection{Integrazione per Sostituzione}
+Lo scopo dell'integrazione per sostituzione è quello di trasformare l'integrale in modo da renderlo più semplice
+e riconducibile a formule immediate.
+\\ Ma quando si usa? Di solito ci si accorge che può essere usato in casi in cui c'è un espressione della $x$ che si ripete,
+oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
+\definizione{
+	Siano $f:I\to \R$ una funzione continua, e $g:J\to \R$ una funzione derivabile con derivata continua.
+	Si ha che:
+	$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
+	Nel caso in cui la funzione $g(y)$ sia \textbf{invertibile}, allora vale la seguente formula di integrazione:
+	$$\int f(x)dx = \int f(g(y))g'(y)dy$$
+	Queste due formule sono equivalenti e bisogna scegliere quale usare in base a come si presenta la funzione integranda.
+}
+Vedendo queste due definizioni non si capisce molto,
+ma in sostanza si può usare la sostituzione in due casi differenti.
+Questi due casi hanno dei passaggi diversi,
+\subsubsection*{Primo Tipo}
+Supponiamo di voler calcolare un integrale che si presenta nella forma:
+$$\int f(g(x)) g'(x) dx$$
+\begin{enumerate}
+	\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
+	\item Sostituiamo i nuovi valori nell'integrale, cos' da ottenere la forma $\int f(y) dy$
+	\item Calcoliamo l'integrale nella nuova variabile (sperando che sia più semplice) ottendendo così $F(y) + c$
+	\item Sostiuiamo a $y$ l'espressione della funzione $g(x)$.
+\end{enumerate}
+\esempio{Calcola l'integrale di $2xe^{x^2}$.
 	\\Si può ben notare che $2x$ è la derivata di $x^2$, quindi questa funzione si presenta nella forma $g'(x)f(g(x))$.
 	Poniamo quindi $y=g(x)=x^2$ e $dy=g'(x)dx= 2x dx$.
 	\\Sostituiamo, $\int 2xe^{x^2} = \int e^y dy = e^y +c$.
 	\\Ri sostiuiamo $y$ con $x^2$ e troviamo $e^{x^2} + c$.
-	}
-	\subsubsection*{Secondo Tipo}
-	Supponiamo di voler calcolare l'integrale: $$\int f(x)dx$$
-	In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
-	Qui però dobbiamo richiedere che la funzione $g$ sia non solto derivabile, ma anche invertibile!
-	\\I passi da effettuare sono i seguenti:
-	\begin{enumerate}
-		\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
-		\item Sostiuiamo il tutto nell'integrale in modo da ricavare $f(g(y))g'(y)$
-		\item Calcoliamo l'integrale ottenuto (nella speranza che sia di più facile risoluzione)
-		\item Sostiuiamo di nuovo per tornare nella variabile $x$. Per farlo però è necessario esprimere la variabile $y$ in funzione di $x$ determinando la funzione inversa $y=g^{-1}(x)$
-		\item 
-	\end{enumerate}
+}
+\subsubsection*{Secondo Tipo}
+Supponiamo di voler calcolare l'integrale: $$\int f(x)dx$$
+In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
+Qui però dobbiamo richiedere che la funzione $g$ sia non solto derivabile, ma anche invertibile!
+\\I passi da effettuare sono i seguenti:
+\begin{enumerate}
+	\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
+	\item Sostiuiamo il tutto nell'integrale in modo da ricavare $f(g(y))g'(y)$
+	\item Calcoliamo l'integrale ottenuto (nella speranza che sia di più facile risoluzione)
+	\item Sostiuiamo di nuovo per tornare nella variabile $x$. Per farlo però è necessario esprimere la variabile $y$ in funzione di $x$ determinando la funzione inversa $y=g^{-1}(x)$
+	\item 
+\end{enumerate}
+\paragraph*{O in modo più semplice}
+I passaggi che ho riportato qui sopra li ho trovati su youmath e seguono la definizione.
+Sono molto confusionali e il processo in se è molto difficile, quindi riporto alcuni passaggi per rendere il tutto più semplice.
+\\Qui dobbiamo andare a cercare all'interno di $f(x)$ un'espressione di $x$ che vogliamo rimuovere e sostiuire con $y$ per semplificare il tutto.
+Quindi, avendo $\int f(x)$ che contiene una $g(x)$ (possibilmente ripetuta) che voglio togliere per semplificare il tutto
+\begin{enumerate}
+	\item Decido che $y=g(x)$
+	\item Inverto $g(x)$ in modo da isolare la $x$, ottenendo $x=g^{-1}(y)$
+	\item Derivo entrambi i membri e "moltiplico" per $dx$ e $dy$ in modo da ottenere: $dx=(g^{-1})'(y)dy$
+	\item All'interno della funzione sostiuisco $g(x)$ con $y$ e $dx$ con $(g^{-1})'(y)dy$
+	\item A questo punto mi (dovrei) trovare un integrale più facile, che posso risolvere
+	\item Una volta risolto sostiuisco $y$ con $g(x)$.
+\end{enumerate}
 
-	\paragraph*{O in modo più semplice}
-	I passaggi che ho riportato qui sopra li ho trovati su youmath e seguono la definizione.
-	Sono molto confusionali e il processo in se è molto difficile, quindi riporto alcuni passaggi per rendere il tutto più semplice.
-	\\Qui dobbiamo andare a cercare all'interno di $f(x)$ un'espressione di $x$ che vogliamo rimuovere e sostiuire con $y$ per semplificare il tutto.
-	Quindi, avendo $\int f(x)$ che contiene una $g(x)$ (possibilmente ripetuta) che voglio togliere per semplificare il tutto
-	\begin{enumerate}
-		\item Decido che $y=g(x)$
-		\item Inverto $g(x)$ in modo da isolare la $x$, ottenendo $x=g^{-1}(y)$
-		\item Derivo entrambi i membri e "moltiplico" per $dx$ e $dy$ in modo da ottenere: $dx=(g^{-1})'(y)dy$
-		\item All'interno della funzione sostiuisco $g(x)$ con $y$ e $dx$ con $(g^{-1})'(y)dy$
-		\item A questo punto mi (dovrei) trovare un integrale più facile, che posso risolvere
-		\item Una volta risolto sostiuisco $y$ con $g(x)$.
-	\end{enumerate}
+% Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
+% si può sostituire con una ipotetica $y$ per sepmplificare.
+% \esempio{
+% 	$\int sin(e^x) e^x dx$. consideriamo:
+% 	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
+% 		\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
+% }
+\subsection{Integrazione di Funzioni Razionali}
+Sono funzioni razionali tutte quelle funzioni del tipo:
+$$f(x)=\frac{P(x)}{Q(x)} \text{ con } P(x),Q(x) \text{ Polinomi} $$
+Questo tipo di integrale si risolve in modi diversi in base al grado/tipo di numeratore e denominatore:
+\paragraph*{Numeratore è la Derivata del Denominatore}
+$$\int \frac{f'(x)}{f(x)} = \ln|f(x)|+ c$$
+\esempio{
+	\\$\int \frac{2x}{x^2-5} = \ln|x^2-5|+c$
+	\\Oppure:
+	\\$\int \frac{x^3}{x^4+1} = \frac{1}{4}\int \frac{4x^3}{x^4+1} = \frac{1}{4} \ln|x^4+1|+c$
+}
+\paragraph*{Numeratore Costante e Denominatore di I° grado}
+La risoluzione è sostanzialmente uguale al caso precedente, varrebbe ricordarsi però la formula:
+$$\int\frac{k}{ax+b} dx = \frac{k}{a} \ln|ax+b|$$
+\esempio{$\int 	\frac{3}{2x-1} dx = \frac{3}{2} \int \frac{2}{2x-1} = \frac{3}{2} \ln|2x-1|+c$}
 
+\paragraph*{Numeratore costante e Denominatore al Quadrato}
+Bisogna ricordarsi che:
+$\frac{1}{[f(x)]^2} = [f(x)]^{-2}$ e che 
+$\int f'(x)[f(x)]^n dx = \frac{[f(x)^{n+1}]}{n+1}$ (primitiva di funzione elementare generalizzata)
 
-	% Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
-	% si può sostituire con una ipotetica $y$ per sepmplificare.
-	% \esempio{
-	% 	$\int sin(e^x) e^x dx$. consideriamo:
-	% 	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
-	% 		\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
-	% }
-
-	\subsection{Integrazione di Funzioni Razionali}
-	Sono funzioni razionali tutte quelle funzioni del tipo:
-	$$f(x)=\frac{P(x)}{Q(x)} \text{ con } P(x),Q(x) \text{ Polinomi} $$
-	Questo tipo di integrale si risolve in modi diversi in base al grado/tipo di numeratore e denominatore:
-	\paragraph*{Numeratore è la Derivata del Denominatore}
-	$$\int \frac{f'(x)}{f(x)} = \ln|f(x)|+ c$$
-	\esempio{
-		\\$\int \frac{2x}{x^2-5} = \ln|x^2-5|+c$
-		\\Oppure:
-		\\$\int \frac{x^3}{x^4+1} = \frac{1}{4}\int \frac{4x^3}{x^4+1} = \frac{1}{4} \ln|x^4+1|+c$
-	}
-
-	\paragraph*{Numeratore Costante e Denominatore di I° grado}
-	La risoluzione è sostanzialmente uguale al caso precedente, varrebbe ricordarsi però la formula:
-	$$\int\frac{k}{ax+b} dx = \frac{k}{a} \ln|ax+b|$$
-	\esempio{$\int 	\frac{3}{2x-1} dx = \frac{3}{2} \int \frac{2}{2x-1} = \frac{3}{2} \ln|2x-1|+c$}
-	
-	\paragraph*{Numeratore costante e Denominatore al Quadrato}
-	Bisogna ricordarsi che:
-	$\frac{1}{[f(x)]^2} = [f(x)]^{-2}$ e che 
-	$\int f'(x)[f(x)]^n dx = \frac{[f(x)^{n+1}]}{n+1}$ (primitiva di funzione elementare generalizzata)
-	
-	\esempio{
-		$\int \frac{5}{(2x-1)^2} = 5\int (2x-1)^{-2} = \frac{5}{2} \int 2(2x-1)^{-2} = \frac{5}{2} \cdot \frac{(2x-1)^{-1}}{-1} + c = -\frac{5}{4x-2} + c$
-	}
-	\paragraph*{Funzioni razionali del tipo $\frac{dx-c}{ax^2+bx+c}$ con $\Delta < 0$}
-	In questo caso, bisogna smontare la funzione e ricondursi a integrali del tipo:
-	\begin{itemize}
-		\item $\int\frac{f'(x)}{1+[f(x)]^2} dx = \arctan[f(x)]+c$
-  		\item $\int\frac{f'(x)}{f(x)} = \ln|f(x)| +c $ 
-	\end{itemize}
-
-	\esempio{
-		$\int \frac{3x+1}{x^2+1} dx$.
-		\\Spacco in due la funzione e la gestisco come due integrali separati
-		$\int \frac{3x}{x^2+1} + \int \frac{1}{x^2+1} = \frac{3}{2}\int \frac{2x}{x^2+1} +  \int \frac{1}{x^2+1} = \frac{3}{2}\ln|x^2+1| + \arctan(x) +c$
-	}
-	\esempio{Più complicato:
-	$$\int \frac{18x+3}{9x^2+6x+2}$$
-	\\Bisogna ragionare:
-	\\Voglio ottenere una funzione del tipo $\frac{f'(x)}{f(x)}$, quidni calcolo la derivata del denominatore:
-	$D'=18x+6$ e cerco di trasformare il nuemratore in esso.
-	Per fare ciò, posso vedere quel "$+3$" al numeratore come un "$+6-3$"
-	$$ = \int \frac{18x+6-3}{9x^2+6x+2} = \int \frac{18x+6}{9x^2+6x+2} -\int \frac{-3}{9x^2+6x+2} = ln|9x^2+6x+2| - \int\frac{3}{9x^2+6x+2} +c$$
-	Adesso il secondo integrale lo cerco di trasformare in una funzione del tipo $\frac{f'(x)}{1+[f(x)]^2}$.
-	Guardo il denominatore e cerco di trasformarlo in $\frac{f'(x)}{f(x)}$:
-	$9x^2 = (3x)^2$, $6x = 2\cdot 3x \cdot 1$ (come (2ab)) e $+2 = +1+1$. 
-	Quindi il denominatore diventa: $(3x+1)^2+1$.
-	$$= \ln|9x^2+6x+2| - \arctan(3x+1) +c$$
-
-	}
-
-	\section{Altre Proprietà importanti}
-	\subsection*{Integrale di una funzione dispari}
-	Sia $f : \R \to \R$ una funzione continua e dispari,  $\int_{-a}^{a} f(x) dx = 0$.\\
-	Perchè essendo la funzione simmetrica rispetto all'origine, $\int_{-a}^{0} f(x) dx = - \int_{0}^{a} f(x)$, quindi
-	$\int_{-a}^{-a} f(x) dx = \int_{-a}^{0} f(x) dx + \int_{0}^{-a} f(x) dx = 0$.
-
-	\chapter{Serie Numeriche}
-	\section{Introduzione}
-	Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
-	In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
-
-	\paragraph*{Richiamiamo le successioni}
-	Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
-	Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
-	\definizione{
-		Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
-		($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
-		\begin{equation*}
-			s_m = x_0 + ... + x_m
-		\end{equation*}
-		Che equivale alla notazione:
-
-		\begin{equation*}
-			s_m = \sum_{n=0}^m x_n
-		\end{equation*}
-	}
-	\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
-	Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
-	\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
-	\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
-
-	\subsection*{In parole povere...}
-	Una serie numerica è il modo di indicare una somma di infiniti numeri.
-	Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
-	\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
-
-
-	\section{Serie Convergenti}
-	\subsection{Serie Geometrica}
-	La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
-	Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
-	Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
-	risulta:
-	\begin{equation}
-		\limite{n}{+\infty} s_n \begin{cases}
-			\text{non esiste} & q \leq -1  \\
-			= \frac{1}{1-q}   & -1 < q < 1 \\
-			= +\infty         & q \geq 1
-		\end{cases}
-	\end{equation}
-	Per cui
+\esempio{
+	$\int \frac{5}{(2x-1)^2} = 5\int (2x-1)^{-2} = \frac{5}{2} \int 2(2x-1)^{-2} = \frac{5}{2} \cdot \frac{(2x-1)^{-1}}{-1} + c = -\frac{5}{4x-2} + c$
+}
+\paragraph*{Funzioni razionali del tipo $\frac{dx-c}{ax^2+bx+c}$ con $\Delta < 0$}
+In questo caso, bisogna smontare la funzione e ricondursi a integrali del tipo:
+\begin{itemize}
+	\item $\int\frac{f'(x)}{1+[f(x)]^2} dx = \arctan[f(x)]+c$
+	\item $\int\frac{f'(x)}{f(x)} = \ln|f(x)| +c $ 
+\end{itemize}
+\esempio{
+	$\int \frac{3x+1}{x^2+1} dx$.
+	\\Spacco in due la funzione e la gestisco come due integrali separati
+	$\int \frac{3x}{x^2+1} + \int \frac{1}{x^2+1} = \frac{3}{2}\int \frac{2x}{x^2+1} +  \int \frac{1}{x^2+1} = \frac{3}{2}\ln|x^2+1| + \arctan(x) +c$
+}
+\esempio{Più complicato:
+$$\int \frac{18x+3}{9x^2+6x+2}$$
+\\Bisogna ragionare:
+\\Voglio ottenere una funzione del tipo $\frac{f'(x)}{f(x)}$, quidni calcolo la derivata del denominatore:
+$D'=18x+6$ e cerco di trasformare il nuemratore in esso.
+Per fare ciò, posso vedere quel "$+3$" al numeratore come un "$+6-3$"
+$$ = \int \frac{18x+6-3}{9x^2+6x+2} = \int \frac{18x+6}{9x^2+6x+2} -\int \frac{-3}{9x^2+6x+2} = ln|9x^2+6x+2| - \int\frac{3}{9x^2+6x+2} +c$$
+Adesso il secondo integrale lo cerco di trasformare in una funzione del tipo $\frac{f'(x)}{1+[f(x)]^2}$.
+Guardo il denominatore e cerco di trasformarlo in $\frac{f'(x)}{f(x)}$:
+$9x^2 = (3x)^2$, $6x = 2\cdot 3x \cdot 1$ (come (2ab)) e $+2 = +1+1$. 
+Quindi il denominatore diventa: $(3x+1)^2+1$.
+$$= \ln|9x^2+6x+2| - \arctan(3x+1) +c$$
+}
+\section{Altre Proprietà importanti}
+\subsection*{Integrale di una funzione dispari}
+Sia $f : \R \to \R$ una funzione continua e dispari,  $\int_{-a}^{a} f(x) dx = 0$.\\
+Perchè essendo la funzione simmetrica rispetto all'origine, $\int_{-a}^{0} f(x) dx = - \int_{0}^{a} f(x)$, quindi
+$\int_{-a}^{-a} f(x) dx = \int_{-a}^{0} f(x) dx + \int_{0}^{-a} f(x) dx = 0$.
+\chapter{Serie Numeriche}
+\section{Introduzione}
+Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
+In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
+\paragraph*{Richiamiamo le successioni}
+Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
+Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
+\definizione{
+	Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
+	($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
+	\begin{equation*}
+		s_m = x_0 + ... + x_m
+	\end{equation*}
+	Che equivale alla notazione:
+	\begin{equation*}
+		s_m = \sum_{n=0}^m x_n
+	\end{equation*}
+}
+\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
+Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
+\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
+\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
+\subsection*{In parole povere...}
+Una serie numerica è il modo di indicare una somma di infiniti numeri.
+Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
+\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
+\section{Serie Convergenti}
+\subsection{Serie Geometrica}
+La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
+Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
+Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
+risulta:
+\begin{equation}
+	\limite{n}{+\infty} s_n \begin{cases}
+		\text{non esiste} & q \leq -1  \\
+		= \frac{1}{1-q}   & -1 < q < 1 \\
+		= +\infty         & q \geq 1
+	\end{cases}
+\end{equation}
+Per cui
 	\begin{equation}
 		\sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
 			indeterminata      & q \leq -1  \\
@@ -1256,89 +1219,83 @@ $\int_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 		\end{cases}
 	\end{equation}
 
-	\esempio{
-		$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
+\esempio{
+	$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
+}
+
+\paragraph{In parole povere}
+Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
+\\\nb{La formula risolutiva risolve le serie che partono da $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
+\\Nota anche che se la serie presenta una costante moltiplicativa, questa va poi moltiplicata anche alle somme che vai a rimuovere!
+\\$k\cdot \sum_{n=1} q^n = k(\frac{1}{1-q} - q^0) = \frac{k}{1-q}-k(q^0)$
+}
+\subsection{Serie Telescopica}
+Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
+Allora risulta:
+\begin{equation*}
+	s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
+\end{equation*}
+Da cui
+\begin{equation*}
+	\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
+\end{equation*}
+\subsubsection*{Serie di Mengoli}
+La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
+La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
+\begin{equation*}
+	a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+quindi, la sua somma parizale è:
+\begin{equation*}
+	s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
+\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
+Questo è l'esempio più semplice di \textbf{serie telescopica}
+\section{Criteri di Convergenza}
+Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
+Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
+\definizione{
+	Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo}.
+	\begin{equation*}
+		\limite{n}{+\infty} a_n = 0 \text{ Necessario per la convergenza}
+	\end{equation*}
 	}
+Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
+Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
 
-	\paragraph{In parole povere}
-	Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
-	\\\nb{La formula risolutiva risolve le serie che partono da $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
-	\\Nota anche che se la serie presenta una costante moltiplicativa, questa va poi moltiplicata anche alle somme che vai a rimuovere!
-	\\$k\cdot \sum_{n=1} q^n = k(\frac{1}{1-q} - q^0) = \frac{k}{1-q}-k(q^0)$
-	}
-	\subsection{Serie Telescopica}
-	Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
-	Allora risulta:
-	\begin{equation*}
-		s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
-	\end{equation*}
-	Da cui
-	\begin{equation*}
-		\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
-	\end{equation*}
-
-	\subsubsection*{Serie di Mengoli}
-	La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
-	La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
-	\begin{equation*}
-		a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
-	\end{equation*}
-	quindi, la sua somma parizale è:
-	\begin{equation*}
-		s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
-	\end{equation*}
-	questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
-	\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
-	Questo è l'esempio più semplice di \textbf{serie telescopica}
-
-	\section{Criteri di Convergenza}
-	Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
-	Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
-	\definizione{
-		Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo}.
-		\begin{equation*}
-			\limite{n}{+\infty} a_n = 0 \text{ Necessario per la convergenza}
-		\end{equation*}
-	}
-	Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
-	Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
-
-	\begin{itemize}
-		\item Criterio del Rapporto
-		\item Criterio della Radice
-		\item Criterio del Confronto
-		\item Criterio del Confronto asintotico
-	\end{itemize}
-	Questi vengono utilizzati per serie a termini generali \emph{non negativi}
-	\begin{itemize}
-		\item Criterio dell'assoluta convergenza
-		\item Criterio di Leibniz
-	\end{itemize}
-	Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
-
-	\subsection{Alcune proprietà utili}
-	Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
-
-	\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
-	Allora:
-	\begin{enumerate}
-		\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
-		\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
-	\end{enumerate}
-	\nb{che una costante moltiplicativa non modifica il carattere di una serie}
-
-	\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
-	Quindi converge o diverge a $+\infty$
-	\esempio{
-$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
+\begin{itemize}
+	\item Criterio del Rapporto
+	\item Criterio della Radice
+	\item Criterio del Confronto
+	\item Criterio del Confronto asintotico
+\end{itemize}
+Questi vengono utilizzati per serie a termini generali \emph{non negativi}
+\begin{itemize}
+	\item Criterio dell'assoluta convergenza
+	\item Criterio di Leibniz
+\end{itemize}
+Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
+\subsection{Alcune proprietà utili}
+Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
+\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
+Allora:
+\begin{enumerate}
+	\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
+	\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
+\end{enumerate}
+\nb{che una costante moltiplicativa non modifica il carattere di una serie}
+\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
+Quindi converge o diverge a $+\infty$
+\esempio{
+	$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
 	\begin{itemize}
 		\item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
 		\item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)
 	\end{itemize}
 	Per cui questa serie \textbf{diverge a $+\infty$}
 	}
-
-	\subsection{Criterio del Rapporto}
+\subsection{Criterio del Rapporto}
 	Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
 	\definizione{
 		Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
