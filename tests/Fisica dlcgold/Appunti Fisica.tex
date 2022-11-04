@@ -157,7 +157,7 @@ Si ha quindi:
 $$\Delta x = v\Delta t\to x-x_0=v(t-t_0)\to x=x_0+v(t-t_0)$$
 che vale anche per $v$ non costante ma per intervalli di tempo approssimati 0, infatti tra brevi istanti di tempo si può approssimare la velocità istantanea $v(t)=\frac{dx}{dt}$ come una velocità costante. Disegniamo ora un grafico velocità tempo con la curva rappresentante la legge oraria, indicando velocità e tempo in due momenti del moto:
 \begin{center}
-	\includegraphics[scale=0.5]{img/gra.png}
+	%\includegraphics[scale=0.5]{img/gra.png}
 \end{center}
 calcolare l'area sottesa alla curva implica calcolare la differenza di posizione. Approssimo la curva ad una retta e procedo col banale calcolo del trapezio sottostante:
 $$A=(t_1-t_0)(\frac{\vec{v_1}-\vec{v_0}}{2})+(t_1-t_0
@@ -1324,24 +1324,24 @@ quindi la velocità di deflusso non dipende de dalla densità del fluido ne dall
 Si usa il moto armonico per descrivere il moto della molla e del pendolo.
 Comincio con una molla a riposo su un piano liscio a cui è attaccata una massa. Allungo la mossa si un certo $x=A$:
 \begin{center}
-	\begin{pspicture}(0,-0.81)(4.82,0.81)
-		\psline[linecolor=black, linewidth=0.04](0.02,0.81)(0.02,-0.79)(4.82,-0.79)
-		\psline[linecolor=black, linewidth=0.04](2.42,0.01)(3.22,0.01)(3.22,-0.79)(2.42,-0.79)(2.42,0.01)(2.42,0.01)
-		\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.42,-0.39){0.4}
-		\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.82,-0.39){0.4}
-		\pscircle[linecolor=black, linewidth=0.04, dimen=outer](1.22,-0.39){0.4}
-		\pscircle[linecolor=black, linewidth=0.04, dimen=outer](1.62,-0.39){0.4}
-		\pscircle[linecolor=black, linewidth=0.04, dimen=outer](2.02,-0.39){0.4}
-		\rput[bl](2.62,-0.39){$m$}
-	\end{pspicture}
+	%\begin{pspicture}(0,-0.81)(4.82,0.81)
+	%	\psline[linecolor=black, linewidth=0.04](0.02,0.81)(0.02,-0.79)(4.82,-0.79)
+	%	\psline[linecolor=black, linewidth=0.04](2.42,0.01)(3.22,0.01)(3.22,-0.79)(2.42,-0.79)(2.42,0.01)(2.42,0.01)
+	%	\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.42,-0.39){0.4}
+	%	\pscircle[linecolor=black, linewidth=0.04, dimen=outer](0.82,-0.39){0.4}
+	%	\pscircle[linecolor=black, linewidth=0.04, dimen=outer](1.22,-0.39){0.4}
+	%	\pscircle[linecolor=black, linewidth=0.04, dimen=outer](1.62,-0.39){0.4}
+	%	\pscircle[linecolor=black, linewidth=0.04, dimen=outer](2.02,-0.39){0.4}
+	%	\rput[bl](2.62,-0.39){$m$}
+	%\end{pspicture}
 \end{center}
 e si ha:
 \begin{center}
-	\begin{pspicture}(0,-0.8)(3.2,0.8)
-		\psframe[linecolor=black, linewidth=0.04, dimen=outer](3.2,0.8)(1.6,-0.8)
-		\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.0)(0.4,0.0)
-		\rput[bl](-0.9,0.4){$F_S=-kx$}
-	\end{pspicture}
+	%\begin{pspicture}(0,-0.8)(3.2,0.8)
+	%	\psframe[linecolor=black, linewidth=0.04, dimen=outer](3.2,0.8)(1.6,-0.8)
+	%	\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.6,0.0)(0.4,0.0)
+	%	\rput[bl](-0.9,0.4){$F_S=-kx$}
+	\% end{pspicture}
 \end{center}
 quindi $F=ma\to -kx=ma\to a=-\frac{k}{m}x$ con $a=\frac{dv}{dt}=\frac{d^2x}{dt^2}$ e $v=\frac{dx}{dt}$ quindi:
 $$\frac{d^2x}{dt^2}=-\frac{k}{m}x\to \frac{k}{m}=\omega^2$$
@@ -1688,22 +1688,22 @@ Un campo uniforme è rappresentato da linee parallele (costanza di direzione e v
 Consideriamo una superficie $d\Sigma$ immersa in una regione in cui è definito un campo $E$ e orientiamola fissando il verso del versore della normale $u_n$. Si definisce \textbf{flusso del campo E}, attraverso la superficie $d\Sigma$ la quantità scalare:
 $$d\Phi(E)=E\cdot u_nd\Sigma=E\cos \theta d\Sigma=E_nd\Sigma$$
 \begin{center}
-	\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
-	{
-		\begin{pspicture}(0,-2.03)(4.11,2.03)
-			\psellipse[linecolor=black, linewidth=0.04, dimen=outer](1.6,-1.03)(1.6,1.0)
-			\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.2,-0.83)(1.2,1.57)
-			\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.2,-0.83)(2.4,0.37)
-			\psline[linecolor=black, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4,0.37)(2.8,0.77)
-			\psline[linecolor=black, linewidth=0.04, linestyle=dotted, dotsep=0.10583334cm](1.2,1.57)(2.8,0.77)
-			\psline[linecolor=black, linewidth=0.04, linestyle=dotted, dotsep=0.10583334cm](2.8,0.77)(3.6,1.57)
-			\psarc[linecolor=black, linewidth=0.04, dimen=middle](1.08,-0.57){0.4}{0.0}{70.0}
-			\rput[bl](1.46,-0.35){$\theta$}
-			\rput[bl](1.02,1.79){$E$}
-			\rput[bl](3.7,1.65){$E_n$}
-			\rput[bl](2.5,0.09){$u_n$}
-		\end{pspicture}
-	}
+	%\psscalebox{1.0 1.0} % Change this value to rescale the drawing.
+	%{
+	%	\begin{pspicture}(0,-2.03)(4.11,2.03)
+	%		\psellipse[linecolor=black, linewidth=0.04, dimen=outer](1.6,-1.03)(1.6,1.0)
+	%		\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.2,-0.83)(1.2,1.57)
+	%		\psline[linecolor=black, linewidth=0.04, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(1.2,-0.83)(2.4,0.37)
+	%		\psline[linecolor=black, linewidth=0.04, linestyle=dashed, dash=0.17638889cm 0.10583334cm, arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.0]{->}(2.4,0.37)(2.8,0.77)
+	%		\psline[linecolor=black, linewidth=0.04, linestyle=dotted, dotsep=0.10583334cm](1.2,1.57)(2.8,0.77)
+	%		\psline[linecolor=black, linewidth=0.04, linestyle=dotted, dotsep=0.10583334cm](2.8,0.77)(3.6,1.57)
+	%		\psarc[linecolor=black, linewidth=0.04, dimen=middle](1.08,-0.57){0.4}{0.0}{70.0}
+	%		\rput[bl](1.46,-0.35){$\theta$}
+	%		\rput[bl](1.02,1.79){$E$}
+	%		\rput[bl](3.7,1.65){$E_n$}
+	%		\rput[bl](2.5,0.09){$u_n$}
+	%	\end{pspicture}
+	%}
 \end{center}
 Un flusso attraverso una superficie finita $\Sigma$ si ottiene sommando i contributi infinitesimi, quindi integrando:
 $$\Phi(E)=\int_\Sigma E_nd\Sigma$$
