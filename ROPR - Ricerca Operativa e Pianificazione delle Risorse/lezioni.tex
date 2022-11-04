@@ -42,56 +42,56 @@ dove $opt \in \{min,max\}$,
 ci sono problemi di minimizzazione (min f(x)) e massimizzazione (max f(x)).
 \\La funzione $f:R^n...$ è detta funzione obiettivo, $X$ è la regione ammissibile e $x\in X$ sono le variabili decisionali.
 
-Quindi un problema di ottimizzazione consinste nel determinare (se esistono) uno o più punti di min max $x^*$(x star è una particolare assegniazione che gode di una certa proprietà),
+Quindi un problema di ottimizzazione consiste nel determinare (se esistono) uno o più punti di min max $x^*$(x star è una particolare assegnazione che gode di una certa proprietà),
 {DISEGNO 1 slide 2}
 \paragraph*{Ottimizzazione Vincolata/non Vincolata} Ci possiamo accontentare di avere come spazio \emph{tutto $R^n$}, però possiamo anche definire delle regioni di vincolo:
 \\$X=R^n$ è ottimizzazione NON VINCOLATA, la ricerca viene effettuata in tutto $R^n$.
 \\$X\subset R^n$ è ottimizzazione VINCOLATA, la ricerca è soggetta al muoversi all'interno di una certa regione ($x \in [a, +\infty)$ per esempio)
 Nel caso dell'ottimizzazione vincolata semplicemente si considera la regione dello spazio definita da un determinato intervallo, quindi le soluzione valide di solito cambiano.
-\paragraph*{Ottimizzazione Intera e BInaria}, non esiste solo l'ottimizzazione in cui le variabili assumono valori nello spazio reale, ma alcune hanno delle caratteristiche particolari.
+\paragraph*{Ottimizzazione Intera e Binaria}, non esiste solo l'ottimizzazione in cui le variabili assumono valori nello spazio reale, ma alcune hanno delle caratteristiche particolari.
 $X\in Z^n$ richiede che le mie soluzioni \emph{siano valori interi}, quindi ottimizzazione intera.
 $x\in \{0,1\}^n$ è un caso molto "reale", si chiama ottimizzazione binaria (vero falso, spento acceso,...). Entrambe queste ottimizzazioni formano le ottimizzazioni a numeri intere.
 Esiste anche l'ottimizzazione mista, in cui alcune variabili sono intere e altre binarie.
-\paragraph*{Come si specigicano i vincoli} Quando andiamo a specificare come è fatto lo spazio con delle equaz o disequaz allora parliamo di \emph{programmazione matematica}.
-In questo caso i vincoli sono espressi con delle speressioni del tipo {SLIDE 6}, quindi intendiamo che $g_i(x)$ può essere maggiore, minore o uguale a Zero. NB i vincoli dipendono dalle stesse variabili da cui dipende la funzone obiettivo 
+\paragraph*{Come si specificano i vincoli} Quando andiamo a specificare come è fatto lo spazio con delle equazioni o disequazioni allora parliamo di \emph{programmazione matematica}.
+In questo caso i vincoli sono espressi con delle espressioni del tipo {SLIDE 6}, quindi intendiamo che $g_i(x)$ può essere maggiore, minore o uguale a 0. NB i vincoli dipendono dalle stesse variabili da cui dipende la funzione obiettivo 
 $g_i :X\to R$ è una funzione generica che lega tra loro variabili decisionali. In generale possimao avere più vincoli che definiscono la \emph{regione ammissibile}.
-{SLIDE 7 equazione }Osserviamo quindi che abbiamo m vincoli e n variabili, se x è in X allora è una soluzione ammissibili
-\paragraph*{esempio} consideriamo il seguente porblema: $min (x^2+y^2) s.a x+y\leq 3, x\geq 0, y\geq0$. 
-x e y sono variabili di decisione, $(x^2+y^2)$ è la funzone obiettivo e ci sono tre vincoli. la regione ammissibile è tutto R limitato dai vincoli (combinati).
-\paragraph*{Possibilita PM} Quindi abbiamo le seguenti Possibilita:
+{SLIDE 7 equazione} Osserviamo quindi che abbiamo \emph{m} vincoli e \emph{n} variabili, se \emph{x} è in \emph{X} allora è una soluzione ammissibile.
+\paragraph*{Esempio} Consideriamo il seguente problema: $min (x^2+y^2) s.a x+y\leq 3, x\geq 0, y\geq0$. 
+\emph{x} e \emph{y} sono variabili di decisione, $(x^2+y^2)$ è la funzione obiettivo e ci sono tre vincoli. La regione ammissibile è tutto \emph{R} limitato dai vincoli (combinati).
+\paragraph*{Possibilità PM} Quindi abbiamo le seguenti possibilità:
 \begin{itemize}
     \item Problema non ammissibile, $X = \emptyset$ (problema mal posto con regione ammissibile vuota)
-    \item Problema illimitato, ovvero per ogni soluzione che trovo ne posso trovare un'altra che è MIGLIORE di quella che ho trovato, (può essere illim superiormente o infer)
+    \item Problema illimitato, ovvero per ogni soluzione che trovo ne posso trovare un'altra che è MIGLIORE di quella che ho trovato, (può essere illimitato superiormente o inferiormente)
     \item Problema con soluzione ottima unica
     \item Problema con più soluzioni ottime (anche infinite), tutte le ottime hanno lo stesso valore della funzione obiettivo.
 \end{itemize}
-\paragraph*{esempio di problema illimitato } max($x^2+y^2$) s.a. $x\geq 0,y\geq 0$ non ha un "soffitto", quindi il problema è illimitato superiormente. Un problema per essere illimitato dipende sia dalla regione ammissibile che dal tipo di ottimo (max,min).
+\paragraph*{Esempio di problema illimitato} max($x^2+y^2$) s.a. $x\geq 0,y\geq 0$ non ha un "soffitto", quindi il problema è illimitato superiormente. Un problema per essere illimitato dipende sia dalla regione ammissibile che dal tipo di ottimo (max,min).
 
 
-\paragraph*{Ottimi Globali e Locali} I punti di ottimo possono essere Locali o Globali (se la funzione è convessa Locale=Globale). NB un minimo globale è anche locale, un minimo locale non necessariamente è globale.
+\paragraph*{Ottimi Globali e Locali} I punti di ottimo possono essere Locali o Globali (se la funzione è convessa Locale=Globale). NB: un minimo globale è anche locale, un minimo locale non necessariamente è globale.
 Ad oggi sappiamo dire se una soluzione sia Globale, sappiamo solo con certezza che sia locale (a meno di usare brute force).
 La risoluzione di un problema di programmazione matematica consiste nel trovare una soluzione ammissibile che sia ottimo GLOBALE.
 Alla fine della fiera la definizione di globale e locale corrisponde a quella di Analisi Matematica.
 I punti di ottimo globali possono essere multipli.
 
-\paragraph*{Programmazione lineare} Con lo stella, la prog lineare è la PM in cui ogni funzione (obiettivo e vincoli) sono funzioni LINEARI (polinomio di grado 1).
-Se una funzione vincolo è di secondo grado ma è riscrivibile (scomponibili) in più vincoli a grado uno allora può essere lineare ($x^2-1 =(x-1) \cdot (x+1)$, quindi $x^2-1 =(x-1) \geq 0 \to $ {SLIDE 30})
+\paragraph*{Programmazione lineare} Con lo Stella, la programmazione lineare è la PM in cui ogni funzione (obiettivo e vincoli) sono funzioni LINEARI (polinomio di grado 1).
+Se una funzione vincolo è di secondo grado ma è riscrivibile (scomponibile) in più vincoli a grado uno allora può essere lineare ($x^2-1 =(x-1) \cdot (x+1)$, quindi $x^2-1 =(x-1) \geq 0 \to $ {SLIDE 30})
 {ESEMPIO del cuba libre slide 31}
 
 \chapter{Lezione 2: Introduzione alla programmazione lineare} 11/10/22
-\paragraph*{La Wyndor Glass Co.} Si introduce il problema della Wyndor Glass Co., che sarà l'esempio per il resto della lezione
-Produce vetri, incluso finestre e porte.
+\paragraph*{La Wyndor Glass Co.} Si introduce il problema della Wyndor Glass Co., che sarà l'esempio per il resto della lezione.
+Produce vetri, incluse finestre e porte.
 Ha tre impianti:
 \begin{itemize}
-    \item Impianto 1: Produce le cornici in alluminio e le altre componenti metalliche
-    \item Implianto 2: Produce le cornici in legno.
-    \item Impianto 3: produce i vetri e assembla i vari prodotti.
+    \item Impianto 1: Produce le cornici in alluminio e le altre componenti metalliche.
+    \item Impianto 2: Produce le cornici in legno.
+    \item Impianto 3: Produce i vetri e assembla i vari prodotti.
 \end{itemize}
 A causa di guadagni in calo si è deciso di modificare la linea di prodotti, dismettendo la produzione di prodotti non economicamente sostenibili per liberare risorse
 per incrementare gli altri prodotti.
 \begin{itemize}
     \item Prodotto 1: Porta di vetro extra lusso (impianti 1 e 3)
-    \item Prodotto 2: finestra con doppia apertura (impianti 2 e 3)
+    \item Prodotto 2: Finestra con doppia apertura (impianti 2 e 3)
 \end{itemize}
 Non c'è limite al numero di prodotti che si possono produrre.
 Questi prodotti utilizzano gli impianti 1 e 2 in maniera esclusiva, però utilizzano entrambi l'impianto 3.
@@ -102,24 +102,23 @@ Ogni prodotto viene realizzato in lotti da 20 unità e i tassi di produzione ven
 
 \paragraph*{Collezioniamo i dati} per formulare il problema di programmazione matematica:
 \begin{itemize}
-    \item Numero di ore settimanali disponibili in ogni impianto per la produzione
+    \item Numero di ore settimanali disponibili in ogni impianto per la produzione.
     \item Numero di ore di lavorazione necessarie per produrre un lotto.
-    \item profitto ottenuto dalla produzione di ogni lotto
+    \item Profitto ottenuto dalla produzione di ogni lotto.
 \end{itemize}
 I dati sono contenuti in questa tabella: [TABELLA SLIDE 4]
 
 \paragraph*{Traduciamo in termini di PL}
 \textbf{Variabili decisionali}
 \begin{itemize}
-    \item $x_1$ numero di lotti di prod 1 per settimana
+    \item $x_1$ numero di lotti di prodotto 1 per settimana
     \item $x_2$ ...
 \end{itemize}
 \textbf{Funzione obiettivo}: max$Z = 3 \cdot x_1 + 5 \cdot x_2$
-\\\textbf{vincoli}: $x_1\leq 4$ --- $2 \cdot x_2 \leq 12$ --- $3\cdot x_1 + 2\cdot x_2 \leq 18$
+\\\textbf{Vincoli}: $x_1\leq 4$ --- $2 \cdot x_2 \leq 12$ --- $3\cdot x_1 + 2\cdot x_2 \leq 18$
 \\Ovviamente $x_1 \geq 0$ e $x_2 \geq 0$
 
-\subsection*{La soluzione grafica} Essendo questo un problema molto piccolo, con sole due variabili è possibile
-utilizzare la \emph{soluzione grafica}:
+\subsection*{La soluzione grafica} Essendo questo un problema molto piccolo, con sole due variabili è possibile utilizzare la \emph{soluzione grafica}:
 \begin{itemize}
     \item Disegno la regione ammissibile
     \item Determino l'ottimo
@@ -128,30 +127,29 @@ Per disegnare la regione ammissibile, bisogna andare a eliminare una alla volta 
 Dentro la regione ammissibile vivono tutte le possibili soluzioni al nostro problema, bisogna solo determinare la funzione ottima.
 
 \paragraph*{Funzione obiettivo}
-Per trovare l'ottimo bisogna rappresentare la funzione obiettivo:
-in questo caso, si aggiunge un asse Z e si mettono i piani di \emph{isolivello}.
+Per trovare l'ottimo bisogna rappresentare la funzione obiettivo: in questo caso, si aggiunge un asse Z e si mettono i piani di \emph{isolivello}.
 [Guarda dalle lezioni bene la spiegazione] [In pratica si rappresenta Z come un piano per alcuni valori di x1 e x2 e si proiettano su x e y i segmenti che genera.
-si trova quindi l'andazzo del piano di isolivello e si incrementa fino a trovare il massimo.]
+Si trova quindi l'andazzo del piano di isolivello e si incrementa fino a trovare il massimo.]
 \paragraph*{Vincoli funzionali di $\leq$} slide 16
 \paragraph*{Regione ammissibile} La regione ammissibile $X$ è data dal soddisfacimento dei vari vincoli (rette e semipiani):
 $x= x\in {R}^n : g_i ...$ finire a slide 20.
-La regiione ammissibile da un punto di vista geometrico corrisponde a un poliedro convesso e può essere limitata (\textbf{politopo}) o illimitata.
+La regione ammissibile da un punto di vista geometrico corrisponde ad un poliedro convesso e può essere limitata (\textbf{politopo}) o illimitata.
 \\Con la soluzione grafica si possono verificare quattro situazioni:
 \begin{itemize}
     \item Ammette un'unica soluzione ottima in un \emph{vertice del poligono} che delimita la regione ammissibile.
-    \item Ammette Infinite soluzioni ottime in un \emph{lato del poligono} se la direzione di decrescita è perpendicolare a un lato del poligono.
+    \item Ammette infinite soluzioni ottime in un \emph{lato del poligono} se la direzione di decrescita è perpendicolare a un lato del poligono.
     \item Non ammette soluzione perchè la regione ammissibile è illimitata e la funzione obiettivo è limitata superiormente.
-    \item Non ammette soluzione perchè la regione ammissibile è vuota
+    \item Non ammette soluzione perchè la regione ammissibile è vuota.
 \end{itemize}
-\paragraph*{quindi} un problema di PL è struttrato come segue:
-$opt_{x\in X} Z = \sum_{j=1}^{n} c_j\cdot x_j$ è la funzione obiettivo (n numero di variabili decisionali)
-\\ $\sum_{j=1}^n a_{ij} \cdot x_j \leq b_i$ con $i=\,...,m$ sono i vincoli (m numero vincoli)
-\\$x_j$ è variabile decisionale, $c_j$ coefficiente di costo, aij termine noto sinistro bi termine noto destro (questi ultimi tre sono i parametri).
+\paragraph*{Quindi} un problema di PL è strutturato come segue:
+$opt_{x\in X} Z = \sum_{j=1}^{n} c_j\cdot x_j$ è la funzione obiettivo (\emph{n} numero di variabili decisionali)
+\\ $\sum_{j=1}^n a_{ij} \cdot x_j \leq b_i$ con $i=\,...,m$ sono i vincoli (\emph{m} numero vincoli)
+\\$x_j$ è variabile decisionale, $c_j$ coefficiente di costo, $a_ij$ termine noto sinistro e $b_i$ termine noto destro (questi ultimi tre sono i parametri).
 
 \subsection*{Programmazione Lineare: Assunzioni}
-Un problea di PL si appoggia su 4 assunzioni base:
+Un problema di PL si appoggia su 4 assunzioni base:
 \begin{itemize}
-    \item Proporzionalità: il contributo di ogni variabile decisionale è porporzionale rispetto al valore assunto.
+    \item Proporzionalità: il contributo di ogni variabile decisionale è porporzionale rispetto al valore assunto
     \item Additività
     \item Continuità
     \item Certezza
@@ -159,21 +157,19 @@ Un problea di PL si appoggia su 4 assunzioni base:
 
 \subsection*{Esempio Personnel Scheduling}
 \dots Questo è un problema di programmazione intera (non posso dividere le persone) e per "fortuna" il risulato è intero, quindi è accettabile.
-Se la soluzione non fosse stata intera avremmo potuto fare due cose: arrotondare (non garantisce l'ottimalità) o aggiungere vincoli che garantiscono l'interzza delle variabili di decisione.
+Se la soluzione non fosse stata intera avremmo potuto fare due cose: arrotondare (non garantisce l'ottimalità) o aggiungere vincoli che garantiscono l'interezza delle variabili di decisione.
 
 \section*{Metodo del simplesso}
-Algoritmo generale per la risoluzione di problemi di programmazione lineare (e non solo)
+Algoritmo generale per la risoluzione di problemi di programmazione lineare (e non solo).
 \\Nel caso medio il tempo è \emph{lineare al numero delle variabili}, nel caso peggiore può risultare esponenziale.
-Ancora oggi è uno degli algoritmi più efficienti per risolvere un problema di PL.
+\\Ancora oggi è uno degli algoritmi più efficienti per risolvere un problema di PL.
 
-\paragraph*{cos'è} è una procedura algebrica ma i suoi concetti base sono geometrici.
-\textbf{La frontiera di un vincolo} è la retta corrispondente al vincolo.
-\textbf{Un vertice} si trova all'intersezione di coppie di frontiere di vincoli.
-alcuni vertici sono nella regione ammissibile e si chiamano ammissibili, mentre altri sono non ammissibili.
-\textbf{Spigolo} Due vertici adiacenti se sono collegti da un segmento che giace sull'intersezione delle frontiere dei vincoli condivisi.
-questo segmento si chiama spigolo.
-\paragraph*{Test di ottimalità} Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
-Se una soluzione vertice non ammette soluzioni vertice a lei adiacenti con valore della funzione obiettivo Z migliore, allora la soluzione in questione è ottimale.
+\paragraph*{Cos'è} è una procedura algebrica ma i suoi concetti base sono geometrici.
+\\\textbf{La frontiera di un vincolo} è la retta corrispondente al vincolo.
+\\\textbf{Un vertice} si trova all'intersezione di coppie di frontiere di vincoli.
+Alcuni vertici sono nella regione ammissibile e si chiamano ammissibili, mentre altri sono non ammissibili.
+\\\textbf{Uno spigolo} è un segmento che giace sull'intersezione delle frontiere dei vincoli condivisi dai due vertici adiacenti, che sono collegati da questo segmento.
+\paragraph*{Test di ottimalità.} Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale: se una soluzione vertice non ammette soluzioni vertice a lei adiacenti con valore della funzione obiettivo Z migliore, allora la soluzione in questione è ottimale.
 \paragraph*{I 6 concetti chiave} [SLIDE 15]
 \begin{enumerate}
     \item Primo
