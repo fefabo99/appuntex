@@ -114,7 +114,7 @@ I problemi di ottimizzazione possono essere:
 
 }
 
-Quindi un problema di ottimizzazione consiste nel determinare (se esistono) uno o più punti di \emph{min}/\emph{max} $x^*$ (x star è una particolare assegniazione che gode di una certa proprietà).
+Quindi un problema di ottimizzazione consiste nel determinare (se esistono) uno o più punti di \emph{min}/\emph{max} $x^*$ ($x^*$ è una particolare assegnazione che gode di una certa proprietà).
 
 \paragraph*{Ottimizzazione Vincolata/non Vincolata}
 Esistono due tipi principali di Ottimizzazione, determinate dall'esistenza o meno di delle \emph{regioni di vincolo}:
@@ -144,7 +144,7 @@ I vincoli vengono espressi con delle espressioni del tipo $g_i(x) \begin{cases}
     \geq \\ = \\ \leq %%sistemare questa dicitura
 \end{cases} 0$
 in cui $g_i: X\to \R$ è una funzione generica che lega tra loro le variabili decisionali.
-Nota che i vincoli dipendo dalle \emph{stesse variabili da cui dipende la funzine obiettivo}.
+Nota che i vincoli dipendo dalle \emph{stesse variabili da cui dipende la funzione obiettivo}.
 \\L'insieme (somma) di tutti i vincoli definisce la \emph{regione ammissibile}, se $x \in X$ allora è una soluzone ammissibile.
 \\In un problema di ottimizzazione abbiamo quindi $m$ vincoli e $n$ variabili.
 
@@ -186,7 +186,7 @@ L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui 
 \definizione{
     Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
     \\Se una soluzione vertice non ammette soluzioni vertice a egli adiacenti con valore della funzione obiettivo
-    migliore, allora la \textbf{souzione} in questione è \textbf{ottimale}.
+    migliore, allora la \textbf{soluzione} in questione è \textbf{ottimale}.
 }
 
 \section{La Procedura Algebrica}
@@ -195,7 +195,7 @@ Siccome questo algoritmo è usualmente eseguito su un calcolatore, che è in gra
 è necessario tradurre la procedura geometrica in una procedura algebrica, che si basa sulla risoluzione di un sistema di equazioni lineari.
 \paragraph*{Forma Aumentata}
 Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{forma standard} alla \emph{forma aumentata}:
-\\Per fare ciò bsiogna fare le seguenti operazioni:
+\\Per fare ciò bisogna fare le seguenti operazioni:
 \begin{enumerate}
     \item Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}:
     $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$ 
@@ -215,7 +215,7 @@ Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{for
         \end{cases}
     \]
     $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
-    Assumendi che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
+    Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
     affinchè questa sia verificata con il segno di uguaglianza }
 \end{enumerate}
 Le variabili di slack hanno alcune proprietà che sono utili da tenere a mente: 
