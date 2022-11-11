@@ -264,16 +264,10 @@ La soluzione ottimale del problema Duale fornisce i \emph{prezzi ombra} del prob
 Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
 
 \begin{center}
-    \begin{tabular}{ |c|c| }
-        \hline
-        max $c^T x $ & min $b^T \lambda $  \\
-        $A x \leq b$ & $ A \lambda \geq c$ \\
-        $x \geq 0$   & $ \lambda \geq 0 $ \\
-        \hline
-    \end{tabular}
+\includegraphics[width=0.7\textwidth]{dualità1.jpg}
 \end{center}
 
-In generale per passare da un primale a un duale valgono queste regole:
+Più in specifico, le regole per Primale$\to$Duale sono:
 
 \begin{center}
     \begin{tabular}{ |l|c|c| }
@@ -297,6 +291,6 @@ Quindi dato un qualunque problema di PL:
     \item i termini noti del primale diventano coefficenti del duale.
     \item i coefficienti di variabile rimangono invariati
 \end{itemize}
-Si può notare che il Duale di un problema Duale è il suo primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
+Si può notare che il Duale di un Duale è il suo Primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
 
 \end{document}
