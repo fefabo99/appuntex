@@ -136,13 +136,13 @@ Esiste anche l'ottimizzazione mista, in cui alcune variabili sono intere e altre
 \definizione{
     Quando l'insieme delle soluzioni ammissibili di un problema di ottimizzazione viene espresso attraverso un sistema di equazioni e disequazioni,
     esso prende il nome di \emph{Programmazione Matematica}.
-    }
+}
 Ovvero, se i vincoli di un problema di ottimizzazione vengono espressi tramite delle equazioni/disequazioni, allora questo problema diventa un problema di programmazione matematica.
 
 \subsection*{Come si definiscono i vincoli}
 I vincoli vengono espressi con delle espressioni del tipo $g_i(x) \begin{cases}
-    \geq \\ = \\ \leq %%sistemare questa dicitura
-\end{cases} 0$
+        \geq \\ = \\ \leq %%sistemare questa dicitura
+    \end{cases} 0$
 in cui $g_i: X\to \R$ è una funzione generica che lega tra loro le variabili decisionali.
 Nota che i vincoli dipendo dalle \emph{stesse variabili da cui dipende la funzione obiettivo}.
 \\L'insieme (somma) di tutti i vincoli definisce la \emph{regione ammissibile}, se $x \in X$ allora è una soluzone ammissibile.
@@ -171,10 +171,10 @@ Definiamo quindi:
 \begin{itemize}
     \item \textbf{Frontiera del vincolo}: è la "linea" di demarcazione di un vincolo.
     \item \textbf{Vertice}: un vertice è un punto di intersezione di coppie di frontiere di vincoli.
-    \begin{itemize}
-        \item \textbf{Vertici Adiacenti}: Due vertici si dicono adiacenti se condividono $n-1$ frontiere di vincoli.
-        \item \textbf{Spigolo}: segmento che collega due vertici adiacenti
-    \end{itemize}
+          \begin{itemize}
+              \item \textbf{Vertici Adiacenti}: Due vertici si dicono adiacenti se condividono $n-1$ frontiere di vincoli.
+              \item \textbf{Spigolo}: segmento che collega due vertici adiacenti
+          \end{itemize}
     \item \textbf{Vertice Ammissibile}: Un vertice è detto ammissibile se \emph{fa parte} della regione ammissibile
     \item \textbf{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
 \end{itemize}
@@ -198,27 +198,27 @@ Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{for
 \\Per fare ciò bisogna fare le seguenti operazioni:
 \begin{enumerate}
     \item Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}:
-    $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$ 
+          $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$
     \item Per ogni vincolo aggiungo una \textbf{Variabile di Slack}
-    \\Ogni vincolo riceve una variabile di slack unica, quindi se abbiamo:
-    \[
-        \begin{cases}
-            x_1 \leq 3 \\
-            x_2 \leq 2 \\
-            x_1 + x_2 \leq 5
-        \end{cases}
-        \to
-        \begin{cases}
-            x_1 + x_3 = 3 \\
-            x_2 + x_4= 2 \\
-            x_1 + x_2 + x_5 = 5 
-        \end{cases}
-    \]
-    $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
-    Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
-    affinchè questa sia verificata con il segno di uguaglianza }
+          \\Ogni vincolo riceve una variabile di slack unica, quindi se abbiamo:
+          \[
+              \begin{cases}
+                  x_1 \leq 3 \\
+                  x_2 \leq 2 \\
+                  x_1 + x_2 \leq 5
+              \end{cases}
+              \to
+              \begin{cases}
+                  x_1 + x_3 = 3 \\
+                  x_2 + x_4= 2  \\
+                  x_1 + x_2 + x_5 = 5
+              \end{cases}
+          \]
+          $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
+          Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
+              affinchè questa sia verificata con il segno di uguaglianza }
 \end{enumerate}
-Le variabili di slack hanno alcune proprietà che sono utili da tenere a mente: 
+Le variabili di slack hanno alcune proprietà che sono utili da tenere a mente:
 Per un qualunque valore delle variabili decisionali:
 \begin{itemize}
     \item Se $slack = 0 \implies$ La soluzione corrispondente giace sulla frontiera del vincolo della forma originale.
@@ -227,7 +227,7 @@ Per un qualunque valore delle variabili decisionali:
 \end{itemize}
 Si definisce \textbf{Soluzione Aumentata} una soluzione del modello in forma originale che viene \emph{aumentata} tramite i
 corrispondenti valori delle variabili di slack.
-\subparagraph*{Soluzione di Base} 
+\subparagraph*{Soluzione di Base}
 Si definisce soluzione di base, un vertice del modello in forma aumentata.
 \\Se abbiamo come variabili di base $x_1=4,x_2=6$ e come variabili di slack $x_2=0,x_3=0,x_4=-6$ allora la soluzione
 di base (non ammissibile) associata sarà $(4,6,0,0,-6)$.
@@ -241,16 +241,62 @@ Una \textbf{soluzione di base} gode delle seguenti proprietà:
 \begin{enumerate} %Riformula per capire meglio
     \item Una variabile può essere \emph{Di base} o \emph{NON di base}
     \item Il numero delle variabili di base \emph{eguaglia il numero dei vincoli funzionali},
-    Di conseguenza il numero delle variabili non di base eguaglia il numero totale delle variabili, meno il numero dei vincoli funzionali
+          Di conseguenza il numero delle variabili non di base eguaglia il numero totale delle variabili, meno il numero dei vincoli funzionali
     \item Le variabili NON di base \emph{vengono poste a zero}
     \item I valori delle variabili di base sono ottenuti come risoluzione simultanea del sistema di equazioni lineari (in forma aumentata).
     \item Se le variabili di base soddisfano i vincoli di non negatività, la soluzione di base è una soluzione ammissibile di base.
 \end{enumerate}
 \paragraph{Soluzioni di Base Adiacenti}
 Due soluzioni di base ammissibili sono \emph{adiacenti} se sono caratterizzate dal \textbf{condividere le stesse variabili non di base eccetto una}.
-\\Di conseguenza, muoversi da una soluzione di base ammissibile ad una soluzione ad essa adiacente 
+\\Di conseguenza, muoversi da una soluzione di base ammissibile ad una soluzione ad essa adiacente
 \emph{Implica che una variabile non di base divenga di base} e che \emph{una variabile di base divenga non di base}.
 Il che richiede di aggiustare i valori delle variabili di base per garantire che il sistema di equazioni sia ancora soddisfatto.
 
+\chapter{Dualità}
+Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale},
+è associato un problema chiamato \textbf{Duale}.
+La soluzione ottimale del problema Duale fornisce i \emph{prezzi ombra} del problema Primale.
+
+\paragraph{Anailisi di Sensitività} La teoria della Dualità permette l'implementazione e interpretazione dell'analisi di sensitività.
+\\L'Anaalisi di Sensitività è una tecnica che permette di decidere i valori di alcuni parametri di un problema di PL.
+
+\section{Da Primale a Duale}
+Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
+
+\begin{center}
+    \begin{tabular}{ |c|c| }
+        \hline
+        max $c^T x $ & min $b^T \lambda $  \\
+        $A x \leq b$ & $ A \lambda \geq c$ \\
+        $x \geq 0$   & $ \lambda \geq 0 $ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+In generale per passare da un primale a un duale valgono queste regole:
+
+\begin{center}
+    \begin{tabular}{ |l|c|c| }
+        \hline
+        Funzione Obiettivo:      & max $c_i^Tx$      & min $b^T\lambda$   \\
+        \hline \hline
+        Vincoli $\leq$ (primale) & $a_i^Tx \leq b_i$ & $\lambda_i \geq 0$ \\
+        Vincoli $=$ (primale)    & $a_i^Tx = b_i$    & $\lambda_i$ Libera \\
+        Vincoli $\geq$ (primale) & $a_i^Tx \geq b_i$ & $\lambda_i \leq 0$ \\
+        \hline
+        Vincoli Non negatività   & $x_j\geq 0$       & $A_j^T \geq c_j$   \\
+        Variabile Libera         & $x_j$ Libera      & $A_j^T = c_j$      \\
+        Vincoli Non positività   & $x_j\geq 0$       & $A_j^T \geq c_j$   \\
+        \hline
+    \end{tabular}
+\end{center}
+Quindi dato un qualunque problema di PL:
+\begin{itemize}
+    \item un problema di MAX diventa un problema di MIN.
+    \item i coefficenti del primale diventano i termini noti del duale
+    \item i termini noti del primale diventano coefficenti del duale.
+    \item i coefficienti di variabile rimangono invariati
+\end{itemize}
+Si può notare che il Duale di un problema Duale è il suo primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
 
 \end{document}
