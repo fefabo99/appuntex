@@ -1,0 +1,49 @@
+\chapter{Introduzione}
+
+\section{Il corso}
+Il corso di ROPR verrà svolto da:
+\begin{itemize}
+    \item Fabio Antonio Stella
+    \item Guglielmo Lulli
+\end{itemize}
+
+Il testo di riferimento è \emph{Frederick S. Hiller and Gerald J. Lieberman, Ricerca Operativa, McGraw-Hill, nona edizione, 2010.}
+
+
+\section{Il programma}
+
+\begin{itemize}
+    \item Introduzione: storia-motivazione-esempi
+
+    \item Ottimizzazione non lineare.
+          \begin{enumerate}
+              \item Ottimizzazione di funzioni non lineari ad una variabile: ricerca dicotomia-metodo Bisezione- metoto Newton.
+              \item Ottimizzazione di funzioni non lineari multivariate: metodo Gradiente - metodo Newton
+              \item Ottimizzazione non lineare vincolate: Condizioni di Karush-Kuhn-Tucker.
+          \end{enumerate}
+    \item Ottimizzazione lineare e intera.
+          \begin{enumerate}
+              \item Introduzione alla programmazione linare (PL): Proprietà dei problemi di PL, strategie di modellizzazione.
+          \end{enumerate}
+    \item Soft Computing per l'ottimizzazione.
+\end{itemize}
+
+\section{Modalità d'esame}
+Due Modalità:
+\begin{itemize}
+    \item Modalità con Parziali
+    \item Modalità con Scritto unico
+\end{itemize}
+
+\subsection*{Parziali}
+Primo parziale sarà durante la settimana di sospensione didattica, il secondo a fine del corso a ridosso del primo appello completo.
+Entrambe le prove hanno voto massimo 14 e soglia di superamento 6.
+\\É possibile \emph{recuperare solo una delle due prove parziali}, a ridosso degli appelli completi.
+\paragraph*{Assignments} Durante l'insegnamento verranno assegnati 4 Assignments da risolvere a casa e consegnare entro date stabilite,
+Ad ogni assignment può andare un voto minimo di 0 a un massimo di 1.
+\paragraph*{Orale} non obbligatorio, consiste in 3 domande (aperte/esercizi) su tutto il programma.
+Si accede all'orale se si hanno già raggiunti i 18 punti. L'orale ha un voto di $\pm 3$.
+
+\subsection*{Scritto unico}
+Scritto (voto max 28) con domande/esercizi su tutto il programma.
+Orale faoltativo si accede con un voto minimo di 15.

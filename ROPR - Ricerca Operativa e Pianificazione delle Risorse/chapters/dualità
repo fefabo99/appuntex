@@ -1,0 +1,40 @@
+\chapter{Dualità}
+Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale},
+è associato un problema chiamato \textbf{Duale}.
+La soluzione ottimale del problema Duale fornisce i \emph{prezzi ombra} del problema Primale.
+
+\paragraph{Anailisi di Sensitività} La teoria della Dualità permette l'implementazione e interpretazione dell'analisi di sensitività.
+\\L'Anaalisi di Sensitività è una tecnica che permette di decidere i valori di alcuni parametri di un problema di PL.
+
+\section{Da Primale a Duale}
+Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
+
+\begin{center}
+\includegraphics[width=0.7\textwidth]{dualità1.jpg}
+\end{center}
+
+Più in specifico, le regole per Primale$\to$Duale sono:
+
+\begin{center}
+    \begin{tabular}{ |l|c|c| }
+        \hline
+        Funzione Obiettivo:      & max $c_i^Tx$      & min $b^T\lambda$   \\
+        \hline \hline
+        Vincoli $\leq$ (primale) & $a_i^Tx \leq b_i$ & $\lambda_i \geq 0$ \\
+        Vincoli $=$ (primale)    & $a_i^Tx = b_i$    & $\lambda_i$ Libera \\
+        Vincoli $\geq$ (primale) & $a_i^Tx \geq b_i$ & $\lambda_i \leq 0$ \\
+        \hline
+        Vincoli Non negatività   & $x_j\geq 0$       & $A_j^T \geq c_j$   \\
+        Variabile Libera         & $x_j$ Libera      & $A_j^T = c_j$      \\
+        Vincoli Non positività   & $x_j\geq 0$       & $A_j^T \geq c_j$   \\
+        \hline
+    \end{tabular}
+\end{center}
+Quindi dato un qualunque problema di PL:
+\begin{itemize}
+    \item un problema di MAX diventa un problema di MIN.
+    \item i coefficenti del primale diventano i termini noti del duale
+    \item i termini noti del primale diventano coefficenti del duale.
+    \item i coefficienti di variabile rimangono invariati
+\end{itemize}
+Si può notare che il Duale di un Duale è il suo Primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
