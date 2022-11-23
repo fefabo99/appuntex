@@ -10,6 +10,7 @@ Qui di seguito viene riportato un link a una cartella GoogleDrive contenente gli
 
 ### Ultimo argomento trattato
 
+02/11/22 Epsilon NFA
 27/10/22 Esercizi Automi a Stati Finiti
 26/10/22 Conclusione ER e inizio Automi a Stati Finiti (DFA)
 
