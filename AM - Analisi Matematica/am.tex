@@ -492,7 +492,7 @@ L'intersezione con gli assi invece ci aiuta a disegnare la funzione.
 \end{itemize}
 
 \subsection*{Limiti e asintoti}
-I limiti ci servono a capire come si comporta la funzione ai limiti del dominio e nei punti di disconitinuità.
+I limiti ci servono a capire come si comporta la funzione ai limiti del dominio e nei punti di discontinuità.
 Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fanno parte del dominio e agli estremi di esso.
 
 \begin{itemize}
@@ -777,24 +777,24 @@ come "buchi" o estremi del dominio.
 		\\Quindi $x=0$ e $x=2$ sono asintoti verticali.
 }
 \subsection*{Asintoti Orizzontali}
-Una situazione abbastanza analoga la si ha con gli \emph{Asintoti Orizzontali}
+Una situazione abbastanza analoga si ha con gli \emph{Asintoti Orizzontali}
 \definizione{
 	Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (destro)} di $f(x)$ per $x\to +\infty$ se $\limite{x}{+\infty} f(x) = l$
 	\\Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (sinistro)} di $f(x)$ per $x\to -\infty$ se $\limite{x}{-\infty} f(x) = l$
 
 }
-In questo caso però, una funzione può avere \emph{al massimo 2 asinto   ti orizzontali}
+In questo caso però, una funzione può avere \emph{al massimo 2 asintoti orizzontali}
 
 \section{Asintoti Obliqui}
 \paragraph*{definizione}{ %la definizione è broken, va sistemata TODO
 	Si dice che la retta $y=mx + q$ è un asintoto obliquo (destro) di $f(x)$ per $x \to +\infty$ se
 	$\limite{x}{+\infty} [f(x)-mx-q]=0$.
-	Una Situazione analoga lo si ha per $-\infty $ (sinistro).
+	Una Situazione analoga si ha per $-\infty $ (sinistro).
 }
 
 Una funzione può avere al massimo 2 asintoti obliqui diversi, uno a $+\infty$ e uno a $-\infty$.
 La stessa retta può essere asintoto obliquo destro e sinistro.
-\paragraph*{Come trovare} un asintoto obliquo a $\pm \infty$? %SISTEMARE che si capisca meglio
+\paragraph*{Come trasintoti oriovare} un asintoto obliquo a $\pm \infty$? %SISTEMARE che si capisca meglio
 Bisogna provare a svolgere un paio di limiti.
 \\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow 
 q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ 
@@ -807,7 +807,7 @@ Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei li
 Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
 \definizione{
 	Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
-	$$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$$
+	$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$
 	e si scrive $f(x) \sim g(x)$ per $x\to x_0$
 	}
 Dai limiti notevoli si ricava facilmente che, per $x \to 0$
@@ -824,7 +824,7 @@ Dai limiti notevoli si ricava facilmente che, per $x \to 0$
 	}
 \esempio{
 	\\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
-		\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con$x\to +\infty$
+		\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con $x\to +\infty$
 		}
 \subsection*{Alcune Proprietà}
 \begin{enumerate}
@@ -841,7 +841,7 @@ $$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
 con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
 \nb{la radice è "più grande" del logaritmo}
 \subsection*{o-piccolo}
-L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infitisemio di una funzione rispetto ad una funzione campione,
+L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infinitesimo di una funzione rispetto ad una funzione campione,
 al tendere di $x$ ad un determinato valore di infinito.
 \definizione{
 	Siano $f(x)$ e $g(x)$ due funzioni (definite sullo stesso insieme) e sia $x_0$ un punto di accumulazione del dominio, eventualmente infinito.
@@ -863,11 +863,11 @@ Una funzione continua su un insieme è una funzione continua in ogni punto dell'
 Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
 \definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
 \subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
-Questa definizione enuncia, in estensione alla prima, che è anche punto di disconitinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
+Questa definizione enuncia, in estensione alla prima, che è anche punto di discontinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
 \\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
 \subsubsection*{Classificazione dei punti di Discontinuità}
 Ci sono 3 classificazioni per identificare i punti di discontinuità.
-Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di disconitinuità di:
+Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di discontinuità di:
 \paragraph{Prima Specie} se i \emph{limiti sinistro e destro di $x_0$ esistono finiti ma sono diversi}.
 Questa viene anche chiamata \textbf{Discontinuità a Salto}
 \paragraph{Seconda Specie} se almeno uno dei due limiti, destro o sinistro, di $x_0$ è \emph{infinito o non esiste}.
@@ -912,6 +912,45 @@ per $x \rightarrow c$.
 	Se per $x \rightarrow c, \, f(x)\rightarrow l > 0$ definitivamente per $x \rightarrow c$
 	allora $l \geq 0$
 	}
+\subsection*{Teorema di permanenza del segno per funzioni continue}
+\definizione{
+	Se f è continua in c e $f(c) > 0$, allora $f(x) > 0$ definitivamente per $x \rightarrow c$.
+}
+\subsection*{Teorema degli zeri}
+\definizione{
+	Sia \begin{enumerate}
+		\item f continua in [a, b]
+		\item $f(a)f(b) < 0$
+	\end{enumerate}
+	Allora esiste $c \in (a,b)$ tale che $f(c)=0$.
+	Se f è anche strettamente monotna, lo zero è unico.
+}
+\subsection*{Teorema di Weierstrass}
+\definizione{
+	Sia $f: [a,b] \rightarrow \mathbb{R}$ una funzione continua.
+	Allora f assume massimo e minimo in [a,b], ossia: esistono $x_m, \, x_M \in [a,b]$
+	tali che $f(x_m) \leq f(x) \leq f(x_M)$ per ogni $x \in [a,b]$.
+	\\ Si dice che $x_m$ è punto di minimo per f, e $m=f(x_m)$ è il minimo di f;
+	\\ analogamente $x_M$ è punto di massimo, e $M = f(x_M)$ è il massimo di f.
+}
+\subsection*{Teorema dei Valori Intermedi}
+\definizione{
+	Se f è continua su [a,b], allora per ogni valore $\lambda$ compreso tra m e M (minimo e massimo di f in [a,b]),
+	esiste un ingresso x in [a,b] che ha il valore $\lambda$ cine yscuta (proprietè dei valori intermedi).
+}
+\subsection*{Teormea di monotonia}
+\definizione{
+	Sia $f: (a,b) \rightarrow \mathbb{R}$ una funzione monotona. Allora
+	per ogni $c \in (a,b)$ esistono finiti i limit destro e sinistro, per $x \rightarrow c$;
+	ai due estremi a,b esistono i limiti destro (in a) e sinistro (in b), eventualmente infiniti.
+}
+\subsection*{Teorema invertibilità}
+\definizione{
+	Sia $f: I \rightarrow \mathbb{R}$ con I intervallo, una funzione continua in I. Allora f
+	è invertibile se e solo se è strettamente monotona. In tal caso la sua inversa è ancora
+	strettamente monotona e continua.
+}
+
 
 %Calcolo Differenziale------------------------------------------------------------------
 \chapter{Calcolo Differenziale}
@@ -1171,6 +1210,9 @@ $$= \ln|9x^2+6x+2| - \arctan(3x+1) +c$$
 Sia $f : \R \to \R$ una funzione continua e dispari,  $\int_{-a}^{a} f(x) dx = 0$.\\
 Perchè essendo la funzione simmetrica rispetto all'origine, $\int_{-a}^{0} f(x) dx = - \int_{0}^{a} f(x)$, quindi
 $\int_{-a}^{-a} f(x) dx = \int_{-a}^{0} f(x) dx + \int_{0}^{-a} f(x) dx = 0$.
+
+% Serie Numeriche
+
 \chapter{Serie Numeriche}
 \section{Introduzione}
 Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
