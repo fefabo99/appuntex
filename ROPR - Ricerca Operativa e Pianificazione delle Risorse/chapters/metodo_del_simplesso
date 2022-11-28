@@ -1,6 +1,6 @@
 \chapter{Metodo del Simplesso}
 Il metodo del simplesso è una pocedura algebrica che si basa su dei \emph{concetti geometrici}.
-\paragraph*{Alcuni Termini}
+\paragraph{Alcuni Termini}
 Questo metodo si basa su alcune terminologie che ci servono per capire come funziona.
 Definiamo quindi:
 \begin{itemize}
@@ -14,11 +14,7 @@ Definiamo quindi:
     \item \textbf{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
 \end{itemize}
 
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{img/Simplesso1.jpg}
-\end{center}
-
-\paragraph*{Test di Ottimalità}
+\paragraph{Test di Ottimalità}
 L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui godono:
 \definizione{
     Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
@@ -26,11 +22,15 @@ L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui 
     migliore, allora la \textbf{soluzione} in questione è \textbf{ottimale}.
 }
 
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{img/Simplesso1.jpg}
+\end{center}
+
 \section{La Procedura Algebrica}
 Il metodo del simplesso è utilizzabile sia in forma algebrica che geometrica.
 Siccome questo algoritmo è usualmente eseguito su un calcolatore, che è in grado di interpretare solo istruzioni algebriche,
 è necessario tradurre la procedura geometrica in una procedura algebrica, che si basa sulla risoluzione di un sistema di equazioni lineari.
-\paragraph*{Forma Aumentata}
+\paragraph{Forma Aumentata}
 Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{forma standard} alla \emph{forma aumentata}:
 \\Per fare ciò bisogna fare le seguenti operazioni:
 \begin{enumerate}
@@ -64,16 +64,18 @@ Per un qualunque valore delle variabili decisionali:
 \end{itemize}
 Si definisce \textbf{Soluzione Aumentata} una soluzione del modello in forma originale che viene \emph{aumentata} tramite i
 corrispondenti valori delle variabili di slack.
-\subparagraph*{Soluzione di Base}
+
+\subparagraph{Soluzione di Base}
 Si definisce soluzione di base, un vertice del modello in forma aumentata.
 \\Se abbiamo come variabili di base $x_1=4,x_2=6$ e come variabili di slack $x_2=0,x_3=0,x_4=-6$ allora la soluzione
 di base (non ammissibile) associata sarà $(4,6,0,0,-6)$.
-\subsection*{Variabili di Base e Non}
+\subsection{Variabili di Base e Non}
 Un modello in forma aumentata consiste di $d$ variabili decisionali e $s$ variabili di slack.
 Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare.
 In altre parole, quando risolviamo un sistema lineare (ponendo a zero il valore di x variabili scelte arbitrariamente)
 abbiamo tante variabili azzerabili quante sono le variabili decisionali.
-\paragraph*{Soluzione di base}
+
+\paragraph{Prorpietà delle Soluzioni di Base}
 Una \textbf{soluzione di base} gode delle seguenti proprietà:
 \begin{enumerate} %Riformula per capire meglio
     \item Una variabile può essere \emph{Di base} o \emph{NON di base}
@@ -89,8 +91,45 @@ Due soluzioni di base ammissibili sono \emph{adiacenti} se sono caratterizzate d
 \emph{Implica che una variabile non di base divenga di base} e che \emph{una variabile di base divenga non di base}.
 Il che richiede di aggiustare i valori delle variabili di base per garantire che il sistema di equazioni sia ancora soddisfatto.
 
+\section{I Tableau: un Cheatsheet}
+Ricordiamo il problema in forma standard:
+\begin{center} %Forma standard
+    max $\underline{c}^T$ $\underline{x}$
+    \\\underline{\underline{A}} $\underline{x}$ $\leq$ $\underline{b}$
+    \\ $\underline{x}$ $\geq 0$
+\end{center}
+\paragraph*{Tableau}
+Il metodo del simplesso è facilmente risolvibile tramite la \emph{Forma Tabellare}.
+\paragraph{1 - La forma aumentata}
+Per portare il problema in Forma Aumentata:
+\begin{itemize}
+    \item Vincoli
+    \begin{itemize}
+        \item \textbf{MinoreUguale }$\leq \to = \wedge$ + SLACK
+        \item \textbf{Uguale} $= \to $ INVARIATO
+        \item \textbf{MaggioreUguale} $\geq \to = \wedge$ - SURPLUS
+    \end{itemize}
+    \item Se ho una variabile non positiva: $x_i \leq 0\to$ $x_i' = -x_i$, con $x_i' \geq 0$  
+\end{itemize}
+\paragraph*{2 - Porto in forma Tabellare}
+Il problema in forma aumentata viene riscritto in forma tabellare.
+\\ATTENZIONE PERÒ: La funzione obiettivo passa da 
+$z = \underline{c}^T \underline{x}$ diventa $z -( \underline{c}^T \underline{x}) = 0$
+(Quindi la funzione obiettivo diventa Z meno i coefficenti delle variabili).
+\begin{center}
+    \begin{tabular}{|c|c|c|cccc|c|}
+        \hline
+        \small{V. BASE} & Eq    & Z & $x_1$ & $x_2$ & ... & $x_n$ & T. Noto \\
+        \hline
+        Z       & R$_0$ & 1 & $c_1$ &  $c_2$     &  ...   & $c_n$      &    0     \\
+        $x_1$   & R$_1$ & 0 & $a_{11}$      &  $a_{12}$      &  ...   &  $a_{1n}$      &    $b_1$     \\
+        $x_m$   & R$_n$ & 0 & $a_{m1}$    & $a_{m2}$       &  ...   &    $a_{mn}$    &      $b_m$   \\
+        \hline
+    \end{tabular}
+\end{center}
 
-\section{Il Metodo delle Due Fasi}
+
+\section{Il Metodo dele Due Fasi}
 
 In alcuni problemi di PL il punto $(0,0)$, ovvero l'origine, non è una soluzione ammissibile,
 quindi non può essere usata come \emph{Soluzione Ammissibile di Base} per il Metodo Del Simplesso.
