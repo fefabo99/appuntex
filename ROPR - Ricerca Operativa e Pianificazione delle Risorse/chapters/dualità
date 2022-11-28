@@ -38,3 +38,19 @@ Quindi dato un qualunque problema di PL:
     \item i coefficienti di variabile rimangono invariati
 \end{itemize}
 Si può notare che il Duale di un Duale è il suo Primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
+
+\section*{Teorema della dualità}
+Riassumendo le relazioni tra primale e duale, il teorema di dualità dice:
+\begin{enumerate}
+    \item Se un problema ha soluzioni ammissibili e funzione obiettivo limitata (quindi ha soluzione ottimale), 
+    allora la stessa cosa vale per l'altro problema, per cui le proprietà di dualità devole e forte sono entrambe applicabili.
+    \item Se un problema ha soluzioni ammissibili e funzione obiettivo Illimitata (non ha ottimo), allora l'altro problema non ha soluzioni ammissibili.
+    \item Se un problema ha soluzioni ammissibili, allora l'altro problema o non ha soluzioni ammissibili o ha una funzione obiettivo Illimitata
+\end{enumerate}
+O, in parole povere:
+Se un problema ha:
+\begin{itemize}
+    \item Sol. Ammissibili, e Ottimo $\implies$ Idem per l'altro (Dualità forte e debole applicabili)
+    \item Sol. Ammissibili, e NON Ottimo (obb. illimitata) $\implies$ L'altro NON ha soluzioni ammissibili
+    \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
+\end{itemize}
