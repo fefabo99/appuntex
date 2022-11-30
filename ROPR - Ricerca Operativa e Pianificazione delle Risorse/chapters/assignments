@@ -13,19 +13,47 @@
 \begin{center}
     \includegraphics[width=0.325\textwidth]{Assignment1_es2Q.jpg}
 \end{center}
-\begin{flalign}
-    Z\ =\ & x_1 + x_2 \\
-        & x_1 + x_2 - x_3 = 2 \\
-        & 2x_1 - x_2 \leq 0 \\
-        & x_1 \geq 0, x_2 \geq 0, x_3 \leq 0 &&
-\end{flalign}
-\begin{flalign}
-    Z\ -\ & x_1 - x_2 = 0 \\
-        & x_1 + x_2\ \mathbf{+\ x'_3}\ = 2 \\
-        & 2x_1 - x_2 \leq 0 \\
-        & x_1 \geq 0, x_2 \geq 0,\ \mathbf{x'_3 \geq}\ 0 &&
-\end{flalign}
+\begin{flalign*}
+    Z\ =\ &\ x_1 + x_2 \\
+        &\ x_1 + x_2 - x_3 = 2 \\
+        &\! 2x_1 - x_2\qquad\ \leq 0 \\
+        \\
+        &\ x_1 \geq 0,\ x_2 \geq 0,\ x_3 \leq 0 &&
+\end{flalign*}
+\begin{flalign*}
+    Z\ -\ &\ x_1 - x_2 = 0 \\
+        &\ x_1 + x_2\ \textcolor{blue}{\mathbf{+\ x'_3}}\ = 2 \\
+        &\! 2x_1 - x_2\ \qquad\ \ \leq 0 \\
+        \\
+        &\ x_1 \geq 0,\ x_2 \geq 0,\ \textcolor{blue}{\mathbf{x'_3 \geq}\ 0} &&
+\end{flalign*}
+\begin{flalign*}
+    Z\ -\ &\ x_1 - x_2 = 0 \\
+        &\ x_1 + x_2 + x'_3\ \qquad \ = 2 \\
+        &\! 2x_1 - x_2\qquad\ \textcolor{blue}{\mathbf{+\ x_4}\ =}\ 0 \\
+        \\
+        &\ x_1 \geq 0,\ x_2 \geq 0,\ x'_3 \geq 0,\ \textcolor{blue}{x_4 \geq 0} &&
+\end{flalign*}
 
-% \begin{center}
-%     \includegraphics[width=0.5\textwidth]{Assignment1_es2A.jpg}
-% \end{center}
+\noindent Se l'origine del problema $(0,\ 0)$ è ammissibile, seleziono $x_1$ e $x_2$ (cioè le variabili della funzione obiettivo) come \textbf{variabili di base}.\\
+\noindent Provo il problema originario usando l'\textbf{origine del problema}, ovvero azzero $x_1$ e $x_2$.
+\begin{flalign*}
+    Z\ =\ &\ 0 + 0 \\
+        &\ 0 + 0 - x_3 = 2 \\
+        &\ 2\times 0 - 0\qquad\ \leq 0 &&
+\end{flalign*}
+\begin{center}
+    \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
+        \hline
+        Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline 
+        $Z$ & R$_0$ & 1 & -1 & -1 & 0 & 0 & 0\\
+        \hline 
+        $x'_3$ & R$_1$ & 0 & 1 & 1 & 1 & 0 & 2\\
+        \hline 
+        $x_4$ & R$_2$ & 0 & 2 & -1 & 0 & 1 & 0\\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\noindent I vincoli sono rispettati. Ottengo dunque la \textbf{soluzione di base ammissibile} $(0,\, 0,\ 2,\ 0)$.
