@@ -36,16 +36,14 @@
 \end{flalign*}
 
 \noindent Se l'origine del problema $(0,\ 0)$ è ammissibile, seleziono $x_1$ e $x_2$ (cioè le variabili della funzione obiettivo) come \textbf{variabili di base}.\\
-\noindent Provo il problema originario usando l'\textbf{origine del problema}, ovvero azzero $x_1$ e $x_2$.
-\begin{flalign*}
-    Z\ =\ &\ 0 + 0 \\
-        &\ 0 + 0 - x_3 = 2 \\
-        &\ 2\times 0 - 0\qquad\ \leq 0 &&
-\end{flalign*}
+\noindent Provo il problema originario usando l'\textbf{origine del problema}, ovvero azzero $x_1$ e $x_2$.\\
+\\
+\noindent Iterazione 0:
 \begin{center}
     \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
         \hline
         Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline 
         \hline 
         $Z$ & R$_0$ & 1 & -1 & -1 & 0 & 0 & 0\\
         \hline 
@@ -56,4 +54,42 @@
     \end{tabularx}
 \end{center}
 
-\noindent I vincoli sono rispettati. Ottengo dunque la \textbf{soluzione di base ammissibile} $(0,\, 0,\ 2,\ 0)$.
+\noindent I vincoli sono rispettati. Ottengo dunque la \textbf{soluzione di base ammissibile} $(0,\, 0,\ 2,\ 0)$.\\
+La soluzione di base che ho ottenuto è \textbf{ottimale}? Lo è se nella riga R$_0$ corrispondente alla funzione obiettivo ho solo coefficienti \textbf{\textit{non} negativi}.\\
+\noindent Ho $-1$ e $-1$, quindi \textbf{non} è ottimale. Allora procedo.\\
+
+\noindent Ora scelgo la \textit{variabile non di base \textbf{entrante}}. Di solito è quella con coefficiente con \textit{valore assoluto \textbf{maggiore}}. Ma qui ho $-1$ e $-1$ quindi scelgo in maniera arbitraria.\\
+\noindent \underline{Scelgo $x_1$}, la cui colonna diventa \textbf{colonna pivot}. La \textbf{riga pivot} viene identificata tramite la \textbf{\textit{regola del rapporto minimo}}. Questa mi dà un numero che corrisponde al rapporto fra il \textbf{termine noto} e il coefficiente della \textbf{variabile entrante} che ho già individuato.\\
+\noindent Nel nostro caso $x'_3$ mi dà $\frac{2}{1}$ e $x_4$ mi dà ($\frac{0}{2}$), perciò $x_4$ vince la regola del rapporto minimo diventando la \textit{variabile \textbf{uscente}}. Ricapitolando, $x_1$ è la \textit{variabile \textbf{entrante}} e $x_4$ è la \textit{variabile \textbf{uscente}}, mentre il \textit{\textbf{numero pivot}} è 2.\\
+\noindent Ricorda la regola:
+\begin{center}
+    \noindent Prima divido la riga pivot $R_p$ per il numero pivot.\\ Poi tutte le altre righe con la formula:
+\end{center}
+\begin{center}
+    $R_i = R_i - |c|\star R_p$\qquad se\ $c > 0$\\
+\end{center}
+\begin{center}
+    $R_i = R_i + |c|\star R_p$\qquad se\ $c < 0$\\
+\end{center}
+
+\noindent Procedo con la prossima iterazione.\\
+\\
+\noindent Iterazione 1:
+\begin{center}
+    \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
+        \hline
+        Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline
+        \hline
+        $Z$ & R$_0$ & 1 & 0 & $-\frac{3}{2}$ & 0 & $\frac{1}{2}$ & 0\\
+        \hline 
+        $x'_3$ & R$_1$ & 0 & 0 & $\frac{3}{2}$ & 1 & $-\frac{1}{2}$ & 2\\
+        \hline 
+        $x_1$ & R$_2$ & 0 & 1 & $-\frac{1}{2}$ & 0 & $\frac{1}{2}$ & 0\\
+        \hline
+    \end{tabularx}
+\end{center}
+\noindent La soluzione di base ammissibile che ottengo è $(0,\ 0,\ 2,\ 0)$, la stessa di prima. Procedo dunque con il prossimo passo.\\
+\noindent Questa volta la \textit{variabile \textbf{entrante}} è $x_2$ perché è l'unica con coefficiente \textbf{negativo} nella riga della funzione obiettivo.\\
+\noindent Invece la \textit{variabile \textbf{uscente}} è $x'_3$ perché è l'unica con coefficiente \textbf{positivo} nella colonna della \textit{variabile entrante}. Il nuovo \textbf{numero pivot} è $\frac{3}{2}$.\\
+\noindent
