@@ -276,3 +276,14 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 APA - Analisi e Progetto di Algoritmi/apa.pdf
+
+# C Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Java compiled class file
+*.class
