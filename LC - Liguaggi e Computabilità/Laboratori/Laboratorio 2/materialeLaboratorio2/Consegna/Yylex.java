@@ -47,11 +47,11 @@ class Yylex {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\1\2\2\1\3\1\4\1\1\1\5\1\2\1\0"+
-    "\1\6\3\0\1\7";
+    "\1\1\2\2\1\3\1\4\1\1\1\5\1\2\3\0"+
+    "\1\6\2\0\1\7";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -77,10 +77,10 @@ class Yylex {
 
   private static final String ZZ_ROWMAP_PACKED_0 =
     "\0\0\0\13\0\26\0\13\0\13\0\41\0\54\0\67"+
-    "\0\102\0\13\0\115\0\130\0\143\0\13";
+    "\0\102\0\115\0\130\0\13\0\143\0\156\0\13";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -105,11 +105,11 @@ class Yylex {
   private static final String ZZ_TRANS_PACKED_0 =
     "\1\2\1\3\4\2\1\4\1\5\1\6\1\7\1\10"+
     "\15\0\1\11\20\0\1\6\13\0\1\7\13\0\1\12"+
-    "\3\0\1\13\11\0\1\14\14\0\1\15\13\0\1\16"+
-    "\5\0";
+    "\3\0\1\13\21\0\1\14\2\0\1\15\14\0\1\16"+
+    "\13\0\1\17\5\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[110];
+    int [] result = new int[121];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -147,11 +147,11 @@ class Yylex {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\1\1\11\1\1\2\11\3\1\1\0\1\11\3\0"+
+    "\1\1\1\11\1\1\2\11\3\1\3\0\1\11\2\0"+
     "\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[14];
+    int [] result = new int[15];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;

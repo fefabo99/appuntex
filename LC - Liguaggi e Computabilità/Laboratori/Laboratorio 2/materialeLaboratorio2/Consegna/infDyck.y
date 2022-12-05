@@ -23,14 +23,15 @@ exp     : parens
 
 exps    : exp SKIPM SKIP {System.out.println("S: Err"+ $2); }
         | exp SKIP { System.out.println("S: "+$2); }
+        | SKIP { System.out.println("S: "+$1); }
         | SKIPM SKIP { System.out.println("Err:" + $1 + " txt: " + $2);}
         | exp
 
 s       : SKIP { System.out.println("txt: "+$1); }
-        | COLONS SKIP {if (($1.length()%2)==0)
-                    System.out.println($2);
+        | COLONS exps {if (($1.length()%2)==0)
+                    System.out.print("");
                   else
-                    System.out.print(":" + $2);
+                    System.out.print(":");
                  }
         | MATRICOLA SKIP { System.out.println("txt: "+ $1); }
         | exps SKIPM SKIP {System.out.println("S: "+$2 + $3); }

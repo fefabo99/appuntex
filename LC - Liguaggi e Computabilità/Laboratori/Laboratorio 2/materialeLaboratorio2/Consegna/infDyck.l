@@ -31,7 +31,7 @@ MATRICOLA = "845420"
                         return Parser.COLONS; }
 [a-z]+            { yyparser.yylval = new ParserVal(yytext());
                         return Parser.SKIP; }
-[A-Z][A-Z] { yyparser.yylval = new ParserVal(yytext());
+[A-Z][A-Z]{2} { yyparser.yylval = new ParserVal(yytext());
                         return Parser.SKIPM; }
 
 [^] {} /*butta il resto*/
