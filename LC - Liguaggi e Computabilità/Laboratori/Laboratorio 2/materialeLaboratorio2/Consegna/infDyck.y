@@ -1,5 +1,6 @@
 %{
   import java.io.*;
+  import java.lang.*;
 %}
 
 %token OPEN_PAREN;
@@ -7,6 +8,7 @@
 %token <sval> SKIP;
 %token <sval> SKIPM;
 %token <dval> MATRICOLA;
+%token <sval> COLONS;
 
 %start s
 
@@ -15,18 +17,25 @@
 parens  : OPEN_PAREN s CLOSE_PAREN
         | OPEN_PAREN CLOSE_PAREN
 
+//twopoints : TWOPOINTS {System.out.println("Due punti" + $1); }
+
 exp     : parens
 
-exps    : exp SKIP { System.out.println("S: "+$2); }
-        | exp SKIPM SKIP {System.out.println("S: Err"+ $2); }
+exps    : exp SKIPM SKIP {System.out.println("S: Err"+ $2); }
+        | exp SKIP { System.out.println("S: "+$2); }
+        | SKIPM SKIP { System.out.println("Err:" + $1 + " txt: " + $2);}
         | exp
 
 s       : SKIP { System.out.println("txt: "+$1); }
-        | SKIPM SKIP { System.out.println("txt: "+ "Err" + $2);}
+        | COLONS SKIP {if (($1.length()%2)==0)
+                    System.out.println($2);
+                  else
+                    System.out.print(":" + $2);
+                 }
+        | MATRICOLA SKIP { System.out.println("txt: "+ $1); }
         | exps SKIPM SKIP {System.out.println("S: "+$2 + $3); }
         | exps
         | s exps
-        | MATRICOLA { System.out.println("txt: "+$1); }
 
 %%
 

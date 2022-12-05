@@ -32,10 +32,9 @@ class Yylex {
    * Translates characters to character classes
    */
   private static final String ZZ_CMAP_PACKED = 
-    "\50\0\1\1\1\2\6\0\1\0\1\0\1\0\1\0\1\0\1\0"+
-    "\2\0\1\0\10\0\1\5\1\4\1\5\5\4\1\5\2\4\2\5"+
-    "\1\4\1\5\2\4\1\5\1\4\1\5\6\4\1\1\1\0\1\2"+
-    "\3\0\32\3\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff95\0";
+    "\50\0\1\6\1\7\6\0\1\5\1\0\1\4\1\0\1\2\1\3"+
+    "\2\0\1\1\1\0\1\10\6\0\32\12\1\6\1\0\1\7\3\0"+
+    "\32\11\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uffff\0\uff95\0";
 
   /** 
    * Translates characters to character classes
@@ -48,10 +47,11 @@ class Yylex {
   private static final int [] ZZ_ACTION = zzUnpackAction();
 
   private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\4\1\1\1\5\1\6";
+    "\1\1\2\2\1\3\1\4\1\1\1\5\1\2\1\0"+
+    "\1\6\3\0\1\7";
 
   private static int [] zzUnpackAction() {
-    int [] result = new int[8];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
     return result;
@@ -76,10 +76,11 @@ class Yylex {
   private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
 
   private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\6\0\6\0\6\0\14\0\22\0\22\0\6";
+    "\0\0\0\13\0\26\0\13\0\13\0\41\0\54\0\67"+
+    "\0\102\0\13\0\115\0\130\0\143\0\13";
 
   private static int [] zzUnpackRowMap() {
-    int [] result = new int[8];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
     return result;
@@ -102,11 +103,13 @@ class Yylex {
   private static final int [] ZZ_TRANS = zzUnpackTrans();
 
   private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\1\3\1\4\1\5\1\6\1\7\11\0\1\5"+
-    "\6\0\2\10";
+    "\1\2\1\3\4\2\1\4\1\5\1\6\1\7\1\10"+
+    "\15\0\1\11\20\0\1\6\13\0\1\7\13\0\1\12"+
+    "\3\0\1\13\11\0\1\14\14\0\1\15\13\0\1\16"+
+    "\5\0";
 
   private static int [] zzUnpackTrans() {
-    int [] result = new int[24];
+    int [] result = new int[110];
     int offset = 0;
     offset = zzUnpackTrans(ZZ_TRANS_PACKED_0, offset, result);
     return result;
@@ -144,10 +147,11 @@ class Yylex {
   private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
 
   private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\3\11\3\1\1\11";
+    "\1\1\1\11\1\1\2\11\3\1\1\0\1\11\3\0"+
+    "\1\11";
 
   private static int [] zzUnpackAttribute() {
-    int [] result = new int[8];
+    int [] result = new int[14];
     int offset = 0;
     offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
     return result;
@@ -253,7 +257,7 @@ class Yylex {
     char [] map = new char[0x110000];
     int i = 0;  /* index in packed string  */
     int j = 0;  /* index in unpacked array */
-    while (i < 98) {
+    while (i < 76) {
       int  count = packed.charAt(i++);
       char value = packed.charAt(i++);
       do map[j++] = value; while (--count > 0);
@@ -561,40 +565,46 @@ class Yylex {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1: 
+            { yyparser.yylval = new ParserVal(yytext());
+                        return Parser.COLONS;
+            } 
+            // fall through
+          case 8: break;
+          case 2: 
             { 
             } 
             // fall through
-          case 7: break;
-          case 2: 
+          case 9: break;
+          case 3: 
             { yyparser.yylval = new ParserVal(""+yycharat(0));
                         return Parser.OPEN_PAREN;
             } 
             // fall through
-          case 8: break;
-          case 3: 
+          case 10: break;
+          case 4: 
             { yyparser.yylval = new ParserVal(""+yycharat(0));
                         return Parser.CLOSE_PAREN;
             } 
             // fall through
-          case 9: break;
-          case 4: 
+          case 11: break;
+          case 5: 
             { yyparser.yylval = new ParserVal(yytext());
                         return Parser.SKIP;
             } 
             // fall through
-          case 10: break;
-          case 5: 
-            { yyparser.yylval = new ParserVal(yytext());
-                        return Parser.MATRICOLA;
-            } 
-            // fall through
-          case 11: break;
+          case 12: break;
           case 6: 
             { yyparser.yylval = new ParserVal(yytext());
                         return Parser.SKIPM;
             } 
             // fall through
-          case 12: break;
+          case 13: break;
+          case 7: 
+            { yyparser.yylval = new ParserVal(yytext());
+                        return Parser.MATRICOLA;
+            } 
+            // fall through
+          case 14: break;
           default:
             zzScanError(ZZ_NO_MATCH);
         }
