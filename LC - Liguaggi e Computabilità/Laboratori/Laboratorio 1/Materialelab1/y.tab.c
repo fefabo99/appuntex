@@ -2,6 +2,10 @@
 static char yysccsid[] = "@(#)yaccpar	1.8 (Berkeley) 01/20/90";
 #endif
 #define YYBYACC 1
+#line 1 "group2.y"
+
+  import java.io.*;
+#line 9 "y.tab.c"
 #define YYERRCODE 256
 short yylhs[] = {                                        -1,
     0,    0,    0,    1,    1,
@@ -86,7 +90,7 @@ YYSTYPE yylval;
 short yyss[YYSTACKSIZE];
 YYSTYPE yyvs[YYSTACKSIZE];
 #define yystacksize YYSTACKSIZE
-#line 15 "group.y"
+#line 18 "group2.y"
 
 
 void yyerror(String s)
@@ -95,21 +99,26 @@ void yyerror(String s)
  System.out.println("   :"+yylval.sval);
 }
 
-int ind = 0;/*Stringa_INPUT:*/String in = "----++--";
+static Yylex lexer;
 int yylex()
 {
- if (ind<in.length()) {
-  yylval = new ParserVal(""+in.charAt(ind++));
-  return yylval.sval.charAt(0);
- } else return 0;
+ try {
+  return lexer.yylex();
+ }
+ catch (IOException e) {
+  System.err.println("IO error :"+e);
+  return -1;
+ }
 }
 
 public static void main(String args[])
 {
+ System.out.println("[Quit with CTRL-D]");
  Parser par = new Parser();
+ lexer = new Yylex(new InputStreamReader(System.in), par);
  par.yyparse();
 }
-#line 113 "y.tab.c"
+#line 122 "y.tab.c"
 #define YYABORT goto yyabort
 #define YYACCEPT goto yyaccept
 #define YYERROR goto yyerrlab
@@ -250,29 +259,29 @@ yyreduce:
     switch (yyn)
     {
 case 1:
-#line 4 "group.y"
+#line 7 "group2.y"
 { yyval = new ParserVal("");
                     System.out.println(": \""+yyval.sval+"\""); }
 break;
 case 2:
-#line 6 "group.y"
+#line 9 "group2.y"
 { yyval = new ParserVal(yyvsp[-1].sval+yyvsp[0].sval);
                    System.out.println(": "+yyval.sval); }
 break;
 case 3:
-#line 8 "group.y"
+#line 11 "group2.y"
 { yyval = new ParserVal(yyvsp[-1].sval+yyvsp[0].sval);
                    System.out.println(": "+yyval.sval); }
 break;
 case 4:
-#line 11 "group.y"
+#line 14 "group2.y"
 { yyval = yyvsp[0]; }
 break;
 case 5:
-#line 12 "group.y"
+#line 15 "group2.y"
 { yyval = new ParserVal(yyvsp[-1].sval + '-'); }
 break;
-#line 276 "y.tab.c"
+#line 285 "y.tab.c"
     }
     yyssp -= yym;
     yystate = *yyssp;
