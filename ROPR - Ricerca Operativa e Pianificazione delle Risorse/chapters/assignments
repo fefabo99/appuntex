@@ -66,10 +66,10 @@ La soluzione di base che ho ottenuto è \textbf{ottimale}? Lo è se nella riga R
     \noindent Prima divido la riga pivot $R_p$ per il numero pivot.\\ Poi tutte le altre righe con la formula:
 \end{center}
 \begin{center}
-    $R_i = R_i - |c|\star R_p$\qquad se\ $c > 0$\\
+    $R_i = R_i - |c|\cdot R_p$\qquad se\ $c > 0$\\
 \end{center}
 \begin{center}
-    $R_i = R_i + |c|\star R_p$\qquad se\ $c < 0$\\
+    $R_i = R_i + |c|\cdot R_p$\qquad se\ $c < 0$\\
 \end{center}
 
 \noindent Procedo con la prossima iterazione.\\
