@@ -53,7 +53,7 @@ Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{for
           \]
           $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
           Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
-              affinchè questa sia verificata con il segno di uguaglianza }
+              affinchè questa sia verificata con il segno di uguaglianza. }
 \end{enumerate}
 Le variabili di slack hanno alcune proprietà che sono utili da tenere a mente:
 Per un qualunque valore delle variabili decisionali:
@@ -67,15 +67,14 @@ corrispondenti valori delle variabili di slack.
 
 \subparagraph{Soluzione di Base}
 Si definisce soluzione di base, un vertice del modello in forma aumentata.
-\\Se abbiamo come variabili di base $x_1=4,x_2=6$ e come variabili di slack $x_2=0,x_3=0,x_4=-6$ allora la soluzione
-di base (non ammissibile) associata sarà $(4,6,0,0,-6)$.
+\\Se abbiamo come variabili di base $x_1=4,x_2=6$ e come variabili di slack $x_2=0,x_3=0,x_4=-6$ allora la soluzione di base (non ammissibile) associata sarà $(4,6,0,0,-6)$.
 \subsection{Variabili di Base e Non}
 Un modello in forma aumentata consiste di $d$ variabili decisionali e $s$ variabili di slack.
 Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare.
 In altre parole, quando risolviamo un sistema lineare (ponendo a zero il valore di x variabili scelte arbitrariamente)
 abbiamo tante variabili azzerabili quante sono le variabili decisionali.
 
-\paragraph{Prorpietà delle Soluzioni di Base}
+\paragraph{Proprietà delle Soluzioni di Base}
 Una \textbf{soluzione di base} gode delle seguenti proprietà:
 \begin{enumerate} %Riformula per capire meglio
     \item Una variabile può essere \emph{Di base} o \emph{NON di base}
