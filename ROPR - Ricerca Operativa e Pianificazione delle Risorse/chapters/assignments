@@ -92,4 +92,66 @@ La soluzione di base che ho ottenuto è \textbf{ottimale}? Lo è se nella riga R
 \noindent La soluzione di base ammissibile che ottengo è $(0,\ 0,\ 2,\ 0)$, la stessa di prima. Procedo dunque con il prossimo passo.\\
 \noindent Questa volta la \textit{variabile \textbf{entrante}} è $x_2$ perché è l'unica con coefficiente \textbf{negativo} nella riga della funzione obiettivo.\\
 \noindent Invece la \textit{variabile \textbf{uscente}} è $x'_3$ perché è l'unica con coefficiente \textbf{positivo} nella colonna della \textit{variabile entrante}. Il nuovo \textbf{numero pivot} è $\frac{3}{2}$.\\
-\noindent
+\\
+\noindent Iterazione 2:
+\begin{center}
+    \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
+        \hline
+        Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline
+        \hline
+        $Z$ & R$_0$ & 1 & 0 & 0 & 1 & 0 & 2\\
+        \hline 
+        $x'_3$ & R$_1$ & 0 & 0 & 1 & $\frac{2}{3}$ & $-\frac{1}{3}$ & $\frac{4}{3}$\\
+        \hline 
+        $x_1$ & R$_2$ & 0 & 1 & 0 & $\frac{1}{3}$ & $\frac{1}{3}$ & $\frac{2}{3}$\\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\noindent La soluzione di base ammissibile che ottengo è $(\frac{2}{3},\ \frac{4}{3},\ 0,\ 0)$ e $Z$ ha valore $Z\ =\ 2$. Procedo controllando se è una soluzione ottimale.\\
+\noindent Ho tutti coefficienti non negativi nella riga della funzione obiettivo, quindi \textbf{la mia soluzione è ottimale}. Esercizio finito.\\
+\noindent Però nota bene: all'inizio ho fatto una scelta arbitraria, scegliendo $x_1$ come variabile non di base entrante. Cosa succederebbe se scegliessi invece $x_2$?\\
+\\
+\noindent \textbf{Ricomincio l'esercizio scegliendo $x_2$ come variabile non di base entrante}.\\
+\\
+\noindent Iterazione 0:
+\begin{center}
+    \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
+        \hline
+        Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline 
+        \hline 
+        $Z$ & R$_0$ & 1 & -1 & -1 & 0 & 0 & 0\\
+        \hline 
+        $x'_3$ & R$_1$ & 0 & 1 & 1 & 1 & 0 & 2\\
+        \hline 
+        $x_4$ & R$_2$ & 0 & 2 & -1 & 0 & 1 & 0\\
+        \hline
+    \end{tabularx}
+\end{center}
+\noindent \textit{Variabile entrante}: $x_2$.\\
+\noindent \textit{Variabile uscente}: $x'_3$, ovvero l'unica con coefficiente positivo nella colonna della variabile entrante.\\
+\noindent \textit{Numero pivot}: $1$.\\
+\\
+\noindent Iterazione 0:
+\begin{center}
+    \begin{tabularx}{0.75\textwidth}{ |c|X|X|X|X|X|X|c| } 
+        \hline
+        Var di Base & Eq & $Z$ & $x_1$ & $x_2$ & $x'_3$ & $x_4$ & t. n.\\
+        \hline 
+        \hline 
+        $Z$ & R$_0$ & 1 & 0 & 0 & 1 & 0 & 2\\
+        \hline 
+        $x'_3$ & R$_1$ & 0 & 1 & 1 & 1 & 0 & 2\\
+        \hline 
+        $x_4$ & R$_2$ & 0 & 3 & 0 & 1 & 1 & 2\\
+        \hline
+    \end{tabularx}
+\end{center}
+
+\noindent La soluzione di base ammissibile che ottengo è $(0,\ 2,\ 0,\ 2)$ e $Z$ ha valore $Z\ =\ 2$. Procedo controllando se è una soluzione ottimale.\\
+\noindent Ho solo coefficienti non negativi nella riga della funzione obiettivo, perciò \textbf{la mia soluzione è ottimale}.\\
+\noindent Però con $x_1$ avevo ottenuto una soluzione ottimale diversa, ovvero $(\frac{2}{3},\ \frac{4}{3},\ 0,\ 0)$. Va bene? Sì se questi due vertici sono \textit{adiacenti}.\\
+\noindent Ma \textbf{quando due vertici sono adiacenti? Quando condividono $n\ -\ 1$ \textit{frontiere di vincoli}}.\\
+\noindent Contando di non aver fatto errori nei tableau, posso assumere che lo siano. In tal caso \textit{la mia soluzione ottimale sarà il \textbf{segmento} che unisce i due vertici} $(0,\ 2,\ 0,\ 2)$ \textit{e} $(\frac{2}{3},\ \frac{4}{3},\ 0,\ 0)$ \textit{e che avrà come valore della funzione obiettivo} $Z\ =\ 2$.
