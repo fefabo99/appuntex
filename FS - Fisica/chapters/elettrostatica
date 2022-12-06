@@ -1,1 +1,63 @@
 \chapter{Elettrostatica}
+\section{La carica elettrica}
+La carica elettrica è un fenomeno intrinseco delle particelle fondamentali.
+\paragraph{le cariche} Esistono cariche elettriche \emph{Positive} e \emph{Negative}.
+\\Normalmente in un corpo esse si eguagliuano, dando al corpo una \textbf{carica neutra}.
+Quando un oggeto si squilibra, esso ha delle \emph{cariche in eccesso}, ovvero si carica di elettricità statica.
+\subparagraph{Attrazione} Si nota sperimentalmente che le particelle cariche dello stesso segno si \textbf{attraggono}.
+
+\paragraph*{Fenomeni Elettrostatici} Se strofino della seta su del vetro, la seta "strappa" cariche negative dal vetro lasciando il vetro \emph{carico positivamente}
+La \emph{Messa a terra} scarica nel terreno tutti gli squilibri.
+
+\subsection{Definizioni di Base} Le sostanze si possono comportare in diversi modi con le cariche:
+\begin{itemize}
+    \item Conduttori, le cariche si possono muovere più o meno liberamente all'interno.
+    \item Isolanti, Le cariche all'interno sono \emph{fisse}.
+    \item Sostanze naturali che in acluni casi sono conduttori e in altri casi isolanti (Silicio, germanio,...)
+    \item Superconduttori, sostanze perfettamente conduttrici in cui le cariche si possono muovere in modo "perenne".
+\end{itemize}
+
+\subsection{I conduttori}
+Il percorso conduttivo è il passaggio di una carica da un sistema all'altro.
+\\Gli atomi sono formati da particelle cariche, ovvero \emph{Elettroni, Protoni e Neutroni}.
+\paragraph*{La carica} di un singolo elettrone e di un singolo protone hanno la stessa intensità ma segno opposto.
+
+La conduzione nei metalli avviene grazie allo spostamento di elettroni liberi da un atomo all'altro.
+
+La carica indotta è la carica dovuta alla mobilità della carica nei conduttori, ovvero se spostiamo la carica da una parte di un oggetto all'altra questo genera una carica indotta.
+
+\section{La legge di Cuolomb}
+La legge di Coulomb esprime la forza elettrostatica agente su particelle cariche \emph{nei corpi puntiformi}
+
+\definizione{ 
+    Quando due particelle si \emph{attraggono/respingono} esse \textbf{accelerano}.
+    Le forze di attrazione e repulsione hanno stesso modolo (quindi sono forti uguali) ma hanno segno opposto.
+    \begin{center}
+        Forza di Coulomb $F = k \frac{q_1 \cdot q_2}{r^2} \frac{\overrightarrow{r}}{r}$
+        \\
+        \includegraphics[width=0.4\textwidth]{coulomb.jpg}
+    \end{center}
+}
+
+In questa definizione:
+\begin{itemize}
+    \item $k$ è la costante di Coulomb
+    \item $q_1,q_2$ sono le cariche delle particelle
+    \item $r$ è la distanza tra le particelle
+    \item $\frac{\overrightarrow{r}}{r}$ è il versore diretto come la retta congiungente e orientato nel verso di allontanamento delle particelle.
+\end{itemize}
+\paragraph*{La costante di Coulomb} $k = \frac{1}{4 \pi \epsilon_0}$ in cui $\epsilon_0$ è la costante universale.
+\paragraph{Osservazione} La forma di questa legge è uguale a quella della legge di Newton per la forza gravitazionale tra due masse.
+\\Newton: $F = G \frac{m_1 \cdot m_2}{r^2}$
+\
+\paragraph{Il Coulomb $[C]$} 
+L'unità di misura della forza di Coulomb è il \emph{Coulomb [C]}.
+Nota che il coulomb \emph{non} è un unità fondamentale ma è derivata dall'Ampere.
+\begin{center}
+    1 Coulomb = 1 Ampere $\cdot$ Secondo
+\end{center}
+
+\subsection*{La Composizione delle forze elettrostatiche}
+Se abbiamo tante particelle in vicinanza con una particella $q$, la forza totale che agisce sulla particella è data dalla somma vettoriale delle forze 
+$F_{q TOT} = F_{q2} + F_{q3} + ...$
+
