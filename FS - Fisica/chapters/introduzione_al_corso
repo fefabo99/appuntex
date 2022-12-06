@@ -1,0 +1,206 @@
+\chapter{Introduzione al Corso}
+Il corso di Fisica 2022/2023 è diviso in due turni.
+\subsection{Turno 1}
+Il corso di fisica (turno 1) verrà svolto da:
+\begin{itemize}
+    \item Davide Gerosa (Responsabile corso)
+    \item Costantino Pacilio (Esercitatore)
+\end{itemize}
+\paragraph*{Orario} Per il turno 1, il corso coprirà 48 ore di lezione frontale e 20 ore di esercitazioni:
+\begin{itemize}
+    \item Lunedì 13.30-16.30 U3-08, Lezione.
+    \item Martedì 14.30-16.30 U2-02, Esercitazione.
+    \item Mercoledì, 8.30-10.30 U1-09, Lezione.
+\end{itemize}
+\subsection{Turno 2}
+Il turno 2 verrà erogato da:
+\begin{itemize}
+    \item Alberto Bravin (Lezioni)
+    \item Mario Marini (Esercitazioni)
+\end{itemize}
+\begin{itemize}
+    \item Lunedì 8.30-11.30 U9-01, Lezione.
+
+\end{itemize}
+Le esercitazioni saranno ogni 8 ore di lezione (2 ore esercitazione)
+
+\paragraph*{testo di riferimento} \emph{D.Halliday, R. Resnick. Fondamenti di Fisica (vol. 1 e 2), Casa Editrice Ambrosiana}.
+
+\section{Il Programma}
+\paragraph*{Prerequisiti} Le nozioni acquisite nel corso di Analisi Matematica, fra cui derivate ed integrali.
+
+\paragraph*{Contenuti Sintetici} del programma:
+\begin{enumerate}
+    \item Meccanica.
+    \item Gravitazione.
+    \item Fluidodinamica.
+    \item Onde.
+    \item Termodinamica.
+    \item Elettromagnetismo.
+\end{enumerate}
+
+\paragraph*{Programma Esteso}
+
+\begin{enumerate}
+    \item \textbf{Meccanica}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Sistemi di coordinate e vettori.
+                  \item Moto in una e più dimensioni.
+                  \item Moto rettilineo uniforme, uniformemente accelerato, parabolico, armonico.
+                  \item Leggi di Newton.
+                  \item Energia cinetica, energia potenziale principio di conservazione.
+                  \item Centro di massa.
+                  \item Corpo rigido.
+                  \item Momento lineare.
+                  \item Moti di rotazione e di rotolamento.
+                  \item Momento angolare, momento di inerzia, momento torcente.
+                  \item Moti relativi.
+              \end{enumerate*}}
+    \item \textbf{Gravitazione}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Leggi di Keplero.
+                  \item Legge di gravitazione universale.
+                  \item Campo gravitazionale.
+                  \item Legge di Gauss.
+                  \item Velocità di fuga.
+                  \item Potenziale efficace.
+              \end{enumerate*}}
+    \item \textbf{Fluidodinamica}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Fluidi, densità e pressione.
+                  \item Legge di stevino.
+                  \item Principio di Pascal.
+                  \item Forza di Archimede.
+                  \item Equazione di Continuità.
+                  \item Equazione di Bernoulli.
+              \end{enumerate*}}
+    \item \textbf{Onde}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Oscillatore armonico.
+                  \item Pendolo semplice.
+                  \item Oscillatore smorzato.
+                  \item Risonanza.
+                  \item Concetto di onda.
+                  \item Onda piana.
+                  \item Periodo, lunghezza d'onda, velocità.
+                  \item Riflessione e interferenza.
+                  \item Onde stazionarie.
+                  \item Onde sonore.
+                  \item Battimenti.
+                  \item Effetto Doppler
+              \end{enumerate*}}
+    \item \textbf{Termodinamica}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Temperatura e calore.
+                  \item Calore specifico, calore latente.
+                  \item Energia interna.
+                  \item Primo principio della termodinamica.
+                  \item Trasformazioni termodinamiche.
+                  \item Trasmissione del calore (conduzione, convezione, irraggiamento).
+                  \item Legge dei gas perfetti.
+                  \item Teoria cinetica dei gas.
+                  \item Irreversibilità, entropia.
+                  \item Secondo principio della termodinamica.
+                  \item Macchine termiche.
+                  \item Ciclo di Carnot.
+                  \item Zero assoluto.
+              \end{enumerate*}}
+    \item \textbf{Elettromagnetismo}.
+          \small{\begin{enumerate*}[label=(\roman*)]
+                  \item Carica elettrica.
+                  \item Legge di Coulomb.
+                  \item Campo elettrico.
+                  \item Legge di Gauss.
+                  \item Potenziale.
+                  \item Conduttori.
+                  \item Condensatori.
+                  \item Corrente elettrica.
+                  \item Legge di Ohm.
+                  \item Legge delle maglie, legge dei nodi.
+                  \item Circuito RC.
+                  \item Campo magnetico.
+                  \item Forza di Lorentz.
+                  \item Legge di Biot-Savart.
+                  \item Legge di Ampere.
+                  \item Induzione elettromagnetica.
+                  \item Legge di Faraday-Lenz.
+                  \item Circuito RL.
+                  \item Oscillazione LC.
+                  \item Oscillazione Smorzata RLC.
+                  \item Cenni di magnetismo nei materiali.
+                  \item Legge di Ampere-Maxwell.
+                  \item Correnti di spostamento.
+                  \item Equazioni di Maxwell.
+                  \item Onde elettromagnetiche.
+                  \item Velocità della luce.
+              \end{enumerate*}}
+\end{enumerate}
+
+\section{L'Esame}
+L'esame ha \emph{una prova scritta e una orale facoltativa}.
+\paragraph*{Prova scritta}
+La prova scritta consite in alcuni esercizi da svolgere e alcune domante teoriche.
+Ha una durata di 2 ore, il voto massimo è 30/30 e \emph{non vengono sottratti punti per le risposte sbagliate}.
+Ogni esercizio ha l'indicazione del punteggio e le risposte devono essere complete.
+è consentito l'utilizzo della calcolatrice (non grafica) ma \emph{non del formulario}.
+\paragraph*{Prova orale}
+Totalmente facoltativa, ha un punteggio di $\pm 5$ ed è necessaria per il raggiungimento della \emph{lode}.
+
+\section{Materiale Propedeutico}
+\subsection{Trigonometria}
+\subsubsection{Angoli e la loro Misura}
+Quando vogliamo misurare un angolo possiamo usare due misure: \emph{Gradi} e \emph{Radianti}.
+\definizione{
+    \textbf{L'angolo di un grado} è \emph{la trecentosessantesima parte di un angolo giro}.
+    La misura in gradi dell'angolo giro è 360°
+    \\\textbf{L'angolo di un radiante} è quell'angolo che su una circonferenza (di centro nell'origine dell'angolo)
+    intercetta un angolo di lunghezza pari al raggio. La misura in radianti dell'angolo giro è $2\pi$.
+    \\\emph{Più in generale}, la misura $\alpha$ in radianti di un angolo al centro è il rapporto
+    \[\alpha = \frac{l}{r}\]
+    Dove $l$ è la misura dell'arco sotteso dall'angolo al centro e $r$ è il raggio della circonferenza.
+}
+\paragraph*{La trasformazione delle misure}
+\definizione{
+    Se $\alpha$ è la misura in radianti di un angolo e $z°$ la sua misura in gradi, si ha:
+    \[\alpha : z° = \pi : 180°\]
+}
+In parole povere:
+\begin{itemize}
+    \item $rad \to deg$: $(\alpha \cdot 180)/\pi$
+    \item $deg \to rad$: $(z$°$ \cdot \pi)/180$
+\end{itemize}
+
+\subsubsection{Seno, Coseno e Tangente}
+\definizione{
+    Sia P un punto appartenente alla circonferenza C di centro (0,0) e di raggio 1 (circonferenza trigonometrica),
+    e sia $\alpha$ l'angolo positivo descritto dal semiasse positivo delle ascisse per sovrapporsi alla semiretta $OP$.
+    \\Allora il punto $P$ ha coordinate:
+    \[P=(\cos\alpha,\sin\alpha)\]
+}
+\paragraph*{Periodicità}
+Poichè la circonferenza C è lunga $2\pi$, sommando $2\pi$ a $\alpha$ si fa compiere a $P$
+un giro completo e si giunge allo stesso punto P.
+\\Quindi, per ogni $\alpha$,
+\[\sin(\alpha) = \sin(\alpha + 2\pi) \wedge \cos(\alpha) = \cos(\alpha+2\pi)\]
+Si dice che le funzioni seno e coseno sono periodiche con periodo $2\pi$
+%Mettere la definizione di Tangente
+
+\subsubsection{Teoremi trigonometrici sul triangolo rettangolo}
+Se abbiamo un vettore (di cui sappiamo il modulo) e un angolo su un asse cartesiano possiamo dividere il vettore sugli assi usando i
+\emph{teoremi trigonometrici sul triangolo rettangolo}.
+\\Se disegnamo un angolo rettangolo che usa come ipotenusa il nostro vettore, usiamo la definizione per trovare i due cateti:
+\definizione{
+    La misura di un \emph{cateto} è uguale a quella dell'ipotenusa per il seno dell'angolo opposto, oppure per il coseno dell'angolo adiacente.
+    \\La misura di un cateto è uguale a quella dell'altro cateto per la tangente dell'angolo opposto.
+}
+
+\includegraphics[width=\textwidth]{triangoloRettangolo.png}
+Quindi, prendendo in considerazione l'immagine:
+\\Per il cateto $a$:
+\begin{itemize} %controllare n'attimo la terminologia
+    \item  $\beta$ è l'angolo \emph{adiacente all'ipotenusa}
+    \item  $\alpha$ è l'angolo \emph{opposto all' ipotenusa}
+\end{itemize}
+Di conseguenza, avendo l'ipotenusa $c$ e gli angoli $\alpha$ e $\beta$, il cateto $a$ equivale a:
+\[ a = c\cdot \cos(\beta) \vee a = c\cdot \sin(\alpha) \]
+quindi: \textbf{cateto = ipotenusa $\cdot$ seno(opposto)} oppure \textbf{cateto = ipotenusa $\cdot$ coseno(adiacente)}
