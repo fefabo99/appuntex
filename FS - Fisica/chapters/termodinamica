@@ -1,0 +1,17 @@
+\chapter{Termodinamica}
+\section{Trasformazioni Notevoli}
+Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
+
+\begin{center}
+    \begin{tabularx}{\textwidth}{|X|X|X|X|}
+        \hline
+        \textbf{Isocora} & \textbf{Isobara} & \textbf{Isoterma} & \textbf{Adiabatica}\\
+        \hline
+        Volume Costante & Pressione Costante & Temperatura costante & Senza Calore\\
+        \hline
+        V cost & P cost & T cost & Q=0\\
+        $W = 0$ & $W = P \cdot \Delta V$ & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ & \\ 
+        $\Delta E_{int} = Q = nc_v\cdot \Delta T$& & $\Delta E_{int} = 0$ & \\
+        \hline 
+    \end{tabularx}
+\end{center}
