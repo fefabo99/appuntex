@@ -975,6 +975,27 @@ Non esistono veramente delle derivate note, però alcune funzioni hanno delle de
 	\item[Prodotto] $f(x) \cdot g(x) \implies f'(x) \cdot g(x) + f(x) \cdot g'(x)$
 	\item[Divisione] $h(x)=\frac{f(x)}{g(x)} \implies h'(x) = \frac{f'(x)g(x) - f(x)g'(x)}{[g(x)]2}$
 \end{itemize}
+\subsection*{Punti di non derivabilità}
+Una funzione è derivabile in tutto il suo intervallo solamente se è continua, la continuità è quinda una condizione
+\textbf{necessaria} per la derivabilità. Non è detto però che se una funziona è continua sia derivabile,
+ci sono dei casi in cui la funzione risulta continua, ma non derivabile, in questo caso parliamo di
+\textbf{punti di non derivabilità}. Esistono 3 particoli tipi:
+\begin{itemize}
+	\item Punto Angoloso
+	\item Cuspide
+	\item Flesso a Tangente Verticale
+\end{itemize}
+\paragraph*{Verifica della derivabilità di un punto} Per verificare che un punto sia derivabile 
+(dopo aver verificato la sua continuità) è necessario calcolare il limite destro e sinistro della derivata della funzione per il punto in questione.
+Se i limiti sono finiti e assumono lo stesso valore il punto sarà derivabile, altrimenti il punto sarà non derivabile, in particolare potrò avere
+degli specifici punti di non derivabilità:
+\begin{itemize}
+	\item I limiti destro e sinistro esistono e sono finiti, ma assumono valori diversi - \textbf{Punto Angolso}
+	\item I limiti destro e sinistro sono infiniti di segno opposto - \textbf{Punto di Cuspide}
+	\item I limiti desto e sinistro sono infiniti dello stesso segno - \textbf{Flesso a Tangente Verticale}
+\end{itemize}
+Possono esserci anche altri casi di non derivabilità senza nome, ma a noi non interessa, ci basterà dire che si tratta di un punto non derivabile.
+
 \section{Formule di Taylor e di Mclaurin}
 Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado $k$ arbitrario centrato in $x_0$ nel caso della formula di Taylor,
 e in 0 nel caso di quella di McLaurin.
