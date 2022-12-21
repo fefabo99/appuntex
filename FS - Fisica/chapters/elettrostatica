@@ -61,3 +61,14 @@ Nota che il coulomb \emph{non} è un unità fondamentale ma è derivata dall'Amp
 Se abbiamo tante particelle in vicinanza con una particella $q$, la forza totale che agisce sulla particella è data dalla somma vettoriale delle forze 
 $F_{q TOT} = F_{q2} + F_{q3} + ...$
 
+\section{Teorema dei gusci per le cariche elettrostatiche}
+Questo teorema è esattamente analogo a quello gravitazionale:
+
+\definizione{
+    Una superficie sferica uniformemente carica attrae o repsinge una carica esterna 
+    come se tutta la carica della sfera fosse concentrata nel suo centro
+}
+\definizione{
+    Una carica posta all'interno di una superficie chiusa uniformemente carica non risente
+    di forze elettrostatiche nette da parte della superificie chiusa.
+}

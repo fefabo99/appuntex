@@ -1,0 +1,22 @@
+\chapter{Branch and Bound}
+Il Branch and Bound è una tecnica per la risoluzione di problemi di ottimizzazione intera.
+Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
+\begin{itemize}
+    \item "valuta" le soluzioni possibili fino a trovare quella ottima
+    \item scarta alcune di queste soluzioni a priori dimostrando la loro non ottimalità
+    \item si basa sul concetto di Dividi et Impera
+\end{itemize}  
+\section{Come funziona}
+Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
+\\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo
+ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
+\paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema.
+allora si ha che $f(\tilde{x}) \leq f(x*)$
+\\Basta solo notare che tra le soluzioni ammissibili del rpblema completo vi è anche $x$ e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$
+\subsection{Le tecniche}
+Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema PLI:
+\begin{itemize}
+    \item La partizione rispetto al valore delle variabili, o \textbf{Branching}
+    \item La determinazione di un limite superiore, o \textbf{Bounding}
+    \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}
+\end{itemize}
