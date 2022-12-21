@@ -15,10 +15,17 @@
 
 DIGIT=[0-9]
 ID=R[0-9]
+TRUE="true"
+FALSE="false"
+AND="and"
 
 %%
-
+{TRUE} { yyparser.yylval = new ParserVal(1); return(Parser.BOOL); }
+{FALSE} { yyparser.yylval = new ParserVal(0); return(Parser.BOOL); }
+{AND} { return(Parser.AND); }
 ":=" { return(Parser.ASSGNOP); }
+"dual::=" { return(Parser.DUALASSGN); }
+"DUAL" {return(Parser.DUAL);}
 {DIGIT}+ { yyparser.yylval = new ParserVal(Integer.parseInt(yytext()));return(Parser.NUMBER); }
 do { return(Parser.DO); }
 else { return(Parser.ELSE); }

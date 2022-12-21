@@ -1,0 +1,9 @@
+err:syntax error
+   :null
+err:stack underflow. aborting...
+   :null
+0-4/DATA 10
+
+1-7/READ_INT -99
+2-1/STORE 1
+

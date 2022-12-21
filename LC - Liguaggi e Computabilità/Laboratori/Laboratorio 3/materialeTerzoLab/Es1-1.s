@@ -1,3 +1,4 @@
+// Dato n intero stampa i primi n numeri pari
 BEGIN
   read R1;
   R2 := R1/2;
