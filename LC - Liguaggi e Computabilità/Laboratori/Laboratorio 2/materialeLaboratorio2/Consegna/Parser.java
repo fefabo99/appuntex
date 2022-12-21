@@ -166,42 +166,42 @@ public final static short MATRICOLA=261;
 public final static short COLONS=262;
 public final static short YYERRCODE=256;
 final static short yylhs[] = {                           -1,
-    1,    1,    2,    3,    3,    3,    3,    3,    0,    0,
-    0,    0,    0,    0,
+    1,    1,    2,    3,    3,    3,    3,    0,    0,    0,
+    0,    0,    0,
 };
 final static short yylen[] = {                            2,
-    3,    2,    1,    3,    2,    1,    2,    1,    1,    2,
-    2,    3,    1,    2,
+    3,    2,    1,    4,    3,    2,    1,    1,    3,    2,
+    3,    1,    2,
 };
 final static short yydefred[] = {                         0,
-    0,    6,    0,    0,    0,    0,    3,    0,    0,    2,
-    0,    7,   11,    6,   10,   14,    5,    0,    0,    1,
-    4,   12,
+    0,    8,    0,    0,    0,    3,    0,   12,    2,    0,
+    0,   10,   13,    6,    0,    0,    1,    9,   11,    0,
+    5,    4,
 };
-final static short yydgoto[] = {                          6,
-    7,    8,    9,
+final static short yydgoto[] = {                          5,
+    6,    7,    8,
 };
-final static short yysindex[] = {                      -242,
- -248,    0, -259, -252, -232, -232,    0, -254, -244,    0,
- -236,    0,    0,    0,    0,    0,    0, -233, -230,    0,
+final static short yysindex[] = {                      -251,
+ -255,    0, -260, -247, -239,    0, -246,    0,    0, -237,
+ -242,    0,    0,    0, -238, -236,    0,    0,    0, -235,
     0,    0,
 };
 final static short yyrindex[] = {                         0,
-    0,    0,    0,    0,    0,    0,    0,    4,    1,    0,
+    0,    0,    0,    0,    0,    0,    1,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,
 };
-final static short yygindex[] = {                        29,
-    0,    0,   -3,
+final static short yygindex[] = {                        24,
+    0,    0,    5,
 };
-final static int YYTABLESIZE=262;
+final static int YYTABLESIZE=259;
 static short yytable[];
 static { yytable();}
 static void yytable(){
-yytable = new short[]{                         12,
-   13,   15,   16,    8,   17,   18,   13,   16,    1,   10,
-    2,    3,    4,    5,    1,   19,    2,    3,    4,    5,
-    1,   20,   14,    3,    1,   21,   14,    3,   22,   11,
+yytable = new short[]{                         11,
+    7,    1,    9,    2,    3,    1,    4,    2,    3,   13,
+    4,   12,   14,   15,   13,   16,   18,    1,   19,    1,
+   17,   20,   21,   22,   10,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
@@ -224,17 +224,16 @@ yytable = new short[]{                         12,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
     0,    0,    0,    0,    0,    0,    0,    0,    0,    0,
-    0,    0,    0,    0,    0,    0,    0,   13,   13,   13,
-    8,    8,
+    0,    0,    0,    0,    0,    0,    0,    7,    7,
 };
 }
 static short yycheck[];
 static { yycheck(); }
 static void yycheck() {
-yycheck = new short[] {                        259,
-    0,    5,    6,    0,  259,  260,  259,   11,  257,  258,
-  259,  260,  261,  262,  257,  260,  259,  260,  261,  262,
-  257,  258,  259,  260,  257,  259,  259,  260,  259,    1,
+yycheck = new short[] {                        260,
+    0,  257,  258,  259,  260,  257,  262,  259,  260,    5,
+  262,  259,  259,  260,   10,  262,  259,  257,  261,  257,
+  258,  260,  259,  259,    1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
@@ -257,11 +256,10 @@ yycheck = new short[] {                        259,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
    -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,   -1,
-   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,  258,  259,
-  257,  258,
+   -1,   -1,   -1,   -1,   -1,   -1,   -1,  257,  258,
 };
 }
-final static short YYFINAL=6;
+final static short YYFINAL=5;
 final static short YYMAXTOKEN=262;
 final static String yyname[] = {
 "end-of-file",null,null,null,null,null,null,null,null,null,null,null,null,null,
@@ -287,20 +285,19 @@ final static String yyrule[] = {
 "parens : OPEN_PAREN s CLOSE_PAREN",
 "parens : OPEN_PAREN CLOSE_PAREN",
 "exp : parens",
-"exps : exp SKIPM SKIP",
+"exps : exp SKIPM SKIPM SKIP",
+"exps : exp COLONS SKIP",
 "exps : exp SKIP",
-"exps : SKIP",
-"exps : SKIPM SKIP",
 "exps : exp",
 "s : SKIP",
-"s : COLONS exps",
-"s : MATRICOLA SKIP",
-"s : exps SKIPM SKIP",
+"s : SKIPM SKIPM SKIP",
+"s : COLONS SKIP",
+"s : SKIPM SKIPM MATRICOLA",
 "s : exps",
 "s : s exps",
 };
 
-//#line 41 "infDyck.y"
+//#line 38 "infDyck.y"
 
 
 void yyerror(String s)
@@ -328,7 +325,7 @@ public static void main(String args[])
  lexer = new Yylex(new InputStreamReader(System.in), par);
  par.yyparse();
 }
-//#line 260 "Parser.java"
+//#line 257 "Parser.java"
 //###############################################################
 // method: yylexdebug : check lexer state
 //###############################################################
@@ -484,41 +481,35 @@ boolean doaction;
 //########## USER-SUPPLIED ACTIONS ##########
 case 4:
 //#line 24 "infDyck.y"
-{System.out.println("S: Err"+ val_peek(1).sval); }
+{ if (val_peek(2).ival != val_peek(1).ival){System.out.print("Err: " );}
+                              System.out.println("txt: " + val_peek(0).sval);}
 break;
 case 5:
-//#line 25 "infDyck.y"
-{ System.out.println("S: "+val_peek(0).sval); }
+//#line 26 "infDyck.y"
+{ System.out.println("txt: " + val_peek(0).sval);}
 break;
 case 6:
-//#line 26 "infDyck.y"
+//#line 27 "infDyck.y"
 { System.out.println("S: "+val_peek(0).sval); }
 break;
-case 7:
-//#line 27 "infDyck.y"
-{ System.out.println("Err:" + val_peek(1).sval + " txt: " + val_peek(0).sval);}
-break;
-case 9:
+case 8:
 //#line 30 "infDyck.y"
 { System.out.println("txt: "+val_peek(0).sval); }
 break;
-case 10:
+case 9:
 //#line 31 "infDyck.y"
-{if ((val_peek(1).sval.length()%2)==0)
-                    System.out.print("");
-                  else
-                    System.out.print(":");
-                 }
+{ if (val_peek(2).ival != val_peek(1).ival){System.out.print("Err: " );}
+                              System.out.println("txt: " + val_peek(0).sval);}
+break;
+case 10:
+//#line 33 "infDyck.y"
+{System.out.println("txt: " + val_peek(0).sval);}
 break;
 case 11:
-//#line 36 "infDyck.y"
-{ System.out.println("txt: "+ val_peek(1).dval); }
+//#line 34 "infDyck.y"
+{ System.out.println(val_peek(0).sval); }
 break;
-case 12:
-//#line 37 "infDyck.y"
-{System.out.println("S: "+val_peek(1).sval + val_peek(0).sval); }
-break;
-//#line 445 "Parser.java"
+//#line 436 "Parser.java"
 //########## END OF USER-SUPPLIED ACTIONS ##########
     }//switch
     //#### Now let's reduce... ####

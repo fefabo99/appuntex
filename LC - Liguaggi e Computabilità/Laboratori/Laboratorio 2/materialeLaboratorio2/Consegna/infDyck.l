@@ -13,7 +13,6 @@
     this.yyparser = yyparser;
   }
 %}
-MATRICOLA = "845420"
 %%
 
 "("                   { yyparser.yylval = new ParserVal(""+yycharat(0));
@@ -27,11 +26,10 @@ MATRICOLA = "845420"
                         return Parser.CLOSE_PAREN; }
 "845420" { yyparser.yylval = new ParserVal(yytext());
                         return Parser.MATRICOLA; }
-":"*             { yyparser.yylval = new ParserVal(yytext());
+"::"+                 { yyparser.yylval = new ParserVal(yytext());
                         return Parser.COLONS; }
-[a-z]+            { yyparser.yylval = new ParserVal(yytext());
-                        return Parser.SKIP; }
-[A-Z][A-Z]{2} { yyparser.yylval = new ParserVal(yytext());
+[A-Z] { yyparser.yylval = new ParserVal(yycharat(0));
                         return Parser.SKIPM; }
-
+":"? [a-z]+            { yyparser.yylval = new ParserVal(yytext());
+                        return Parser.SKIP; }
 [^] {} /*butta il resto*/

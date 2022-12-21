@@ -6,8 +6,8 @@
 %token OPEN_PAREN;
 %token CLOSE_PAREN;
 %token <sval> SKIP;
-%token <sval> SKIPM;
-%token <dval> MATRICOLA;
+%token <ival> SKIPM;
+%token <sval> MATRICOLA;
 %token <sval> COLONS;
 
 %start s
@@ -21,20 +21,17 @@ parens  : OPEN_PAREN s CLOSE_PAREN
 
 exp     : parens
 
-exps    : exp SKIPM SKIP {System.out.println("S: Err"+ $2); }
-        | exp SKIP { System.out.println("S: "+$2); }
-        | SKIP { System.out.println("S: "+$1); }
-        | SKIPM SKIP { System.out.println("Err:" + $1 + " txt: " + $2);}
+exps    : exp SKIPM SKIPM SKIP { if ($2 != $3){System.out.print("Err: " );}
+                              System.out.println("txt: " + $4);}
+        | exp COLONS SKIP { System.out.println("txt: " + $3);}
+        | exp SKIP { System.out.println("S: "+$2); }      
         | exp
 
 s       : SKIP { System.out.println("txt: "+$1); }
-        | COLONS exps {if (($1.length()%2)==0)
-                    System.out.print("");
-                  else
-                    System.out.print(":");
-                 }
-        | MATRICOLA SKIP { System.out.println("txt: "+ $1); }
-        | exps SKIPM SKIP {System.out.println("S: "+$2 + $3); }
+        | SKIPM SKIPM SKIP { if ($1 != $2){System.out.print("Err: " );}
+                              System.out.println("txt: " + $3);}
+        | COLONS SKIP {System.out.println("txt: " + $2);}
+        | SKIPM SKIPM MATRICOLA { System.out.println($3); }
         | exps
         | s exps
 
