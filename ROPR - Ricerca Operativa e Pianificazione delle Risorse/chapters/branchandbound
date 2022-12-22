@@ -20,3 +20,6 @@ Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico
     \item La determinazione di un limite superiore, o \textbf{Bounding}
     \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}
 \end{itemize}
+\subsubsection{Branching}
+\subsubsection{Bounding}
+\subsubsection{Fathoming}
