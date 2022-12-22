@@ -20,39 +20,26 @@
 %token <dval> NUM  /* a number */
 %token LOG10
 %token LN
-
-%type <sval> exp
+%token OPENLB
+%token CLOSELB
+%token COLON
+%token SEMICOLON
+%token <sval> ID 
+%token NL
 
 %left '-' '+'
 %left '*' '/' '%'
 %left LOG10 LN
 %left NEG          /* negation--unary minus */
 %right '^'         /* exponentiation        */
-      
+
+%start s
 %%
-
-input:   /* empty string */
-       | input line
-       ;
-      
-line:    NL      { if (interactive) System.out.print("Expression: "); }
-       | exp NL  { System.out.println(" = " + $1); 
-                   if (interactive) System.out.print("Expression: "); }
-       ;
-      
-exp:     NUM                { $$ = $1; }
-       | exp '+' exp { $$ = $1 + " + " + $3; }
-       | exp '-' exp { $$ = $1 + " - " + $3; }
-       | exp '*' exp        { $$ = $1 + " * " + $3; }
-       | exp '/' exp        { $$ = $1 + " / " + $3; }
-       | exp '%' exp        { $$ = $1 + " % " + $3; }
-       | LOG10 exp          { $$= Math.log10(Integer.parseInt($2)); }
-       | LN exp             { $$=Math.log(Integer.parseInt($2));; }
-       | '-' exp  %prec NEG { $$ = "-" + $2; }
-       | exp '^' exp        { $$ = Math.pow(Integer.parseInt($1), Integer.parseInt($3)); }
-       | '(' exp ')'        { $$ = $2; }
+body  : ID COLON ID { System.out.println($1 + "=" + $3); }
        ;
 
+s     : ID COLON OPENLB NL body NL body NL CLOSELB SEMICOLON { System.out.println("[" +$1 + "]"); }
+       ;
 %%
 
   private Yylex lexer;

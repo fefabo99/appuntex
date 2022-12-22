@@ -1,0 +1,6 @@
+global: {
+  numthread:ciao
+  config:miao
+};
+
+	
