@@ -39,7 +39,7 @@ Quindi dato un qualunque problema di PL:
 \end{itemize}
 Si può notare che il Duale di un Duale è il suo Primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
 
-\section*{Teorema della dualità}
+\section{Teorema della dualità}
 Riassumendo le relazioni tra primale e duale, il teorema di dualità dice:
 \begin{enumerate}
     \item Se un problema ha soluzioni ammissibili e funzione obiettivo limitata (quindi ha soluzione ottimale), 
@@ -53,4 +53,30 @@ Se un problema ha:
     \item Sol. Ammissibili, e Ottimo $\implies$ Idem per l'altro (Dualità forte e debole applicabili)
     \item Sol. Ammissibili, e NON Ottimo (obb. illimitata) $\implies$ L'altro NON ha soluzioni ammissibili
     \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
+\end{itemize}
+
+\section{Gli Scarti Complementari}
+Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima},
+posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.
+
+Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima,
+anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
+
+\subsection{Come funziona}
+Se ho una soluzione del primale, controllo che sia ottima e trovo la corrispondente soluzione ottima del duale:
+
+\begin{enumerate}
+    \item Controllo che la soluzione in esame sia \textbf{ammissibile per il primale}
+    \item applico le \textbf{condizioni degli scarti complementari}:
+    \begin{itemize}
+        \item Se una variabile della soluzione è \emph{diversa da 0}, allora il corrispondente vincolo del duale attivo.
+        \item Se un vincole del primale è attivo, allora la corrispondente variabile del duale è uguale a zero.
+    \end{itemize}
+    \item Pongo a sistema le equazioni che ho trovato, se il risultato è \textbf{ammissibile per il duale}, allora esso è l'ottimo del duale e il risultato in esame è l'ottimo del primale.
+\end{enumerate}
+\paragraph{I vincoli attivi} Un vincolo è attivo per una soluzione se applicando i valori delle variabili esso risulta \emph{rispettato all'uguaglianza}.
+\\Per esempio, se ho una soluzione $(3,0,2)$, i vincoli:
+\begin{itemize}
+    \item $x_1 + 2x_2 +3x_3 \leq 9$ è attivo: $9 \leq 9$
+    \item $x_1 + 2x_2 +x_3 \leq 7 $ NON è attivo: $ 7 \leq 9$
 \end{itemize}
