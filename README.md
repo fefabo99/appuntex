@@ -12,4 +12,5 @@ Per utilizzarlo è sufficiente aggiungere a inizio file il seguente frammento di
 ```latex
 \usepackage{../generalStyle}
 ```
+
 Test github actions
