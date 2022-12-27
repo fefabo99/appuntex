@@ -1,8 +1,11 @@
 \chapter{Calcolo Integrale}
+
 \section{Gli integrali}
+
 \definizione{
 	L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
 }
+
 \subsection{Classi di Funzioni Integrabili}
 Le classi di funzioni integrabili sono famiglie di funzioni dotate di particolari proprietà che ne garantisconto l'integrabilità \emph{su un intervallo chiuso e limitato}.
 Riporto qui le 3 principali condizioni \emph{Sufficienti (ma non necessarie) per l'integrabilità}:
@@ -12,6 +15,7 @@ Riporto qui le 3 principali condizioni \emph{Sufficienti (ma non necessarie) per
 	\item Se la funzione $f:[a.b] \to \R$ è \textbf{Limitata} e con un \textbf{numero finito di discontinuità}, allora essa è integrabile su $[a,b]$
 	\item Se una funzione $f$ è \textbf{Monotona} e definita in $[a,b]$, allora essa è integrabile su $[a,b]$ 
 \end{enumerate}
+
 \subsection{Il calcolo degli integrali}
 Per calcolare $\int_{a}^{b} f(x) dx$ devo:
 \begin{enumerate}
@@ -23,12 +27,14 @@ Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)d
 \esempio{
 	$\it_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
 }
+
 \subsection{Proprietà degli integrali}
 \begin{itemize}
 	\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
 	\item $\int K f(x) dx = K\int f(x) dx$
 	\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
 \end{itemize}
+
 \section{Le primitive}
 Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
 \\Si noti che:
@@ -37,6 +43,7 @@ Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) 
 	\item Le primitive non sono \emph{mai uniche}
 \end{itemize}
 Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
+
 \subsection{Primitive Elementari}
 Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
 \begin{tabular}{ |c|c|c| }
@@ -58,6 +65,7 @@ Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementa
 	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
 	\hline
 \end{tabular}
+
 \subsection{Primitive di Derivate di funzioni composte}
 Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
 \definizione{
@@ -80,8 +88,9 @@ ma si può anche dedurre che:
 $$
 \int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
 $$
-\section{Tecniche di Integrazione}
-\subsection{Integrazione per Parti}
+
+
+\section{Integrazione per Parti}
 Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
 \definizione{
 		Siano $f$ e $g$ due funzioni, allora
@@ -93,7 +102,8 @@ In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione
 	$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
 	\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
 }
-\subsubsection*{Tecnica della moltiplicazione per 1}
+
+\subsection*{Tecnica della moltiplicazione per 1}
 In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
 Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
 \\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
@@ -104,11 +114,19 @@ Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, qu
 	\\Di conseguenza, la nostra integrazione prosegue così:
 	$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
 }
-\subsection{Integrazione per Sostituzione}
-Lo scopo dell'integrazione per sostituzione è quello di trasformare l'integrale in modo da renderlo più semplice
-e riconducibile a formule immediate.
-\\ Ma quando si usa? Di solito ci si accorge che può essere usato in casi in cui c'è un espressione della $x$ che si ripete,
-oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
+
+\section{Integrazione per Sostituzione}
+L'integrazione per sostituzione è uno dei metodi di integrazione più utili, ma anche uno dei più complicati da capire.
+In questa sezione introdurremo sia la definizione generale di questo metodo, che le su effettive implementazioni.
+
+Nota che \textbf{ai fini dell'esame è utlie soltanto la seconda implementazione} nella versione semplificata.
+
+\paragraph{Quando si usa?} 
+In generale mi accorgo di dover usare la sostituzione quando ho una particolare espressione ripetuta che "mi da fastidio", 
+oppure quando usare le altre tecniche mi risulta impossibile.
+
+\paragraph*{Definizione} lo scopo dell'integrazione per sostituzione è quello di \emph{trasformare l'integrale in modo da renderlo più semplice e riconducibile a formule immediate}.
+
 \definizione{
 	Siano $f:I\to \R$ una funzione continua, e $g:J\to \R$ una funzione derivabile con derivata continua.
 	Si ha che:
@@ -120,8 +138,9 @@ oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
 Vedendo queste due definizioni non si capisce molto,
 ma in sostanza si può usare la sostituzione in due casi differenti.
 Questi due casi hanno dei passaggi diversi,
-\subsubsection*{Primo Tipo}
-Supponiamo di voler calcolare un integrale che si presenta nella forma:
+
+\subsubsection*{Prima Implementazione (da definizione)}
+Questa implementazione segue alla lettera la definizione, quindi richiede che l'integrale da calcolare si trovi nella forma:
 $$\int f(g(x)) g'(x) dx$$
 \begin{enumerate}
 	\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
@@ -135,10 +154,11 @@ $$\int f(g(x)) g'(x) dx$$
 	\\Sostituiamo, $\int 2xe^{x^2} = \int e^y dy = e^y +c$.
 	\\Ri sostiuiamo $y$ con $x^2$ e troviamo $e^{x^2} + c$.
 }
+
 \subsubsection*{Secondo Tipo}
-Supponiamo di voler calcolare l'integrale: $$\int f(x)dx$$
+Supponiamo di voler calcolare l'integrale di una generica funzione $\int f(x)dx$, in cui però troviamo un'espressione "complicata" della $x$ che si ripete.
 In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
-Qui però dobbiamo richiedere che la funzione $g$ sia non solto derivabile, ma anche invertibile!
+Qui però dobbiamo richiedere che la funzione $g(y)$ sia non solto derivabile, ma anche invertibile!
 \\I passi da effettuare sono i seguenti:
 \begin{enumerate}
 	\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
