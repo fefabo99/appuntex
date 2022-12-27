@@ -1,0 +1,60 @@
+\chapter*{Introduzione}
+
+Questi appunti di Analisi Matematica sono stati fatti con l'obiettivo di riassumere tutti (o quasi) gli argomenti utili per l'esame di Analisi Matematica del corso di Informatica dell'Università degli Studi di Milano Bicocca.
+\\Come fonte ho utilizzato:
+\begin{itemize}
+	\item Appunti di altri studenti.
+	\item Libro "Analisi Uno, teoria ed esercizi" di Giuseppe De Marco (terza edizione).
+	\item Esercitazioni in aula della professoressa Susanna Caimi.
+\end{itemize}
+\section*{Il Corso}
+Come già detto, questi appunti sono in funzione del corso di Analisi Matematica di UNIMIB, a.a. 2021/22, insegnato dalla Professoressa Pini.
+\subsection*{Programma del corso}
+\begin{enumerate}
+	\item Numeri Reali
+	      \begin{enumerate}
+		      \item Funzioni elementari
+		      \item Generalità sulle funzioni
+		      \item Funzioni reali di una variabile
+	      \end{enumerate}
+	\item Successioni
+	      \begin{enumerate}
+		      \item Limiti di successioni reali
+		      \item Principio di Induzione
+		      \item Limiti notevoli
+	      \end{enumerate}
+	\item Limiti e continuità
+	      \begin{enumerate}
+		      \item Limiti di Funzioni
+		      \item Limiti notevoli
+		      \item Funzioni continue
+		      \item Proprietà globali delle funzioni continue
+	      \end{enumerate}
+	\item Calcoli differenziale
+	      \begin{enumerate}
+		      \item Derivate di una funzione
+		      \item Proprietà delle funzioni derivabili
+		      \item Funzioni convesse e concave
+		      \item Formula di Taylor
+		      \item Grafici di funzioni
+	      \end{enumerate}
+	\item Calcolo integrale
+	      \begin{enumerate}
+		      \item Funzioni integrabili secondo Rienmann
+		      \item Teorema fondamentale del calcolo e integrali indefiniti
+		      \item Metodi d'integrazione
+	      \end{enumerate}
+	\item Serie numeriche
+	      \begin{enumerate}
+		      \item Serie, convergenza, convergenza assoluta
+		      \item Serie a termini positivi
+		      \item Serie a termini di segno variabile
+	      \end{enumerate}
+\end{enumerate}
+
+\subsection*{Prerequisiti}
+\begin{itemize}
+	\item \emph{Algebra elementare}: Calcolo letterale, equazioni e disequazioni di primo e secondo grado
+	\item \emph{Trigonometria elementare}
+	\item \emph{Esponenziali e logaritmi}
+\end{itemize}

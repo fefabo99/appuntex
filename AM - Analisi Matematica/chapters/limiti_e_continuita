@@ -1,0 +1,272 @@
+\chapter{Limiti e Continuità}
+
+\section{Forme di Indecisione}
+\label{sec:forme_di_indecisione}
+Le forme di Indecisione (o forme indeterminate) sono operazioni che coinvolgono infiniti e infinitesimi nel calcolo dei limiti per le quali \emph{non è possibile determinare un risultato a priori}.
+\\Le operazioni problematiche nel calcolo dei limiti sono essenzialmente sette:
+\begin{center}
+	$[\frac{0}{0}]$ $[\frac{\infty}{\infty}]$ $[1^\infty]$ $[\infty - \infty]$ $[\infty \cdot 0]$ $[0^0]$ $[\infty^0]$
+\end{center}
+
+\paragraph{Risoluzione}Tutti questi possono essere risolti usando \textbf{Limiti Notevoli}, compresi alcuni \textbf{trucchi algebrici} per ricondursi ad essi,
+come sommare e sottrarre la stessa quantità e dividere e moltiplicare per la stessa quantità
+ma anche eventuali prorpietà dei logaritmi e delle potenze, formule trigonometriche etc...
+\\In particolare però, questi si risolvono usando \emph{anche}:
+\paragraph*{}$$\frac{0}{0}$$
+\begin{itemize}
+	\item Confronto tra infinitesimi
+	\item Scomposizione/Raccoglimento/Semplificazione
+	\item Teorema di De l'Hôpital
+\end{itemize}
+\paragraph*{}$$\frac{\infty}{\infty}$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Scomposizione/Raccoglimento/Semplificazione
+	\item Teorema di De l'Hôpital
+\end{itemize}
+\paragraph*{}$$1^\infty$$
+\begin{itemize}
+	\item Limiti Notevoli (in particolare il limite neperiano)
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+\paragraph*{}$$0\cdot \infty$$
+\begin{itemize}
+	\item Trucchi per ricondursi a $\frac{0}{0}$ o $\frac{\infty}{\infty}$
+\end{itemize}
+\paragraph*{}$$\infty-\infty$$
+\begin{itemize}
+	\item Razionalizzazione Inversa
+	\item Prodotti notevoli al contrario
+\end{itemize}
+\paragraph*{}$$\infty^0$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Confronto tra infinitesimi
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+\paragraph*{}$$0^0$$
+\begin{itemize}
+	\item Confronto tra infiniti
+	\item Confronto tra infinitesimi
+	\item Uso dell'identità Logaritmo-Esponenziale
+\end{itemize}
+
+\section{Limiti Notevoli}
+Per risolvere le forme indeterminate non sono sufficienti gli strumenti che l'algebra dei limiti e degli infiniti/infinitesimi ci forniscono.
+Esistono dunque alcuni limiti notevoli che ci permetteranno di risolvere buona parte delle forme indeterminate.
+
+\paragraph*{Logaritmo Naturale}
+$$\limite{x}{0} \frac{\ln(1+x)}{x} = 1 ; \limite{h(x)}{0} \frac{\ln(1+h(x))}{h(x)}$$ 
+
+\paragraph*{Funzione Esponenziale}
+$$\limite{x}{0} \frac{e^x-1}{x} = 1; \limite{h(x)}{0} \frac{e^{h(x)}-1}{h(x)} = 1$$
+
+% \begin{itemize}
+% 	\item $\limite{x}{0} \ln(1+x) \sim x$
+% 	\item $\limite{x}{0} \ln(1-x) \sim -x$
+% \end{itemize}
+
+\section{Asintoti Verticali e Orizzontali}
+\subsection*{Asintoti Verticali}
+\definizione{
+	Si dice che la retta $x=a$ è un \emph{Asintoto Verticale} di $f(x)$ se si verifica almeno una di queste caratteristiche:
+	\begin{itemize}
+		\item $\limite{x}{a^-} f(x)= +\infty$
+		\item $\limite{x}{a^-} f(x)= -\infty$
+		\item $\limite{x}{a^+} f(x)= +\infty$
+		\item $\limite{x}{a^+} f(x)= -\infty$
+	\end{itemize}
+	Una funzione può avere un numero qualsiasi di asintoti verticali
+}
+\paragraph*{In poche parole} Un Asintoto Verticale è una retta che fa da "muro" nel dominio di una funzione, e si trova facendo il limite della funzione in un punto specifico, se questo limite è uguale a $\pm \infty$ allora abbiamo trovato un asintoto verticale.
+
+\paragraph*{Come si trova?} Per trovare eventuali \emph{Asintoti Verticali} devo identificare i punti dove ci sono \emph{problemi di definizione},
+come "buchi" o estremi del dominio.
+
+\esempio{
+	$$y = \ln x + \frac{1}{x-2}$$
+	Dominio: $x-2 \neq 0 \rightarrow x\neq 2 \wedge x>0$
+	\\In questo esempio abbiamo dei problemi di definizione in $x=2$, dove c'è un "buco" nel dominio, e in $x=0$ dove c'è il limite del dominio.
+	\\in questi punti \emph{potrebbero} esserci degli AV. Proviamo:
+	\\$\limite{x}{0^+} f(x)= -\infty$
+		\\$\limite{x}{2^-} f(x)= -\infty$
+	\\$\limite{x}{2^+} f(x)= +\infty$
+		\\Quindi $x=0$ e $x=2$ sono asintoti verticali.
+}
+\subsection*{Asintoti Orizzontali}
+Una situazione abbastanza analoga si ha con gli \emph{Asintoti Orizzontali}
+\definizione{
+	Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (destro)} di $f(x)$ per $x\to +\infty$ se $\limite{x}{+\infty} f(x) = l$
+	\\Si dice che la retta $y=l$ è un \emph{Asintoto orizzontale (sinistro)} di $f(x)$ per $x\to -\infty$ se $\limite{x}{-\infty} f(x) = l$
+
+}
+In questo caso però, una funzione può avere \emph{al massimo 2 asintoti orizzontali}
+
+\section{Asintoti Obliqui}
+\paragraph*{definizione}{ %la definizione è broken, va sistemata TODO
+	Si dice che la retta $y=mx + q$ è un asintoto obliquo (destro) di $f(x)$ per $x \to +\infty$ se
+	$\limite{x}{+\infty} [f(x)-mx-q]=0$.
+	Una Situazione analoga si ha per $-\infty $ (sinistro).
+}
+
+Una funzione può avere al massimo 2 asintoti obliqui diversi, uno a $+\infty$ e uno a $-\infty$.
+La stessa retta può essere asintoto obliquo destro e sinistro.
+\paragraph*{Come trasintoti oriovare} un asintoto obliquo a $\pm \infty$? %SISTEMARE che si capisca meglio
+Bisogna provare a svolgere un paio di limiti.
+\\$m= \limite{x}{\pm \infty} \frac{f(x)}{x} \rightarrow$ Se $m\in\R$ e $m\neq 0$$ \rightarrow 
+q=\limite{x}{\pm \infty} [f(x)-mx] \rightarrow$ Se $q\in\R \rightarrow y=mx+q$ 
+è asintoto obliquo
+\nb{
+	Se $m=0$ (con $q\in\R$) si ricade nel caso degli asintoti orizzontali (quindi, da un certo punto di vista, gli asintoti orizzontali sono un caso particolare di asintoti obliqui)
+}
+\section{Equivalenze Asintotiche}
+Le equivalenze asintotiche sono delle "regole" molto utili per il calcolo dei limiti.
+Dire che una funzione è asintoticamente equivalente a un altra, significa bene o male dire "la funzione f(x) si comporta come g(x) quando x tende a 0"
+\definizione{
+	Due funzioni $f(x)$ e $g(x)$ si dicono \emph{asintoticamente equivalenti} per $x \to x_0$ se:
+	$ \limite{x}{x_0} \frac{f(x)}{g(x)} = 1$
+	e si scrive $f(x) \sim g(x)$ per $x\to x_0$
+	}
+Dai limiti notevoli si ricava facilmente che, per $x \to 0$
+\begin{itemize}
+	\item $\sin x \sim x$
+	\item $1 - \cos x \sim \frac{1}{2}x^2$
+	\item $\tan x \sim x$
+	\item $ln(1+x) \sim x$
+	\item $(1+x)^\alpha -1 \sim \alpha x$ ($\forall \alpha \in \N$)
+\end{itemize}
+\nb{
+	Naturalmente tutte le equivalenze precedenti possono essere generalizzate sostituendo ad x
+	una generica $\epsilon(x)$ che tenda a 0, quindi anche con una funzione che è \emph{infinitesima per $x\to +\infty$}
+	}
+\esempio{
+	\\$\sin(5x) \sim 5x$ per $x\to 0$, dato che $5x$ tende a 0.
+		\\$e^{\frac{1}{x}}-1 \sim \frac{1}{x}$ per $x\to +\infty$, dato che $\frac{1}{x}$ tende a 0 con $x\to +\infty$
+		}
+\subsection*{Alcune Proprietà}
+\begin{enumerate}
+	\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $f_1(x) \cdot f_2(x) \sim g_1(x) \cdot g_2(x)$ per $x \to x_0$.
+	      \\in particolare, se i limiti per $x \to x_0$ dei due prodotti esistono, sono uguali.
+	\item Se $f_1(x) \sim g_1(x)$ e $f_2(x) \sim g_2(x)$ per $x \to x_0$ allora $\frac{f_1(x)}{f_2(x)} \sim \frac{g_1(x)}{g_2(x)}$ per $x \to x_0$.
+	      \\in particolare, se i limiti per $x \to x_0$ dei due rapporti esistono, sono uguali.
+	\item se $f(x) \sim g(x)$ per $x \to x_0$ allora $[f(x)]^\alpha \sim [g(x)]^\alpha$ per $x \to x_0$
+\end{enumerate}
+\section{Confronto tra infiniti/infinitesimi}
+\subsection*{Ordine di infiniti}
+Nel calcolo dei limiti, quando bisogna trovare l'infinito di ordine maggiore:
+$$ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x $$
+con $a>0 \wedge a\neq 1$, $0<b<c$, $1<d<g$
+\nb{la radice è "più grande" del logaritmo}
+\subsection*{o-piccolo}
+L' o-piccolo è un simbolo matematico che viene usato per individuare l'ordine di infinitesimo di una funzione rispetto ad una funzione campione,
+al tendere di $x$ ad un determinato valore di infinito.
+\definizione{
+	Siano $f(x)$ e $g(x)$ due funzioni (definite sullo stesso insieme) e sia $x_0$ un punto di accumulazione del dominio, eventualmente infinito.
+	Se il $\limite{x}{x_0}$ del rapporto delle due funzioni $f$ e $g$ è uguale a zero,
+	allora diremo che \emph{$f(x)$ è un o-piccolo di $g(x)$ per $x$ che tende a $x_0$.}
+	$$
+	\limite{x}{x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o_{x_0}g(x)
+	$$
+}
+
+\section{Continuità di una funzione}
+La continuità di una funzione è una delle nozioni più importanti dell'analisi matematica (o almeno così dice youmath).
+\definizione{Una \emph{Funzione continua in un punto} è una funzione in cui due limiti sinistro e destro calcolati nel punto coincidono con la valutazione della funzione nel punto.
+	\\Quindi, diciamo che $f:\R \to \R$ è \emph{continua nel punto $x_0$} se
+	$$\limite{x}{x_{0}^-} f(x) =\limite{x}{x_{0}^+} f(x) = f(x_0)$$
+}
+Una funzione continua su un insieme è una funzione continua in ogni punto dell'insieme, se una funzione è continua su \emph{tutto il suo dominio}, si dice che è \emph{continua}.
+\subsection*{Punti di discontinuità}
+Se una funzione non è continua in un punto, allora si dice che quello è un punto di discontinuità.
+\definizione{Una funzione si dice discontinua in $x_0$ se $\limite{x}{x_0}f(x)$ \emph{non esiste, è infinito o esiste ma è diverso da $f(x_0)$}}
+\subparagraph*{Osservazione} Esiste una seconda definizione che estende la prima, spesso utilizzata alle superiori per semplificare il concetto.
+Questa definizione enuncia, in estensione alla prima, che è anche punto di discontinuità un \emph{punto di accumulazione del dominio che non appartiene al dominio}.
+\\Si noti che per correttezza questi punti vengono spesso chiamati \textbf{singolarità}, ovvero un punto di discontinuità è una singolarità se non appartiene al dominio.
+\subsubsection*{Classificazione dei punti di Discontinuità}
+Ci sono 3 classificazioni per identificare i punti di discontinuità.
+Data una funzione $f:\R \in \R$ e un punto $x_0$ si dice che $x_0$ è un punto di discontinuità di:
+\paragraph{Prima Specie} se i \emph{limiti sinistro e destro di $x_0$ esistono finiti ma sono diversi}.
+Questa viene anche chiamata \textbf{Discontinuità a Salto}
+\paragraph{Seconda Specie} se almeno uno dei due limiti, destro o sinistro, di $x_0$ è \emph{infinito o non esiste}.
+Questa viene anche chiamata \textbf{Discontinuità Essenziale}
+\paragraph{Terza Specie} Se il limite di $x_0$ \emph{esiste finito} ma è \emph{diverso da $f(x_0)$} oppure $f(x_0)$ non esiste.
+Questa viene chiamata \textbf{Discontinuità Eliminabile}, (oppure buco nella funzione).
+\section{Calcolo dei limiti}
+Qui di seguito verranno riportate alcune definizioni e teoremi utili per il calcolo 
+dei limiti, può tornare utile guardare la sezione relativa alle
+\hyperref[sec:forme_di_indecisione]{forme di indecisione}. 
+\definizione{Un \textbf{intorno} di un punto $x_0 \in \mathbb{R}$ è un intervallo
+aperto che contiene $x_0$}
+\definizione{Diremo che una funzione $f(x)$ ha una certa proprietà \textbf{definitivamente}
+per $x \rightarrow c$ se esiste un intorno U di c tale che la proprietà vale per $f(x)$
+per ogni $x \in U, \, x \neq c$}. 
+\subsection*{Teorema del confronto}
+\definizione{Se:
+\begin{enumerate}
+	\item Per $x \rightarrow c, \, f(x) \rightarrow l$ e $g(x) \rightarrow l$
+	\item $f(x) \leq h(x) \leq g(x)$ definitivamente per $x \rightarrow c$
+\end{enumerate}
+allora anche $h(x) \rightarrow l$ per $x \rightarrow c$}
+\definizione{
+Se $a_n \leq b_n \leq c_n$ definitivamente e $a_n \rightarrow l$, $c_n \rightarrow l \in \mathbb{R}$
+\\ allora anche $b_n \rightarrow l$.
+}
+\paragraph*{Corollario} Se:
+\begin{enumerate}
+	\item Per $x \rightarrow c, \, g(x) \rightarrow 0$
+	\item $|h(x)|\leq g(x)$ definitivamente per $x \rightarrow c$
+\end{enumerate}
+Allora anche $h(x) \rightarrow 0$, per $x\rightarrow c$.
+\paragraph*{Another Corollario}Se $f(x) \rightarrow 0$ per $x \rightarrow 0$ e $g(x$)
+è limitata definitivamente per $x \rightarrow c$, allora $f(x)g(x) \rightarrow 0$
+per $x \rightarrow c$.
+\subsection*{Teorema di permanenza del segno - 1 forma}
+\definizione{
+	Se $x \rightarrow c$ e $f(x) \rightarrow l > 0$ allora $f(x) > 0$ definitivamente per $x \rightarrow c$.
+	}
+\subsection*{Teorema di permanenza del segno - 2 forma}
+\definizione{
+	Se per $x \rightarrow c, \, f(x)\rightarrow l > 0$ definitivamente per $x \rightarrow c$
+	allora $l \geq 0$
+	}
+\subsection*{Teorema di permanenza del segno per funzioni continue}
+\definizione{
+	Se f è continua in c e $f(c) > 0$, allora $f(x) > 0$ definitivamente per $x \rightarrow c$.
+}
+\subsection*{Teorema degli zeri}
+\definizione{
+	Sia \begin{enumerate}
+		\item f continua in [a, b]
+		\item $f(a)f(b) < 0$
+	\end{enumerate}
+	Allora esiste $c \in (a,b)$ tale che $f(c)=0$.
+	Se f è anche strettamente monotna, lo zero è unico.
+}
+\subsection*{Teorema di Weierstrass}
+\definizione{
+	Sia $f: [a,b] \rightarrow \mathbb{R}$ una funzione continua.
+	Allora f assume massimo e minimo in [a,b], ossia: esistono $x_m, \, x_M \in [a,b]$
+	tali che $f(x_m) \leq f(x) \leq f(x_M)$ per ogni $x \in [a,b]$.
+	\\ Si dice che $x_m$ è punto di minimo per f, e $m=f(x_m)$ è il minimo di f;
+	\\ analogamente $x_M$ è punto di massimo, e $M = f(x_M)$ è il massimo di f.
+}
+\subsection*{Teorema dei Valori Intermedi}
+\definizione{
+	Se f è continua su [a,b], allora per ogni valore $\lambda$ compreso tra m e M (minimo e massimo di f in [a,b]),
+	esiste un ingresso x in [a,b] che ha il valore $\lambda$ cine yscuta (proprietè dei valori intermedi).
+}
+\subsection*{Teormea di monotonia}
+\definizione{
+	Sia $f: (a,b) \rightarrow \mathbb{R}$ una funzione monotona. Allora
+	per ogni $c \in (a,b)$ esistono finiti i limit destro e sinistro, per $x \rightarrow c$;
+	ai due estremi a,b esistono i limiti destro (in a) e sinistro (in b), eventualmente infiniti.
+}
+\subsection*{Teorema invertibilità}
+\definizione{
+	Sia $f: I \rightarrow \mathbb{R}$ con I intervallo, una funzione continua in I. Allora f
+	è invertibile se e solo se è strettamente monotona. In tal caso la sua inversa è ancora
+	strettamente monotona e continua.
+}
+
+
+%Calcolo Differenziale------------------------------------------------------------------

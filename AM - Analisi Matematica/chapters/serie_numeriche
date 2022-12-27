@@ -1,0 +1,289 @@
+\chapter{Serie Numeriche}
+\section{Introduzione}
+Da sempre ci si è posti il problema di sommare infiniti numeri e ovviamente pensare di ottenere un numero finito dalla somma di infiniti numeri potrebbe sembrare qualcosa di assurdo.
+In realtà non è cosi, infatti spesso è possibile che la somma di infiniti numeri può darci un numero finito.
+\paragraph*{Richiamiamo le successioni}
+Come si dovrebbe già sapere, chiamiamo successione ogni funzione il cui dominio sia l'insieme $\mathbb{N}$ dei numeri naturali.
+Le successioni a cui siamo particolarmente interessati sono le \emph{successioni reali}, ovvero le funzioni $f : \mathbb{N} \rightarrow \R$.
+\definizione{
+	Si chiama \textbf{serie numerica reale} una coppia ordinata di successioni \\
+	($(x_j)_{j\in \mathbf{N}}, (s_m)_{m\in \mathbf(N)}$) di numeri reali legate dalla seguente relazione
+	\begin{equation*}
+		s_m = x_0 + ... + x_m
+	\end{equation*}
+	Che equivale alla notazione:
+	\begin{equation*}
+		s_m = \sum_{n=0}^m x_n
+	\end{equation*}
+}
+\paragraph*{}La successione $(x_j)_{j\in \mathbf{N}}$ è il \emph{termine generale} della serie, la successione $(s_m)_{m\in \mathbf(N)}$ è la successione delle somme parziali, o \emph{ridotte} della serie data.\\
+Si dice che una serie \textbf{converge} se converge la successione $(s_m)_{m\in \mathbf(N)}$ delle sue ridotte, in tal caso il limite finito $s$ di $(s_m)_{m\in \mathbf(N)}$ si chiama \emph{somma della serie}
+\paragraph*{}Se la successione delle ridotte ha limite $+ \infty$ o $- \infty$, si usa dire che la serie è \emph{divergente} (a $+ \infty$, $- \infty$), mentre se la successione delle ridotte non ha limite, né finito né infinito, si dice che la serie è \emph{indeterminata}.
+\\Questi appellativi descrivono il \emph{carattere} della serie: è  la terminologia delle successioni applicata alla successione delle somme parziali.
+\subsection*{In parole povere...}
+Una serie numerica è il modo di indicare una somma di infiniti numeri.
+Come dice la definizione, una serie è formata da una coppia ordinata di successioni, una ($s$) che indica la successione delle somme parziali, e l'altra ($x$, spesso indicata con $a$) che corrisponde al termine generale della serie.
+\\Una serie può convergere, quindi ha un limite finito che si chiama somma della serie. Può anche divergere a piò o meno infinito oppure essere indeterminata
+\section{Serie Convergenti}
+\subsection{Serie Geometrica}
+La serie $\sum_{n=0}^{+\infty} q^n$, con $q \in \R$ è detta \emph{Serie geometrica}
+Questo è uno dei (pochi) casi in cui si riescono a calcolare esplicitamente, al variare di $q$, le somme parziali $s_n$.
+Infatti possiamo facilmente calcolare il limite della successione $(s_n)_{n\in \mathbb{N}}$ e determinare il carattere della serie geometrica.
+risulta:
+\begin{equation}
+	\limite{n}{+\infty} s_n \begin{cases}
+		\text{non esiste} & q \leq -1  \\
+		= \frac{1}{1-q}   & -1 < q < 1 \\
+		= +\infty         & q \geq 1
+	\end{cases}
+\end{equation}
+Per cui
+	\begin{equation}
+		\sum_{n=0}^{+\infty} q^n \text{è } \begin{cases}
+			indeterminata      & q \leq -1  \\
+			convergente        & -1 < q < 1 \\
+			divergente +\infty & q \geq 1
+		\end{cases}
+	\end{equation}
+
+\esempio{
+	$\sum_{n=0}^{+\infty} (\frac{1}{2})^n$ Converge (essendo $\frac{1}{2} < 1$) e la somma è $\frac{1}{1-\frac{1}{2}} = 2$
+}
+
+\paragraph{In parole povere}
+Se la serie è geometrica, quindi del tipo $x^n$ e il suo termine ($x$) è comporeso tra -1 e 1, allora per calcolare il carattere della serie basta fare: $\frac{1}{1-x}$
+\\\nb{La formula risolutiva risolve le serie che partono da $n=0$, se parte da $n=1$ bisogna togliere dal risultato $x^0$, se parte da $n=2$ bisogna togliere $x^1$ e $x^0$ e così via.
+\\Nota anche che se la serie presenta una costante moltiplicativa, questa va poi moltiplicata anche alle somme che vai a rimuovere!
+\\$k\cdot \sum_{n=1} q^n = k(\frac{1}{1-q} - q^0) = \frac{k}{1-q}-k(q^0)$
+}
+\subsection{Serie Telescopica}
+Sia $\sum_{n=1}^{+\infty} a_n$ Una serie tale che esiste una successione infinitesima ($b_n$) per cui $a_n = b_n - b_{n+1} \forall n\in \mathbb{N}$.
+Allora risulta:
+\begin{equation*}
+	s_n = \sum_{k=1}^{n}a_k = \sum_{k=1}^n (b_k - b_{k+1}) = b_1 - b_{n+1}
+\end{equation*}
+Da cui
+\begin{equation*}
+	\sum_{k=1}^{n}a_k = \limite{n}{+\infty} s_n = b_ - \limite{n}{+\infty} b_{n+1} = b_1
+\end{equation*}
+\subsubsection*{Serie di Mengoli}
+La serie $sum_{n=1}^\infty \frac{1}{n(n+1)}$ è detta \emph{Serie di Mengoli}.
+La caratteristica di questa serie è che il suo termine generale $a_n$ si può semplificare come:
+\begin{equation*}
+	a_n = \frac{1}{n(n+1)} = \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+quindi, la sua somma parizale è:
+\begin{equation*}
+	s_n = 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} +  \frac{1}{3} - \frac{1}{4} + ... +  \frac{1}{n-1} - \frac{1}{n} +  \frac{1}{n} - \frac{1}{n+1}
+\end{equation*}
+questa somma parziale è "speciale" perchè \emph{ogni termine tranne il primo e l'ultimo si annulla}. per cui $s_n = 1 - \frac{1}{n+1}$.
+\\Da qui è possibile calcolarne il $\limite{n}{+\infty} s_n = 1$, quindi la serie \emph{converge a 1}.
+Questo è l'esempio più semplice di \textbf{serie telescopica}
+\section{Criteri di Convergenza}
+Se ci troviamo una serie di cui non è banale studiare il carattere, possiamo utilizzare dei metodi per verificarne la convergenza.
+Innanzitutto diamo la condizione \textbf{necessaria} per la convergenza:
+\definizione{
+	Condizione \emph{necessaria (ma non sufficiente)} per la convergenza è che il \emph{termine generale $a_n$ sia infinitesimo}.
+	\begin{equation*}
+		\limite{n}{+\infty} a_n = 0 \text{ Necessario per la convergenza}
+	\end{equation*}
+	}
+Questa condizione, purchè necessaria, non è sufficiente per verificare la convergenza.
+Ci sono quindi dei criteri che forniscono \emph{condizioni sufficienti} per la convergenza di una serie:
+
+\begin{itemize}
+	\item Criterio del Rapporto
+	\item Criterio della Radice
+	\item Criterio del Confronto
+	\item Criterio del Confronto asintotico
+\end{itemize}
+Questi vengono utilizzati per serie a termini generali \emph{non negativi}
+\begin{itemize}
+	\item Criterio dell'assoluta convergenza
+	\item Criterio di Leibniz
+\end{itemize}
+Questi invece sono usate per serie a termini generali di \emph{segno variabile.}
+\subsection{Alcune proprietà utili}
+Ecco alcune proprietà delle serie che ci saranno utili a verificare la convergenza.
+\paragraph*{1}Siano $\sum_{n=0}^{+\infty}a_n$ e $\sum_{n=0}^{+\infty}b_n$ due serie \emph{convergenti} e sia $k\in\R$.
+Allora:
+\begin{enumerate}
+	\item $\sum_{n=0}^{+\infty}(a_n + b_n) = \sum_{n=0}^{+\infty}a_n + \sum_{n=0}^{+\infty}b_n$
+	\item $\sum_{n=0}^{+\infty} k a_n = k \sum_{n=0}^{+\infty}a_n$
+\end{enumerate}
+\nb{che una costante moltiplicativa non modifica il carattere di una serie}
+\paragraph*{2} Una serie $\sum_{n=0}^{+\infty}a_n$ a termini \textbf{definitivamente non negativi} non può essere \emph{indeterminata},
+Quindi converge o diverge a $+\infty$
+\esempio{
+	$\sum_{n=0}^{+\infty}\frac{n^2+3^{-n}}{n^2-5}$
+	\begin{itemize}
+		\item[-] $a_n \geq 0$ Definitivamente, quindi la serie CONVERGE o DIVERGE a $+\infty$
+		\item[-] il termine generale tende a 1 ($\limite{n}{+\infty} \frac{n^2+3^{-n}}{n^2-5} = 1)$ quindi la serie NON CONVERGE (il termine generale non è \emph{infinitesimo}!)
+	\end{itemize}
+	Per cui questa serie \textbf{diverge a $+\infty$}
+	}
+\subsection{Criterio del Rapporto}
+	Il primo criterio è quello del rapporto, che può essere usato se il termine generale è definitivamente positivo.
+	\definizione{
+		Sia $a_n > 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l$, allora:
+		\begin{itemize}
+			\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+			\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+			\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+		\end{itemize}
+	}
+	\nb{che siccome $a_n > 0$ allora $l\in [0,+\infty)$ oppure $l = +\infty$}
+
+\esempio{
+	Studiare il carattere di $\serie{0}{+\infty} \frac{n^{2015}}{3^n}$:
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{\frac{(n+1)^{2015}}{3^{n+1}}}{\frac{n^{2015}}{3^n}} =
+		\frac{(n+1)^{2015}}{3 \cdot \cancel{3^n}} \cdot \frac{\cancel{3^n}}{n^{2015}} =
+		\frac{(n+1)^{2015}}{3 \cdot n^{2015}} = \frac{1}{3} \frac{(n+1)^{2015}}{n^{2015}}
+	\end{equation*}
+	Siccome $\limite{n}{+\infty} \frac{(n+1)^{2015}}{n^{2015}} = 1$ allora
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = \frac{1}{3}
+	\end{equation*}
+	$\frac{1}{3} < 1$ quindi la serie \emph{Converge}
+}
+
+\subsection{Criterio della Radice}
+Questo criterio, molto simile a quello del Rapporto, dice che:
+\definizione{
+	Sia $a_n \geq 0$ \emph{definitivamente} e supponiamo che $\limite{n}{+\infty} \sqrt[n]{a_n} = l$, allora:
+	\begin{itemize}
+		\item[-] se $l<1$ allora $\sum a_n$ \textbf{Converge}
+		\item[-] se $l>1$ allora $\sum a_n$ \textbf{Diverge}
+		\item[-] se $l=1$ allora tutto è possibile e il criterio è \textbf{inconclusivo}
+	\end{itemize}
+}
+\nb{Usando questo criterio capiterà spesso di trovare $\limite{n}{+\infty} \sqrt[n]{n}$ o $\limite{n}{+\infty} (\sqrt[n]{n^\alpha})$
+Tali limiti valgono semre 1}
+\esempio{
+	Studiare il carattere di $\serie{2}{+\infty} \frac{1}{(\log n)^{\frac{n}{2}}}$:
+	\begin{equation*}
+		\limite{n}{+\infty} \sqrt[n]{\frac{1}{(\log n)^{\frac{n}{2}}}} =
+		(\frac{1}{(\log n)^{\frac{n}{2}}})^{\frac{1}{n}} =
+		\frac{1}{(\log n)^{\frac{n}{2n}}} =
+		\frac{1}{\sqrt{(\log n)}}
+	\end{equation*}
+	siccome $\limite{n}{+\infty} \log n = +\infty$
+	\begin{equation*}
+		\limite{n}{+\infty} \frac{1}{\sqrt{(\log n)}} = 0
+	\end{equation*}
+	$0 < 1$, per cui la serie \emph{Converge}
+}
+
+\subsection{Criterio del Confronto}
+\definizione{
+	Supponiamo che  $0 \leq a_n \leq b_n$ definitivamente.
+	Allora valgono le seguenti implicazioni:
+	\begin{enumerate}
+		\item $\sum b_n$ converge $\implies \sum a_n$ converge
+		\item $\sum a_n$ diverge a $+\infty \implies \sum b_n$ diverge a $+\infty$
+	\end{enumerate}
+	\nb{L'inverso di queste implicazioni generalmente non valgono}
+}
+\paragraph*{In pratica quindi} Se riusciamo a trovare una serie che sia definitivamente maggiore (o minore) della nostra serie e di cui conosciamo il carattere
+possiamo conoscere anche il carattere della nostra serie.
+\\Il trucco quindi è scoprire tale serie, per farlo vengono spesso utilizzate le \emph{Serie Armoniche Generalizzate}
+
+\subsubsection{Serie Armoniche Generalizzate}
+Riporto le due formule delle serie Armoniche Generalizzate:
+\begin{equation*}
+	\serie{1}{+\infty} \frac{1}{n^\alpha} \begin{cases}
+		\text{CONVERGE} & \text{Se } \alpha > 1    \\
+		\text{DIVERGE}  & \text{Se } \alpha \leq 1
+	\end{cases}
+\end{equation*}
+\begin{equation*}
+	\serie{1}{+\infty} \frac{1}{n^\alpha (\log n)^\beta} \begin{cases}
+		\text{CONVERGE} & \text{Se } \alpha > 1 \vee \alpha = 1 \wedge \beta > 1    \\
+		\text{DIVERGE}  & \text{Se } \alpha < 1 \vee \alpha = 1 \wedge \beta \leq 1
+	\end{cases}
+\end{equation*}
+
+\esempio{
+	Studiare il carattere di $\serie{1}{+\infty} (\frac{\cos n}{n})^2$:
+	\\$(\cos n)^2$ Varia tra 0 e 1, quindi è $\leq 1$.
+		\\$0 \leq (\frac{\cos n}{n})^2 \leq \frac{1}{n^2}$ per ogni $n\geq 1$.
+	\\$\serie{1}{+\infty} \frac{1}{n^2}$ converge, quindi anche nostra serie \emph{Converge}
+
+}
+
+\subsection{Criterio del Confronto Asintotico}
+\definizione{
+	Date 2 successioni $a_n$ e $b_n$ a termini \emph{definitivamente positivi}, se
+	\begin{center}
+		$a_n \sim b_n$ (ovvero se $\lim{n}{+\inf} \frac{a_n}{b_n} = 1$)
+	\end{center}
+	Allora le corrispontenti serie $\Sigma a_n$ e $\Sigma b_n$ hanno lo stesso carattere, quindi sono o \emph{entrambe convergenti o entrambe divergenti}
+}
+\esempio{
+	Determinare il carattere della serie $\serie{1}{+\inf} \frac{n+ \cos n}{n^3 - 3n}$.\\
+	I termini della serie sono \emph{definitivamente positivi}, quindi possiamo usare il confronto asintotico.
+	Al numeratore, essendo $\cos n$ un valore limitato diventa irrilevante in confronto ad $n$.
+	Al denominatore, essendo $3n$ molto più piccolo di $n^3$ diventa irrilevante.
+	Quindi:
+	\begin{equation*}
+		\frac{n+\cos n}{n^3 - 3n} \sim \frac{n}{n^3} = \frac{1}{n^2}
+	\end{equation*}
+	$\Sigma \frac{1}{n}$ converge (serie armonica generalizzata con $\alpha > 1$), quindi anche $\frac{n+\cos n}{n^3 - 3n}$ \textbf{converge}
+}
+\paragraph{Ma non è sempre così semplice}In quest'ultimo esempio per trovare una successione asintotica alla nostra è stato sufficiente focalizzarci sui \emph{termini preponderanti} al numeratore e al denominatore.
+Spesso però le cose sono più complicate, conviene quindi affidarci ai \emph{limiti notevoli} come nel prossimo esempio:
+\esempio{
+	Determinare il carattere della serie $\serie{1}{\inf} \frac{e^{\frac{1}{n^2}} -1}{4n}$.\\
+	Anche qui la serie è a termini positivi (il numeratore è sempre positivo, visto che $e^\frac{1}{n^2}$ sarà sempre $ > 1$).
+	In questo caso però è più difficile trovare una serie asintotica, visto che il numeratore tende a 0 quando $n$ tende a $\inf$ non abbiamo un termine prenponderante sull'altro.
+	Il numeratore però ricorda il \emph{limite notevole legato all'esponenziale} che diceva:
+	\begin{equation*}
+		\limite{\epsilon(x)}{0} \frac{e^{\epsilon(x)}-1}{\epsilon(x)} = 1
+	\end{equation*}
+	Il che, data la definizione di confronto asintotico, implica che $e^{\epsilon(x)}-1 \sim \epsilon(x)$ per $\epsilon(x) \to 0$.
+	Nel nostro caso, $\frac{1}{n^2}$ tende a $0$, quindi $e^{\frac{1}{n^2}} -1 \sim \frac{1}{n^2}$.\\
+	\subparagraph*{Di conseguenza} $\frac{e^{\frac{1}{n^2}} -1}{4n} \sim \frac{\frac{1}{n^2}}{4n} = \frac{1}{4n^3}$.\\
+	Come prima, $\frac{1}{4n^3}$ è una serie armonica generalizzata con termine $\alpha > 1$, quindi \textbf{Converge}
+}
+\nb{Esiste un enunciato più generale di questo criterio}
+
+\section{Criterio dell'Assoluta Convergenza}
+Questo criterio è il primo che vediamo che vale anche per serie a \emph{termine di segno variabile}
+\definizione{
+	Una serie $\sum a_n$ si dice \emph{assolutamente convergente} se converge la serie $\sum |a_n|$.
+	\\ Se la serie $\sum a_n$ converge assolutamente, allora \emph{Connverge}
+
+	\nb{Il viceversa, in generale, non è vero}
+}
+
+\esempio{
+	Studiare il carattere della serie $\serie{n=1}{+1\infty} \frac{\sin (n!)}{n^4}$
+	\\ in questa serie abbiamo il numeratore che oscilla tra $-1$ e $1$, quindi questa serie non è a termini definitivamente positivi.
+	Usando quindi il criterio della convergenza assoluta, e poi il criterio del confronto abbiamo che:
+	$$ 0 \leq \frac{|\sin (n!)|}{n^4} \leq \frac{1}{n^4} \implies \text{Converge Assolutamente}$$
+	Visto che la serie converge assolutamente, allora \emph{converge}
+}
+\esempio{
+	Studiare il carattere della serie $\serie{n=1}{+1\infty} (-1)^n \frac{n^2 + 3}{n^4+2n}$
+	\\Anche questa serie ha il segno variabile (per il $(-1)^n$) quindi usiamo il criterio dell'assoluta convergenza
+	$$ |(-1)^n \frac{n^2 + 3}{n^4+2n}| = \frac{n^2 + 3}{n^4+2n} \sim \frac{1}{n^2} $$
+	sappiamo che $\frac{1}{n^2}$ è una serie armonica generalizzata che converge, quindi la serie converge assolutamente e di conseguenza converge
+}
+\section*{Criterio di Leibniz}
+Il criterio di Leibniz è il secondo criterio utilizzabile per le serie a \emph{Segno variabile}
+\definizione{
+	Sia $\{a_n\}$ una successione:
+	\begin{itemize}
+		\item $a_n \geq 0$ Definitivamente
+		\item $a_n \to 0$ per $n \to \infty$
+		\item $a_{n+1} \leq a_n$ Definitivamente (monotna decrescente)
+	\end{itemize}
+	Allora la serie $\serie{0}{+\infty}(-1)^na_n$ è convergente
+}
+
+\esempio{
+	Studiare il carattere della serie $\serie{0}{\infty} \frac{(-1)^n}{n!}$
+	\\$a_n = \frac{1}{n!}$, ed è \emph{positiva}, \emph{infinitesima} e \emph{decrescente}
+	\\Di conseguenza, \emph{converge per Leibniz}
+}

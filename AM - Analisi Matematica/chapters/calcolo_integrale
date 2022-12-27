@@ -1,0 +1,225 @@
+\chapter{Calcolo Integrale}
+\section{Gli integrali}
+\definizione{
+	L'integrale di una funzione su $a$ e $b$ ($\int_{1}^{b} f(x)dx$) è \emph{l'area sottesa della funzione nell'intervallo [$x=a, x=b$]}
+}
+\subsection{Classi di Funzioni Integrabili}
+Le classi di funzioni integrabili sono famiglie di funzioni dotate di particolari proprietà che ne garantisconto l'integrabilità \emph{su un intervallo chiuso e limitato}.
+Riporto qui le 3 principali condizioni \emph{Sufficienti (ma non necessarie) per l'integrabilità}:
+\\Sia $[a,b]$ un intervallo chiuso e limitato.
+\begin{enumerate}
+	\item Se la funzione $f:[a.b] \to \R$ è \textbf{Continua}, allora essa è integrabile su $[a,b]$.
+	\item Se la funzione $f:[a.b] \to \R$ è \textbf{Limitata} e con un \textbf{numero finito di discontinuità}, allora essa è integrabile su $[a,b]$
+	\item Se una funzione $f$ è \textbf{Monotona} e definita in $[a,b]$, allora essa è integrabile su $[a,b]$ 
+\end{enumerate}
+\subsection{Il calcolo degli integrali}
+Per calcolare $\int_{a}^{b} f(x) dx$ devo:
+\begin{enumerate}
+	\item Trovare una funzione che nell'intervallo $[a,b]$ abbia $f(x)$ come derivata, ovvero una \textbf{primitiva} di $f(x)$
+	\item Calcolare il valore della primitiva negli estremi di integrazione ($F(a)$ e $F(b)$)
+	\item Sottrarre i due valori ($F(b)-F(a)$)
+\end{enumerate}
+Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)dx = F(b)- F(a)$$
+\esempio{
+	$\it_{0}^{5} 3x^2 dx = [x^3]_{0}^{5} = 5^3 - 0^3 = 125$
+}
+\subsection{Proprietà degli integrali}
+\begin{itemize}
+	\item $\int[f(x) \pm g(x)] dx = \int g(x) dx \pm \int f(x) dx$
+	\item $\int K f(x) dx = K\int f(x) dx$
+	\item $\int_{a}^{b} f(x) dx = \int_{a}^{c} f(x) dx + \int_{c}^{b} f(x) dx$
+\end{itemize}
+\section{Le primitive}
+Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
+\\Si noti che:
+\begin{itemize}
+	\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
+	\item Le primitive non sono \emph{mai uniche}
+\end{itemize}
+Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (integrale indefinito).
+\subsection{Primitive Elementari}
+Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
+\begin{tabular}{ |c|c|c| }
+	\hline
+	$f(x)$            & $F(x)$                                  \\
+	\hline
+	$cos(x)$          & $sin(x)$                                \\
+	\hline
+	$sin(x)$          & $-cos(x)$                               \\
+	\hline
+	$e^x$             & $e^x$                                   \\
+	\hline
+	$a^x$             & $\frac{a^x}{\ln a} $                    \\
+	\hline
+	$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+	\hline
+	$\frac{1}{x}$     & $\ln |x| $                              \\
+	\hline
+	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
+	\hline
+\end{tabular}
+\subsection{Primitive di Derivate di funzioni composte}
+Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
+\definizione{
+	Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
+	In questo caso:
+	$$
+	[F(g(x))]' = f(g(x)) \cdot g'(x) \implies \int f(g(x)) \cdot g'(x) dx = F(g(x))+c
+	$$
+}
+\paragraph*{Ovvero} se abbiamo una funzione del tipo $f(g(x)) \cdot g'(x)$ il suo integrale sarà semplicemente $F(g(x)) + c$, quindi bisogna trovare \emph{la primitiva solo della funzione esterna}.
+\\\'E comunque ovvio che si possono effettuare "giochetti" per smontare e rimontare la nostra funzione in modo da ottenere una formad i questo tipo.
+\esempio{ 
+	$\int 3x^2 \cdot\sin(x^3) dx = -\cos(x^3) + c$
+}
+\esempio{
+	$\int x (x^2)^3 dx = \frac{1}{2}\int 2x (x^2-1)^3 dx = \frac{1}{2}\frac{(x^2)^4}{4} + c = ...$
+}
+Da quest'ultimo esempio si può notare sia che abbiamo moltiplicato e diviso per due in modo da ottenere la derivata della funzione interna,
+ma si può anche dedurre che:
+$$
+\int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
+$$
+\section{Tecniche di Integrazione}
+\subsection{Integrazione per Parti}
+Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
+\definizione{
+		Siano $f$ e $g$ due funzioni, allora
+		$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
+}
+In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione integrabile è integrabile per parti.
+\\Questa tecnica può essere usata per risolvere integrali complessi.
+\esempio{
+	$$\int x \cos(x) dx = x \sin(x) - \int \sin(x) dx = x \sin(x) + \cos(x) + c$$
+	\\In questo esempio, $f(x) = x$, quindi $f'(x) = 1$ e $g'(x)= \cos(x)$, quindi $g(x) = \sin(x)$.
+}
+\subsubsection*{Tecnica della moltiplicazione per 1}
+In alcuni casi ci potremmo trovare degli integrali che appaiono molto semplici, ma in realtà non sono per niente \emph{banali}.
+Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, quindi si può utlizzare la tecnica della \emph{moltiplicazione per 1}.
+\\Dato un integrale, lo si può moltiplicare (esplicitamente) per 1 in modo da permetterci di usare l'integrazione per parti, dato che il risultato non è modificato e 1 è facilmente integrabile.
+\esempio{
+	$$\int \ln(x) dx = \int \ln(x) \cdot 1 dx$$
+	Questo ci permette di considerare:
+	\\ $f(x) = \ln(x) \implies f'(x) = \frac{1}{x}$ e $g'(x) = 1 \implies g(x) = x$.
+	\\Di conseguenza, la nostra integrazione prosegue così:
+	$$ = \ln(x) \cdot x - \int \frac{1}{x} \cdot x dx = x\ln(x) - \int 1 dx = x \ln(x) - x + c$$
+}
+\subsection{Integrazione per Sostituzione}
+Lo scopo dell'integrazione per sostituzione è quello di trasformare l'integrale in modo da renderlo più semplice
+e riconducibile a formule immediate.
+\\ Ma quando si usa? Di solito ci si accorge che può essere usato in casi in cui c'è un espressione della $x$ che si ripete,
+oppure un integrale che a prima vista non si riesce a ricondurre a uno immediato
+\definizione{
+	Siano $f:I\to \R$ una funzione continua, e $g:J\to \R$ una funzione derivabile con derivata continua.
+	Si ha che:
+	$$\int_{a}^{b} f(g(x)) g'(x) dx = \int_{g(a)}^{g(b)} f(y) dy$$
+	Nel caso in cui la funzione $g(y)$ sia \textbf{invertibile}, allora vale la seguente formula di integrazione:
+	$$\int f(x)dx = \int f(g(y))g'(y)dy$$
+	Queste due formule sono equivalenti e bisogna scegliere quale usare in base a come si presenta la funzione integranda.
+}
+Vedendo queste due definizioni non si capisce molto,
+ma in sostanza si può usare la sostituzione in due casi differenti.
+Questi due casi hanno dei passaggi diversi,
+\subsubsection*{Primo Tipo}
+Supponiamo di voler calcolare un integrale che si presenta nella forma:
+$$\int f(g(x)) g'(x) dx$$
+\begin{enumerate}
+	\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
+	\item Sostituiamo i nuovi valori nell'integrale, cos' da ottenere la forma $\int f(y) dy$
+	\item Calcoliamo l'integrale nella nuova variabile (sperando che sia più semplice) ottendendo così $F(y) + c$
+	\item Sostiuiamo a $y$ l'espressione della funzione $g(x)$.
+\end{enumerate}
+\esempio{Calcola l'integrale di $2xe^{x^2}$.
+	\\Si può ben notare che $2x$ è la derivata di $x^2$, quindi questa funzione si presenta nella forma $g'(x)f(g(x))$.
+	Poniamo quindi $y=g(x)=x^2$ e $dy=g'(x)dx= 2x dx$.
+	\\Sostituiamo, $\int 2xe^{x^2} = \int e^y dy = e^y +c$.
+	\\Ri sostiuiamo $y$ con $x^2$ e troviamo $e^{x^2} + c$.
+}
+\subsubsection*{Secondo Tipo}
+Supponiamo di voler calcolare l'integrale: $$\int f(x)dx$$
+In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
+Qui però dobbiamo richiedere che la funzione $g$ sia non solto derivabile, ma anche invertibile!
+\\I passi da effettuare sono i seguenti:
+\begin{enumerate}
+	\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
+	\item Sostiuiamo il tutto nell'integrale in modo da ricavare $f(g(y))g'(y)$
+	\item Calcoliamo l'integrale ottenuto (nella speranza che sia di più facile risoluzione)
+	\item Sostiuiamo di nuovo per tornare nella variabile $x$. Per farlo però è necessario esprimere la variabile $y$ in funzione di $x$ determinando la funzione inversa $y=g^{-1}(x)$
+	\item 
+\end{enumerate}
+\paragraph*{O in modo più semplice}
+I passaggi che ho riportato qui sopra li ho trovati su youmath e seguono la definizione.
+Sono molto confusionali e il processo in se è molto difficile, quindi riporto alcuni passaggi per rendere il tutto più semplice.
+\\Qui dobbiamo andare a cercare all'interno di $f(x)$ un'espressione di $x$ che vogliamo rimuovere e sostiuire con $y$ per semplificare il tutto.
+Quindi, avendo $\int f(x)$ che contiene una $g(x)$ (possibilmente ripetuta) che voglio togliere per semplificare il tutto
+\begin{enumerate}
+	\item Decido che $y=g(x)$
+	\item Inverto $g(x)$ in modo da isolare la $x$, ottenendo $x=g^{-1}(y)$
+	\item Derivo entrambi i membri e "moltiplico" per $dx$ e $dy$ in modo da ottenere: $dx=(g^{-1})'(y)dy$
+	\item All'interno della funzione sostiuisco $g(x)$ con $y$ e $dx$ con $(g^{-1})'(y)dy$
+	\item A questo punto mi (dovrei) trovare un integrale più facile, che posso risolvere
+	\item Una volta risolto sostiuisco $y$ con $g(x)$.
+\end{enumerate}
+
+% Quindi, se abbiamo una funzione da integrare che è formata da una funzione composta $f(g(x))$ moltiplicata alla derivata della funzione interna $g'(x)$,
+% si può sostituire con una ipotetica $y$ per sepmplificare.
+% \esempio{
+% 	$\int sin(e^x) e^x dx$. consideriamo:
+% 	\\$y= e^x$, e $dy = e^x dx$. Nota che $dy$ indica la derivata di $y$.
+% 		\\Quindi $\int sin(y) dy = -\cos(y) + c = -\cos(e^x) + c$.
+% }
+\subsection{Integrazione di Funzioni Razionali}
+Sono funzioni razionali tutte quelle funzioni del tipo:
+$$f(x)=\frac{P(x)}{Q(x)} \text{ con } P(x),Q(x) \text{ Polinomi} $$
+Questo tipo di integrale si risolve in modi diversi in base al grado/tipo di numeratore e denominatore:
+\paragraph*{Numeratore è la Derivata del Denominatore}
+$$\int \frac{f'(x)}{f(x)} = \ln|f(x)|+ c$$
+\esempio{
+	\\$\int \frac{2x}{x^2-5} = \ln|x^2-5|+c$
+	\\Oppure:
+	\\$\int \frac{x^3}{x^4+1} = \frac{1}{4}\int \frac{4x^3}{x^4+1} = \frac{1}{4} \ln|x^4+1|+c$
+}
+\paragraph*{Numeratore Costante e Denominatore di I° grado}
+La risoluzione è sostanzialmente uguale al caso precedente, varrebbe ricordarsi però la formula:
+$$\int\frac{k}{ax+b} dx = \frac{k}{a} \ln|ax+b|$$
+\esempio{$\int 	\frac{3}{2x-1} dx = \frac{3}{2} \int \frac{2}{2x-1} = \frac{3}{2} \ln|2x-1|+c$}
+
+\paragraph*{Numeratore costante e Denominatore al Quadrato}
+Bisogna ricordarsi che:
+$\frac{1}{[f(x)]^2} = [f(x)]^{-2}$ e che 
+$\int f'(x)[f(x)]^n dx = \frac{[f(x)^{n+1}]}{n+1}$ (primitiva di funzione elementare generalizzata)
+
+\esempio{
+	$\int \frac{5}{(2x-1)^2} = 5\int (2x-1)^{-2} = \frac{5}{2} \int 2(2x-1)^{-2} = \frac{5}{2} \cdot \frac{(2x-1)^{-1}}{-1} + c = -\frac{5}{4x-2} + c$
+}
+\paragraph*{Funzioni razionali del tipo $\frac{dx-c}{ax^2+bx+c}$ con $\Delta < 0$}
+In questo caso, bisogna smontare la funzione e ricondursi a integrali del tipo:
+\begin{itemize}
+	\item $\int\frac{f'(x)}{1+[f(x)]^2} dx = \arctan[f(x)]+c$
+	\item $\int\frac{f'(x)}{f(x)} = \ln|f(x)| +c $ 
+\end{itemize}
+\esempio{
+	$\int \frac{3x+1}{x^2+1} dx$.
+	\\Spacco in due la funzione e la gestisco come due integrali separati
+	$\int \frac{3x}{x^2+1} + \int \frac{1}{x^2+1} = \frac{3}{2}\int \frac{2x}{x^2+1} +  \int \frac{1}{x^2+1} = \frac{3}{2}\ln|x^2+1| + \arctan(x) +c$
+}
+\esempio{Più complicato:
+$$\int \frac{18x+3}{9x^2+6x+2}$$
+\\Bisogna ragionare:
+\\Voglio ottenere una funzione del tipo $\frac{f'(x)}{f(x)}$, quidni calcolo la derivata del denominatore:
+$D'=18x+6$ e cerco di trasformare il nuemratore in esso.
+Per fare ciò, posso vedere quel "$+3$" al numeratore come un "$+6-3$"
+$$ = \int \frac{18x+6-3}{9x^2+6x+2} = \int \frac{18x+6}{9x^2+6x+2} -\int \frac{-3}{9x^2+6x+2} = ln|9x^2+6x+2| - \int\frac{3}{9x^2+6x+2} +c$$
+Adesso il secondo integrale lo cerco di trasformare in una funzione del tipo $\frac{f'(x)}{1+[f(x)]^2}$.
+Guardo il denominatore e cerco di trasformarlo in $\frac{f'(x)}{f(x)}$:
+$9x^2 = (3x)^2$, $6x = 2\cdot 3x \cdot 1$ (come (2ab)) e $+2 = +1+1$. 
+Quindi il denominatore diventa: $(3x+1)^2+1$.
+$$= \ln|9x^2+6x+2| - \arctan(3x+1) +c$$
+}
+\section{Altre Proprietà importanti}
+\subsection*{Integrale di una funzione dispari}
+Sia $f : \R \to \R$ una funzione continua e dispari,  $\int_{-a}^{a} f(x) dx = 0$.\\
+Perchè essendo la funzione simmetrica rispetto all'origine, $\int_{-a}^{0} f(x) dx = - \int_{0}^{a} f(x)$, quindi
+$\int_{-a}^{-a} f(x) dx = \int_{-a}^{0} f(x) dx + \int_{0}^{-a} f(x) dx = 0$.
+
+% Serie Numeriche

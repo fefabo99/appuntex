@@ -1,0 +1,245 @@
+\chapter{Funzioni}
+
+\section{Generalità}
+\definizione{
+	Siano $X$ e $Y$ insiemi. Si dice che è data una funzione di $X$ in $Y$, se è data una regola che a ogni elemento di $X$ associa \emph{uno e uno solo} elemento di $Y$.
+}
+\paragraph{In altre parole} assegnare una funzione $f$ di $X$ in $Y$ significa dare un procedimento che consenta di assegnare a ogni $x \in X$ un ben determinato $y \in Y$. Tale $y$, corrispondente di $x$ tramite la funzione $f$, si indica con $f(x)$, cioè $y = f(x)$ e $y$ si chiama \emph{immagine di $x$ secondo $f$}. per indicare che $f$ è funzione di $X$ in $y$ si scrive $f: X \rightarrow Y$.
+
+\definizione{
+	se $f: X \rightarrow Y$ è una funzione, gli insiemi \emph{$X$ e $Y$} sono rispettivamente il \textbf{dominio} e il \textbf{codominio} di $f$.
+}
+\paragraph{Assegnare una funzione} significa assegnare:
+\begin{itemize}
+	\item Un dominio $X$
+	\item Un codominio $Y$
+	\item Una regola che a ogni $x$ del dominio associ una $y$ del codominio
+\end{itemize}
+Pertanto: due funzioni $f$ e $g$ sono \textbf{uguali} se e solo se hanno lo \emph{stesso dominio}, lo\emph{ stesso codominio}, e inoltre si ha \emph{$f(x) = g(x)$ per ogni x del dominio}.\\
+Non basta dunque dire che la regola sia la stessa: occorre anche che il dominio e il codominio dati siano gli stessi.
+
+\subsection*{Insieme immagine}
+Se $f: X \rightarrow Y$ è una funzione, ed $S$ è sottoinsieme del dominio $X$ (cioè $S \subseteq X$) si indica con $f(s)$ l'insieme degli elementi $y$ che sono immagini secondo $f$ di qualche elemento di $S$.
+\\In linguaggio matematico è $f(S) = \{ f(x) : x \in S\}$ oppure si può anche descrivere così: $f(S) = \{y \in Y : \exists x \in S \text{ tc } y = f(x)\}$.
+\\L'insieme $f(S)$ è detto \emph{immagine di $S$ tramite $f$}; per $S = X$ (quindi se S corrisponde col dominio), $f(X)$ è detto \emph{immagine di f}.
+\\Vale sempre $f(X) \subseteq Y$, quindi \textbf{l'immagine è sempre conenuta nel codomino}, ma in generale è $f(X) \subset Y$, cioè immagine e codominio sono diversi.
+
+\paragraph{In parole povere}
+L'immagine di una funzione è l'insieme dei valori assunti da una funzione sul proprio dominio,
+ed è quindi contenuta nel codominio (o insieme di arrivo) della funzione, con il quale può al più coincidere.
+\paragraph{Come si calcola?}
+Per trovare l'insieme immagine, il modo più facile è guardare il grafico della funzione
+
+\subsubsection{Immagine Inversa}
+Dualmente al concetto di immagine c'è quello di antiimmagine.
+\paragraph{Definizione. }Sia $\function $ una funzione, sia $F \subseteq Y$.
+Si chiama immagine inversa $f^\leftarrow(T)$ (o controimmagine, o antiimmagine) di $T$ mediante $f$ l'insieme degli $x \in X$ la cui immagine sta in $T$.
+in simboli: $f^\leftarrow(T) = \{ x \in X : f(x) \in T\}$.
+\paragraph{In parole povere} L'antiimmagine mediante un insieme $T$ è l'insime dei valori del dominio la cui immagine è contenuta in $T$
+
+
+\section{Composizione di Funzioni}
+Siano $\function$ e $g: Y \rightarrow Z$ funzioni.
+Si ottiene una funzione $g \circ f : X \rightarrow Z $ (che si legge "g tondo f" o "g cerchietto f") ponendo $g \circ f = g(f(x))$ per ogni $x \in X$;
+$g \circ f$ è detta \emph{funzione composta} di f e g; è la funzione ottenuta applicando $f$ e $g$ nell'ordine.
+\\Per poter fare la composizione, \textbf{occorre che il codominio di $f$ coincide con il dominio di $g$}.
+
+
+\esempio{
+	Siano $f: \mathbf{R} \rightarrow \mathbf{R}$ e $g: \mathbf{R} \rightarrow \mathbf{R}$ due funzioni così definite:
+	\\ $f(x) = x^2$ e $g(x) = x - 2$ allora $f \circ g = f(g(x)) = (x-2)^2$
+}
+\section{Iniettività e Suriettività}
+
+\subsection*{Funzioni Suriettive}
+Quando l'\emph{insieme immagine e il codomino di una funzione coincidono}, essa si dice che è \emph{suriettiva}
+\definizione{Una funzione $\function$ si dice \textbf{suriettiva} se è $f(X) = Y$.
+	Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine (e non è propriamente corretto).}
+\paragraph{Graficamente} Per determinare graficamente se una funzione è suriettiva è necessario verificare che la proiezione dell'intero
+grafico copra sull'asse delle y copra interamente l'asse y, se così fosse possiamo affermare che la funzione è suriettiva.
+\subsection*{Funzioni Iniettive}
+La funzione $\function$ è detta \textbf{iniettiva} se trasforma elementi distinti in elementi distinti, ovvero:
+\definizione{$f: X \rightarrow Y$ si dice iniettiva se per ogni $x_1, x_2 \in X$ e $x_1 \neq x_2$ implicano $f(x_1) \neq f(x_2)$.}
+\paragraph{}Per vedere che una $\function$ \emph{non} è iniettiva, basta esibire anche una sola coppia $x_1, x_2$ di elementi distinti ($x_1 \neq x_2$) del dominio per cui sia $f(x_1) = f(x_2)$.
+\\Per provare invece che è iniettiva, occorre dimostrare che per ogni coppia di elementi distinti $x_1, x_2 \in X, x_1 \neq x_2$ si ha $f(x_1) \neq f(x_2)$.
+\paragraph{Graficamente} Per determinare graficamente se una funziona è iniettiva è necessario verificare che tracciando
+ un'ipotetica linea orizzontale la linea non intersechi il grafico in più di un punto.
+\\ Per esempio tracciando una linea orizzontale nel grafico di una parabola la linea interseca il grafico in 2 punti e
+questo ci indica che la funzione NON è iniettiva.
+
+\subsubsection{Biiezioni}
+Una funzione $\function$ è detta biiettiva se è sia iniettiva che suriettiva.
+Quindi $\function$ è biiettive se e solo se per ogni $y \in Y$ esiste uno e un solo $x \in X$ tale che sia $y = f(x)$.
+Che esista almeno un tale $x$ dice che $f$ è suriettiva, che sia unico dice che $f$ è iniettiva.
+Una funzione biiettiva viene detta anche biiezione e corrispondenza biunivoca.
+
+\section{Funzione Inversa}
+Se $\function$ è biiettiva, si può definire una funzione inversa di $f$,$f^{-1} : Y \rightarrow X$, nel modo seguente:
+dato $y \in Y$, $f^{-1}(y)$ è quell'unico $x \in X$ tale che sia $y = f(x)$.
+se $\function$ non è biiettiva, la funzione inversa di f non può essere definita.
+\paragraph*{Graficamente} se $f$ è funzione reale di variabile reale biiettiva (ovvero è invertibile),
+ il grafico dell'inversa $f^{-1}$ si ottiene facendo il simmetrico del grafico di $f$ rispetto alla retta di equazione $y=x$.
+
+\subsection*{Come si calcola}
+In linea generale, per calcolare l'inversa di una funzione bisogna:
+\begin{itemize}
+	\item mettere la funzione nella forma $y=...$
+ \item Isolare la $x$
+ \item Una volta isolata la $x$, si sotituisce $y$ con $x$, e $x$ con $f(x)$ per trovare la funzione
+\end{itemize}
+\esempio{$f(x) = x^3$, allora $f^{-1}(x)$:
+\\$y=x^3 \to x^3 = y \to x=\sqrt[3]{y} \to f(x) = \sqrt[3]{x}$
+}
+
+\subsection*{Derivata della Funzione Inversa}
+In molti casi l'inversa di una funzione non è facilmente calcolabile,
+esiste però un modo per \emph{calcolare la derivata di una funzione inversa senza saperne l'espressione analitica}.
+\definizione{
+	Consideriamo una funzione $y=f(x)$ biunivoca e derivabile in un punto $x_0$ e supponiamo inoltre che $f'(x_0)\neq 0$.
+	\\Allora la funzione inversa $x = f^{-1}(y)$ è derivabile nel punto $y_0 = f(x_0)$, e la sua derivata in tale punto è:
+	$$ (f^{-1})'(y_0) = \frac{1}{f'(x_0)} = \frac{1}{f'(f^{-1}(y_0))}$$
+}
+\paragraph*{Ovvero} Questo teorema ci serve all'esame per quelle funzioni di cui dobbiamo trovare la derivata dell'inversa che però sono pressochè impossibili da derivare.
+\\Sia $f(x)$ una funzione (ovviamente invertibile e derivabile) e sia $g$ la sua inversa. 
+$g'(y_0)$ (con un $y_0$ fornito) è trovabile in questo modo:
+\\Dal teorema sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$, e sappiamo (tramite la formula della funzione inversa) che $y=f(x)$. 
+\\Se $y=y_0$ (che è il valore di $y$ in cui dobbiamo trovare $g'$), allora $y_0= f(x)$ ci da un certo valore di $x=x_0$.
+\\Avendo adesso il valore di $y_0$ e di $x_0$ basta riempire la formula per trovare $g'(y_0)$.
+\\Si può riassumere questo processo nei seguenti passaggi: 
+Data $g(x) = f^{-1}(x)$ e avendo $y_0$, sappiamo che $g'(y_0) = \frac{1}{f'(x_0)}$.
+Quindi:
+\begin{enumerate}
+	\item trovo $x_0$ ponendo $y_0=f(x)$
+	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
+\end{enumerate}
+\esempio{detta $g$ la funzione inversa di $f(x) = x^{\frac{1}{3}}$, allora $g'(1) =$
+\\Dal teorema ho $g'(1) = \frac{1}{f'(x_0)}$, e so che $y=x^{\frac{1}{3}}$.
+Ponendoli a sistema per trovare $x$ ottengo:
+$$
+\begin{cases}
+	y= 1 \\
+	y=x^{\frac{1}{3}}
+\end{cases}
+\begin{cases}
+	y = 1 \\
+	x = 1
+\end{cases}
+$$
+Quindi, $g'(1) = \frac{1}{f'(1)}$.
+$f'(x) = \frac{1}{3x^{\frac{2}{3}}}$,
+$f'(1) = \frac{1}{3}$.
+\\Applicando quindi la formula ottengo $g'(1) = 3$.
+}
+\section*{Funzioni Pari/Dispari}
+Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
+\paragraph*{Pari}
+Si dice che $f$ è pari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = f(-x)$;
+\\Le funzioni pari hanno grafico simmetrico rispetto all'asse delle ordinate.
+\paragraph*{Dispari}
+Si dice che $f$ è dispari se per ogni $x \in X$ anche $-x \in X$ ed è $f(x) = -f(x)$;
+\\Le funzioni dispari hanno grafico simmetrico rispetto all'origine
+
+\section{Monotonia di una Funzione}
+Sia $\function$ una funzione reale di variabile reale (quindi $X, Y in \R$).
+
+\subsection*{Funzione Crescente}
+Si dice che $f$ è \emph{crescente} se da $x_1, x_2 \in X$ e $x_1 < x_2$ segue $f(x_1) \leq f(x_2)$;
+\\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) < f(x_2)$ allora $f$ si dice \emph{strettamente crescente};
+
+\subsection*{Funzione Decrescente}
+Si dice che $f$ è \emph{decrescente} se da $x_1, x_2 \in X$ e $x_1 > x_2$ segue $f(x_1) \geq f(x_2)$;
+\\Se invece $x_1, x_2 \in X$ e $x_1 < x_2$ implicano $f(x_1) > f(x_2)$ allora $f$ si dice \emph{strettamente decrescente};
+
+\paragraph{Come si calcola la monotonia?}
+Per calcolare la monotonia di una funzione, bisogna porre la derivata (che è il "rateo" di crescita della funzione) \emph{Maggiore (o minore o maggiore uguale o minore uguale) di 0}.
+Nei punti in cui la derivata rimane maggiore (minore,...) di 0, la funzione è \emph{monotona crescente (decrescente,...)}
+
+
+\section{Studio di Funzione}
+Una parte importantissima dell'Analisi Matematica (che fa parte di un intero esercizio d'esame) è lo \emph{Studio di Funzione},
+che mette insieme quasi tutti gli argomenti del corso.
+
+Lo studio di funzione è composto di 5 passaggi:
+\begin{enumerate}
+	\item Definizone del Dominio
+ \item Segno e intersezione con gli assi
+ \item Limiti e Asintoti
+ \item Segno della derivata
+\end{enumerate}
+
+\subsection*{Definizione del Dominio}
+Una funzione $f:\R \to \R$ non sempre è definita in tutto $\R$, spesso ci sono degli intervalli (o dei punti) in cui non è definibile.
+Per trovare questi punti in cui non è definibile bisogna:
+\begin{itemize}
+	\item porre tutti i \textbf{Denominatori $\neq 0$}
+ \item porre tutti gli \textbf{Argomenti delle Radici pari $\geq 0$}
+ \item porre tutti gli \textbf{Argomenti dei Logaritmi $>0$}
+ \item ogni funzione del tipo $f(x)^{g(x)}$, $f(x)$ va posto maggiore di 0
+ \item gli argomenti di $\arcsin$ e $\arccos$ vanno posti $-1 < x <1$
+\end{itemize}
+Ovviamente, una volta definito il dominio della funzione vado a eliminare dal piano cartesiano le zone in cui $f(x)$ non è definita.
+\subsection*{Simmetrie/Periodicità}
+Questa fase è facoltativa ma ogni tanto ci aiuta.
+\begin{equation}
+	f(-x) = \begin{cases}
+		f(x) \implies \text{Funzione Pari}\\
+		-f(x) \implies \text{Funzione Dispari}\\
+		NIL \implies \text{Funzione ne Pari ne Dispari}
+	\end{cases}
+\end{equation}
+Le \emph{Funzioni Periodiche} sono generalmente quelle goniometriche.
+
+\subsection*{Segno e Intersezione con gli Assi}
+Il segno della funzione ci permette di vedere dove la funzione è positiva.
+L'intersezione con gli assi invece ci aiuta a disegnare la funzione.
+\begin{itemize}
+	\item $f(x)\geq 0$ Per vedere dove la funzione è positiva
+ \item $f(x)=0$ è l'intesezione con l'asse delle ascisse
+ \item $f(0)$ è l'intersezione con l'asse delle ordinate
+\end{itemize}
+
+\subsection*{Limiti e asintoti}
+I limiti ci servono a capire come si comporta la funzione ai limiti del dominio e nei punti di discontinuità.
+Bisogna calcolare i limiti di x ai punti di accumulazione del dominio che non fanno parte del dominio e agli estremi di esso.
+
+\begin{itemize}
+	\item Se $x_0 \notin DOM$ e $\limite{x}{x_0} f(x) = c \implies$ il grafico ha un "buco" in $(x_0,c)$.
+ \item Se $x_0 \notin DOM$ e $\limite{x}{x_{0}^\pm} f(x) = \pm \infty \implies$ $x=x_0$ è asintoto VERTICALE.
+ \item Se $\limite{x}{\pm \infty} = l$ l è asintoto ORIZZONTALE
+ \item Se $\limite{x}{\pm \infty} = \pm \infty$ potrebbe eistere Asintoto Obliquo
+\end{itemize}
+\subsection*{Monotonia: Crescenza/Decrescenza}
+La monotonia di una funzione è \emph{l'intervallo in cui una funzione è crescente o decrscente}.
+Per determinare la monotonia di una funzione, bisogna trovarne la derivata e determinare il suo segno, quindi porla $>0$.
+Nei punti in cui la derivata di una funzione è \emph{maggiore di 0} la funzione è \emph{crescente}, nei punti in cui invece è \emph{mionre di 0} la funzione è \emph{decrescente}.
+
+\subsection*{Massimi e Minimi}
+Tramite lo studio della monotonia si possono anche trovare i punti di massimo e minimo di una funzione %TODO
+
+\subsection*{Concavità e Convessità}
+\paragraph*{Cosa sono} Una funzione convessa è tale se il segmento che congiunge due punti qualsiasi del suo grafico giace 
+sopra il grafico stesso o coincide con una sua parte. Il contrario vale per le funzioni concave.
+\begin{itemize}
+	\item CONC\textbf{A}VA $\cap$
+	\item CON\textbf{V}ESSA $\cup$
+\end{itemize}
+\paragraph*{Come si calcola}
+Per trovare la concavità di una funzione, bisogna fare la derivata seconda e porla $>0$ per trovarne il segno.
+Nei punti in cui la derivata seconda è positiva la funzione è CONVESSA, nei punti in cui è negativa la funzione è CONCAVA.
+
+\begin{itemize}
+	\item - CONC\textbf{A}VA $\cap \implies f''(x)$ positiva 
+	\item + CON\textbf{V}ESSA $\cup \implies f''(x)$ negativa
+\end{itemize}
+
+\subsection*{Retta tangente al grafico}
+Ogni tanto ci viene chiesto di determinare l'\emph{equazione della retta tangente al grafico di una funzione in un punto}.
+\\Una retta è tangente al grafico nel punto $x_0$ se hanno uno e un solo punto in comune, che sarà $x_0$ appunto.
+
+\paragraph{Come si calcola}
+Bisogna innanzitutto avere la derivata della funzione. Poi, tenendo conto dell'equazione generica della retta $y=mx+q$ bisogna:
+\begin{itemize}
+	\item Trovare $m= f'(x_0)$
+ \item Trovare $q = f(x_0)-f'(x_0) \cdot x_0$
+ \item Infine, "monti" l'equazione della retta $y=mx+q$
+\end{itemize}
