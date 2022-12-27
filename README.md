@@ -13,3 +13,4 @@ Per utilizzarlo è sufficiente aggiungere a inizio file il seguente frammento di
 \usepackage{../generalStyle}
 ```
 
+Test github actions
