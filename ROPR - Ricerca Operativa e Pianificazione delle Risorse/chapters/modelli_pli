@@ -1,0 +1,79 @@
+\chapter{Modelli PLI}
+\section{Introduzione}
+Fino ad ora abbiamo visto esempi di programmazione lineare che utlizzavano variabili di decisione nel dominio \textbf{reale}.
+
+Esistono però molti problemi che richiedono che richiedono che le variabili di decisione siano \emph{intere o binarie}.
+In questi casi stiamo parlando di \textbf{Programmazione Lineare Intera} o PLI.
+
+\paragraph*{I tipi di PLI}
+Esistono 3 tipi di PLI:
+\begin{itemize}
+    \item \textbf{Intera} $\to x\in \Z^n$ (PLI)
+    \item \textbf{Binaria} $\to x\in \{0,1\}$ (PB)
+    \item \textbf{Mista} $\to x\in \R^p \times \Z^q$, con $p+q=n$ e $ p>0,q>0$ (MIP)
+\end{itemize}
+
+\section{Le Condizioni Logiche}
+Come abbiamo detto, nella PLI possiamo introdurre anche delle \textbf{Variabili Binarie}.
+In generale, le variabili binarie sono utilizzate nella RO per modellare decisioni del tipo \emph{Si/No},
+e possono essere usate per introdurre delle \emph{Condizioni Logiche}.
+\subsection*{Vincoli "\emph{either-or}"}
+Se consideriamo il caso in cui dati due vincoli almeno uno di questi deve essere soddisfatto 
+(per esempio perchè potrebbe esserci una scelta su risorse alternative da utilizzare per un determinato scopo, in modo che sia necessario solo uno dei vincoli)
+prendiamo come esempio:
+\[3x_1+2x_2\leq18 \vee x_1+4x_2\leq16\]
+Questa diventa equivalente a:
+\[\begin{cases}
+    3x_1+2x_2\leq 18 + My \\
+    x_1 + 4x_ \leq 16 + M(1-y)
+\end{cases}\]
+in cui $M$ è un \emph{numero molto grande} e $y\in \{0,1\}$
+quindi se:
+\begin{itemize}
+    \item $y=0 \implies$ il secondo vincolo è sempre soddisfatto, quindi si può eliminare.
+    \item $y=1 \implies$ il secondo vincolo è sempre soddisfatto, quindi si può eliminare.
+\end{itemize}
+\paragraph*{M molto grande}
+Questo elemento si trova molto spesso nelle condizioni logiche, e di solito è moltiplicato a $y$ e $(y-1)$, e significa:
+\begin{itemize}
+    \item $y=0 \implies My = 0 \wedge M(1-y) = M$
+    \item $y=1 \implies My = M \wedge M(1-y) = 0$
+\end{itemize}
+Quindi, al variare di $y$ uno dei due vincoli dovrà essere $\leq M$, ed essendo "M molto grande" questo è sempre verificato,
+di fatto disattivando il vincolo.
+
+\subsection*{N Vicoli, K devono essere soddisfatti}
+Consideriamo il caso in cui in un modello includa $N$ vincoli tali che solo $K$ di essi devono essere soddisfatti ($K<N$).
+\begin{center}
+    $f_1(x_1,x_2,x_n) \leq d_1$ \\
+    $f_2(x_1,x_2,x_n) \leq d_2$ \\
+    ... \\
+    $f_N(x_1,x_2,x_n) \leq d_N$
+\end{center}
+Con N variabli binarie $y_i \in \{0,1\}$ per $i=1,...,N$ ed un numero M positivo molto grande.
+Abbiamo la seguente formulazione equivalente al requisito che solo $k$ di questi $N$ vincoli devono essere soddisfatti:
+\[
+    \begin{cases} 
+        f_1(x_1,x_2,x_n) \leq d_1+ My_1 \\
+        f_2(x_1,x_2,x_n) \leq d_2+ My_2 \\
+        ... \\
+        f_N(x_1,x_2,x_n) \leq d_N+ My_N\\
+        \sum_{i=1}^N y_i = N - K
+    \end{cases}
+\]
+In questo caso solo $N-K$ delle nostre $y$ può essere uguale a 1, quindi $N-K$ vincoli (quelli con $y=1$) saranno disattivati (rilasciati).
+
+\subsection*{La funzione assume solo N possibili valori}
+Si consideri la situazione in cui una data funzione assuma uno fra N possibili valori
+\[
+    f(x_1,x_2,...,x_n) = d_1 \vee d_2,..., \vee d_n
+\]
+consideriamo N variabili binarie $y_i \in \{0,1\}$ per $i=1,...,N$
+abbiamo la seguente formulaizone equivalente al requisito che una data funzione assuma uno fra N possibili valori:
+\[
+    \begin{cases}
+        f(x_1,x_2,...,x_n) =\sum_{i=1}^N d_iy_i\\
+        \sum_{i=1}^N y_i = 1
+    \end{cases}
+\]
+Per cui uno solo dei termini noti sarà attivo.
