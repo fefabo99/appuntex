@@ -11,6 +11,7 @@ Il testo di riferimento è \emph{Frederick S. Hiller and Gerald J. Lieberman, Ri
 
 
 \section{Il programma}
+Il Syllabus indica:
 
 \begin{itemize}
     \item Introduzione: storia-motivazione-esempi
@@ -26,6 +27,26 @@ Il testo di riferimento è \emph{Frederick S. Hiller and Gerald J. Lieberman, Ri
               \item Introduzione alla programmazione linare (PL): Proprietà dei problemi di PL, strategie di modellizzazione.
           \end{enumerate}
     \item Soft Computing per l'ottimizzazione.
+        \begin{enumerate}
+            \item Algoritmi evolutivi
+            \item Reti neurali ed SVM
+        \end{enumerate}
+\end{itemize}
+
+\paragraph*{Gli argomenti in specifico}
+\begin{itemize}
+    \item Modelli nella Ricerca Operativa
+    \item Introduzione alla Programmazione Lineare
+    \item Metodo del Simplesso
+    \item Teoria del Simplesso
+    \item Teoria della Dualità e Analisi di Sensitività
+    \item Programmazione Lineare intera
+    \begin{itemize}
+        \item Introduzione alla PLI.
+        \item Branch and Bound Binario
+        \item Branch and Bound PLI
+    \end{itemize}
+    \item Programmazione Non Lineare
 \end{itemize}
 
 \section{Modalità d'esame}
