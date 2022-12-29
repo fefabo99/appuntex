@@ -77,3 +77,31 @@ abbiamo la seguente formulaizone equivalente al requisito che una data funzione 
     \end{cases}
 \]
 Per cui uno solo dei termini noti sarà attivo.
+\section{Risoluzione dei PLI}
+Nonostante lo spazio delle variabili sia "solo" $\N$, anche in questo caso una risoluzione con forza bruta non è considerabile.
+
+\subsection{Il Rilassamento Lineare}
+Per un qualsiasi problema PLI è possibile formulare il corrispettivo problema PL, ovvero lo stesso problema senza i vincoli di interezza.
+Tale problema prende il nome di \textbf{rilassamento lineare}.
+
+In sostanza il rilassamento lineare consinste nel togliere i vincoli di Interezza ($x \in \Z$)
+e sostituirli con dei vincoli di non negatività ($x\geq 0$)
+
+Questo può in molti casi essere utile, perchè il rilassamento lineare può essere risolto con il metodo del simplesso.
+
+\paragraph*{Risolvere} un rilassamento lineare, per esempio tramite il metodo del simplesso,
+ci da due possibilità:
+\begin{itemize}
+    \item Soluzione \textbf{Intera} $\implies$ è anche la soluzione del PLI
+    \item Soluzione \textbf{Frazionaria} $\implies$ ho trovato un \textbf{Upper (Lower) bound} per il PLI di \textbf{Max (Min)} 
+\end{itemize}
+
+\paragraph*{Upper/Lower Bound}
+Quando risolvo il rilassamento lineare di un PLI di Max, se la soluzione che ho trovato NON è intera allora significa che ho trovato un Upper Bound,
+ovvero un valore che l'ottimo del PLI sicuramente non supererà.
+Viceversa vale per i problemi di minimo e il rispettivo lower bound.
+
+I Bound (Upper e Lower) sono utili ad alcuni algoritmi di risoluzione dei PLI.
+
+Attenzione però, in generale la soluzione ottima di un PLI può non corrispondere a una delle sue soluzioni intere ottenute arratondando le variabili non intere, quindi 
+non posso risolvere un PLI arrotondando il risultato di un rilassamento. 
