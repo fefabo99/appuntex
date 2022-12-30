@@ -284,6 +284,15 @@
             opposto!
         \end{quote}
 
+    \section{Forza Elastica} La forza elastica di un corpo (o di una molla) è 
+    descritta dalla Legge di Hook nel seguente modo:
+        \begin{equation}
+            F = -kx
+        \end{equation}
+    Dove $-k$ è chiamata \textbf{costante elastica} ed è una misura della 
+    rigidità della molla. Maggiore è $k$, più rigida è la molla: cioè maggiore è
+    $k$, maggiore sarà la forza per uno stesso valore di spostamento.
+
     \section{Carrucola} Le forze agenti su due corpi collegati in un sistemma a
     carrucola (se aventi masse diverse) sono sempre una l'opposta dell'altra.
         \begin{equation}
@@ -336,24 +345,89 @@
             W = Fd = Fd \cos \Theta \; [J]
         \end{equation}
 
-        \section{Energia Cinetica} Rappresenta la quantità di energia associata al 
+        \paragraph{Lavoro compiuto dalla Forza Gravitazionale} Il Lavoro svolto 
+        dalla Forza Gravitazionale ovviamente è descritto come $F d$, per un 
+        corpo che sale la $F_g$ è diretta in senso opposto allo spostamento 
+        formando un angolo $\Theta$ di $180^{\circ}$.
+        
+        \begin{equation}
+            F = mgd\cos \Theta = mgd \cos 180 = - mgd
+        \end{equation}
+        Mentre nel momento in cui un corpo cade, la $F_g$ avrà stessa direzione
+        dello spostamento (verso il basso), conferendo un segno positivo al
+        Lavoro.
+        
+        \paragraph{Lavoro compiuto dalla Forza Elastica} La Forza Elastica non è
+        una forza costante e di conseguenza non possiamo utilizzare la classica
+        equazione del Lavoro (per una forza costante). Possiamo però suddividere
+        lo spostamento della molla in parti infinitesime in modo da avere forze
+        infinitesime per ogni spostamento infinitesimo, facendo risultare cosi 
+        la forza infinitesima costante su uno spostamento infinitesimo. 
+        Integrando questa operazione otterremo così la formula del lavoro per
+        la Forza Elastica (e in generale per una forza non costante!).
+        \begin{equation*}
+            L_m = \int_{x_f}^{x_i} -F \,dx 
+        \end{equation*}
+        \begin{equation*}
+            L = \int_{x_f}^{x_i} -kx \,dx =  L = -k \int_{x_f}^{x_i} x \,dx   
+        \end{equation*}
+        \begin{equation*}
+            = (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i}
+            = (-\frac{1}{2}k) (x^2_f - x^2_i)
+        \end{equation*}
+        \begin{equation}
+            L_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f
+        \end{equation}
+        Il Lavoro $L_m$ è positivo quando il blocco si avvicina alla posizione 
+        di riposo $x=$ ed è negativo quando se ne allontana. Il Lavoro è nullo
+        se la distanza finale da $x=0$ non è mutata.
+
+    \section{Energia Cinetica} Rappresenta la quantità di energia associata al 
         moto di una particella (corpo puntiforme) che si muove alla velocità $v$.
 
         \begin{equation}
-            E_k = \frac{1}{2}mv^2 \; [J]
+            K = \frac{1}{2}mv^2 \; [J]
         \end{equation}
 
         \begin{quote}
-            Il lavoro fatto su una particella è uguale a $\Delta E_k$. L'energia 
+            Il lavoro fatto su una particella è uguale a $\Delta K$. L'energia 
             cinetica (e la velocità) aumentano se il lavoro svolto è positivo, 
             mentre diminuiscono se il lavoro svolto è negativo.
         \end{quote}
 
+        \paragraph{Teorema dell'Energia Cinetica} Chiamiamo $\Delta K$ la 
+        variazione di Energia Cinetica del corpo e $L$ il Lavoro totale compiuto
+        su di esso. Allora possiamo scrivere:
+        \begin{equation}
+            \Delta K = K_f - K_i = w
+        \end{equation}
+
+    
     \section{Potenza} Se una forza esterna è applicata ad un oggetto e se il 
     Lavoro è fatto in un intervallo di tempo, definiamo \textbf{potenza}:
         
         \begin{equation}
-            P = \frac{W}{\Delta t} \; [W]
+            P = \frac{W}{\Delta t} \; [W \textsf{  Watt}]
+        \end{equation}
+
+        \paragraph{Un altro sguardo alla Potenza} La Potenza Istantanea può 
+        essere espressa derivando la formula della Potenza (ovviamente!). Di 
+        conseguenza possiamo scrivere la potenza come:
+
+        \begin{equation*}
+            P = \frac{dL}{dt} = \frac{F \cos \Theta dx}{dv} 
+            = F \cos \Theta (\frac{dx}{dt})
+        \end{equation*}
+        Ma sappiamo benissimo che $\frac{dx}{dv}$ non è altro che la definzione 
+        di velocità. Possiamo quindi riscriverla in modo più semplice:
+        \begin{equation*}
+            P = Fv\cos\Theta
+        \end{equation*}
+        Ovvero il \textbf{prodotto scalare} tra $F$ e $v$ (dove $v$ è la 
+        velocità della particella). Possiamo quindi scrivere che la Potenza 
+        Istantanea di una paricella a velocità $v$ non è altro che:
+        \begin{equation}
+            P = F \cdot v
         \end{equation}
 
     \section{Energia Potenziale} Se la configurazione di un sistema cambia, 
@@ -399,13 +473,23 @@
             E_m = K + U
         \end{equation}
 
-        \paragraph{Principio di conservazione dell'Energia Meccanica} Un oggetto
-        tenuto ad altezza $h$ dal suolo non ha Energia Cinetica, ma il suo 
-        potenziale Gravitazionale è $U = mgh$. Se lasciato cadere il suo 
-        Potenziale Gravitazionale diminiusce, facendo aumentare gradualmente
-        la sua Energia Cinetica. La somma dell'Energia Cineta e di quella
-        Potenziale Gravitazionale (detta Energia Meccanica) rimane 
-        \textbf{costante}.
+        \paragraph{Principio di conservazione dell'Energia Meccanica} Quando in 
+        un sistema isolato agiscono solo forze conservative, l'Energia Cinetica 
+        e l'Energia Potenziale prese singolarmente possono variare, ma la loro
+        somma, l'Energia Meccanica $E_m$ del sistema non cambia. Questo 
+        risultato è chiamato principio di conservazione dell'Energia Meccanica
+        espirmibile nel seguente modo:
+        \begin{equation}
+            \Delta E_m = \Delta K + \Delta U = 0
+        \end{equation}
+        Il principio di conservazione dell'Energia Meccanica ci permette di 
+        risolvere problemi che sarebbe arduo risolvere usando solo le Leggi di 
+        Newton.
+        Quando l'Energia Meccanica di un sistema si conserva, possiamo mettere
+        in relazione il totale dell'Energia Cinetica e dell'Energia Potenziale
+        in un istante con quello di un altro istante, \textit{senza dover
+        considerare gli stati intermedi e senza necessità di conoscere il lavoro
+        compiuto dalle forze coinvolte!}
 
         
     \section{Momento Lineare}
