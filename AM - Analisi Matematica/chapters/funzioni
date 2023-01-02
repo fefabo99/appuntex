@@ -56,7 +56,7 @@ Quando l'\emph{insieme immagine e il codomino di una funzione coincidono}, essa 
 \definizione{Una funzione $\function$ si dice \textbf{suriettiva} se è $f(X) = Y$.
 	Attenzione che su alcuni testi di Analisi il termine codominio è inteso nel senso di immagine (e non è propriamente corretto).}
 \paragraph{Graficamente} Per determinare graficamente se una funzione è suriettiva è necessario verificare che la proiezione dell'intero
-grafico copra sull'asse delle y copra interamente l'asse y, se così fosse possiamo affermare che la funzione è suriettiva.
+grafico sull'asse delle y copra interamente l'asse stesso, se così fosse possiamo affermare che la funzione è suriettiva.
 \subsection*{Funzioni Iniettive}
 La funzione $\function$ è detta \textbf{iniettiva} se trasforma elementi distinti in elementi distinti, ovvero:
 \definizione{$f: X \rightarrow Y$ si dice iniettiva se per ogni $x_1, x_2 \in X$ e $x_1 \neq x_2$ implicano $f(x_1) \neq f(x_2)$.}
