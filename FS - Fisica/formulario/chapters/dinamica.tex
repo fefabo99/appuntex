@@ -144,7 +144,16 @@
         variazione di Energia Cinetica del corpo e $L$ il Lavoro totale compiuto
         su di esso. Allora possiamo scrivere:
         \begin{equation}
-            \Delta K = K_f - K_i = w
+            \Delta K = K_f - K_i = W
+        \end{equation}
+
+        \paragraph{Energia Cinetica del Moto Armonico Semplice} Si consideri un
+        sistema molla-blocco, nel caso senza attriti, possiamo visualizzare il 
+        suo andamento come un'oscillazione armonica e descrivere la sua Energia
+        Cinetica come:
+        \begin{equation}
+            K = \frac{1}{2}mv^2 = \frac{1}{2}m\omega^2A^2\sin^2
+            (\Theta + \omega t)
         \end{equation}
 
     
@@ -209,6 +218,13 @@
         $ F = -kx $, l'Energia Potenziale Elastica sarà definita come:
         \begin{equation}
             U(x)     = \frac{1}{2}kx^2
+        \end{equation}
+
+        \paragraph{Energia Potenziale del Moto Armonico Semplice} L'energia 
+        Potenziale Elastica di un oscillatore armonico, immagazzinata dalla 
+        molla a seguito di un allungamento $x$ è:
+        \begin{equation}
+            U = \frac{1}{2}kx^2 = \frac{1}{2}kA^2\cos^2(\Theta + \omega t)
         \end{equation}
 
     \section{Energia Meccanica} La somma dell'Energia Cinetica e dell'Energia
@@ -295,3 +311,34 @@
             \Delta p = p_f - p_i = \int_{t_f}^{t_i} F \,dt = I 
         \end{equation*}
     
+    \section{Moto Armonico e Pendolo} L'oscillatore armonico può essere 
+    rappresentato da un sistema molla-blocco il quale oscillando descrive un 
+    moto circolare uniforme. Le equazioni del moto sono le stesse del Moto 
+    Circolare Uniforme \ref{par_mcu},
+        \begin{equation}
+            x(t) = A \cos(\Theta_0 + \omega t)
+        \end{equation}
+        ma con:
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{k}{m}}
+        \end{equation*}
+        \begin{equation*}
+            T = 2\pi \, \sqrt[]{\frac{m}{k}}
+        \end{equation*}
+        ricordando l'equazione dei un sistema molla-blocco:
+        \begin{equation*}
+            F = -kx
+        \end{equation*}
+        
+        \paragraph{Il pendolo} Il pendolo può essere descritto tramite il
+        Moto Circolare Uniforme Accelerato, considerando la lunghezza del filo 
+        inestensibile come il raggio della circonferenza. In questo caso abbiamo
+        :
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{g}{L}}
+        \end{equation*}
+        \begin{equation*}
+            T = 2\pi \, \sqrt[]{\frac{L}{g}}
+        \end{equation*}
+
+
