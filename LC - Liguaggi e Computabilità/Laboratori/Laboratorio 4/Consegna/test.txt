@@ -1,0 +1,6 @@
+Studente:{
+  nome:Elia,
+  matricola:0
+}
+
+	
