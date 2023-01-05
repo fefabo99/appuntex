@@ -124,7 +124,7 @@
             L_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f
         \end{equation}
         Il Lavoro $L_m$ è positivo quando il blocco si avvicina alla posizione 
-        di riposo $x=$ ed è negativo quando se ne allontana. Il Lavoro è nullo
+        di riposo $x=0$ ed è negativo quando se ne allontana. Il Lavoro è nullo
         se la distanza finale da $x=0$ non è mutata.
 
     \section{Energia Cinetica} Rappresenta la quantità di energia associata al 
@@ -258,6 +258,33 @@
             \Delta E_m = W_{nc}
         \end{equation}
         
+
+    \section{Moto Armonico e Pendolo} L'oscillatore armonico può essere 
+    rappresentato da un sistema molla-blocco il quale oscillando descrive un 
+    moto circolare uniforme. Le equazioni del moto sono le stesse del Moto 
+    Circolare Uniforme \ref{par_mcu},
+        \begin{equation}
+            x(t) = A \cos(\Theta_0 + \omega t)
+        \end{equation}
+        ma con:
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{k}{m}}
+        \end{equation*}
+        ricordando l'equazione dei un sistema molla-blocco:
+        \begin{equation*}
+            F = -kx
+        \end{equation*}
+        
+        \paragraph{Il pendolo} Il pendolo può essere descritto tramite il
+        Moto Circolare Uniformemente Accelerato, considerando la lunghezza del 
+        filo inestensibile come il raggio della circonferenza. In questo caso 
+        abbiamo:
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{g}{L}}
+        \end{equation*}
+    
+    
+    
     \section{Momento Lineare}
 
         \begin{equation}
@@ -297,7 +324,7 @@
     \section{Impulso}
 
         \begin{equation}
-            I = F \Delta t
+            I = F \Delta p
         \end{equation}
 
         \paragraph{Significato} L'impulso della forza che agisce su una 
@@ -316,28 +343,39 @@
             \Delta p = p_f - p_i = \int_{t_f}^{t_i} F \,dt = I 
         \end{equation*}
     
-    \section{Moto Armonico e Pendolo} L'oscillatore armonico può essere 
-    rappresentato da un sistema molla-blocco il quale oscillando descrive un 
-    moto circolare uniforme. Le equazioni del moto sono le stesse del Moto 
-    Circolare Uniforme \ref{par_mcu},
-        \begin{equation}
-            x(t) = A \cos(\Theta_0 + \omega t)
-        \end{equation}
-        ma con:
-        \begin{equation*}
-            \omega = \sqrt[]{\frac{k}{m}}
-        \end{equation*}
-        ricordando l'equazione dei un sistema molla-blocco:
-        \begin{equation*}
-            F = -kx
-        \end{equation*}
-        
-        \paragraph{Il pendolo} Il pendolo può essere descritto tramite il
-        Moto Circolare Uniformemente Accelerato, considerando la lunghezza del 
-        filo inestensibile come il raggio della circonferenza. In questo caso 
-        abbiamo:
-        \begin{equation*}
-            \omega = \sqrt[]{\frac{g}{L}}
-        \end{equation*}
+    \section{Urti} Gli urti accadono frequentemente nella vita quotidiana e 
+    possono essere caratterizzati in due differenti tipi:
+    \begin{itemize}
+        \item \textbf{Urti elastici}: Se nell'urto tra due corpi l'Energia 
+        Cinetica totale del sistema non cambia ma si conserva completamente.
+        \item \textbf{Urti anaelastici}: L'Energia Cinetica non si conserva ma 
+        parte viene dispersa in calore o suono (ad esempio).
+    \end{itemize} 
 
+        \paragraph{Urti Anaelastici} La collisione anaelastica comporta sempre
+        una perdita di Energia Cinetica del sistema. La massima perdita si ha 
+        quando i corpi si incollano insieme, in questo caso l'urto prenderà il 
+        nome di \textbf{urto completamente anaelastico}.
+        Un urto anaelastico può essere descritto tramite la seguente formula:
+        \begin{equation}
+            p_{1,i} + p_{2,i} = p_{1,f} + p_{2,f}
+        \end{equation}
+        ovvero:
+        \begin{equation*}
+            m_1v_{1,i} + m_2v_{2,i} = m_1v_{1,f} + m_2v_{2,f}
+        \end{equation*}
+        Nel caso di un \textbf{urto completamente anaelastico} uno dei due 
+        corpi sarà inizalmente fermo (prendendo il nome di bersaglio). Dopo la 
+        collisione proseguiranno attaccati con una velocità $V$. Definiamo 
+        quindi l'equazione di un urto di questa tipologia:
+        \begin{equation}
+            m_1v_{1,i} = (m_1+m_2)V
+        \end{equation} 
+        \begin{quote}
+            Abbiamo analizzato gli urti in una singola dimensione. In caso di 
+            urti in due dimensioni le considerazioni appena fatte non cambiano.
+            L'unica cosa da aggiungere è la scomposizione lungo gli assi della
+            velocità!
+        \end{quote}
+        
 
