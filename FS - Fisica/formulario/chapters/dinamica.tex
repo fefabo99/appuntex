@@ -3,17 +3,18 @@
     \section{Principi della Dinamica - Leggi di Newton}
 
         \paragraph{Prima Legge di Newton} Se la somma delle forze che agiscono 
-        su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, mentre
-        se è in moto, continuerà a muoversi di moto rettilineo uniforme.
+        su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, 
+        mentre se è in moto, continuerà a muoversi di moto rettilineo uniforme.
 
         \paragraph{Seconda Legge di Newton} La forza agente su un corpo è 
-        direttamente proporzionale all'accelerazione e ne condivide la direzione
-        e il verso, ed è direttamente proporzionale alla massa. Di contro 
-        l'accelerazione cui è soggetto il corpo è direttamente proporzionale 
-        alla forza e inversamente proporzionale rispetto alla massa.
+        direttamente proporzionale all'accelerazione e ne condivide la 
+        direzione e il verso, ed è direttamente proporzionale alla massa. Di 
+        contro l'accelerazione cui è soggetto il corpo è direttamente 
+        proporzionale alla forza e inversamente proporzionale rispetto alla 
+        massa.
 
         \begin{equation}
-            \vec{F} = m \vec{a} \; [N]
+            \vec{F}_{net} = m \vec{a} \; [N]
         \end{equation}
 
         \paragraph{Terza Legge di Newton} Se un corpo A esercita una forza su 
@@ -35,8 +36,8 @@
             F = -kx
         \end{equation}
     Dove $-k$ è chiamata \textbf{costante elastica} ed è una misura della 
-    rigidità della molla. Maggiore è $k$, più rigida è la molla: cioè maggiore è
-    $k$, maggiore sarà la forza per uno stesso valore di spostamento.
+    rigidità della molla. Maggiore è $k$, più rigida è la molla: cioè maggiore 
+    è $k$, maggiore sarà la forza per uno stesso valore di spostamento.
 
     \section{Carrucola} Le forze agenti su due corpi collegati in un sistemma a
     carrucola (se aventi masse diverse) sono sempre una l'opposta dell'altra.
@@ -47,8 +48,10 @@
             \end{cases}
         \end{equation}
     In questo caso si considera $m_2 > m_1$ e con un sistema di riferimento 
-    verticale. Si considera infatti un sistema a carrucola con forze agenti solo
-    sull'asse $y$ e con forze nulle sull'asse $x$.
+    verticale. Si considera infatti un sistema a carrucola con forze agenti 
+    solo sull'asse $y$ e con forze nulle sull'asse $x$. Nel caso in cui la 
+    carrucola non sia orientata unicamente lungo l'asse $y$ basterà scomporre
+    la forza lungo gli assi di riferimento!
 
     \section{Attrito Statico e Dinamico} La forza di attrito è una forza che 
     agisce in direzione opposta allo spostamento (opponendosi al movimento). La 
@@ -56,8 +59,8 @@
         \begin{itemize}
             \item \textbf{Attrito statico}: agente quando il corpo è fermo, 
             impedendo lo spostamento iniziale.
-            \item \textbf{Attrito dinamico}: agente da quando il corpo ha appena 
-            compiuto lo spostamento iniziale ed è in movimento.
+            \item \textbf{Attrito dinamico}: agente da quando il corpo ha 
+            appena compiuto lo spostamento iniziale ed è in movimento.
         \end{itemize}
     Le formule sono per l'attrito statico:
         \begin{equation}
@@ -102,34 +105,32 @@
         dello spostamento (verso il basso), conferendo un segno positivo al
         Lavoro.
         
-        \paragraph{Lavoro compiuto dalla Forza Elastica} La Forza Elastica non è
-        una forza costante e di conseguenza non possiamo utilizzare la classica
-        equazione del Lavoro (per una forza costante). Possiamo però suddividere
-        lo spostamento della molla in parti infinitesime in modo da avere forze
-        infinitesime per ogni spostamento infinitesimo, facendo risultare cosi 
-        la forza infinitesima costante su uno spostamento infinitesimo. 
-        Integrando questa operazione otterremo così la formula del lavoro per
-        la Forza Elastica (e in generale per una forza non costante!).
-        \begin{equation*}
-            L_m = \int_{x_f}^{x_i} -F \,dx 
-        \end{equation*}
-        \begin{equation*}
-            L = \int_{x_f}^{x_i} -kx \,dx =  L = -k \int_{x_f}^{x_i} x \,dx   
-        \end{equation*}
-        \begin{equation*}
-            = (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i}
-            = (-\frac{1}{2}k) (x^2_f - x^2_i)
-        \end{equation*}
+        \paragraph{Lavoro compiuto dalla Forza Elastica} La Forza Elastica non 
+        è una forza costante e di conseguenza non possiamo utilizzare la 
+        classica equazione del Lavoro (per una forza costante). Possiamo però 
+        suddividere lo spostamento della molla in parti infinitesime in modo da
+        avere forze infinitesime per ogni spostamento infinitesimo, facendo 
+        risultare cosi la forza infinitesima costante su uno spostamento 
+        infinitesimo. Integrando questa operazione otterremo così la formula 
+        del lavoro per la Forza Elastica 
+        (e in generale per una forza non costante!).
+        \begin{align*}
+            W_{molla} &= \int_{x_f}^{x_i} -F \,dx \\
+            W &= \int_{x_f}^{x_i} -kx \,dx \\
+            W &= -k \int_{x_f}^{x_i} x \,dx \\
+            &= (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i} \\
+            &= (-\frac{1}{2}k) (x^2_f - x^2_i)
+        \end{align*}
         \begin{equation}
-            L_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f
+            W_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f
         \end{equation}
-        Il Lavoro $L_m$ è positivo quando il blocco si avvicina alla posizione 
+        Il Lavoro $W_m$ è positivo quando il blocco si avvicina alla posizione 
         di riposo $x=0$ ed è negativo quando se ne allontana. Il Lavoro è nullo
         se la distanza finale da $x=0$ non è mutata.
 
     \section{Energia Cinetica} Rappresenta la quantità di energia associata al 
-        moto di una particella (corpo puntiforme) che si muove alla velocità $v$.
-
+        moto di una particella (corpo puntiforme) che si muove alla velocità 
+        $v$.
         \begin{equation}
             K = \frac{1}{2}mv^2 \; [J]
         \end{equation}
@@ -141,8 +142,8 @@
         \end{quote}
 
         \paragraph{Teorema dell'Energia Cinetica} Chiamiamo $\Delta K$ la 
-        variazione di Energia Cinetica del corpo e $L$ il Lavoro totale compiuto
-        su di esso. Allora possiamo scrivere:
+        variazione di Energia Cinetica del corpo e $L$ il Lavoro totale 
+        compiuto su di esso. Allora possiamo scrivere:
         \begin{equation}
             \Delta K = K_f - K_i = W
         \end{equation}
@@ -188,27 +189,27 @@
     allora cambierà anche la sua Energia potenziale. Quando un oggetto si trova
     ad una certa distanza dal suolo, il sistema terra-oggetto ha un'energia 
     potenziale che si trasforma in lavoro. \\
-    L'Energia Potenziale è associata con la configurazione del sistema nel quale
-    le forze conservative agiscono. Quando una forza conservativa compie lavoro
-    $W$ su una particella (corpo) del sistema, il cambiamento $\Delta U$ 
+    L'Energia Potenziale è associata con la configurazione del sistema nel 
+    quale le forze conservative agiscono. Quando una forza conservativa compie 
+    lavoro $W$ su una particella (corpo) del sistema, il cambiamento $\Delta U$ 
     dell'energia potenziale del sistema è definito come:
         
         \begin{equation}
             \Delta U = - W
         \end{equation}
 
-        \paragraph{Energia Potenziale Gravitazionale} L'energia potenziale in un
-        sistema composto dalla terra e dalla particella (corpo) è chiamata 
+        \paragraph{Energia Potenziale Gravitazionale} L'energia potenziale in 
+        un sistema composto dalla terra e dalla particella (corpo) è chiamata 
         Energia Potenziale Gravitazionale. Se la particella si muove da 
         un'altezza iniziale $y_i$ ad una finale $y_f$, il cambiamento 
         dell'Energia Potenziale Gravitazionale è definito come:
         \begin{equation}
             \Delta U = mg(y_f - y_i) = mg \Delta y
         \end{equation}
-        Se considerassimo come punto di arrivo un altezza $= 0$, allora 
+        Se considerassimo come punto di arrivo un altezza $ h = 0$, allora 
         l'Energia Potenziale gravitazionale piò essere riscritta come:
         \begin{equation}
-            \Delta U(h) = mgh
+            \Delta U = mgh
         \end{equation}
         Dove $h$ è l'altezza dalla quale il corpo cade.
 
@@ -249,8 +250,8 @@
         Quando l'Energia Meccanica di un sistema si conserva, possiamo mettere
         in relazione il totale dell'Energia Cinetica e dell'Energia Potenziale
         in un istante con quello di un altro istante, \textit{senza dover
-        considerare gli stati intermedi e senza necessità di conoscere il lavoro
-        compiuto dalle forze coinvolte!}
+        considerare gli stati intermedi e senza necessità di conoscere il 
+        lavoro compiuto dalle forze coinvolte!}
 
         \paragraph{Principio esteso} La variazione dell'Energia Meccanica è 
         uguale al lavoro svolto dalle Forze non conservative:
@@ -261,8 +262,8 @@
 
     \section{Moto Armonico e Pendolo} L'oscillatore armonico può essere 
     rappresentato da un sistema molla-blocco il quale oscillando descrive un 
-    moto circolare uniforme. Le equazioni del moto sono le stesse del Moto 
-    Circolare Uniforme \ref{par_mcu},
+    moto circolare uniforme. Le equazioni del moto sono state descritte in 
+    precedenza (\ref{moto_armonico}) durante il moto circolare uniforme. 
         \begin{equation}
             x(t) = A \cos(\Theta_0 + \omega t)
         \end{equation}
@@ -283,17 +284,19 @@
             \omega = \sqrt[]{\frac{g}{L}}
         \end{equation*}
     
-    
+\newpage
     
     \section{Momento Lineare}
+    Per una singola particella definiamo una quantità vettoriale $p$ chiamata
+    \textbf{momento lineare} o \textit{quantità di moto}: 
 
         \begin{equation}
             p = mv
         \end{equation}
 
         \paragraph{Connessione con la II Legge di Newton} Deriviamo il 
-        Momento Lineare rispetto al tempo. La derivata della quantità di moto di
-        un punto materiale di massa $m$ è uguale alla risultante della forza 
+        Momento Lineare rispetto al tempo. La derivata della quantità di moto 
+        di un punto materiale di massa $m$ è uguale alla risultante della forza 
         applicata.
 
         \begin{equation*}
@@ -322,16 +325,24 @@
 
 
     \section{Impulso}
-
+        Applicando al \textit{momento lineare} la Seconda Legge di Newton ad un
+        corpo puntiforme che subisce un urto, si ricava il \textbf{Teorema
+        dell'Impulso}:
         \begin{equation}
-            I = F \Delta p
+            I = \Delta p
         \end{equation}
 
         \paragraph{Significato} L'impulso della forza che agisce su una 
         particella è aguale al $\Delta$ del momento lineare della particella 
         determinato dalla forza. L'impulso non è una caratteristica della 
-        particella, bensì una misura della modifica del momento lineare da parte
-         di una forza esterna.
+        particella, bensì una misura della modifica del momento lineare da 
+        parte di una forza esterna.
+
+        Se $F$ è l'intensità di una forza e $\Delta t$ la durata della 
+        collisione, allora l'Impulso può essere descritto nel seguente modo:
+        \begin{equation}
+            I = F \Delta t
+        \end{equation}
 
         \paragraph{Connessione con il Momento Lineare} Sia una forza $F = F(t)$
         agente su una particella. Applicando la II Legge di Newton:

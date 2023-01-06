@@ -11,9 +11,14 @@
         \paragraph{Velocità media} 
             La velocità media viene rappresentata come un intervallo di uno 
             spostamento su un intervallo di tempo:
-
             \begin{equation}
-                v_m = \frac{\Delta x}{\Delta t}
+                v_m = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i}
+            \end{equation}
+
+        \paragraph{Velocità istantanea} detta anche semplicemente velocità di 
+        una particella, è definita come:
+            \begin{equation}
+                v = \lim_{x \to 0}  \frac{\Delta x}{\Delta t} = \frac{dx}{dt}
             \end{equation}
 
         \paragraph{Spostamento}
@@ -23,30 +28,36 @@
 
     \section{Moto uniformemente accelerato}
 
-        \paragraph{Spostamento finale}
+        \paragraph{Accelerazione media} è il rapporto fra la variazione della
+        velocità $\Delta v$ che avviene in un intervallo di tempo $\Delta t$, 
+        definita come:
+        \begin{equation}
+            a_m = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{t_f - t_i}
+        \end{equation}
+
+        \paragraph{Accelerazione istantanea} o semplicemente accelerazione, è 
+        la rapidità di variazione della velocità. Matematicamente si tratta 
+        della derivata seconda della posizione $x(t)$ rispetto al tempo:
+        \begin{equation}
+            a = \frac{dv}{dt} = \frac{d^2x}{dt^2}
+        \end{equation}
+
+        \paragraph{Spostamento}
             \begin{equation}
                 x(t) = x_i + v_it + \frac{1}{2}at^2
             \end{equation}
 
         \paragraph{Velocità finale}
             \begin{equation}
-                v_f(t) = v_{ix} + a_xt
-            \end{equation}
-
-        \paragraph{Eqazione del moto}
-            \begin{equation}
-                \begin{cases}
-                    x(t)=x_{i}+v_{i}t+\frac{1}{2}a_{x}t^2 \\
-                    v_{f}(t) = v_{ix}+a_{x}t
-                \end{cases}
+                v_f(t) = v_{i} + at
             \end{equation}
     
         \paragraph{Caso particolare}
             Per determinare il tempo possiamo effettuare la fomrula inversa 
             dello spostamento. È possivile notare come il tempo non dipende 
-            dalla massa degli oggetti, ma dall'altezza e dalla forza di gravità.
-            In assenza d'aria di conseguenza due oggetti con masse completamente
-            diverse arrivano a terra allo stesso tempo!
+            dalla massa degli oggetti, ma dall'altezza e dalla forza di gravità
+            . In assenza d'aria di conseguenza due oggetti con masse 
+            completamente diverse arrivano a terra allo stesso tempo!
 
             \begin{equation}
                 t_c=\sqrt{\frac{2h}{g}}
@@ -57,8 +68,8 @@
         Il moto di un proiettile è scomponibi le lungo gli assi cartesiani in 
         due moti ben distinti, agenti su un unico corpo:
         \begin{itemize}
-            \item Asse X: moto rettilineo uniforme.
-            \item Asse Y: moto rettilineo uniformemente accelerato.
+            \item \textbf{Asse X}: moto rettilineo uniforme.
+            \item \textbf{Asse Y}: moto rettilineo uniformemente accelerato.
         \end{itemize}
         Soffermandoci su questo ragionamento possiamo notare come la forza di 
         gravità (accelerazione) agisca in modo costante lungo l'asse y 
@@ -68,18 +79,15 @@
         
         \paragraph{Equazioni del moto}
         (Per assi cartesiani)
-        \begin{equation}
-            x: x_f = x_0 + v_{0x}t
-        \end{equation}
-        \begin{equation}
-            y: \begin{cases}
-                y_f = y_0 + v_{0y}t + \frac{1}{2}at^2 \\
-                v_{fy} = v_{0y} + at
+        \begin{align}
+            x &: x(t) = x_0 + v_{0x}t \\
+            y &: \begin{cases}
+                    y(t) &= y_0 + v_{0y}t + \frac{1}{2}at^2 \\
+                    v_{fy} &= v_{0y} + at
                 \end{cases}
-        \end{equation}
+        \end{align}
 
     \section{Moto circolare uniforme}
-        \label{par_mcu}
         Nel moto circolare uniforme agiscono 3 forze:
         \begin{itemize}
             \item Velocità tangenziale
@@ -97,12 +105,41 @@
         forza (apparente) verso l'esterno. Vista da un osservatore posto al di
         fuori del moto (in un sistema inerziale) semplicemente la pallina 
         proseguirà diritta nella sua traiettoria.\\\\
-        Il moto circolare uniforme si può scomporre in duo moti sinusoidali 
-        seguenti l'andamento di $\sin$ e $\cos$.\\\\
+        Analizziamo ora le formule del moto circolare uniforme:
+
+        \paragraph{Velocità tangenziale} La velocità tangenziale è lo spazio 
+        percorso dal punto materiale in un intervallo di tempo:
+        \begin{equation}
+            v = \frac{2\pi r}{T}
+        \end{equation}
+
+        \paragraph{Accelerazione centripeta} L'accelerazione centripeta è 
+        quella forza che mantiene un corpo in un moto circolare uniforme. Essa
+        è sempre diretta verso il centro della circonferenza!.
+        \begin{equation}
+            a_c = \frac{v^2}{r}=
+        \end{equation}
+        Come vedremo più avanti in questo formulario l'accelerazione è impressa
+        da una forza agente sul corpo, descrivibile (tramite la Seconda Legge
+        di Newton) come:
+        \begin{equation}
+            F_{accelerazione} = ma = m\frac{v^2}{r}
+        \end{equation}
+
+        \paragraph{Periodo} Il tempo richiesto perché una particella completi
+        una circonferenza è:
+        \begin{equation}
+            T = \frac{2\pi r}{v}
+        \end{equation}
+
+    
+        \subsection{Moto Armonico}  \label{moto_armonico}
+        Il moto circolare uniforme può essere scomposto in due moti sinusoidali 
+        $\sin$ e $\cos$.
         Il moto circolare uniforme e quello uniformemente accelerato possono 
         essere perfettamente paragonati al moto rettilineo uniforme e quello 
-        uniformemente accelerato. In questo caso $\Theta$ è la nostra $x$ mentre
-        la velocità $v$ diventa $\omega$.\\\\
+        uniformemente accelerato. In questo caso $\Theta$ è la nostra $x$ 
+        mentre la velocità $v$ diventa $\omega$.\\\\
         Nel caso uniformemente accelerato l'accelerazione $a$ diventa $\alpha$.
 
         \paragraph{Legge oraria (equazione del moto)} Essa descrive il moto del
@@ -139,7 +176,8 @@
 
         \begin{quote}
             Da notare come (per definizione) le equazioni della velocità non 
-            sono altro che la derivata ' dell'equazione del moto (Legge oraria)! 
+            sono altro che la derivata ' dell'equazione del moto 
+            (Legge oraria)! 
         \end{quote}
 
         \paragraph{Accelerazione centripeta} L'accelerazione centripeta è 
@@ -153,8 +191,9 @@
         \end{equation}
 
         \begin{quote}
-            Da notare come (per definizione) le equazioni dell'accelerazione non 
-            sono altro che la derivata " dell'equazione del moto (Legge oraria)! 
+            Da notare come (per definizione) le equazioni dell'accelerazione 
+            non sono altro che la derivata " dell'equazione del moto 
+            (Legge oraria)! 
         \end{quote}
         
     \section{Moto circolare uniformemente accelerato} Nel moto circolare 
@@ -170,9 +209,9 @@
             \end{cases}
         \end{equation}
 
-        \paragraph{Tabelle di riepilogo} Di seguito sono riportate due tabelle 
-        contententi un riepilogo delle formule (comprese le formule inverse) sia
-        del Moto circolare uniforme \ref{fig:MCU} che del Moto circolare 
+        \subsection{Tabelle di riepilogo} Di seguito sono riportate due tabelle 
+        contententi un riepilogo delle formule (comprese le formule inverse) 
+        sia del Moto circolare uniforme \ref{fig:MCU} che del Moto circolare 
         uniformemente accelerato \ref{fig:MCUA}.
 
         \begin{figure}[H]
