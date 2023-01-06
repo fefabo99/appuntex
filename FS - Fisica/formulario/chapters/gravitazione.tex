@@ -12,15 +12,23 @@ Dove $G$ è la costante di gravitazione universale:
     
     \paragraph{Energia Potenziale Gravitazionale} Cerchiamo l'Energia 
     Potenziale Gravitazionale generica determinata dalla legge di gravitazione 
-    universale.
+    universale. Precedentemente (\ref{en_po_gr}) abbiamo considerato la 
+    particella di massa $m$ vicino alla superficie terrestre, così da rendere 
+    costante la forza di gravità. Per particelle che non si trovano sulla 
+    superficie terrestre l'energia potenziale gravitazionale decresce col 
+    diminuire della distanza tra la particella e la Terra. Qui consideriamo 
+    due particelle separate da una distanza $R$. Per rendere $U = 0$ ci 
+    mettiamo nella condizione di $ r = \infty$ in modo da semplificare i conti.
     \begin{align*}
         \Delta U_g &= U_f - U_i = -W_g \\
-        &= - \int_{r_f}^{r_i} F(r) \,dr \\
-        &= \int_{r_f}^{r_i} GMm \, \frac{1}{r^2} \,dr \\
-        &= GMm \bigg[-\frac{1}{r}\bigg]^{r_f}_{r_i} \\
+        &= - \int_{R}^{\infty} F(r) \,dr \\
+        &= \int_{R}^{\infty} GMm \, \frac{1}{r^2} \,dr \\
+        &= GMm \bigg[-\frac{1}{r}\bigg]^{\infty}_{R} \\
+        &= GMm\biggl(\frac{1}{\infty} - \frac{1}{R}\biggr) \\
+        &= GMm\biggl(0 - \frac{1}{R}\biggr)
     \end{align*}
     \begin{equation}
-        \Delta U_g = -GMm\biggl(\frac{1}{r_f} - \frac{1}{r}\biggr)
+        \Delta U_g = \frac{-GMm}{R}
     \end{equation}
     Questa è la formula per l'energia potenziale gravitazionale del sistema
     Terra-Particella per $r \geq R_t$. Non vale per un raggio inferiore a
