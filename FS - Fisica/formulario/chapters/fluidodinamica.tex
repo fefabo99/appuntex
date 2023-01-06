@@ -1,0 +1,85 @@
+\chapter{Fluidodinamica}
+Un fluido ideale è un fluido incomprimibile; non ha viscosità e il suo flusso è
+laminare e irrotazionale. Una \textit{linea di flusso} è il cammino seguito da 
+una singola particella di fluido. Un \textit{tubo di flusso} è un fascio di 
+linee di flusso.
+
+    \section{Equazione di Continuità} Il principio di conservazione della massa
+    impone che il flusso attraverso ogni tubo di flusso obbedisca all'Equazione
+    di Continuità.
+        \begin{equation}
+            R_v = Av = \textsf{cost} \, [m^3/s]
+        \end{equation}
+    $R_v$ prende il nome di \textbf{portata volumica}, con $A$ la sezione del 
+    tubo in un qualsiasi punto e $v$ la velocità del fluido.
+    Sappiamo che la massa di un fluido è data dalla seguente equazione:
+        \begin{equation*}
+            m = \rho V
+        \end{equation*}
+    Quindi moltiplicando la Portata Volumica per la densità del fluido 
+    otterremo la \textbf{portata massica}, definita come:
+        \begin{equation}
+            R_m = \rho R_v = \rho A v = \textsf{cost}
+        \end{equation}
+
+    \section{Equazione di Bernoulli} Essa ci permette di connettere la 
+    pressione, la velocità e l'altezza di un liquido. Supponiamo che in un 
+    intervallo di tempo $\Delta t$ una certa quantità di liquido sia entrata da
+    sinistra (in un tubo di flusso) e la stessa quantità sia uscita a destra 
+    (ricordiamoci che il liquido è incompressibile). Sappiamo inoltre dal 
+    Principio di Pascal (pressione!) che la $F$ esercitata dal fluido a 
+    sinistra sarà:
+        \subsection{Sviluppo dell'Equazione}
+            \begin{equation*}
+                F_1 = p_1 A_1
+            \end{equation*}
+        Mentre a destra sarà:
+            \begin{equation*}
+                F_2 = p_2 A_2
+            \end{equation*}
+        Il Lavoro $W$ fatto quindi sarà:
+            \begin{align*}
+                W_1 &= F_1 \Delta x_1 = p_1 A_1 \Delta x_1 \cos 0\\
+                W_2 &= F_2 \Delta x_2 = p_2 A_2 \Delta x_2 \cos 180
+            \end{align*}
+        Il secondo lavoro ha segno negativo siccome la forza gravitazionale ha 
+        verso opposto alla massa del fludio in salita! \\
+        Il lavoro totale quindi sarà:
+            \begin{align*}
+                W &= W_1 + W_2 \\
+                &= p_1 A_1 \Delta x_1 - p_2 A_2 \Delta x_2 \\
+                &= (p_1 - p_2) V \\
+                W &= (p_1 - p_2)V 
+            \end{align*}
+
+        \subsection{Applicazione Teorema del Lavoro}
+        Ricordiamo inoltre il teorema del lavoro: il lavoro di una forza 
+        esterna su un sistema è uguale a $\Delta E_{mecc}$. Una parte del 
+        lavoro effettuato fa cambiare l'energia cinetica del liquido mentre 
+        l'altra fa cambiare l'energia potenziale.
+            \begin{align*}
+                W &= \Delta K + \Delta U \\
+                (p_1 - p_2)V &= \frac{1}{2}mv^2_2 - \frac{1}{2}mv^2_1 
+                                + mgy_2 - mgy_1 \\
+                &= \frac{1}{2}\rho Vv^2_2 - \frac{1}{2}\rho Vv^2_1 
+                                + \rho Vy_2 - \rho Vy_1 \\
+                (p_1 - p_2) &= \frac{1}{2}\rho v^2_2 
+                                - \frac{1}{2}\rho v^2_1 
+                                + \rho y_2 - \rho y_1 \\
+                &= p_1 + \frac{1}{2}\rho v^2_1 + \rho y_1 =
+                    p_2 + \frac{1}{2}\rho v^2_2 + \rho y_2 = \textsf{cost}
+            \end{align*}
+        Quindi:
+            \begin{equation}
+                p_1 + \frac{1}{2}\rho v^2_1 + \rho y_1 
+                =
+                p_2 + \frac{1}{2}\rho v^2_2 + \rho y_2 
+                = 
+                \textsf{cost}
+            \end{equation}
+            \begin{quote}
+                In un fluido a flusso laminare, la somma della pressione, 
+                dell'Energia Cinetica per unitò di Volume e dell'Energia 
+                Potenziale gravitazionale per unità di Volume è 
+                \textbf{costante}.
+            \end{quote}

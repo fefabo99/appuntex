@@ -1,0 +1,78 @@
+\chapter{Fluidostatica}
+
+    \section{Pressione} Le forze esercitate da un fluido su un'oggetto sono 
+    sempre \textbf{perpendicolari} alla superficie. Se $F$ è il modulo della 
+    forza esercitata e $A$ la superificie sulla quale essa agisce, definiamo
+    \textit{pressione} $P$ il seguente rapporto:
+        \begin{equation}
+            p = \frac{F}{A}
+        \end{equation}
+    È uno scalare, proporizionale al modulo della forza.
+
+    \section{Densità} La densità di una sostanza è uno scalare definito come 
+    rapporto tra massa e volume:
+        \begin{equation}
+            \rho = \frac{m}{V}
+        \end{equation}
+    Se $\rho$ è costante, il liquido preso in considerazione è incompressibile.
+
+    \section{Legge di Stevino} La pressione di un fluido a riposo in un campo
+    gravitazionale uniforme vria con la quota verticale $y$. Assegnando valori
+    positivi all'orientamento verso l'alto, si ha:
+        \begin{equation*}
+            p_2 = p_1 + \rho g(y_1-y_2)
+        \end{equation*}
+    Chiamiamo $h$ la profondità di un campione in un fluido misurata a partire
+    da un livello di riferimento a cui la pressione assume un valore $p_0$, la 
+    precedente equazione diventa:
+        \begin{equation}
+            p = p_0 + \rho gh
+        \end{equation}
+    In cui $p$ è la preszsione alla profondità $h$.
+    La pressione è la stessa per tutti i punti allo stesso livello.
+
+    \section{Forza di Bouyant} Un oggetto immerso in un fluido è soggetto ad 
+    una forza esercitata dal liquido, diretta dal basso verso l'alto, tale 
+    forza è detto di Bouyant o di galleggiamento.
+    Il \textit{Principio di Archimede} ci indica l'intensità di questa forza:
+    essa è uguale al peso del liquido spostato.
+        \begin{align}
+            F_{archimede} &= m_{liquido}g \\
+            F_a &= (\rho V) g
+        \end{align}
+
+        \subsection{Oggetto totalmente sommerso} Se l'oggetto ha massa $M$, e
+        densità $\rho_0$, il suo peso è:
+            \begin{equation}
+                F_g = M_g = (\rho_0 V_0) g
+            \end{equation}
+        Se la densità dell'oggetto è $<$ di quella del fluido, la forza 
+        gravitazionale è inferiore a quella di galleggiamento, di conseguenza
+        l'oggetto verrà accelerato verso l'alto. In caso contrario affonderà.
+
+        \subsection{Oggetto galleggiante} Sia l'oggetto di volume $V_0$, in 
+        equilibrio nel fluido e galleggiante, cioè parzialmente sommerso. Ciò
+        significa che la forza di galleggiamento verso l'alto è 
+        \textbf{bilanciata} dalla forza di gravità agente verso il basso.
+            \begin{align}
+                F_a = F_g :
+                \begin{cases}
+                    F_a &= (\rho_f V_f)g \\
+                    F_g &= M_g = (\rho_0 V_0)g
+                \end{cases}
+            \end{align}
+        $F_a = F_g$ perché l'oggetto è in equilibrio.
+
+    \section{Peso appartente di un oggetto} Si consideri un oggetto con un 
+    determinato peso (forza peso!). Ripetiamo l'operazione sott'acqua o più in 
+    generale all'interno di un fluido: il peso sarà minore a causa della spinta
+    di galleggiamento:
+        \begin{equation}
+            P_{app} = P - F_a
+        \end{equation}
+        \begin{quote}
+            \textbf{Caso particolare!} Per un corpo galleggiante ricordiamo che
+            la forza di galleggiamento $F_a$ è uguale alla forza peso $F_g$, di
+            conseguenza il peso apparente dell'oggetto sara \textbf{nullo}!
+        \end{quote}
+            
