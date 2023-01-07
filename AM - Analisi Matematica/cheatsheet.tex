@@ -80,27 +80,30 @@ trova $y=mx + q$ ponendo:
 		\text{Irregolare} & q\leq -1
 	\end{cases}
 \end{equation*}
-\subsection*{Criteri di Convergenza}
+\subsection*{Criteri di Convergenza} 
 
-\emph{Condizione necessaria ma non sufficiente} di convergenza è che il termine generale $a_n$ sia infinitesimo $\limite{n}{+\infty} a_n = 0$.
+\paragraph*{Condizione NECESSARIA NON SUFFICIENTE} di convergenza: $a_n$ deve essere \textbf{infinitesimo} $\limite{n}{+\infty} a_n = 0$.
 \\Avendo $a_n>0$ (positiva) \emph{definitivamente} posso usare i seguenti criteri:
 \begin{itemize}
 	\item \textbf{Rapporto}: $\limite{n}{+\infty} \frac{a_n+1}{a_n} = l$
 	\item \textbf{Radice}: $\limite{n}{+\infty} \sqrt[n]{a_n} = l$
-\end{itemize}
-In entrambi questi casi $\sum a_n$:\\
-\emph{Converge} se $l<1$, \emph{Diverge} se $l>1$ e il criterio è \emph{inconclusivo} se $l=1$
-
-\begin{itemize}
+	\begin{itemize}
+	\item 	In entrambi questi casi $\sum a_n$:\\
+		\begin{tabular}{ l|c }
+			Converge    & $ l<1 $                                \\
+			Diverge       &  $ l>1 $                           \\
+			inconclusivo & $ l=1 $ \\
+		\end{tabular}
+	\end{itemize}
 	\item \textbf{Confronto}: $a_n\leq b_n$ definitivamente $\implies$
 	      \begin{itemize}
-		      \item se $b_n$ converge, allora $a_n$ converge.
-		      \item se $a_n$ diverge positivamente, allora anche $b_n$
+		      \item se $b_n$ Converge $\implies$  $a_n$ Converge
+		      \item se $a_n$ Diverge $+\infty$ $\implies$ $b_n$ Diverge $+\infty$
 	      \end{itemize}
 \end{itemize}
 
-\paragraph*{Criterio dell'Assoluta Convergenza}
-$\sum a_n$ Converge assolutamente se converge $\sum |a_n|$.
+\paragraph*{Assoluta Convergenza}
+$\sum a_n$ \textbf{converge assolutamente} se converge $\sum |a_n|$.\\
 Se una serie converge assolutamente, allora converge.
 
 \section*{Limiti}
