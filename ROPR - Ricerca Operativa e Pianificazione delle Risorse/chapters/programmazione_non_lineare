@@ -1,0 +1,50 @@
+\chapter{Programmazioen non Lineare}
+\section*{Massimizzazione di funzioni concave}
+Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
+Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
+\[
+    \frac{d}{dx}f(x^*) = 0 \text{, ovvero il punto di massimo è dove la derivata è stazionaria}
+\]
+Capiamo qundi che se \emph{una equazione può essere risolta analiticamente} allora il procedimento per trovare l'ottimo termina.
+\\Un discorso equivalente si può fare per problemi di minimizzazione di funzioni convesse.
+\subsection*{Algoritmi per la risoluzione numerica}
+E se non posso risolverla analiticamente?
+In mancanza di una risoluzione analitica (per esempio per una funzione troppo complicata) sono disponibili algoritmi per la risoluzione numerica del problema.
+
+\subparagraph*{L'idea} degli algoritmi per la risoluzione numerica:
+Si costruisce una sequenza di punti $\{x_k\}$ t.c.: (nei casi di minimizzazione)
+\[\lim_{x\to +\infty} x_k = x^* \text{ e } f(x_{k+1}) \leq f(x_k)\]
+Ad ogni iterazione $k$, partendo da $x_k$ si esegue una ricerca sistematica per identificare un punto migliore $x_k$.
+
+\paragraph{I criteri di Arresto}
+A differenza dell'algoritmo del simplesso, in questo caso la sequenza di punti $\{x_k\}$ non è detto che converga alla soluzione ottima del problema
+in un numero finito di iterazioni.
+
+Quindi quando fermo la sequenza di punti?
+\begin{itemize}
+    \item La soluzione è sufficientemente accurata, ovvero $\frac{df(x_k)}{dx} \simeq 0$
+    \item Quando si è raggiunto un numero massimo di iterazioni $N$ o un tempo computazionale massimo.
+    \item I progressi sono lenti, ovvero $|x_{k+1} - x_k| < \epsilon_x$ o  $|f(x_{k+1}) - f(x_k)| < \epsilon_f$
+    \item La soluzione diverge
+    \item Si verificano Cicli.
+\end{itemize}
+
+\subsection*{Gli algoritmi}
+Esistono due tipi di algoritmi:
+\\\textbf{Dicotomici}: Algoritmi di ricerca per individuare un determinato valroe (per il quale la funzione derivata si annulla) all'interno di un intervallo che ad ogni iterazione viene ridotto.
+\\\textbf{ Di approssimazione}: utlizzando approsimanzioni locali della funzione
+
+Per l'ottimizzazione di funzioni in una variabile tratteremo:
+\begin{itemize}
+    \item Metodo di Bisezione (Dicotomico)
+    \item Metodo di Newton (Di Approssimazione)
+\end{itemize}
+
+\section*{Il metodo di Bisezione}
+L'idea di questo algoritmo è:
+Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a.b]$ allora, considerando \textbf{un generico punto $x_k$}, se:
+\begin{itemize}
+    \item $\frac{d}{dx} f(x_k) < 0 \implies $ l'ottimo $x^*$ si trova a \textbf{sinistra} di $x_k$.
+    \item $\frac{d}{dx} f(x_k) > 0 \implies $ l'ottimo $x^*$ si trova a \textbf{destra} di $x_k$.
+    \item $\frac{d}{dx} f(x_k) \simeq 0 \implies $ $x_k \simeq x^*$, ovvero è circa l'ottimo.
+\end{itemize}
