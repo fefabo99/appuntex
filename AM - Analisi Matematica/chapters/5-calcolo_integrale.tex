@@ -36,8 +36,17 @@ Per cui data una funzione $f(x)$ e la sua primitiva $F(x)$: $$\int_{1}^{b} f(x)d
 \end{itemize}
 
 \section{Le primitive}
-Si diche che $F(x)$ è una primitiva di $f(x)$ se è derivabile e $F'(x) = f(x) \forall x\in (a,b)$.
-\\Si noti che:
+
+Si dice primitiva (o antiderivata) di una funzione $f$ una funzione \emph{derivabile} $F$ la cui derivata è uguale alla funzione di partenza.
+\\Quindi:
+\definizione{
+ Si dice che $F(x)$ è una \textbf{primitiva} di $f(x)$ se:
+ \begin{itemize}
+	\item $F(x)$ è \textbf{derivabile}
+	\item La derivata di $F(X)$ è $f(x)$ : $F'(x) = f(x) \forall x \in (a,b)$
+ \end{itemize} 
+}
+Dalla definizione si può notare che:
 \begin{itemize}
 	\item Ogni funzione $f:[a,b] \to \R$ \emph{continua} ammette primitive
 	\item Le primitive non sono \emph{mai uniche}
@@ -46,25 +55,29 @@ Per indicare una generica primitica si utilizza la notazione $\int f(x) dx$ (int
 
 \subsection{Primitive Elementari}
 Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementari}\\
-\begin{tabular}{ |c|c|c| }
-	\hline
-	$f(x)$            & $F(x)$                                  \\
-	\hline
-	$cos(x)$          & $sin(x)$                                \\
-	\hline
-	$sin(x)$          & $-cos(x)$                               \\
-	\hline
-	$e^x$             & $e^x$                                   \\
-	\hline
-	$a^x$             & $\frac{a^x}{\ln a} $                    \\
-	\hline
-	$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
-	\hline
-	$\frac{1}{x}$     & $\ln |x| $                              \\
-	\hline
-	$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
-	\hline
-\end{tabular}
+\begin{center}
+	\begin{tabularx}{0.5\textwidth}{|X|X|}
+		\hline
+		$f(x)$            & $F(x)$                                  \\
+		\hline
+		\hline
+		$cos(x)$          & $sin(x)$                                \\
+		\hline
+		$sin(x)$          & $-cos(x)$                               \\
+		\hline
+		$e^x$             & $e^x$                                   \\
+		\hline
+		$a^x$             & $\frac{a^x}{\ln a} $                    \\
+		\hline
+		$x^n$             & $\frac{x^{n+1}}{n+1} \forall n\neq -1 $ \\
+		\hline
+		$\frac{1}{x}$     & $\ln |x| $                              \\
+		\hline
+		$\frac{1}{1+x^2}$ & $arctg(x) $                             \\
+		\hline
+	\end{tabularx}
+\end{center}
+
 
 \subsection{Primitive di Derivate di funzioni composte}
 Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili

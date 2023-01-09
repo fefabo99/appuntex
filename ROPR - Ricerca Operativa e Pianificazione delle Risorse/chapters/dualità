@@ -1,7 +1,17 @@
 \chapter{Dualità}
 Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale},
 è associato un problema chiamato \textbf{Duale}.
-La soluzione ottimale del problema Duale fornisce i \emph{prezzi ombra} del problema Primale.
+La soluzione ottimale del problema Duale fornisce i \textbf{prezzi ombra} del problema Primale.
+
+\paragraph*{Il Prezzo Ombra}
+Il \emph{prezzo ombra} per la risorsa $i-$esima ($y_i^*$) misura il valore marignale della risolra, cioè,
+il tasso al quale la funzione obiettivo $z$ potrebbe essere incrementata aumentato (leggermente) la quantità di risorsa $b_i$ disponibile.
+Il metodo del simplesso identifica il prezzo ombra $y_i^*$ come segue:
+\begin{center}
+    $y_i^* =$ coefficente della $i-$esima variabile slack nella riga 0 del tableau finale. 
+\end{center}
+%DA SPOSTARE IN METODO DEL SIUMPLESSO
+    
 
 \paragraph{Anailisi di Sensitività} La teoria della Dualità permette l'implementazione e interpretazione dell'analisi di sensitività.
 \\L'Anaalisi di Sensitività è una tecnica che permette di decidere i valori di alcuni parametri di un problema di PL.

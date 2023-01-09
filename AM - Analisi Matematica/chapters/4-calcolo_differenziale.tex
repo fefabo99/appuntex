@@ -1,9 +1,9 @@
 
 \chapter{Calcolo Differenziale}
 \section{Definizione di Derivata}
-Partiamo dal concetto di Rapporto Incrementale:
+Partiamo dal concetto di Rapporto Incrementale, che sta alla base delle derivate:
 \paragraph*{Il rapporto incrementale}
-Il rapporto incrementale di una funzione in un punto è il rapporto tra la variazione di ordinate e la variazione di ascisse definite a partire da un incremento $h$.
+Di una funzione in un punto è il rapporto tra la variazione di ordinate e la variazione di ascisse definite a partire da un incremento $h$.
 \\Consideriamo una funzione $f:\R\to\R$, $y=f(x)$.
 Il rapporto incrementale della funzione f nel punto generico punto $x_0$ è:
 \[
@@ -19,14 +19,20 @@ il limite del rapporto incrementale della funzione nel punto al tendere dell'inc
 Se questo limite \emph{esiste}, allora $f(x)$ è derivabile nel punto $x_0$.
 }
 Per gli esercizi ci sono dei trucchi più rapidi per verificare la derivabilità di un punto.
-% Inserire esempi trucchi per verificare la derivabilità
-
 
 
 \subsection{Criterio di Derivabilità}
-\quickDefinizione{
-	Una funzione è derivabile in un punto $x_0$ se essa è continua in quel punto e se il limite sinistro e destro della derivata in quel punto coincidono.
-}
+Una funzione è derivabile in un punto $x_0$ \emph{se e solo se}:
+Essa è continua nel punto $x_0$ e i limiti sinistro e destro del rapporto incrementale in quel punto esistono finiti e coincidono.
+
+\paragraph*{tips and tricks}
+Essendo il limite del rapporto incrementale nel punto la derivata stessa, 
+per controllare la derivabilità di una funzione in un punto basta:
+\begin{itemize}
+	\item Controllare se essa è CONTINUA.
+	\item Controllare se i limiti $x \to x_0$ \emph{dx} e {sx} della derivata stessa coincidano
+\end{itemize}
+
 
 
 \section{Derivate note}
@@ -69,15 +75,17 @@ degli specifici punti di non derivabilità:
 \end{itemize}
 Possono esserci anche altri casi di non derivabilità senza nome, ma a noi non interessa, ci basterà dire che si tratta di un punto non derivabile.
 
-\section{Formule di Taylor e di Mclaurin}
-Lo scopo delle formule di Taylor e di McLaurin è di approssimare una funzione con un polinomio di grado $k$ arbitrario centrato in $x_0$ nel caso della formula di Taylor,
-e in 0 nel caso di quella di McLaurin.
-\subsection*{Polinomio di Taylor}
+\section{Formula di Taylor}
+La formula di Taylor consente di \emph{Approssimare, almeno localmente}, tutte le funzioni sufficientemente regolari con dei \textbf{Polinomi}
+rendendone quindi più agevole lo studio. Più derivate utilizzo, (quindi più è alto l'ordine del polinomio) e più sarà precisa questa approssimazione.
+\\Ovviamente perchè questa formula sia fattibile la funzione deve essere derivabile in $x_0$ almeno $k$ volte.
+
+\paragraph*{Il Polinomio di Taylor}
 Una funzione $f(x)$, che passi per un punto $x_0$ e che abbia in quel punto tutte le derivate necessarie,
 si può approssimare nel punto $x_0$ mediante un polinomio così definito:
 $$P_k(x)=f(x_0)+\frac{1}{1!}f'(x_0)(x-x_0) + \frac{1}{2!}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
 L'errore che si commette in questa approssimazione non è maggiore della prima derivata che si trascura
 \subsection*{Polinomio di McLaurin}
 Nel caso in cui il punto $x_0$ sia l'origine ($x_0=0$) si ottiene la formula di McLaurin:
-$$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 + \frac{f'''(0)}{3!}x^3+...+ \frac{f^{(k)}(0)}{k!}x^k$$
+$$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 +...+ \frac{f^{(k)}(0)}{k!}x^k$$
 Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
