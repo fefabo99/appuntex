@@ -1,0 +1,126 @@
+\chapter{Elettrostatica}
+
+    \section{Legge di Coulomb}
+        \begin{equation}
+            F = k\frac{q_1q_2}{r^2}\widehat{r}
+        \end{equation}
+    Con:
+    \begin{equation}
+        k = \frac{1}{4\pi\varepsilon_0}
+    \end{equation}
+    Sostituendo nella Legge di Coulomb otteniamo:
+    \begin{equation}
+        F = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r^2}\widehat{r}
+    \end{equation}
+        \subsection{Principio di sovrapposizione}
+        Se su una particella agiscono più forze di carica, la $F_{tot}$ non 
+        sarà altro che la somma vettoriale di tutte le forze!
+
+        \subsection{Corrente elettrica}
+            \begin{equation}
+                i = \frac{dq}{dt} \; [A \cdot s]
+            \end{equation}
+    
+        \subsection{La carica è quantizzata} Qualunque carica $q$ può essere
+        scritta come:
+            \begin{equation}
+                q = ne
+            \end{equation}
+        dove $e = 1,602\cdot10^{-19} [C]$ è la cosstante elementare, una delle
+        costanti fondamentali della materia.
+        \begin{center}
+            \begin{tabular}{ |c|c| } 
+                \hline
+                Particella & Carica \\
+                \hline
+                Elettrone & $- e$ \\
+                Positrone & $+ e$ \\
+                Protone & $+ e$ \\
+                Antiprotone & $- e$ \\
+                quark & $\pm \frac{1}{3}e \;\; \pm \frac{2}{3}e$ \\
+                Neutrone & $0$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+        Quando una grandezza fisica assume solo valori discreti, allora si dice
+        \textbf{quatizzata}. Anche la massa è quantizzata, non è quantizzata ad
+        esempio la velocità, il flusso, il calore, la temperatura etc\dots
+
+        \section{Campo Elettrico}
+            \begin{equation}
+                E = \frac{F}{q_0}
+            \end{equation}
+
+            \subsection{Principio di sovrapposizione} Anche per il campo 
+            elettrico vale il pricipio di sovrapposizione. Infatti se una 
+            particella è in interazione con più campi, il campo $E$ risultante
+            non sarà altro che la somma dei campi:
+                \begin{equation}
+                    E = \frac{F_0}{q_0} = \frac{F_{01} + F_{02} + \cdots + 
+                    F_{0n}}{q_0} = E_1 + E_2 + \cdots + E_n
+                \end{equation}
+
+            \subsection{Campo elettrico generato da una carica lineare} Diamo 
+            ora delle definizioni utili per dei calcoli e delle considerazioni
+            successive:
+            \begin{itemize}
+                \item \textit{Densità di carica lineare} $\lambda$: numero di 
+                cariche per unità di lunghezza.\\
+                    \begin{equation}
+                        \lambda = \frac{Q}{m}
+                    \end{equation}
+                \item \textit{Densità di carica superficiale} $\sigma$: numero 
+                di cariche per unità di superifice.\\
+                    \begin{equation}
+                        \lambda = \frac{Q}{m^2}
+                    \end{equation}
+                \item \textit{Densità di carica volumetrica} $\rho$: numero
+                di cariche per unità di volume.\\
+                    \begin{equation}
+                        \lambda = \frac{Q}{m^3}
+                    \end{equation}
+            \end{itemize}
+
+        \section{Flusso di Campo Elettrico} Il flusso di campo elettrico $E$ 
+        attraverso una superficie infinitesima $\Delta A$ è il prodotto scalare
+        del campo elettrico e il vettore-area $\Delta A$ in quel punto 
+        (perfetta analogia con la fluidodinamica). Il vettore area $\Delta A$ è
+        il vwttore che ha per modulo l'area $\Delta A$ e direzione quella 
+        perperndicolare all'area stessa.
+            \subsection{Caso 1: superficie piana e parallela con campo $E$
+            uniforme} Scompondendo il vettore del campo nelle sue componenti 
+            cartesiane, noteremo che parte del campo viene scomposto lungo $y$,
+            di conseguenza, il passaggio massimo si ha quando la normale della 
+            superficie $A$ è parallela al campo, avendo così $\cos0$. Definiamo
+            quindi la formula per il flusso del campo elettrico:
+                \begin{equation}
+                    \Delta\phi = E \Delta A = E \Delta A \cos\Theta 
+                \end{equation}
+            Che sull'interezza della superficie diventa:
+                \begin{equation}
+                \phi = \int E\cos\Theta \,dA  = E\cos\Theta\int\,dA = E\cos
+                \Theta A 
+                \end{equation}
+            \subsection{Caso 2: superficie chiusa e campo $E$ uniforme} Nel 
+            caso di una superficie chiusa dobbiamo valutare la somma dei flussi
+            attraverso tutte le superfici, facendo l'intergrale su ogni piccola
+            area:
+                \begin{equation}
+                    \phi = \oint E \,dA
+                \end{equation}
+        L'unità di misura del flusso è la seguente:
+                \begin{equation*}
+                    [\phi] = [E][A] = [N] \frac{[m^2]}{[C]}
+                \end{equation*}
+         
+        \section{Teorema di Gauss} Il Teorema di Gauss afferma che il flusso 
+        $\phi$ del campo elettrico attraverso una superficie chiusa è eguale
+        alla carica totale Q racchiusa nella superficie, diviso $\varepsilon_0$:
+            \begin{equation}
+                \phi = \oint E \, dA = \frac{Q}{\varepsilon_0}
+            \end{equation}
+        Non hanno alcuna importanza la dimensione e al forma della superficie,
+        l'importante è che sia chiusa.
+
+        \section{Energia Potenziale Elettrica}
+        

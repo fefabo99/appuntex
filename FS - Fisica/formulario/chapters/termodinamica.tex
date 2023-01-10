@@ -108,19 +108,93 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
     contrae a causa di una forza esterna. Sia $Q$ sia $W$ \textit{dipendono dal
     percorso seguito} $\Delta E_{int}$ \textit{no!}
 
+        \subsection{Applicazioni del Primo Principio} Il primo principio della 
+        termodinamica trova applicazione in numerosi casi particolari, tra cui:
+            \begin{itemize}
+                \item \textit{Trasformazioni Adiabatiche}: 
+                    $Q=0 \implies \Delta E_{int} = -\Delta W$
+                \item \textit{Trasformazioni Isocore (volume costante)}:
+                    $W = 0 \implies \Delta E_{int} = \Delta Q$
+                \item \textit{Trasformazioni Cicliche}:
+                    $\Delta E_{int} = 0 \implies \Delta Q = \Delta W$
+                \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
+                        di trasformazioni adiabatiche nelle quali non viene 
+                        compiuto alcun lavoro sul sistema o da parte di esso.
+                        Ad esempio se abbiamo due contenitori collegati isolati 
+                        dall'esterno. Nel primo c'è un gas mentre il secondo è
+                        vuoto. Nel momento in cui apriamo il rubinetto che 
+                        collega i due, il gas inizia ad occupare lo spazio 
+                        vuoto ma non cambiando calore non compie lavoro 
+                        (siccome ci troviamo in un sistema isolato), inoltre,
+                        la sua espansione non è contratasta da alcuna pressione
+                        . Siamo quindi nella seguente situazione:
+                        $\Delta Q = \Delta L = 0 \implies \Delta E_{int} = 0$
+            \end{itemize}
 
+        \section{Conduzione, Convezione ed Irraggiamento} Sono tre tipi di 
+        trasmissione del calore, ognuno funzionante in modo differente 
+        dall'altro. Analizziamoli nel dettaglio.
 
-    \section{Numero di Avogadro}
+            \subsection{Conduzione} La conduzione avviene mendiante il contatto
+            tra due superfici. La conduzione di calore $P_c$ su unità di tempo,
+            attraverso una lastra le cui superifici sono mantenute alle 
+            temperature $T_1$ e $T_2$ è:
+                \begin{equation}
+                    P_c = \frac{Q}{t} = kA\frac{T_1 - T_2}{l}
+                \end{equation}
+            Dove $A$ e $l$ sono l'area e la lunghezza della lastra e $k$ è la 
+            conducibilità terminca del materiale. Grandi valori di $k$ indicano
+            ottimi conduttori termici.
+
+            \paragraph{Resistenza termina alla conduzione} La resistenza 
+            termica $R$ per una lastra di spessore $l$ è definita come:
+                \begin{equation}
+                    R = \frac{l}{k}
+                \end{equation}
+
+            \subsection{Convezione} La convezione ha luogo quando le differenze
+            di temperatura causano il moto che trasferisce calore all'interno 
+            di un fluido.
+
+            \subsection{Irraggiamento} L'irraggiamento è il trasferimento di 
+            calore attraverso l'emissione e l'assorbimento di energia 
+            elettromagnetica. La potenza $P_r$ irraggiata da un oggetto è:
+                \begin{equation}
+                    P_r = \sigma \epsilon AT^4
+                \end{equation}
+            Dove $\sigma = 5,6703 \cdot 10^{-8} \; [\frac{W}{m^2 \cdot K^4}
+            ]$ è la costante di Stefan-Boltzmann, $\epsilon$ è l'emittanza
+            caratteristica della superficie, $A$ è l'area irraggiante e $T$ la 
+            temperatura superficiale in Kelvin. La potenza $P_a$ che un oggetto
+            assorbe per via radiativa dell'ambiente a temperatura uniforme
+            $T_{amb}$ (in Kelvin) è:
+                \begin{equation}
+                    P_a = \sigma \epsilon AT^4_{amb}
+                \end{equation}
+
+    \section{Numero di Avogadro} Una mole di una sostanza contiene $N_a$
+    (\textit{numero di Avogadro}) unità elementari (generalmente atomi o 
+    molecole) dove $N_a$ risulta sperimentalmente:
         \begin{equation*}
             N_a = 6,022 \cdot 10^{23}
         \end{equation*}
 
-        \subsection{Massa del campione}
+        \subsection{Massa molare} Una massa molare $M$ di qualsiasi sostanza è
+        la massa di una mole della sostanza. È correlata con la massa $m$ di 
+        una singola molecola della sostanza:
             \begin{equation}
                 M = mN_a
             \end{equation}
-    
-    \section{Gas ideale o Gas perfetti}
+        
+        \subsection{Numero di moli} Il numero di moli $n$ contenute in un 
+        campione di massa $M_{cam}$ costituito da $N$ molecole è dato da:
+            \begin{equation}
+                n = \frac{N}{N_A} = \frac{M_{cam}}{M} = \frac{M_{cam}}{mN_A}
+            \end{equation}
+
+    \section{Gas ideale o Gas perfetti} Un gas \textit{ideale} o \textit{
+        perfetto} è quello per il quale la pressione $p$, il volume $V$ e la 
+        temperatura $T$ sono correlati da:
         \begin{equation}
             pV = nRT
         \end{equation}
@@ -128,10 +202,30 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         \begin{itemize}
             \item $p$ Pressione del cilindro.
             \item $n$ Numero di moli.
-            \item $R$ Costante dei gas $= 8,31 \; \frac{J \cdot mol}{K}$
+            \item $R$ Costante dei gas $= 8,31 \; \frac{J}{mol \cdot K}$
             \item $T$ Temperatura del cilindro.
         \end{itemize}
-        \subsection{Equazione di stato per i gas ideali}
+    Questa legge si può scrivere anche come:
+        \begin{equation}
+            pV = NkT
+        \end{equation}
+    Dove $k$ è la costante di Boltzmann e vale:
+        \begin{equation*}
+            k = \frac{R}{N_A} = 1,38 \cdot 10^{-23} \; \Bigg[\frac{J}{K}\Bigg]
+        \end{equation*}
+        \subsection{Equazione di stato per i gas ideali DA VERIFICARE}
             \begin{equation}
                 (p + \frac{an^2}{v^2})(V - nb) = nRT
+            \end{equation}
+
+    \section{Pressione, temperatura e velocità molecolare} La pressione 
+    esercitata da $n$ moli di un gas ideale, in funzione della velocità delle
+    sue molecole, è:
+            \begin{equation}
+                p = \frac{nMv^2_{qm}}{3V}
+            \end{equation}
+    Dove $v_{qm} = \sqrt[]{v^2}$ è la \textbf{velocità quadratica media} delle
+    molecole del gas. Con l'equazione dei gas perfetti si ha:
+            \begin{equation}
+                v_{qm} = \sqrt[]{\frac{3RT}{M}}
             \end{equation}
