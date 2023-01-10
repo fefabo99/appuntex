@@ -1,14 +1,115 @@
-\chapter{Termodinamica}
+\chapter{Termodinamica} La temperatura è una grandezza fondamentale legata alla
+nostra sensazione di caldo-freddo. Nel SI la temperatura si misura in Kelvin 
+$K$. La temperatura $T$ quindi assume il seguente valore:
+    \begin{equation*}
+        T = 273,16 \; [K]
+    \end{equation*}
+
+    \paragraph{Conversione da Fahrenheit a Celsius} La quantità corrispondente
+    a 1 grado della scala Celsius è equivalente a quella della scala Kelvin, ma
+    lo zero della prima è spostato a un valore più comodo. Se $t_c$ rappresenta
+    una data temperatura Celsius, allora:
+        \begin{equation}
+            T_c = T - 273,15^\circ 
+        \end{equation}
+
+    \section{Principio Zero della Termodinamica} Se due corpi $A$ e $B$ si 
+    trovano in equilibrio termico con un terzo corpo $T$, allora sono in 
+    reciproco quilibrio termico.
+
+
+
 
     \section{Dilatazione Termica}
-        \subsection{Dilatazione Lineare}
+        \subsection{Dilatazione Lineare} Tutti gli oggetti cambiano dimensioni
+        al vaariare della temperatura. La variazione $\Delta$ l di qualsiasi 
+        dimensione lineare $l$ è data da:
             \begin{equation}
-                \Delta L = \alpha L \Delta T
+                \Delta l = \alpha l \Delta T
             \end{equation}
-        \subsection{Dilatazione Volumica}
+        Nella quale $\alpha$ è il \textbf{coefficiente di dilatazione lineare}.
+
+        \subsection{Dilatazione Volumica} La varaizione $\Delta V$ nel volume 
+        di un solido o di un liquido è:
             \begin{equation}
                 \Delta V = \beta V \Delta T
             \end{equation}
+        dove $\beta = 3\alpha$ è il \textbf{coefficiente di dilatazione 
+        volumica} della sostanza.
+
+    \section{Calore} Il calore $Q$ è l'energia che viene trasferita tra un 
+    sistema e il suo ambiente a causa della differenza di temperatura tra di 
+    essi. Può essere misurato in \textbf{calorie} ($cal$) o in \textbf{Joule}
+    ($J$), dove:
+        \begin{equation*}
+            1 \; cal = 4,1868 \; J
+        \end{equation*}
+
+        \subsection{Capacità Termica} È la costsante di proporzionalità tra il 
+        calore somministrato e la variazione di temperatura indotta:
+            \begin{equation}
+                Q = C \Delta T = C (T_2 - T_1)
+            \end{equation}
+        dove $C$ è la \textbf{capacità termica} dell'oggetto.
+
+        \subsection{Calore Specifico} Due oggetti dello stesso materiale hanno 
+        capacità termiche proporzionali alla massa. È utile definire quindi una 
+        capacità terminca $c$ per unità di massa, che si riferisce non 
+        all'oggetto specifico, ma alla massa unitaria di cui il materiale è 
+        fatto:
+            \begin{equation}
+                Q = cm \Delta T
+                \implies
+                c = \frac{Q}{m \Delta T}
+             \; \Bigg[\frac{J}{K \cdot Kg}\Bigg]
+            \end{equation}
+
+        \subsection{Calore Latente} La materia si presenta in tre diversi stati
+        fisici: solida, liquida e gassosa. Il calore fornito a una sostanza può
+        cambiare lo stato fisico della sostanza stessa, per esempio, da solida 
+        a liquida o da liquida a gassosa. La quantità di calore richiesta per 
+        unità di massa di una determinata sostanza è il \textbf{calore 
+        latente} $L$, perciò:
+            \begin{equation}
+                Q = Lm \implies L = \frac{Q}{m}
+            \end{equation}
+        Il \textbf{calore latente di evaporazione} $L_v$ è la quantità di 
+        energia per unità di massa che deve essere fornita per far evaporare un
+        liquido o che deve essere \textbf{sottratta} per liquefare un gas. Il 
+        \textbf{calore latente di fusione} $L_f$ è la quantità di energia per 
+        unità di massa ched eve essere fornita per fondere un solido o che deve
+        essere sottratta per solidifcare un liquido.
+        
+    \section{Lavoro associato ad una variazione di Volume} Un sistema può anche
+    scambiare energia con il suo ambiente attraverso il lavoro. La quantità di 
+    lavoro $W$ compiuto \textit{da} un sistema quando si espande o quando si 
+    riduce da un volume iniziale $V_i$ a un volume finale $V_f$ può essere 
+    calcolata con:
+        \begin{equation}
+            L = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
+        \end{equation}
+    L'integrazione è necessaria perché la pressione $p$ può cambiare durante la
+    varizione del volume.
+
+    \section{Primo Principio della Termodinamica} Il principio di conservazione
+    dell'energia per una campione di sostanza che scambia energia con 
+    l'ambiente circostante per mezzo di lavoro e calore è espresso nel \textbf{
+    primo principio della termodinamica}, che può assumere le due forme:
+        \begin{align}
+            \Delta E_{int} &= E_{int, f} - E_{int, i} = \Delta Q - \Delta W \\
+            d E_{int} &= d Q - d W
+        \end{align}
+    $E_{int}$ rappresente l'energia interna della sostanza, che dipedne solo 
+    dal suo stato (temperatura, pressione e volume). $Q$ rappresenta il calore
+    scambiato dal sistema con l'ambiente; $Q$ è positivo se il sistema acquista
+    calore e negativo se il sistema perde calore. $W$ è il lavoro compiuto
+    \textit{dal} sistema; $L$ è positivo se il sistema si espande contro una 
+    qualche forza esterna esercitata dall'ambiente, e negativo se il sistema si
+    contrae a causa di una forza esterna. Sia $Q$ sia $W$ \textit{dipendono dal
+    percorso seguito} $\Delta E_{int}$ \textit{no!}
+
+
+
     \section{Numero di Avogadro}
         \begin{equation*}
             N_a = 6,022 \cdot 10^{23}
@@ -34,19 +135,3 @@
             \begin{equation}
                 (p + \frac{an^2}{v^2})(V - nb) = nRT
             \end{equation}
-
-    \section{Capacità Termica} È la costsante di proporzionalità tra il calore
-    somministrato e la variazione di temperatura indotta:
-            \begin{equation}
-                Q = C \Delta T = C (T_2 - T_1)
-            \end{equation}
-    
-    \section{Calore Specifico} Due oggetti dello stesso materiale hanno 
-    capacità termiche proporzionali alla massa. È utile definire quindi una 
-    capacità terminca $c$ per unità di massa, che si riferisce non all'oggetto
-    specifico, ma alla massa unitaria di cui il materiale è fatto:
-            \begin{equation}
-                c = \frac{C}{m} \; \Bigg[\frac{J}{K \cdot Kg}\Bigg]
-            \end{equation}
-
-    \section{Calore Latente}
