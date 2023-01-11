@@ -1,5 +1,5 @@
 \chapter{Programmazioen non Lineare}
-\section*{Massimizzazione di funzioni concave}
+\section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
 Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
 \[
@@ -7,11 +7,11 @@ Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficient
 \]
 Capiamo qundi che se \emph{una equazione può essere risolta analiticamente} allora il procedimento per trovare l'ottimo termina.
 \\Un discorso equivalente si può fare per problemi di minimizzazione di funzioni convesse.
-\subsection*{Algoritmi per la risoluzione numerica}
+\subsection{Algoritmi per la risoluzione numerica}
 E se non posso risolverla analiticamente?
 In mancanza di una risoluzione analitica (per esempio per una funzione troppo complicata) sono disponibili algoritmi per la risoluzione numerica del problema.
 
-\subparagraph*{L'idea} degli algoritmi per la risoluzione numerica:
+\subparagraph{L'idea} degli algoritmi per la risoluzione numerica:
 Si costruisce una sequenza di punti $\{x_k\}$ t.c.: (nei casi di minimizzazione)
 \[\lim_{x\to +\infty} x_k = x^* \text{ e } f(x_{k+1}) \leq f(x_k)\]
 Ad ogni iterazione $k$, partendo da $x_k$ si esegue una ricerca sistematica per identificare un punto migliore $x_k$.
@@ -29,7 +29,7 @@ Quindi quando fermo la sequenza di punti?
     \item Si verificano Cicli.
 \end{itemize}
 
-\subsection*{Gli algoritmi}
+\subsection{Gli algoritmi}
 Esistono due tipi di algoritmi:
 \\\textbf{Dicotomici}: Algoritmi di ricerca per individuare un determinato valroe (per il quale la funzione derivata si annulla) all'interno di un intervallo che ad ogni iterazione viene ridotto.
 \\\textbf{ Di approssimazione}: utlizzando approsimanzioni locali della funzione
@@ -40,7 +40,7 @@ Per l'ottimizzazione di funzioni in una variabile tratteremo:
     \item Metodo di Newton (Di Approssimazione)
 \end{itemize}
 
-\section*{Il metodo di Bisezione}
+\section{Il metodo di Bisezione}
 L'idea di questo algoritmo è:
 Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a.b]$ allora, considerando \textbf{un generico punto $x_k$}, se:
 \begin{itemize}
@@ -48,3 +48,48 @@ Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a.b]$ allora, c
     \item $\frac{d}{dx} f(x_k) > 0 \implies $ l'ottimo $x^*$ si trova a \textbf{destra} di $x_k$.
     \item $\frac{d}{dx} f(x_k) \simeq 0 \implies $ $x_k \simeq x^*$, ovvero è circa l'ottimo.
 \end{itemize}
+
+\paragraph*{Il Metodo}
+Il metodo di bisezione è una procedura abbastanza intuitiva.
+Guardando la pendenza della derivata per un punto $x_k$ in una funzione \emph{concava e derivabile:}
+\begin{itemize}
+    \item Se $f'(x_k) > 0$:
+    \begin{itemize}
+        \item Il nuovo punto $x_{k+1}$ lo ottengo spostandomi verso Destra
+        \item $x_k$ rappresenta un \emph{Estremo Inferiore} $\underline{x}$ per il punto $x^*$
+    \end{itemize}
+    \item Se $f'(x_k) < 0$:
+    \begin{itemize}
+        \item Il nuovo punto $x_{k+1}$ lo ottengo spostandomi verso Sinistra
+        \item $x_k$ rappresenta un \emph{Estremo Superiore} $\bar{x}$ per il punto $x^*$
+    \end{itemize}
+\end{itemize}
+
+Ad ogni iterazione $k$ posso identificare un sotto-intervallo di ricerca $[a_k, b_k] \subset [a.b]$
+per ridurre lo spazio di ricerca in modo da identificare un'iterazione $k$ per cui $|b_k - a_k| < 2\epsilon$ 
+con $|a_k - x^*| < \epsilon$ e $|x^*-b_k|<\epsilon$
+
+\subsection{L'algoritmo}
+\paragraph*{Inizializzazione}
+$k=0$ e $\epsilon$ piccolo a piacere.
+\\Si determinano i valori $\underline{x}$ e $\bar{x}$ per cui la derivata sia rispettivamente positiva e negativa.
+si seleziona il punto iniziale $x_0 = \frac{\underline{x} + \bar{x}}{2}$
+
+\paragraph*{Iterazione del metodo di bisezione} bisogna: \\
+\begin{enumerate}
+    \item Calcolare $f'(x_k)$
+    \item 
+\begin{lstlisting}[mathescape=true]
+if $f'(x)=0$ then $x_k = x^*$
+else
+    if $f'(x)<0$
+        $\bar{x} = x_k$
+    else
+        $\underline{x} = x_k$
+\end{lstlisting}
+    \item Pongo $x_{k+1} = \frac{\underline{x} + \bar{x}}{2}$ e $k=k+1$ 
+\end{enumerate} 
+
+Criterio di arresto: se $underline{x} + \bar{x} \leq 2\epsilon$ allora il punto di ottimo $x^*$ avrà una distanza minore di $\epsilon$ da uno dei due. 
+
+

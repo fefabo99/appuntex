@@ -79,8 +79,10 @@ Alcune primitive sono immediate da trovare, si chiamano \emph{primitive elementa
 \end{center}
 
 
-\subsection{Primitive di Derivate di funzioni composte}
-Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili
+\subsection{Integrali Quasi Immediati}
+
+Anche dette \emph{primitive "elementari" generalizzate}, ci sono dei casi in cui le funzioni composte sono facilmente derivabili.
+
 \definizione{
 	Sia $F(x)$ una primitiva di $f(x)$ e sia $g(x)$ una funzione derivabile e tale che \emph{sia possibile costruire la funzione composta $F(g(x))$}.
 	In questo caso:
@@ -102,12 +104,15 @@ $$
 \int f'(x) \cdot [ f(x)]^\alpha dx = \frac{[f(x)]^{\alpha+1}}{\alpha + 1} + c
 $$
 
+\paragraph*{Tips}
+Questo tipo di integrazione la si può sempre "inventare" quando si hanno delle funzioni composte la cui funzione interna ha come derivata una costante,
+oppure la sua derivata è facilmente riconducibile tramite trucchetti algebrici.
 
 \section{Integrazione per Parti}
 Se le funzioni da integrare non sono immediate, si può usare l'integrazione per parti, che dice:
 \definizione{
-		Siano $f$ e $g$ due funzioni, allora
-		$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
+	Siano $f(x)$ e $g(x)$ due funzioni, allora
+	$$\int f(x) g'(x) dx = f(x)g(x) - \int f'(x)g(x) dx$$
 }
 In pratica, l'integrale di una funzione derivabile moltiplicata per una funzione integrabile è integrabile per parti.
 \\Questa tecnica può essere usata per risolvere integrali complessi.
@@ -130,12 +135,11 @@ Ad esempio alcuni integrali con un solo termine non sono risolvibili da soli, qu
 
 \section{Integrazione per Sostituzione}
 L'integrazione per sostituzione è uno dei metodi di integrazione più utili, ma anche uno dei più complicati da capire.
-In questa sezione introdurremo sia la definizione generale di questo metodo, che le su effettive implementazioni.
-
-Nota che \textbf{ai fini dell'esame è utlie soltanto la seconda implementazione} nella versione semplificata.
+In questa sezione introdurremo sia la definizione generale di questo metodo, che le sue effettive implementazioni.
+\\Nota che \textbf{ai fini dell'esame è utlie soltanto la seconda implementazione} nella versione semplificata.
 
 \paragraph{Quando si usa?} 
-In generale mi accorgo di dover usare la sostituzione quando ho una particolare espressione ripetuta che "mi da fastidio", 
+In generale mi accorgo di dover usare la sostituzione quando ho una particolare espressione della $x$ ripetuta che "mi da fastidio", 
 oppure quando usare le altre tecniche mi risulta impossibile.
 
 \paragraph*{Definizione} lo scopo dell'integrazione per sostituzione è quello di \emph{trasformare l'integrale in modo da renderlo più semplice e riconducibile a formule immediate}.
@@ -148,12 +152,11 @@ oppure quando usare le altre tecniche mi risulta impossibile.
 	$$\int f(x)dx = \int f(g(y))g'(y)dy$$
 	Queste due formule sono equivalenti e bisogna scegliere quale usare in base a come si presenta la funzione integranda.
 }
-Vedendo queste due definizioni non si capisce molto,
-ma in sostanza si può usare la sostituzione in due casi differenti.
-Questi due casi hanno dei passaggi diversi,
+Si può notare che una definizione è l'inverso dell'altra, ed entrambe sono valide (ovviamente).
+La seconda definizione è quella più utile nella pratica, però nota che si può usare solo quando $g$ è \textbf{invertibile!}  
 
-\subsubsection*{Prima Implementazione (da definizione)}
-Questa implementazione segue alla lettera la definizione, quindi richiede che l'integrale da calcolare si trovi nella forma:
+\subsubsection*{Primo Uso}
+Questa implementazione segue la \emph{prima definizione}, quindi richiede che l'integrale da calcolare si trovi nella forma:
 $$\int f(g(x)) g'(x) dx$$
 \begin{enumerate}
 	\item Poniamo $y=g(x)$ e lo deriviamo, cos' da ottenere il nuovo differenziale $dy = g'(y)dx$
@@ -166,25 +169,30 @@ $$\int f(g(x)) g'(x) dx$$
 	Poniamo quindi $y=g(x)=x^2$ e $dy=g'(x)dx= 2x dx$.
 	\\Sostituiamo, $\int 2xe^{x^2} = \int e^y dy = e^y +c$.
 	\\Ri sostiuiamo $y$ con $x^2$ e troviamo $e^{x^2} + c$.
+	\\\small{Nota che questo era comunque un integrale quasi immediato}
 }
 
-\subsubsection*{Secondo Tipo}
-Supponiamo di voler calcolare l'integrale di una generica funzione $\int f(x)dx$, in cui però troviamo un'espressione "complicata" della $x$ che si ripete.
-In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
-Qui però dobbiamo richiedere che la funzione $g(y)$ sia non solto derivabile, ma anche invertibile!
-\\I passi da effettuare sono i seguenti:
+\subsubsection*{Secondo Uso}
+Se una generica funzione $\int f(x) dx$ ha un'espressione della $x$ "scomoda" che si ripete, la possiamo sostituire.
+Troviamo quindi, dentro $f(x)$, una funzione $g(y)$ \textbf{INVERTIBILE} (che sarà l'espressione scomoda di $x$) e effettuo i seguenti passi:
+
+%Supponiamo di voler calcolare l'integrale di una generica funzione $\int f(x)dx$, in cui però troviamo un'espressione "complicata" della $x$ che si ripete.
+%In questo caso andremo alla ricerca di una funzione $g(y)$ da sostiuire alla variabile $x$.
+%Qui però dobbiamo richiedere che la funzione $g(y)$ sia non solto derivabile, ma anche invertibile!
+
 \begin{enumerate}
 	\item Poniamo $x=g(y)$. lo derivo in modo da ottenere $dx=g'(y)dy$
 	\item Sostiuiamo il tutto nell'integrale in modo da ricavare $f(g(y))g'(y)$
 	\item Calcoliamo l'integrale ottenuto (nella speranza che sia di più facile risoluzione)
 	\item Sostiuiamo di nuovo per tornare nella variabile $x$. Per farlo però è necessario esprimere la variabile $y$ in funzione di $x$ determinando la funzione inversa $y=g^{-1}(x)$
-	\item 
 \end{enumerate}
-\paragraph*{O in modo più semplice}
-I passaggi che ho riportato qui sopra li ho trovati su youmath e seguono la definizione.
-Sono molto confusionali e il processo in se è molto difficile, quindi riporto alcuni passaggi per rendere il tutto più semplice.
-\\Qui dobbiamo andare a cercare all'interno di $f(x)$ un'espressione di $x$ che vogliamo rimuovere e sostiuire con $y$ per semplificare il tutto.
-Quindi, avendo $\int f(x)$ che contiene una $g(x)$ (possibilmente ripetuta) che voglio togliere per semplificare il tutto
+
+\subsection{Metodo pratico dell'integrazione per parti}
+Esiste un processo "semplificato" per utilizzare la seconda definizione.
+\\Avendo $\int f(x) dx$, vado a cercare un'espressione di $x$ che vado a rimuovere e sostituire con $y$ per semplificare l'integrale.
+Questa "espressione di $x$" la chiameremo $g(x)$ ed essa deve \emph{necessariamente essre invertibile}.
+
+Quindi, avendo $\int f(x)$ che contiene una $g(x)$ che voglio togliere per semplificare il tutto
 \begin{enumerate}
 	\item Decido che $y=g(x)$
 	\item Inverto $g(x)$ in modo da isolare la $x$, ottenendo $x=g^{-1}(y)$
