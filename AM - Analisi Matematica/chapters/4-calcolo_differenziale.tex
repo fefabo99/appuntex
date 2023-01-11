@@ -89,3 +89,24 @@ L'errore che si commette in questa approssimazione non è maggiore della prima d
 Nel caso in cui il punto $x_0$ sia l'origine ($x_0=0$) si ottiene la formula di McLaurin:
 $$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 +...+ \frac{f^{(k)}(0)}{k!}x^k$$
 Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
+
+\section{Teorema di Rolle}
+Sia $f[a,b]\rightarrow \mathbb{R}$ una funzione continua in $[a,b]$ e
+derivabile in $[a,b]$. Se la funzione assume lo stesso valore agli estremi
+dell'intervallo, ossia:
+\[
+	f(a)=f(b)
+\]
+Allora esiste almeno un punto $x_0 \in (a, b)$ tale che:
+\[
+	f'(x_0) = 0
+\]
+\paragraph*{Le 3 condizioni da controllare negli esercizi}
+Quando in un esercizio ci viene richiesto che la funzione soddisfi le ipotesi del
+teorema di Rolle devo verificare 3 condizioni:
+\begin{enumerate}
+	\item Che la funzione assuma lo stesso valore agli estremi dell'intervallo, quindi che $f(a) = f(b)$
+	\item Che $f:[a,b]$ sia continua in tutto l'intervallo $[a,b]$ (quindi estremi compresi)
+	\item Che $f:[a,b]$ sia derivabile in tutto l'intervallo $(a,b)$ (quindi estremi esclusi)
+\end{enumerate}
+
