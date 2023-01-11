@@ -122,5 +122,96 @@
         Non hanno alcuna importanza la dimensione e al forma della superficie,
         l'importante è che sia chiusa.
 
-        \section{Energia Potenziale Elettrica}
-        
+        \section{Potenziale Elettrico} Il potenziale elettrico $V$ nel punto 
+        $P$ di un campo elettrico generato da un corpo carico è (ricordando che
+        $U = -W$):
+            \begin{equation}
+                V = \frac{-W_\infty}{q_0} = \frac{U}{q_0}
+            \end{equation}
+        dove $W_\infty$ è il lavoro che dovrebbe compiere la forza elettrica su
+        una carica esplorativa per portarla in $P$ da una distanza infinita, 
+        mentre $U$ è l'energia potenziale che verrebbe così immagazzinata nel
+        sistema corpo carico-carica esplorativa.
+            \begin{quote}
+                \textbf{Attenzione!} La parola \textit{Potenziale} non va 
+                confusa con \textit{Energia Potenziale}. Sebbene hanno nomi 
+                simili, il loro significato è assolutamente distinto.
+                Non potendo spostare una carica elettrica "fino all'infinito" 
+                si pone allora l'attenzione sulla energia "potenziale" 
+                liberabile da questa durante l'ipotetico movimento. È 
+                interessante però notare che il potenziale elettrico è così 
+                definito per convenzione (concetto di "limite" per una 
+                variabile che "tende" all'infinito) ma poiché si tratta di un 
+                "lavoro" compiuto dal campo per spostare la carica da un punto 
+                ad un altro, se il punto di arrivo non è all'infinito ma con 
+                posizione nota allora il "potenziale" può essere espresso 
+                rispetto ad esso (potenziale zero di riferimento): in sostanza 
+                il potenziale è sempre riconducibile ad una "differenza" tra 
+                due valori.\\
+                L'energia potenziale elettrica della carica è il livello di 
+                energia che la carica possiede a causa della sua posizione 
+                all'interno del campo elettrico, e pertanto il potenziale 
+                elettrico $V$ della carica di prova è definito operativamente 
+                come il rapporto tra l'energia potenziale $U$ e il valore della
+                carica stessa.
+            \end{quote}
+
+            \subsection{Energia Potenziale Elettrica} Data una particella di 
+            carica $q$ situata in un punto dove il potenziale elettrico 
+            prodotto da un corpo carico è $V$, l'energia potenziale elettrica
+            $U$ del sistema corpo-particella è:
+                \begin{equation}
+                    U = qV
+                \end{equation}
+            Se la particella si sposta subendo una variazione di potenziale 
+            $\Delta V$, la variazione di energia potenziale elettrica è:
+                \begin{equation}
+                    \Delta U = q \Delta V = q (V_f - V_i)
+                \end{equation}
+            
+        \section{Energia Meccanica} Se una particella si sposta subendo una 
+        variazione di potenziale $\Delta V$ senza che agiscano su di essa forze
+        applicate esterne, il principio di conservazione dell'Energia Meccanica
+        impone che la variazione di energia cinetica sia:
+            \begin{equation}
+                \Delta K = -q \Delta V
+            \end{equation}
+        Se al contrario è presente una forza applicata che compie lavoro 
+        $w_{app}$ su di essa, la variazione di energia cinetica diventa:
+            \begin{equation}
+                \Delta K = -q\Delta V + W_{app}
+            \end{equation}
+        Nel caso particolare in cui $\Delta K = 0$, il lavoro svolto dalla 
+        forza applicata comporta solo il moto della particella e una variazione
+        del suo potenziale pari a:
+            \begin{equation}
+                W_{app} = q \Delta V
+            \end{equation}
+
+        \section{Superfici Equipotenziali} Una superficie equipotenziale è il 
+        luogo dei punti che hanno lo stesso potenziale. Il lavoro compiuto per
+        portare una carica di prova da una di queste superfici a un'altra non 
+        dipende dalla posizione dei punti iniziale e finale su queste 
+        superfici, nel dal cammino che li unisce. Il campo elettrico $E$ è 
+        sempre \textit{perpendicolare} alle superfici equipotenziali.
+
+            \subsection{Calcolo di $V$ a partire da $E$} La differenza di 
+            potenziale tra due punti qualsiasi $i$ e $f$ è data da:
+                \begin{equation}
+                    V_f - V_i = - \int_{i}^{f} E \,ds
+                \end{equation}
+            dove l'integrale è calcolato lungo una linea qualsiasi che coniuga 
+            i punti. Possiamo scegliere pertanto il percorso che ci renda 
+            l'operazione d'integrale più semplice possibile. Se il punto 
+            iniziale è posto all'infinito e $V_i = 0$ si ha, per il potenziale
+            in un punto:
+                \begin{equation}
+                    V = -\int_{i}^{f} E \,ds
+                \end{equation}
+            Nel caso particolare di un campo uniforme di modulo $E$, la 
+            differenza di potenziale tra le due linee equipotenziali adiacenti
+            (necessariamente parallele) separate da una distanza $Delta x$ è 
+            data da:
+                \begin{equation}
+                    \Delta V = -E\Delta x
+                \end{equation}
