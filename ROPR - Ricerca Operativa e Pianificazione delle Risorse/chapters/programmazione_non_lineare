@@ -92,4 +92,45 @@ else
 
 Criterio di arresto: se $underline{x} + \bar{x} \leq 2\epsilon$ allora il punto di ottimo $x^*$ avrà una distanza minore di $\epsilon$ da uno dei due. 
 
+\section*{il Metodo di Newton}
+Il metodo di newton è molto simile a quello di bisezione ma  considera anche la derivata seconda e non solo l'informazione relativa alla derivata prima.
 
+\paragraph*{L'approssimazione quadratica}
+il Metodo di newton ottiene un'approssimazione quadratica (in $x^2$) tramite la formula di Taylor centrata in $x_k$
+\[
+    f(x_k) \sim f(x_k) + f'(x_k)(x_{k+1} - x_k) + \frac{1}{2} f''(x_k)(x_{k+1} - x_k)^2
+\]
+L'approsimazione quadratica è in funzione solo di $x_{k+1}$!
+Calcoliamo la derivata dell'approssimazione quadratica
+\[
+    f'(x_k)+f''(x_k)(x_{k+1} - x_k)= 0 \to x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}
+\]
+
+Quindi, l'idea dell'algoritmo di Newton è quella di usare l'ottimo dell'approsimazione quadratica di $f(x)$ dato da:
+\[
+    x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)}
+\]
+Questa formula viene usata ad ogni generiaca iterazione $k$ per calcolare il punto successivo $x_{k+1}$
+
+\paragraph*{Importante}
+Se $f(x)$ è concava allora $x_k$ converge verso un punto di massimo, perchè?
+\begin{itemize}
+    \item $x_k$ è a Sinistra del punto di massimo
+    \\ $\implies f'(x_k) > 0 \implies -\frac{f'(x_k)}{f''(x_k)}>0 \implies x_{k+1}> x_k$
+    \item $x_k$ è a Destra del punto di massimo
+    \\ $\implies f'(x_k) < 0 \implies -\frac{f'(x_k)}{f''(x_k)}<0 \implies x_{k+1}< x_k$
+\end{itemize}
+
+\subsection{L'algoritmo di newton}
+\begin{itemize}
+    \item Inizializzazione
+    \begin{itemize}
+        \item si fissa $\epsilon$ e $k=0$ 
+    \end{itemize} 
+    \item Iterazione del metodo di newton
+    \begin{itemize}
+        \item Calcola $f'(x_k)$ e $f''(x)$
+        \item Si pone $x_{k+1} = x_k -  \frac{f'(x_k)}{f''(x_k)}$
+    \end{itemize} 
+\end{itemize}
+Criterio di arresto: 
