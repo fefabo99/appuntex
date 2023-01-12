@@ -1,0 +1,251 @@
+\chapter{Elettrodinamica}
+
+    \section{Condensatori} Un condensatore consiste di due conduttori isolati
+    (piatti) avneti cariche uguali ma di segno opposto $+q$ e -$q$.
+
+        \subsection{Capacità di un condensatore}
+            \begin{equation}
+                q = C\Delta V
+            \end{equation}
+        con $C$ costante di proporzionalità dipendente dalla geometria del 
+        condesaotre. Indica capacità elettrica del condensatore.
+        
+        \subsection{Calcolo della capacità elettrica di un condensatore} 
+        Procedimento generale:
+            \begin{itemize}
+                \item Si assume che ci sia una carica $q$ sui piatti.
+                \item Si calcola $E$ tra i due piatti in funzione di $q$, con 
+                la legge di Gauss.
+                \item Si calcola $\Delta V$ a partire da $E$
+                \item Si calcola $C$
+            \end{itemize}
+        
+        \subsection{Capacità elettrica di un condensatore piano}
+            \begin{align*}
+                \phi &= \oint E \, dA = \frac{q}{\varepsilon_0} \\
+                EA &= \frac{q}{\varepsilon_0} \implies q = \varepsilon_0 E A \\
+                \Delta V &= V_f - V_i = -\int_{i}^{f} E \, ds 
+                        = -(-\int_{i}^{f} E \, ds) \; [\cos\Theta = -1]\\
+                \Delta V &= -(-\int_{i}^{f} E \, ds) = E \int_{-}^{+} ds = Ed.
+            \end{align*}
+        Sostituiamo in $q = C\Delta V \implies \varepsilon_0EA = CEd$:
+            \begin{equation}
+                C = \frac{\varepsilon_0A}{d}
+            \end{equation}
+
+        \subsection{Capacità elettrica di un condensatore cilindrico}
+            \begin{align*}
+                EA &= \frac{q}{\varepsilon_0} \implies q = \varepsilon_0 E A \\
+                A_{cilindro} &= 2\pi rL \implies q = \varepsilon_0E2\pi rL \\
+                E &= \frac{1}{2\pi\varepsilon_0}\frac{q}{Lr}
+            \end{align*}
+        Ricordando che un condensatore cilindrico sono sostanzialmente due 
+        cerchi concentrici uno dentro l'altro ($\bigodot$), faccio il percorso
+        dal polo $+$ a quello $-$ (interno verso l'esterno):
+            \begin{align*}
+                \Delta V = -\int_{i}^{f} E \,ds &= -(\int_{+}^{-} E\,ds)
+                    = (E\int_{-}^{+}dr) = \frac{q}{2\pi\varepsilon_0L}
+                    \int_{b}^{a} \frac{dr}{r} \\
+                &= \frac{q}{2\pi\varepsilon_0L}\Bigg[\ln(r)\Bigg]_{a}^{b}
+                    = - \frac{q}{2\pi\varepsilon_0L}\ln(\frac{a}{b}) \\
+                &= \frac{q}{2\pi\varepsilon_0L}\ln(\frac{b}{a})
+            \end{align*}
+        da cui:
+            \begin{equation}
+                C = \frac{q}{\Delta V} \implies C = \frac{2\pi\varepsilon_0L}
+                {\ln(\frac{b}{a})}
+            \end{equation}
+
+        \subsection{Capacità elettrica di un condensatore sferico}
+            \begin{align*}
+                A &= \frac{q}{\varepsilon_0} \implies q = \varepsilon_0 E A \\
+                A_{sfera} &= 4\pi r^2 \implies q = \varepsilon_0E4\pi r^2 \\
+                E &= \frac{1}{4\pi\varepsilon_0}\frac{q}{r^2}
+            \end{align*}
+        Che notiamo essere lo stesso campo elettrico generato da una 
+        distribuzione sferica uniforme:
+            \begin{align*}
+                \Delta V = - \int_{i}^{f} E\,ds &= -(\int_{-}^{+} E\,ds)
+                    = -E\int_{-}^{+}ds \\
+                &= -\frac{q}{4\pi\varepsilon_0}\int_{b}^{a}\frac{dr}{r^2} \\
+                &= -\frac{q}{4\pi\varepsilon_0} \Bigg[-\frac{1}{r}\Bigg]_{b}
+                    ^{a} \\
+                &= \frac{q}{4\pi\varepsilon_0} \Bigg[-\frac{1}{a} - \frac{1}{b}
+                    \Bigg] \\
+                &=  \frac{q}{4\pi\varepsilon_0} \frac{b-a}{ba}
+            \end{align*}
+        da cui:
+            \begin{equation}
+                C = \frac{q}{\Delta V} \implies C = 4\pi\varepsilon_0
+                    \frac{ab}{b-a}
+            \end{equation}
+        La capacità per una \textit{sfera isolata} di raggio r sarà:
+            \begin{equation}
+                C = 4\pi\varepsilon_0r
+            \end{equation}
+    
+    \section{Condensatori in Serie e Parallelo} Le capacità equivalenti $C_{eq}
+    $ di un insieme di singoli condensatori collegati in parallelo e in serie 
+    sono:
+
+        \subsection{Condensatori in Serie}
+            \begin{equation}
+                C_{eq} = \sum_{j = 1}^{n} C_j
+            \end{equation}
+
+        \subsection{Condensatori in Parallelo}
+            \begin{equation}
+                \frac{1}{C_{eq}} = \sum_{j = 1}^{n} \frac{1}{C_j}
+            \end{equation}
+    Questi condensatori equivalenti possono essere a loro volta combinati in 
+    modo da calcolare la capacità di connessioni più complicate di condensatori
+    in serie o in parallelo.
+
+    \section{Energia potenziale di un condensatore} L'energia potenziale 
+    elettrica $U$ di un condensatore carico è data da:
+        \begin{equation}
+            U = \frac{q^2}{2C} = \frac{1}{2}CV^2
+        \end{equation}
+    è il lavoro richiesto per caricarlo. Si può pensare che questa energia sia 
+    immagazzinata nel campo elettrico $E$ associato al condensatore. 
+    Per analogia, si può associare un'energia potenziale a ogni campo elettrico
+    , qualunque sia la sua origine. La \textbf{densità di energia} $u$, ossia
+    l'energia potenziale per unità di volume, è data da:
+        \begin{equation}
+            u = \frac{1}{2}\varepsilon_0E^2
+        \end{equation}
+    
+    \section{Capacità in presenza di un dielettrico} Se lo spazio tra i piatti
+    di un condensatore è completamente occupato da un materiale dielettrico
+    (non conduttore), la capacità $C$ aumenta di un fattore $\varepsilon_r$,
+    chiamato \textbf{costante dielettrica relativa}, caratteristica del 
+    materiale. In una regione completamente occupata da un dielettrico tutte le
+    equazioni elettrostatiche contenenti $\varepsilon_0$ devono essere 
+    modificate sostituendo $\varepsilon_0$ con $\varepsilon_1\varepsilon_0 =
+    \varepsilon$.\\
+    L'effetto dovuto all'introduzione di un dielettrico può essere spiegata
+    fisicamente pensando all'azione del campo elettrico dui dipoli elettrici 
+    permanenti o indotti nella lastra di materiale dielettrico. Il risultato è
+    la formazione di cariche superficiali indotte che comportano una 
+    diminuzione del campo all'interno del dielettrico.
+        
+        \subsection{LEgge di Gauss in presenza di un dielettrico} In presenza 
+        di un dielettrico, la legge di Gauss può essere generalizzata in:
+            \begin{equation}
+                \varepsilon_0 \oint \varepsilon_rR\cdot\,dA = q
+            \end{equation}
+
+    \section{Corrente elettrica} Una corrente elettrica in un conduttore è 
+    definita come:
+        \begin{equation}
+            i = \frac{dq}{dt} \; \Bigg[A = \ \frac{C}{s}\Bigg]
+        \end{equation}
+    dove $dq$ è la quantità di carica (positiva) che passa in un tempo $dt$ 
+    attraverso un piano immaginario che taglia trasversalmente il conduttore.
+    Il verso della corrente elettrica è quello nel quale si muovono i portatori
+    di carica positivi. 
+
+        \subsection{Densità di corrente elettrica} La corrente (grandezza 
+        scalare) è legata alla densità di corrente $J$ (grandezza vettoriale) 
+        data da:
+            \begin{equation}
+                i = \int J \, dA
+            \end{equation}
+        dove $dA$ è un vettore perpendicolare all'elemento superficiale di area
+        $dA$ e l'integrale viene calcolato per ogni superficie normale del 
+        conduttore
+        
+    \section{Resistenza} La resistenza $R$ di un conduttore viene definita come
+    :
+        \begin{equation}
+            R = \frac{V}{i} \; \Bigg[1 \Omega = 1 \frac{V}{A}\Bigg]        
+        \end{equation}
+    dove $v$ è la differenza di potenziale tra le due superfici e $i$ è la 
+    corrente elettrica. Equazioni simili deiniscono la \textbf{resistività} 
+    $\rho$ e la \textbf{conducibilità} $\sigma$:
+        
+        \subsection{Resistività e conducibilità}
+            \begin{equation}
+                \rho = \frac{E}{J} = \frac{1}{\sigma}
+            \end{equation}
+
+        \subsection{Resistenza in Serie} Le resistenze si dicono in serie
+        quando scorre in esse la medesima corrente.
+            \begin{equation}
+                R_{eq} = \sum_{j=1}^{n} R_j
+            \end{equation}
+
+        \subsection{Resistenza in Parallelo} Le resistenze sono in parallelo se
+        le loro rispettive differenze di potenziale sono uguali alla differenza
+        di potenziale applicata all'insieme di resistenze. La resistenza 
+        risultante da una combinazione in parallelo è:
+            \begin{equation}
+                \frac{1}{R_{eq}} = \sum_{j = 1}^{n} \frac{1}{R_j}
+            \end{equation}
+
+
+    \section{Legge di Ohm} La legge di Ohm asserisce che la corrente che scorre
+    attraverso un dispositivo è \textit{sempre} direttamente proporizionale 
+    alla differenza di potenziale applicata al dispositivo stesso
+
+    \section{Potenza nei Circuiti Elettrici} La potenza $P$ o quantità di 
+    energia trasferita per unità di tempo in un dispositivo elettrico 
+    attraverso il quale viene mantenuta una differenza di potenziale $V$ è:
+            \begin{equation}
+                P = iV
+            \end{equation}
+
+    \section{Forza elettromotrice di un generatore di Tensione} Un generatore
+    di f.e.m compie lavoro sulle cariche per mantenere una differenza di 
+    potenziale tra i terminali di uscita. Se $dW$ è il lavoro svolto dal 
+    dispositivo per portare una carica $dq$ dal polo negativo a quello positivo
+    , la f.e.m (lavoro per unità di carica) del generatore è data da:
+        \begin{equation}
+            \xi = \frac{dW}{dq} \; [V]   
+        \end{equation}
+    Un generatore di f.e.m ideale ha una resistenza interna nulla. In caso la
+    differenza di potenziale alle estremità è uguale alla f.e.m. Un generatore
+    di f.e.m reale ha una resistenza interna finita. La differenza di 
+    potenziale è equivalente alla f.e.m solo se non passa corrente attraverso 
+    il generatore.
+
+    \section{Analisi dei circuiti} La variazione di potenziale attraverso una 
+    resistenza nella direzione della corrente è $-iR$; nella direzione opposta
+    è $+iR$. La variazione di potenziale attraverso una generatore f.e.m ideale
+    nella direzione della freccia della f.e.m è $+\xi$; nella direzione opposta
+    è $-\xi$. Il principio di conservazione dell'energia porta alla legge delle
+    maglie (secondo principio di Kirchoff).
+
+    \section{Legge delle maglie} \textit{La somma algebrica delle variazioni di
+    potenziale incontrate in un giro completo di un qualsiasi circuito deve 
+    essere uguale a zero}.\\
+    La conservazione della carica si esprime nella legge dei nodi (primo 
+    principio di Kirchoff).
+
+    \section{Legge dei nodi} \textit{La somma algebrica delle variazioni di 
+    potenziale che si dipartono da qualsiasi nodo deve essere uguale alla somma
+    delle correnti che giungono allo stesso nodo}.
+
+    \section{Circuiti RC} I circuiti RC sono dei circuiti di carica-scarica di
+    un condensatore tramite f.e.m e una resistenza. \\
+    Quando si applica una f.e.m $\xi$ a una resistenza $R$ e a un condensatore 
+    $C$ disposti in serie, al carica del condensatore aumenta secondo 
+    l'espressione:
+        \begin{equation}
+            q = C\xi(1-e^{\frac{-t}{RC}})
+        \end{equation}
+    nella quale $C\xi = q_0$ è la carica all'equilibrio e $RC = \tau$ è la 
+    \textbf{costante di tempo capacitiva} del circuito. Durante la carica la 
+    corrente è:
+        \begin{equation}
+            i = \frac{dq}{dt} = (\frac{\xi}{R})e^{\frac{-t}{RC}}
+        \end{equation}
+    Quando un condensatore si scarica attraverso una resistenza $R$, la carica
+    del condensatore decade secondo l'espressione:
+        \begin{equation}
+            q = q_0e^{\frac{-t}{RC}}
+        \end{equation}
+    Durante la scarica la corrente è:
+        \begin{equation}
+            i = \frac{dq}{dt} = -\frac{q_0}{RC}e^{\frac{-t}{RC}}
+        \end{equation}

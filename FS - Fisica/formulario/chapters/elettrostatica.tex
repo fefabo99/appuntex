@@ -72,12 +72,12 @@
                 \item \textit{Densità di carica superficiale} $\sigma$: numero 
                 di cariche per unità di superifice.\\
                     \begin{equation}
-                        \lambda = \frac{Q}{m^2}
+                        \sigma = \frac{Q}{m^2}
                     \end{equation}
                 \item \textit{Densità di carica volumetrica} $\rho$: numero
                 di cariche per unità di volume.\\
                     \begin{equation}
-                        \lambda = \frac{Q}{m^3}
+                        \rho = \frac{Q}{m^3}
                     \end{equation}
             \end{itemize}
 
@@ -121,6 +121,54 @@
             \end{equation}
         Non hanno alcuna importanza la dimensione e al forma della superficie,
         l'importante è che sia chiusa.
+
+            \subsection{Campo elettrico generato da un filo conduttore 
+            infinitamente lungo} Tramite la \textit{densità lineare di carica}
+            è possibile calcolarsi il campo elettrico generato da un filo 
+            conduttore. Dobbiamo considerare il filo come una superficie 
+            gaussiana cilindrica:
+                \begin{equation}
+                    \phi = \oint E \, dA = \frac{Q}{\varepsilon_0} = 
+                    \frac{\lambda h}{\varepsilon_0}
+                \end{equation}
+            scompondendo l'integrale come somma di area alta (cima del cilindro
+            ), area bassa (fondo del cilindro) e area laterale:
+                \begin{equation*}
+                    \int_{sup-alta} E \, dA + \int_{sup-bassa} E \, dA
+                    + \int_{sup-lat} E \, dA
+                \end{equation*}
+            Ma nella superficie alta e quella bassa $E$ e $dA$ sono 
+            perpendicolari, quindi:
+                \begin{align*}
+                    \int_{sup-alta} E \, dA &= 0 \\
+                    \int_{sup-bassa} E \, dA &= 0
+                \end{align*}
+            quindi:
+                \begin{equation*}
+                    \phi = \oint E \, dA = \frac{\lambda h}{\varepsilon_0}
+                    = \int_{sup-lat} E \, dA = E \cdot 2\pi rh
+                \end{equation*}
+            da cui:
+                \begin{equation}
+                    E \cdot 2\pi rh = \frac{\lambda h}{\varepsilon_0}
+                    \implies
+                    E = \frac{\lambda}{2\pi\varepsilon_0r}
+                \end{equation}
+
+            \subsection{Campo elettrico esterno generato da un conduttore}
+                \begin{equation*}
+                    \phi = \oint E \, dA = \frac{Q}{\varepsilon_0} = 
+                    \frac{\sigma A}{\varepsilon_0} = \int_{sup_est} E \, dA
+                \end{equation*}
+            quindi:
+                \begin{equation*}
+                    \phi = \oint E \, dA = \frac{Q}{\varepsilon_0} = 
+                    \frac{\sigma A}{\varepsilon_0} = EA
+                \end{equation*}
+            da cui:
+                \begin{equation}
+                    E = \frac{\sigma}{\varepsilon_0}
+                \end{equation}
 
         \section{Potenziale Elettrico} Il potenziale elettrico $V$ nel punto 
         $P$ di un campo elettrico generato da un corpo carico è (ricordando che
@@ -215,3 +263,53 @@
                 \begin{equation}
                     \Delta V = -E\Delta x
                 \end{equation}
+
+        \section{Potenziale generato da cariche puntiformi} Il potenziale 
+        generato da una carica puntiforme isolata a una distanza $r$ dalla 
+        carica puntiforme è:
+            \begin{equation}
+                V = \frac{1}{4\pi\varepsilon_0}\frac{q}{r}
+            \end{equation}
+        dove $q$ ha lo stesso segno di $V$. Il potenziale dovuto a una 
+        distribuzione di cariche puntiformi è:
+            \begin{equation}
+                V = \sum_{i = 1}^{n}V_i = \frac{1}{4\pi\varepsilon_0}
+                \sum_{i = 1}^{n}\frac{q_i}{r_i}
+            \end{equation}
+
+        \section{Potenziale elettrico generato da una carica continua} Per una 
+        distrinuzione continua di cariche, l'equazione precedente diventa:
+            \begin{equation}
+                V = \frac{1}{4\pi\varepsilon_0}\int \frac{dq}{r}
+            \end{equation}
+        dove l'integrale è esteso all'intera distribuzione.
+
+        \section{Calcolo di $E$ partendo da $V$} La componente di $E$ in 
+        qualsiasi direzione è l'inverso della derivata del potenziale rispetto
+        alla distanza in quella direzione:
+            \begin{equation}
+                E_s = - \frac{\partial V}{\partial s}
+            \end{equation}
+        Si possono definire le componenti di $E$ secondo $x$, $y$ e $z$ nel 
+        seguente modo:
+            \begin{align}
+                E_x &= - \frac{\partial V}{\partial x}\\
+                E_y &= - \frac{\partial V}{\partial y}\\
+                E_z &= - \frac{\partial V}{\partial z}
+            \end{align}
+        Se il campo $E$ è uniforme, la prima equazione si riduce a:
+            \begin{equation}
+                E = - \frac{\Delta V}{\Delta s}
+            \end{equation}
+        dove $s$ è perpendicolare alla superfice equipotenziale. Il campo 
+        elettrico è nullo in qualsiasi direzione parallela a una superficie 
+        equipotenziale.
+
+        \section{Energia Potenziale di un sistema di cariche puntiformi} 
+        L'energia potenziale elettrica di un sistema di cariche puntiformi è
+        definita come il lavoro necessario per costruire il sistema, partendo
+        da una situazione in cui le cariche sono a riposo e infinitamente
+        distanti l'una dall'altra. Per due cariche a distanza $r$ abbiamo:
+            \begin{equation}
+                U = L = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r}
+            \end{equation}

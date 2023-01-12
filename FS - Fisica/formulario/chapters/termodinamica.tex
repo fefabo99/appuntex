@@ -111,10 +111,13 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         \subsection{Applicazioni del Primo Principio} Il primo principio della 
         termodinamica trova applicazione in numerosi casi particolari, tra cui:
             \begin{itemize}
-                \item \textit{Trasformazioni Adiabatiche}: 
-                    $Q=0 \implies \Delta E_{int} = -\Delta W$
-                \item \textit{Trasformazioni Isocore (volume costante)}:
+                \item \textit{Trasformazioni Isocore ($V$ costante)}:
                     $W = 0 \implies \Delta E_{int} = \Delta Q$
+                \item \textit{Trasformazioni Isobara ($p$ costante)}:
+                    $W = p(V_2-V_1)$, $Q = nc_p\Delta T$
+                \item \textit{Trasformazioni Isoterma ($T$ costante)}:
+                    $pV = \text{cost}$, $W = nRT\ln(\frac{V_f}{V_i})$, 
+                    $\Delta E_{int} = 0 \; Q = + W$
                 \item \textit{Trasformazioni Cicliche}:
                     $\Delta E_{int} = 0 \implies \Delta Q = \Delta W$
                 \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
@@ -129,6 +132,17 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         la sua espansione non è contratasta da alcuna pressione
                         . Siamo quindi nella seguente situazione:
                         $\Delta Q = \Delta L = 0 \implies \Delta E_{int} = 0$
+                \item \textit{Trasformazioni Adiabatiche}: 
+                        $Q=0 \implies \Delta E_{int} = -\Delta W \;
+                        pV^\gamma = \text{cost}
+                        $ con $\gamma = \frac{c_p}{c_v} \implies c_p = c_v + R
+                        \implies \gamma = \frac{c_v + R}{c_v}$. Ricodiamo 
+                        inoltre che $c_v = $ (per tipo di gas):
+                        \begin{itemize}
+                            \item Monoatomico: $\frac{3}{2} R$
+                            \item Biatomico: $\frac{5}{2} R$
+                            \item Poliatomico: $3 R$
+                        \end{itemize}
             \end{itemize}
 
         \section{Conduzione, Convezione ed Irraggiamento} Sono tre tipi di 

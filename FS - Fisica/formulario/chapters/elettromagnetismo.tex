@@ -1,0 +1,92 @@
+\chapter{Elettromagnetismo}
+
+    \section{Forza di Lorentz} Un campo magnetico $B$ è definito in funzione 
+    della forza agente su una particella di prova dotata di carica $q$ che si 
+    muove in un campo magnetico con velocità $v$:
+        \begin{equation}
+            F_B = qv \times B = qvB\cos\Theta \; [T]
+        \end{equation}
+
+    \section{Carica in moto circolare uniforme} Una particella carica con massa
+    $m$ e carica $|q|$ che si muove con velocità $v$ perpendicolare al campo
+    uniforme $B$ percorre una circonferenza. Applicando la seconda legge di 
+    Newton al moto circolare abbiamo:
+        \begin{equation*}
+            |q|vB = \frac{mv^2}{r}
+        \end{equation*}
+    da cui troviamo il raggio:
+        \begin{equation*}
+            r = \frac{mv}{|q|B}
+        \end{equation*}
+    La frequenza di rivoluzione $f$, la pulsazione $\omega$ e il periodo $T$
+    sono dati da:
+        \begin{equation}
+            f = \frac{\omega}{2\pi} = \frac{1}{T} = \frac{|q|B}{2\pi m}
+        \end{equation}
+
+    \section{Forza agente su un filo percorso da corrente} Un filo rettilineo
+    percorso dalla corrente $i$ in un campo magnetico uniforme subisce una 
+    forza trasversale:
+        \begin{equation}
+            F_B = iL\times B
+        \end{equation}
+    La forza agente su un elemento infinitesimo $idL$ in un campo magnetico è:
+        \begin{equation}
+            dF_B = idL\times B
+        \end{equation}
+
+    \section{Campo Magnetico generato da una corrente elettrica} Il campo 
+    magnetico dovuto a un conduttore diu corrente è descritto dalla legge di
+    \textit{Biot-Savart}.
+
+        \subsection{Legge di Biot-Savart} Il contributo $dB$ al campo dovuto a
+        un elemento infinitesimo di corrente $i\,ds$ nel punto $P$, a una
+        distanza $r$ dall'elemento di corrente, vale:
+            \begin{equation}
+                dB = \Bigg(\frac{\mu_o}{4\pi}\Bigg)\frac{ids\times r}{r^3}
+            \end{equation}
+        In questo caso r è il vetore diretto dall'elemento di corrente verso il
+        punto in questione. La quantità chiamata $\mu_0$, chiamata costante di 
+        permeabilità magnetica nel vuoto, ha un valore pari a $4\pi \cdot 
+        10{^-7} = 1,26 \cdot 10^{-6} T \frac{m}{A}$.
+
+        \subsection{Campo magnetico in un filo lungo rettilineo} Per un filo 
+        lungo rettilinea percorso da una corrente $i$, la legge di Biot-Savart 
+        dà, per il campo magnetico a una distanza $r$ dal filo:
+            \begin{equation}
+                B = \frac{\mu_0i}{2\pi r}
+            \end{equation}
+
+        \subsection{Campo magnetico in un filo piegato ad arco} Per un filo 
+        piegato ad arco di circonferenza con raggio $R$ e angolo dal centro 
+        $\phi$, percorso da una corrente $i$, il campo magnetico è:
+            \begin{equation}
+                B = \frac{\mu_0i\phi}{4\pi R}
+            \end{equation}
+        
+        \subsection{Forza tra due fili conduttori paralleli} Fili paralleli 
+        percorsi da correnti con lo stesso verso si attraggono, mentre fili 
+        percorsi da correnti con versi opposti si respingono. L'intensità della
+        forza per una lunghezza $L$ di un o l'altro dei fili è:
+            \begin{equation}
+                F_{ba} = i_bLB_a\sin90 = \frac{\mu_0Li_ai_b}{2\pi d}
+            \end{equation}
+
+    \section{Legge di Ampere} La legge di Ampere afferma:
+        \begin{equation}
+            \oint B \, ds = \mu_0i_{ch}
+        \end{equation}
+    L'integrale di linea in questa equazione viene calcolato lungo una linea
+    chiusa detta \textit{linea amperiana}. La corrente $i$ è la corrente totale
+    netta che circola entro la linea chiusa. Per distribuzioni di corrente 
+    particolari questa equazione risulta, nel calcolo dei campi magnetici 
+    generati da correnti, di più semplice impiego della legge di Biot-Savart.
+
+    \section{Solenoide} All'interno di un lungo solenoide percorso dalla 
+    corrente $i$, nei punti vicini al suo centro, l'intensità $B$ del campo 
+    magnetico è data da:
+        \begin{equation}
+            B = \mu_0in
+        \end{equation}
+    dove $n$ è il numero delle spire per unità di lunghezza. Perciò il campo 
+    magnetico interno è uniforme.
