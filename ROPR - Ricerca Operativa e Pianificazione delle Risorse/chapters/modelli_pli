@@ -3,7 +3,7 @@
 Fino ad ora abbiamo visto esempi di programmazione lineare che utlizzavano variabili di decisione nel dominio \textbf{reale}.
 
 Esistono però molti problemi che richiedono che richiedono che le variabili di decisione siano \emph{intere o binarie}.
-In questi casi stiamo parlando di \textbf{Programmazione Lineare Intera} o PLI.
+In questi casi parliamo di \textbf{Programmazione Lineare Intera} o PLI.
 
 \paragraph*{I tipi di PLI}
 Esistono 3 tipi di PLI:
@@ -19,8 +19,7 @@ In generale, le variabili binarie sono utilizzate nella RO per modellare decisio
 e possono essere usate per introdurre delle \emph{Condizioni Logiche}.
 \subsection*{Vincoli "\emph{either-or}"}
 Se consideriamo il caso in cui dati due vincoli almeno uno di questi deve essere soddisfatto 
-(per esempio perchè potrebbe esserci una scelta su risorse alternative da utilizzare per un determinato scopo, in modo che sia necessario solo uno dei vincoli)
-prendiamo come esempio:
+(per esempio perché potrebbe esserci una scelta su risorse alternative da utilizzare per un determinato scopo, in modo che sia necessario solo uno dei vincoli). Prendiamo come esempio:
 \[3x_1+2x_2\leq18 \vee x_1+4x_2\leq16\]
 Questa diventa equivalente a:
 \[\begin{cases}
@@ -39,8 +38,7 @@ Questo elemento si trova molto spesso nelle condizioni logiche, e di solito è m
     \item $y=0 \implies My = 0 \wedge M(1-y) = M$
     \item $y=1 \implies My = M \wedge M(1-y) = 0$
 \end{itemize}
-Quindi, al variare di $y$ uno dei due vincoli dovrà essere $\leq M$, ed essendo "M molto grande" questo è sempre verificato,
-di fatto disattivando il vincolo.
+Quindi, al variare di $y$ uno dei due vincoli dovrà essere $\leq M$, ed essendo "M molto grande" questo è sempre verificato, di fatto disattivando il vincolo.
 
 \subsection*{N Vicoli, K devono essere soddisfatti}
 Consideriamo il caso in cui in un modello includa $N$ vincoli tali che solo $K$ di essi devono essere soddisfatti ($K<N$).
@@ -50,7 +48,7 @@ Consideriamo il caso in cui in un modello includa $N$ vincoli tali che solo $K$ 
     ... \\
     $f_N(x_1,x_2,x_n) \leq d_N$
 \end{center}
-Con N variabli binarie $y_i \in \{0,1\}$ per $i=1,...,N$ ed un numero M positivo molto grande.
+Con N variabili binarie $y_i \in \{0,1\}$ per $i=1,...,N$ ed un numero M positivo molto grande.
 Abbiamo la seguente formulazione equivalente al requisito che solo $k$ di questi $N$ vincoli devono essere soddisfatti:
 \[
     \begin{cases} 
@@ -64,7 +62,7 @@ Abbiamo la seguente formulazione equivalente al requisito che solo $k$ di questi
 In questo caso solo $N-K$ delle nostre $y$ può essere uguale a 1, quindi $N-K$ vincoli (quelli con $y=1$) saranno disattivati (rilasciati).
 
 \subsection*{La funzione assume solo N possibili valori}
-Si consideri la situazione in cui una data funzione assuma uno fra N possibili valori
+Si consideri la situazione in cui una data funzione assuma uno fra $N$ possibili valori:
 \[
     f(x_1,x_2,...,x_n) = d_1 \vee d_2,..., \vee d_n
 \]
@@ -84,24 +82,22 @@ Nonostante lo spazio delle variabili sia "solo" $\N$, anche in questo caso una r
 Per un qualsiasi problema PLI è possibile formulare il corrispettivo problema PL, ovvero lo stesso problema senza i vincoli di interezza.
 Tale problema prende il nome di \textbf{rilassamento lineare}.
 
-In sostanza il rilassamento lineare consinste nel togliere i vincoli di Interezza ($x \in \Z$)
+In sostanza il rilassamento lineare consiste nel togliere i vincoli di Interezza ($x \in \Z$)
 e sostituirli con dei vincoli di non negatività ($x\geq 0$)
 
-Questo può in molti casi essere utile, perchè il rilassamento lineare può essere risolto con il metodo del simplesso.
+Questo può in molti casi essere utile, perché il rilassamento lineare può essere risolto con il metodo del simplesso.
 
 \paragraph*{Risolvere} un rilassamento lineare, per esempio tramite il metodo del simplesso,
-ci da due possibilità:
+ci dà due possibilità:
 \begin{itemize}
-    \item Soluzione \textbf{Intera} $\implies$ è anche la soluzione del PLI
-    \item Soluzione \textbf{Frazionaria} $\implies$ ho trovato un \textbf{Upper (Lower) bound} per il PLI di \textbf{Max (Min)} 
+    \item Soluzione \textbf{Intera} $\implies$ è anche la soluzione del PLI.
+    \item Soluzione \textbf{Frazionaria} $\implies$ ho trovato un \textbf{Upper (Lower) Bound} per il PLI di \textbf{Max (Min)}.
 \end{itemize}
 
 \paragraph*{Upper/Lower Bound}
-Quando risolvo il rilassamento lineare di un PLI di Max, se la soluzione che ho trovato NON è intera allora significa che ho trovato un Upper Bound,
-ovvero un valore che l'ottimo del PLI sicuramente non supererà.
-Viceversa vale per i problemi di minimo e il rispettivo lower bound.
+Quando risolvo il rilassamento lineare di un PLI di Max, se la soluzione che ho trovato NON è intera allora significa che ho trovato un Upper Bound, ovvero un valore che l'ottimo del PLI sicuramente non supererà.
+Viceversa vale per i problemi di minimo e il rispettivo Lower Bound.
 
 I Bound (Upper e Lower) sono utili ad alcuni algoritmi di risoluzione dei PLI.
 
-Attenzione però, in generale la soluzione ottima di un PLI può non corrispondere a una delle sue soluzioni intere ottenute arratondando le variabili non intere, quindi 
-non posso risolvere un PLI arrotondando il risultato di un rilassamento. 
+Attenzione però, in generale la soluzione ottima di un PLI può non corrispondere a una delle sue soluzioni intere ottenute arrotondando le variabili non intere, quindi non posso risolvere un PLI arrotondando il risultato di un rilassamento. 

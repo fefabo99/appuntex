@@ -8,11 +8,9 @@ Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
 \end{itemize}  
 \section{Come funziona}
 Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
-\\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo
-ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
-\paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema.
-allora si ha che $f(\tilde{x}) \leq f(x*)$
-\\Basta solo notare che tra le soluzioni ammissibili del rpblema completo vi è anche $x$ e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$
+\\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo, ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
+\paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema. Allora si ha che $f(\tilde{x}) \leq f(x*)$.
+\\Basta solo notare che tra le soluzioni ammissibili del problema completo vi è anche $x$ e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$.
 \subsection{Le tecniche}
 Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema PLI:
 \begin{itemize}
