@@ -1,4 +1,4 @@
-\chapter{Programmazioen non Lineare}
+\chapter{Programmazione non Lineare}
 \section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
 Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
