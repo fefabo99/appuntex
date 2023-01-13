@@ -7,7 +7,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
 
     \paragraph{Conversione da Fahrenheit a Celsius} La quantità corrispondente
     a 1 grado della scala Celsius è equivalente a quella della scala Kelvin, ma
-    lo zero della prima è spostato a un valore più comodo. Se $t_c$ rappresenta
+    lo zero della prima è spostato a un valore più comodo. Se $T_c$ rappresenta
     una data temperatura Celsius, allora:
         \begin{equation}
             T_c = T - 273,15^\circ 
@@ -22,7 +22,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
 
     \section{Dilatazione Termica}
         \subsection{Dilatazione Lineare} Tutti gli oggetti cambiano dimensioni
-        al vaariare della temperatura. La variazione $\Delta$ l di qualsiasi 
+        al vaariare della temperatura. La variazione $\Delta l$  di qualsiasi 
         dimensione lineare $l$ è data da:
             \begin{equation}
                 \Delta l = \alpha l \Delta T
@@ -45,7 +45,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
             1 \; cal = 4,1868 \; J
         \end{equation*}
 
-        \subsection{Capacità Termica} È la costsante di proporzionalità tra il 
+        \subsection{Capacità Termica} È la costante di proporzionalità tra il 
         calore somministrato e la variazione di temperatura indotta:
             \begin{equation}
                 Q = C \Delta T = C (T_2 - T_1)
@@ -68,7 +68,8 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         fisici: solida, liquida e gassosa. Il calore fornito a una sostanza può
         cambiare lo stato fisico della sostanza stessa, per esempio, da solida 
         a liquida o da liquida a gassosa. La quantità di calore richiesta per 
-        unità di massa di una determinata sostanza è il \textbf{calore 
+        unità di massa di una determinata sostanza per cambiare il suo stato
+        è chiamato \textbf{calore 
         latente} $L$, perciò:
             \begin{equation}
                 Q = Lm \implies L = \frac{Q}{m}
@@ -77,7 +78,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         energia per unità di massa che deve essere fornita per far evaporare un
         liquido o che deve essere \textbf{sottratta} per liquefare un gas. Il 
         \textbf{calore latente di fusione} $L_f$ è la quantità di energia per 
-        unità di massa ched eve essere fornita per fondere un solido o che deve
+        unità di massa che deve essere fornita per fondere un solido o che deve
         essere sottratta per solidifcare un liquido.
         
     \section{Lavoro associato ad una variazione di Volume} Un sistema può anche
@@ -86,7 +87,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
     riduce da un volume iniziale $V_i$ a un volume finale $V_f$ può essere 
     calcolata con:
         \begin{equation}
-            L = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
+            W = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
         \end{equation}
     L'integrazione è necessaria perché la pressione $p$ può cambiare durante la
     varizione del volume.
@@ -99,7 +100,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
             \Delta E_{int} &= E_{int, f} - E_{int, i} = \Delta Q - \Delta W \\
             d E_{int} &= d Q - d W
         \end{align}
-    $E_{int}$ rappresente l'energia interna della sostanza, che dipedne solo 
+    $E_{int}$ rappresente l'energia interna della sostanza, che dipende solo 
     dal suo stato (temperatura, pressione e volume). $Q$ rappresenta il calore
     scambiato dal sistema con l'ambiente; $Q$ è positivo se il sistema acquista
     calore e negativo se il sistema perde calore. $W$ è il lavoro compiuto
@@ -111,15 +112,29 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         \subsection{Applicazioni del Primo Principio} Il primo principio della 
         termodinamica trova applicazione in numerosi casi particolari, tra cui:
             \begin{itemize}
-                \item \textit{Trasformazioni Isocore ($V$ costante)}:
-                    $W = 0 \implies \Delta E_{int} = \Delta Q$
+                \item \textit{Trasformazioni Isocore ($V$ costante)}
+                    \begin{align*}
+                        W &= 0 \\ 
+                        \Delta E_{int} &= \Delta Q
+                    \end{align*}
                 \item \textit{Trasformazioni Isobara ($p$ costante)}:
-                    $W = p(V_2-V_1)$, $Q = nc_p\Delta T$
+                    \begin{align*}
+                        W &= p(V_2-V_1) \\
+                        Q &= nc_p\Delta T
+                    \end{align*}
                 \item \textit{Trasformazioni Isoterma ($T$ costante)}:
-                    $pV = \text{cost}$, $W = nRT\ln(\frac{V_f}{V_i})$, 
-                    $\Delta E_{int} = 0 \; Q = + W$
+                    \begin{align*}
+                        pV &= \text{cost} \\
+                        W &= nRT\ln(\frac{V_f}{V_i}) \\
+                    \Delta E_{int} &= 0\\ 
+                    Q &= + W
+                    \end{align*}
+                    
                 \item \textit{Trasformazioni Cicliche}:
-                    $\Delta E_{int} = 0 \implies \Delta Q = \Delta W$
+                    \begin{align*}
+                        \Delta E_{int} &= 0 \\ 
+                        \Delta Q &= \Delta W
+                    \end{align*}
                 \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
                         di trasformazioni adiabatiche nelle quali non viene 
                         compiuto alcun lavoro sul sistema o da parte di esso.
@@ -131,13 +146,19 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         (siccome ci troviamo in un sistema isolato), inoltre,
                         la sua espansione non è contratasta da alcuna pressione
                         . Siamo quindi nella seguente situazione:
-                        $\Delta Q = \Delta L = 0 \implies \Delta E_{int} = 0$
+                        \begin{align*}
+                            \Delta Q &= \Delta L = 0 \\
+                            \Delta E_{int} &= 0
+                        \end{align*}
+                        
                 \item \textit{Trasformazioni Adiabatiche}: 
-                        $Q=0 \implies \Delta E_{int} = -\Delta W \;
-                        pV^\gamma = \text{cost}
-                        $ con $\gamma = \frac{c_p}{c_v} \implies c_p = c_v + R
-                        \implies \gamma = \frac{c_v + R}{c_v}$. Ricodiamo 
-                        inoltre che $c_v = $ (per tipo di gas):
+                        \begin{align*}
+                            Q &=0 \implies \Delta E_{int} = -\Delta W \\
+                        pV^\gamma &= \text{cost} \\
+                        \gamma &= \frac{c_p}{c_v} \implies c_p = c_v + R \\
+                        \gamma &= \frac{c_v + R}{c_v}
+                        \end{align*}
+                        Ricodiamo inoltre che $c_v = $ (per tipo di gas):
                         \begin{itemize}
                             \item Monoatomico: $\frac{3}{2} R$
                             \item Biatomico: $\frac{5}{2} R$
@@ -149,7 +170,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         trasmissione del calore, ognuno funzionante in modo differente 
         dall'altro. Analizziamoli nel dettaglio.
 
-            \subsection{Conduzione} La conduzione avviene mendiante il contatto
+            \subsection{Conduzione} La conduzione avviene mediante il contatto
             tra due superfici. La conduzione di calore $P_c$ su unità di tempo,
             attraverso una lastra le cui superifici sono mantenute alle 
             temperature $T_1$ e $T_2$ è:
@@ -174,16 +195,16 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
             calore attraverso l'emissione e l'assorbimento di energia 
             elettromagnetica. La potenza $P_r$ irraggiata da un oggetto è:
                 \begin{equation}
-                    P_r = \sigma \epsilon AT^4
+                    P_r = \sigma \varepsilon AT^4
                 \end{equation}
             Dove $\sigma = 5,6703 \cdot 10^{-8} \; [\frac{W}{m^2 \cdot K^4}
-            ]$ è la costante di Stefan-Boltzmann, $\epsilon$ è l'emittanza
+            ]$ è la costante di Stefan-Boltzmann, $\varepsilon$ è l'emittanza
             caratteristica della superficie, $A$ è l'area irraggiante e $T$ la 
             temperatura superficiale in Kelvin. La potenza $P_a$ che un oggetto
             assorbe per via radiativa dell'ambiente a temperatura uniforme
             $T_{amb}$ (in Kelvin) è:
                 \begin{equation}
-                    P_a = \sigma \epsilon AT^4_{amb}
+                    P_a = \sigma \varepsilon AT^4_{amb}
                 \end{equation}
 
     \section{Numero di Avogadro} Una mole di una sostanza contiene $N_a$
