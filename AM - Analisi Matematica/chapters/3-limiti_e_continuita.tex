@@ -242,14 +242,31 @@ per $x \rightarrow c$.
 	Allora esiste $c \in (a,b)$ tale che $f(c)=0$.
 	Se f è anche strettamente monotna, lo zero è unico.
 }
-\subsection*{Teorema di Weierstrass}
+
+\subsection{Teorema di De l'Hopital}
+Il teorema di de l'Hoptial è un teorema sui limiti di funzioni reali di variabile reale che,
+sotto opportune ipotesi, consente di calcolare il limite di un rapporto di funzioni considernado il limite del rapport tra la derivata del numeratore e la derivata del denominatore.
+
 \definizione{
-	Sia $f: [a,b] \rightarrow \mathbb{R}$ una funzione continua.
-	Allora f assume massimo e minimo in [a,b], ossia: esistono $x_m, \, x_M \in [a,b]$
-	tali che $f(x_m) \leq f(x) \leq f(x_M)$ per ogni $x \in [a,b]$.
-	\\ Si dice che $x_m$ è punto di minimo per f, e $m=f(x_m)$ è il minimo di f;
-	\\ analogamente $x_M$ è punto di massimo, e $M = f(x_M)$ è il massimo di f.
+	Siano $f,g$ due funzioni, derivabili in un certo intervallo $(a,b)$.
+	Se:
+	\begin{itemize}
+		\item $g'(x) \neq 0 \forall x\in (a,b)$
+		\item $\lim_{x\to x_0} \frac{f(x)}{g(x)} = [\frac{0}{0}] \vee \lim_{x\to x_0} \frac{f(x)}{g(x)} = [\frac{\infty}{\infty}]$
+	\end{itemize}
+	E se il limite $\lim_{x\to x_0} \frac{f'(x)}{g'(x)}$ esiste \emph{finito o infinito}
+	\\\textbf{Allora} esiste il limite del rapporto delle due funzioni, e vale la relazione:
+	\[
+		\lim_{x\to x_0} \frac{f(x)}{g(x)} = \lim_{x\to x_0} \frac{f'(x)}{g'(x)}
+	\]
 }
+
+\paragraph*{In pratica}
+Se ho una funzione del tipo $\frac{f(x)}{g(x)}$ il cui limite per un $x_0$ (che può essere un numero o $\pm \infty$)
+mi da una forma di indecisione $[\frac{0}{0}]$ o $[\frac{\infty}{\infty}]$, e la derivata del denominatore è \emph{Sempre $\neq 0$},
+allora per trovare il limite mi basta trovare il limite di $\frac{f'(x)}{g'(x)}$.
+Attenzione, non la derivata di tutta la funzione, ma le derivate (separate) di numeratore e denominatore.
+
 \subsection*{Teorema dei Valori Intermedi}
 \definizione{
 	Se f è continua su [a,b], allora per ogni valore $\lambda$ compreso tra m e M (minimo e massimo di f in [a,b]),
