@@ -1,0 +1,150 @@
+\chapter*{Elettrodinamica}
+
+    \section*{Condensatori}
+        \subsection*{Capacità di un condensatore}
+            \begin{equation*}
+                q = C\Delta V
+            \end{equation*}
+        con $C$ costante di proporzionalità dipendente dalla geometria del 
+        condesaotre. Indica capacità elettrica del condensatore.
+        
+        \subsection*{Calcolo della capacità elettrica di un condensatore} 
+        Procedimento generale:
+            \begin{itemize}
+                \item Si assume che ci sia una carica $q$ sui piatti.
+                \item Si calcola $E$ tra i due piatti in funzione di $q$, con 
+                la legge di Gauss.
+                \item Si calcola $\Delta V$ a partire da $E$
+                \item Si calcola $C$
+            \end{itemize}
+        
+        \subsection*{Capacità elettrica di un condensatore piano}
+            \begin{equation*}
+                C = \frac{\varepsilon_0A}{d}
+            \end{equation*}
+
+        \subsection*{Capacità elettrica di un condensatore cilindrico}
+            \begin{equation*}
+                C = \frac{q}{\Delta V} \implies C = \frac{2\pi\varepsilon_0L}
+                {\ln(\frac{b}{a})}
+            \end{equation*}
+
+        \subsection*{Capacità elettrica di un condensatore sferico}
+            \begin{equation*}
+                C = \frac{q}{\Delta V} \implies C = 4\pi\varepsilon_0
+                    \frac{ab}{b-a}
+            \end{equation*}
+        La capacità per una \textit{sfera isolata} di raggio r sarà:
+            \begin{equation*}
+                C = 4\pi\varepsilon_0r
+            \end{equation*}
+    
+    \section*{Condensatori in Serie e Parallelo} 
+        \subsection*{Condensatori in Serie}
+            \begin{equation*}
+                C_{eq} = \sum_{j = 1}^{n} C_j
+            \end{equation*}
+
+        \subsection*{Condensatori in Parallelo}
+            \begin{equation*}
+                \frac{1}{C_{eq}} = \sum_{j = 1}^{n} \frac{1}{C_j}
+            \end{equation*}
+
+    \section*{Energia potenziale di un condensatore}
+        \begin{equation*}
+            U = \frac{q^2}{2C} = \frac{1}{2}CV^2
+        \end{equation*}
+    La \textbf{densità di energia} $u$, ossia l'energia potenziale per unità di
+     volume, è data da:
+        \begin{equation*}
+            u = \frac{1}{2}\varepsilon_0E^2
+        \end{equation*}
+    
+    \section*{Capacità in presenza di un dielettrico}
+        
+        \subsection*{LEgge di Gauss in presenza di un dielettrico}
+            \begin{equation*}
+                \varepsilon_0 \oint \varepsilon_rR\cdot\,dA = q
+            \end{equation*}
+
+    \section*{Corrente elettrica}
+        \begin{equation*}
+            i = \frac{dq}{dt} \; \Bigg[A = \ \frac{C}{s}\Bigg]
+        \end{equation*}
+
+        \subsection*{Densità di corrente elettrica}
+            \begin{equation*}
+                i = \int J \, dA
+            \end{equation*}
+        
+    \section*{Resistenza}
+        \begin{equation*}
+            R = \frac{V}{i} \; \Bigg[1 \Omega = 1 \frac{V}{A}\Bigg]        
+        \end{equation*}
+        
+        \subsection*{Resistività e conducibilità}
+            \begin{equation*}
+                \rho = \frac{E}{J} = \frac{1}{\sigma}
+            \end{equation*}
+
+        \subsection*{Resistenza in Serie}
+            \begin{equation*}
+                R_{eq} = \sum_{j=1}^{n} R_j
+            \end{equation*}
+
+        \subsection*{Resistenza in Parallelo}
+            \begin{equation*}
+                \frac{1}{R_{eq}} = \sum_{j = 1}^{n} \frac{1}{R_j}
+            \end{equation*}
+
+
+    \section*{Legge di Ohm} La legge di Ohm asserisce che la corrente che scorre
+    attraverso un dispositivo è \textit{sempre} direttamente proporizionale 
+    alla differenza di potenziale applicata al dispositivo stesso
+
+    \section*{Potenza nei Circuiti Elettrici}:
+        \begin{equation*}
+            P = iV
+        \end{equation*}
+
+    \section*{Forza elettromotrice di un generatore di Tensione}
+        \begin{equation*}
+            \xi = \frac{dW}{dq} \; [V]   
+        \end{equation*}
+
+    \section*{Analisi dei circuiti} La variazione di potenziale attraverso una 
+    resistenza nella direzione della corrente è $-iR$; nella direzione opposta
+    è $+iR$. La variazione di potenziale attraverso una generatore f.e.m ideale
+    nella direzione della freccia della f.e.m è $+\xi$; nella direzione opposta
+    è $-\xi$. Il principio di conservazione dell'energia porta alla legge delle
+    maglie (secondo principio di Kirchoff).
+
+    \section*{Legge delle maglie} \textit{La somma algebrica delle variazioni di
+    potenziale incontrate in un giro completo di un qualsiasi circuito deve 
+    essere uguale a zero}.\\
+    La conservazione della carica si esprime nella legge dei nodi (primo 
+    principio di Kirchoff).
+
+    \section*{Legge dei nodi} \textit{La somma algebrica delle variazioni di 
+    potenziale che si dipartono da qualsiasi nodo deve essere uguale alla somma
+    delle correnti che giungono allo stesso nodo}.
+
+    \section*{Circuiti RC}
+        \begin{equation*}
+            q = C\xi(1-e^{\frac{-t}{RC}})
+        \end{equation*}
+    nella quale $C\xi = q_0$ è la carica all'equilibrio e $RC = \tau$ è la 
+    \textbf{costante di tempo capacitiva} del circuito. Durante la carica la 
+    corrente è:
+        \begin{equation*}
+            i = \frac{dq}{dt} = (\frac{\xi}{R})e^{\frac{-t}{RC}}
+        \end{equation*}
+    Quando un condensatore si scarica attraverso una resistenza $R$, la carica
+    del condensatore decade secondo l'espressione:
+        \begin{equation*}
+            q = q_0e^{\frac{-t}{RC}}
+        \end{equation*}
+    Durante la scarica la corrente è:
+        \begin{equation*}
+            i = \frac{dq}{dt} = -\frac{q_0}{RC}e^{\frac{-t}{RC}}
+        \end{equation*}

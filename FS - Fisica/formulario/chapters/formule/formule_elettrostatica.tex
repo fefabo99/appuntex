@@ -1,0 +1,198 @@
+\chapter*{Elettrostatica}
+
+    \section*{Legge di Coulomb}
+        \begin{equation*}
+            F = k\frac{q_1q_2}{r^2}\widehat{r}
+        \end{equation*}
+    Con:
+    \begin{equation*}
+        k = \frac{1}{4\pi\varepsilon_0}
+    \end{equation*}
+    Sostituendo nella Legge di Coulomb otteniamo:
+    \begin{equation*}
+        F = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r^2}\widehat{r}
+    \end{equation*}
+        \subsection*{Principio di sovrapposizione}
+        Se su una particella agiscono più forze di carica, la $F_{tot}$ non 
+        sarà altro che la somma vettoriale di tutte le forze!
+
+        \subsection*{Corrente elettrica}
+            \begin{equation*}
+                i = \frac{dq}{dt} \; [A \cdot s]
+            \end{equation*}
+    
+        \subsection*{La carica è quantizzata} 
+            \begin{equation*}
+                q = ne
+            \end{equation*}
+        dove $e = 1,602\cdot10^{-19} [C]$ è la cosstante elementare, una delle
+        costanti fondamentali della materia.
+        \begin{center}
+            \begin{tabular}{ |c|c| } 
+                \hline
+                Particella & Carica \\
+                \hline
+                Elettrone & $- e$ \\
+                Positrone & $+ e$ \\
+                Protone & $+ e$ \\
+                Antiprotone & $- e$ \\
+                quark & $\pm \frac{1}{3}e \;\; \pm \frac{2}{3}e$ \\
+                Neutrone & $0$ \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+        \section*{Campo Elettrico}
+            \begin{equation*}
+                E = \frac{F}{q_0}
+            \end{equation*}
+
+            \subsection*{Principio di sovrapposizione} 
+                \begin{equation*}
+                    E = \frac{F_0}{q_0} = \frac{F_{01} + F_{02} + \cdots + 
+                    F_{0n}}{q_0} = E_1 + E_2 + \cdots + E_n
+                \end{equation*}
+
+            \subsection*{Campo elettrico generato da una carica lineare} 
+            \begin{itemize}
+                \item \textit{Densità di carica lineare} $\lambda$: numero di 
+                cariche per unità di lunghezza.\\
+                    \begin{equation*}
+                        \lambda = \frac{Q}{m}
+                    \end{equation*}
+                \item \textit{Densità di carica superficiale} $\sigma$: numero 
+                di cariche per unità di superifice.\\
+                    \begin{equation*}
+                        \sigma = \frac{Q}{m^2}
+                    \end{equation*}
+                \item \textit{Densità di carica volumetrica} $\rho$: numero
+                di cariche per unità di volume.\\
+                    \begin{equation*}
+                        \rho = \frac{Q}{m^3}
+                    \end{equation*}
+            \end{itemize}
+
+        \section*{Flusso di Campo Elettrico}
+            \subsection*{Caso 1: superficie piana e parallela con campo $E$
+            uniforme}
+                \begin{equation*}
+                    \Delta\phi = E \Delta A = E \Delta A \cos\Theta 
+                \end{equation*}
+            Che sull'interezza della superficie diventa:
+                \begin{equation*}
+                \phi = \int E\cos\Theta \,dA  = E\cos\Theta\int\,dA = E\cos
+                \Theta A 
+                \end{equation*}
+            \subsection*{Caso 2: superficie chiusa e campo $E$ uniforme}
+                \begin{equation*}
+                    \phi = \oint E \,dA
+                \end{equation*}
+        L'unità di misura del flusso è la seguente:
+                \begin{equation*}
+                    [\phi] = [E][A] = [N] \frac{[m^2]}{[C]}
+                \end{equation*}
+         
+        \section*{Teorema di Gauss}
+            \begin{equation*}
+                \phi = \oint E \, dA = \frac{Q}{\varepsilon_0}
+            \end{equation*}
+        Non hanno alcuna importanza la dimensione e al forma della superficie,
+        l'importante è che sia chiusa.
+
+            \subsection*{Campo elettrico generato da un filo conduttore 
+            infinitamente lungo}
+                \begin{equation*}
+                    E \cdot 2\pi rh = \frac{\lambda h}{\varepsilon_0}
+                    \implies
+                    E = \frac{\lambda}{2\pi\varepsilon_0r}
+                \end{equation*}
+
+            \subsection*{Campo elettrico esterno generato da un conduttore}
+                \begin{equation*}
+                    E = \frac{\sigma}{\varepsilon_0}
+                \end{equation*}
+
+        \section*{Potenziale Elettrico}
+            \begin{equation*}
+                V = \frac{-W_\infty}{q_0} = \frac{U}{q_0}
+            \end{equation*}
+
+            \subsection*{Energia Potenziale Elettrica}
+                \begin{equation*}
+                    U = qV
+                \end{equation*}
+            Se la particella si sposta subendo una variazione di potenziale 
+            $\Delta V$, la variazione di energia potenziale elettrica è:
+                \begin{equation*}
+                    \Delta U = q \Delta V = q (V_f - V_i)
+                \end{equation*}
+            
+        \section*{Energia Meccanica}
+            \begin{equation*}
+                \Delta K = -q \Delta V
+            \end{equation*}
+        Se al contrario è presente una forza applicata che compie lavoro 
+        $w_{app}$ su di essa, la variazione di energia cinetica diventa:
+            \begin{equation*}
+                \Delta K = -q\Delta V + W_{app}
+            \end{equation*}
+        Nel caso particolare in cui $\Delta K = 0$:
+            \begin{equation*}
+                W_{app} = q \Delta V
+            \end{equation*}
+
+        \section*{Superfici Equipotenziali}
+            \subsection*{Calcolo di $V$ a partire da $E$}
+                \begin{equation*}
+                    V_f - V_i = - \int_{i}^{f} E \,ds
+                \end{equation*}
+            Se il punto iniziale è posto all'infinito e $V_i = 0$ si ha, per il
+            potenziale in un punto:
+                \begin{equation*}
+                    V = -\int_{i}^{f} E \,ds
+                \end{equation*}
+            Nel caso particolare di un campo uniforme di modulo $E$, la 
+            differenza di potenziale tra le due linee equipotenziali adiacenti
+            (necessariamente parallele) separate da una distanza $Delta x$ è 
+            data da:
+                \begin{equation*}
+                    \Delta V = -E\Delta x
+                \end{equation*}
+
+        \section*{Potenziale generato da cariche puntiformi}
+            \begin{equation*}
+                V = \frac{1}{4\pi\varepsilon_0}\frac{q}{r}
+            \end{equation*}
+        dove $q$ ha lo stesso segno di $V$. Il potenziale dovuto a una 
+        distribuzione di cariche puntiformi è:
+            \begin{equation*}
+                V = \sum_{i = 1}^{n}V_i = \frac{1}{4\pi\varepsilon_0}
+                \sum_{i = 1}^{n}\frac{q_i}{r_i}
+            \end{equation*}
+
+        \section*{Potenziale elettrico generato da una carica continua}
+            \begin{equation*}
+                V = \frac{1}{4\pi\varepsilon_0}\int \frac{dq}{r}
+            \end{equation*}
+        dove l'integrale è esteso all'intera distribuzione.
+
+        \section*{Calcolo di $E$ partendo da $V$}
+            \begin{equation*}
+                E_s = - \frac{\partial V}{\partial s}
+            \end{equation*}
+        Si possono definire le componenti di $E$ secondo $x$, $y$ e $z$ nel 
+        seguente modo:
+            \begin{align*}
+                E_x &= - \frac{\partial V}{\partial x}\\
+                E_y &= - \frac{\partial V}{\partial y}\\
+                E_z &= - \frac{\partial V}{\partial z}
+            \end{align*}
+        Se il campo $E$ è uniforme, la prima equazione si riduce a:
+            \begin{equation*}
+                E = - \frac{\Delta V}{\Delta s}
+            \end{equation*}
+
+        \section*{Energia Potenziale di un sistema di cariche puntiformi} 
+            \begin{equation*}
+                U = L = \frac{1}{4\pi\varepsilon_0}\frac{q_1q_2}{r}
+            \end{equation*}

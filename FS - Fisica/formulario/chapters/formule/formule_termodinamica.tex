@@ -1,0 +1,177 @@
+\chapter*{Termodinamica}
+
+    \section*{Principio Zero della Termodinamica} Se due corpi $A$ e $B$ si 
+    trovano in equilibrio termico con un terzo corpo $T$, allora sono in 
+    reciproco quilibrio termico.
+
+    \section*{Dilatazione Termica}
+            \begin{equation*}
+                \Delta l = \alpha l \Delta T
+            \end{equation*}
+        Nella quale $\alpha$ è il \textbf{coefficiente di dilatazione lineare}.
+
+        \subsection*{Dilatazione Volumica}
+            \begin{equation*}
+                \Delta V = \beta V \Delta T
+            \end{equation*}
+        dove $\beta = 3\alpha$ è il \textbf{coefficiente di dilatazione 
+        volumica} della sostanza.
+
+    \section*{Calore}
+        \begin{equation*}
+            1 \; cal = 4,1868 \; J
+        \end{equation*}
+
+        \subsection*{Capacità Termica}
+            \begin{equation*}
+                Q = C \Delta T = C (T_2 - T_1)
+            \end{equation*}
+        dove $C$ è la \textbf{capacità termica} dell'oggetto.
+
+        \subsection*{Calore Specifico}
+            \begin{equation*}
+                Q = cm \Delta T
+                \implies
+                c = \frac{Q}{m \Delta T}
+             \; \Bigg[\frac{J}{K \cdot Kg}\Bigg]
+            \end{equation*}
+
+        \subsection*{Calore Latente}
+            \begin{equation*}
+                Q = Lm \implies L = \frac{Q}{m}
+            \end{equation*}
+        Il \textbf{calore latente di evaporazione} $L_v$ è la quantità di 
+        energia per unità di massa che deve essere fornita per far evaporare un
+        liquido o che deve essere \textbf{sottratta} per liquefare un gas. Il 
+        \textbf{calore latente di fusione} $L_f$ è la quantità di energia per 
+        unità di massa ched eve essere fornita per fondere un solido o che deve
+        essere sottratta per solidifcare un liquido.
+        
+    \section*{Lavoro associato ad una variazione di Volume} 
+        \begin{equation*}
+            L = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
+        \end{equation*}
+    L'integrazione è necessaria perché la pressione $p$ può cambiare durante la
+    varizione del volume.
+
+    \section*{Primo Principio della Termodinamica}
+        \begin{align*}
+            \Delta E_{int} &= E_{int, f} - E_{int, i} = \Delta Q - \Delta W \\
+            d E_{int} &= d Q - d W
+        \end{align*}
+
+        \subsection*{Applicazioni del Primo Principio} Il primo principio della 
+        termodinamica trova applicazione in numerosi casi particolari, tra cui:
+            \begin{itemize}
+                \item \textit{Trasformazioni Isocore ($V$ costante)}:
+                    $W = 0 \implies \Delta E_{int} = \Delta Q$
+                \item \textit{Trasformazioni Isobara ($p$ costante)}:
+                    $W = p(V_2-V_1)$, $Q = nc_p\Delta T$
+                \item \textit{Trasformazioni Isoterma ($T$ costante)}:
+                    $pV = \text{cost}$, $W = nRT\ln(\frac{V_f}{V_i})$, 
+                    $\Delta E_{int} = 0 \; Q = + W$
+                \item \textit{Trasformazioni Cicliche}:
+                    $\Delta E_{int} = 0 \implies \Delta Q = \Delta W$
+                \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
+                        di trasformazioni adiabatiche nelle quali non viene 
+                        compiuto alcun lavoro sul sistema o da parte di esso.
+                        Ad esempio se abbiamo due contenitori collegati isolati 
+                        dall'esterno. Nel primo c'è un gas mentre il secondo è
+                        vuoto. Nel momento in cui apriamo il rubinetto che 
+                        collega i due, il gas inizia ad occupare lo spazio 
+                        vuoto ma non cambiando calore non compie lavoro 
+                        (siccome ci troviamo in un sistema isolato), inoltre,
+                        la sua espansione non è contratasta da alcuna pressione
+                        . Siamo quindi nella seguente situazione:
+                        $\Delta Q = \Delta L = 0 \implies \Delta E_{int} = 0$
+                \item \textit{Trasformazioni Adiabatiche}: 
+                        $Q=0 \implies \Delta E_{int} = -\Delta W \;
+                        pV^\gamma = \text{cost}
+                        $ con $\gamma = \frac{c_p}{c_v} \implies c_p = c_v + R
+                        \implies \gamma = \frac{c_v + R}{c_v}$. Ricodiamo 
+                        inoltre che $c_v = $ (per tipo di gas):
+                        \begin{itemize}
+                            \item Monoatomico: $\frac{3}{2} R$
+                            \item Biatomico: $\frac{5}{2} R$
+                            \item Poliatomico: $3 R$
+                        \end{itemize}
+            \end{itemize}
+
+        \section*{Conduzione, Convezione ed Irraggiamento} 
+
+            \subsection*{Conduzione}
+                \begin{equation*}
+                    P_c = \frac{Q}{t} = kA\frac{T_1 - T_2}{l}
+                \end{equation*}
+
+            \paragraph{Resistenza termina alla conduzione}
+                \begin{equation*}
+                    R = \frac{l}{k}
+                \end{equation*}
+
+            \subsection*{Convezione} La convezione ha luogo quando le differenze
+            di temperatura causano il moto che trasferisce calore all'interno 
+            di un fluido.
+
+            \subsection*{Irraggiamento}
+                \begin{equation*}
+                    P_r = \sigma \epsilon AT^4
+                \end{equation*}
+            Dove $\sigma = 5,6703 \cdot 10^{-8} \; [\frac{W}{m^2 \cdot K^4}
+            ]$ è la costante di Stefan-Boltzmann, $\epsilon$ è l'emittanza
+            caratteristica della superficie, $A$ è l'area irraggiante e $T$ la 
+            temperatura superficiale in Kelvin. La potenza $P_a$ che un oggetto
+            assorbe per via radiativa dell'ambiente a temperatura uniforme
+            $T_{amb}$ (in Kelvin) è:
+                \begin{equation*}
+                    P_a = \sigma \epsilon AT^4_{amb}
+                \end{equation*}
+
+    \section*{Numero di Avogadro}
+        \begin{equation*}
+            N_a = 6,022 \cdot 10^{23}
+        \end{equation*}
+
+        \subsection*{Massa molare}
+            \begin{equation*}
+                M = mN_a
+            \end{equation*}
+        
+        \subsection*{Numero di moli}
+            \begin{equation*}
+                n = \frac{N}{N_A} = \frac{M_{cam}}{M} = \frac{M_{cam}}{mN_A}
+            \end{equation*}
+
+    \section*{Gas ideale o Gas perfetti} 
+        \begin{equation*}
+            pV = nRT
+        \end{equation*}
+    Con:
+        \begin{itemize}
+            \item $p$ Pressione del cilindro.
+            \item $n$ Numero di moli.
+            \item $R$ Costante dei gas $= 8,31 \; \frac{J}{mol \cdot K}$
+            \item $T$ Temperatura del cilindro.
+        \end{itemize}
+    Questa legge si può scrivere anche come:
+        \begin{equation*}
+            pV = NkT
+        \end{equation*}
+    Dove $k$ è la costante di Boltzmann e vale:
+        \begin{equation*}
+            k = \frac{R}{N_A} = 1,38 \cdot 10^{-23} \; \Bigg[\frac{J}{K}\Bigg]
+        \end{equation*}
+        \subsection*{Equazione di stato per i gas ideali DA VERIFICARE}
+            \begin{equation*}
+                (p + \frac{an^2}{v^2})(V - nb) = nRT
+            \end{equation*}
+
+    \section*{Pressione, temperatura e velocità molecolare}
+            \begin{equation*}
+                p = \frac{nMv^2_{qm}}{3V}
+            \end{equation*}
+    Dove $v_{qm} = \sqrt[]{v^2}$ è la \textbf{velocità quadratica media} delle
+    molecole del gas. Con l'equazione dei gas perfetti si ha:
+            \begin{equation*}
+                v_{qm} = \sqrt[]{\frac{3RT}{M}}
+            \end{equation*}

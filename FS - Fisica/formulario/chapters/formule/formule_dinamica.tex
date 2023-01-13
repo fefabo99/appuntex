@@ -1,0 +1,231 @@
+\chapter*{Dinamica}
+
+    \section*{Principi della Dinamica - Leggi di Newton}
+
+        \subsection*{Prima Legge di Newton} Se la somma delle forze che agiscono 
+        su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, 
+        mentre se è in moto, continuerà a muoversi di moto rettilineo uniforme.
+
+        \subsection*{Seconda Legge di Newton} La forza agente su un corpo è 
+        direttamente proporzionale all'accelerazione e ne condivide la 
+        direzione e il verso, ed è direttamente proporzionale alla massa. Di 
+        contro l'accelerazione cui è soggetto il corpo è direttamente 
+        proporzionale alla forza e inversamente proporzionale rispetto alla 
+        massa.
+
+        \begin{equation*}
+            \vec{F}_{net} = m \vec{a} \; \Bigg[N = \frac{Kg \cdot m}
+            {s^2} \Bigg]
+        \end{equation*}
+
+        \subsection*{Terza Legge di Newton} Se un corpo A esercita una forza su 
+        un corpo B, allora il corpo B esercita su A una forza uguale e 
+        contraria.
+
+        \begin{equation*}
+            F_{ab} = - F_{ba}
+        \end{equation*}
+
+        \begin{quote}
+            Attenzione! Le forze hanno modulo uguale ma con segno vettoriale 
+            opposto!
+        \end{quote}
+
+    \section*{Forza Elastica}
+        \begin{equation*}
+            F = -kx
+        \end{equation*}
+
+    \section*{Carrucola}
+        \begin{equation*}
+            \begin{cases}
+                F_{y1} = T - m_1g \\
+                F_{y2} = m_2g - T
+            \end{cases}
+        \end{equation*}
+
+    \section*{Attrito Statico e Dinamico}
+        \begin{itemize}
+            \item \textbf{Attrito statico}: agente quando il corpo è fermo, 
+            impedendo lo spostamento iniziale.
+            \item \textbf{Attrito dinamico}: agente da quando il corpo ha 
+            appena compiuto lo spostamento iniziale ed è in movimento.
+        \end{itemize}
+    Le formule sono per l'attrito statico:
+        \begin{equation*}
+            f_{s, max} = \mu_sF_N \;\Bigg[N = \frac{Kg \cdot m} {s^2} \Bigg]
+        \end{equation*}
+        Mentre per quello dinamico:
+        \begin{equation*}
+            f_{k} = \mu_kF_N \;\Bigg[N = \frac{Kg \cdot m} {s^2} \Bigg]
+        \end{equation*}
+    
+    \section*{Resistenza di un corpo}
+        \begin{equation*}
+            D = \frac{1}{2}CA\rho v^2
+        \end{equation*}
+        Con:
+        \begin{itemize}
+            \item C : Coefficiente di resistenza aerodinamica.
+            \item A : Area efficace della sezione trasversale del corpo.
+            \item $\rho$ : densità dell'aria
+            \item v : velocità.
+        \end{itemize}
+
+    \section*{Lavoro}
+
+        \begin{equation*}
+            W = Fd = Fd \cos \Theta \;\Bigg[J = N \cdot m = 
+            \frac{Kg \cdot m^2}{s^2}\Bigg]
+        \end{equation*}
+
+        \subsection*{Lavoro compiuto dalla Forza Gravitazionale}
+            \begin{equation*}
+                F = mgd\cos \Theta = mgd \cos 180 = - mgd
+            \end{equation*}
+
+        \subsection*{Lavoro compiuto dalla Forza Elastica} 
+            \begin{equation*}
+                W_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f \;[J]
+            \end{equation*}
+
+    \section*{Energia Cinetica}
+        \begin{equation*}
+            K = \frac{1}{2}mv^2 \;[J]
+        \end{equation*}
+
+        \subsection*{Teorema dell'Energia Cinetica}
+            \begin{equation*}
+                \Delta K = K_f - K_i = W
+            \end{equation*}
+
+        \subsection*{Energia Cinetica del Moto Armonico Semplice}
+            \begin{equation*}
+                K = \frac{1}{2}mv^2 = \frac{1}{2}m\omega^2A^2\sin^2
+                (\Theta + \omega t)
+            \end{equation*}
+
+    
+    \section*{Potenza}
+        \begin{equation*}
+            P = \frac{W}{\Delta t} \; \Bigg[W \textsf{  Watt} = \frac{J}{s} 
+            = \frac{Kg \cdot m^2}{s^2} \cdot \frac{1}{s} 
+            = \frac{Kg \cdot m^2}{s^3} \Bigg]
+        \end{equation*}
+        \begin{equation*}
+            P = \frac{dL}{dt} = \frac{F \cos \Theta dx}{dv} 
+            = F \cos \Theta (\frac{dx}{dt})
+        \end{equation*}
+        Ma sappiamo benissimo che $\frac{dx}{dv}$ non è altro che la definzione 
+        di velocità. Possiamo quindi riscriverla in modo più semplice:
+        \begin{equation*}
+            P = Fv\cos\Theta
+        \end{equation*}
+        Ovvero il \textbf{prodotto scalare} tra $F$ e $v$ (dove $v$ è la 
+        velocità della particella). Possiamo quindi scrivere che la Potenza 
+        Istantanea di una paricella a velocità $v$ non è altro che:
+        \begin{equation*}
+            P = F \cdot v
+        \end{equation*}
+
+    \section*{Energia Potenziale}
+        \begin{equation*}
+            \Delta U = - W \;[J]
+        \end{equation*}
+
+        \subsection*{Energia Potenziale Gravitazionale}
+        \label{en_po_gr}
+            \begin{equation*}
+                \Delta U = mg(y_f - y_i) = mg \Delta y
+            \end{equation*}
+
+        \subsection*{Energia Potenziale Elastica}
+            \begin{equation*}
+                U(x)     = \frac{1}{2}kx^2
+            \end{equation*}
+
+        \subsection*{Energia Potenziale del Moto Armonico Semplice}
+            \begin{equation*}
+                U = \frac{1}{2}kx^2 = \frac{1}{2}kA^2\cos^2(\Theta + \omega t)
+            \end{equation*}
+
+    \section*{Energia Meccanica}
+        \begin{equation*}
+            E_m = K + U
+        \end{equation*}
+
+        \subsection*{Principio di conservazione dell'Energia Meccanica}
+            \begin{equation*}
+                \Delta E_m = \Delta K + \Delta U = 0
+            \end{equation*}
+
+        \paragraph{Principio esteso}
+            \begin{equation*}
+                \Delta E_m = W_{nc}
+            \end{equation*}
+        
+
+    \section*{Moto Armonico e Pendolo} \ref{moto_armonico}
+        \begin{equation*}
+            x(t) = A \cos(\Theta_0 + \omega t)
+        \end{equation*}
+        ma con:
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{k}{m}}
+        \end{equation*}
+        ricordando l'equazione dei un sistema molla-blocco:
+        \begin{equation*}
+            F = -kx
+        \end{equation*}
+        
+        \paragraph{Il pendolo} Il pendolo può essere descritto tramite il
+        Moto Circolare Uniformemente Accelerato:
+        \begin{equation*}
+            \omega = \sqrt[]{\frac{g}{L}}
+        \end{equation*}
+    
+\newpage
+    
+    \section*{Momento Lineare}
+        \begin{equation*}
+            p = mv \; \Bigg[Kg \cdot \frac{m}{s}\Bigg] 
+        \end{equation*}
+
+    \section*{Impulso}
+        \begin{equation*}
+            I = \Delta p
+        \end{equation*}
+
+        \paragraph{Connessione con il Momento Lineare} Sia una forza $F = F(t)$
+        agente su una particella. Applicando la II Legge di Newton:
+
+        \begin{equation*}
+            F = \frac{dp}{dt} \implies dp = F dt
+        \end{equation*}
+        \begin{equation*}
+            \Delta p = p_f - p_i = \int_{t_f}^{t_i} F \,dt = I 
+        \end{equation*}
+    
+    \section*{Urti}
+    \begin{itemize}
+        \item \textbf{Urti elastici}: Se nell'urto tra due corpi l'Energia 
+        Cinetica totale del sistema non cambia ma si conserva completamente.
+        \item \textbf{Urti anaelastici}: L'Energia Cinetica non si conserva ma 
+        parte viene dispersa in calore o suono (ad esempio).
+    \end{itemize} 
+
+        \subsection*{Urti Anaelastici}
+            \begin{equation*}
+                p_{1,i} + p_{2,i} = p_{1,f} + p_{2,f}
+            \end{equation*}
+        ovvero:
+            \begin{equation*}
+                m_1v_{1,i} + m_2v_{2,i} = m_1v_{1,f} + m_2v_{2,f}
+            \end{equation*}
+        Nel caso di un \textbf{urto completamente anaelastico} uno dei due 
+        corpi sarà inizalmente fermo (prendendo il nome di bersaglio):
+        \begin{equation*}
+            m_1v_{1,i} = (m_1+m_2)V
+        \end{equation*}
+        
+
