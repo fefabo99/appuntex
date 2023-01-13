@@ -113,28 +113,10 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
         termodinamica trova applicazione in numerosi casi particolari, tra cui:
             \begin{itemize}
                 \item \textit{Trasformazioni Isocore ($V$ costante)}
-                    \begin{align*}
-                        W &= 0 \\ 
-                        \Delta E_{int} &= \Delta Q
-                    \end{align*}
-                \item \textit{Trasformazioni Isobara ($p$ costante)}:
-                    \begin{align*}
-                        W &= p(V_2-V_1) \\
-                        Q &= nc_p\Delta T
-                    \end{align*}
-                \item \textit{Trasformazioni Isoterma ($T$ costante)}:
-                    \begin{align*}
-                        pV &= \text{cost} \\
-                        W &= nRT\ln(\frac{V_f}{V_i}) \\
-                    \Delta E_{int} &= 0\\ 
-                    Q &= + W
-                    \end{align*}
-                    
-                \item \textit{Trasformazioni Cicliche}:
-                    \begin{align*}
-                        \Delta E_{int} &= 0 \\ 
-                        \Delta Q &= \Delta W
-                    \end{align*}
+                \item \textit{Trasformazioni Isobara ($p$ costante)}
+
+                \item \textit{Trasformazioni Isoterma ($T$ costante)}
+                \item \textit{Trasformazioni Cicliche}
                 \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
                         di trasformazioni adiabatiche nelle quali non viene 
                         compiuto alcun lavoro sul sistema o da parte di esso.
@@ -151,13 +133,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                             \Delta E_{int} &= 0
                         \end{align*}
                         
-                \item \textit{Trasformazioni Adiabatiche}: 
-                        \begin{align*}
-                            Q &=0 \implies \Delta E_{int} = -\Delta W \\
-                        pV^\gamma &= \text{cost} \\
-                        \gamma &= \frac{c_p}{c_v} \implies c_p = c_v + R \\
-                        \gamma &= \frac{c_v + R}{c_v}
-                        \end{align*}
+                \item \textit{Trasformazioni Adiabatiche}:
                         Ricodiamo inoltre che $c_v = $ (per tipo di gas):
                         \begin{itemize}
                             \item Monoatomico: $\frac{3}{2} R$
@@ -165,6 +141,55 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                             \item Poliatomico: $3 R$
                         \end{itemize}
             \end{itemize}
+
+
+            
+            \begin{tabular}{ |c|c|c|c|c|c|c| } 
+                \hline
+                    \textbf{Tipo} & $p$ & $V$ & $T$ & $Q$ & $W$ & $E_{int}$ \\
+                \hline
+                    Isocora 
+                        & - 
+                        & cost 
+                        & - 
+                        & $Q = C\Delta T$ 
+                        & $W = 0$
+                        & $E_{int} = Q$ \\
+                \hline
+                    Isobara
+                        & cost
+                        & - 
+                        & - 
+                        & $Q = nc_p\Delta T$
+                        & $W = p(V_2 - V_1)$
+                        & $E_{int}$ \\
+                \hline
+                    Isoterma
+                        & -
+                        & - 
+                        & cost
+                        & $Q = + W$
+                        & $W = nRT\ln(\frac{V_f}{V-i})$
+                        & $E_{int} = 0$ \\
+                \hline
+                    Adiabatica
+                        & -
+                        & - 
+                        & -
+                        & $Q = 0$
+                        & $W = nc_v(T_2 - T_1)$
+                        & $E_{int} = -W$ \\
+                \hline
+                    Ciclica
+                        & -
+                        & - 
+                        & -
+                        & $Q = W$
+                        & $W = Q$
+                        & $E_{int} = 0$ \\
+                \hline
+            \end{tabular}
+            
 
         \section{Conduzione, Convezione ed Irraggiamento} Sono tre tipi di 
         trasmissione del calore, ognuno funzionante in modo differente 
