@@ -91,6 +91,7 @@ $$T_f(x) = f(0) + f'(0)x + \frac{f''(0)}{2!}x^2 +...+ \frac{f^{(k)}(0)}{k!}x^k$$
 Nota che quando si chiede il "polinomio di McLaurin del secondo ordine" ci si ferma alla derivata seconda, del terzo ordine alla terza e così via.
 
 \section{Teorema di Rolle}
+\definizione{
 Sia $f[a,b]\rightarrow \mathbb{R}$ una funzione continua in $[a,b]$ e
 derivabile in $[a,b]$. Se la funzione assume lo stesso valore agli estremi
 dell'intervallo, ossia:
@@ -100,8 +101,13 @@ dell'intervallo, ossia:
 Allora esiste almeno un punto $x_0 \in (a, b)$ tale che:
 \[
 	f'(x_0) = 0
-\]
-\paragraph*{Le 3 condizioni da controllare negli esercizi}
+\]}
+
+\paragraph*{In poche parole}
+Se una funzione (continua e derivabile in tuttto l'intervallo) assume lo stesso valore ai due estremi di un intervallo,
+significa che ci sarà \emph{almeno un punto} in cui la derivata si annulla.
+
+\paragraph*{Gli esercizi}
 Quando in un esercizio ci viene richiesto che la funzione soddisfi le ipotesi del
 teorema di Rolle devo verificare 3 condizioni:
 \begin{enumerate}
@@ -113,16 +119,22 @@ Se viene richiesto di trovare il punto c dove $f'(c) = 0$, allora devo
 sostituire c nella funzione derivata e porla $= 0$. Infine ricavo c stessa.
 
 \section{Teorema di Lagrange}
+\definizione{
 Sia $f[a,b]\rightarrow \mathbb{R}$ una funzione continua in $[a,b]$ e derivabile 
 in $(a,b)$. Allora esiste almeno un punto $x_0$ interno all'intervallo $(a,b)$ tale che:
 \[
 	f(b) - f(a) = f'(x_0)(b-a)
 \]
-\paragraph*{Le 2 condizioni da controllare}
+}
+\paragraph{In poche parole} chiedere se una funzione rispetti le ipotesi di Lagrange è come
+chiedere di verificare se una funzione è continua e derivabile.
+
+\paragraph*{Gli esercizi}
+Quando in un esercizio ci viene richiesto di controllare che la funzione soddisfi le ipotesi del \emph{Teorema di Lagrange},
+devo verificare 2 condizioni:
 \begin{enumerate}
 	\item Funziona continua in $[a,b]$
 	\item Funzione derivabile in $(a,b)$
 \end{enumerate}
-In poche parole chiedere se una funzione rispetti le ipotesi di Lagrande è come
-chiedere di verificare se una funzione è continua e derivabile.
+
 
