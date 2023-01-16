@@ -49,7 +49,7 @@
         
     \section*{Lavoro associato ad una variazione di Volume} 
         \begin{equation*}
-            L = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
+            W = \int_{V_i}^{V_f} dW =  \int_{V_i}^{V_f} p \,dV  
         \end{equation*}
     L'integrazione è necessaria perché la pressione $p$ può cambiare durante la
     varizione del volume.
@@ -63,32 +63,13 @@
         \subsection*{Applicazioni del Primo Principio} Il primo principio della 
         termodinamica trova applicazione in numerosi casi particolari, tra cui:
             \begin{itemize}
-                \item \textit{Trasformazioni Isocore ($V$ costante)}:
-                    $W = 0 \implies \Delta E_{int} = \Delta Q$
-                \item \textit{Trasformazioni Isobara ($p$ costante)}:
-                    $W = p(V_2-V_1)$, $Q = nc_p\Delta T$
-                \item \textit{Trasformazioni Isoterma ($T$ costante)}:
-                    $pV = \text{cost}$, $W = nRT\ln(\frac{V_f}{V_i})$, 
-                    $\Delta E_{int} = 0 \; Q = + W$
-                \item \textit{Trasformazioni Cicliche}:
+                \item \textit{Trasformazioni Isocore ($V$ costante)}
+                \item \textit{Trasformazioni Isobara ($p$ costante)}
+                \item \textit{Trasformazioni Isoterma ($T$ costante)}
+                \item \textit{Trasformazioni Cicliche}
                     $\Delta E_{int} = 0 \implies \Delta Q = \Delta W$
-                \item \textit{Trasformazioni ad Espansione Libera}: si tratta 
-                        di trasformazioni adiabatiche nelle quali non viene 
-                        compiuto alcun lavoro sul sistema o da parte di esso.
-                        Ad esempio se abbiamo due contenitori collegati isolati 
-                        dall'esterno. Nel primo c'è un gas mentre il secondo è
-                        vuoto. Nel momento in cui apriamo il rubinetto che 
-                        collega i due, il gas inizia ad occupare lo spazio 
-                        vuoto ma non cambiando calore non compie lavoro 
-                        (siccome ci troviamo in un sistema isolato), inoltre,
-                        la sua espansione non è contratasta da alcuna pressione
-                        . Siamo quindi nella seguente situazione:
-                        $\Delta Q = \Delta L = 0 \implies \Delta E_{int} = 0$
-                \item \textit{Trasformazioni Adiabatiche}: 
-                        $Q=0 \implies \Delta E_{int} = -\Delta W \;
-                        pV^\gamma = \text{cost}
-                        $ con $\gamma = \frac{c_p}{c_v} \implies c_p = c_v + R
-                        \implies \gamma = \frac{c_v + R}{c_v}$. Ricodiamo 
+                \item \textit{Trasformazioni ad Espansione Libera}
+                \item \textit{Trasformazioni Adiabatiche}: Ricodiamo 
                         inoltre che $c_v = $ (per tipo di gas):
                         \begin{itemize}
                             \item Monoatomico: $\frac{3}{2} R$
@@ -96,6 +77,52 @@
                             \item Poliatomico: $3 R$
                         \end{itemize}
             \end{itemize}
+
+            \begin{tabular}{ |c|c|c|c|c|c|c| } 
+                \hline
+                    \textbf{Tipo} & $p$ & $V$ & $T$ & $Q$ & $W$ & $E_{int}$ \\
+                \hline
+                    Isocora 
+                        & - 
+                        & cost 
+                        & - 
+                        & $Q = C\Delta T$ 
+                        & $W = 0$
+                        & $E_{int} = Q$ \\
+                \hline
+                    Isobara
+                        & cost
+                        & - 
+                        & - 
+                        & $Q = nc_p\Delta T$
+                        & $W = p(V_2 - V_1)$
+                        & $E_{int}$ \\
+                \hline
+                    Isoterma
+                        & -
+                        & - 
+                        & cost
+                        & $Q = + W$
+                        & $W = nRT\ln(\frac{V_f}{V_i})$
+                        & $E_{int} = 0$ \\
+                \hline
+                    Adiabatica
+                        & -
+                        & - 
+                        & -
+                        & $Q = 0$
+                        & $W = nc_v(T_2 - T_1)$
+                        & $E_{int} = -W$ \\
+                \hline
+                    Ciclica
+                        & -
+                        & - 
+                        & -
+                        & $Q = W$
+                        & $W = Q$
+                        & $E_{int} = 0$ \\
+                \hline
+            \end{tabular}
 
         \section*{Conduzione, Convezione ed Irraggiamento} 
 
@@ -115,16 +142,16 @@
 
             \subsection*{Irraggiamento}
                 \begin{equation*}
-                    P_r = \sigma \epsilon AT^4
+                    P_r = \sigma \varepsilon AT^4
                 \end{equation*}
             Dove $\sigma = 5,6703 \cdot 10^{-8} \; [\frac{W}{m^2 \cdot K^4}
-            ]$ è la costante di Stefan-Boltzmann, $\epsilon$ è l'emittanza
+            ]$ è la costante di Stefan-Boltzmann, $\varepsilon$ è l'emittanza
             caratteristica della superficie, $A$ è l'area irraggiante e $T$ la 
             temperatura superficiale in Kelvin. La potenza $P_a$ che un oggetto
             assorbe per via radiativa dell'ambiente a temperatura uniforme
             $T_{amb}$ (in Kelvin) è:
                 \begin{equation*}
-                    P_a = \sigma \epsilon AT^4_{amb}
+                    P_a = \sigma \varepsilon AT^4_{amb}
                 \end{equation*}
 
     \section*{Numero di Avogadro}

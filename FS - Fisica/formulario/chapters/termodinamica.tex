@@ -74,7 +74,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
             \begin{equation}
                 Q = Lm \implies L = \frac{Q}{m}
             \end{equation}
-        Il \textbf{calore latente di evaporazione} $L_v$ è la quantità di 
+        Il \textbf{calore latente di evaporazione} $L_v$ è la quantità di  
         energia per unità di massa che deve essere fornita per far evaporare un
         liquido o che deve essere \textbf{sottratta} per liquefare un gas. Il 
         \textbf{calore latente di fusione} $L_f$ è la quantità di energia per 
@@ -87,10 +87,37 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
     riduce da un volume iniziale $V_i$ a un volume finale $V_f$ può essere 
     calcolata con:
         \begin{equation}
-            W = \int_{V_i}^{V_f} dL =  \int_{V_i}^{V_f} p \,dV  
+            W = \int_{V_i}^{V_f} dW =  \int_{V_i}^{V_f} p \,dV  
         \end{equation}
     L'integrazione è necessaria perché la pressione $p$ può cambiare durante la
     varizione del volume.
+        \subsection{Lavoro a temperatura costante e a pressione costante} 
+        Applicando la legge dei gas perfetti \ref{gasp} possiamo riscrivere 
+        la pressione nel seguente modo:
+            \begin{equation*}
+                W =  \int_{V_i}^{V_f} p \,dV =  \int_{V_i}^{V_f} 
+                \frac{nRT}{V}\,dV 
+            \end{equation*}
+        Considerando una espansione \textit{isoterma}, la temperatura deve
+        rimanere costante, quindi:
+            \begin{align*}
+                W &= \int_{V_i}^{V_f}\frac{nRT}{V}\,dV \\
+                &= nRT \int_{V_i}^{V_f}\frac{dV}{V} 
+                = nRT \Bigg[ \ln V \Bigg]_{V_i}^{V_f}
+            \end{align*}
+        da cui:
+            \begin{equation}
+                W = nRT \ln \frac{V_f}{V_i}
+            \end{equation}
+        Se considerassimo invece una espansione \textit{isobara}, ovvero dove 
+        la pressione rimane costante, il lavoro risultante sarà:
+            \begin{equation}
+                W = p(V_f - V_i)
+            \end{equation}
+        Osservando bene questa formula, affiancata ad un grafico e
+        Pressione(y)-Volume(x), notiamo come la definzione di lavoro come 
+        integrale (area sottesa) si riduce all'area di un rettangolo 
+        ($b\cdot h$).
 
     \section{Primo Principio della Termodinamica} Il principio di conservazione
     dell'energia per una campione di sostanza che scambia energia con 
@@ -129,7 +156,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         la sua espansione non è contratasta da alcuna pressione
                         . Siamo quindi nella seguente situazione:
                         \begin{align*}
-                            \Delta Q &= \Delta L = 0 \\
+                            \Delta Q &= \Delta W = 0 \\
                             \Delta E_{int} &= 0
                         \end{align*}
                         
@@ -169,7 +196,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         & - 
                         & cost
                         & $Q = + W$
-                        & $W = nRT\ln(\frac{V_f}{V-i})$
+                        & $W = nRT\ln(\frac{V_f}{V_i})$
                         & $E_{int} = 0$ \\
                 \hline
                     Adiabatica
@@ -252,9 +279,9 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                 n = \frac{N}{N_A} = \frac{M_{cam}}{M} = \frac{M_{cam}}{mN_A}
             \end{equation}
 
-    \section{Gas ideale o Gas perfetti} Un gas \textit{ideale} o \textit{
-        perfetto} è quello per il quale la pressione $p$, il volume $V$ e la 
-        temperatura $T$ sono correlati da:
+    \section{Gas ideale o Gas perfetti} \label{gasp} Un gas \textit{ideale} o 
+        \textit{ perfetto} è quello per il quale la pressione $p$, il volume 
+        $V$ e la temperatura $T$ sono correlati da:
         \begin{equation}
             pV = nRT
         \end{equation}
