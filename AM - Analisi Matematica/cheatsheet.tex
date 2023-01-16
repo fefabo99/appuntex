@@ -118,7 +118,8 @@ Se una serie converge assolutamente, allora converge.
 In questo caso è necessario applicare la definzione di serie, cioè la successione delle somme 
 parziali. Devo quindi manualmente sostituire n=1, n=2, n=3, ...
 fino a quando non riconosco il pattern della serie.
-
+\\ \textbf{Ricordati di non semplificare Numeratore e Denominatore!},
+mantenendo i numeri sostituiti sarà più facile scrivere il carattere della serie.
 \section*{Limiti}
 
 
@@ -330,6 +331,12 @@ $$\int f(g(x))g'(x) dx$$
 	\item Sostituisco $y\to g(x)$
 \end{enumerate}
 
+\paragraph*{Formula Media Integrale}
+Considerata f limitata e integrabile su un intervallo $[a,b]$
+\begin{equation*}
+	M(f,[a,b])=\frac{1}{b-a}\int_a^b f(x)dx
+\end{equation*}
+
 \section*{Dimostrazioni per induzione}
 Le due casistiche principali sono:
 \begin{itemize}
@@ -341,15 +348,15 @@ ciò che hai a destra dell'equazione.
 
 \subsection*{Dimostrazioni con la sommatoria}
 In questo caso devo ricordarmi di ricondurmi al caso base estrando dalla sommatoria (n+1)
-per ricondurami alla sommatoria $\sum^n$ e poi sostituendo l'ipotesi induttiva 
+per ricondurmi alla sommatoria $\sum^n$ e poi sostituendo l'ipotesi induttiva 
 (la sommatoria che supponiamo vera). Così facendo posso ottenere ciò che ho a sinistra della
 formula $\sum^{n+1}$.
 \subsection*{Dimostrazioni con le disequazioni}
 In questo caso devo ricordarmi che oltre a dover sostituire l'ipotesi induttiva nella disequazione
 possono aggiungere numeri che mi possono servire a patto che abbia la certezza che questi numeri non
-vadano in contraddizione con il segno della disequazione, quindi se ho a>b, aggiungendo numeri non deve succedere
+vadano in contraddizione con il segno della disequazione, quindi se ho $a>b$, aggiungendo numeri non deve succedere
 che b diventi maggiore di a.
-\paragraph*{Ricorda} Nell'ipotesi avrai una condizione (per esempio per n>1), ricordati che puoi e spesso
+\paragraph*{Ricorda} Nell'ipotesi avrai una condizione (per esempio per $n>1$), ricordati che puoi e spesso
 devi usarla per poter aggiungere numeri utili alla dimostrazione. 
 
 
