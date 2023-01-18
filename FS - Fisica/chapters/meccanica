@@ -13,9 +13,9 @@ Sia dato un sistema di riferimento orientato x.
 Sia dato un punto materiale.
 Avremo queste tre formule (dei \emph{moduli}):
 \begin{itemize}
-    \item \textbf{Spostamento}: $\overrightarrow{s}=\Delta x = x_2-x_1$
-    \item \textbf{Velocità Media}: $\overrightarrow{v_m} = \frac{(x_f-x_i)}{(t_f-ti)} = \frac{\Delta x}{\Delta t}$
-    \item \textbf{Velocità Istantanea}: $\overrightarrow{v_x} = \lim_{t\to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$
+    \item \textbf{Spostamento}: $\vettore{s}=\Delta x = x_2-x_1$
+    \item \textbf{Velocità Media}: $\vettore{v_m} = \frac{(x_f-x_i)}{(t_f-ti)} = \frac{\Delta x}{\Delta t}$
+    \item \textbf{Velocità Istantanea}: $\vettore{v_x} = \lim_{t\to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$
 \end{itemize}
 \paragraph{Spostamento $\neq$ Distanza}
 Lo \emph{spostamento} è un vettore che si annulla quando il punto torna alla posizione di partenza (in un tempo diverso),
@@ -129,7 +129,7 @@ Il moto di un proiettile è di "facile" determinazione sotto due condizioni:
 Sotto queste condizioni il moto di un proiettile ha un'accelerazione costante ed è dunque di tipo parabolico.
 
 \subsubsection{I calcoli}
-Si consideri un proiettile lanciato con un vettore velocità iniziale $\overrightarrow{v_i}$ che forma un angolo $\theta_i$ con l'asse delle $x$:
+Si consideri un proiettile lanciato con un vettore velocità iniziale $\vettore{v_i}$ che forma un angolo $\theta_i$ con l'asse delle $x$:
 \begin{center}
     \includegraphics[width=\textwidth]{lez2slide19.png}
 \end{center}
@@ -221,7 +221,7 @@ Cosa succede se la risultante delle forze applicate ad un corpo è diversa da ze
 \definizione{
     L’ accelerazione di un oggetto è direttamente proporzionale alla risultante delle forze agenti
     ed è inversamente proporzionale alla massa.
-    \[\sum \overrightarrow{F} = m\overrightarrow{a}\]
+    \[\sum \vettore{F} = m\vettore{a}\]
 }
 Si possono quindi correlare la massa e le forze agenti in base alla II legge di Newton.\\
 La forza è un vettore e quindi l'espressione precedente è valida \emph{per tutte e tre le componenti cartesiane della forza}
@@ -265,17 +265,17 @@ La forza normale è una forza di contatto, si verifica quindi SOLO quando un ogg
 il modulo di $F_g$ e $F_n$ è uguale finchè il tavolo non si rompe: $F_g = F_n = mg$
 \subsection{La Tensione}
 Se cosideriamo un oggetto trainato da una corda (su una superficie orizzontale senza attrito), avremo che \emph{la forza esercitata dalla corda sulla scatola} è la \textbf{Tensione}
-e si indica di solito con $\overrightarrow{T}$.\\
+e si indica di solito con $\vettore{T}$.\\
 Questa forza è applicata al punto di fissaggio del filo, diretta lungo il filo e con verso quello di allontamento dal corpo.
 \begin{center}
     \includegraphics[width=0.7\textwidth]{Tensione.jpg}
 \end{center}
-\subsection{Il Lavoro $W$}
+\subsection{Il Lavoro \emph{W}}
 \definizione{
     Si definisce Lavoro $W$ fatto su un qualunque corpo da una forza di modulo costante F come
-    il prodotto scalare della forza $\overrightarrow{F}$ per il vettore spostamento $overrightarrow{d}$ del corpo
+    il prodotto scalare della forza $\vettore{F}$ per il vettore spostamento $overrightarrow{d}$ del corpo
     \begin{center}
-        $W=\overrightarrow{F} \cdot \overrightarrow{d}$, $W$ è uno scalare con segno
+        $W=\vettore{F} \cdot \vettore{d}$, $W$ è uno scalare con segno
     \end{center}
 }
 Il \textbf{Segno} del lavoro $W$ dipende dall'angolo tra $F$ è lo spostamento.
@@ -283,4 +283,4 @@ Cioè, se per fare il lavoro bisogna dare energia al sistema, allora $W>0$.
 Se invece cede energia, allora $W<0$.
 \paragraph{Unita di Misura}
 Se la forza di 1 Newton determina lo spostamento di un oggetto di 1 metro nella stessa direzione della forza,
-allor si è realizzato il lavoro di \textbf{1 N $\cdot$ m = 1 Joule}.
+allora si è realizzato il lavoro di \textbf{1 N $\cdot$ m = 1 Joule}.

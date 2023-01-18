@@ -49,7 +49,7 @@ infatti vale che $39,0 \neq 39,00$ \emph{Perchè} 3 cifre significative $\neq$ 4
           \end{itemize}
 \end{itemize}
 \paragraph{I Vettori e le proprietà}
-%I vettori vengono indicati in grassetto o con freccia sormontata: \textbf{a,AB}, \overrightarrow{AB} o \overrightarrow{v}, con il modulo generalmente scritto in corsivo \emph{v}, oppure AB o $|$\overrightarrow{AB}$|$
+%I vettori vengono indicati in grassetto o con freccia sormontata: \textbf{a,AB}, \vettore{AB} o \vettore{v}, con il modulo generalmente scritto in corsivo \emph{v}, oppure AB o $|$\vettore{AB}$|$
 
 \subparagraph*{Algebra Vettoriale}
 

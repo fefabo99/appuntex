@@ -33,7 +33,7 @@ La legge di Coulomb esprime la forza elettrostatica agente su particelle cariche
     Quando due particelle si \emph{attraggono/respingono} esse \textbf{accelerano}.
     Le forze di attrazione e repulsione hanno stesso modolo (quindi sono forti uguali) ma hanno segno opposto.
     \begin{center}
-        Forza di Coulomb $F = k \frac{q_1 \cdot q_2}{r^2} \frac{\overrightarrow{r}}{r}$
+        Forza di Coulomb $F = k \frac{q_1 \cdot q_2}{r^2} \frac{\vettore{r}}{r}$
         \\
         \includegraphics[width=0.4\textwidth]{coulomb.jpg}
     \end{center}
@@ -44,7 +44,7 @@ In questa definizione:
     \item $k$ è la costante di Coulomb
     \item $q_1,q_2$ sono le cariche delle particelle
     \item $r$ è la distanza tra le particelle
-    \item $\frac{\overrightarrow{r}}{r}$ è il versore diretto come la retta congiungente e orientato nel verso di allontanamento delle particelle.
+    \item $\frac{\vettore{r}}{r}$ è il versore diretto come la retta congiungente e orientato nel verso di allontanamento delle particelle.
 \end{itemize}
 \paragraph*{La costante di Coulomb} $k = \frac{1}{4 \pi \epsilon_0}$ in cui $\epsilon_0$ è la costante universale.
 \paragraph{Osservazione} La forma di questa legge è uguale a quella della legge di Newton per la forza gravitazionale tra due masse.
