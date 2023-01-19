@@ -164,21 +164,36 @@ Si noti che $y=...$ è l'equazione di una parabola per l'origine degli assi.
 
 
 \subsection{Moto Circolare uniforme}
-Il MCU è il moto di un punto materiale lungo una circonferenza, con \textbf{modulo della veloctià costante}.
+Il MCU è il moto di un punto materiale lungo una circonferenza, con \textbf{modulo della velocità costante}.
 \\Nel Moto Circolare uniforme, dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.
 \\In questo tipo di moto il modulo della velocità è costante, però c'è una \textbf{variazione della direzione} del vettore velocità,
 quindi c'è \emph{sempre in gioco un'accelerazione}, infatti è definita acelerazione la variazione nel tempo del vettore velocità.
 
-\paragraph*{Velocità Tangenziale} Questa velocità (indicata con $v$) è lo spazio percorso dal punto materiale in un intervallo di tempo:
+\paragraph*{Accelerazione Centripeta} O accelerazione istantanea, è diretta verso il centro della circonferenza:
+\[
+    a_r = \frac{v^2}{r}
+\]
+Il pedice r indica che è diretta lungo il raggio r del cerchio.
+Anche se la velocità è costante, l'accelerazione centripeta \emph{c'è sempre}.
+
+\paragraph*{Il Periodo} Il tempo richiesto perchè una particella (a velocità costante) faccia il giro completo di una circonferenza è calcolato come:
+\[
+    T = \frac{2\pi r}{v}
+\]
+\paragraph*{Velocità Tangenziale} Questa velocità (indicata con $v$) è lo spazio percorso dal punto materiale sulla circonferenza in un periodo di tempo:
 \[
     v= \frac{2\pi r}{T} [m/s]   
 \]
-In cui $r$ è il raggio della circonferenza.
+\paragraph*{Velocità Angolare} A differenza della veocità tangenziale, la velocità angolare indica l'\emph{angolo} percorso dal punto (in radianti) in un periodo di tempo:
+\[
+    \omega = \frac{2\pi}{T} [\frac{rad}{s}]
+\]
 
-\textbf{L'acelerazione istantanea} è diretta al centro della circonferenza, e per questo motivo si chiama acelerazione \textbf{centripeta}.
-Il suo modulo è: $a_r = \frac{v^2}{r}$ (il pedice r indice che è diretta lungo il raggio r) con r raggio del cerchio.
-\\Si chiama velocità tangenziale la velocità diretta lungo la circonferenza.
-\\DEFINIZIONE: In un moto circolare uniforme l'accelerazione è diretta verso il centro del cerchio ed ha un modulo pari a $v^2/4$ dove v è il modulo della velocità tangenziale (costante) e r è il raggio del cerchio
+
+
+
+
+
 
 \section{Dinamica}
 Fin'ora abbiamo solo considerato le equazioni della cinematica, cioè il moto di particelle indipendenetemente dalle cause stesse del moto.

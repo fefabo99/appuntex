@@ -4,7 +4,9 @@
 
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
-    \multicolumn{3}{|c|}{Cinematica}\\
+    \multicolumn{3}{|c|}{\textbf{Cinematica}}\\
+    \hline
+    \multicolumn{3}{|c|}{Moto Uniformemente Accelerato}\\
     \hline
     Velocità Media & $v_m = \frac{\Delta x}{\Delta y} = \frac{x_f-x_i}{t_f-t_i}$ & $[m/s]$\\
     \hline
@@ -20,5 +22,17 @@
     \hline
     Velocità Finale & $v_f(t) = v_i + at$ & \\
     \hline
+    \hline
+    \multicolumn{3}{|c|}{Moto Circolare Uniforme}\\
+    \hline
+    Velocità Tangenziale & $v = \frac{2\pi r}{T}$ & $[m/s]$\\
+    \hline
+    Accelerazione centripeta & $a_c = \frac{v^2}{r}$ & $[m/s^2]$\\
+    \hline
+    Periodo & $T=\frac{2\pi r }{v}$ & \\
+    \hline
+    Velocità angolare $ \omega = \frac{2\pi}{T}$ & $[rad/s]$ &\\
+    \hline
+
 \end{tabularx}
 
