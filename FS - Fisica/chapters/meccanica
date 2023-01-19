@@ -1,5 +1,5 @@
 
-\chapter{La Meccanica}
+\chapter{Meccanica}
 La meccanica è la branca della fisica che studia il moto dei corpi, esprimendolo con leggi quantitative.
 È diviso in due parti:
 \begin{itemize}
@@ -163,18 +163,18 @@ Se risolviamo $x_f$ rispetto a $t$ e la inseriamo in $y_f$ otteniamo:
 Si noti che $y=...$ è l'equazione di una parabola per l'origine degli assi.
 
 
-\subsection{Il moto circolare uniforme}
-Il MCU è il moto di un punto materiale lungo una circonferenza, con modulo della veloctià costante.
-Un'altra possibile definizione è la seguente: \emph{Dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.}
-\paragraph*{L'accelerazione }Il modulo della velocità è costante, ma siccome c'è una variazione della direzione del vettore velocità $\implies$ c'è in gioco una acelerazione
-(infatti è definita acelerazione la variazione nel tempo del vettore velocità).
-\\Prendiamo in considerazione questo:
-\begin{itemize}
-    \item Consideriamo una circonferenza di raggio $r$.
-    \item il punto materiale si muove a velocità di modulo costante lungo la traiettoria circolare.
-    \item il vettore velocità è tangente alla traiettorie circolare.
-    \item la variazione del vettore velocità $\Delta v$ nel limite di $\Delta t$ sempre più piccoli ha una direzione sempre più rivolta al centro della circonferenza.
-\end{itemize}
+\subsection{Moto Circolare uniforme}
+Il MCU è il moto di un punto materiale lungo una circonferenza, con \textbf{modulo della veloctià costante}.
+\\Nel Moto Circolare uniforme, dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.
+\\In questo tipo di moto il modulo della velocità è costante, però c'è una \textbf{variazione della direzione} del vettore velocità,
+quindi c'è \emph{sempre in gioco un'accelerazione}, infatti è definita acelerazione la variazione nel tempo del vettore velocità.
+
+\paragraph*{Velocità Tangenziale} Questa velocità (indicata con $v$) è lo spazio percorso dal punto materiale in un intervallo di tempo:
+\[
+    v= \frac{2\pi r}{T} [m/s]   
+\]
+In cui $r$ è il raggio della circonferenza.
+
 \textbf{L'acelerazione istantanea} è diretta al centro della circonferenza, e per questo motivo si chiama acelerazione \textbf{centripeta}.
 Il suo modulo è: $a_r = \frac{v^2}{r}$ (il pedice r indice che è diretta lungo il raggio r) con r raggio del cerchio.
 \\Si chiama velocità tangenziale la velocità diretta lungo la circonferenza.
