@@ -189,8 +189,34 @@ Anche se la velocità è costante, l'accelerazione centripeta \emph{c'è sempre}
     \omega = \frac{2\pi}{T} [\frac{rad}{s}]
 \]
 
+\subsection{Moto Circolare Uniformemente Accelerato}
+Nel moto circolare unifromemente accelerato entra in gioco l'accelerazione totale come somma vettoriale dell'acelerazione centripeta e dell'acelerazione tangenziale.
+Di conseguenza l'equazione del moto sarà il sistema:
+\[
+    \begin{cases}
+        \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\
+        \omega = \omega _0 + \alpha t
+    \end{cases}
+\]
+Nel caso del moto circolare uniformemente accelerato $\alpha$ è l'accelerazione angolare, mentre $a$ è l'accelerazione tangenziale
 
+\paragraph*{Accelerazione tangenziale/angolare}
+Il rapporto tra acelerazione tangenziale e angolare è così definito:
+\[
+    a_t = \alpha r \implies \alpha = \frac{a}{r}
+\]
 
+\subsection{Moto Armonico}
+Il moto circolare uniforme può essere scomposto in due moti sinusoidali $\sin$ e $\cos$.
+Il moto circolare uniforme e quello uniformemente accelerato possono essere perfettamente paragonati al moto rettilineo (uniforme e uniformemente accelerato).
+In questo caso $\theta$ è $x$, mentre la velocità $v$ diventa $\omega$.
+\paragraph{Legge oraria (equazione del moto)} Questa legge descrive il moto circolare uniforme come angolo in funzione del tempo:
+\[
+    \theta = \theta_0 + \omega t = \begin{cases}
+        x(t) = R \cos(\theta_0 + \omega t) \\
+        y(t) = R \sin(\theta_0 + \omega t)
+    \end{cases}
+\] 
 
 
 

@@ -1,6 +1,6 @@
 \chapter{Formulario}
 
-\renewcommand{\arraystretch}{1.8}
+\renewcommand{\arraystretch}{2}
 
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
@@ -31,8 +31,14 @@
     \hline
     Periodo & $T=\frac{2\pi r }{v}$ & \\
     \hline
-    Velocità angolare $ \omega = \frac{2\pi}{T}$ & $[rad/s]$ &\\
+    Velocità angolare &$ \omega = \frac{2\pi}{T}$ & $[rad/s]$ \\
     \hline
+    \multicolumn{3}{|c|}{Moto circolare Uniformemente Accelerato}\\
+    \hline
+    Legge Oraria &     $\begin{cases} \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\ \omega = \omega _0 + \alpha t \end{cases}$ & \\
+    \hline
+    Acelerazione Tangenziale & $ a_t = \alpha r$ & \\
+    
 
 \end{tabularx}
 
