@@ -1,6 +1,6 @@
 \chapter{Formulario}
 
-\renewcommand{\arraystretch}{2}
+%\renewcommand{\arraystretch}{2}
 \section*{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
@@ -49,3 +49,24 @@
 Dalla legge oraria del moto armonico si ha che:
 \[v_x = \frac{d}{dt} x(t),v_y = \frac{d}{dt} y(t),a_x = \frac{d}{dt} v_x(t), a_y = \frac{d}{dt} v_y(t)\]
 
+\renewcommand\tabularxcolumn[1]{m{#1}}
+
+\section{Dinamica}
+\subsection{Leggi di newton}
+\begin{tabularx}{\textwidth}{|c|X|cc|}
+    \hline
+    I & Se la somma delle forze che agiscono su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, mentre se è in moto continuerà a muoversi di moto rettilineo uniforme & & \\
+    \hline
+    II & La forza agente su un corpo è direttamente proporzionale all'accelerazione e ne condividide direzione e verso, ed è direttamente proprorzionale alla massa. & $\vettore{F} = m \cdot \vettore{a} $& $[N]$ \\
+    \hline
+    III & Se un corpo A esercita una forza su un corpo B, allora il corpo B esercita su A una forza uguale e contraria.  &  $F_{ab} = -F_{ba}$ &\\
+    \hline
+\end{tabularx}
+
+\section*{Forze e Lavoro}
+\begin{tabularx}{\textwidth}{|c|Yc|}
+    \hline
+    Forza di Hooke & $F= -kx$ & \\
+    
+    \hline
+\end{tabularx}

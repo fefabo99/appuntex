@@ -286,6 +286,12 @@ ed ha la stessa direzione e verso opposto della forza $F_{21}$ esercitata dal co
 }
 \nb{l'azione e la reazione agiscono su oggetti diversi!}
 
+\subsection{La Forza Elastica}
+La forza elastica di una molla (o di un corpo) è descritta dalla \textbf{legge di Hook} nel segunte modo:
+\[f=-kx\]
+Dove $-k$ è la \textbf{costante elastica} ed è una misura della rigidità della molla.
+maggiore è $k$, più rigida è la molla: ovvero maggiore è $k$, maggiore sarà la forza per uno stesso valore di spostamento.
+
 \subsection{La Forza di Gravità e la Forza Peso}
 La terra attrae tutti gli oggetti, quindi esercita una forza. Essa è chiamata \emph{Forza di Gravità $F_g$}.
 La forza di gravità è diretta verso il centro della terra e la sua ampiezza è chiamata \textbf{peso} di un oggetto.
@@ -322,6 +328,13 @@ Questa forza è applicata al punto di fissaggio del filo, diretta lungo il filo 
 Il \textbf{Segno} del lavoro $W$ dipende dall'angolo tra $F$ è lo spostamento.
 Cioè, se per fare il lavoro bisogna dare energia al sistema, allora $W>0$.
 Se invece cede energia, allora $W<0$.
+
 \paragraph{Unita di Misura}
 Se la forza di 1 Newton determina lo spostamento di un oggetto di 1 metro nella stessa direzione della forza,
 allora si è realizzato il lavoro di \textbf{1 N $\cdot$ m = 1 Joule}.
+\paragraph*{Il Lavoro come integrale}
+Se abbiamo una traiettoria \emph{non lineare}, il lavoro può essere calcolato dividendo 
+il percorso in dei pezzi lineari, così facendo il calcolo del lavoro diventa di fatto un integrale:
+\[
+    W = \int_a^b \vettore{F} \cdot d\vettore{s}
+\]
