@@ -1,10 +1,8 @@
 \chapter{Formulario}
 
 \renewcommand{\arraystretch}{2}
-
+\section*{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
-    \hline
-    \multicolumn{3}{|c|}{\textbf{Cinematica}}\\
     \hline
     \multicolumn{3}{|c|}{Moto Uniformemente Accelerato}\\
     \hline
@@ -38,7 +36,16 @@
     Legge Oraria &     $\begin{cases} \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\ \omega = \omega _0 + \alpha t \end{cases}$ & \\
     \hline
     Acelerazione Tangenziale & $ a_t = \alpha r$ & \\
-    
-
+    \hline
 \end{tabularx}
+\begin{tabularx}{\textwidth}{|l|Yc|}
+    \hline
+    \multicolumn{3}{|c|}{Moto Armonico}\\
+    \hline
+    \multirow{2}{*}{Legge Oraria} &$\theta(t) = \theta _0 + \omega t$& \\
+    & $\begin{cases} x(t) = R \cdot \cos(\theta _0 + \omega t) \\ y(t) = R \cdot \sin(\theta _0 + \omega t) \end{cases}$ &\\
+    \hline
+\end{tabularx}
+Dalla legge oraria del moto armonico si ha che:
+\[v_x = \frac{d}{dt} x(t),v_y = \frac{d}{dt} y(t),a_x = \frac{d}{dt} v_x(t), a_y = \frac{d}{dt} v_y(t)\]
 
