@@ -4,7 +4,7 @@
 \section*{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
-    \multicolumn{3}{|c|}{Moto Uniformemente Accelerato}\\
+    \multicolumn{2}{|c|}{Moto Uniformemente Accelerato}\\
     \hline
     Velocità Media & $v_m = \frac{\Delta x}{\Delta y} = \frac{x_f-x_i}{t_f-t_i}$ & $[m/s]$\\
     \hline

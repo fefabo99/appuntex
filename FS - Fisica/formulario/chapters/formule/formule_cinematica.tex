@@ -1,153 +1,163 @@
 \chapter*{Cinematica}
 
-    \section*{Moto rettilineo uniforme}
+\begin{tabularx}{\textwidth}{|l|Yc|}
+    \hline
+    \multicolumn{2}{|c|}{Moto Rettilineo Uniforme}\\
 
-        \subsection*{Velocità} 
-            \begin{equation*}
+        \hline Velocità &
+            $
                 v_x = k \; [m/s]
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Velocità media} 
-            \begin{equation*}
+        \hline Velocità media &
+            $
                 v_m = \frac{\Delta x}{\Delta t} = \frac{x_f - x_i}{t_f - t_i}
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Velocità istantanea}
-            \begin{equation*}
+        \hline Velocità istantanea &
+            $
                 v = \lim_{x \to 0}  \frac{\Delta x}{\Delta t} = \frac{dx}{dt}
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Spostamento}
-            \begin{equation*}
+        \hline Spostamento &
+            $
                 x(t) = x_i + v_xt \; [m]
-            \end{equation*}
+            $
+            \\
+    \hline
 
-    \section*{Moto uniformemente accelerato}
+    \multicolumn{2}{|c|}{Moto Uniformemente Accelerato} \\
 
-        \subsection*{Accelerazione media}
-            \begin{equation*}
+        \hline Accelerazione media &
+            $
                 a_m = \frac{\Delta v}{\Delta t} = \frac{v_f - v_i}{t_f - t_i} 
                 \, [m/s^2]
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Accelerazione istantanea}
-            \begin{equation*}
+        \hline Accelerazione istantanea &
+            $
                 a = \frac{dv}{dt} = \frac{d^2x}{dt^2}
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Spostamento}
-            \begin{equation*}
+        \hline Spostamento &
+            $
                 x(t) = x_i + v_it + \frac{1}{2}at^2 \; [m]
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Velocità finale}
-            \begin{equation*}
+        \hline Velocità finale &
+            $
                 v_f(t) = v_{i} + at
-            \end{equation*}
+            $
+            \\
     
-        \subsection*{Caso particolare: tempo non dipendente dalla massa}
-            \begin{equation*}
-                t_c=\sqrt{\frac{2h}{g}} \; [s]
-            \end{equation*}
+    \hline
+    
 
-    \section*{Moto di un proiettile} 
-        \begin{itemize}
-            \item \textbf{Asse X}: moto rettilineo uniforme.
-            \item \textbf{Asse Y}: moto rettilineo uniformemente accelerato.
-        \end{itemize}
-        \subsection*{Equazioni del moto}
-        (Per assi cartesiani)
-        \begin{align}
-            \textsf{Moto} &: \begin{cases}
-                    x(t) &= x_0 + v_{0x}t \\
-                    y(t) &= y_0 + v_{0y}t + \frac{1}{2}at^2
-                \end{cases} \\
-                \textsf{Velocità} &: v_{f} = v_{0} + at
-        \end{align}
+    \multicolumn{2}{|c|}{Moto di un proiettile} \\
 
-    \section*{Moto circolare uniforme}
+        \hline Equazioni del moto &
+            $
+                \begin{cases}
+                    x(t) = x_0 + v_{0x}t \\
+                    y(t) = y_0 + v_{0y}t + \frac{1}{2}at^2\\
+                    v_{f} = v_{0} + at
+                \end{cases}
+            $
+            \\
+    \hline
 
-        \subsection*{Velocità tangenziale} 
-            \begin{equation*}
+    \multicolumn{2}{|c|}{Moto circolare uniforme} \\
+
+        \hline Velocità tangenziale &
+            $
                 v = \frac{2\pi r}{T} \; [m/s]
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Accelerazione centripeta}
-            \begin{equation*}
+        \hline Accelerazione centripeta &
+            $
                 a_c = \frac{v^2}{r} \; [m/s^2]
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Periodo}
-            \begin{equation*}
-                T = \frac{2\pi r}{v} \; \Bigg[N = \frac{Kg \cdot m}{s^2} \Bigg]
-            \end{equation*}
-        
-        \subsection*{Velocità angolare}
-            \begin{equation*}
+        \hline Periodo &
+            $
+                T = \frac{2\pi r}{v} \; [s]
+            $
+            \\
+
+        \hline Velocità angolare &
+            $
                 \omega = \frac{2\pi}{T} \, \Bigg[\frac{rad}{s} \Bigg]
-            \end{equation*}
-        Espressa in radianti al secondo.
-    
-    \section*{Moto Armonico}
+            $
+            \\
+    \hline
 
-        \subsection*{Legge oraria (equazione del moto)} 
-        \begin{equation*}
-            \Theta = \Theta_0 + \omega t = 
-            \begin{cases}
-                x(t)=R\cos{\Theta(t)} \\
-                y(t)=R\sin{\Theta(t)}
-            \end{cases} 
-            = 
-            \begin{cases}
-                x(t)=R\cos{(\Theta_o+\omega t)} \\
-                y(t)=R\sin{(\Theta_o+\omega t)}
-            \end{cases}
-        \end{equation*}
 
-        \subsection*{Velocità tangenziale}
-            \begin{equation*}
-                v = \frac{2\pi r}{T} = 
+    \multicolumn{2}{|c|}{Moto Armonico} \\
+
+        \hline Legge oraria &
+            $
+                \begin{cases}
+                    x(t)=R\cos{(\Theta_o+\omega t)} \\
+                    y(t)=R\sin{(\Theta_o+\omega t)}
+                \end{cases}
+            $
+            \\
+
+        \hline Velocità tangenziale &
+            $
                 \begin{cases}
                     v_x=-R\omega\sin{(\Theta_o+\omega t)} \\
                     v_y=R\omega\cos{(\Theta_o+\omega t)}
                 \end{cases}
-            \end{equation*}
+            $
+            \\
 
-        \subsection*{Accelerazione centripeta} 
-            \begin{equation*}
-                a_c = \frac{v^2}{r}=
+        \hline Accelerazione centripeta &
+            $
                 \begin{cases}
                     a_x=-R\omega^2\cos{(\Theta_o+\omega t)} \\
-                    a_Y=-R\omega^2\sin{(\Theta_o+\omega t)}\end{cases}
-            \end{equation*}
-        
-    \section*{Moto circolare uniformemente accelerato}
+                    a_Y=-R\omega^2\sin{(\Theta_o+\omega t)}
+                \end{cases}
+            $
+            \\
+    \hline
 
-        \subsection*{Legge oraria (equazione del moto)}
-            \begin{equation*}
+    \multicolumn{2}{|c|}{Moto circolare uniformemente accelerato} \\
+
+        \hline Legge oraria &
+            $
                 \begin{cases} 
                     \Theta = \Theta_0 + \omega_0t + \frac{1}{2}\alpha t^2 \\ 
                     \omega = \omega_0+\alpha t
                 \end{cases}
-            \end{equation*}
+            $
+            \\
+    \hline
+\end{tabularx}
 
-        \subsection*{Tabelle di riepilogo} Di seguito sono riportate due 
-        tabelle contententi un riepilogo delle formule (comprese le formule 
-        inverse) sia del Moto circolare uniforme \ref{fig:MCU} che del Moto 
-        circolare uniformemente accelerato \ref{fig:MCUA}.
+    \section*{Tabelle di riepilogo} Di seguito sono riportate due 
+    tabelle contententi un riepilogo delle formule (comprese le formule 
+    inverse) sia del Moto circolare uniforme \ref{fig:MCU} che del Moto 
+    circolare uniformemente accelerato \ref{fig:MCUA}.
 
-        \begin{figure}[H]
-            \includegraphics[width=0.9\linewidth]
-            {formulario/img/Formulario_MCU.png}
-            \caption{Formule del Moto circolare uniforme}
-            \label{fig:MCU}
-        \end{figure}
+    \begin{figure}[H]
+        \includegraphics[width=0.9\linewidth]
+        {formulario/img/Formulario_MCU.png}
+        \caption{Formule del Moto circolare uniforme}
+        \label{fig:MCU}
+    \end{figure}
 
-        \begin{figure}[H]
-            \includegraphics[width=0.9\linewidth]
-            {formulario/img/Formulario_MCUA.png}
-            \caption{Formule del Moto circolare uniformemente accelerato}
-            \label{fig:MCUA}
-        \end{figure}
-
-        
+    \begin{figure}[H]
+        \includegraphics[width=0.9\linewidth]
+        {formulario/img/Formulario_MCUA.png}
+        \caption{Formule del Moto circolare uniformemente accelerato}
+        \label{fig:MCUA}
+    \end{figure}
