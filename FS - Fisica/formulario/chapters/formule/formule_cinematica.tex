@@ -1,6 +1,10 @@
 \chapter*{Cinematica}
 
-\begin{tabularx}{\textwidth}{|l|Yc|}
+\begingroup
+\setlength{\tabcolsep}{20pt} % Default value: 6pt
+\renewcommand{\arraystretch}{2} % Default value: 1
+
+\begin{tabular}{|c|c|}
     \hline
     \multicolumn{2}{|c|}{Moto Rettilineo Uniforme}\\
 
@@ -99,7 +103,6 @@
             \\
     \hline
 
-
     \multicolumn{2}{|c|}{Moto Armonico} \\
 
         \hline Legge oraria &
@@ -141,7 +144,9 @@
             $
             \\
     \hline
-\end{tabularx}
+\end{tabular}
+\endgroup
+
 
     \section*{Tabelle di riepilogo} Di seguito sono riportate due 
     tabelle contententi un riepilogo delle formule (comprese le formule 
