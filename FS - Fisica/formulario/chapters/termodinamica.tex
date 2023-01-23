@@ -161,7 +161,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         \end{align*}
                         
                 \item \textit{Trasformazioni Adiabatiche}:
-                        Ricodiamo inoltre che $c_v = $ (per tipo di gas):
+                        Ricodiamo inoltre che $C_v = $ (per tipo di gas):
                         \begin{itemize}
                             \item Monoatomico: $\frac{3}{2} R$
                             \item Biatomico: $\frac{5}{2} R$
@@ -169,7 +169,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         \end{itemize}
             \end{itemize}
 
-
+            Di seguito saranno analizzati i casi per i gas perfetti:
             
             \begin{tabular}{ |c|c|c|c|c|c|c| } 
                 \hline
@@ -179,7 +179,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         & - 
                         & cost 
                         & - 
-                        & $Q = C\Delta T$ 
+                        & $Q = nC_v\Delta T$ 
                         & $W = 0$
                         & $E_{int} = Q$ \\
                 \hline
@@ -187,8 +187,8 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         & cost
                         & - 
                         & - 
-                        & $Q = nc_p\Delta T$
-                        & $W = p(V_2 - V_1)$
+                        & $Q = nC_p\Delta T$
+                        & $W = p\Delta V$
                         & $E_{int}$ \\
                 \hline
                     Isoterma
@@ -204,7 +204,7 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         & - 
                         & -
                         & $Q = 0$
-                        & $W = nc_v(T_2 - T_1)$
+                        & $W = nC_v\Delta T$
                         & $E_{int} = -W$ \\
                 \hline
                     Ciclica
@@ -216,7 +216,11 @@ $K$. La temperatura $T$ quindi assume il seguente valore:
                         & $E_{int} = 0$ \\
                 \hline
             \end{tabular}
-            
+             
+        \begin{itemize}
+            \item $C_v$: Calore specifico molare a volume costante
+            \item $C_p$: Calore specifico molare a pressione costante
+        \end{itemize}
 
         \section{Conduzione, Convezione ed Irraggiamento} Sono tre tipi di 
         trasmissione del calore, ognuno funzionante in modo differente 
