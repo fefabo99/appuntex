@@ -10,7 +10,7 @@ Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
 Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
 \\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo, ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
 \paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema. Allora si ha che $f(\tilde{x}) \leq f(x*)$.
-\\Basta solo notare che tra le soluzioni ammissibili del problema completo vi è anche $x$ e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$.
+\\Basta solo notare che tra le soluzioni ammissibili del problema completo vi è anche $x$ (non dovrebbe essere $\tilde{x}$?) e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$.
 \section{Le tecniche}
 Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema di PLI:
 \begin{itemize}
@@ -19,6 +19,13 @@ Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico
     \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}.
 \end{itemize}
 \subsection{Branching}
+Il Branching implica la selezione di un sotto-problema da analizzare e la divisione di questo in sotto-problemi più piccoli. Vi sono diverse regole di selezione e divisione possibili. Posso scegliere:
+\begin{itemize}
+    \item \textit{Il sotto-problema creato più di recente}: tale regola di selezione ha il vantaggio che è efficiente per ripartire con l'ottimizzazione del rilassamento LP dal precedente problema (devo solo aggiungere un vincolo).
+    \item \textit{Il sotto-problema con il miglior bound}: è un regola molto utilizzata perché in genere conduce a soluzioni incombenti più velocemente e quindi permette di effettuare un fathoming più efficiente.
+    \item Si può anche usare una combinazione delle due regole.
+\end{itemize}
+
 \subsubsection{Branching per problemi di PB (variabili binarie)}
 Nel caso di problemi a variabili binarie (PB), il modo più semplice per dividere l'insieme delle soluzioni
 ammissibili in sottoinsiemi è fissare il valore di una delle variabili, per esempio $x_1 = 0$, per un sottoinsieme e a $x_1 = 1$ per l'altro sottoinsieme.\\
@@ -33,6 +40,15 @@ La variabile utilizzata ad ogni iterazione per eseguire questa suddivisione è c
 Per ognuno dei sotto-problemi dobbiamo ricavare un limite superiore (perché è un problema di massimo, altrimenti un limite inferiore).
 \\Per ottenere questo limite si risolve il \textit{problema rilassato} (ovvero senza considerare i vincoli di interezza ma, essendo il problema binario, limitando le variabili tra 0 e 1).
 \\Quindi risolvo i miei sotto-problemi sostituendo l'ultima riga con i vincoli $x_j \ge 0 \wedge x_j \le 1$ (ovvero $0 \le x_j \le 1$).
-\\Come prima cosa risolviamo la versione rilassata del problema completo (per esempio con il metodo del simplesso) e otteniamo un valore per la nostra $Z$, per esempio $Z = 12,345$. Essendo nell'ambito binario 
+\\Come prima cosa risolviamo la versione rilassata del problema completo (per esempio con il metodo del simplesso) e otteniamo un valore per la nostra $Z$, per esempio $Z = 12,345$. Essendo nell'ambito binario possiamo (come anche nell'ambito intero ovviamente) arrotondare, in questo caso all'intero precedente: se i coefficienti della funzione obiettivo del problema sono tutti interi e le soluzioni del problema devono essere binarie (o intere), sicuramente con le mie variabili non potrei mai raggiungere il valore decimale.
 
-\subsubsection{Fathoming}
+\subsection{Fathoming}
+\subsubsection{Fathoming per problemi di PB (variabili binarie)}
+Un sotto-problema può essere "eliminato" dalla lista dei problemi da considerare per tre possibili ragioni: 
+\begin{enumerate}
+    \item La soluzione ottenuta soddisfa i vincoli di interezza (come la soluzione del sotto-problema 1. In particolare, questa soluzione può essere considerata come la soluzione intera migliore trovata fino a questo momento (soluzione incombente Z*). Quindi il valore della soluzione incombente a questo punto è Z*=9).
+    \\La soluzione incombente cambierà ogni volta che un sotto-problema otterrà una soluzione intera migliore della soluzione incombente corrente.
+    \item La soluzione incombente può essere utilizzata per un'altra possibilità di fathoming: se il bound di un sotto-problema (che rappresenta la soluzione ottima migliore che si potrà trovare continuando a considerare il sotto-problema) è peggiore della soluzione incombente (migliore soluzione ammissibile intera già trovata) allora non vale la pena continuare a considerare il sotto-problema che quindi può essere chiuso (\textit{fathomed}).
+    \item Il sotto-problema non ammette soluzioni ammissibili.
+\end{enumerate}
+Quindi verranno ulteriormente risolti ed analizzati solo quei problemi che non hanno una soluzione intera ma il loro bound è migliore della soluzione incombente. (Non ho capito)
