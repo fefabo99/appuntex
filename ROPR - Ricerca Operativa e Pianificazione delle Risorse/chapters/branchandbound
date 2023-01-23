@@ -2,22 +2,37 @@
 Il Branch and Bound è una tecnica per la risoluzione di problemi di ottimizzazione intera.
 Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
 \begin{itemize}
-    \item "valuta" le soluzioni possibili fino a trovare quella ottima
-    \item scarta alcune di queste soluzioni a priori dimostrando la loro non ottimalità
-    \item si basa sul concetto di Dividi et Impera
+    \item "Valuta" le soluzioni possibili fino a trovare quella ottima;
+    \item Scarta alcune di queste soluzioni a priori dimostrando la loro non ottimalità;
+    \item Si basa sul concetto di Dividi et Impera.
 \end{itemize}  
 \section{Come funziona}
 Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
 \\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo, ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
 \paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema. Allora si ha che $f(\tilde{x}) \leq f(x*)$.
 \\Basta solo notare che tra le soluzioni ammissibili del problema completo vi è anche $x$ e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$.
-\subsection{Le tecniche}
-Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema PLI:
+\section{Le tecniche}
+Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema di PLI:
 \begin{itemize}
-    \item La partizione rispetto al valore delle variabili, o \textbf{Branching}
-    \item La determinazione di un limite superiore, o \textbf{Bounding}
-    \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}
+    \item La partizione rispetto al valore delle variabili, o \textbf{Branching},
+    \item La determinazione di un limite superiore, o \textbf{Bounding},
+    \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}.
 \end{itemize}
-\subsubsection{Branching}
-\subsubsection{Bounding}
+\subsection{Branching}
+\subsubsection{Branching per problemi di PB (variabili binarie)}
+Nel caso di problemi a variabili binarie (PB), il modo più semplice per dividere l'insieme delle soluzioni
+ammissibili in sottoinsiemi è fissare il valore di una delle variabili, per esempio $x_1 = 0$, per un sottoinsieme e a $x_1 = 1$ per l'altro sottoinsieme.\\
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{img/B&B_PB1.jpg}
+\end{center}
+La variabile utilizzata ad ogni iterazione per eseguire questa suddivisione è chiamata \textbf{variabile di branching}. Nel diagramma qua sopra, al primo livello la variabile di branching sarà $x_1$, a quello successivo $x_2$ etc... Questo perché per selezionare ad ogni iterazione la variabile di branching si può utilizzare l'ordinamento naturale delle variabili ($x_1$, $x_2$, ...).
+\\N.B.: nel caso binario, ad ogni branching generiamo due nuovi sotto-problemi, creando un albero binario.
+
+\subsection{Bounding}
+\subsubsection{Bounding per problemi di PB (variabili binarie)}
+Per ognuno dei sotto-problemi dobbiamo ricavare un limite superiore (perché è un problema di massimo, altrimenti un limite inferiore).
+\\Per ottenere questo limite si risolve il \textit{problema rilassato} (ovvero senza considerare i vincoli di interezza ma, essendo il problema binario, limitando le variabili tra 0 e 1).
+\\Quindi risolvo i miei sotto-problemi sostituendo l'ultima riga con i vincoli $x_j \ge 0 \wedge x_j \le 1$ (ovvero $0 \le x_j \le 1$).
+\\Come prima cosa risolviamo la versione rilassata del problema completo (per esempio con il metodo del simplesso) e otteniamo un valore per la nostra $Z$, per esempio $Z = 12,345$. Essendo nell'ambito binario 
+
 \subsubsection{Fathoming}

@@ -20,7 +20,7 @@ Il metodo del simplesso identifica il prezzo ombra $y_i^*$ come segue:
 Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
 
 \begin{center}
-\includegraphics[width=0.7\textwidth]{dualità1.jpg}
+\includegraphics[width=0.7\textwidth]{img/dualità1.jpg}
 \end{center}
 
 Più in specifico, le regole per Primale$\to$Duale sono:
