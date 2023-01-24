@@ -89,3 +89,28 @@ Ricordando che i criteri di \textit{fathoming} derivanti dall'\underline{analisi
 
 \section{Problemi con soluzioni ottime alternative}
 Potrebbe essere importante poter ottenere una lista delle soluzioni ottime, in modo che la scelta della soluzione migliore possa essere poi effettuata sulla base di considerazioni che potrebbero non essere state incluse nel modello matematico.
+\\Per trovarle basta fare alcune piccole modifiche:
+\begin{itemize}
+    \item Il test del Criterio 2 deve essere fatto sulla base della disugualianza stretta ($Z\, <\, Z^*$ per un problema di \textit{Max} e \textit{viceversa} per un problema di \textit{Min}).
+    \\In questo modo il \textit{Fanthoming} non avverrà se $Z\, =\, Z^*$.
+    \item Se la soluzione di un sotto-problema soddisfa il criterio 1 con $Z\, =\, Z^*$ allora anche questa soluzione deve essere memorizzata come incombente, e occorre controllare se il sotto-problema ammette soluzioni multiple. Nel qual caso occorre calcolare e memorizzare anche le soluzioni alternative come incombenti.
+\end{itemize}
+Alla fine della procedura tutte le soluzioni correnti incombenti (tutte \textit{equivalenti}) saranno considerate \textbf{ottime}.
+
+\section{Soluzioni "quasi-ottime"}
+Il Branch and Bound può essere utilizzato anche per trovare soluzioni "buone" (quasi-ottime) anche se non necessariamente ottime, che in genere richiedono uno sforzo computazionale molto minore.
+\\Una soluzione è considerata quasi-ottima quando la sua soluzione $Z$ è "abbastanza" vicina al valore di una soluzione ottima $Z^{**}$, ovvero $$Z^{**} -\, K \le Z$$ o equivalentemente $$(1\, -\, \alpha)Z^{**} \le\, Z$$ dove $K$ e $\alpha$ sono costanti date.
+\\N.B.: $\alpha$ mi rappresenta l'approssimazione (percentuale) della soluzione quasi-ottima trovata.
+\\Quindi se una soluzione incombente $Z^*$ soddisfa $$Z^{**} -\, K \le Z^*$$ oppure $$(1\, -\, \alpha)Z^{**} \le\, Z^*$$ 
+\\La procedura può terminare fornendo una soluzione $Z^*$ quasi-ottima.
+\\
+\\Ma come si può identificare quel valore $Z^{**}$?
+\\Se esistesse una soluzione ammissibile con valore $Z^{**}$ allora si avrebbe $Z^{**} \le\, Bound$ dove $Bound$ è la soluzione migliore tra quelle dei problemi rilassati ancora aperti.
+\\Quindi possiamo sostituire $Bound$ a $Z^{**}$ nelle formule precedenti ottenendo: $$Bound\, -\, K \le Z^*$$ oppure $$(1\, -\, \alpha)Bound\, \le\, Z^*$$
+\\Anche se la soluzione corrispondente a $Bound$ non è ammissibile (intera) costituisce comunque un limite superiore valido.
+\\Per problemi di grosse dimensioni considerare le soluzioni quasi-ottime può evitare tempi computazionali proibitivi.
+
+\section{Criteri d'arresto}
+Il metodo del Branch-and-Bound si arresta quando tutti i nodi sono dichiarati \textit{fathomed}. In questo caso, la soluzione ammissibile corrente corrisponde ad una soluzione ottima.
+\\Si possono anche usare soluzioni quasi-ottime e fermarci non appena troviamo una soluzione quasi ottima. 
+\\Oppure ancora possono anche essere adottati criteri relativi a limiti computazionali, come ad esempio raggiunti limiti di tempo di calcolo o di memoria, ma non è garantito che l'eventuale soluzione ammissibile corrente sia ottima (posso comunque calcolare quanto distante è dal $Bound$).
