@@ -11,7 +11,7 @@ Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
 \\Un problema di PLI rappresenta un \textbf{sotto-problema} del problema completo se presenta la medesima funzione obiettivo, ma ha un sottoinsieme proprio di $X$ come regione ammissibile.
 \paragraph*{}Sia $z* = f(x*)$ la soluzione del problema completo e $\tilde{z} = f(\tilde{x}°)$ la soluzione ottima di un sotto-problema. Allora si ha che $f(\tilde{x}) \leq f(x*)$.
 \\Basta solo notare che tra le soluzioni ammissibili del problema completo vi è anche $x$ (non dovrebbe essere $\tilde{x}$?) e che per definizione di ottimo $f(\tilde{x}) \leq f(x*)$.
-\section{Le tecniche}
+\section{Le tecniche di risoluzione}
 Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema di PLI:
 \begin{itemize}
     \item La partizione rispetto al valore delle variabili, o \textbf{Branching},
@@ -21,13 +21,17 @@ Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico
 \subsection{Branching}
 Il Branching implica la selezione di un sotto-problema da analizzare e la divisione di questo in sotto-problemi più piccoli. Vi sono diverse regole di selezione e divisione possibili. Posso scegliere:
 \begin{itemize}
-    \item \textit{Il sotto-problema creato più di recente}: tale regola di selezione è efficiente per ripartire con l'ottimizzazione del rilassamento LP dal precedente problema (devo solo aggiungere un vincolo). 
-    \\\`E anche nota come \textit{Depth First}, perché equivale a scegliere il nodo di livello maggiore, ovvero più profondo.
-    \\
-    \\ \textopenbullet\ \textit{Pro}: è semplice da implementare, permette di ottenere presto delle soluzioni ammissibili (ci si avvicina più rapidamente alle foglie) e limita la memoria necessaria per memorizzare l'albero delle soluzioni, visto che si tendono a chiudere molti nodi per inammissibilità e rimangono pochi nodi contemporaneamente aperti.
-    \\ \textopenbullet\ \textit{Cons}: presenta il rischio di esplorare completamente sotto-alberi con soluzioni scadenti.
-    \item \textit{Il sotto-problema con il miglior bound}: in genere conduce a soluzioni incombenti più velocemente e quindi permette di effettuare un fathoming più efficiente.
-    \item Si può anche usare una combinazione delle due regole.
+    \item \textbf{\textit{Il sotto-problema creato più di recente}}: tale regola di selezione è efficiente per ripartire con l'ottimizzazione del rilassamento LP dal precedente problema (devo solo aggiungere un vincolo). 
+    \\\`E anche nota come \underline{\textit{Depth First}}, perché equivale a scegliere il nodo di livello maggiore, ovvero più profondo.
+    \\\, \textopenbullet\ \underline{\textit{Pro}}: è semplice da implementare, permette di ottenere presto delle soluzioni ammissibili (ci si avvicina più rapidamente alle foglie) e limita la memoria necessaria per memorizzare l'albero delle soluzioni, visto che si tendono a chiudere molti nodi per inammissibilità e rimangono pochi nodi contemporaneamente aperti.
+    \\\, \textopenbullet\ \underline{\textit{Cons}}: presenta il rischio di esplorare completamente sotto-alberi con soluzioni scadenti.
+
+    \item \textbf{\textit{Il sotto-problema con il miglior bound}}: in genere conduce a soluzioni incombenti più velocemente e quindi permette di effettuare un \textit{fathoming} più efficiente.
+    \\\`E anche nota come \underline{\textit{Best Bound First}}: si sceglie il nodo \textit{più promettente} ossia il nodo con il \textit{bound migliore} (\textbf{lower bound} più \textbf{basso}, per problemi di \textit{minimo}, o \textbf{upper bound} più \textbf{alto}, per problemi di \textit{massimo}).
+    \\\, \textopenbullet\ \underline{\textit{Pro}}: permette di limitare il numero di nodi visitati esplicitamente e tende pertanto a essere più efficiente.
+    \\\, \textopenbullet\ \underline{\textit{Cons}}: l'esplorazione tende a rimanere a livelli poco profondi, dove i problemi sono meno vincolati e i bound sono più promettenti ma difficilmente si ottengono presto soluzioni ammissibili che migliorino la soluzione incombente corrente. Questo impedisce di applicare efficacemente le regole di \textit{fathoming}, pertanto è maggiore la richiesta di memoria per i nodi aperti contemporaneamente.
+
+    \item Si può anche usare una combinazione delle due regole: i nodi vengono scelti cioè alternando i diversi criteri, per evitare gli svantaggi di uno o dell'altro.
 \end{itemize}
 
 \subsubsection{Branching per problemi di PB (variabili binarie)}
@@ -54,4 +58,34 @@ Un sotto-problema può essere "eliminato" dalla lista dei problemi da considerar
     \item La soluzione incombente può essere utilizzata per un'altra possibilità di fathoming: se il bound di un sotto-problema (che rappresenta la soluzione ottima migliore che si potrà trovare continuando a considerare il sotto-problema) è peggiore della soluzione incombente (migliore soluzione ammissibile intera già trovata) allora non vale la pena continuare a considerare il sotto-problema che quindi può essere chiuso (\textit{fathomed}).
     \item Il sotto-problema non ammette soluzioni ammissibili.
 \end{enumerate}
-Quindi verranno ulteriormente risolti ed analizzati solo quei problemi che non hanno una soluzione intera ma il loro bound è migliore della soluzione incombente. (Non ho capito)
+Quindi verranno ulteriormente risolti ed analizzati solo quei problemi che non hanno una soluzione intera ma il loro bound è migliore della soluzione incombente.
+
+\section{La divisione di una variabile}
+Può essere effettuata in più modi:
+\begin{itemize}
+    \item si sceglie una variabile e si assegnano valori diversi (es.: programmazione binaria);
+    \item si assegna alla variabile un insieme di valori (es.: problemi di PLI).
+\end{itemize}
+\subsubsection{Branching} 
+La scelta della variabile su cui effettuare il \textbf{branching} va effettuata tra eventuali possibili scelte con l'obiettivo di arrivare più velocemente ad una possibilità di \textit{fathoming}.
+\subsubsection{Bounding} 
+Il \textbf{bounding} è generalmente eseguito risolvendo un rilassamento del problema (noi ne abbiamo visto un tipo, ma ne esistono varie tipologie).
+
+\section{Il rilassamento Lagrangiano}
+L'intero insieme di vincoli funzionali $\mathbf{Ax\, \le\, b}$ viene \textit{cancellato} (o \textit{quasi interamente cancellato}) e la funzione obiettivo $$Max\ Z\, =\, \mathbf{cx}$$ viene sostituita da $$Max\ Z\, =\, \mathbf{cx\, -\, \lambda(Ax - b)}$$
+Il problema $$Max\ Z\, =\, \mathbf{cx\, -\, \lambda(Ax - b)}$$ $$\,\quad s.t.\ \ge\: 0$$ è detto \textbf{\textit{problema Lagrangiano}} e ha la proprietà secondo la quale $\forall\, \lambda\, \ge\, 0$ fissato la sua soluzione ottima costituisce un \textbf{upper bound} sull'ottimo del problema originario di \textit{Max} (\textbf{lower bound} se il problema è di \textit{Min}).
+\\Il bound ottenibile con il \textit{rilassamento Lagrangiano} è quindi almeno tanto buono quanto quello ottenibile con il \textit{rilassamento lineare}.
+\subsubsection{Pro}
+L'efficacia pratica del rilassamento Lagrangiano è legata all'\underline{efficienza} con cui si riesce a \underline{risolvere il problema duale} del problema Lagrangiano.
+\subsubsection{Cons}
+Non è però efficiente come il rilassamento LP nel calcolare il \textit{primo} e il \textit{terzo} dei test di \textit{fathoming}.
+\subsubsection{I criteri di Fanthoming}
+Ricordando che i criteri di \textit{fathoming} derivanti dall'\underline{analisi di un problema rilassato}:
+\begin{itemize}
+    \item \textit{Criterio 1}: \`E stata trovata una soluzione ottima intera del sotto-problema.
+    \item \textit{Criterio 2}: La soluzione ottima $Z$ del sotto-problema deve essere peggiore della soluzione incombente $Z^*$ ($Z\, \le\, Z^*$ per un problema di \textit{Max} e \textit{viceversa} per un problema di \textit{Min}).
+    \item \textit{Criterio 3}: Il sotto-problema non presenta soluzioni ammissibili.
+\end{itemize}
+
+\section{Problemi con soluzioni ottime alternative}
+Potrebbe essere importante poter ottenere una lista delle soluzioni ottime, in modo che la scelta della soluzione migliore possa essere poi effettuata sulla base di considerazioni che potrebbero non essere state incluse nel modello matematico.
