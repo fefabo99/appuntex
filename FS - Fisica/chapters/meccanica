@@ -360,3 +360,78 @@ Il Lavoro $W_m$ è quindi \textbf{positivo quando il blocco si avvicina alla pos
 di riposo $x=0$} ed è negativo quando se ne allontana. 
 Il Lavoro è nullo se la distanza finale da $x=0$ non è mutata.
 \\Si può notare che se la posizione di partenza $x_i$ è 0, allora la formula è notevolmente semplificata.
+
+\section{Energia Cinetica}
+L'energia cinetica rappresenta la quantità di energia associata al moto di una particella che si muove alla velocità $v$.
+\[
+  K=\frac{1}{2}mv^2 [J]  
+\]
+L'energia cineta e la velocità della particella aumentano se svogliamo un lavoro positivo sulla particella, 
+invece diminuiscono se il lavoro svolto è negativo.
+
+\subsection{Teorema dell'energia cinetica}
+Chiamiamo $\Delta K$ la variazione di energia cinetica del corpo, e $W$ il lavoro totale compiuto su di esso. 
+Allora vale:
+\[\Delta K = K_f - K_i = W\]
+Vale anche:
+\[K_f = K_i + W\]
+
+
+\section{Potenza}
+La potenza è la rapidità con la quale viene eseguito un lavoro $W$ in un intervallo di tempo $\Delta t$.
+\\La potenza media è data dall'espressione:
+\[ 
+    P_m = \frac{W}{\Delta t}    
+\]
+\\La potenza istantanea è la rapidità con la quale vienesvolto istantaneamente un lavoro:
+\[  
+    P = \frac{dL}{dt}    
+\]
+\\Se una forza $\vettore{F}$ agisce su un oggetto nella direzione che forma un angolo $\theta$ rispetto alla sua velocità istantanea $\vettore{v}$ allora la Potenza istantanea vale:
+\[
+    P = Fv \cos \theta = \vettore{F} \cdot \vettore{v}  
+\]
+
+\section{Energia Potenziale}
+\paragraph*{Forze Conservative e non}
+Una forza si dice conservativa se il lavoro netto che compie su una particella che percorre un cammino chiuso, da una posizione iniziale alla medesima posizione, è pari a zero.
+La forza gravitazionale e quella elastica sono forze conservative, la forza d'attrito dinamico non è conservativa.
+
+
+\paragraph*{Energia potenziale }L'energia potenziale è l'energia associata alla configurazione di un sistema in cui agisce una forza conservativa. 
+Quando la forza conservativa compie lavoro $W$ su una particella entro tale sistema, la variazione di energia potenziale $\Delta U$ sel sistema è definita come:
+
+
+\[
+    \Delta U = -W [J] 
+\]
+
+\subsection{Energia Potenziale Gravitazionale}
+
+L'energia potenziale associata al sistema costituito dalla terra e dalla particella è chiamata Energia Potenziale Gravitazionale.
+Se la particella si muove da un'altezza iniziale $y_i$ ad una finale $y_f$, 
+il cambiamento dell'energia potenziale gravitazionale è definito come:
+\[
+  \Delta U = mg(\Delta y)  
+\]
+Ponendo $y_i = 0$ e la corrispondente energia potenziale gravitazionale del sistema $U_i = 0$, 
+quando la particella si trova ad un'altezza $y$ l'energia potenziale gravitazionale è:
+\[
+    U(y) = mgy
+\]
+
+\subsection{Energia potenziale Elastica}
+L'energia potenziale elastica E l'energia potenziale associata allo stato di compressione o allungamento di un oggetto elastico.
+Per una molla che esercita una forza elastica $F=-kx$, quando il suo capo libero subisce uno spostamento $x$ l'energia potenziale elastica é:
+\[U (x) = \frac{1}{2} kx^2\]
+La configurazione di riferimento vede la molla in stato di riposo con il suo capo libero i $x =0$ , ove l'energia potenziale associata è $U=0$.
+
+\section*{Energia Meccanica}
+L'energia meccanica di un sistema è la somma dell'energia cinetica $K$ e dell'energia potenziale $U$:
+\[ E_{mec} = K + U \]
+\paragraph*{Principio di conservazione dell'energia meccanica}
+Un sistema si dice isolato quando non vi sono forze esterne a provocare variazioni di energia all'interno.
+Quando in un sistema isolato agiscono solo forze conservative, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare.
+Tale principio di conservazione dell'energia meccanica si esprime come:
+\[\Delta E_{mec} = \Delta K + \Delta U = 0\]
+La variazione dell'energia meccanica è uaguale al lavoro svolto dalle forze NON conservative : $\Delta E_m = W_{nc}$
