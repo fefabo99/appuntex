@@ -338,3 +338,25 @@ il percorso in dei pezzi lineari, così facendo il calcolo del lavoro diventa di
 \[
     W = \int_a^b \vettore{F} \cdot d\vettore{s}
 \]
+
+\subsubsection*{Lavoro svolto da una Forza Elastica}
+Come sappiamo la forza elastica \emph{non} è una forza costante, quindi l'equazione del lavoro non è valida in questo caso.
+Si può però suddividere lo spostamento della molla in parti inifinitesime, di fatto valutando un integrale:
+
+\[
+    W_{molla} = \int_{x_i}^{x_f} F dx
+\]
+Sviluppando questo integrale:\\
+$W = \int_{x_f}^{x_i} -kx \,dx 
+= -k \int_{x_f}^{x_i} x \,dx 
+= (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i}
+= (-\frac{1}{2}k) (x^2_f - x^2_i)
+$
+\\Quindi il lavoro svolto da una forza elastica è:
+\[
+    W_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f \;[J]
+\]
+Il Lavoro $W_m$ è quindi \textbf{positivo quando il blocco si avvicina alla posizione 
+di riposo $x=0$} ed è negativo quando se ne allontana. 
+Il Lavoro è nullo se la distanza finale da $x=0$ non è mutata.
+\\Si può notare che se la posizione di partenza $x_i$ è 0, allora la formula è notevolmente semplificata.
