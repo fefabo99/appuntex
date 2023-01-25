@@ -1,0 +1,35 @@
+\chapter{Linguaggi formali}
+Preso un alfabeto $\Sigma=\{a,b,c\}$ posso formare delle stringhe come
+\\ $\{bab, aca, b\}$, questo insieme è un linguaggio sull'alfabeto $\Sigma$.
+\\ Con un linguaggio posso fare principalmente 2 cose
+\begin{itemize}
+    \item Riconoscitori - detti anche \textbf{automi}, sono degli automi che prendono in input
+    una stringa e mi dicono se appartiene o no al linguaggio, \textbf{riconoscono} quindi il linguaggio
+    \item Generatori - sono le Grammatiche, dalla grammatica posso generare il linguaggio,
+    esse mi danno diverse regole attraverso le quali posso generare un linguaggio.
+\end{itemize}
+\paragraph*{Alfabeto} Un alfabeto è un insieme non vuoto e finito di simboli
+\definizione{Un alfabeto è un insieme non vuoto e finito di simboli
+definito con la lettera $\Sigma$}
+\esempio{$\Sigma = \{0,1\}$}
+\definizione{Una \textbf{stringa} è una sequenza finita di simboli dell'alfabeto.
+    \\ In questo caso è ammesso l'insieme vuoto, si parla di stringa vuota e viene definita
+    come $\epsilon$
+    \begin{center}
+        $L \subseteq \Sigma^*$
+    \end{center}
+}
+La lunghezza di una stringa viene denotata dai seguenti simboli $|\text{stringa}|$.
+\esempio{$|0111|=4$}
+$\Sigma^n$ è una stringa di lunghezza.
+\definizione{Un \textbf{Linguaggio} (su un alfabeto $\Sigma$ è un sottoinsieme di $\Sigma^*$)}
+\paragraph*{Notazioni particolari}
+\begin{itemize}
+    \item $\Sigma^0 = \{\epsilon\}$
+    \item $\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup ...$ oppure $\Sigma^*=\Sigma^+ \cup \Sigma^0 = \Sigma^+ \cup \{\epsilon\}$
+    \item $\Sigma^+ = \Sigma^1 \cup \Sigma^2 \cup \Sigma^3 \cup ...$ oppure $\Sigma^+ = \Sigma^* - \{\epsilon\}$
+\end{itemize}
+\paragraph*{Notazioni stringhe} Per definire una stringa utiizzo una lettera come per esempio
+$w = abb$ dove in w sono contenuti dei simboli dell'alfabeto $\Sigma=\{a,b,c\}$.
+\\ Definita un'altra stringa $y=cca$ definisco la concatenazione di due stringhe come $wy = abbcca$.
+La concatenazione \textbf{NON} è commutativa.
