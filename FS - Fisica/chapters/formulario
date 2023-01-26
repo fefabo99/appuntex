@@ -1,10 +1,11 @@
 \chapter{Formulario}
 
-%\renewcommand{\arraystretch}{2}
+\setlength{\extrarowheight}{10pt}
+
 \section*{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
-    \multicolumn{2}{|c|}{Moto Uniformemente Accelerato}\\
+    \multicolumn{3}{|c|}{Moto Uniformemente Accelerato}\\
     \hline
     Velocità Media & $v_m = \frac{\Delta x}{\Delta y} = \frac{x_f-x_i}{t_f-t_i}$ & $[m/s]$\\
     \hline
@@ -63,10 +64,34 @@ Dalla legge oraria del moto armonico si ha che:
     \hline
 \end{tabularx}
 
-\section*{Forze e Lavoro}
+\subsection{Forze e Lavoro}
 \begin{tabularx}{\textwidth}{|c|Yc|}
     \hline
-    Forza di Hooke & $F= -kx$ & \\
-    
+    Forza di Hooke (Elastica)& $F= -kx$ & \\
+    \hline
+    Forza di Gravità (Peso) & $F_g = mg $& \\
+    \hline
+    Forza Normale & Stesso modulo e direzione di $F_g$ ma di \emph{Verso opposto} &\\
+    \hline
+    \hline
+    Lavoro & $W = \vettore{F} \cdot \vettore{d}$ &  [J $= N \cdot M$]\\
+    \hline
+    Lavoro su traiettoria non lineare & $W = \int_a^b \vettore{F} \cdot d\vettore{s}$ & [J]\\
+    \hline
+    Lavoro di una forza elastica & $W_m = \frac{1}{2}kx_i^2 - \frac{1}{2}kx_f^2$ & [J] \\
+    \hline
+    \hline
+    Energia Cinetica & $J = \frac{1}{2}mv^2$ & [J] \\
+    \hline
+    Teorema Energia cinetica & $\Delta K = K_f - K_i = W$ & [J]\\
+    \hline
+    \hline
+    Energia Potenziale & $\Delta U = -W$ & [J] \\
+    \hline
+    Energia Potenziale Gravitazionale & $U(y) = mgy$ & \\
+    \hline
+    Energia Potenziale Elastica & $U(x) = \frac{1}{2}kx^2$ & \\
+    \hline
+    Energia Meccanica & $E_{mec} = K + U$ & \\
     \hline
 \end{tabularx}

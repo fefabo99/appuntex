@@ -11,4 +11,42 @@ Dove $G$ è la costante di gravitazione universale:
 \[
     G = 6,67 \cdot 10^{-11} [N \cdot \frac{m^2}{kg^2}]
 \]
+\paragraph{Forma vettoriale}
+In forma vettoriale, la formula della legge di gravitazione si presenta in questo modo:
+\[
+    \vettore{F_g} = G\cdot \frac{m_1 \cdot m_2}{r^2} \cdot \frac{\vettore{r}}{r} [N]
+\]
+In cui $\vettore{r}$ rappresenta il vettore posizione della particella 2 rispetto alla 1,
+quindi $\frac{\vettore{r}}{r}$ è il versore, orientato e diretto come l'asse $\vettore{F}$, di modulo 1.
 
+\section{L'energia potenziale gravitazionale}
+In precedenza abbiamo parlato di energia potenziale gravitazionale,
+però lì era nel caso in cui ci trovassimo sulla superficie terrestre e calcolassimo $U$ per una particella di massa molto più piccola di quella della terra.
+\\Qui generalizziamo il concetto considerando l'energia potenziale gravitazionale $U$ di due particelle, di massa $m$ e $M$, separate da una distanza $r$.
+A differenza del caso perecedente, qui definiamo $U=0$ nel caso in cui $r = \infty$,  e definiamo che l'energia potenziale gravitazionale è negativa per ogni distanza finita e aumenta in modulo all'avvicinarsi della particella:
+\[
+    U_g = -\frac{GMm}{r}
+\]
+Questa è una proprietà comune ad un sistema di due particelle, non di ogni singola particella.
+
+\subsection{Velocità di Fuga}
+Un oggetto sfuggirà all'attrazione gravitazionale di un corpo astronomico di massa $M$ e raggio $r$ se la sua velocità (iniziale) in vicinanza della superficie del corpo sarà non inferiore alla velocità di fuga data dalla seguente formula:
+\[
+    v = \sqrt{\frac{2GM}{R}}
+\]
+Con $M$ massa del pianeta e $R$ il suo raggio. Si può notare che la velocità di fuga dipende solo dal corpo celeste!
+
+\section{Le leggi di Keplero}
+\subsection{1: Legge delle Orbite} la prima legge di Keplero enuncia:
+\definizione{
+    Tutti i pianeti si muovono su orbite ellittiche, di cui il Sole occupa uno dei due fuochi.
+}
+
+\subsection{2: Legge delle Aree} La seconda legge di Keplero enuncia:
+\definizione{
+    Il segmento che collega un pianeta al Sole descrive aree uguali in tempi uguali.
+}
+\subsection{3: Legge dei periodi} La terza legge di Keplero enuncia:
+\definizione{
+    Il quadrato del periodo di un pianeta è proporzionale al cubo del semiasse maggiore della sua orbita.
+}
