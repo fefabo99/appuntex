@@ -1,0 +1,14 @@
+\chapter{Gravitazione}
+\section{La legge di gravitazione di Newton}
+Nel 1655 Isaac Newton dimostrò che esiste un'atttrazione tra ogni corpo dell'universo.
+Questa tendenza dei corpi ad avvicinarsi prende il nome di \emph{Gravitazione} ed è determinata dalla distanza e dalla \textbf{massa} dei corpi.
+\\Quindi, date due masse separte da una distanza $r$, l'ampiezza della forza gravitazionale è:
+
+\[
+    F_g = G\cdot \frac{m_1 \cdot m_2}{r^2} [N]
+\]
+Dove $G$ è la costante di gravitazione universale:
+\[
+    G = 6,67 \cdot 10^{-11} [N \cdot \frac{m^2}{kg^2}]
+\]
+
