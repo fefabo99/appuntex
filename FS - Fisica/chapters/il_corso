@@ -162,9 +162,10 @@ Quando vogliamo misurare un angolo possiamo usare due misure: \emph{Gradi} e \em
 }
 \paragraph*{La trasformazione delle misure}
 \definizione{
-    Se $\alpha$ è la misura in radianti di un angolo e $z°$ la sua misura in gradi, si ha:
-    \[\alpha : z° = \pi : 180°\]
+    Se $\alpha$ è la misura in radianti di un angolo e $z$° la sua misura in gradi, si ha:
+    \[\alpha : z\text{°} = \pi : 180\text{°}\]
 }
+
 In parole povere:
 \begin{itemize}
     \item $rad \to deg$: $(\alpha \cdot 180)/\pi$

@@ -1,0 +1,24 @@
+\chapter{DFA e NFA}
+I DFA (Deterministic Final Automa) o \textbf{Automi a Stati Finiti Deterministici} un tipo di automa in grado
+di accettare grammatiche di tipo 3 (Regolari).
+\'E una quintupla definita come segue:
+\begin{equation*}
+    A={Q, \Sigma, \delta, q_0, F}    
+\end{equation*}
+Dove delta è una funzione totale.
+%Inserire spiegazione lettere
+\section{NFA}
+I NFA (Non Deterministic Final Automa) o \textbf{Automi a Stati Finiti Non Deterministici} sono dempre definiti
+come quintupla definita come segue:
+\begin{equation*}
+    A={Q, \Sigma, \delta, q_0, F}    
+\end{equation*}
+In questo caso delta è una funzione parziale
+Qua l'automa può assumere più stati in contemporanea, con un simbolo per
+esempio posso andare in 2 stati diversi.
+\paragraph*{NFA e DFA, hanno la stessa potenza?} Sì, ogni NFA può essere convertito in un DFA, 
+c'è da tenere in considerazione che gli NFA sono più compatti dei DFA in termini di rappresentazione
+grafica.
+\definizione{Eclose(q)
+\\ è l'insieme di stati di Q che possono essere raggiunti a partire da q facendo solo 
+$\epsilon$-mosse, compreso q stesso.}
