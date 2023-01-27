@@ -44,16 +44,19 @@ La variabile utilizzata ad ogni iterazione per eseguire questa suddivisione è c
 \\N.B.: nel caso binario, ad ogni branching generiamo due nuovi sotto-problemi, creando un albero binario.
 
 \subsubsection{Branching per problemi di PIM }
-Differisce dal \textit{Branching} per problemi di PB precedentemente visto per poche cose. Il primo cambiamento riguarda la scelta della variabile di \textit{Branching}:
+Differisce dal \textit{Branching} per problemi di PB precedentemente visto per poche cose. Il \textbf{primo} cambiamento riguarda la scelta della variabile di \textit{Branching}:
 \begin{itemize}
     \item Nel B\&B per PB la scelta è stata effettuata seguendo l'indice delle variabili: ora non è più possibile perché sulle variabili continue non può essere effettuato il \textit{Branching}.
     \item La regola deve essere modificata scegliendo la prima variabile non continua seguendo l'ordine naturale degli indici (o regole più sofisticate).
 \end{itemize}
-Il secondo cambiamento riguarda i valori assegnati alla variabile per generare i sotto-problemi:
+Il \textbf{secondo} cambiamento riguarda i valori assegnati alla variabile per generare i sotto-problemi:
 \begin{itemize}
     \item Nel caso PB alla variabile di branching veniva assegnato il valore 0 e 1 rispettivamente per generare i due nuovi sotto-problemi.
-    \item Nel caso generale, assegnare tutti i possibili valori interi sarebbe impossibile quindi si generano due sotto-problemi specificando per la variabile due insiemi di valori $$x_j\, \le\, \lfloor x_j^* \rfloor\quad e\quad x_j\, \ge\, \lfloor x_j^* \rfloor\, +\, 1$$ dove  è il massimo intero per cui 
+    \item Nel caso generale, assegnare tutti i possibili valori interi sarebbe impossibile quindi si generano due sotto-problemi specificando per la variabile due insiemi di valori $$x_j\, \le\, \lfloor x_j^* \rfloor\quad e\quad x_j\, \ge\, \lfloor x_j^* \rfloor\, +\, 1$$ dove $\lfloor x_j^* \rfloor$ è il massimo intero per cui $\lfloor x_j^* \rfloor\, \le\, x_j^*$.
 \end{itemize}
+N.B.: può verificarsi che una stessa variabile venga selezionata più volte durante la procedura.
+\\Il \textbf{terzo} cambiamento riguarda la fase di \textit{Bounding}.
+\\Il \textbf{quarto} (e ultimo) cambiamento riguarda la fase di \textit{Fanthoming}.
 
 \subsection{Bounding}
 \subsubsection{Bounding per problemi di PB (variabili binarie)}
@@ -61,6 +64,12 @@ Per ognuno dei sotto-problemi dobbiamo ricavare un limite superiore (perché è 
 \\Per ottenere questo limite si risolve il \textit{problema rilassato} (ovvero senza considerare i vincoli di interezza ma, essendo il problema binario, limitando le variabili tra 0 e 1).
 \\Quindi risolvo i miei sotto-problemi sostituendo l'ultima riga con i vincoli $x_j \ge 0 \wedge x_j \le 1$ (ovvero $0 \le x_j \le 1$).
 \\Come prima cosa risolviamo la versione rilassata del problema completo (per esempio con il metodo del simplesso) e otteniamo un valore per la nostra $Z$, per esempio $Z = 12,345$. Essendo nell'ambito binario possiamo (come anche nell'ambito intero ovviamente) arrotondare, in questo caso all'intero precedente: se i coefficienti della funzione obiettivo del problema sono tutti interi e le soluzioni del problema devono essere binarie (o intere), sicuramente con le mie variabili non potrei mai raggiungere il valore decimale.
+
+\subsubsection{Bounding per problemi di PIM}
+\begin{itemize}
+    \item Nel caso PB, se i coefficienti della funzione obiettivo erano tutti interi, il valore della soluzione del problema rilassato $Z$ poteva essere arrotondato all'intero inferiore (se \textit{Max}, viceversa se \textit{Min}).
+    \item Nel caso generale questo non è più possibile.
+\end{itemize}
 
 \subsection{Fathoming}
 \subsubsection{Fathoming per problemi di PB (variabili binarie)}
@@ -72,6 +81,12 @@ Un sotto-problema può essere "eliminato" dalla lista dei problemi da considerar
     \item Il sotto-problema non ammette soluzioni ammissibili.
 \end{enumerate}
 Quindi verranno ulteriormente risolti ed analizzati solo quei problemi che non hanno una soluzione intera ma il loro bound è migliore della soluzione incombente.
+
+\subsubsection{Fanthoming per problemi di PIM}
+\begin{itemize}
+    \item Nel caso PB, potevamo fermarci se la soluzione del problema era \textit{intera}.
+    \item Nel caso generale basta che la soluzione soddisfi la condizione di interezza per le variabili che non possono essere continue.
+\end{itemize}
 
 \section{La divisione di una variabile}
 Può essere effettuata in più modi:
@@ -127,3 +142,14 @@ Il Branch and Bound può essere utilizzato anche per trovare soluzioni "buone" (
 Il metodo del Branch-and-Bound si arresta quando tutti i nodi sono dichiarati \textit{fathomed}. In questo caso, la soluzione ammissibile corrente corrisponde ad una soluzione ottima.
 \\Si possono anche usare soluzioni quasi-ottime e fermarci non appena troviamo una soluzione quasi ottima. 
 \\Oppure ancora possono anche essere adottati criteri relativi a limiti computazionali, come ad esempio raggiunti limiti di tempo di calcolo o di memoria, ma non è garantito che l'eventuale soluzione ammissibile corrente sia ottima (posso comunque calcolare quanto distante è dal $Bound$).
+
+\section{Considerazioni finali sul B\&B}
+\subsubsection{Valutazione di soluzioni ammissibili}
+Per applicare efficacemente le regole di \textit{Fathoming}, è necessario disporre di soluzioni ammissibili di buona qualità. Bisogna quindi stabilire come e quando calcolare soluzioni ammissibili.
+\\Abbiamo varie possibilità:
+\begin{itemize}
+    \item Aspettare che l'enumerazione generi un nodo foglia ammissibile;
+    \item Implementare un algoritmo che valuti una buona soluzione prima dell'esplorazione;
+    \item Sfruttare, con frequenza da valutare, l'informazione raccolta durante l'esplorazione dell'albero per costruire soluzioni ammissibili sempre migliori;
+    \item In ogni caso, bisogna \textbf{sempre} valutare il compromesso tra la qualità della soluzione ammissibile corrente e lo sforzo computazionale per ottenerla.
+\end{itemize}

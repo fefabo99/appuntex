@@ -1,4 +1,10 @@
 \chapter{Programmazione non Lineare}
+Un problema di programmazione non lineare (PLN) può essere formulato come:
+soggetto ai seguenti vincoli:
+dove con opt =
+min
+max intendiamo che può essere opt = min oppure opt = max
+in cui 
 \section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
 Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
