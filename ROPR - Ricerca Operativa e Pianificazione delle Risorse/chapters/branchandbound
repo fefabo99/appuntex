@@ -2,8 +2,8 @@
 Il Branch and Bound è una tecnica per la risoluzione di problemi di ottimizzazione intera.
 Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
 \begin{itemize}
-    \item "Valuta" le soluzioni possibili fino a trovare quella ottima;
-    \item Scarta alcune di queste soluzioni a priori dimostrando la loro non ottimalità;
+    \item "Valuta" le soluzioni possibili fino a trovare quella ottima.
+    \item Scarta alcune di queste soluzioni a priori dimostrando la loro non ottimalità.
     \item Si basa sul concetto di Dividi et Impera.
 \end{itemize}  
 \section{Come funziona}
@@ -14,10 +14,11 @@ Supponiamo di avere un problema di PLI che chiamiamo \emph{problema completo}.
 \section{Le tecniche di risoluzione}
 Il Branch and Bound fa uso delle tre seguenti tecniche per risolvere un generico problema di PLI:
 \begin{itemize}
-    \item La partizione rispetto al valore delle variabili, o \textbf{Branching},
-    \item La determinazione di un limite superiore, o \textbf{Bounding},
+    \item La partizione rispetto al valore delle variabili, o \textbf{Branching}.
+    \item La determinazione di un limite superiore, o \textbf{Bounding}.
     \item L'eliminazione di sottoproblemi, o \textbf{Fathoming}.
 \end{itemize}
+La procedura del Branch and Bound per i problemi di PB e quelli di PIM è molto simile, la soluzione dei problemi rilassati è ancora alla base delle fasi di \textit{bounding} e \textit{fathoming} ma occorre apportare alcune modifiche (che riporto nelle sezioni adeguate).
 \subsection{Branching}
 Il Branching implica la selezione di un sotto-problema da analizzare e la divisione di questo in sotto-problemi più piccoli. Vi sono diverse regole di selezione e divisione possibili. Posso scegliere:
 \begin{itemize}
@@ -41,6 +42,18 @@ Nel caso di problemi a variabili binarie (PB), il modo più semplice per divider
 \end{center}
 La variabile utilizzata ad ogni iterazione per eseguire questa suddivisione è chiamata \textbf{variabile di branching}. Nel diagramma qua sopra, al primo livello la variabile di branching sarà $x_1$, a quello successivo $x_2$ etc... Questo perché per selezionare ad ogni iterazione la variabile di branching si può utilizzare l'ordinamento naturale delle variabili ($x_1$, $x_2$, ...).
 \\N.B.: nel caso binario, ad ogni branching generiamo due nuovi sotto-problemi, creando un albero binario.
+
+\subsubsection{Branching per problemi di PIM }
+Differisce dal \textit{Branching} per problemi di PB precedentemente visto per poche cose. Il primo cambiamento riguarda la scelta della variabile di \textit{Branching}:
+\begin{itemize}
+    \item Nel B\&B per PB la scelta è stata effettuata seguendo l'indice delle variabili: ora non è più possibile perché sulle variabili continue non può essere effettuato il \textit{Branching}.
+    \item La regola deve essere modificata scegliendo la prima variabile non continua seguendo l'ordine naturale degli indici (o regole più sofisticate).
+\end{itemize}
+Il secondo cambiamento riguarda i valori assegnati alla variabile per generare i sotto-problemi:
+\begin{itemize}
+    \item Nel caso PB alla variabile di branching veniva assegnato il valore 0 e 1 rispettivamente per generare i due nuovi sotto-problemi.
+    \item Nel caso generale, assegnare tutti i possibili valori interi sarebbe impossibile quindi si generano due sotto-problemi specificando per la variabile due insiemi di valori $$x_j\, \le\, \lfloor x_j^* \rfloor\quad e\quad x_j\, \ge\, \lfloor x_j^* \rfloor\, +\, 1$$ dove  è il massimo intero per cui 
+\end{itemize}
 
 \subsection{Bounding}
 \subsubsection{Bounding per problemi di PB (variabili binarie)}
