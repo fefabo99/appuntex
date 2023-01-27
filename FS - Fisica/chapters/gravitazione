@@ -50,3 +50,6 @@ Con $M$ massa del pianeta e $R$ il suo raggio. Si può notare che la velocità d
 \definizione{
     Il quadrato del periodo di un pianeta è proporzionale al cubo del semiasse maggiore della sua orbita.
 }
+
+\section{Il Campo Gravitazionale}
+%TODO sezione campo gravitazionale

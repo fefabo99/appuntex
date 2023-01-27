@@ -95,3 +95,14 @@ Dalla legge oraria del moto armonico si ha che:
     Energia Meccanica & $E_{mec} = K + U$ & \\
     \hline
 \end{tabularx}
+
+\section{Elettrostatica}
+\begin{tabularx}{\textwidth}{|c|Yc|}
+    \hline
+    \multirow{2}{*}{Legge di Coulomb} & $F=k\frac{q_1\cdot q_2}{r}$ & [C]\\
+    &\multicolumn{2}{|c|}{con $k$ costante di coulomb e $\epsilon_0$ costante universale }\\
+    \hline
+    Costante di Coulomb & $k=\frac{1}{4\pi \epsilon_0}$ &\\
+    Costante Universale & $\epsilon_0 = 8,85 \cdot 10^{-12}$ & $ \frac{C^2}{N\cdot m} $\\
+
+\end{tabularx}
