@@ -38,7 +38,7 @@ tale che $L=L(P)$ accettato per stati finali, inoltre $\exists PDA P_n$ non dete
 $L=N(P_n)$ accettato per pila vuota. Infatti un PDA non deterministico è un $\epsilon$-NFA che usa una pila.
 \\ Non è detto però che $\exists$ DPDA $P_N$ tale che $L=N(P_n)$.
 \\\textbf{Per pila vuota i DPDA sono meno potenti dei DFA} 
-non riescono ad accettare tutti i linguaggi CF (mentre accettato tutti i LR - Linguaggi Regolari)
+non riescono ad accettare tutti i linguaggi CF e neanche tutti i Linguaggi Regolari!
 Per esempio il linguaggio $L_{vv^r} = \{ww^r | w \in {0,1}*\} \in$ CFL, non è accettato
 da DPDA, mentre viene accettato da NPDA. Questo perchè in questo caso il DPDA non riesce
 a capire quando iniziare a svuotare la pila, inserendo però un "segnale di mezzo" c $\{wcw^r\}$
@@ -59,4 +59,26 @@ I PDA
 \label{sec:Prefix-Free}
 Un Linguaggio L ha la proprietà del prefisso (cioè è Prefix Free) se $\nexists x,y \in L$ tali che $x \neq y$ e $x$
 è prefisso di $y$. 
-\paragraph*{Utilizzo di questa proprietà} Come già riportato a inizio paragrafo, 
+\paragraph*{Teorema} Un linguaggio L è $N(P)$ (accetta per pila vuota) per un DPA
+se e solo se L gode della proprietà del prefisso (cioè è prefix-free) ed è $L(P')$
+Come già riportato a inizio paragrafo, utilizzo questa proprietà per verificare se posso
+costruire un DPDA che accetta per pila vuota o se sono costretto ad accettare per stato
+finale.
+\paragraph*{Esempio} Il linguaggio denotato dalla Espressione Regolare (ER) $\{0\}*$ non è prefix-free
+quindi non posso costruire un DPDA che accetti per pila che lo riconosca.
+\paragraph*{I DPDA che accettano per pila sono meno potenti di quelli che accettano per stato finale} perchè accettano
+una sottoclasse di linguaggi che vengono accettati per stati finali (quelli appunto Prefix-Free).
+\subsection*{Dimostrazione}Ho un DPDA P che accetta per pila vuota, suppongo che
+L=N(P) e per assurdo supponiamo che L non sia prefix-free.
+\\ Allora $\exists x,y \in L$ t.c $x \neq y$ e $x$ è prefissa di $y$.
+\\ Pongo $y = xw$, se P accetta x dopo aver consumato x, la pila è vuota (dato che x è prefissa di y).
+\\ P però non può accettare y anche se $y \in L$ perchè dopo aver consumato x la pila è vuota e dato che
+il PDA è deterministico e x è prefissa di y l'automa nel leggere y rifarà gli stessi passi di x e quindi
+arriverà a svuotare la pila prima di aver consumato tutta la stringa.
+\paragraph*{Riassumendo}Per pila vuota i DPDA non sono in gradi accettare tutti i CFL e neanche tutti i LR.
+\section{Riassunto Linguaggi riconosciuti dai PDA}
+PDA senza D iniziale significa non deterministici.
+\begin{center}
+    \includegraphics[width=120mm, scale=0.5]{pda_linguaggi_accettati.png}
+\end{center}
+
