@@ -76,11 +76,24 @@ al linguaggio.
 dato che non è garantito che il risultato ottenuto sia corretto.
 \\ Con $\Rightarrow^*$ indico che faccio uno o più passi di derivazione (NON più sostituzioni in un unico
 passaggio).
+
+\section{Linguaggi di Tipo 1 (Contestuali)}
+%Iniziata trascrizione lezione 4 - Vedere PDF Grammatiche di Tipo 1 su elearning
+% https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf
+Le Grammatiche di Tipo 1 sono dipendenti dal contesto, questo significa che durante
+la produzione di una stringa viene sostituito un simoblo alla volta, ma solo quando
+è in presenza di un altro simbolo. Vedremo che nella testa delle regole di produzione
+avrò la concatenazione di due variabili.
+Nell'esempio riportato a questo 
+{\href{https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf}{\textbf{link}}}
+vengono mostrate le regole di produzioni necessarie per generare un esempio di linguaggio
+di tipo 1. 
+
 \section{Context Free Grammar (CFG) - Linguaggi liberi dal contesto (Tipo 2)}
 Questi linguaggio sono caratterizzati da una definizione ricorsiva dello stesso, qui di
 seguito alcuni esempi per chiarire cosa si intende.
 \esempio{\emph{Fornire una CFG per il linguaggio $L=\{0^n 1^n | n \geq 1\} n\in \mathbb{N}$}
-Alcuni esempi di L sono = \{01, 0011, 000111, ...\}
+Alcuni esempi di L sono = \{01,h 0011, 000111, ...\}
 \\ Se $w in L$ allora $0w1 \in L$
 \\ $S \rightarrow 01 | 0S1$
 \\ $V = \{S\},\, T=\{0,1\}$ $G = (V,T,P,S)$
@@ -88,10 +101,23 @@ Alcuni esempi di L sono = \{01, 0011, 000111, ...\}
 \\ \emph{n ci indica quante volte il simbolo si deve ripetere come minimo, in questo caso per
 esempio essendo $\geq 1$ ci sta dicendo che vuole che il simbolo sia ripetuto almeno 1 volta, quindi
 $\epsilon$ non è ammesso, fosse stato $\geq 0$ significava che $\epsilon$ appartiene al linguaggio}}
+
+\subsection{Definizione formale}
+Una grammatica di tipo Context-Free è definita come una quadrupla del tipo:
+\begin{equation*}
+    G = (V, T, P, S)
+\end{equation*}
+\begin{itemize}
+    \item V - Insieme delle Variabili
+    \item T - Insieme dei simboli Terminali
+    \item P - Insieme delle regole di Produzione
+    \item S$\in V$ - Simbolo iniziale o Start Symbol
+\end{itemize}
 \subsection*{Left Most e Right Most derivation}
 Posso applicare le regole di derivazione in diversi ordini, per esempio applicando sempre la variabile più
 a sinistra o più a destra, vedremo che questo non cambia il risultato, disegnando un albero sintattico noteremo
 come i due rami a seconda del tipo di applicazione risulteranno invertiti, ma il risultato sarà sempre lo stesso.
+
 \subsection*{Risoluzione esercizi}
 Lo svolgimento degli esercizi è sui PDF presenti nella cartella drive indicata nel README.md, comunque
 qui di seguito sono elencati consigli per la risoluzione.
@@ -107,18 +133,6 @@ sottopattern e questo mi impedisce di produrre una CFG.
     scomporre l'esponente nell'ordine corretto, quello che mi permette di ottonere gruppi non incrociati
     \item La situazione precedente tipicamente si presenta negli esercizi dove come condizioni ho $n \geq m \geq 0$
 \end{itemize}
-
-\section{Linguaggi di Tipo 1 (Contestuali)}
-%Iniziata trascrizione lezione 4 - Vedere PDF Grammatiche di Tipo 1 su elearning
-% https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf
-Le Grammatiche di Tipo 1 sono dipendenti dal contesto, questo significa che durante
-la produzione di una stringa viene sostituito un simoblo alla volta, ma solo quando
-è in presenza di un altro simbolo. Vedremo che nella testa delle regole di produzione
-avrò la concatenazione di due variabili.
-Nell'esempio riportato a questo 
-{\href{https://elearning.unimib.it/pluginfile.php/1366772/mod_resource/content/3/grammatiche-tipo-1.pdf}{\textbf{link}}}
-vengono mostrate le regole di produzioni necessarie per generare un esempio di linguaggio
-di tipo 1. 
 
 \section{La Grammatiche Ambigue}
 \subsection{Albero Sintattico}
