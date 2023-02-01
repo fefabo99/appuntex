@@ -65,6 +65,25 @@ nella prima colonna (quella degli insiemi degli stati) e proseguo fino a quando 
 stati.
 \\ Etichetto tutti gli insiemi degli stati e li scrivo come stati unici, verifico le transizioni che
 mi portano da un insieme di stati all'altro e costruisco il DFA.
+
+\section{Conversione da ER a Epsilon NFA}
+Dovrò avere
+\begin{enumerate}
+    \item Esattamente uno stato accettante
+    \item Nessun arco entrante nello stato iniziale
+    \item Nessun arco uscente dallo stato accettante
+\end{enumerate}
+%Completare sto casino
+\section{Conversione da Epsilon NFA a ER}
+\'E sempre possibile convertire una ER in un $\epsilon$-NFA.
+Si tratta di un processo piuttosto intuitivo, qui di seguito la conversione in
+$\epsilon$-NFA della seguente ER:
+\begin{equation*}
+    (0 + 1)* 1(0 + 1) 
+\end{equation*}
+\begin{center}
+    \includegraphics[width=50mm, scale=0.5]{img/er_to_nfa.png}
+\end{center}
 \section{Pumping Lemma}
 Il Pumping lemma è un teorema che ci permette di dimostrare che un linguaggio non è regolare.
 %Completare definizione
