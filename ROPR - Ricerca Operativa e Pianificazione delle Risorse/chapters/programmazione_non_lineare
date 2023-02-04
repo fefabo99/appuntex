@@ -22,6 +22,32 @@ Problemi in cui $f(\mathbf{x})$ è una funzione \textbf{concava} o \textbf{conve
 \subsubsection{Ottimizzazione non convessa}
 I problemi di programmazione non convessa comprendono tutti i problemi che non soddisfano le ipotesi di convessità. Sono più difficili da risolvere perché possono presentare diversi punti di minimo/massimo.
 
+\section{Gradiente ed Hessiano}
+Vogliamo estendere i concetti di derivata (prima e seconda) visti per funzioni in una variabile, al caso di funzioni in più variabili.
+\\In particolare, considereremo lo spazio euclideo $\R^2$ (ovvero lo spazio vettoriale $\R^2$ dotato di norma euclidea), da cui sarà possibile facilmente generalizzare allo spazio $\R^n$ con $n\, >\, 2$.
+\\Sia $A \subset \R^2$ e $f:\, A \rightarrow \R$ una funzione definita sull'insieme $A$.
+
+\subsection{Le derivate parziali}
+
+\subsubsection{Def. Derivata Direzionale}
+Supponiamo di voler calcolare la velocità di crescita della funzione $f(x,\, y)$ nel punto $(x_0,\, y_0)$ quando ci si muove nella direzione del vettore $v = (a,\, b)$. I punti di coordinate $(x_0 + ha,\, y_0 + hb)$ descrivono, al variare di $h$ in $\R$, la retta nel piano $\widehat{xy}$ passante per il punto $(x_0,\, y_0)$ e parallela a $v$.
+\\La derivata direzionale di $f$ in $(x_0,\, y_0)$ nella direzione individuata dal versore $v\, =\, (a,\, b)$ (con $\| v\|\, =\, 1$) si indica con $D_v\, f(x_0,\, y_0)$ e vale $$D_v\, f(x_0,\, y_0)\, =\, \lim_{h\to 0}\frac{f(x_0 + ha,\, y_0 + hb)\, -\, f(x_0,\, y_0)}{h} $$ (se il limite esiste).
+
+\subsubsection{Def. Derivata Parziale}
+Le derivate parziali di $f$ nel punto $(x_0,\, y_0)\in A$ sono definite come $$\frac{\partial f(x_0,\, y_0)}{\partial x}\, =\, \lim_{h\to 0}\frac{f(x_0 + h,\, y_0)\, -\, f(x_0,\, y_0)}{h} ,$$ $$\frac{\partial f(x_0,\, y_0)}{\partial y}\, =\, \lim_{h\to 0}\frac{f(x_0,\, y_0 + h)\, -\, f(x_0,\, y_0)}{h} ,$$ purché i limiti esistano finiti. Quindi, le derivate parziali corrispondono alla derivata direzionale rispetto ai vettori $v_1 = (1,\, 0)$ e $v_2 = (0,\, 1)$, rispettivamente.
+
+\subsubsection{Varianti di notazioni per le derivate parziali}
+$\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
+
+\subsubsection{Comportamenti delle derivate parziali}
+\begin{itemize}
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} > 0$, allora la funzione è crescente lungo la direzione $x$.
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} > 0$, allora la funzione è crescente lungo la direzione $y$.
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} < 0$, allora la funzione è crescente lungo la direzione $x$.
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} < 0$, allora la funzione è crescente lungo la direzione $y$.
+\end{itemize}
+$\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
+
 \section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
 Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
@@ -40,22 +66,21 @@ Si costruisce una sequenza di punti $\{x_k\}$ t.c.: (nei casi di minimizzazione)
 Ad ogni iterazione $k$, partendo da $x_k$ si esegue una ricerca sistematica per identificare un punto migliore $x_k$.
 
 \paragraph{I criteri di Arresto}
-A differenza dell'algoritmo del simplesso, in questo caso la sequenza di punti $\{x_k\}$ non è detto che converga alla soluzione ottima del problema
-in un numero finito di iterazioni.
+A differenza dell'algoritmo del simplesso, in questo caso la sequenza di punti $\{x_k\}$ non è detto che converga alla soluzione ottima del problema in un numero finito di iterazioni.
 
 Quindi quando fermo la sequenza di punti?
 \begin{itemize}
     \item La soluzione è sufficientemente accurata, ovvero $\frac{df(x_k)}{dx} \simeq 0$
     \item Quando si è raggiunto un numero massimo di iterazioni $N$ o un tempo computazionale massimo.
-    \item I progressi sono lenti, ovvero $|x_{k+1} - x_k| < \epsilon_x$ o  $|f(x_{k+1}) - f(x_k)| < \epsilon_f$
-    \item La soluzione diverge
-    \item Si verificano Cicli.
+    \item I progressi sono lenti, ovvero $|x_{k+1} - x_k| < \epsilon_x$ o  $|f(x_{k+1}) - f(x_k)| < \epsilon_f$.
+    \item La soluzione diverge.
+    \item Si verificano cicli.
 \end{itemize}
 
 \subsection{Gli algoritmi}
 Esistono due tipi di algoritmi:
-\\\textbf{Dicotomici}: Algoritmi di ricerca per individuare un determinato valroe (per il quale la funzione derivata si annulla) all'interno di un intervallo che ad ogni iterazione viene ridotto.
-\\\textbf{ Di approssimazione}: utlizzando approsimanzioni locali della funzione
+\\\textbf{Dicotomici}: Algoritmi di ricerca per individuare un determinato valore (per il quale la funzione derivata si annulla) all'interno di un intervallo che ad ogni iterazione viene ridotto.
+\\\textbf{Di approssimazione}: utilizzando approssimazioni locali della funzione.
 
 Per l'ottimizzazione di funzioni in una variabile tratteremo:
 \begin{itemize}
@@ -65,7 +90,7 @@ Per l'ottimizzazione di funzioni in una variabile tratteremo:
 
 \section{Il metodo di Bisezione}
 L'idea di questo algoritmo è:
-Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a.b]$ allora, considerando \textbf{un generico punto $x_k$}, se:
+\\Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a.b]$ allora, considerando \textbf{un generico punto $x_k$}, se:
 \begin{itemize}
     \item $\frac{d}{dx} f(x_k) < 0 \implies $ l'ottimo $x^*$ si trova a \textbf{sinistra} di $x_k$.
     \item $\frac{d}{dx} f(x_k) > 0 \implies $ l'ottimo $x^*$ si trova a \textbf{destra} di $x_k$.
@@ -96,7 +121,7 @@ con $|a_k - x^*| < \epsilon$ e $|x^*-b_k|<\epsilon$
 \paragraph*{Inizializzazione}
 $k=0$ e $\epsilon$ piccolo a piacere.
 \\Si determinano i valori $\underline{x}$ e $\bar{x}$ per cui la derivata sia rispettivamente positiva e negativa.
-si seleziona il punto iniziale $x_0 = \frac{\underline{x} + \bar{x}}{2}$
+\\Si seleziona il punto iniziale $x_0 = \frac{\underline{x} + \bar{x}}{2}$
 
 \paragraph*{Iterazione del metodo di bisezione} bisogna: \\
 \begin{enumerate}
