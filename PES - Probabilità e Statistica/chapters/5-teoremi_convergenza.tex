@@ -1,0 +1,63 @@
+\chapter{Teoremi di convergenza}
+Siano $X_1, X_2 \dots $ successione di Variabili aleatorie indipendenti identicamente distribuite (V.A I.I.D.).
+\\ Discrete $ \rightarrow p_x(x) = p(x) $
+\\ Assolutamente continue $ \rightarrow f_{x_i} (x) = f(x) $
+
+Per osservare $X_1, X_2$ devo raccogliere dei dati, il problema è che $p(x), f(x)$ non sono completamente
+note. 
+\paragraph*{Statistica inferenziale} Dalle osservazioni posso fare delle deduzioni (Inferenze) sulla distribuzione
+comune di $X_1, X_2$ ossia su $p(x)$ e $f(x)$.
+\\ Non posso osservare tutte le V.A per questo ne scelgo casualmente n. 
+\\ $X_1, \dots ,X_n$ Campione aleatorio di ampiezza n. Lavoreremo con variabili aleatorie che siano funzioni del 
+campione aleatorio, cioè del tipo $g(x_1, \dots ,x:n)$
+\paragraph*{Statistica campionaria} Dato un campione aleatorio $X_1, \dots, X_n$ una statistica campionaria
+è una qualunque funzione del campione:
+\begin{equation*}
+    g(X_1, \dots, X_n) \text{   } (g:\mathbb{R}^n\rightarrow\mathbb{R})
+\end{equation*}
+
+\paragraph*{Esempio di statistica campionaria} Media campionaria
+\begin{equation*}
+    \bar{X_n}:\frac{1}{n}\sum_{n=1}^n X_i
+\end{equation*}
+\section{Distribuzione di X}
+\begin{equation*}
+    \mathbb{P} (a  < \bar{X_nx} \leq b) = \mathbb{P} (\frac{a - \mu}{\frac{\sigma}{\sqrt{n}}} 
+    < \frac{X_n - \mu}{\frac{\sigma}{\sqrt{n}}} \leq \frac{b - \mu}{\frac{\sigma}{\sqrt{n}}})   
+\end{equation*}
+\begin{equation*}
+    \text{Var}(\bar{X_n}) = \frac{\sigma ^ 2}{n} 
+\end{equation*}
+\begin{equation*}
+    \frac{\sigma}{\sqrt{n}} = \sqrt{\text{Var}}
+\end{equation*}
+
+\section{Teorema del limite centrale}
+Siano $X_1, ..., X_n$ v.a i.i.d. (Variabili aleatorie indipendenti identicamente distribuite)
+$E(i) = \mu$ e $\text{Var}X_i = \sigma^2$ (con media e varianza finite).
+\begin{equation*}
+    \mathbb{P} (\frac{X_n-\mu}{\frac{\sigma}{\sqrt{n}}} \leq t) \rightarrow \Phi (t) \quad n \rightarrow + \infty   
+\end{equation*}
+Dove $\Phi$ è la funzione di ripartizione di una V.A $Z\sim N(0,1)$
+\begin{equation*}
+    \Phi(t) = \mathbb{P}(Z \leq t)
+\end{equation*}
+\paragraph*{Condizione per usare l'approssimazione normale} Abbiamo definito 
+che solo con $n \geq 30$ si può usare l'approx per semplicità, in realtà non è semplice
+dare un criterio univoco dato che dipende dall'asimmetria del campione di partenza.
+\paragraph*{Nota per i campioni discreti} Quando ho un campione discreto è sempre necessario
+applicare la correzione di continuità 
+%https://it.wikipedia.org/wiki/Standardizzazione_(statistica)
+
+\section*{Note per esercizi}
+\begin{itemize}
+    \item Riconosci la distribuzione notevole
+    \item Ricava media e Var
+    \item Scrivi la formula che ti serve (es P che una va sia $\leq$ di n)
+    \item Effettua la correzione di continuità se si tratta di una VA discreta
+    \item Verifica se $n\geq 30$, questo per verificare se si può applicare il TLC (teorema del limite centrale)
+    \item Sottrai media e dividi per $\sqrt{\text{Var}}$
+    \item Se hai > come segno, anzichè $\mathbb{P}$ dovrai trovare $1-\mathbb{P}$ e invertire il segno in <
+    \item Se trovi un valore $z$ negativo all'interno di $\Phi(z)$ dovrai calcolare $1 - \Phi(-z)$, quindi rendere positivo
+    z, calcolare il suo $\Phi$ e sottrarlo a 1
+\end{itemize}

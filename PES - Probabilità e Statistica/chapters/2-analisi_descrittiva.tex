@@ -1,0 +1,98 @@
+\chapter{Analisi Descrittiva}
+\section{Descrivere i dati}
+Per descrivere una raccolta dati in maniera chiara e immediata è utile utilizzare una \textbf{tabella delle frequenze}
+all'interno della quale sono contenuti:
+\begin{itemize}
+    \item Valori
+    \item Frequenze Assolute - Numero di volte in cui compare "i" nell'insieme di dati
+    \item Frequenze Relative - Frazione di volte in cui compare i nell'insieme di dati
+    \item Percentuali - (Frequenza relativa x 100)
+\end{itemize}
+
+Il dato che compare con frequenza più alta è detto \textbf{moda}.
+
+I dati possono essere
+\begin{itemize}
+    \item Qualitativi
+    \item Quantitativi 
+\end{itemize}
+Noi useremo i dati \textbf{quantitativi}
+
+\subsection{Rappresentazione dei dati}
+Per rappresentare le frequenze (assolute o relative) risulta efficace e immediato l'utilizzo di un grafico a barre detto istogramma,
+esso rappresenta in graficamente la tabella, chiaramamente da esso è possibile risalire alla tabella stessa.
+Capita di avere degli insiemi di dati che assumono un valore elevato di valori distini, per questo conviene suddividerli in classi e
+determinare la frequenza di ciascuna classe. In questo modo c'è una perdita d'informazioni (sui valori specifici), ma così facendo possiamo
+calcolare le frequenze delle classi e avere un'idea migliore della distribuzione dei dati.
+
+\subsection{Dati Bivariati}
+Quando per ciascun individuo vengono misurate due variabili ci troviamo un insieme di N dati a coppie detti \textbf{dati bivariati}.
+Anche in questo caso è possibile calcolare le frequenze, in questo caso detto \textbf{frequenze congiunte}.
+
+è possibile, inoltre, misurare la correlazione tra le due variabili attraverso per esempio un diagramma di dispersione (detto anche scatterplot).
+
+\paragraph{Correlazione non significa causalità!} Non è detto che l'aumento di una variabile causi la diminuzione dell'altra o viceversa, potrebbe esserci una causa comune. 
+
+\section{Riassumere i dati}
+Dopo aver rappresentato i dati vogliamo ora riassumerli mediante quantità numeriche, dette \textbf{Statistiche Campionarie}, al fine di sintetizzare le proprietà
+salienti dei dati.
+
+\subsection{Indici di posizione}
+Per definire il centro dell'insieme dei dati definiamo la 
+\paragraph{\textbf{Media Campionaria}} \scalebox{1.5}{$\frac{x_1 + x_2 + \dots + x_n}{N}$} %Aggiungere sommatoria
+
+Per misurare il valore in posizione centrale (considerando l'insieme di dati ordinato), utilizziamo la
+\paragraph{\textbf{Mediana}}
+\begin{itemize}
+    \item Se N dispari $\rightarrow$ {$X_\frac{N+1}{2}$}
+    \item Se N pari $\rightarrow$ $m = \frac{X_{\frac{N}{2}}+X_{\frac{N}{2}+1}}{2}$
+\end{itemize}
+
+La mediana è insesibile alle code, se per esempio quindi aumento anche di molto il valore dell'ultima cifra lasciando invariate
+le altre la mediana non cambierà (a differenza della media).
+
+\section{Coefficiente di correlazione lineare}
+Posso misurare il grado di correlazione tra una coppia di dati attraverso il coefficiente di correlazione lineare. 
+
+\begin{equation}
+    r = \frac{\sum_{k=1}^N (x_i - x)(y_i - y)}{(N -1)S_x S_y}
+\end{equation}
+
+Si può mostrare che:
+\begin{equation}
+    -1<=r<=1
+\end{equation}
+
+In generale $r > 0$ indica una correlazione positiva
+\\ $r < 0$ indica una correlazione negativa 
+
+\subsection{Correlazioni significative}
+$|r| > 0.7$ Correlazione significativa
+\\$|r| < 0.3$ Correlazione debole
+
+\section{Percentili e quantili}
+Per analizzare la distribuzione dei dati è utile fissare un numero k che rappresenta la posizione all'interno dato all'interno dell'insieme
+questo valore percentuale è detto \textbf{k-esimo Percentile Campionario}, valore t per cui
+\begin{itemize}
+    \item almeno il k\% dei dati è $ <= t$
+    \item almeno il $(100 -k)\%$ dei dati è $<= t$
+\end{itemize}
+
+I casi più importanti sono per k = 25, 50, 75
+\\ Risulta pratico scrivere $k = 100p$ dove $p = \frac{k}{100}\in [0, 1]$, dove i casi importanti sono per:
+\begin{itemize} 
+    \item $p = \frac{1}{4}: k = 100p$ = 25-esimo percentile = primo quartile $q_1$
+    \item $p = \frac{1}{2}: k = 100p$ = 50-esimo percentile = secondo quartile $q_2$ = mediana m
+    \item $p = \frac{3}{4}: k = 100p$ = 75-esimo percentile = terzo quartile $q_3$
+\end{itemize}
+
+Per calcolare il k-esimo percentile t è necessario:
+\begin{enumerate}
+    \item Ordinare l'insieme di dati $x_1 <= x_2 <= \dots <= x_n$
+    \item Se $N_p$ non è intera $t=x_i$ è il dato la cui posizione i è l'intero successivo a $N_p$
+    \item Se $N_p$ è intera $t = \frac{x_(Np) x_(Np+1)}{2}$ è la media aritmetica fra il dato in posizione N e il successivo 
+\end{enumerate}
+
+\paragraph{Nota per R} Esistono diverse definizioni di quantile, R per esempio ne utilizza una diversa di default.
+
+\'E possibile utilizzare i \textbf{Boxplot} per la rappresentazione dei quantili
