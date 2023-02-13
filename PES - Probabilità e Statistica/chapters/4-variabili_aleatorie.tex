@@ -271,7 +271,7 @@ scrive $X \sim \text{Pois}(\lambda)$, se $X(\Omega) = \mathbb{N}_0 = {0,1,2,\dot
 Si può ottenere una v.a. di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
 di una v.a. binomiale $Y \sim \text{Bin}(n,p)$ quando
 \begin{equation*}
-    n \rightarrow \infty, p \rightarrow 0 \text{con} np=\lambda \text{ cioè } p = \frac{\lambda}{n}
+    n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
 \end{equation*}
 \paragraph*{Valore Medio e Varianza}
 Se $X \sim \text{Pois}(\lambda)$
@@ -292,7 +292,7 @@ quando si considera una grande quantità di prova la cui probabilità di accesso
 
 \subsection*{Geometrica}
 Una v.a. \textbf{X si dice geometrica di parametro $p \in (0,1]$} e si scrive 
-\textbf{$X \sim \text{Geo}p$}, se \textbf{$X(\Omega)=\mathbb{N} = {1,2,3,\dots}$} :
+\textbf{$X \sim \text{Geo }p$}, se \textbf{$X(\Omega)=\mathbb{N} = {1,2,3,\dots}$} :
 \begin{equation*}
     p_x (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
 \end{equation*}
@@ -420,14 +420,14 @@ con $c = \frac{1}{b-a}$
 \end{equation*} 
 \includegraphics[width=100mm, scale = 0.5]{va unif continua.png}
 \paragraph*{Osservazione} Si può mostrare che a partire da una v.a. U(0,1) è possibile
-generare una v.a. con distrigià buzione arbitraria!
+generare una v.a. con distribuzione arbitraria!
 
 \paragraph*{Valori assunti da una V.A assolutamente continua}
 \begin{equation*}
     X(\Omega) = {x \in R: f_x(x) > 0S}
 \end{equation*}
 
-\paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densitò di una V.A. Continua non è la densità discreta 
+\paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densità  di una V.A. Continua non è la densità discreta 
 e soprattutto NON è la probabilità di assumere il valore x.
 
 \subsection{Valori assunti da una V.A. assolutamente continua}
@@ -617,6 +617,11 @@ Il fatto che ci si può ricondurre a una v.a. normale standard è un caso partic
 della seguente proprietà:
 \paragraph*{Teorema} Se X è normale $\rightarrow$ $Y = aX+b$ è normale 
 $\forall a \neq 0, b \in \mathbb{R}$
+\\ $ X \sim N(\mu, \sigma^2) \rightarrow Y \sim N(a \mu+b, a^2 \sigma^2)$
+\begin{itemize}
+    \item $E[Y] = aE[X]+b$
+    \item $Var[Y] = a^2 Var[X]$
+\end{itemize}
 \paragraph*{Teorema} X e Y normali indipendenti $\rightarrow X+Y$ è normale.
 \begin{equation*}
     X \sim N(\mu_x, \sigma^{2}_x), \, Y \sim N(\mu_y, \sigma^{2}_y)\, \text{indip.}\,
