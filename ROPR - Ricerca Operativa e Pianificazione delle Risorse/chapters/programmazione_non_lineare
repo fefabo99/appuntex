@@ -48,6 +48,28 @@ $\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, 
 \end{itemize}
 $\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
 
+\subsubsection{Derivate di ordine successivo}
+Sia $f(x,\, y)$ una funzione derivabile in $A\, \subset\, \R^2$, ovvero siano definite in $A$ le 2 derivate parziali $\frac{\partial f(x,\, y)}{\partial x}$ e $\frac{\partial f(x,\, y)}{\partial y}$. Ogni derivata parziale è una funzione definita in $A$. Se $\frac{\partial f(x,\, y)}{\partial x}$ è a sua volta derivabile, le sue derivate parziali $$\frac{\partial^2 f(x,\, y)}{\partial x \partial x},\quad \frac{\partial^2 f(x,\, y)}{\partial x \partial y}$$ sono dette \textbf{derivate seconde}. In modo simile possono essere definite le derivate parziali di $\frac{\partial f(x,\, y)}{\partial y}$, ovvero $$\frac{\partial^2 f(x,\, y)}{\partial y \partial x},\quad \frac{\partial^2 f(x,\, y)}{\partial y \partial y}$$
+
+\subsection{Gradiente di una funzione}
+Il gradiente di $f(x, y)$ è per definizione il vettore $\text{D}f$ le cui componenti sono le \textbf{derivate parziali} di $f$, ovvero $$\nabla f(x,\, y) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T$$
+\\Anche in questo caso esistono varie notazioni per indicare il gradiente: $$\nabla f,\quad \text{D}f(x,\, y),\quad \nabla f(x,\, y),\quad \text{grad} f$$
+\\Gli elementi sulla diagonale principale vengono chiamati \textbf{derivate pure}, per distinguerli dagli altri elementi chiamati \textbf{derivate miste}.
+
+\subsection{Hessiano di una funzione}
+L'insieme delle derivate seconde costituisce una matrice quadrata chiamata matrice Hessiana, e si denota con il simbolo $\text{D}^2 f$ o $H_f$.
+$$H_f f(x,\, y) = \left[\begin{matrix}
+    \frac{\partial^2 f(x,\, y)}{\partial x \partial x} & \frac{\partial^2 f(x,\, y)}{\partial x \partial y} \\
+    \frac{\partial^2 f(x,\, y)}{\partial y \partial x} & \frac{\partial^2 f(x,\, y)}{\partial y \partial y}
+\end{matrix}\right]$$
+
+\subsection{Legami fra gradiente, hessiano e punti di ottimo}
+Il gradiente riassume le informazioni di crescita della funzione lungo tutte le direzioni. I punti per cui il gradiente si annulla ($\nabla f = 0$), prendono il nome di \textbf{punti stazionari}.
+
+\subsubsection{Legame tra stazionarietà e gradiente}
+Se $f:\, A \subset \R^2 \rightarrow \R$ è derivabile in un punto $(x_0,\, y_0)$ di massimo o di minimo locale, allora $$\nabla f(x_0,\, y_0) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T = [0,\, 0]^T$$
+\\
+
 \section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
 Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficiente affinchè $x^*$ sia \textbf{punto di massimo} è che:
