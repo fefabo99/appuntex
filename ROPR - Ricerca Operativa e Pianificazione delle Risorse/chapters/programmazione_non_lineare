@@ -77,7 +77,10 @@ Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comp
 
 \subsubsection{Def. matrice definita positiva/negativa}
 Cosa significa matrice definita positiva e negativa?
-\\Una \textbf{matrice definita positiva} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax > $$
+\\Una \textbf{matrice definita positiva} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ 
+\\Una \textbf{matrice definita negativa} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax < 0\quad \forall x \in \R^2 \setminus 0$$ 
+\\Una \textbf{matrice semi definita positiva} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax \geq 0\quad \forall x \in \R^2 \setminus 0$$ 
+\\Una \textbf{matrice semi definita negativa} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax \leq 0\quad \forall x \in \R^2 \setminus 0$$ 
 
 \subsubsection{Legame tra hessiano e convessità}
 Se
