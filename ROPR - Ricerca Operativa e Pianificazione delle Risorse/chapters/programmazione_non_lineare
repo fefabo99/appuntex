@@ -77,10 +77,19 @@ Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comp
 
 \subsubsection{Def. matrice definita positiva/negativa}
 Cosa significa matrice definita positiva e negativa?
-\\Una \textbf{matrice definita positiva} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ 
-\\Una \textbf{matrice definita negativa} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax < 0\quad \forall x \in \R^2 \setminus 0$$ 
-\\Una \textbf{matrice semi definita positiva} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax \geq 0\quad \forall x \in \R^2 \setminus 0$$ 
-\\Una \textbf{matrice semi definita negativa} è una matrice quadrata $A \in \R^2 \times \R^2$ tale che $$x^T Ax \leq 0\quad \forall x \in \R^2 \setminus 0$$ 
+\\
+\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.
+\\
+\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{semi definita positiva} se $$x^T Ax \geq 0\quad \forall x \in \R^2 \setminus 0$$
+Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita negativa} se $$x^T Ax < 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono negativi. 
+\\
+\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{semi definita negativa} se $$x^T Ax \leq 0\quad \forall x \in \R^2 \setminus 0$$
+\\Ma come si trovano?
+
+\subsubsection{Trovare gli autovalori di una matrice}
+Premessa scontata ma dovuta: la nozione di autovalore si riferisce \textbf{solo} alle matrici \textbf{quadrate}.
+\\Sia $A$ una matrice di ordine $n$, ovvero $A \in \mathbb{K}^n$, dove $\mathbb{K} \subseteq \mathbb{R}$ o anche $\mathbb{K} \subseteq \mathbb{C}$.
+\\Si dice che lo scalare $\lambda_0 \in \mathbb{K}$ è un \textbf{autovalore} della matrice $A$ se $\exists$ un vettore colonna \textbf{non nullo} $v \in \mathbb{K}^n$ tale che $$A\mathbf{v} = \lambda_0\mathbf{v}$$
 
 \subsubsection{Legame tra hessiano e convessità}
 Se
@@ -91,7 +100,7 @@ Essendo questa funzione \textbf{concava}, sappiamo che una condizione sufficient
 \[
     \frac{d}{dx}f(x^*) = 0 \text{, ovvero il punto di massimo è dove la derivata è stazionaria}
 \]
-Capiamo qundi che se \emph{una equazione può essere risolta analiticamente} allora il procedimento per trovare l'ottimo termina.
+Capiamo qundi che se \emph{un'equazione può essere risolta analiticamente} allora il procedimento per trovare l'ottimo termina.
 \\Un discorso equivalente si può fare per problemi di minimizzazione di funzioni convesse.
 \subsection{Algoritmi per la risoluzione numerica}
 E se non posso risolverla analiticamente?
