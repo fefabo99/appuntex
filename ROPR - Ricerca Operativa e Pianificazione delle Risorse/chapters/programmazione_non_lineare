@@ -89,10 +89,31 @@ Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita negativa} se $
 \subsubsection{Trovare gli autovalori di una matrice}
 Premessa scontata ma dovuta: la nozione di autovalore si riferisce \textbf{solo} alle matrici \textbf{quadrate}.
 \\Sia $A$ una matrice di ordine $n$, ovvero $A \in \mathbb{K}^n$, dove $\mathbb{K} \subseteq \mathbb{R}$ o anche $\mathbb{K} \subseteq \mathbb{C}$.
-\\Si dice che lo scalare $\lambda_0 \in \mathbb{K}$ è un \textbf{autovalore} della matrice $A$ se $\exists$ un vettore colonna \textbf{non nullo} $v \in \mathbb{K}^n$ tale che $$A\mathbf{v} = \lambda_0\mathbf{v}$$
+\\Si dice che lo scalare $\lambda_0 \in \mathbb{K}$ è un \textbf{autovalore} della matrice $A$ se $\exists$ un vettore colonna \textbf{non nullo} $\mathbf{v} \in \mathbb{K}^n$ tale che $$A\mathbf{v} = \lambda_0\mathbf{v}$$ dove $\mathbf{v}$ è detto \textbf{autovettore relativo all'autovalore} $\lambda_0$.
+\\Da questa uguaglianza possiamo ricavare che $$A\mathbf{v} - \lambda_0\mathbf{v} = 0$$ e di conseguenza $$(A - \lambda_0\mathbf{Id}_n)\mathbf{v} = 0$$ dove con $\mathbf{Id}_n$ indichiamo la \textbf{matrice identità} dello stesso ordine di $A$.\\
+\\Questa è la forma matriciale di un \textit{sistema lineare omogeneo}. Dalla teoria sui \textit{sistemi lineari} sappiamo che un sistema omogeneo ammette una soluzione diversa dalla soluzione banale \textit{sse} la matrice incompleta (anche detta \textit{matrice dei coefficienti}, utile per il teorema di Rouché-Capelli) associata al sistema ha \textbf{determinante uguale a 0}, quindi $$\text{det}(A - \lambda_0\text{Id}_n) = 0$$ {\footnotesize (avendo assunto $\mathbf{v}$ non nullo all'inizio, possiamo non trascriverlo)}\\
+\\Se consideriamo $\lambda$ come un'incognita, otteniamo quello che è chiamato per definizione \textbf{polinomio caratteristico} associato alla matrice $A$. Si deduce che \textcolor{blue}{gli \textbf{autovalori} di una matrice sono \textbf{gli zeri del polinomio caratteristico}}.
 
 \subsubsection{Legame tra hessiano e convessità}
-Se
+Sia $f(x,\, y)$ una funzione derivabile due volte, allora:
+\begin{itemize}
+    \item $f$ è convessa nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita positiva.
+    \item $f$ è concava nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita negativa.
+\end{itemize}
+
+\subsubsection{Legame tra hessiano, gradiente e punti di ottimo}
+Sia $f: A \subset \R^2 \rightarrow \R$ una funzione continua in $A$ e avente derivate prime e seconde continue in $A$. 
+\\Condizione \textcolor{blue}{\textbf{sufficiente}} affinché (x,\, y) sia un punto di \textcolor{blue}{\textit{minimo}} per $f$ è che:
+\begin{itemize}
+    \item $\nabla f(x,\, y) = \mathbf{0}$ (derivate parziali tutte \textbf{nulle})
+    \item $H_f (x,\, y)$ sia definita \textcolor{blue}{\textbf{positiva}}
+\end{itemize}
+Condizione \textcolor{blue}{\textbf{sufficiente}} affinché (x,\, y) sia un punto di \textcolor{blue}{\textit{massimo}} per $f$ è che:
+\begin{itemize}
+    \item $\nabla f(x,\, y) = \mathbf{0}$ (derivate parziali tutte \textbf{nulle})
+    \item $H_f (x,\, y)$ sia definita \textcolor{blue}{\textbf{negativa}}
+\end{itemize}
+
 
 \section{Massimizzazione di funzioni concave}
 Consideriamo un problema di massimizzazione con una funzione obiettivo $f(x)$ concava da massimizzare.
