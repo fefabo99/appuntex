@@ -73,7 +73,7 @@ Se $f:\, A \subset \R^2 \rightarrow \R$ è derivabile in un punto $(x_0,\, y_0)$
     \item nel caso 1D (le derivate tradizionali fatte finora, ad un'incognita e quindi una dimensione) un \textbf{punto stazionario} ovvero per $\mathbf{f'(x)\, =\, 0}$ può essere un punto di \textbf{massimo}, di \textbf{minimo} (o di flesso);
     \item nel caso 2D visto nei paragrafi precedenti un \textbf{punto stazionario} ovvero per $\mathbf{\nabla f(x)\, =\, 0}$ può essere \textbf{anche} un punto di \textbf{sella}.
 \end{itemize}
-Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comporta come minimo (ovvero la funzione è convessa lungo la direzione $x$) e lungo la direzione $y$ si comporta come massimo (ovvero la funzione è concava lungo la direzione $y$).
+Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comporta come \textit{minimo} (ovvero la funzione è convessa lungo la direzione $x$) e lungo la direzione $y$ si comporta come \textit{massimo} (ovvero la funzione è concava lungo la direzione $y$).
 
 \subsubsection{Def. matrice definita positiva/negativa}
 Cosa significa matrice definita positiva e negativa?
