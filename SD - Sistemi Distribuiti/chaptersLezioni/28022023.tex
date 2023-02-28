@@ -6,12 +6,12 @@ Cominciamo ad introdurre i seguenti argomenti:
     \item Definizione di sistema distribuito
     \item Architetture software
     \item Il modello client-server
-    \item Proprietà e caratteristiche fondamentali
-    
+    \item Proprietà e caratteristiche fondamentali    
 \end{itemize}
 
-\chapter{Introduzione ai Sistemi Distribuiti}
+% ----------------------------------------------------------------------------------------------------------------------------------------
 
+\chapter{Introduzione ai S. D.}
 \section{Alcune definizioni}
 \subsection{Definizione 1}
 Ci sono diverse definizioni con alcuni aspetti in particolare in comune.
@@ -19,55 +19,55 @@ Ci sono diverse definizioni con alcuni aspetti in particolare in comune.
 \\In inglese: "We define a distributed system as one in which \textbf{hardware or software components} located at \textbf{networked computers} \textbf{communicate} and \textbf{coordinate} their actions \textbf{\textit{only by} passing messages}."
 \\Ricorda che stiamo parlando di \textbf{processi}, anche se ci sono processi che operano senza una rete ma sono eccezioni.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/lez28022023_def1.jpg}
+    \includegraphics[width=0.75\textwidth]{img/lez28022023_def1.jpg}
 \end{center}
 
 \subsection{Definizione 2}
-Un'altra definizione è:
-\\Un \textit{sistema distribuito} è definito come un sistema di elementi computativi autonomi (che coesistono) che appaiono ad un utente come un'unica applicazione, un unico sistema coerente.
+Un'altra definizione è la seguente.
+\\Un \textit{sistema distribuito} è definito come un sistema di \textbf{elementi computativi autonomi} (che coesistono) che appaiono ad un utente come un'unica applicazione, un \textbf{unico sistema coerente}.
 \\In inglese: "A distributed system is a collection of \textbf{autonomous computing elements} that appears to its users as a \textbf{single coherent system}."
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/lez28022023_def2.jpg}
+    \includegraphics[width=0.75\textwidth]{img/lez28022023_def2.jpg}
 \end{center}
 
 \subsection{In sintesi}
-Definition
+Definizione:
 \begin{itemize}
-    \item A distributed system is a collection of autonomous computing elements that appears to its users as a single coherent system.
+    \item Un sistema distribuito è definito come un sistema di elementi computativi autonomi che coesistono e che appaiono ad un utente come un'unica applicazione, un unico sistema coerente.
 \end{itemize}
-Characteristic features
+Caratteristiche tipiche:
 \begin{itemize}
-   \item Autonomous computing elements, also referred to as nodes, be they hardware devices or software processes.
-   \item Single coherent system: users or applications perceive a single system
+   \item Elementi computativi autonomi, anche noti come \textit{nodi}; composti da device hardware o processi software
+   \item Unico sistema coerente: gli utenti o le applicazioni percepiscono un singolo sistema
 \end{itemize}
-$\Rightarrow$ nodes need to collaborate.
+$\Rightarrow$ i nodi \textbf{devono collaborare}.
 
 \section{Sistemi come collezioni di nodi autonomi}
 \subsection{Comportamenti}
-Sono \textbf{autonomi e indipendenti}, ovvero possono progredire come vogliono, ognuno ha la propria concezione del tempo $\Rightarrow$ non c'è un clock globale, non è tutto sincronizzato.
+Sono \textbf{autonomi} e \textbf{indipendenti}, ovvero possono progredire come vogliono, ognuno ha la propria concezione del tempo $\Rightarrow$ \textit{non} c'è un clock globale, \textit{non} è tutto sincronizzato.
 \\Tutto ciò porta a \textit{fondamentali problemi} di \textbf{sincronizzazione} e \textbf{coordinazione}.
 
 \subsection{Collezioni di nodi}
-Come gestire \textbf{appartenenze di gruppo} (group membership)?
-\\I \textbf{gruppi} possono essere \textbf{aperti/dinamici} (qualsiasi nodo può partecipare) o \textbf{chiusi/fissi} (solo nodi ben selezionati possono entrare nel sistema, questa nozione verrà commentata diversamente e comunque non troppo a fondo).
-\\Ma quindi, come faccio a sapere se il nodo con cui sto comunicando è effettivamente \textbf{autorizzato}?
+Come gestire \textbf{appartenenze di gruppo} (o \textit{group membership})?
+\\I \textbf{gruppi} possono essere \textbf{aperti/dinamici} (qualunque nodo può partecipare) o \textbf{chiusi/fissi} (solo nodi ben selezionati possono entrare nel sistema, questa nozione verrà commentata ulteriormente e comunque non troppo a fondo).
+\\Ma quindi, come faccio a sapere se il nodo con cui sto comunicando è effettivamente \textbf{autorizzato}? Non ha proprio risposto.
 
 \section{Sistemi coerenti}
 \subsection{Essenzialmente}
 La collezione di nodi opera nello stesso modo indipendentemente da dove, quando e come avvengono le interazioni fra l'utente e il sistema.
-\\Examples
+\\Esempi
 \begin{itemize}
-    \item An end user cannot tell where a computation is taking place
-    \item Where data is exactly stored should be irrelevant to an application
-    \item If or not data has been replicated is completely hidden
+    \item Un utente finale (end user) non può dire dove stia avvenendo una computazione
+    \item Dove i dati sono collezionati e stipati non dovrebbe essere rilevante per un'applicazione
+    \item Se i dati siano stati replicati o meno è completamente nascosto
 \end{itemize}
 
 \subsection{Trasparenza di come caratteristica fondamentale dei sistemi distribuiti}
 \textbf{"Trasparenza di distribuzione (?)"} come parola chiave. Da tradurre.
-The snag: partial failures
+Il problema principale: \textbf{fallimenti parziali}.
 \begin{itemize}
-    \item It is inevitable that at any time only a part of the distributed system fails.
-    \item Hiding partial failures and their recovery is often very difficult and in general impossible to hide.
+    \item \`E inevitabile che in qualsiasi momento solo una parte limitata del sistema distribuito fallisca.
+    \item Nascondere fallimenti parziali e il loro ripristino è spesso molto complicato e generalmente impossibile da nascondere.
 \end{itemize}
 
 \section{Sintesi delle caratteristiche di un sistema distribuito}
@@ -98,10 +98,12 @@ Caratteristiche fondamentali per tutti i sistemi distribuiti:
     \item Non c'è fallimento globale
 \end{itemize}
 
+% ----------------------------------------------------------------------------------------------------------------------------------------
+
 \chapter{Architetture Software}
 \section{Definizione di architetture software}
-Una architettura software definisce la struttura del sistema, le interfacce tra i componenti e i pattern di interazione (i protocolli). 
-\\I sistemi distribuiti possono essere organizzati secondo diversi stili architetturali.
+Un'architettura software definisce la struttura del sistema, le interfacce tra i componenti e i pattern di interazione (i protocolli). 
+\\I sistemi distribuiti possono essere organizzati secondo \textbf{diversi stili architetturali}.
 
 \section{Modello base: Architetture a strati (layered)}
 \begin{itemize}
@@ -110,10 +112,9 @@ Una architettura software definisce la struttura del sistema, le interfacce tra 
 \end{itemize}
 \subsection{Definizione}
 Un'\textit{architettura a strati} è un'architettura software che organizza il software in \textbf{strati}.
-\\Ogni strato è 
-\\Each layer is built on top of another more general layer.
-\\A layer can loosely be defined as a set of (sub)systems with the same degree of generality.
-\\Upper layers are more application specific and lower are more general.
+\\Ogni strato è costruito sopra uno strato diverso più generico.
+\\Uno strato può essere definito liberamente insieme di (sotto)sistemi con lo stesso grado di generalità.
+\\Gli strati più alti sono più specifici per applicazioni e i più bassi sono più generali/generici.
 % Inserisci immagine ArchStrati1
 
 % Inserisci immagine ArchStrati2
@@ -232,6 +233,8 @@ Security (non vedremo tanto a fondo)
 \begin{itemize}
     \item Applicazioni Web dinamiche basate su callback (AJAX)
 \end{itemize}
+
+% ----------------------------------------------------------------------------------------------------------------------------------------
 
 \chapter{Il modello Client-Server}
 Il modello Client-Server è il modello di interazione tra un processo client e un processo server.
