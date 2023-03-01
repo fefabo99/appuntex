@@ -1,1 +1,276 @@
 \chapter{Introduzione al corso}
+Turno T1 - AL
+\\Da cancellare, per Elia, turno T1 AL ma ammettono anche MZ alle lezioni. L'importante è che gli AL sostengono l'esame con il prof di AL e gli MZ con il prof di MZ.
+\section{I professori}
+\begin{itemize}
+    \item prof. Napoletano, di teoria (aula 1014 in U14).
+    \\Per eventuali comunicazioni, mail: paolo.napoletano@unimib.it, ma \textbf{tassativamente} bisogna aggiungere la sigla [DB].
+    \item prof.ssa Damiani, di esercitazione.
+    \item prof. Raganato, di laboratorio.
+\end{itemize}
+
+\section{Organizzazione del corso}
+\begin{itemize}
+    \item lezioni teoriche ed analisi di casi studio (32 ore, pari a quattro crediti) PN 
+    \item esercitazioni ed analisi casi studio (20 ore, pari a due crediti). CD 
+    \item Laboratorio / esercitazioni (20 ore, pari a crediti). AR
+\end{itemize}
+
+\section{Organizzazione degli orari}
+\begin{itemize}
+    \item mercoledì: comincia a 10:30 spaccate
+    \item giovedì: da definire
+    \item venerdì lez: non ho capito, ma per ora non li fa (marzo)
+    \item venerdì lab: boh lo diranno.
+\end{itemize}
+
+\section{Organizzazione degli esami}
+\subsection{Esoneri}
+\begin{itemize}
+    \item Ci sono parziali, circa seconda metà di aprile (\textbf{due} es di progettazione concettuale e modello relazionale) e seconda metà di giugno (\textbf{tre} es di SQL, algebra relazionale, progettazione logica).
+    \item Per ora, i parziali sono aperti a tutti, ma il prof Napoletano deve sentire il prof Schettini del turno MZ.
+\end{itemize}
+
+\subsection{Totale}
+\begin{itemize}
+    \item Tutto il programma (quindi \textbf{cinque} es) è previsto per l'esame complessivo.
+\end{itemize}
+
+\subsection{Laboratorio}
+\begin{itemize}
+    \item A frequenza facoltativa ma essenziale, prevede una prova unica (sempre facoltativa) alla fine del laboratorio che permettere di avere un punteggio $-1 \leq p \leq 3$ da aggiungere alla media dei parziali o al voto del totale.
+    \item Si lavorerà su MySQL, e prevede la progettazione concettuale e logica di una base di dati assegnata utilizzando lo strumento di Data Modeling fornito da MySQL.
+    \item Il voto del laboratorio rimane valido tutto l'anno accademico, ovvero fino a Febbraio 2024 compreso, e andrà sempre sommato al voto preso.
+\end{itemize}
+
+\subsection{Valutazione}
+\begin{itemize}
+    \item Per superare l'esame, il voto minimo \textit{per parziale} è di \textbf{15/30}.
+    \item Per superare l'esame, la \textit{media dei parziali} deve essere di \textbf{18/30}.
+    \item Verrà eventualmente sommato il voto del laboratorio (se sostenuto).
+\end{itemize}
+
+\section{Il corso}
+Le lezioni non verranno registrate, ma sono disponibili quelle dell'anno precedente.
+
+\subsection{Il programma}
+\begin{enumerate}
+    \item Introduzione $\rightarrow$ prof. Napoletano
+    \item Metodologie e modelli per il progetto delle basi di dati $\rightarrow$ prof. Napoletano
+    \item La progettazione concettuale $\rightarrow$ prof. Napoletano
+    \item Il modello relazionale \textbf{\textit{(pausa compitini)}} $\rightarrow$ prof. Napoletano
+    \item SQL $\rightarrow$ prof.ssa Damiani
+    \item Algebra relazionale $\rightarrow$ prof.ssa Damiani
+    \item La progettazione logica $\rightarrow$ prof. Napoletano
+\end{enumerate}
+L'ordine degli argomenti è diverso da quello suggerito dal libro.
+
+\subsection{Cosa vedremo}
+Il corso e' dedicato a capire come e' organizzata una base di dati, a cosa serve, come si progetta, come si interroga e si crea.
+% tre immagini da inserire
+
+\chapter{Basi di Dati}
+Una cosa che impareremo sarà \textbf{organizzare} il lavoro che ci viene presentato, per esempio da un eventuale cliente. Per prima cosa ci servirà un \textit{foglio dei requisiti}, ciò che dobbiamo progettare e sviluppare. Poi dovremo tradurre il passaggio da input ad output in una schematizzazione o mappa.
+
+\section{Introduzione e definizioni}
+\subsection{Risorse}
+Le risorse di una azienda (o ente, amministrazione):
+\begin{itemize}
+    \item persone
+    \item denaro 
+    \item materiali 
+    \item informazioni
+\end{itemize}
+
+\subsection{Basi di Dati}
+Insieme organizzato di dati utilizzati per il supporto allo svolgimento di attività (di un ente, azienda, ufficio, persona).
+
+\section{Sistemi informativi e sistemi informatici - una premessa}
+Che cos'è l'informatica? Una definizione:
+\begin{itemize}
+    \item \textit{Scienza del trattamento razionale, specialmente per mezzo di macchine automatiche, dell'informazione, considerata come supporto alla conoscenza umana e alla comunicazione (Academie Francaise).}
+    \item L'informatica ha due anime:
+    \\- metodologica: i metodi per la soluzione di problemi e la gestione delle informazioni;
+    \\- tecnologica: i calcolatori elettronici e i sistemi che li utilizzano; 
+\end{itemize}
+\begin{description}
+    \item N.B.: \textbf{sistema informativo} $\neq$ \textbf{sistema informatico}
+    \item[Sistema informativo] Componente (sottosistema) di una organizzazione che gestisce le informazioni di interesse (cioè utilizzate per il perseguimento degli scopi dell'organizzazione), le cui funzioni sono:
+    \\ - acquisizione/memorizzazione
+    \\ - aggiornamento
+    \\ - interrogazione
+    \\ - elaborazione
+    \\N.B.: Il concetto di “sistema informativo” è indipendente da qualsiasi automatizzazione!! Anche prima di essere automatizzati, molti sistemi informativi si sono evoluti verso una razionalizzazione e standardizzazione delle procedure e dell'organizzazione delle informazioni.
+    \item[Sistema informatico] Porzione automatizzata del sistema informativo: in pratica è la parte del sistema informativo che gestisce le informazioni con tecnologia informatica.
+    % inserisci immagine sistemi_informatici_e_informativi1
+\end{description}
+Ma perché le basi di dati sono così importanti? Proviamo a definirle con degli aggettivi o caratteristiche che spieghino come mai sono così interessanti:
+\begin{itemize}
+    \item accessibili: le informazioni sono archiviate in modo ordinato;
+    \item capienti: sono storate grandi quantità di dati;
+    \item (facili da modificare;)
+    \item ottimizzate: rapida ricerca delle informazioni; (comune a più sistemi)
+    \item possibilità di raggruppare/filtrare le informazioni e schematizzarle/modellizzarle;
+    \item sicurezza dei dati:;
+    \item facilità di relazione dei dati;
+    \item interfaccia per visualizzare in diversi modi;
+    \item personalizzabili;
+    \item scalabilità (Elia questa me la spieghi);
+    \item interoperabilità: lavorabile con più linguaggi e strumenti;
+    \item accesso concorrente alle informazioni: più persone possono lavorare allo stesso database o alla stessa sottosezione senza andare incontro ad inconsistenza dei dati;
+    \item facilità di gestione delle ridondanze, che aiuta a ridurre al minimo l'inconsistenza dei dati;
+    \item limitazione dell'inconsistenza dei dati: devono sempre essere consistenti, ovvero accessibili solo a chi ha diritto di farlo, il ruolo giusto;
+\end{itemize}
+Ma perché non usare una cosa più semplice come un FileSystem invece di un Database? Il primo mi aiuta con un'organizzazione logica, ma i Database sono dotati  di strumenti (tipo la progettazione modulare) che sono più efficienti.
+
+\subsection{Sistema Informatico}
+Gestisce un sistema informativo in modo automatizzato.
+\\Garantisce che i dati siano conservati in modo permanente sui dispositivi di memorizzazione.
+\\Permette un rapido aggiornamento dei dati per riflettere rapidamente le loro variazioni.
+\\Rende i dati accessibili alle interrogazioni degli utenti.
+\\Può essere distribuito sul territorio.
+
+\section{Gestione delle informazioni}
+Parole chiave:
+\begin{itemize}
+    \item Raccolta, acquisizione
+    \item Archiviazione, conservazione
+    \item Elaborazione, trasformazione, produzione
+    \item Distribuzione, comunicazione, scambio
+\end{itemize}
+
+Nelle attività umane, le informazioni vengono gestite (registrate e scambiate) in forme diverse:
+\begin{itemize}
+    \item idee informali
+    \item linguaggio naturale (scritto o parlato, formale o colloquiale, in una lingua o in un'altra)
+    \item disegni, grafici, schemi
+    \item numeri e codici
+\end{itemize}
+e su vari supporti
+\begin{itemize}
+    \item memoria umana, carta, dispositivi elettronici
+\end{itemize}
+Nelle attività standardizzate dei sistemi informativi complessi, sono state introdotte col tempo forme di organizzazione e codifica delle informazioni via via più precise (e in un certo senso artificiali).
+
+\section{Informazioni e dati}
+\textbf{Informazioni} $\neq$ \textbf{Dati}
+\\Nei sistemi informatici (e non solo), le informazioni vengono rappresentate in modo essenziale, spartano: \textbf{attraverso i dati}.
+\begin{itemize}
+    \item \textbf{informazione}: notizia, dato o elemento che consente di avere conoscenza più o meno esatta di fatti, situazioni, modi di essere.
+    \item \textbf{dato}: ciò che è immediatamente presente alla conoscenza, prima di ogni elaborazione; (in informatica) elementi di informazione costituiti da simboli che debbono essere elaborati. 
+    \\I dati hanno bisogno di essere interpretati.
+\end{itemize}
+\textit{Esempio}:
+\\‘Mario’ e ‘275’ su un foglio di carta sono due dati. 
+\\Se il foglio di carta viene fornito in risposta alla domanda “A chi mi devo rivolgere per il problema X; qual è il suo numero di telefono?”, allora i dati possono essere interpretati per fornire informazione e arricchire la conoscenza.
+\\
+\\\textbf{Ma perché i dati?}
+\\La rappresentazione precisa di forme più ricche di informazione e conoscenza è difficile.
+\\I dati costituiscono spesso una risorsa strategica, perché più stabili nel tempo di altre componenti (processi, tecnologie, ruoli umani)
+\\I dati rimangono gli stessi nella \textit{migrazione} da un sistema al successivo.
+
+\section{Basi di Dati}
+\begin{description}
+    \item[DB:] \textbf{Data Base} Collezione di dati utilizzati per rappresentare le informazioni di interesse di un sistema informativo.
+    \item[DBMS:] \textbf{Data Base Management System}. Sistema software capace di gestire collezioni di dati che siano grandi, condivise e persistenti, assicurando la loro affidabilità e privatezza.
+\end{description}
+Accezione generica, \textbf{metodologica}: insieme organizzato di dati utilizzati per il supporto allo svolgimento delle attività di un ente (azienda, ufficio, persona).
+\\Accezione specifica, \textbf{metodologica} e \textbf{tecnologica}: insieme di dati gestito da un DBMS.
+
+\subsection{Altra definizione}
+    Possiamo definire una BdD anche come: insieme di archivi in cui ogni dato e' rappresentato logicamente una sola volta e puo' essere utilizzato da un insieme di applicazioni da diversi utenti secondo opportuni criteri di riservatezza.
+
+\subsection{caratteristiche}
+\begin{itemize}
+    \item i dati sono molti
+    \item i dati hanno un formato definito
+    \item i dati sono permanenti
+    \item i dati sono raggruppati per insiemi omogenei di dati
+    \item esistono relazioni specifiche tra gli insiemi di dati
+    \item la ridondanza è minima e controllata: è assicurata la consistenza delle informazioni
+    \item i dati sono disponibili per utenze diverse e concorrenti (anche contemporanee)
+    \item i dati sono controllati: protetti da malfunzionamenti hardware e software 
+    \item indipendenza dei dati dal programma    
+\end{itemize}
+
+\subsection{Perché studiare le basi di dati?}
+Copia.
+
+\subsection{Basi di dati multimediali}
+Mi sono persa tutto.
+
+\subsection{Data Base Management System - DBMS}
+Un DBMS è un insieme di programmi che permettono di creare, usare e gestire una base di dati.
+\\Quindi un DBMS è un sistema software general purpose che facilita il processo di definizione, costruzione e manipolazione del database per varie applicazioni.
+
+\subsection{Creazione di un database}
+\textbf{Tre fasi:}
+\begin{itemize}
+    \item definizione
+    \item creazione/popolazione
+    \item manipolazione
+\end{itemize}
+
+\subsection{Interrogazione di un database}
+ziofrass
+\begin{lstlisting}[mathescape=true]
+    SELECT [Nome], [Cognome], [Indirizzo],
+        [Citta]
+    FROM Studenti
+    WHERE [Cognome]="Rossi";
+\end{lstlisting}
+
+L'efficacia della query dipende da:
+\begin{itemize}
+    \item conoscenza del contenuto del db
+    \item esperienza del linguaggio di interrogazione
+\end{itemize}
+oppure
+\begin{itemize}
+    \item semplicità ed efficacia dell'interfaccia di interrogazione
+\end{itemize}
+
+DataBase Management System
+(DBMS)
+• Sistema che gestisce collezioni di dati:
+- grandi
+- persistenti
+- condivise
+garantendo
+- privatezza
+- affidabilità
+- efficienza
+- efficacia
+
+Hanno grandi dimensioni: dimensioni (molto) maggiori della memoria centrale dei sistemi di calcolo utilizzati; il limite deve essere solo quello fisico dei dispositivi.
+Sono persistenti: hanno un tempo di vita indipendente dalle singole esecuzioni dei programmi che le utilizzano.
+Sono condivise: ogni organizzazione (specie se grande) è divisa in settori o comunque svolge diverse attività; ciascun settore/attività ha un (sotto)sistema informativo (non necessariamente disgiunto).
+
+\textbf{MI SONO PERSA UNA QUINDICINA DI SLIDES}
+
+\section{Schemi e istanze}
+In ogni base di dati esistono:
+- lo schema, sostanzialmente invariante nel
+tempo, che ne descrive la struttura, il
+significato (aspetto intensionale).
+• nell'esempio, le intestazioni delle tabelle
+- l'istanza, i valori attuali, che possono
+cambiare anche molto rapidamente (aspetto
+estensionale)
+• nell'esempio, il “corpo” di ciascuna tabella
+
+lo schema costituisce l'aspetto intensionale,
+ovvero la descrizione "astratta" delle
+proprietà, ed è invariante nel tempo.
+• L'istanza (i valori degli attributi) costituiscono
+invece l'aspetto estensionale "concreto", che
+varia nel tempo al variare della situazione di
+ciò che stiamo descrivendo
+
+Perso altre cinque SLIDES
+ho rinunciato
+ma cerca il sito DB engines rankings
+
+
+\chapter{Argomento 2}
+
