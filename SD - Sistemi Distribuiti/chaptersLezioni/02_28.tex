@@ -1,6 +1,4 @@
-\chapter{Contenuti della lezione}
-
-\section{Parte1 - Concetti e modelli base}
+\chapter{Introduzione ai S. D.}
 Cominciamo ad introdurre i seguenti argomenti:
 \begin{itemize}
     \item Definizione di sistema distribuito
@@ -8,10 +6,6 @@ Cominciamo ad introdurre i seguenti argomenti:
     \item Il modello client-server
     \item Proprietà e caratteristiche fondamentali    
 \end{itemize}
-
-% ----------------------------------------------------------------------------------------------------------------------------------------
-
-\chapter{Introduzione ai S. D.}
 \section{Alcune definizioni}
 \subsection{Definizione 1}
 Ci sono diverse definizioni con alcuni aspetti in particolare in comune.
@@ -111,14 +105,42 @@ Un'architettura software definisce la struttura del sistema, le interfacce tra i
     \item Middleware
 \end{itemize}
 \subsection{Definizione}
-Un'\textit{architettura a strati} è un'architettura software che organizza il software in \textbf{strati}.
-\\Ogni strato è costruito sopra uno strato diverso più generico.
-\\Uno strato può essere definito liberamente insieme di (sotto)sistemi con lo stesso grado di generalità.
-\\Gli strati più alti sono più specifici per applicazioni e i più bassi sono più generali/generici.
-% Inserisci immagine ArchStrati1
+Un'\textit{architettura a strati} è un'architettura software che \textit{organizza il software in \textbf{strati}}.
+\\Ogni strato è \textit{costruito sopra uno strato diverso più generico}.
+\\Uno strato può essere definito liberamente insieme di (sotto)sistemi con lo \textit{stesso grado di generalità}.
+\\\textit{Gli strati più alti sono più specifici per applicazioni e i più bassi sono più generali/generici}.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/architetturaStrati1.jpg}
+\end{center}
 
-% Inserisci immagine ArchStrati2
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/architetturaStrati2.jpg}
+\end{center}
 Quella al centro è da sapere benissimo in quanto oggetto di questo insegnamento.
+
+%  ------------------------------------------------------
+
+\section{Architetture a livelli (tier)}
+\begin{itemize}
+    \item Le applicazioni client server (2-tier, 3-tier)
+\end{itemize}
+
+\section{Architetture basate sugli oggetti}
+\begin{itemize}
+    \item Java-Remote Method Invocation (RMI)
+\end{itemize}
+
+\section{Architetture centrate sui dati}
+\begin{itemize}
+    \item Il Web come file system condiviso
+\end{itemize}
+
+\section{Architetture basate su eventi}
+\begin{itemize}
+    \item Applicazioni Web dinamiche basate su callback (AJAX)
+\end{itemize}
+
+% ----------------------------------------------------------------------------------------------------------------------------------------
 
 \subsection{Sistemi Operativi Ditribuiti}
 Diversi tipi: 
@@ -127,10 +149,14 @@ Diversi tipi:
     \item NOS (Network Operating Systems)
     \item Middleware
 \end{itemize}
-% inserisci immagine sist op distr1
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/sistemiOperativiDistribuiti1.jpg}
+\end{center}
 
 \subsubsection{DOS (Distributed Operating Systems)}
-% inserisci immagine DOS1
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/DOS1.jpg}
+\end{center}
 Users not aware of multiplicity of machines
 \begin{itemize}
     \item Access to remote resources like access to local resources
@@ -153,7 +179,9 @@ Process Migration - execute an entire process, or parts of it, at different site
 \end{itemize}
 
 \subsubsection{NOS (Network Operating Systems)}
-% inserisci immagine NOS1
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/NOS1.jpg}
+\end{center}
 Users are aware of multiplicity of machines
 \\NOS provides explicit communication features
 \begin{itemize}
@@ -169,7 +197,9 @@ Access to resources of various machines is done explicitly by:
 \end{itemize}
 
 \subsubsection{Middleware}
-% inserisci immagine Middleware1
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/Middleware1.jpg}
+\end{center}
 Distributed Operating Systems
 \begin{itemize}
     \item Make services (e.g., data storage and process execution) \textbf{transparent} to applications
@@ -211,32 +241,14 @@ Security (non vedremo tanto a fondo)
 \begin{itemize}
     \item … defines and offers models to protect access to data and services (with different levels of permissions) and computation integrity
 \end{itemize}
-% inserisci immagine confrontoFraSistemi1
-
-%  ------------------------------------------------------
-
-\section{Architetture a livelli (tier)}
-\begin{itemize}
-    \item Le applicazioni client server (2-tier, 3-tier)
-\end{itemize}
-
-\section{Architetture basate sugli oggetti}
-\begin{itemize}
-    \item Java-Remote Method Invocation (RMI)
-\end{itemize}
-
-\section{Architetture centrate sui dati}
-\begin{itemize}
-    \item Il Web come file system condiviso
-\end{itemize}
-
-\section{Architetture basate su eventi}
-\begin{itemize}
-    \item Applicazioni Web dinamiche basate su callback (AJAX)
-\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/confrontoFraSistemi1.jpg}
+\end{center}
 
 % ----------------------------------------------------------------------------------------------------------------------------------------
 
 \chapter{Il modello Client-Server}
 Il modello Client-Server è il modello di interazione tra un processo client e un processo server.
-% inserisci immagine modelloCS1
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{img/modelloCS1.jpg}
+\end{center}
