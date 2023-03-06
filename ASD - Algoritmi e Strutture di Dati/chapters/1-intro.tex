@@ -53,3 +53,33 @@ I parziali sono tendenzialmente riservati al primo anno, ma è possibile scriver
 anche se si è di un altro anno, sarà a sua discrezione concedere o meno questa opportunità.
 Si possono recuperare i parziali, è possibile anche tentare un recupero per migliorare un voto già positivo, accettando il rischio di
 che se il voto preso nell'esame di recupero è minore di quello originale si dovrà accettare quel voto.
+
+\section{Definizioni di base}
+\paragraph*{Algoritmo Corretto} Un algoritmo si definisce corretto se per tutti gli input si ottiene il 
+risultato desiderato, l'algoritmo è corretto solo se garantisce la correttezza del risultato.
+\paragraph*{Algoritmo efficiente} Minor utilizzo di \textbf{Spazio} e \textbf{Tempo}.
+
+\subsection*{Determinare l'efficienza di un algoritmo}
+Il primo passo è determinare il numero di istruzioni eseguite dall'algoritmo
+dato che così facendo non dipendo dalla potenza dell'hardware
+e dall'input.
+\paragraph*{Operazioni valutazione algoritmo}
+\begin{enumerate}
+    \item Conto le istruzioni \textbf{eseguite}
+    \item Determinare T peggiore - T migliore - T medio (la media non è fra
+    T peggiore e T migliore)
+\end{enumerate}
+Il tempo non sarà una quantità in secondi, ma dipenderanno da un parametro
+n T(n).
+\\ Quando devo scegliere un algoritmo mi baso sulla funzione n, dato che al crescere
+dell'input la funzione crescerà in modo lineare, quadratico, cubico, ecc. e 
+questo mi mostrerà come cresce il tempo in funzione di n.
+\\ A parità di n controllo il fattore moltiplicativo.
+\paragraph*{Esempio} I polinimoniali hanno tempi di esecuzione accettabili,
+mentre i tempi esponenziali sono intrattabili, il problema è che esistono algoritmi esatti,
+ma sono esponenziali, per questo sono inutili dato che non con grandi input non
+si fermano mai.
+\\ Determinare il \textbf{Caso peggiore} serve per capire quanto tempo devo aspettare
+al massimo, quindi dopo quanto tempo avrò sicuramente un risultato, il \textbf{Caso minore},
+determina il tempo minimo che devo aspettare, il \textbf{Caso medio} determina mediamente
+quanto tempo devo aspettare (non è la media fra T peggiore e T migliore).
