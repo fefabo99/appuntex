@@ -100,10 +100,12 @@ Breve ripasso del modello ISO/OSI per TCP/IP
 Indirizzi IP e Porte
 L'interfaccia API per le socket
 \\Le socket in Java
-\\I modelli architatturali
-• Iterativo
-• Concorrente mono processo
-• Concorrente multi processo
+\\I modelli architetturali
+\begin{itemize}
+    \item Iterativo
+    \item Concorrente mono processo
+    \item Concorrente multi processo
+\end{itemize}
 
 \section{Modello ISO/OSI}
 
@@ -222,7 +224,7 @@ La comunicazione TCP/IP avviene attraverso flussi di byte (byte stream), dopo un
     \item Utilizzano un buffer per garantire flessibilità (es: la read definisce un buffer per leggere N caratteri, ma potrebbe ritornare avendone letti solo k<N)
 \end{itemize}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/socket_comunicazione1.jpg}
+    \includegraphics[width=0.75\textwidth]{img/socket_comunicazione1.jpg}
 \end{center}
 
 \section{API socket system calls (Berkeley)}
