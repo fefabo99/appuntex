@@ -22,7 +22,7 @@ Un server concorrente può gestire più connessioni client.
 \begin{itemize}
     \item simulata con un solo processo \textbf{(A)} 
     \\- in C: funzione select
-    \\- in Java: uso Selector
+    \\- in Java: uso la classe Selector che riconosce i canali \textit{ready to use}: questi canali semplificano la comunicazione perché  
     \item (B) in Java: uso dei Thread
 • reale creando nuovi processi slave
 (C) in C: uso della funzione fork
@@ -79,7 +79,7 @@ La slide succesiva non è importante, basta aver capito la logica (la fai facile
 
 \subsection{Concurrent server structure}
 Codice + schema generale per accettare read da più sockets.
-\\NB: di solito le system call (ma è la select di Java, non è la select in C che è sistema bloccante) sono bloccanti, qua c'è un midleware che agisce modificando la read e rendendola non bloccante.
+\\NB: di solito le system call (ma è la select di Java, non è la select in C che è sistema bloccante) sono bloccanti, qua c'è un middleware che agisce modificando la read e rendendola non bloccante.
 
 \begin{center}
     \includegraphics[width=0.75\textwidth]{img/ConcurrentServerStructure1.jpg}

@@ -197,26 +197,28 @@ Access to resources of various machines is done explicitly by:
 \end{itemize}
 
 \subsubsection{Middleware}
-\begin{center}
-    \includegraphics[width=0.5\textwidth]{img/Middleware1.jpg}
-\end{center}
-Distributed Operating Systems
-\begin{itemize}
-    \item Make services (e.g., data storage and process execution) \textbf{transparent} to applications
-    \item Rely on homogeneous machines (since they need to run the same software)
-\end{itemize}
-Network Operating Systems
-\begin{itemize}
-    \item Services (e.g., data storage and process execution) \textbf{are explicitly managed} by applications
-    \item Do not require homogeneous machines (since they may run different software)
-    \item E.g., MacOSX, Windows10, Linux
-\end{itemize}
-Middleware
-\begin{itemize}
-    \item Implements services (one or more) to \textbf{make them transparent} to applications
-    \item E.g., Java/RMI
-\end{itemize}
-è importante capire che nel secondo schema dell'immagine, il middleware simula il comportamento dell'applicazione, ma i due middleware sono uguali ma possono comunicare tramite protocolli.
+    Tieni a mente che è un concetto molto astratto. Qualsiasi cosa potrebbe essere considerata come un middleware (es. stupidi: un firewall, TCP/UDP, qualsiasi cosa funga da intermediario). \'E tutto ciò che sta "nel mezzo" fra l'inizio e la fine del tuo client/server (per ora lato server) serve a gestire servizi, e fare tante cose per aiutare la connessione. Sono funzionalità, sotto processi, cose.
+    \\Def. da Google: \textit{Insieme di software che fungono da intermediari fra strutture e programmi informatici, permettendo loro di comunicare a dispetto della diversità dei protocolli o dei sistemi operativi.}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{img/Middleware1.jpg}
+    \end{center}
+    Distributed Operating Systems
+    \begin{itemize}
+        \item Make services (e.g., data storage and process execution) \textbf{transparent} to applications
+        \item Rely on homogeneous machines (since they need to run the same software)
+    \end{itemize}
+    Network Operating Systems
+    \begin{itemize}
+        \item Services (e.g., data storage and process execution) \textbf{are explicitly managed} by applications
+        \item Do not require homogeneous machines (since they may run different software)
+        \item E.g., MacOSX, Windows10, Linux
+    \end{itemize}
+    Middleware
+    \begin{itemize}
+        \item Implements services (one or more) to \textbf{make them transparent} to applications
+        \item E.g., Java/RMI
+    \end{itemize}
+    è importante capire che nel secondo schema dell'immagine, il middleware simula il comportamento dell'applicazione, ma i due middleware sono uguali ma possono comunicare tramite protocolli.
 
 \subsubsection{Servizi Middleware}
 Services can address several issues, from general to domain specific.
