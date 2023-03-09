@@ -52,9 +52,16 @@ Praticamente lo decide la cardinalità massima il nome.
 \end{itemize}
 
 \subsection{Cardinalità degli attributi}
-è possibile associare delle cardinalità anche agli attributi, per:
+\`E possibile associare delle cardinalità anche agli attributi, per:
 - indicare opzionalità
 - indicare attributi multivalore
 
+\section{Identificatori}
+\subsubsection{I. interni}
+identificatori interni: pallini pieni
+identificatori semplici: pallini vuoti
 
-
+\subsubsection{I. esterni}
+Non così immediati. Uso un attributo composto, che mi comprende 2+ identificatori: l'identificatore esterno è valido e univoco se e solo se considero l'identificatore in relazione con una sola entità con cui l'entità di cui sto definendo l'attributo è in relazione.
+\\Non posso ovviamente aggiungere attributi a caso per risolvere la situazione perché se il testo non lo prevede, non sono autorizzato.
+\\Es.: in un'università uno studente è identificato univocamente dalla matricola, ma se vado a considerare per esempio tutte le università d'Italia posso avere la stessa matricola per più studenti con nomi e cognomi diversi. Come faccio? Considerando 1 e 1 sola entità di università, matricola diventa di nuovo univoca. Non posso assolutamente ad esempio aggiungere un attributo "codice id" univoco in tutte le università d'Italia, perché la consegna non lo prevede.
