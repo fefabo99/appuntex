@@ -1,0 +1,60 @@
+\section{Es.}
+Oggi faremo degli esercizi, che faccio prima a mano e poi vedo se farli a pc o fare solo riferimento.
+\\Convenzioni: entità - sostantivo singolare, relazione - verbo singolare.
+\\Slide 82: corsivo entità, grassetto relazioni.
+\\Descrivere lo schema concettuale della seguente realtà:
+\\Degli \textit{impiegati} interessa il codice fiscale, il nome, il cognome, i dipartimenti ai quali \textbf{afferiscono} (con la data di afferenza), ed i \textit{progetti} ai quali \textbf{partecipano}. Dei progetti interessa il nome, il budget, e la città in cui \textbf{hanno luogo} le corrispondenti attività. Alcuni progetti sono parti di altri progetti, e sono detti loro \textbf{sottoprogetti}. Dei \textit{dipartimenti} interessa il nome, il numero di telefono, gli impiegati che li \textbf{dirigono}, e la \textit{città} dove è \textbf{localizzata} la sede. Delle città interessa il nome e la regione.
+\\Entità:
+\begin{itemize}
+    \item impiegato
+    \item progetto
+    \item dipartimento
+\end{itemize}
+Relazioni:
+\begin{itemize}
+    \item afferire
+    \item partecipare
+    \item avere luogo
+    \item fare parte/sottoprogetto (ruolo)
+    \item dirigere
+    \item essere localizzato
+\end{itemize}
+
+\subsubsection{Ma domanda: quando un attributo viene classificato come entità?}
+Come faccio, leggendo un testo, a capire quando un elemento che mi sembra un attributo possa invece essere effettivamente scritto come entità?
+\begin{enumerate}
+    \item è descritto da più di un attributo
+    \item partecipa a più di una relazione
+    \item è autonoma
+\end{enumerate}
+C'è una slide.
+
+\subsubsection{Come invece scegliere se entità o relazione?}
+C'è una slide.
+
+Torniamo alla teoria.
+\section{Cardinalità di una relazione}
+Si indica come $(x,\, y)$ dove $x$ è la cardinalità minima dell'associazione e $y$ è la cardinalità massima dell'associazione.
+\\Si legge "Entità1 è in relazione con $x$ Entità2 o al più con $y$ Entità2".
+\\Simboli standard:
+\begin{itemize}
+    \item $0$: cardinalità minima, indica partecipazione facoltativa;
+    \item $1$: cardinalità minima, indica partecipazione obbligatoria;
+    \item $n$: cardinalità massima.
+\end{itemize}
+
+\subsection{Classificazione delle relazioni}
+Praticamente lo decide la cardinalità massima il nome.
+\begin{itemize}
+    \item uno a uno: $(1,\, 1) <-> (0,1)$
+    \item va beh
+    \item .
+\end{itemize}
+
+\subsection{Cardinalità degli attributi}
+è possibile associare delle cardinalità anche agli attributi, per:
+- indicare opzionalità
+- indicare attributi multivalore
+
+
+
