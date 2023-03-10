@@ -1,0 +1,101 @@
+\chapter{Introduzione - Che cos'è un DB e un DBMS}
+\paragraph{Che cos'è un Data Base}
+Una collezione di dati utilizzati per rappresentare le informazioni di interesse di un sistema informativo
+\paragraph{Che cos'è un DBMS?}
+Un DBMS (Data Base Management System) è un insieme di programmi che permettono di creare, usare e gestire una base di dati, è quindi un software
+general purpose che facilita il processo di definizione, costruzione e manipolazione del database per varie applicazioni.
+
+\section{Perchè creare un Database}
+Un soggetto, come per esempio un'azienda, ha molti dati da manipolare
+\begin{itemize}
+    \item Persone
+    \item Denaro
+    \item Materiali
+    \item Informazioni
+\end{itemize}
+Per gestire questi dati è necessario un sistema che li organizzi e li gestisca 
+in modo efficiente e sicuro.
+Questo sistema è detto \textbf{Sistema Informativo}, cioè un componente
+di una organizzazione che gestisce le informazioni di interesse, con i seguenti scopi:
+\begin{itemize}
+    \item Acquisizione/Memorizzazione
+    \item Aggiornamento
+    \item Interrogazione
+    \item Elaborazione
+\end{itemize}
+Il \textbf{Sistema Informatico} è invece la porzione automatizzata del Sistema
+informativo, la parte quindi che gestisce informazioni tramite tecnologia informatica.
+\\ Il Sistema Informatico ha i seguenti obiettivi:
+\begin{itemize}
+    \item Garantisce che i dati siano conservati in modo permanente sui dispositivi di 
+    memorizzazione
+    \item Permette un rapido Aggiornamento dei dati
+    \item Rende i dati accessibili alle interrogazoni degli utenti
+    \item Può essere distribuito sul territorio
+\end{itemize}
+\paragraph*{Gestione delle informazioni}
+Nei sistemi informatici le informazoni vengono rappresentate in modo essenziale
+attraverso i dati.
+I Dati hanno bisogno di essere interpretati, ma costituiscono una precisa rappresentazione
+di forme più ricche di informazioni e conoscenza, inoltre sono più stabili nel tempo rispetto
+ad altre componenti (come processi, tecnologie, ruoli umani) e restano gli stessi
+nella migrazione da un sistema al successivo.
+\section{Base di Dati - DB - Data Base}
+\paragraph*{Data Base - DB} Collezione di dati utilizzati per rappresentare le
+informazioni di interesse di un sistema informativo
+\paragraph*{Altra definizione di DB} Insieme di archivi in cui ogni dato è rappresentato
+logicamente una sola volta e può essere utilizzato da un insieme di applicazioni da
+diversi utenti secondo opportuni criteri di riservatezza.
+\paragraph*{Data Base Management System - DBMS} Sistema software capace di
+gestire collezioni di dati che siano grandi, condivise e persistenti, assicurando la loro affidabilità
+ e privatezza.
+\paragraph*{Elenco caratteristiche DBMS} Sistema che garantisce collezioni di dati:
+\begin{itemize}
+    \item grandi
+    \item persistenti
+    \item condivise
+\end{itemize}
+Garantendo:
+\begin{itemize}
+    \item Privatezza - Meccanismi di autorizzazione (come ACL)
+    \item Affidabilità - Resistenza malfunzionamenti hardware e software
+    (tramite tecniche come la gestione delle transazioni)
+    \item Efficienza
+    \item Efficacia
+\end{itemize}
+\paragraph{Transazione} $\to$ Insieme di operazioni da considerare indivisibile (atomico),
+la sequenza di operazioni sulla base di dati viene eseguita per intero o per niente.
+\\L'effetto di transazioni concorrenti deve essere coerente (ad esempio "equivalente"
+all'esecuzione separata).
+\\I risultati delle transizioni sono permanenti, la conclusione di una transazione
+corrisponde a un impegno (in inglese commitment) a mantenere traccia del risultato in modo
+definitivo.
+\\ I DBMS devono essere efficienti cercando di utilizzare al meglio le risorse di
+spazio di memoria e tempo.
+\\ Efficacia intesa come resa produttiva delle attività dei loro utilizzatori.
+\subsection*{Caratteristiche di un DB}
+\begin{itemize}
+    \item Ridondanza minima e controllata
+    \item Consistenza delle informazioni
+    \item Dati disponibili per utenze diverse e concorrenti
+    \item Dati controllati e protetti (da malfunzionamenti hardware e software)
+    \item Indipendenza dei dati dal programma
+\end{itemize}
+
+\subsection{Creazione di un database}
+\paragraph*{Le tre fasi}
+\begin{itemize}
+    \item Definizione
+    \item Creazione/Popolazione
+    \item Manipolazione
+\end{itemize}
+
+\paragraph*{Query}
+Fondamentale è poter interrogare un DB, attraverso per esempio delle \textbf{query}.
+
+\section{Descrizioni dei dati nei DBMS}
+Per descrivere e rappresentare i dati di un problema è necessario utilizzare 
+
+\section{Entità}
+Definita come sostantivo al singolare (es. studente, classe, docente, ecc.)
+A livello estensionale un'entità è costituira da un insieme di oggetti che sono chiamati le sue istanze.
