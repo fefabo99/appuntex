@@ -96,5 +96,115 @@ racchiude una varietà di casi: oggetti fisici, concetti astratti, elementi soft
     \item Classe software - Classe intesa come componente software (es. classe Java)
     - Significato attribuito nel \textbf{Modello di Progetto di UP}
 \end{itemize}
+\subsection{Vantaggi della mdoellazione visuale}
+Disegnare o leggere UML implica che si sta lavorando in modo visuale e il nostro
+cervello è più rapido a comprendere simboli, unità e relazioni rappresentati
+con una notazione grafica.
 
-
+\chapter{Processi per lo sviluppo del software}
+Un processo per lo sviluppo del software (o processo software) definisce un approccio disciplinato
+per la costruzione, il rilascio e la manutenzione del software.
+\\ Definisce chi fa che cosa, quando e come per raggiungere un certo obiettivo.
+\begin{itemize}
+    \item Cosa - Sono le attività
+    \item Chi - Sono i ruoli
+    \item Come - Sono le metodologie
+    \item Quando - Riguarda l'organizzazione temporale delle attività
+\end{itemize}
+\section{Che cos'è UP}
+Un processo per lo sviluppo software descrive un approccio alla costruzione,
+al rilascio ed eventualmente alla manutenzione del software. \textbf{Unified Process (UP)}
+ è un processo iterativo diffuso per lo sviluppo del software per la costruzione di sistemi
+ orientati ad oggetti.
+ \\ UP è molto flessibile e aperto e incoraggia l'utilizzo di pratiche
+ tratte da altri metodi iterativi come Extreme Programming (XP), Scrum, ecc.
+ \paragraph{Riassumendo}
+ \begin{itemize}
+    \item UP è un processo iterativo
+    \item Le pratiche UP forniscono una struttura di esempio
+    \item UP è flessibile cioè iterativo, incrementale ed evolutivo
+    \item Pilotato dai casi d'uso (requisiti) e dai fattori di rischio
+    \item Incentrato sull'architettura
+ \end{itemize}
+\section{Il processo a cascata}
+Il processo a cascata è il più vecchio tra quelli utilizzati oggi (definito tra gli
+anni 60-70). Definito così per il suo ciclo di vita a cascata (o sequenziale),
+basato sullo svolgimento sequenziale delle diverse attività dello sviluppo del software.
+\\ Richiede che i requisiti siano chiari sin dall'inizio e spesso non è così dato
+che durante la proggettazione emergono altri requisiti da parte del cliente.
+\paragraph{Perchè il processo a cascata è soggeto a frequenti fallimenti}
+\'E stata rilevata un'alta percentuale di fallimenti di progetti che utilizzano questo processo
+e ci sono diversi motivi legati a questo alto tasso di fallimenti.
+\\ Il motivo principale è che il processo a cascata presuppone che i requisiti siano
+prevedibili e stabili e che possano essere definiti all'inizio, ma ciò è falso.
+\' E stato dimostrato che ogni progetto software subisce mediamente il 25\% di cambiamenti
+nei requisiti. Addirittura altri studi hanno evidenziato tassi dal 35 fino al 50\%, per quanto
+riguarda i progetti più grandi.
+Nello sviluppo software il presupposto che i requisiti siano stabili e prevedibili nel tempo
+è fondamentalmente sbagliato. Nei progetti software il cambiamento è piuttosto una
+costante.
+\section{Sviluppo iterativo ed evolutivo}
+Lo sviluppo iterativo ed evolutivo è una pratica fondamentale in molti processi
+software moderni come UP e Scrum. In questo approccio al ciclo di vita,
+lo sviluppo è organizzato in una serie di mini progetti brevi di lunghezza fissa
+chiamati \textbf{iterazioni}. Ad ogni fase c'è un raffinamento del progetto a seguito
+di feedback, per questo viene chiamato \textbf{sviluppo iterativo e incrementale}
+o anche \textbf{sviluppo iterativo ed evolutivo}.
+\\ L'instabilità dei requisiti e del progetto tende a diminuire nel tempo, 
+nelle iterazioni finali è difficile (ma non impossibile), che si verifichi un
+cambiamento significativo dei requisiti.
+\subsection{Vantaggi dello sviluppo iterativo}
+\begin{itemize}
+    \item Minor probablità di fallimento del progetto
+    \item Miglior produttività
+    \item Percentuali più basse di difetti
+    \item Riduzione precoce anzichè tardiva dei rischi maggiori
+    \item Progesso visibile fin dall'inizio
+    \item Feedback preoce e conseguente coinvolgimento dell'utente e adattamento
+    \item Gestione della complessità
+\end{itemize}
+\subsection{Feedback e adattamento}
+Attività fondamentale per il successo, come si struttura? E da dove proviene?
+\begin{itemize}
+    \item Feedback proveniente dalle attività di sviluppo
+    \item Feedback proveniente dai test e dagli sviluppatori che raffinano il progetto e i modelli
+    \item Feedback circa l'avanzamento del tema nell'affrontare i requisiti, per raffinare le stime
+    dei tempi e dei costi
+    \item Feedback proveniente dal cliente e dal mercato
+\end{itemize}
+\subsection{Durata delle iterazioni e timeboxing}
+Una buona pratica dello sviluppo iterativo è il timeboxing: le iterazioni
+hanno una lunghezza fissata (Molti processi iterativi raccomandano una lunghezza da 
+2 a 6 settimane).
+\\ Passi piccoli, feedback rapido e adattamento sono le idee centrali dello
+sviluppo iterativo.
+La durata di un'iterazione, una volta fissata non può cambiare, quando viene fissata
+viene detta \textbf{timeboxed}.
+\paragraph*{Non permettere al pensiero a cascata di invadere un progetto iterativo}
+\subsection{Sviluppo iterativo e flessibilità del codice e del progetto}
+L'adozione dello sviluppo iterativo richiede che il softare venga realizzato in modo flessibile
+affinchè l'impatto dei cambiamenti sia basso. Il codice orgente deve quindi essere facilmente
+modificabile e comprensibile (per facilitarne la modifica).
+\textbf{flessibile}
+\section{Come eseguire l'analisi e progettazione in modo iterativo
+ed evoluto}
+Un'attività critica nello sviluppo iterativo è la pianificazione delle iterazioni,
+non bisogna tentare di pianificare tutto il progetto in modo dettagliato fin dall'inizio.
+I processi iterativi promuovono la pianificazione guidata dal rischio e guidata dal cliente.
+\subsection{Non cambiare gli obiettivi dell'iterazione}
+Durante un'iterazione non è possibile cambiare i requisiti, dato che sono stati
+precedentemente fissati durante la pianificazione iterativa e poi bloccati.
+Questo perchè così facendo il Team di sviluppo può lavorare al suo meglio.
+\subsection{Iterazioni - Perchè sono la chiave per UP}
+Le iterazioni sono la chaive per UP, dato che ogni iterazione è come un mini-progetto 
+che include:
+\begin{itemize}
+    \item Pianificazione
+    \item Analisi e progettazione
+    \item Costruzione
+    \item Integrazione e test
+    \item Un rilascio
+\end{itemize}
+Si arriva al rilascio finale attraverso una sequenza di iterazioni.
+Le iterazioni possono sovrapporsi e questo è importante, dato che consente lo
+sviluppo parallelo e il lavoro flessibile in grandi squadre.
