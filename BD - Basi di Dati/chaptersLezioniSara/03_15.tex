@@ -1,0 +1,73 @@
+\section{Riassunto: Identificatori}
+L'abbiamo vista la volta scorsa. Fa l'esempio dello studente e dell'università, in cui l'attributo Matricola di Studente è debole perché è sufficiente nel contesto di una sola università, dove è un identificativo univoco. Ma se consideriamo le università di tutt'Italia, non è più univoco.
+\\Serve allora un identificatore esterno.
+\subsubsection{Requisiti}
+Avere una relazione 1 a molti, ovvero $(1,\, 1) --> (0,\, n)$.
+
+\section{Ereditarietà}
+\subsection{Relazione IS-A (o IS-A) tra entità}
+Se avessi una entità studente, con attributi matricola (pallino pieno) che nel contesto di 1 università è univoca quindi sufficiente, nome e cognome.
+\\Fra questi ho particolari istanze chiamate studenti-lavoratori che hanno come attributi inizio-lavoro e sede-lavoro. Questo sottoinsieme (chiamato anche "relazione is-a") si comporta come in programmazione 2. Ovvero:
+\begin{itemize}
+    \item studenti-lavoratori eredita tutti gli attributi di studenti
+    \item non è vero il contrario
+\end{itemize}
+Ma avremmo potuto anche fare un solo attributo "sede di lavoro" per dire che se c'è, allora è uno studente-lavoratore per evitare tutto il sottoinsieme. Perché non l'abbiamo fatto?
+\\Principalmente per facilità di rappresentazione e lettura del modello. Poi anche per specificare che gli attibuti del sottoinsieme sono esclusivi, specifici delle istanze di quel sottoinsieme e non di tutte le istanze di studente.
+\\Tornando alle slides:
+\begin{itemize}
+    \item Fino ad ora non abbiamo detto nulla sul fatto se due
+    entità possano o no avere istanze in comune
+    \item \`E facile verificare che, in molti contesti, può accadere che tra due classi rappresentate da due entità nello schema concettuale sussista la relazione IS-A (o relazione di sottoinsieme), e cioè che ogni istanza di una sia anche istanza dell'altra. (Es. Studente, Studente della laurea breve)
+    \item La relazione IS-A nel modello ER si può definire tra
+    due entità, che si dicono “entità padre” ed “entità figlia” (o sottoentità, cioè quella che rappresenta un sottoinsieme della entità padre) (Es Studente è entità padre di Studente della laurea breve)
+\end{itemize}
+Poi ci sono 4-5 slides da sistemare sull'ereditarietà. Ovviamente NB che le relazioni che un eventuale sottoinsieme può avere con altre entità sarà specifica di quel sottoinsieme, così come per gli attributi vale anche per le relazioni.
+
+\section{Generalizzazione tra entità}
+Dalle slides:
+\begin{itemize}
+    \item Finora, abbiamo considerato la relazione ISA che stabilisce che l'entità padre è più generale della sottoentità. Talvolta, però, l'entità padre può generalizzare diverse sottoentità rispetto ad un unico criterio. In questo caso si parla di generalizzazione.
+    \item Nella generalizzazione, le sottoentità hanno insiemi di istanze disgiunti a coppie (anche se in alcune varianti del modello ER, si può specificare se due sottoentità della stessa entità padre sono disgiunte o no).
+    \item Una generalizzazione può essere di due tipi:
+    \\• Completa (o totale): l'unione delle istanze delle sottoentità è uguale all'insieme delle istanze dell'entità padre. Si rappresenta con una freccia piena.
+    \\• Non completa (o parziale). Si rappresenta con una freccia non piena.
+\end{itemize}
+Parliamo di generalizzazione \textbf{esclusiva} quando un'entità è composta da due sottoinsiemi che raggruppano le istanze e nessuna istanza sta fuori da questi due sottoinsiemi (si dice anche completa) e l'intersezione dà l'insieme vuoto. $$\cup_i E_i = E$$ $$\cap_i E_i = \emptyset$$
+\\ ---
+\\Se invece avessimo $$\cup_i E_i = E$$ $$\cap_i E_i = \emptyset$$
+
+Abbiamo 4 casi:
+\begin{itemize}
+    \item completa, esclusiva
+    \item completa, non esclusiva
+    \item non completa, esclusiva
+    \item non completa, non esclusiva
+\end{itemize}
+
+Come passo da non esclusiva a esclusiva? Andando a recuperare l'intersezione e rendendola entità a sé.
+
+\section{esempio sessista e antico}
+\begin{itemize}
+    \item Le persone hanno CF, cognome ed età; gli uomini anche la posizione militare; 
+    \item gli impiegati hanno lo stipendio e possono essere segretari, direttori o progettisti (un progettista può essere anche responsabile di progetto); 
+    \item gli studenti (che non possono essere impiegati) un numero di matricola;
+    \item esistono persone che non sono né impiegati né studenti (ma i dettagli non ci interessano)
+\end{itemize}
+Soluzione: slide successiva
+
+\section{Altre proprietà}
+possono esistere gerarchie a più livelli e multiple
+generalizzazioni allo stesso livello
+• un'entità può essere inclusa in più gerarchie, come
+genitore e/o come figlia
+• se una generalizzazione ha solo un’entità figlia si
+parla di sottoinsieme
+
+\section{Riassunto finale: tutto quello che abbiamo visto di ER}
+Slide 157 in poi
+
+
+Esercitazioni
+175(immobili) tutto falso
+176(città) tutto falso tranne le ultime due
