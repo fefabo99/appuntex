@@ -1,0 +1,75 @@
+\chapter{Progettazione concettuale}
+Diverse fasi:
+% img1
+% img2
+\section{Analisi dei dati}
+Anche nota come "Analisi dei requisiti e progettazione concettuale".
+\\Comprende attività (interconnesse) di
+\begin{itemize}
+    \item acquisizione dei requisiti
+    \item analisi dei requisiti
+    \item costruzione dello schema concettuale
+    \item costruzione del glossario
+\end{itemize}
+
+\subsubsection{Requisiti}
+Possibili fonti:
+\begin{itemize}
+    \item utenti, attraverso:
+    \\• interviste
+    \\• documentazione apposita
+    \item documentazione esistente:
+    \\• normative (leggi, regolamenti di settore)
+    \\• regolamenti interni, procedure aziendali
+    \\• realizzazioni preesistenti
+    \item modulistica
+\end{itemize}
+
+\subsection{Acquisizione e analisi dei requisiti}
+Il reperimento dei requisiti è un'attività difficile e non standardizzabile.
+\\L'attività di analisi inizia con i primi requisiti raccolti e spesso indirizza verso altre acquisizioni.
+% \\Ho perso tipo 75 slide
+
+% tutto in subsubsection
+
+\section{Scrittura dei requisiti}
+
+\section{Strutturazione dei requisiti}
+
+\section{Specifiche sulle operazioni}
+
+\section{Dalle specifiche al modello ER}
+
+\section{Design Pattern}
+Soluzioni progettuali a problemi comuni. Sono largamente usati nell'ingegneria del software.
+\\Vediamo alcuni pattern comuni nella progettazione concettuale di basi di dati.
+\\Parliamo di \textbf{reificazione}: procedimento di creazione di un modello di dati basato su un concetto astratto predefinito.
+\subsection{Reificazione}
+% c'è una slide
+
+\subsubsection{Part-of}
+L'unicità è un tema importante: un identificativo unico mi identifica una sola istanza, non ci saranno altre istanze di quell'entità con quell'identificativo.
+\\A volte un entità può essere legata a un'altra entità creando una relazione di tipo 1,N. Gli esempi mostrano come il concetto di part of possa essere di dipendenza (Sala non esiste senza Cinema) o meno (Tecnico è autonomo da Team).
+\\NB: avevamo detto che l'identificatore esterno non è univoco sempre, ma ci serve una situazione univoca (es. della matricola dell'università, univoca in una università ma non tipo in tutta la Lombardia): perciò funziona solo in una relazione 1 a molti.
+\\NBB: se la relazione è 1 a molti, l'entità che ha l'identificatore esterno è quella che ha la cardinalità 1. Grazie, copilot.
+\\NBBB: la cardinalità della relazione si guarda col numerino a destra, ovvero la cardinalità massima. Diversi casi:
+\begin{itemize}
+    \item (*, 1) -> (*, n): 1 a molti
+    \item (*, 1) -> (*, 1): 1 a 1
+    \item (*, n) -> (*, 1): molti a 1
+    \item (*, n) -> (*, n): molti a molti
+\end{itemize}
+
+\subsubsection{Istance-of}
+\\A volte si viene a creare la necessità di creare un'entità astratta che prende concretezza in un'entità istanza. Volo possiede informazioni astratte sul Volo Reale che invece rappresenta il volo che avviene giornalmente. (vedi esempio grafico)
+
+\subsubsection{Reificazione di relazione binaria}
+Nell'esempio degli esami, la relazione diventa un'entità dove l'attributo debole "data" diventa un attributo esterno quando reso univoco tramite un legame con un attributo "matricola" dell'entità "studente", che è univoco (pallino pieno). Questo è rappresentato dal secondo modello. Nell'esempio, non potendo avere ripetizioni, non posso sostenere due volte nello stesso giorno lo stesso esame. Posso due esami diversi. Il secondo modello grafico mi andrebbe bene. Però posso farlo guardando il terzo modello grafico.
+
+\subsubsection{Nota sull'identificazione esterna}
+Non esistono due esami diversi che riguardano la stessa coppia di studente e corso.
+% img
+L'esempio mostra che un identificatore esterno può anche non comprendere attributi, e può coinvolgere una sola relazione attraverso un unico ruolo.
+% tante slide che mi sono persa
+
+\section{Strategie di progetto}
