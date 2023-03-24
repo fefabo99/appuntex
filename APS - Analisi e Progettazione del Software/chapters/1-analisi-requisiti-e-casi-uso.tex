@@ -68,3 +68,111 @@ utenti del sistema.
 \begin{center}
     \includegraphics[width=100mm, scale=0.5]{metriche_requisiti_non_funzionali.png}
 \end{center}
+\subsection{Quali sono i modi validi per troavare requisiti}
+\begin{itemize}
+    \item Interviste con i clienti
+    \item Scrivere casi d'uso con i clienti
+    \item Workshop dei requisiti a cui partecipano sia sviluppatori che clienti
+    \item Gruppi di lavoro con rappresentanti dei clienti
+    \item Sollecitare feedback clienti alla di ogni iterazione
+\end{itemize}
+\section{Requisiti e principali elaborati di UP}
+\begin{itemize}
+    \item Modello dei casi d'uso
+    \item Specifiche supplementari
+    \item Glossario
+    \item Visione
+    \item Regole di Business
+\end{itemize}
+\paragraph*{Linee guida per la scrittura dei requisiti}
+\begin{itemize}
+    \item Ideare un formato standard e utilizzare per tutti i requisiti
+    \item Utilizzo del linguaggio in modo consistente. Utilizzare DEVE per requisiti
+    obbligatori, DOVREBBE per requisiti desiderabili
+    \item Evidenziare porzioni di testo per identificare le parti più importanti dei requisiti
+    \item Evitare gergo informatico
+\end{itemize}
+
+\chapter{Casi d'uso}
+I casi d'uso sono storie scritte, ampiamente utilizzati per scoprire e registrare
+i requisiti. Un caso'uso è un dialogo tra un attore e un sistema che svolge un compito.
+\\ I casi d'uso non sono elaborati orientati agli oggetti, influenzano però molti aspetti
+di un progetto, compresa l'analisi e la progettazione orientata agli oggetti.
+\textbf{I casi d'uso sono testo}.
+\section{Attori, scenari e casi d'uso}
+\begin{itemize}
+    \item Un attore è qualcosa o qualcuno dotato di comportamento - Es. cassiere
+    o sistema di pagamento 
+    \item Uno scenario (o istanza del caso d'uso) è una sequenza specifica di azioni
+    e iterazioni tra il sistema e alcuni attori - Descrive una particolare storia nell'uso
+    del sistema, si possono dividere in scenari di successo e di fallimento.
+    \item Un caso d'uso è una collezione di scenari correlati, sia di successo che
+    di fallimento, che descrivono un attore che usa un sistema per raggiungere un
+    obiettivo specifico
+\end{itemize}
+Il \textbf{Modello dei Casi d'Uso} è l'insieme di tutti i casi d'uso scritti.
+\subsection{Perchè i casi d'uso}
+Si tratta di un metodo semplice per descrivere i requisiti funzionali ed è
+direttamente comprensibile dai clienti. Inoltre mettono in risalto obiettivi degli utenti
+e il loro punto di vista. Molto utile per produrre la guida utente e per i test di sistema.
+\paragraph*{I casi d'uso sono requisiti funzionali} Dato che essi indicano cosa
+deve fare il sistema, un caso definisce un contratto relativo al comportamento
+di un sistema.
+\section{Tipi di Attore}
+SuD = Sistema in discussione
+\begin{itemize}
+    \item Attore primario: raggiunge obiettivi usando il SuD
+    \item Attore finale: vuole che il SuD sia utilizzato affinchè vengano raggiunti
+    i suoi obiettivi (es cliente)
+    \item Attore di supporto: es. servizio pagamento
+    \item Attore fuori scena: ha un interessa nel comportamento del caso d'uso SuD, ma non
+    è attore primario, finale o di supporto (es Governo interessanto al pagamento delle imposte)
+\end{itemize}
+\section{Tre formati comuni per i casi d'uso}
+\begin{itemize}
+    \item Formato breve - Riepilogo conciso di un solo paragrafo, normalmente relativo
+    al solo scenario principale di successo
+    \item Formato informale - Più paragrafi relativi anche agli altri scenari
+    \item Formato dettagliato - Tutti i passi e le variazioni sono scritti nel dettaglio
+\end{itemize}
+\paragraph*{Formato Dettagliato}
+\begin{center}
+    \includegraphics[width=100mm, scale=0.5]{caso_uso_format_dettaglio.png}
+\end{center}
+Scrivere in uno stile essenziale, come per esempio
+\begin{itemize}
+    \item L'amministratore si identifica
+    \item Il sistema autentica l'identità
+\end{itemize}
+Scrivere casi d'uso in modo conciso e completo.
+\\ Scrivere casi d'uso a scatola nera, ovvero speciricare che cosa
+deve fare il sistema, senza decidere come lo farà.
+Concentrarsi sulla comprensione di ciò che l'attore considera un risultato di valore.
+\section{Come trovare i casi d'uso}
+\begin{itemize}
+    \item Scegliere il confine di sistema (Es identificando gli attori esterni)
+    \item Identificare gli attori primari
+    \item Identificare gli obiettivi per ogni attore primario
+    \item Definire i casi d'uso che soddisfano questi obiettivi
+\end{itemize}
+Per dettagli leggere Capitolo 7 pag 88 del Larman 
+\href{https://bookshelf.vitalsource.com/reader/books/9788891924193/pageid/116}{Link Bookshelf}.
+\subsection{Verificare l'utilità dei casi d'uso}
+Ci sono diversi metodi
+\begin{itemize}
+    \item Test del capo
+    \item Test EBP (Elementary Business Process) - Capire se si tratta di un processo
+    elementare e non troppo complesso
+    \item Test della Dimensione - Un buon caso d'uso non dovrebbe essere troppo
+    breve
+\end{itemize}
+\subsection{Livello dei casi d'uso}
+I casi d'uso possono essere scritti a livelli diversi
+\begin{itemize}
+    \item Livello di obiettivo utente
+    \item Livello di sotto-funzione
+    \item Livello di sommario
+\end{itemize}
+
+\section{Diagramma dei Casi d'uso}
+
