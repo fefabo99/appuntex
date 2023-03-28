@@ -1,5 +1,5 @@
 \chapter{Programmazione non Lineare}
-Un \textbf{problema di programmazione non lineare (PLN)} può essere formulato come: $$\text{opt}\, \mathit{f}(\mathbf{x})$$ soggetto ai seguenti vincoli: $$g_j(\mathbf{x})\, \le\, 0\quad \text{con}\quad j\, =\, 1, ..., m$$ $$x_i\, \ge\, 0\quad \text{con}\quad i\, =\, 1, ..., n$$ $\text{dove opt} = 
+Un \textbf{problema di programmazione non lineare (PNL)} può essere formulato come: $$\text{opt}\, \mathit{f}(\mathbf{x})$$ soggetto ai seguenti vincoli: $$g_j(\mathbf{x})\, \le\, 0\quad \text{con}\quad j\, =\, 1, ..., m$$ $$x_i\, \ge\, 0\quad \text{con}\quad i\, =\, 1, ..., n$$ $\text{dove opt} = 
 \begin{cases} 
         min \\ 
         max
