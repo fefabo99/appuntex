@@ -1,1 +1,109 @@
-\chapter{Diagrammi di Sequenza di sistema}
+\chapter{Modellazione di dominio}
+Un caso d'uso o una caratteristica sono spesso troppo
+complessi per poter essere completati in una sola breve iterazione
+pertante le varie parto o scenari possono essere distribuiti su diverse iterazioni.
+
+\section{L'elaborazione}
+L'elaborazione è la serie iniziale di iterazioni durante le quali, in un progetto
+normale:
+\begin{itemize}
+    \item Viene programmato e verificato il nucleo, rischioso, dell'architettura software
+    \item Viene scoperta e stabilizzata la maggior parte dei requisiti
+    \item I rischi maggiori sono attenuati o rientrano
+\end{itemize}
+\paragraph*{Alcune idee e best practice}
+\begin{itemize}
+    \item Eseguire iterazioni guidate dal rischio, brevi e timeboxed
+    \item Iniziare presto la programmazione
+    \item Progettare, implementare e testare in modo attivo le parti principali
+    \item Effettuare test presto, spesso e in modo realistico
+    \item Adattare in base al feedback proveniente da test, utenti e sviluppatori
+    \item Scrivere la maggior parte dei casi d'uso e degli altri requisiti nel dettaglio
+\end{itemize}
+\'E importante definire le priorità in base al rischio, copertura e criticità.
+\begin{itemize}
+    \item Rischio - Comprende tanto la complessità tecnica quanto altri fattori,
+    come l'incertezza dello sforzo o l'usabilità
+    \item Compertura - Indica che le iterazioni iniziali prendono in considerazione tutte
+    le parti principali del sistema
+    \item Criticità (Valore) - Le funzioni che il cliente considera di elevato
+    valore di business
+\end{itemize}
+\\Prima di ogni iterazione viene aggiornata la classifica.
+\section{L'analisi a oggetti - Modellazione di Dominio}
+Nell'analisi orientata agli oggetti vengono modellati i seguenti
+aspetti
+\begin{itemize}
+    \item Il Dominio informativo, ovvero le tipologie di informazioni che il sistema deve
+    rappresentare e gestire
+    \item Le interazioni fra attori e sistema, ovvero le funzioni
+    \item Il comportamento del sistema, ovvero i cambiamenti nelle informazioni
+    associati a ciascuna funzione
+\end{itemize}
+Vengono modellati nella come segue:
+\begin{itemize}
+    \item Il dominio informativo è rappresentato mediante un modello oggetti (modello di dominio)
+    \item Le funzioni del sistema sono rappresentate in termini delle operazioni che il Sistema
+    è chiamato a svolgere (\textbf{operazioni di sistema}), insieme a una descrizione dell'ordine
+    relativo in cui si possono richiedere queste operazioni \textbf{diagrammi di sequenza di sistema}
+    \item Il comportamento è descritto come l'effetto prodotto dall'esecuzione di
+    ciascuna operazione di sistema (\textbf{contratti} delle operazioni di sistema)
+\end{itemize}
+\subsection*{Modellazione di Dominio}
+Un modello di dominio è il modello più importante dell'OOA dato che:
+\begin{itemize}
+    \item Descrive le classi concettuali e le relazioni tra esse
+    \item Fonte di ispirazione per classi di progetto e di implementazione
+    \item Sviluppato in modo iterativo ed incrementale
+    \item Limitato dai requisiti dell'iterazione corrente
+\end{itemize}
+Si tratta di una rappresentazione visuale di classi concettuali o di oggetti
+del mondo reale, nonchè delle relazioni tra di essi, in un dominio di interesse.
+Applicando UML, un modello di dominio può essere realizzato come uno o più diagrammi
+delle classi in cui non sono definite operazioni e mostrano:
+\begin{itemize}
+    \item Classi concettuali o oggetti di dominio
+    \item Associazioni tra classi concettuali
+    \item Attributi di classi concettuali
+\end{itemize}
+Il modello di dominio non è una raffigurazione di oggetti software, si tratta
+di un dizionario visuale delle astrazioni significative, della terminologia del dominio
+e del contenuto informativo del dominio di interesse.
+\\ Un modello dei dati mostra dati che devono essere memorizzati in modo persistente.
+\\ Un modello di dominio descrive informazoni che devono essere gestite nel sistema in
+discussione e può contenere
+\begin{itemize}
+    \item Classi concettuali senza attributi
+    \item Classi concettuali che hanno un ruolo puramente comportamentale e non un
+    ruolo informativo
+\end{itemize}
+\subsection*{Classi Concettuali}
+Una classe concettuale è un'idea, una cosa o un oggetto che può essere considerata
+in termini di:
+\begin{itemize}
+    \item Simbolo - Un aparola o immagine usata per rappresentare la classe concettuale
+    \item Intenzione - La definizione della classe concettuale in linguaggio naturale
+    \item Estensione - L'insieme degli oggetti descritti dalla classe concettuale
+\end{itemize}
+In UML, una classe è il descrittore per un insieme di oggetti che possiedono le stesse
+caratteristiche (attributi, operazioni, metodi, relazioni e comportamento).
+\paragraph*{Associazioni} In UML, un'associazione è la relazione tra due o più
+classificatori che comporta connessioni tra le rispettive istanze.
+\paragraph*{Attributi} In UML, un attributo è la descrizione di una proprietà
+di una classe.
+Creare un modello di dominio è molto utile per comprendere il dominio del sistema da
+realizzare e il suo vocabolario (analisi), è inoltre una fonte di ispirazione per lo strato
+del dominio.
+\section{Come creare un modello di dominio}
+\begin{itemize}
+    \item Trovare le classi concettuali
+    \item Disegnarle come classi in un diagramma delle classi UML
+    \item Aggiungere associazioni e attributi
+\end{itemize}
+\subsection*{Identificare le classi concettuali}
+\begin{itemize}
+    \item Riusare o modificare dei modelli esistenti
+    \item Utilizzare un elenco di categorie comuni
+    \item Identificare nomi e locuzioni nominali
+\end{itemize}
+
