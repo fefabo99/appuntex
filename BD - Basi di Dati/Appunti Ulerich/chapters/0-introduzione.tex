@@ -81,6 +81,35 @@ spazio di memoria e tempo.
     \item Dati controllati e protetti (da malfunzionamenti hardware e software)
     \item Indipendenza dei dati dal programma
 \end{itemize}
+Riassumendo, un DMSB è un prodotto sfotware in grado di gestire collezoni di dati che
+siano:
+\begin{itemize}
+    \item Grandi
+    \item Persistenti
+    \item Condivise
+\end{itemize}
+E che garantiscano
+\begin{itemize}
+    \item Affidabilità
+    \item Privatezza
+    \item Efficienza
+\end{itemize}
+I DBMS permettono inoltre ai dati di essere indipendenti dalla propria rappresentazione
+fisica.
+\subsection{Modello dei dati}
+Insieme di costrutti per organizzare i dati di interesse e descriverne la dinamica.
+Sono componenti fondamentali che permettono la strutturazione dei dati.
+Per esempio il modello relazionale prevede il costruttore relazione, che permette
+di definire insiemi di recordo omogenei.
+\section{Schemi e Istanze}
+In ogni base di dati esistono:
+\begin{itemize}
+    \item Lo schema, sostanzialmente invariante nel tempo, che ne descrive la struttura,
+    il significato (aspetto intensionale). Costituisce quindi la parte astratta delle
+    proprietà.
+    \item L'istanza, che sono i valori attuali e possono cambiare anche molto rapidamente 
+    (aspetto estensionale). Costituisce quindi l'aspetto concreto che varia nel tempo.
+\end{itemize}
 
 \subsection{Creazione di un database}
 \paragraph*{Le tre fasi}
@@ -91,7 +120,12 @@ spazio di memoria e tempo.
 \end{itemize}
 
 \paragraph*{Query}
-Fondamentale è poter interrogare un DB, attraverso per esempio delle \textbf{query}.
+\'E fondamentale poter interrogare un DB, attraverso per esempio delle \textbf{query}.
+L'efficacia della query dipende da:
+\begin{itemize}
+    \item Conoscenza del contenuto del DB
+    \item Esperienza del linguaggio di interrogazione
+\end{itemize}
 
 \section{Descrizioni dei dati nei DBMS}
 Per descrivere e rappresentare i dati di un problema è necessario utilizzare 
