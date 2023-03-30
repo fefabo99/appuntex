@@ -29,7 +29,7 @@ normale:
     \item Criticità (Valore) - Le funzioni che il cliente considera di elevato
     valore di business
 \end{itemize}
-\\Prima di ogni iterazione viene aggiornata la classifica.
+Prima di ogni iterazione viene aggiornata la classifica.
 \section{L'analisi a oggetti - Modellazione di Dominio}
 Nell'analisi orientata agli oggetti vengono modellati i seguenti
 aspetti
@@ -106,4 +106,88 @@ del dominio.
     \item Utilizzare un elenco di categorie comuni
     \item Identificare nomi e locuzioni nominali
 \end{itemize}
+\paragraph*{Associazione}
+Un'associazione è una relazione tra classi (più precisamente, tra istanze di
+queste classi) che indica una connessione significativa e interessante.
+In UML, una relazione semantica tra due o più classificatori che coinvolge
+connessioni tra le loro istanze.
+\paragraph*{Quando mostrare un'associazione} 
+Considerare l'inclusione delle seguenti associazioni in un modello di dominio
+\begin{itemize}
+    \item Associazioni per cui la conoscenza della relazione deve essere conservata
+    per qualche durata
+    \item Associazioni identificate mediante l'elenco di associazioni comuni
+\end{itemize}
+Evitare di inserire troppe associazioni in un modello di dominio.
+\\ Considera che le associazioni del modello di progetto andranno implementate
+nel software, ma considera che un modello di dominio non è un modello di progetto, 
+infatti una associazione descrive una relazione significativa tra oggetti del mondo
+reale, non descrive caratteristiche di oggetti software.
+\subsection*{Molteplicità}
+La molteplicità di un ruolo indica quante istanze di una classe possono
+essere associate a una istanze dell'altra classe. Essa dipende dal contesto
+\subsection*{Aggregazione e composizione}
+\paragraph*{Aggregazione} Una associazione che rappresenta una relazione intero-parte
+\paragraph*{Composizione} (aggregazione composta) Si tratta di una forma forte di
+aggregazione in cui:
+\begin{itemize}
+    \item Una parte appartiene a un composto alla volta
+    \item Ciascuna parte appartiene sempre a un composto
+    \item Il composto è responsabile della creazione e cancellazione delle sue parti
+\end{itemize}
+Per esempio un computer e una stampante sono una aggregazione, dato che sono
+debolmente collegati. Mentre un albero e le sue foglie sono una composizione, dato che
+sono fortemente collegati.
+\begin{itemize}
+    \item L'aggregato può in alcuni casi esistere indipendentemente dalle parti, ma in 
+    altri casi no
+    \item Le parti possono esistere indipendentemente dall'aggregato
+    \item L'aggregato è in qualche modo incompleto se mancano alcune delle sue parti
+    \item \'E possibile che più aggregati condividano una stessa parte
+\end{itemize}
+Per la composizione
+\begin{itemize}
+    \item Ogni parte può appartenere a un solo composto per volta 
+    \item Il composto è l'unico responsabile di tutte le sue parti: questo
+    vuol dire che è responsabile della loro creazione e distruzione
+    \item Il composto può rilasciare una sua parte, a patto che un altro
+    oggett si prenda la relativa responsabilità
+    \item Se il composto viene distrutto, deve distruggere tutte le sue parti o
+    cederne la responsabilità a qualche altro oggetto
+    \item La composizione è transitiva e asimmetrica
+\end{itemize}
+\subsection*{Come identificare la composizione}
+Si consideri di mostrare una composizione quando:
+\begin{itemize}
+    \item C'è un ovvio gruppo fisico o logico intero-parte
+    \item La vita della parte è limitata dalla vita del composto
+    \item Alcune proprietà dell'intero si propagano anche alle parti (es. cancellazione/creazione)
+\end{itemize}
+\section{Attributi}
+Si tratta di una proprietà elementare degli oggetti di una classe a cui
+viene associato un valore.
+\subsection*{Tipi di attributi appropriati nel modello di dominio}
+Gli attributi devono avere tipo semplice, elementare, corrispondente a un tipo di dati
+primitivo. Non devono avere tipo corrispondente a un concetto complesso del
+dominio.
+\\ Il tipo degli attributi deve essere un tipo di dato e in UML con tipo di dato
+si intende un insieme di valori in cui l'identità univoca non è significativa.
+\paragraph*{Esempio} Numero di telefono è un valore, Persona non è un tipo di dato.
+\section{Considerazioni finali}
+Esiste un modello di dominio univocamente corretto?
+Non esiste un solo modello di dominio corretto, essendo tutti i modelli approssimazioni
+del dominio che si sta tentando di capire. Meglio chiedersi se il modello di dominio
+è utile.
+\\ \'E meglio evitare un grosso sfrozo in valutazione secondo l'approccio a cascata per
+creare un modello di dominio completo e corretto. Non utilizzare più di alcune ore per
+ogni iterazione.
 
+\chapter{Diagrammi di Sequenza di Sistema (SSD)}
+Un diagramma di sequenza di sistema (SSD) mostra gli eventi di input e output
+dei sistemi in discussione. Per un particolare corso di eventi all'interno di un caso
+d'uso mostra:
+\begin{itemize}
+    \item Gli attori esterni che interagiscono direttamente con il sistema
+    \item Il sistema (a scatola nera)
+    \item Gli eventi di sistema generati dagli attori
+\end{itemize}
