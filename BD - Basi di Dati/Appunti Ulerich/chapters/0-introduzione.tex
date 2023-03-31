@@ -110,13 +110,36 @@ In ogni base di dati esistono:
     \item L'istanza, che sono i valori attuali e possono cambiare anche molto rapidamente 
     (aspetto estensionale). Costituisce quindi l'aspetto concreto che varia nel tempo.
 \end{itemize}
+\section{Modelli concettuali}
+Permetton odi rappresentare i dati in modo indipendente da ogni sistema cercando
+di descrivere i concetti dle modno reale. Sono utilizzati nelle fasi preliminari di
+progettazione. Il più diffuso è il modello \textbf{Entity-Relationship ER}.
+\section{Modelli logici - Modello Relazionale}
+Sono i modelli adottati nei DBMS esistenti per l'organizzazione dei dati e sono
+utilizzati dai programmi, sono indipendenti dalle strutture fisiche.
+L'esempio più diffuso e che noi tratteremo e quello del \textbf{modello Relazionale}.
+\subsection{Modello Relazionale}
+I dati vengono strutturati in tabelle, in particolare un DBMS relazione può essere
+pensato come un insieme di tabelle, dove ogni tabella mantiene informazioni di
+tipo omogeneo. Diverse tabelle sono collegate (in relazione) fra loro grazie alla
+presenza di un campo comune che permette di mettere in relazione i dati delle due
+tabelle.
+\\ In questo caso lo schema è la componente intensionale e descrive la struttura
+della tabella (ed è stabile nel tempo)
+\\ Mentre il'istanza è la componente estensionale e descrive i valori attuali, cioè
+i dati (ed è variabile nel tempo).
+\subsection{Linguaggi per basi di dati}
+Ci sono i DDL (Data Definition Language) che permettono di definire il DB.
+\\ Mentre i DML (Data Manipulation Language) permettono di manipolare i dati, interrogando
+e aggiornando delle basi di dati. Alcuni linguaggi, come SQL (Structured Query Language)
+hanno funzioni di entrambe le categorie.
 
 \subsection{Creazione di un database}
 \paragraph*{Le tre fasi}
 \begin{itemize}
-    \item Definizione
-    \item Creazione/Popolazione
-    \item Manipolazione
+    \item Definizione - DDL
+    \item Creazione/Popolazione - DDL
+    \item Manipolazione - DML
 \end{itemize}
 
 \paragraph*{Query}
@@ -127,9 +150,21 @@ L'efficacia della query dipende da:
     \item Esperienza del linguaggio di interrogazione
 \end{itemize}
 
-\section{Descrizioni dei dati nei DBMS}
-Per descrivere e rappresentare i dati di un problema è necessario utilizzare 
-
-\section{Entità}
-Definita come sostantivo al singolare (es. studente, classe, docente, ecc.)
-A livello estensionale un'entità è costituira da un insieme di oggetti che sono chiamati le sue istanze.
+\section{Vantaggi e svantaggi dei DBMS}
+\paragraph*{Pro}
+\begin{itemize}
+    \item Permettono di considerare i dati come risorsa comune di un'organizzazione,
+    a disposizione di molteplici applicazioni e utenti
+    \item Offrono modello della parte di mondo di interesse che è unificato e preciso,
+    utilizabile in applicazioni attuali e future
+    \item Controllo centralizzato dei dati, riduce ridondanze e incosistenze
+    \item Indipendenza dei dati: favorisce sviluppi di applicazioni flessibili e
+    facilmente modificabili
+\end{itemize}
+\paragraph*{Contro}
+\begin{itemize}
+    \item Costosi, complessi, hanno specifici requisiti in termini di software e hardware
+    \item Difficile separare, tra tutti i servizi offerti da un DBMS, quelli effettivamente
+    utilizzati da quelli inutili
+    \item Inadatti alla gestione di applicazioni con pochi utenti
+\end{itemize}
