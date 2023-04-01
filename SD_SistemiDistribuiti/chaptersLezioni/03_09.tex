@@ -1,0 +1,197 @@
+\chapter{Introduzione alla concorrenza}
+Prof. Ciavotta.
+
+\section{Outline}
+Quando ad un programma viene dato il \textit{diritto} di operare su dei dati, questo diventa un processo.
+\\Non ho capito perché, ma se un programma è statico il processo è dinamico.
+\\Altra domanda: processi senza sistema operativo, possono esistere? Risposta: microcontrollori, sono processi senza s.o. monoprogrammati in cui è in esecuzione un unico programma che costituisce l'unico processo.
+\\\textit{Vantaggi/svantaggi di un sistema monoprogrammato?}
+\\Non potrei eseguire nient'altro oltre quel singolo programma, e addio produttività. Per dire, già solo se stesse effettuando un'operazione di I/O o un calcolo molto potente: non risponderà più.
+
+\section{Concorrenza come contemporaneità}
+Def. concorrenza: identifica la contemporaneità di esecuzione di parti diverse di un programma. questom programma può essere costituito da moduli chiamati \textit{processi} o \textit{thread} o ancora \textit{\textbf{
+agenti}}.
+\\due agenti possono esser in esecuzione "contemporanea" anche condividendo la CPU.
+\\Due scenari:
+\begin{description}
+    \item[Programmazione contemporanea:] contemporaneità di esecuzione su \textbf{una stessa macchina} (con 1+ CPU/Core)
+    \item[Programmazione distribuita:]  il programma è in esecuzione su \textbf{macchine distinte} \textit{collegate da una rete di comunicazione}
+\end{description}
+Questa situazione presenta delle difficoltà: nel primo caso non avremo mai un'effettiva contemporaneità, ma li avrei sullo stesso sistema operativo quindi non riscontro particolari problemi di comunicazione. Nel secondo caso non ho capito benissimo, ma la rete di comunicazione è esterna quindi più soggetta a problemi.
+\\Quindi avremo meccanismi che permettono l'esecuzione e la comunicazione tra gli agenti, soprattutto forniti dal SO, e costrutti di linguaggio che espandono la programmazione dal paradigma puramente sequenziale.
+\\Quando parliamo di s.d. parliamo di un approccio che riguarda tanti settori del mondo dell'informatica.
+
+\section{Concorrenza e parallelismo}
+\textbf{Concorrenza:} capacità di far progredire più di un'attività nel tempo
+\\\textbf{Parallelismo:} capacità di eseguire più di un'attività simultaneamente (da esecutori diversi)
+\\Single core + multiprogrammazione = concorrenza \textbf{senza} parallelismo
+\\Multicore = concorrenza \textbf{attraverso} il parallelismo.
+% ins img concorrenza_parallelismo1.jpg
+
+\subsection{Tipi di parallelismo}
+\begin{description}
+    \item[p. di dati:] un certo dataset viene partizionato e le sue partizioni vengono assegnate ad attività diverse (roba dalla slide che era chiara)
+    \item[p. di attività:] attività diverse che lavorano sullo stesso gruppo di dati
+    \item[] sistemi ibridi
+\end{description}
+Perché sfruttare il parallelismo?
+\\Risparmio di tempo, principalmente, ma anche efficienza di interazione con l'utente...
+\\Se ho un programma con attività che possono essere eseguite in parallelo, boh con le chiacchiere non sento.
+\\Viene formulata una legge, la \textbf{legge di Amdahl}, che mi fornisce il guadagno in termini di performance derivante dall'aggiunta di core ad un'applicazione che ha componenti sia sequenziali che parallele. In particolare, nella formula la parte parallelizzabile è quella del denominatore "$(1-S)/N$". Nota che all'aumentare del numero dei core, aumenta anche il valore dell'incremento di velocità.
+
+\section{Programmazione concorrente}
+La p. concorrente è la pratica di implementare dei programmi che contengano più flusi di esecuzione (processi o thread).
+\\Il vantaggio di sfruttare processi multi-core (p. concorrente)? Posso strutturare in modo piùù adeguato un programma, creando per es. una sezione che effettui i calcoli, una che si occupi dell'interfaccia utente, ...
+\\Pricipalmente, diverse sezioni per gestire diversi eventi.
+\\Ma cos'è un evento? Chi lo gestisce?
+\\Posso definirlo con parole mie come la situazione che viene creata dall'operato concorrente di utente e s.o.; gli eventi sono anche noti come segnali del s.o., messaggi che possono triggerare processi (di esecuzione, di termine, etc...). Rispondendo 
+
+\chapter{Processi}
+\section{Concetto di processo}
+Un processo per un s.o. è un'\textbf{astrazione} di una parte attiva di un processo.
+\\Cosa vuol dire attivare un processo?
+\\Una fase è: prendo la memoria presente sul disco e la porto in memoria principale.
+\\Un'altra è la creazione di azioni associate ad un processo, una serie di segnali che avviseranno altri processi che questo processo è stato creato, e vengono create le risposte a questi segnali.
+
+\section{Programmi e processi}
+Copia le slide.
+\\Ma pensandoci, cos'è lo stack? è una struttura dati che aiuta il programma, con l'aiuto del processore, a ricordare quale fosse la funzione chiamante in un sistema multi-metodo o multi-funzione. Mi devo ricordare chi l'ha chiamata, quali sono i valori delle sue variabili, etc.
+\\Ma è parte del programma (costituito essenzialmente da istruzioni) o del processo? Del processo ovviamente.
+
+\section{Multiprogrammzione e multitasking}
+Tra gli obiettivi del sistema operativo:
+\begin{itemize}
+    \item Massimizzare l'utilizzo della CPU = Mantenere impegnata la (o le) CPU il maggior tempo possibile nell'esecuzione dei programmi
+    \item Dare l'illusione che ogni processo abbia una CPU dedicata. Astrazione utile a chi sviluppa il programma
+\end{itemize}
+Due tecniche adottate nei sistemi operativi sono la multiprogrammazione e il multitasking (o timesharing)
+\begin{itemize}
+    \item \textit{Obiettivo della multiprogrammazione}: impedire che un programma che non è in condizione di proseguire l'esecuzione mantenga la CPU
+    \item \textit{Obiettivo del multitasking}: far si che un programma interattivo reagisca agli input utente in un tempo accettabile (notare che è una tecnica non rilevante per i sistemi puramente batch)
+\end{itemize}
+
+\subsection{Multiprogrammazione}
+Il sistema operativo mantiene in memoria i processi da eseguire. Li carica e gli assegna la memoria e una serie di altre informazioni.
+\\Quando una CPU non è impegnata ad eseguire un processo, il sistema operativo seleziona un processo non in esecuzione e gli assegna la CPU.
+\\Quando un processo non può proseguire l'esecuzione (ad es. perché deve attendere il termine dell'input di dati che gli servono per proseguire), la sua CPU viene assegnata ad un altro processo non in esecuzione.
+\\Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno impegnate nell'esecuzione di qualche processo per la maggior parte del tempo.
+
+\subsection{Multiprogrammazione e memoria}
+Heap: immagazzina strutture dati e dati creati in esecuzione per affiancare appunto l'esecuzione del programma.
+\\Al momento di creazione di un oggetto, esso viene allocato nello heap.
+
+\subsection{Multitasking}
+Heap: immagazzina strutture dati e dati creati in esecuzione per affiancare appunto l'esecuzione del programma.
+\\Al momento di creazione di un oggetto, esso viene allocato nello heap.
+
+\section{Op sui processi}
+I sistemi operativi di solito forniscono delle chiamate di sistema con le quali un processo può creare/terminare/manipolare altri processi.
+\\Dal momento che solo un processo può creare un altro processo, all'avvio il sistema operativo crea dei processi «primordiali» dai quali tutti i processi utente e di sistema vengono progressivamente creati.
+\\Principali operazioni: un processo può essere creato e terminato.
+\\Si possono rappresentare con un diagramma ad albero, in quanto c'è un qualcosa(l'utente?) che crea un processo, il quale crea altri processi, e finché non li termino continuo a diramare.
+
+\subsection{Creazione di processi}
+Di solito nei sistemi operativi i processi sono organizzati in maniera gerarchica.
+\\Un processo (padre) può creare altri processi (figli).
+\\Questi a loro volta possono essere padri di altri processi figli, creando un albero di processi.
+\\Uno di questi processi è lo shell, che serve ad interagire direttamente col s.o.
+\\La relazione padre/figlio è di norma importante per le politiche di condivisione risorse e di coordinazione tra processi.
+\\Possibili politiche di condivisione di risorse:
+§ Padre e figlio condividono tutte le risorse…
+§ …o un opportuno sottoinsieme…
+§ …o nessuna
+\\Possibili politiche di creazione spazio di indirizzi:
+§ Il figlio è un duplicato del padre (stessa memoria e
+programma)…
+§ …oppure no, e bisogna specificare quale
+programma deve eseguire il figlio
+\\Possibili politiche di coordinazione padre/figli:
+§ Il padre è sospeso finché i figli non terminano…
+§ …oppure eseguono in maniera concorrente
+
+\subsection{Terminazione di processi}
+I processi di regola richiedono esplicitamente la propria terminazione al sistema operativo.
+\\Un processo padre può attendere o meno la terminazione di un figlio
+\\Un processo padre può forzare la terminazione di un figlio. Possibili ragioni:
+\begin{itemize}
+    \item Il figlio sta usando risorse in eccesso (tempo, memoria…)
+    \item Le funzionalità del figlio non sono più richieste (ma è meglio terminarlo in maniera «ordinata» tramite IPC)
+    \item Il padre termina prima che il figlio termini (in alcuni sistemi operativi)
+\end{itemize}
+Riguardo all'ultimo punto, alcuni sistemi operativi non permettono ai processi figli di esistere dopo la terminazione del padre
+\begin{itemize}
+    \item Terminazione in cascata: anche i nipoti, pronipoti… devono essere terminati
+    \item La terminazione viene iniziata dal sistema operativo
+\end{itemize}
+
+\subsection{Es.: API Posix}
+fork() crea un nuovo processo figlio; il figlio è un duplicato del padre ed esegue concorrentemente ad
+esso; ritorna al padre un numero identificatore (PID) del processo figlio, e al figlio il PID 0
+§ exec() sostituisce il programma in esecuzione da un processo con un altro programma, che viene eseguito
+dall'inizio; viene tipicamente usata dopo una fork() dal figlio per iniziare ad eseguire un programma
+diverso da quello del padre
+§ wait() viene chiamata dal padre per attendere la fine dell'esecuzione di un figlio; ritorna:
+§ Il PID del figlio che è terminato
+§ Il codice di ritorno del figlio (passato come parametro alla exit())
+§ exit() fa terminare il processo che la invoca:
+§ Accetta come parametro un codice di ritorno numerico (tipicamente 0 o 1)
+§ Il sistema operativo elimina il processo e recupera le sue risorse
+§ Quindi restituisce al processo padre il codice di ritorno (se ha invocato wait(), altrimenti lo memorizza
+per quando l'invocherà)
+§ Viene implicitamente invocata se il processo esce dalla funzione main (in C, e Java per esempio)
+§ abort() fa terminare forzatamente un processo figlio
+
+\chapter{Implementazione dei processi}
+\section{I processi}
+\subsection{Struttura}
+Un processo è composto da diverse parti:
+\begin{itemize}
+    \item Lo stato dei registri del processore che esegue il programma, incluso il program counter
+    \item Lo stato della regione di memoria centrale usata dal programma, o immagine del processo
+    \item Lo stato del processo stesso
+    \item Le risorse del sistema operativo in uso al programma (files, semafori, regioni di memoria condivisa…)
+\end{itemize}
+Le risorse del sistema operativo possono essere condivise tra processi (a seconda del tipo di risorsa).
+\\Processi distinti invece hanno \textit{immagini} distinte.
+
+\subsection{Immagine}
+L'immagine di un processo è formata da:
+§ Il codice del programma (text section)
+§ La data section, contenente le variabili globali
+§ Lo stack delle chiamate, contenente parametri, variabili locali e indirizzo
+di ritorno
+§ Lo heap, contenente la memoria allocata dinamicamente durante
+l'esecuzione
+§ Text e data section hanno dimensioni costanti per tutta la vita del processo
+§ Stack e heap invece crescono / decrescono durante la vita del processo
+% img processi2.jpg
+
+\subsection{Stato}
+Durante l'esecuzione, un processo cambia più volte stato. Gli stati possibili di un processo sono:
+§ Nuovo (new): il processo è creato, ma non ancora ammesso all'esecuzione
+§ Pronto (ready): il processo può essere eseguito (è in attesa che gli sia assegnata una CPU)
+§ In esecuzione (running): le sue istruzioni vengono eseguite da qualche CPU
+§ In attesa (waiting): il processo non può essere eseguito perché è in attesa che si verifichi qualche evento (ad es. il completamento di un'operazione di I/O)
+§ Terminato (terminated): il processo ha terminato l'esecuzione
+
+\section{Process Control Block (PCB)}
+Detto anche \textbf{task control block}.
+\\È la struttura dati del kernel che contiene tutte le informazioni relative ad un processo:
+\begin{itemize}
+    \item Process state: ready, running…
+    \item Process number (o PID): identifica il processo
+    \item Program counter: contenuto del registro «istruzione successiva»
+    \item Registers: contenuto dei registri del processore
+    \item Informazioni relative alla gestione della memoria: memoria allocata al processo
+    \item Informazioni sull'I/O: dispositivi assegnati al processo, elenco file aperti…
+    \item Informazioni di scheduling: priorità, puntatori a code di scheduling…
+    \item Informazioni di accounting: CPU utilizzata, tempo trascorso…
+\end{itemize}
+
+
+...
+
+
+
+\section{Commutazione di contesto}
+Alla slide aggiungo che 
