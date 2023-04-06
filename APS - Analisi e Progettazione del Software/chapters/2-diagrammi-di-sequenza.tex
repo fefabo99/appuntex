@@ -1,7 +1,7 @@
 \chapter{Modellazione di dominio}
 Un caso d'uso o una caratteristica sono spesso troppo
 complessi per poter essere completati in una sola breve iterazione
-pertante le varie parto o scenari possono essere distribuiti su diverse iterazioni.
+pertante le varie parti o scenari possono essere distribuiti su diverse iterazioni.
 
 \section{L'elaborazione}
 L'elaborazione è la serie iniziale di iterazioni durante le quali, in un progetto
@@ -24,7 +24,7 @@ normale:
 \begin{itemize}
     \item Rischio - Comprende tanto la complessità tecnica quanto altri fattori,
     come l'incertezza dello sforzo o l'usabilità
-    \item Compertura - Indica che le iterazioni iniziali prendono in considerazione tutte
+    \item Copertura - Indica che le iterazioni iniziali prendono in considerazione tutte
     le parti principali del sistema
     \item Criticità (Valore) - Le funzioni che il cliente considera di elevato
     valore di business
@@ -191,3 +191,113 @@ d'uso mostra:
     \item Il sistema (a scatola nera)
     \item Gli eventi di sistema generati dagli attori
 \end{itemize}
+\section{Che cosa sono gli eventi e le operazioni di sistema}
+Casi d'uso descrivono il modo in cui gli attori esterni interagiscono con il sistema.
+Un attore genera degli \textbf{eventi di sistema} per richiedere l'esecuzione di alcune
+operazioni di sistema. Le operazione di sistema sono operazioni che il sistema
+deve definire per gestire gli eventi di sistema.
+\\ In UML un evento è qualcosa di importante o degno di nota che avviene durante l'esecuzione
+di un sistema.
+Un evento di sistema è un evento esterno al sistema, di input, di solito generato
+da un attore per interagire con il sistema.
+\\ In UML un'operazione rappresenta una trasformazione oppure un'interrogazione che
+un oggetto o componente può essere chiamato eseguire.
+\\ Un'operazione di sistema è una trasformazione oppure un'interrogazione che il sistema
+può essere chiamato a eseguire.
+\paragraph*{Fondamentale per riassumere le interazioni tra attori e le operazioni iniziate da essi}
+Disegnare un SSD per uno schenario principale di successo di ciascun caso chiuso, nonchè per gli scenari
+alternativi più frequenti o complessi.
+\subsection*{Applicazione UML; Eventi, operazioni e SSD}
+UML non definisce ne eventi di sistema o perazioni di sistema ne diagrammi di sequenza di sistema.
+UML definisce degli elementi o diagrammi chiamati semplicemente evento, operazione e 
+diagrammi di sequenza. Sono considerati a scatola nera.
+\subsection*{Perchè disegnare un SSD}
+Perchè gli eventi di sistema sono importanti:
+\begin{itemize}
+    \item Il software deve essere progettato per gestire questi eventi
+    \item Un sistema software reagisce a tre cose: Eventi esterni, temporali o guasti (eccezioni)
+\end{itemize}
+Risulta quindi fondamentale descrivere il comportamento in funzione di queste operazioni tramite
+\begin{itemize}
+    \item I casi d'uso
+    \item Diagrammi di sequenza di sistema
+    \item Contratti delle operazioni di sistema
+\end{itemize}
+Servono proprio a speigare \textbf{Che cosa fa} il sistema, senza spiegare come lo fa.
+L'SSD è fortemente in relazione con i casi d'uso.
+\subsection*{Assegnazre il nome a eventi e operazioni di sistema}
+Eventi di sistema e operazioni corrispondenti devono essere espressi a un livello 
+astratto di \textbf{Intenzione} anzichè di azione.
+\\ Iniziare il nome con un verbo.
+\paragraph*{Esempio} addItem, enterItem, make... 
+Vedremo che l'SSD coinvolgerà più sistemi (anche esterni).
+\section{SSD e Glossario}
+Dato che utilizzeremo termini concisi per rappresentare le operazioni e gli eventi sarà fondamentale
+aggiungere questi termini al Glossario e dettagliarne il significato.
+\section{Lo scopo di un SSD}
+Lo scopo è comprendere e non è adatto a tutti gli scenari. \'E adatto solo per quelli dell'iterazione
+corrente.
+\\ Gli SSD fanno parte del Modello dei casi d'uso e sono maggiormente creati durante l'elaborazione.
+Non sono un elaborato ufficiale di UP, anche se i creatori di Up ne riconoscono l'utilità.
+
+\chapter{Contratti delle operazioni di sistema}
+I contratti delle operazioni di sistema sono un modo per specificare il comportamento delle operazioni
+di un sistema. I contratti sono scritti in un linguaggio formale e preciso e contengono
+informazioni sulla precondizione, la postcondizione e l'effetto dell'operazione sul sistema.
+I contratti servono per descrivere il comportamento del sistema in maniera più dettagliata.
+\section{Le sezioni di un contratto}
+\begin{itemize}
+    \item Operazione - Nome e parametri (firma) dell'operazione
+    \item Riferimenti - Casi d'uso in cui può verificarsi questa operazione
+    \item Pre-condizioni - Ipotesi significative sullo stato del sistema o degli oggetti nel modello
+    di dominio prima dell'esecuzione dell'operazione. Si tratta di ipotesi non banali che dovrebbero
+    essere comunicate al lettore
+    \item Post-condizioni - \'E la sezione più importante. Descrive i cambiamenti di stato degli oggetti
+    nel modello di dominio dopo il completamento dell'oerazione
+\end{itemize}
+\section{Che cos'è un'operazione di sistema}
+Si tratta di un'operazione pubblica del sistema la cui esecuzione è richiesta da un evento di sistema.
+L'esecuzione di una operazione di sistema cambia lo stato del sistema stesso.
+L'interfaccia del sistema è l'insieme di tutte le operazioni di sistema.
+\\ Un contratto è relativo a una operazione di sistema e descrive il cambiamento dello stato di oggetti del
+modello del dominio causato dall'esecuzione dell'operazione di sistema.
+\section{Post-condizioni}
+\begin{itemize}
+    \item Descrivono i cambiamenti nello stato degli oggetti del Modello di dominio.
+    \item Non descrivono azioni eseguite durante l'esecuzione
+\end{itemize}
+Sono dichiarazioni circa lo stato degli oggetti dopo l'esecuzione dell'operazione e sono scritte al passato.
+\subsection{Possibili cambiamenti di stato}
+\begin{itemize}
+    \item Creazione o cancellazione di oggetto (istanza di una classe)
+    \item Cambiamento di valore di attributo
+    \item Formazione o rottura di collegamento (istanza di un'associazione)
+\end{itemize}
+Come già detto in precedenza sono super importanti dato che descrivono i cambiamenti richiesti dall'esecuzione
+del'operazione di sistema, senza però descrivere come ottenere questi cambiamenti.
+\textbf{Le post condizioni vanno espresse con un verbo al passato}.
+\\ Il cambiamento dello stato del sistema causato dall'esecuzione dell'operazione di sistema va espresso
+in termini di oggetti, collegamenti e attributi del dominio di interessa che il sistema ha necessità di conoscere
+e ricordare.
+\subsection{Aggiornamento del modello di dominio}
+Durante la creazione dei contratti è normale che emerga la necessità di registrare nuove classi concettuali,
+attributi o associazioni nel modello di dominio.
+\paragraph*{Ricorda} Nei metodi iterativi e evolutivi, tutti gli elaborati dell'analisi e della progettazione
+sono considerati parziali e imperfetti, ed evolvono in risposta a nuove scoperte.
+\section{Utilità e scrittura contratti}
+Non sempre è necessario scrivere dei contratti, a volte i casi d'uso sono sufficienti.
+I contratti sono adatti alla rappresentazione di situazioni dettagliate o complesse, che non è opportuno
+descrivere nei casi d'uso. I contratti sono appunto complementari ai casi d'uso.
+\subsection*{Operazioni per la scrittura}
+\begin{enumerate}
+    \item Identificare le operazioni di sistema dagli SSD
+    \item Creare i contratti per le operazioni più complesse, o che non sono chiare dai casi d'uso
+    \item Per descrivere le post-condizioni utilizzare le seguenti categorie \begin{itemize}
+        \item Creazione o cancellazione di oggetto
+        \item Modifica di attributo
+        \item Formazione o rottura di collegamento
+    \end{itemize}
+    \item Le post-condizioni descrivono cambiamenti di stato al passato
+    \item Ricordare di formare collegamenti necessari tra oggetti esistenti e quelli appena creati
+    \item Le pre-condizioni sono normalmente implicate dall'esecuzione di operazioni di sistema precedenti
+\end{enumerate}
