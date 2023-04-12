@@ -1,2 +1,51 @@
 \chapter{Modello Relazionale}
 \label{sec:Modello_relazionale}
+Un modello dei dati è un insieme di concetti per organizzare i dati e 
+descriverne la struttura.
+Componente fondamentale di ogni modello sono i meccanismi di strutturazione 
+(analogi ai costruttori di tipo).
+\\ Ogni modello dei dati prevede alcuni costruttori che permettono di definire nuovi
+tipi sull abase di tipi predefiniti (elementari).
+\\ Il \textbf{modello relazionale} è il modello di dati più diffuso.
+\section{Introduzione al modello relazionale e cenni storici}
+Il modello relazionale permette di definire tipi per mezzo del costruttore \textbf{relazione}
+ che permette di organizzare i dati in insiemi di recordo a \textbf{struttura fissa}.
+ \\ Una \textbf{relazione} è spesso rappresentata da una tabella, dove:
+ \begin{itemize}
+    \item Le righe rappresentano specifici record (istanze)
+    \item Le colonne corrispondono ai campi dei record
+ \end{itemize}
+ L'ordine di righe e colonne è sostanzialmente irrilevante.
+ La tabella è il livello logico di cui parlavamo inizialmente (schema DBMS, divisione
+ livello fisico e logico). Ribadiamo che il livello logico è indipendente da quello
+ fisico infatti una tabella è utilizzata nello stesso modo qualunque sia la sua realizzazione
+ fisica. In questo corso vedremo solo il livello logico.
+ \subsection{I modelli logici dei dati}
+ Tradizionalmente ci sono tre modelli logici:
+ \begin{itemize}
+    \item Gerarchico - Organizzazione ad albero
+    \item Reticolare - Organizzazione a grafo
+    \item Relazionale - Organizzazione a tabella
+ \end{itemize}
+ Poi ci sono altri modelli più recenti (e meno diffusi)
+ \begin{itemize}
+    \item a oggetti
+    \item XML
+    \item NoSQL - Basato su documenti
+ \end{itemize}
+ \subsection{Il modello relazionale}
+ Proposto da E.F. Codd nel 1970 per favorire l'indipendenza dei dati, è
+ diventato disponibile in DBMS reali nel 1981.
+ \\ \'E basato sul concetto matematico di relazione a livello formale (con una variante),
+ mentre concettualmente è basato su tabelle.
+ \\ Essendo uno schema logico definisce come sono organizzati i dati e non come
+ sono memorizzati e gestiti dal sistema informatico.
+ \subsection{Il termine relazione in 3 accezioni}
+ \begin{enumerate}
+    \item Relazione matematica - come nella teoria degli insiemi
+    \item Relazione - secondo il modello relazionale dei dati
+    \item Relazione (dall'inglese relationship) che rappresenta una classe di fatti,
+    nel modello Entity-Relationship, tradotto anche con associazione e correlazione
+ \end{enumerate}
+ \section{Modello relazionale - definizione formale}
+ 
