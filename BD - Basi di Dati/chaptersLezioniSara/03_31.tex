@@ -33,7 +33,7 @@ La \textbf{chiave primaria} non contiene attributi nulli. Sottoinsieme di attrib
 L'esistenza delle chiavi garantisce l'accessibilità a ciascun dato della base di dati.
 \\Le chiavi permettono di correlare i dati in relazioni diverse: il modello relazionale è basato su valori.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_chiavi777.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_chiavi777.jpg}
 \end{center}
 La slide 71 mi riporta un esempio in cui i dati sono rappresentati in 3 tabelle scorrelate e relativamente indipendenti fra loro. Nella slide successiva viene mostrato l'output che avremmo se provassimo a rappresentare i dati in una sola tabella. Che non funzionerebbe tanto perché ci sarebbero troppe ripetizioni e poi avremmo anche molti valori nulli. Questa rappresentazione era da citare però perché mostra il comportamento di NoSQL.
 
@@ -41,24 +41,24 @@ La slide 71 mi riporta un esempio in cui i dati sono rappresentati in 3 tabelle 
 Un \textbf{vincolo di integrità referenziale} (\textit{"foreign key"}) fra gli attributi $X$ di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su $X$ in $R_1$ di comparire come valori della chiave primaria di $R_2$.
 \\All'esame dovremo scegliere noi la chiave primaria (sottolineandola) e dire quali attributi vanno a formare il vincolo, ovvero a comporre la chiave primaria.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_integrità_referenziale1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_integrità_referenziale1.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_integrità_referenziale2.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_integrità_referenziale2.jpg}
 \end{center}
 Leggi tu le slide, ora un esercizio di esempio.
 
 \section{Esercizi di esempio}
 \subsection{Es.: prestito di libri}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_prestitolibri1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_prestitolibri1.jpg}
 \end{center}
 Quello che dobbiamo fare noi è scegliere la chiave primaria e dire quali attributi vanno a formare il vincolo, ovvero a comporre la chiave primaria.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_prestitolibri2.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_prestitolibri2.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_prestitolibri3.jpg} 
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_prestitolibri3.jpg} 
 \end{center}
 
 \subsection{Altro esempio}
@@ -72,40 +72,34 @@ Individuare:
 \end{enumerate} 
 Per il punto 1.:
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_altro1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_altro1.jpg}
 \end{center}
 Per il punto 2.: c'è un vincolo di integrità referenziale non rispettato (ovvero, non esiste nella tabella dei pazienti il paziente identificato dal codice S372 che è possibile vedere nella tabella dei ricoveri).
 \\Per il punto 3.: tutte le chiavi primarie ovviamente.
+
 \subsubsection{Soluzioni}
 \begin{enumerate}
-    \item I valori nulli sono permessi solo negli attributi che non sono
-chiave primaria.
-Alcuni non hanno molto senso (nome cognome in Dottori)
-Codice per la relazione PAZIENTI
-{Paziente, datainizio}, {Paziente, datafine} per la relazione RICOVERI (si
-assume che un paziente sia ricoverato –dimesso- una sola volta in un
-giorno)
-Numero per la relazione DOTTORI
-Codice per la relazione REPARTI
-\item
-I vincoli referenziali sono fra:
-• Codice in RICOVERI e Codice in PAZIENTI
-•Reparto in RICOVERI e Codice in REPARTI
-• Dottore in REPARTO e Numero in DOTTORI
-• Reparto in DOTTORI e Codice in REPARTI
+    \item I valori nulli sono permessi solo negli attributi che non sono chiave primaria.
+    \item Alcuni non hanno molto senso (nome cognome in Dottori) 
+    \item Codice per la relazione PAZIENTI
+    \item {Paziente, datainizio}, {Paziente, datafine} per la relazione RICOVERI (si assume che un paziente sia ricoverato -dimesso- una sola volta in un giorno)
+    \item Numero per la relazione DOTTORI
+    \item Codice per la relazione REPARTI
+    \item I vincoli referenziali sono fra:
+    \\• Codice in RICOVERI e Codice in PAZIENTI
+    \\•Reparto in RICOVERI e Codice in REPARTI
+    \\• Dottore in REPARTO e Numero in DOTTORI
+    \\• Reparto in DOTTORI e Codice in REPARTI
     \item I valori nulli sono permessi solo negli attributi che non sono chiave primaria. Alcuni non hanno molto senso (nome cognome in Dottori)
 \end{enumerate}
 
 \subsection{Altro esempio: stazione}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_stazione1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_stazione1.jpg}
 \end{center}
 Sol. aula:
 \begin{verbatim}
     TRENO (Tipo, \underline{Numero}, DestinazioneFinale, OrarioPartenza)
-\end{verbatim}
-                            \uparrow
-\begin{verbatim}
     FERMATE (\underline{Nome, Numero,} Orario)
 \end{verbatim}
 Sol. slides:
@@ -123,7 +117,7 @@ La terza rappresenta le fermate intermedie per ciascun treno in ciascuna stazion
 
 \subsection{Altro esempio: azienda}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_azienda1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_azienda1.jpg}
 \end{center}
 Quante relazioni ci servono? 2. Ogni filiale ha più impiegati. Quindi una tabella per filiali, una per impiegati, una per azienda.
 \begin{verbatim}
@@ -135,7 +129,7 @@ Ellisse con freccia da IMPIEGATO(..., Filiale) a FILIALE(Codice, ...) per indica
 
 \subsection{Altro esempio: radio}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_radio1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_radio1.jpg}
 \end{center}
 Quante relazioni ci servono? 2.
 \begin{verbatim}
@@ -144,18 +138,18 @@ Quante relazioni ci servono? 2.
 \end{verbatim}
 Magari all'interno di PROGRAMMI(...) basta da solo il Titolo per identificare univocamente un programma all'interno di una stazione.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_es_radio2.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_es_radio2.jpg}
 \end{center}
 
 \section{Esempio di esercizio MR che troveremo all'esame}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_facsimile_esame1.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_facsimile_esame1.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_facsimile_esame2.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_facsimile_esame2.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{img/MR_facsimile_esame3.jpg}
+    \includegraphics[width=0.5\textwidth]{chaptersLezioniSara/img/MR_facsimile_esame3.jpg}
 \end{center}
 
 
