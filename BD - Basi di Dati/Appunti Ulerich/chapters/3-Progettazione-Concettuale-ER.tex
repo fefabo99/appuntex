@@ -38,3 +38,78 @@
     \item Inserire attributi e segnare gli identificatori
     \item Aggiungere le \textbf{CARDINALIT\'A} (da non dimenticare assolutamente)
 \end{enumerate}
+
+\chapter{Preparazione Primo Parziale}
+Il primo parziale sarà composto da due esercizi
+\begin{itemize}
+    \item Esercizio 1 - Schema ER
+    \item Esercio 2 - Modello Relazionale
+\end{itemize}
+\section{Schema ER}
+Ci verrà dato un testo e noi dovremmo creare uno schema ER, quindi dovremo
+identificare Entità, Relazioni, Attributi...
+\\ Sarà possibile disegnare sul testo, per esempio per dividerlo in sezioni a seconda
+dell'entità o relazione che rappresenta quella parte di testo.
+\\ Sarà possibile stendere prima una brutta e poi ricopiare lo schema in bella.
+\paragraph*{Consigli} La prima volta leggere il testo per intero, anche se noterete
+che non riuscirete a ricordarlo tutto, la complessità di questi testi non permette
+alla nostra mente di memorizzare tutto. Durante la seconda lettura cercare di Suddividere
+il testo in sezioni iniziando a identificare entità e relazioni, segnando quelle che sono
+dubbie (per esempio fare un elenco). La terza lettura inizare a stendere lo schema
+utilizzando la metodologia mista vista poco fa nella progettazione concettuale.
+\\ Iniziare già a segnare gli identificatori e se sono palesi perchè il testo ce le
+indica, segnare le cardinalità, se invece richiedono un minimo di ragionamento è consigliabile
+finire prima lo schema e poi segnarle, così si avrà una visione d'insieme più chiara.
+\\ Personalmente io parto dalla prima entità e mi espando a macchia d'olio segnandomi
+le cose su cui ho dubbi, poi quando ho finito di stendere lo schema, mi concentro sulle
+parti su cui ho dubbi e verifico che abbiano senso.
+\subsection*{Last but not least}
+Ricordarsi di \textbf{segnare le cardinalità} e verificare che tutto ciò che è
+citato nel testo sia presente, capita a volte di dimenticarsi dei pezzi e ciò è male.
+\subsection*{Rileggi tutto}
+Rileggi schema e testo per verificare di non aver modellato cose che non erano citate, oppure
+di non aver modellato qualcosa di scritto. 
+\begin{itemize}
+    \item Verifica che tutte le identità abbiano identificatore
+    \item Se c'è qualche entità collegata a una sola relazione, quindi isolata, controllarla
+    due volte perchè potrebbero esserci degli errori, di solito le entità sono collegate a più elementi
+    \item Visto che ce l'ho per vizio di dimenticarmi questa cosa devo ripeterla all'infinito:
+    RICORDATI \textbf{LE CARDINALIT\'A}
+    \item Infine controlla che tutto abbia senso ("Se siamo in un osepdale fatemi arrivare i pazienti
+    in sala operatoria" cit Schettini)
+\end{itemize}
+\section{Modello Relazionale}
+Ci verrà dato un testo e ci verrà già dato lo schema con le relazioni, la richiesta
+sarà quella di:
+\begin{itemize}
+    \item Trovare le chiavi primarie per ogni relazione
+    \item Segnare i vincoli di integrità o testualmente (Relazione.attr con Relazione2.attr2)
+    oppure graficamente facendo i collegamenti (io preferisco quest'ultima)
+    \item Trovare almeno un vincolo di dominio (es. CF deve essere lungo 16 caratteri)
+    \item Trovare almeno un vincolo di tupla (es. Data assunzione succesiva a Data nascita)
+    \item Indicare una superchiave non minimale (basta indicare una cosa del tipo,
+    \textit{per la relazione LIBRERIA gli attributi idLib, orariApertura, quantitàLibri costituiscono una 
+    superchiave} indicando quindi tutti gli attributi)
+    \item Indicare una chiave che non sia stata scelta come chiave primaria (es. se ho CF come chiave
+    primaria e ho anche telefono come attributo, esso è una chiave che non è stata scelta come primaria)
+    \item Non viene sempre chiesto: Indicare due attributi che possano assumero valore
+     NULL - qui in genere si dovranno indicare attributi che magari inizialmente sono
+      settati a NULL perchè costituiscono misurazoni nel tempo 
+      (es numero-giorni-pioggia)
+\end{itemize}
+
+\subsection*{Consigli}
+\begin{itemize}
+    \item Se nel testo non vengono citati attributi del tipo "id" o "codice" e me li ritrovo
+    nello schema, con buona probabilità quelli saranno possibili chiavi primarie.
+    \item Se sto segnando i vincoli di integrità verso una relazione che ha 2 attributi
+    come chiave primaria, dovrò per forza cerchiare 2 attributi nella relazione d'origine!
+    \item Se ho scelto 2 attributi come vincolo di integrità, non posso spezzarli e prenderne 1 solo
+    per vincolarlo con un'altra relazione
+    \item Occhio al testo, a volte si nascondono delle specifiche diverse dalla realtà
+    a cui siamo abituati
+    \item Indicare esplicitamente che si effettua la risoluzione dei vincoli di integrità
+    graficamente 
+    \item Occhio agli attributi cattivi (es. portabandiera indica un atleta)
+    \item Verifica che le chiavi primarie scelte siano minimali
+\end{itemize}
