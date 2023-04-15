@@ -141,12 +141,6 @@ dette \textbf{associazioni ad anello}. In questi casi è fondamentale definire
 la specifica dei ruoli, altrimenti non si riesce a capire l'ordine della relazione
 (esempio del sovrano o del confronto tra i prof. slide 70-78, 
 \href{https://elearning.unimib.it/pluginfile.php/1486876/mod_resource/content/1/Modello%20ER.pdf}{Link}).
-\section{Svolgimento Esercizi}
-Risulta fondamentale svolgere gli esercizi da casa per allenare la mente a convertire
-il testo in schema ER (come sarà all'esame), seguire gli esempi e basta non è sufficiente,
-dato che ci saranno diversi dubbi e difficoltà che si faranno strada nella vostra
-mente solo se vi metterete a fare gli esercizi per conto vostro (le esercitazioni
-sono molto utili).
 \section{Scelta tra entità e attributo}
 Un dubbio classico nella risoluzione di questi esercizi è proprio la scelta tra
 entità e attributo.
@@ -192,16 +186,16 @@ mentre uno studente ne ha una sola.
 \begin{itemize}
     \item 1,1 se la cardinalità massima di entrambe le entità è 1
     \item Si può avere 1 a molti come nell'esempio della residenza
-    \item Oppure sei può avere molti a molti (slide 108 riporta esempi)
+    \item Oppure si può avere molti a molti (slide 108 riporta esempi)
 \end{itemize}
 \subsection*{Praticità della cardinalità}
-A livello pratico la cardinalità esprime un limite mino (cardinalità minima)
+A livello pratico la cardinalità esprime un limite minimo (cardinalità minima)
 e massimo (cardinalità massima) di istanze della relazione R a cui può partecipare
 ogni istanza dell'entità E. Serve a caratterizzare meglio il significato di una relazione.
 \paragraph*{Attributi e cardinalità} Si può assegnare cardinalità anche agli attributi
 per indicare opzionalità o attributi multivalore.
 \section{Identificatore di un'entità}
-Super importante è definire un identificatore per ogni entità, necesasrio per identificare
+Super importante è definire un identificatore per ogni entità, necessario per identificare
 univocamente le occorrenze di un'entità.
 \begin{itemize}
     \item \textbf{Identificatore interno} - se costituito da attributi dell'entità
@@ -224,9 +218,27 @@ Per gli identificatori esterni:
 \begin{itemize}
     \item Ogni entità deve possedere almeno un identificatore, ma può averne in generale più di uno.
     \item \textbf{Una identificazione esterna è possibile solo attraverso una relationship a
-    cui l'entità da identificatore partecipa con cardinalità (1,1)}
+    cui l'entità da identificare partecipa con cardinalità (1,1)}
     \item In questo corso \textbf{NON si utilizzano identificatori delle relationship}
 \end{itemize}
+\subsection{Esempi di identificatori esterni}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=150mm, scale=1]{es_id_esterni.png}
+\end{figure}
+Qui invece vediamo la differenza dell'utilizzo di identificatori esterni in base al testo
+in entrambi i casi si fa riferimento alla data, ma basta cambiare di poco il testo per
+cambiare l'identificatore esterno.
+\'E fondamenale prestare attenzione a frasi come "unico nell'ambito di ..." oppure
+"identificato con un codice univoco all'interno del ...", tutte frasi che ci fanno capire che
+la chiave non è tale indipendentemente da tutto, ma è chiave all'interno di un contesto e quindi
+è chiave se c'è anche l'entità da cui dipende, per questo è un identificatore esterno.
+\\ Può anche darsi che l'identificatore esterno dipenda da un fattore esterno allo schema ER, 
+per esempio alla data.
+\paragraph*{Da ricordare} Lo ripeto perchè a volte sfugge ed è un errore grave, \textbf{una identificazione
+esterna è possibile sono attraverso una relationship a cui l'entità da identificare partecipa con
+CARDINALIT\'A (1,1)}.
+
 \section{Relazione IS-A tra entità}
 \'E una relazione di sottoinsieme di un entità, si può definire come entità-padre
 ed entità figlia, o sottoentità, cioè quella che rappresenta un sottoinsieme della
@@ -235,7 +247,7 @@ entità padre.
 di Persona. Si dice che Studente è in relazione ISA con Persona o in alternativa
 che Studente ISA Persona.
 Si tratta di un sottoinsieme specifico di quell'entità, esso eredita tutte le
-proprietà del padrea, quindi i suoi attributi (non vengono riportati nel figlio, ma sono
+proprietà del padre, quindi i suoi attributi (non vengono riportati nel figlio, ma sono
 presenti), ciò non toglie che il figlio possa avere attributi aggiuntivi.
 \paragraph*{Ereditarietà} Tutte le proprietà (attributi, relationship, altre generalizzaizoni)
 dell'entità genitore vengono ereditate dalle entità figlie e non rappresentate
@@ -265,4 +277,10 @@ Sia per quanto riguarda le ISA e le generalizzazioni.
 Le due sottoclassi della generalizzazione derivano da uno stesso criterio di
 classificazione della superclasse, mentre per quanto riguarda la relazione IS-A
 le due sottoentità sono indipendenti.
+\section{Svolgimento Esercizi}
+Risulta fondamentale svolgere gli esercizi da casa per allenare la mente a convertire
+il testo in schema ER (come sarà all'esame), seguire gli esempi e basta non è sufficiente,
+dato che ci saranno diversi dubbi e difficoltà che si faranno strada nella vostra
+mente solo se vi metterete a fare gli esercizi per conto vostro (le esercitazioni
+sono molto utili).
 
