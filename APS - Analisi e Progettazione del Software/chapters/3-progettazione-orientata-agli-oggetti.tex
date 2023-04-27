@@ -1,0 +1,155 @@
+\chapter{Progettazione orientata agli oggetti}
+Fino ad ora attraverso l'analisi dei requisiti e l'analisi a oggetti ci siamo
+interessati all'imparare a fare la cosa giusta, mentre il lavoro successivo
+è fare la cosa bene, attraverso \textbf{la progettazione}.
+\\ Ricordiamoci sempre che non dobbiamo prevedere tutto all'inizio (anche perchè
+spesso è impossibile), ma dobbiamo necessariamente provocare il cambiamento
+all'inizio del progetto per poter scoprire e modificare alcuni requisiti di progettazione
+e implementazione. I \textbf{metodi iterativi ed evolutivi} esistono per questo,
+abbracciano il cambiamento. Si cerca però di provocare i cambiamenti maggiori nelle
+fasi iniziali per avere obiettivi più stabili per le iterazioni successive.
+\chapter{Architettura Logica}
+Siamo passati da un lavoro di analisi ad un lavoro di progettazione, si inizia
+quindi a pensare su larga scala. La progettazione di un tipico sistema
+orientato agli oggetti è basata su diversi \textbf{strati architetturali},
+come per esempio uno strato per l'interfaccia utente, uno per la logica applicativa, ecc.
+\section{Che cos'è l'architettura logica}
+L'\textbf{architettura logica} di un sistema software è l'organizzazione su larga scala
+delle classi software in package (o namespace), sottoinsiemi e strati.
+\\ Uno stile comune per la l'architettura logica è l'\textbf{l'architettura a strati}.
+\subsection{Architettura a strati}
+Uno strato è un gruppo a grana molto grossa di classi, package o sottosistemi, che ha
+delle responsabilità coese rispetto a un aspetto importante del sistema.
+\\ Gli strati sono organizzati in modo gerarchico, quelli più alti ricorrono a 
+servizi degli strati più bassi (normalmente non avviene il contrario).
+\\ Gli strati normalmente comprendono
+\begin{itemize}
+    \item Presentazione - interfaccia utente
+    \item Logica applicativa o strato del dominio - elementi che rappresentano concetti
+    del dominio
+    \item Servizi tecnici
+\end{itemize}
+\paragraph*{Due tipi di architettura a strati}
+\begin{itemize}
+    \item Stretta - uno strato può richiamare solo i servizi dello strato
+    immediatamente sottostante
+    \item Rilassata - uno strato può richiamare i servizi di strati più bassi di diversi
+    livelli
+\end{itemize}
+Noi ci concentreremo sullo \textbf{strato della logica applicativa (o strato del dominio)}.
+\section{Che cos'è un'architettura software}
+\begin{itemize}
+    \item L'insieme delle decisioni significative sull'organizzazione di un sistema
+    software
+    \item La scelta degli elementi strutturali da cui è composto il sistema e delle
+    relative interfacce
+    \item La specifica della collaborazione tra gli elementi strutturali
+    \item La composizione di questi elementi strutturali e comportamentali in sottosistemi via
+    via più ampi
+    \item Lo stile architetturale che guida questa implementazione
+\end{itemize}
+L'architettura software ha a che fare con la larga scala.
+\section{Diagrammi dei Package}
+L'architettura logica può essere illustrata mediante un diagramma dei package
+di UML, dove uno strato può essere modellato come un package UML.
+Un package UML può ragguppare qualunque cosa (classi, altri package, casi d'uso).
+\begin{itemize}
+    \item \'E molto comune l'annidamento di package
+    \item Per mostrare la dipendenza tra i package viene utilizzata una dipendenza UML
+    \item Un package UML rappresenta un namespace, in questo modo è possibile
+    definire due classi con lo stesso nome su package diversi
+\end{itemize}
+\subsection{Progettzione degli strati}
+Organizzare l astruttura logica di un sistema in strati separati con responsabilità
+distine e correlate, con una separazione netta e coesa degli interessi:
+Come detto in precedenza:
+\begin{itemize}
+    \item Gli strati inferiori sono servizi generali e di basso livello
+    \item Gli strati superiori sono più specifici per l'applicazione
+\end{itemize}
+Collaborazione e accoppiamenti vanno dagli strati più alti a quelli più bassi.
+L'obiettivo è suddividere un sistema in un insieme di elementi software che
+per quanto possibile, possano essere sviluppati e modificati ciascuno
+\textbf{indipendentemente dagli altri}.
+Nella slide 16 viene riportato un esempio di scelta comune per gli strati,
+qui di seguito il link per la slide: \href{https://elearning.unimib.it/pluginfile.php/1463482/mod_resource/content/2/08_Dai%20requisiti%20alla%20progettazione%20e%20architettura%20logica.pdf}{Link slide} 
+\subsection*{Vantaggi dell'uso a strati}
+La sperazione provocata dall'utilizzo degli strati crea diversi vantaggi fra cui:
+\begin{itemize}
+    \item riduce l'accoppiamento e le dipendenze, migliora la coesione, aumenta la possibilità di riuso e aumenta
+    la chiarezza.
+    \item La complessità relativa a questi aspetti è incapsulata e può essere
+    decomposta
+    \item alcuni strati possono essere sostituiti da nuove implementazioni
+    \item Gli strati più bassi contengono funzioni riusabili
+    \item Alcuni strati possono essere distribuiti
+    \item Lo sviluppo del team è favorito dalla segmentazione logica     
+\end{itemize}
+\subsection*{Responsabilità coese e seperazione degli interessi}
+In uno strato le responsabilità degli oggetti devono essere fortemente coese
+l'uno all'altro e non devono essere mescolate con le responsabilità degli altri
+strati.
+\section{Oggetti e logica applicativa}
+Un oggetto software è un oggetto con nomi e informazioni simili al dominio
+del mondo reale e assegnare ad esso responsabilità della logica applicativa, un oggetto
+di questo tipo è chiamato un oggetto di dominio.
+\\ Rappresenta una cosa nello spazio del dominio del problema e ha una logica applicativa
+o di business correalata.
+\\ Progettando gli oggetti in questo modo si arriva a uno strato della logica
+applicativa che può essere chiamato \textbf{strato del dominio} dell'architettura
+\subsection{Definizione livelli, trati e partizioni}
+\begin{itemize}
+    \item Livello (tier): solitamente indica un nodo fisica di elaborazione 
+    \item Strato (layer): una sezione verticale dell'architettura
+    \item Partizione (partition): una divisione orizzontale di sottosistema di uno strato
+\end{itemize}
+\subsection{Principio di separazione Modello-Vista}
+Gli oggetti di dominio (modello) non devono essere connessi o accoppiati direttamente agli
+oggetti UI (vista).
+\\ Un rilassamento legittimo di questo principio è il \textbf{Pattern Observer},
+qua gli oggetti del dominio inviano messaggi a oggetti della UI, visti però solo
+indirettamente, in termini di un'interfaccia come PropertyListener.
+L'oggetto di dominio non sa che quell'oggetto della UI è un oggetto UI, non
+conosce la sua classe UI concreta, sa solo che l'oggetto implementa l'interfaccia
+(non UI) PropertyListener.
+\section{Legame tra SSD, operazioni di sistema e strati}
+I messaggi inviati dallo strato UI allo strato del dominio sono i messaggi mostrati
+negli SSD.
+\section{Verso la progettazione a oggetti}
+Gli sviluppatori hanno 3 modalità per progettare gli oggetti:
+\begin{itemize}
+    \item Codifica - La progettazione avviene durante la codifica
+    \item Disegno, poi codifica - Disegnare alcuni diagrammi UML e poi passare al punto 1
+    \item Solo disegno - Lo strumento genererà il codice a partire dai diagrammi
+\end{itemize}
+Noi tratteremo il disegno leggero di UML
+\subsection*{Agile Modeling e il disegno leggero di UML}
+Gli obiettivi sono ridurre il costo aggiuntivo del disegno e modellare per comprendere
+e comunicare, anzichè documentare. La modellazione agile comprende anche le seguenti
+pratiche:
+\begin{itemize}
+    \item Modellare insieme agli altri
+    \item Creare diversi modelli in parallelo
+\end{itemize}
+Ci sono due tipi di modelli per gli oggetti:
+\begin{itemize}
+    \item Statici
+    \item Dinamici
+\end{itemize}
+Creare questi modelli in parallelo
+\paragraph*{Modelli dinamici}
+\begin{itemize}
+    \item Diagrammi di sequenza e comunicazione
+    \item I più importanti e difficili da creare
+    \item Si applicano \begin{itemize}
+        \item La progettazione guidata delle responsabilità
+        \item I principi di GRASP
+    \end{itemize}
+\end{itemize}
+\paragraph*{Modelli statici}
+\begin{itemize}
+    \item Diagrammi delle classi
+    \item Utili come sintesi e come base per la struttura del codice
+\end{itemize}
+
+\chapter{Diagrammi di interazione}
