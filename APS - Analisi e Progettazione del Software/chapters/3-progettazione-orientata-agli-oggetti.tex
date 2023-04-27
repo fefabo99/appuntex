@@ -153,3 +153,113 @@ Creare questi modelli in parallelo
 \end{itemize}
 
 \chapter{Diagrammi di interazione}
+\section{Che sono sono gli oggetti}
+Un oggetto è un pacchetto coeso di dati e funzioni incapsulate in una unità
+riusabile. La parte dei dati è composta da attributi, mentre il comportamento
+è definito dalle operazioni.
+Tutti gli oggetti hanno:
+\begin{itemize}
+    \item Identità: ogni oggetto ha il suo identificativo univoco
+    \item Stato: viene stabilito dai valori effettivi dei dati memorizzati in un oggetto
+    ad un certo istante
+    \item Comportamento: l'insieme delle operazioni che l'oggetto può eseguire
+\end{itemize}
+I dati sono nascosti all'interno dell'oggetto (insapsulamento) e sono accessibili
+solo attraverso le operazioni, questo favorisce software più robusto e codice riusabile.
+Gli oggetti collaborano tra loro attraverso messaggi, essi causano l'invocazione
+delle operazioni da parte dell'oggetto.
+\\ In UML i \textbf{diagrammi di interazione} illustrano il modo in cui gli oggetti
+interagiscono attraverso lo scambio di messaggi. Sono utilizzati per la
+\textbf{modellazoone dinamica degli oggetti}.
+\section{Interazioni}
+Un'interazione è una specifica di come alcuni oggetti si scambiano messaggi nel tempo
+ per eseguire un compito nell'ambito di un certo contesto.
+I diagrammi di interazione catturano un'interazione come:
+\begin{itemize}
+    \item Linee di vita - partecipanti nell'interazione
+    \item Messaggi - Comunicazioni tra linee di vita
+\end{itemize}
+\subsection{Linee di vita}
+Una linea di vita rappresenta un singolo partecipante a un'interazione:
+raffigura come un'istanza del classificatore partecipa all'interazione.
+Le linee vita hanno:
+\begin{itemize}
+    \item Nome: usato per far riferimento alla linea vita nell'interazione
+    \item Tipo: nome del classificatore di cui rappresenta un'istanza
+    \item Selettore: una condizione booleana che seleziona una specifica istanza
+\end{itemize}
+\subsection{Messaggi}
+Un messaggio rappresenta la comunicazione tra due linee vita e può essere di diverse
+tipologie:
+\begin{itemize}
+    \item Sincrono
+    \item Asincrono
+    \item Di ritono
+    \item Creazione dell'oggetto
+    \item Distruzione dell'oggetto
+    \item Messaggio trovato
+    \item Messaggio perso
+\end{itemize}
+\section{Diagrammi di interazione}
+\begin{itemize}
+    \item Diagrammi di sequenza
+    \item Diagrammi di comunicazione
+    \item Diagrammi di interazione generale
+    \item Diagrammi di temporizzazione
+\end{itemize}
+\subsection{Diagrammi di sequenza}
+\begin{itemize}
+    \item Mostra l'interazione tra un insieme di oggetti.
+    \item Enfatizza la sequenza temporale degli scambi di messaggi
+    \item Mostra interazioni ordinate in una sequenza temporale
+    \item Non mostra le relazioni degli oggetti (possono essere dedotte dagli invii di messaggi)
+\end{itemize}
+Formato a steccato.
+\subsection{Diagramma di comunicazione}
+Un diagramma che mostra l'interazione tra un insieme di oggetti (formato a grafo o rete).
+Mostra gli aspetti strutturali di un'interazione - mostrando come si collegano le linee
+di vita. Il collegamento indica l'esistenza di qualche forma di navigabilità tra gli oggetti.
+Nella side 51 troviamo il dettaglio di come scorrono i messaggi e di come numerare una sequenza.
+\paragraph*{Messaggi condizionali} Anche in questo caso è possibile avere delle condizioni di diverso
+tipo, possono essere per esempio mutuamente esclusive o iterazioni.
+\begin{itemize}
+    \item Enfatizza le relazioni strutturali tra gli oggetti
+    \item Sono utilizzati per esplicitare le relazioni degli oggetti
+\end{itemize}
+\'E consigliato creare i digrammai delle classi e di interazione in parallelo per
+dare risalto non solo agli aspetti statici (diagramma delle classi), ma anche a quelli
+dinamici (diagrammi di interazone).
+\paragraph*{Auto-delegazione} è quando una line vita invia un messaggio a se stessa,
+generando un'attivazione annidata.
+\paragraph*{Distruzione} Per indicare la distruzione di un oggetto si termina la
+linea vita con una grossa croce.
+\subsection*{Frammenti combinati (Frame)}
+I diagrammi di sequenza possono essere divisi in aree chiamate frammenti combinati.
+I frammenti combinati hanno uno o più operandi, l'operatore determina come verranno
+eseguiti gli operandi. Le condizioni di guardia stabiliscono se i loro operandi devono
+essere esegiti. L'esecuzione avveniene solo se la condizioni di guardia è valutata
+vera.
+\paragraph*{Operatori più usati}
+\begin{itemize}
+    \item opt - Option - Il suo unico operando viene eseguito se e solo se la condizione è vera
+    \item alt - Alternatives - Messaggi condizionali mutuamente esclusivi (2 o più) operandi (aka if else)
+    \item loop - loop
+    \item break - break
+    \item ref - Reference
+\end{itemize}
+\subsection*{Iterazioni con loop e break}
+Sintass del loop:
+\begin{itemize}
+    \item Ciclo senza max o min equivale a una condizione di ciclo infinito
+    \item Se viene specificato solo min allora si considera max=min
+    \item La condizione può essere booleana o un testo (purchè il significato sia chiaro)
+\end{itemize}
+Il break indica in quale condizione il loop viene interrotto e che cosa succede in seguito,
+il resto del ciclo non viene eseguito dopo il break.
+Nelle slide vengono riportati diversi esempi di iterazioni (da slide 33 in poi) \href{https://elearning.unimib.it/pluginfile.php/1463483/mod_resource/content/2/10_Diagrammi%20di%20interazione.pdf}{Link Slide}
+\paragraph*{Reference} Fondamentali per correlare i diagrammi fra di loro (slide 44).
+\section{Diagrammi di Interazione Generale}
+Modellano il flusso di controllo tra interazioni ad alto livello, mostrano le interazioni
+e le occorrenze di interazioni, hanno la sintassi dei diagrammi di attività.
+
+\chapter{Diagramma delle classi}
