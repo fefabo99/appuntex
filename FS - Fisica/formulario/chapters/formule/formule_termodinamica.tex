@@ -78,59 +78,66 @@
                         \end{itemize}
             \end{itemize}
 
-            Di seguito saranno analizzati i casi per i gas perfetti:
-            
-            \begin{tabular}{ |c|c|c|c|c|c|c| } 
-                \hline
-                    \textbf{Tipo} & $p$ & $V$ & $T$ & $Q$ & $W$ & $E_{int}$ \\
-                \hline
-                    Isocora 
-                        & - 
-                        & cost 
-                        & - 
-                        & $Q = nC_v\Delta T$ 
-                        & $W = 0$
-                        & $E_{int} = Q$ \\
-                \hline
-                    Isobara
-                        & cost
-                        & - 
-                        & - 
-                        & $Q = nC_p\Delta T$
-                        & $W = p\Delta V$
-                        & $E_{int}$ \\
-                \hline
-                    Isoterma
-                        & -
-                        & - 
-                        & cost
-                        & $Q = + W$
-                        & $W = nRT\ln(\frac{V_f}{V_i})$
-                        & $E_{int} = 0$ \\
-                \hline
-                    Adiabatica
-                        & -
-                        & - 
-                        & -
-                        & $Q = 0$
-                        & $W = nC_v\Delta T$
-                        & $E_{int} = -W$ \\
-                \hline
-                    Ciclica
-                        & -
-                        & - 
-                        & -
-                        & $Q = W$
-                        & $W = Q$
-                        & $E_{int} = 0$ \\
-                \hline
-            \end{tabular}
+        \subsection*{Tabella dei gas perfetti} Di seguito saranno analizzati i 
+        casi per i gas perfetti, con le seguenti notazioni:
+            \begin{itemize}
+                \item $C_v$: Calore specifico molare a volume costante
+                \item $C_p$: Calore specifico molare a pressione costante
+            \end{itemize}
 
-        \begin{itemize}
-            \item $C_v$: Calore specifico molare a volume costante
-            \item $C_p$: Calore specifico molare a pressione costante
-        \end{itemize}
+            \rotatebox{90}{
+                \begingroup
+                \setlength{\tabcolsep}{11pt} % Default value: 6pt
+                \renewcommand{\arraystretch}{2} % Default value: 1
+                \begin{tabular}{ |c|c|c|c|c|c|c| } 
+                    \hline
+                        \textbf{Tipo} & $p$ & $V$ & $T$ & $Q$ & $W$ & $E_{int}$ \\
+                    \hline
+                        Isocora 
+                            & - 
+                            & cost 
+                            & - 
+                            & $Q = nC_v\Delta T$ 
+                            & $W = 0$
+                            & $E_{int} = Q$ \\
+                    \hline
+                        Isobara
+                            & cost
+                            & - 
+                            & - 
+                            & $Q = nC_p\Delta T$
+                            & $W = p\Delta V$
+                            & $E_{int}$ \\
+                    \hline
+                        Isoterma
+                            & -
+                            & - 
+                            & cost
+                            & $Q = + W$
+                            & $W = nRT\ln(\frac{V_f}{V_i})$
+                            & $E_{int} = 0$ \\
+                    \hline
+                        Adiabatica
+                            & -
+                            & - 
+                            & -
+                            & $Q = 0$
+                            & $W = nC_v\Delta T$
+                            & $E_{int} = -W$ \\
+                    \hline
+                        Ciclica
+                            & -
+                            & - 
+                            & -
+                            & $Q = W$
+                            & $W = Q$
+                            & $E_{int} = 0$ \\
+                    \hline
+                \end{tabular}
+                \endgroup
+            }
 
+        \newpage
         \section*{Conduzione, Convezione ed Irraggiamento} 
 
             \subsection*{Conduzione}
