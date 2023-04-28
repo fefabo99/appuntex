@@ -263,3 +263,53 @@ Modellano il flusso di controllo tra interazioni ad alto livello, mostrano le in
 e le occorrenze di interazioni, hanno la sintassi dei diagrammi di attività.
 
 \chapter{Diagramma delle classi}
+\paragraph*{Cosa sono le classi} Una classe modella un insieme di oggetti omogenei
+(le istanze della classe) ai quali sono associate proprietà statiche (attributi) e 
+dinamiche (operazioni).
+\\ La classificazione è uno dei più importanti modi che noi abbiamo per organizzare la
+nostra vista del mondo.
+\\ Per identificare un oggetto che è istanza di una classe si traccia un arco
+\textit{instantiate}.
+\\ Per descrivere una classe in notazione UML è consigliabile usare nomi
+descrittivi ed evitare abbreviazioni.
+\paragraph*{Classificatore} Un classificatore si definisce come elemento di modello
+che descrive caratteristiche comportamentali e strutturali, sono una generalizzazione
+di molti degli elementi di UML, come classi, interfacce, casi d'uso e attori.
+Nei diagrammi delle classi i due classificatori più comuni sono le classi e le
+interfacce.
+\section{Proprietà Strutturali}
+In UML le proprietà strutturali di un classificatore comprendono:
+\begin{itemize}
+    \item Gli attributi
+    \item Le estremità di associazioni
+\end{itemize}
+\subsection{Attributi}
+Un attributo modella una propeità locale della classe ed è caratterizzato da un nome
+e dal tipo dei valori associati. Ogni attributo stabilisce una proprietà locale valida per
+tutte le istanze (per locale si intende che è indipendente dagli altri oggetti).
+\paragraph*{UML} In UML negli attributi si indica obbligatoriamente un nome, opzionalmente
+si può indicare la visibilità (di default si ipotizza che siano privati).
+\paragraph*{Identificatore di oggetti} Due oggetti con identificatori distinti sono
+comunque distinti, anche se hanno i valori di tutti gli attributi uguali.
+\paragraph*{Visibilità} Sono i 4 classici tipi già studiati in programmazione:
+\begin{itemize}
+    \item Pubblica
+    \item Privata
+    \item Protetta - Solo operazioni appartenenti alla classe o ai suoi discendenti possono
+    accedere ai membri con visibilità protetta
+    \item Package - Ogni elemento nello stesso package della classe può accedere ai membri
+    della classe con visibilità package
+\end{itemize}
+\paragraph*{Molteplicità} Consideriamo un attributo B di tipo T di una classe C.
+Se la molteplicità non viene indicata si intende 1:1, altrimenti si indica per
+esempio x..y per dire che B associa ad ogni istanza di C al minimo x e al massimo y valori
+di tipo T. Nelle istanza il multivalore si indica mediante un insieme (tipo array).
+\subsection{Associazioni in UML}
+Per il momento, ci limitamo a discutere associazioni tra due classi (ma le associazioni
+possono coinvolgere N classi).
+\\ Un'associazione tra una classe C1 e una classe C2 modella una relazione matematica
+tra l'insieme delle istanze di C1 e l'insieme delle istanze di C2.
+Gli attributi modellano proprietà locali di una classe, le associazioni modellano
+proprietà che coinvolgono altre classi.
+
+% Arrivato a Slide 30
