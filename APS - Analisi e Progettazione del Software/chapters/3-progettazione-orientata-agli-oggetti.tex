@@ -311,5 +311,149 @@ possono coinvolgere N classi).
 tra l'insieme delle istanze di C1 e l'insieme delle istanze di C2.
 Gli attributi modellano proprietà locali di una classe, le associazioni modellano
 proprietà che coinvolgono altre classi.
-
-% Arrivato a Slide 30
+\paragraph*{Collegamenti} Le istanze delle associazioni si chiamano collegamenti.
+Come gli oggetti sono istanze delle classi, così i collegamenti sono istanze delle associazioni.
+Al contrario degli oggetti però i collegamenti non hanno identificatori espliciti:
+un collegamento è implicitamente identificato dalla coppia (o in generale dalla
+ennupla) di oggetti che esso rappresenta. Ciò non toglie che tra due classi possono essere definite
+più associazioni.
+\paragraph*{Sintassi} Le associazioni possono essere indicate o con il nome
+dell'associazione o con il nome dei ruoli (es. Azienda - Persona : Datore - Dipendente) e la
+relativa cardinalità. A differenza della cardinalità però il ruolo non aggiunge nulla
+al significato pratico dell'associazione. 
+A volte è utile specificare un verso, ma questo non significa
+che l'associazione ha un verso, è solo relativo al verso che il nome dell'associazione
+evoca, ma anche in questo caso non ha un significato in termini pratici.
+L'unico caso in cui il ruolo è obbligatorio è nel caso di associazioni che insistono più
+volte sulla stessa classe e rappresentano una relazione non simmetrica.
+\paragraph*{Perchè usare i ruoli} Risolvono alcune ambiguità a livello schematico, rendendo
+più chiaro cosa si intende rappresentare. In alcuni casi però i ruoli non sono
+significativi, come nei casi di relazioni simmetriche (esempio Stato confina con).
+\subsection*{Navigabilità}
+La navigabilità indica che è possibile spostarsi da n qualsiasi oggetto della classe
+origine a uno o più oggetti della classe destinazione. Gli oggetti della classe
+di orgine possono fare riferimento a oggetti della classe di destinazione utilizzando
+il nome del ruolo.
+\subsection*{Molteplicità} La molteplicità limita il numero di oggetti di una classe
+che possono partecipare in una relazione in un dato insieme. Se la molteplicità non viene
+indicata esplicitamente allora è indefinita.
+\subsection*{Attributi di associazioni} Analogamente alle classi, anche le associazioni
+possono avere attributi. Formalmente, un attributo di una associazione è una funzione
+che associa ad ogni collegamento che è istanza dell'associazione un valore di riferimento.
+\paragraph*{Parallelo con Basi di Dati} Praticamente è un attributo di relazione, dato che
+è un valore che ha senso di esistere solo se esiste la relazione (in questo caso collegamento).
+\paragraph*{Classi associazioni nella progettazione} Nessuno dei linguaggi OO comunemente
+utilizzati supporto le classi associazione, per questo vengono reificate tramite l'uso di
+classi di progettazione, collegandole alle classi con l'aggregazione e la composizione
+(da utilizzare opportunamente in base alla cardinalità decidendo chi sia il tutto e chi sia la parte).
+Come in basi di dati, anche qua esistono le associazioni n-arie che modellano una
+relazione matematica tra n insiemi.
+\subsection*{Associazioni e Attributi}
+Utilizzare le associazioni quando la classe di destinazione è una parte importante del modello.
+\\ Utilizzare gli attributi quando:
+\begin{itemize}
+    \item La classe di destinazione non è una parte importante del modello (ad esempio un tipo primitivo come stringa)
+    \item La classe di destinazione è solo un dettaglio di implementazione, ad esempio
+    una componente di libreria
+\end{itemize}
+\subsection{Semantica della collezione : Stringhe di proprietà}
+UML mette a disposizione delle proprietà standard che possono essere applicate alle
+molteplicità per indicare la semantica richiesta dalla collezione:
+\begin{itemize}
+    \item ordered - gli elementi dell'insieme sono ordinati
+    \item unordered - non c'è un ordine definito
+    \item unique - gli elementi dell'insieme sono tutti univoci
+    \item nounique - la collezione può contenere elementi duplicati
+\end{itemize}
+\'E consentito l'utilizzo di parole chiavi definite dall'utente (esempio List).
+\subsection{Operazioni}
+Un'operazione di UML è una dichiarazione, con un nome, dei parametri, un tipo di ritorno,
+un elenco di eccezioni e magari un insieme di vincoli di precodizioni e post condizioni.
+\paragraph*{title}*{Definizione di un'operazione}
+I nomi delle operazioni sono solitamente in minuscolo (evitare simboli speciali).
+UML consente che le firme delle operazioni siano scritte in un qualunque linguaggio, 
+purchè sia notificato al lettore o allo strumento.
+\paragraph*{Metodi}
+In UML un metodo è l'implementazione di un'operazione.
+\subsection*{Parole chiave}
+Un decoratore testuale è una parola chiave utilizzata per classificare un elemento
+di modello. Qui di seguito alcuni esempi:
+\begin{itemize}
+    \item actor - classifica un attore
+    \item interface - un'interfaccia
+    \item abstract - una classe astratta (che quindi non può essere istanziata)
+    \item ordered - insieme di oggetti con un ordine predefinito
+\end{itemize}
+\section{Generalizzazione, Ereditarietà, Polimorfismo, Overriding}
+\subsection*{Generalizzazione}
+In UML la relazione is-a si modella mediante la nozione di generalizzazione 
+(ancora una volta parallelo con basi di dati). La generalizzazione coinvolge una superclasse
+ed una o più sottoclassi dette classi derivate, il significato è che ogni
+istanza di ciascuna sottoclasse è anche istanza della superclasse. Quando la sottoclasse
+è una, la generalizzazione modella appunto la relazione is-a tra sottoclase e la superclasse.
+\\ In UML si usa una freccia dal basso verso l'alto.
+\\ La superclasse può generalizzare più sottoclassi rispetto ad un unico criterio (Persona - Maschio/Femmina)
+Oppure si possono creare più generalizzazioni diverse (secondo criteri diversi).
+Una generalizzazione può essere disgiunta oppure no (Maschio e Femmina è disgiunta, mentre
+per esempio Studente Lavoratore no). Onverlapping (non disgiunta) è default.
+\paragraph*{Generalizzazione complete} Una generalizzazione può essere completa o no (Studente
+Lavoratore è incompleta, Maschio Femmina è completa). Incompleta è default.
+\subsection*{Ereditarietà}
+Principio di Ereditarietà, ogni proprietà della superclasse è anche una proprietà
+della sottoclasse e non si riporta esplicitamente nel diagramma.
+\paragraph*{Ereditarietà Multipla} UML consente l'ereditarietà multipla
+\subsection*{Overriding}
+L'overriding è la possibilità di ridefinire un'operazione ereditata da una superclasse
+La firma dell'operazione è data dal nome dell'oerazione, il tipo di ritono e tutti i parametri.
+I nomi dei parametri non vengono considerati parte della firma.
+\subsection*{Polimoorfismo}
+Un'operazione poliformica ha molte implementazioni (forme).
+Le sottoclassi avranno l'esigenza di ridefinire alcune funzioni ereditate per poterle
+rendere specifiche per le lore necessità.
+\section{Dipendenza}
+In UML una dipendenza è una relazione di dipendenza.
+Si utilizza quando un elemento cliente (classi, package, casi d'uso) è a conoscenza di
+un elemento fornitore e un cambiamento nel fornitore potrebbe influire sul cliente (rompendone il funzionamento).
+\\ Un elemento è \textbf{accoppiato} con un altro elemento o dipendenza da un altro elemento.
+\section{Interfaccia}
+Un'interfaccia è un insieme di funzionalità pubbliche identificate da un nome e separano
+le specifiche di una funzionalità dall'implementazione, un'interfaccia definisce un contratto
+e tutti i classificatori che la realizzano devono rispettare.
+\paragraph*{Come individuare le interfacce}
+Esaminando ogni associazione chiediamoci, dovrebbe questa associazione essere associata ad 
+una classe particolare o dovrebbe essere più flessibile?
+\\ Lo stesso per i messaggi. Lo scopo è raggruppare più operazione che potrebbero essere
+riusabili altrove o attributi.
+\subsection*{Interfacce per stabilire protocolli}
+Le interfacce sono molto utili perchè tramite il loro utilizzo è possibile stabilire protocolli
+comuni che potrebbero essere realizzati da molte classi e molti componenti.
+\\ Le interfacce facilitano l'inserimento di nuove classi nel sistema. Permette
+anche di nascondere dettagli implementativi di sottosistemi complessi.
+\paragraph*{Architettura} L'insieme dei sottosistemi e delle interfacce di progetto
+costituisce l'architettura di alto livello di un sistema. Per capire e mantenere questa
+architettura, l'insieme dovrebbe essere organizzato in modo coerente, applicando un 
+architettura a strati.
+\subsection*{Vantaggi e Svantaggi interfacce}
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Quando progettiamo con le classi stiamo progettando specifiche implementazioni
+    \item Quando progettiamo con interfacce stiamo invece progettando dei contratti che possono
+    essere realizzati da molte implementazioni diverse (classi)
+    \item La progettazione per interfacce svincola il modello da dipendenze dell'implementazione e 
+    ne aumenta quindi la flessibilità e estendibilità
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Maggiore flessibilità significa anche più complessità. In teoria ogni operazione
+    di ogni classe potrebbe essere un'interfaccia, ma in questo modo il sistema diventerebbe
+    incomprensibile
+    \item Maggior costo a livello di prestazioni
+\end{itemize}
+\section{Aggregazione e Composizione}
+In UML un'aggregazione è un'associazione che rappresenta una relazione intero-parte
+\\ Una composizione (aggregazione composta) è una forma forte di aggregazione in cui:
+\begin{itemize}
+    \item Una parte appartiene a un composto alla volta
+    \item Ciascuna parte appartiene sempre a un composto
+    \item Il composto è responsabile della creazione e cancellazione delle sue parti
+\end{itemize}
