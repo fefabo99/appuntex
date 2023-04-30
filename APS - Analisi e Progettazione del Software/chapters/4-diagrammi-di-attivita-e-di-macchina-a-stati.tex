@@ -93,4 +93,73 @@ Non esiste nessun modello in UP chiamato "modello a stati", tuttavia qualsiasi e
 può avere una macchina a stati per comprendere o comunicare meglio il proprio comportamento dinamico.
 \paragraph*{Esempio} Macchina a stati per rappresentare un processo di vendita, dalla selezione dell'item,
 al pagamento.
+
 \chapter{Diagramma di attività}
+I diagrammi di attività spesso vengono chiamati "diagrammi di flusso OO" e consentono
+di modellare un processo come un'attività costituita da un insieme di nodi connessi da archi
+\\ Le attività vengono di solito associate a:
+\begin{itemize}
+    \item Casi d'uso
+    \item Classi
+    \item Interfacce componenti
+    \item Collaborazioni
+    \item Operazioni
+    \item Processi di Business
+\end{itemize}
+\section{Attività}
+Le attività sono reti di nodi connessi ad archi, esistono tre categorie di nodi:
+\begin{itemize}
+    \item Nodi azione - Rappresentano unità discrete di lavoro atocmiche all'interno dell'attività
+    \item Nodi controllo - Controllano il flusso attraverso l'attività
+    \item Nodi oggetto - Rappresentano oggetti usati nell'attività
+\end{itemize}
+Gli archi rappresentano il flusso attraverso le attività, ne esistono due categorie:
+\begin{itemize}
+    \item Flussi di controllo: rappresentano il flusso di controllo attraverso le attività
+    \item Flussi di oggetti: rappresentano il flusso di oggetti attraverso l'attività
+\end{itemize}
+\subsection{Sintassi dell'attività}
+L'attività sono reti di nodi connessi da archi, il flusso di controllo
+è un tipo di arco che iniziano spesso con un nodo iniziale. Ci possono
+Essere pre e post condizioni. Quando un nodo azione finisce esso emette un token che potrebbe
+attraversare un arco per dare inizio alla prossima azione.
+\paragraph*{Il token game} Consiste nel descrivere il flusso di token attorno a una rete
+di noti e archi. 
+Il token è un oggetto, alcuni dati o un flusso di controllo che si spsota da un nodo sorgente a un nodo di
+destinazione attraverso un arco, ci possono essere dei vincoli che controllano il flusso dei token.
+Il movimento può quindi verificarsi quando tutte le condizioni sono soddisfatte.
+\\ Un nodo inizia la sua esecuzione quando ci sono tutti i token su tutti i suoi archi d'entrata.
+\subsection*{Nodi Azione e token}
+L'esecuzione dei nodi azione avviene quando esiste un token simultaneamente su tutto gli archi entranti
+e i tken in ingresso soddisfano tutte le precondizoni locali del nodo.
+\\ Eseguono quindi un AND logico sui loro token di entrata e una fork implicita su tutti i suoi archi uscenti quando
+l'esecuzione è terminata.
+\\subsection*{Nodo azione di chiamata}
+Il nodo azione di chiamata può invocare:
+\begin{itemize}
+    \item Un'attività
+    \item Un comportamento
+    \item Un'operazione
+\end{itemize}
+\subsection*{Nodo di decisione}
+Nodo di controllo che ha un arco entrate e due o più archi alternativi uscenti, ogni
+arco uscente è protetto da una condizione di guardia, la condizione di guardia deve
+essere mutuamente esclusiva. L'arco di uscita viene percorso solo se la relativa condizione di guardia è
+vera, altrimenti la parola chiave specifica cosa fare in caso nessuna condizione di guarda venisse soddisfatta.
+\subsection*{Nodi di biforcazione e ricongiuizione}
+Modellano flussi concorrenti duplicando i token in arrivo su tutti gli archi uscenti, quelli di
+ricongiunzione invece sincronizzano i flussi entranti offrendo un token in uscita quando c'è un token su tutti
+i loro archi entranti.
+\subsection*{Nodo Oggetto}
+Indicano che sono disponibili istanze di un particolare classificatore, ogni nodo oggetto può tenere un numero
+infinito di token oggetto.
+\\ I Token sono offerti agli archi uscenti secondo un ordine FIFO o LIFO, che viene specificato (
+comportamento di selezione). Questi nodi possono essere parametri di input e output per le attività.
+\subsection*{Pin}
+Un Pin è un nodo oggetto che rappresenta un input in un'azione o output da un'azione.
+\subsection*{Partizione delle attività}
+Ogni partizione rappresenta un raggruppamento ad alto livello di azioni correlate:
+\begin{itemize}
+    \item Partizioni possono essere gerachie
+    \item Partizioni possono essere verticali, orizzontali o entrambe
+\end{itemize}
