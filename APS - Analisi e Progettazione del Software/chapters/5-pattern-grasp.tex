@@ -2,3 +2,153 @@
 UML è un linguaggio di modellazione visuale estremamente utile per l'attività di progettazione,
 ma la sua conoscenza NON implica saper progettare ad oggetti. La progettazione risulta utile
 per comprendere e comunicare.
+\\ In questo capitolo ci concentreremo sulla progettazione a oggetti.
+\\ Un modo comune di pensare alla progettazione di oggetti è in termini di
+\textbf{responsabilità, ruoli e collaborazioni} o \textbf{RDD (Responsability-Driver
+Development)}.
+\begin{itemize}
+    \item Responsabilità - Astrazione di ciò che si deve saper fare, gli oggetti hanno responsabilità
+    \item Ruoli - L'obiettivo o la capacità che un oggetto o una classe ha di partecipare ad una
+    relazione con un altro oggetti. Obblighi e comportamenti di un oggetto sono assegnati in
+    base al ruolo.
+    \item Collaborazioni - Gli oggetti collaborano per raggiungere un obiettivo
+\end{itemize}
+\paragraph*{2 Tipi di responsabilità}
+\begin{itemize}
+    \item Responsabilità di fare - Eseguire un calcolo, creare modificare eliminare oggetti, 
+    iniziare un'azione o controllare e coordinare altri oggetti.
+    \item Responsabilità di conoscere - Conoscere i propri dati privati, conoscere informazioni
+    di oggetti correalti, conoscere cose che può derivare o calcolare.
+\end{itemize}
+Le responsabilità si assegnano durante la modellazione e durante la codifica, nel contesto
+UML sono individuate mentre si creano modelli statici e dinamici del sistema.
+\section{Definizione di GRASP}
+I principi \textbf{GRASP (General Responsibility Assignment Software Patterns)} sono un aiuto
+per l'apprendimento degli aspetti essenziali per la progettazione a oggetti e per
+l'applicazione di ragionamenti di progettazione in maniera metodica.
+\subsection*{Che cos'è un pattern?}
+Un pattern è una descrzione, con un nome, di un problema di progettazione ricorrente e di
+una sua soluzione ben provata che può essere aplicata a nuovi contesti. Idealmente, un
+pattern dà consigli su come applicare la sua soluzione in circostanze diverse e considera
+le forze e i compromessi. I pattern restano comunque delle linee guida e non delle regole ferree,
+chiaramente seguirli può portare a risultati migliori.
+\\ Di seguito tratteremo i seguenti pattern:
+\begin{itemize}
+    \item Creator
+    \item Information Expert
+    \item Low Coupling
+    \item High Cohesion
+    \item Controller
+\end{itemize}
+\section{Creator}
+Uno dei problemi comuni nella programmazione è: chi deve essere responsabile della creazione
+di una nuova istanza di una classe? Assegnare a B la responsabilità di creare istanze di tipo A
+sulla base delle seguenti condizioni:
+\begin{itemize}
+    \item B contiene o aggrega con una composizione oggetti di tipo A
+    \item B utilizza strettamente A
+    \item B possiede i dati per l'inizializzazione di A
+\end{itemize}
+Più condizioni possono essere vere contemporaneamente.
+\section{Information Expert}
+Nominato anche semplicemente come Expert risponde al seguente problema:
+\paragraph*{Problema} Qual è un principio di base per assegnare responsabilità agli oggetti?
+In termini pratici: Chi conosce un oggetto Square, dato un suo identificatore?
+\\ Si tratta di una responsabilità di conoscere, ma Expert si applica anche a responsabilità
+di fare. 
+Il criterio (cioè la soluzione) consiste nell'assegnare le responsabilità all'esperto delle informazioni, ovvero
+alla classe che possiede informazioni necessarie per soddisfare le responsabilità.
+\\ Spesso risulta utile il modello del comportamento dinamico del sistema per identificare
+correttamente l'assegnazione delle responsabilità.
+\section{Low Coupling}
+Come sostenere una dipendenza bassa, un impatto dei cambiamenti basso e un riuso elevato?
+\\ L'accoppiamento indica quanto fortemente un elemento è connesso ad altri elementi,
+ha conoscenza di altri elementi e dipende da altri elementi. Classi con un alto accoppiamento
+comportano:
+\begin{itemize}
+    \item I cambiamenti in classi correlate obbligano a cambiamenti locali
+    \item Sono difficili da comprendere in isolamento
+    \item Sono difficili da riusare perchè il loro riuso richiede anche il riuso delle classi
+    da cui dipendono
+\end{itemize}
+\paragraph*{Soluzione} Assegnare responsabilità in modo da mantenere l'accoppiamento basso.
+\subsection*{Forme comuni di accoppiamento}
+A livello implementativo, l'accoppiamento è spesso causato da:
+\begin{itemize}
+    \item Un oggetto A ha un aattributo o referenzia un oggetto B
+    \item Un oggetto A invoca servizi di B
+    \item Un oggetto A implementa un metodo che riutilizza un parametro, una variabile locale
+    o ritorna un oggetto B
+    \item Un oggetto è istasnza di una classe C1 che a sua volta è sottoclasse di una classe C2
+    \item Un oggetto è istasnza di una clase C1 che implementa una interfaccia I1
+\end{itemize}
+\subsection*{Disaccooppiamento Estremo}
+Un sistema OO è prima di tutto un sistema di oggetti che comunicano attraverso messaggi, 
+il Low Coupling estremizzato può portare alla creazione di oggetti molto grande e copmplessi
+che eseguono tutto il lavoro da soli e quanto è una male perchè porta ad avere:
+\begin{itemize}
+    \item Progetto pessimo a bassa coesione
+    \item Progetto diffiicle da comprendere e mantenere
+\end{itemize}
+Un grado moderato di accoppiamento è necessario per la creazione di un sistema OO.
+\section{High Cohesion}
+Come mantere gli oggetti focalizzati, comprensibili e gestibili? La coesione indica quanto siano
+correlate e concentrate le responsabilità di un elemento. Un elemento con responsabilità
+altamente correlate che conon esegue una quantità di lavoro eccessiva ha coesione alta. 
+\\ Una classe con coesione bassa fa molte cose non correlate tra loro o svolge troppo
+lavoro e questo le porta ad essere:
+\begin{itemize}
+    \item Difficili da comprendere
+    \item Difficili da riusare
+    \item Difficili da mantenere
+    \item Continuamente soggette a cambiamenti
+\end{itemize}
+Una classe con coesione alta ha un numero di metodi relativamente basso con delle funzionalità
+altamente correlate e non fa troppo lavoro. Essa collabora con altri oggetti per
+condividere lo sforzo se il compito è grande.
+\section{Controller}
+Come si integrano si integrano Interfaccia Utente e Servizi?
+\paragraph*{Servizi} Sono operazioni eventualmente composte come per esempio
+operazioni di sistema: le operazioni di sistema sono gli eventi principali di input al sistema.
+\paragraph*{Interfaccia Utente} L'interfaccia utente viene utilizzat per eseguire una sequenza
+(un workflow) di operazioni (producendo eventi).
+\paragraph*{Problema} Come possiamo integrare questi due elementi?
+\paragraph*{Soluzione} Utilizzando un controller, un oggetto oltre lo strato di UI che è 
+responsabile di ricevere e gestire gli eventi come i messaggi di operazioni di sistema.
+\\ Ci sono due alternative in base alla responsabilità assegnata:
+\begin{itemize}
+    \item Scegliere/Creare un oggetto che rappresenta il sistema complessivo (FacadeController)
+    \item Un oggetto controller può rappresentare uno scenario di un caso d'uso (UseCaseController)
+\end{itemize}
+Il controller implementa le operazioni a livello utente: conosce quali servizi devono
+essere eseguiti in corrispondenza di una certa operazione utente.
+Nello specifico il controller ha le seguenti responsabilità
+\begin{itemize}
+    \item Validare l'input
+    \item Tradurre l'oerazione richiesta dall'utente nell'invocazione dei servizi
+    \item Scegliere la schermata successiva in base al risultato prodotto dall'operazione
+    \item Preparare i dati per l'interfaccia
+\end{itemize}
+\subsection*{Vantaggi di un controller}
+La logica applicativa non è gestita nello strato di interfaccia e si può inoltre
+riusare la logica essendo svincolata dalla UI. Si possono usare interfacce diverse e se si usano
+controller basati sui casiu d'uso è possibile:
+\begin{itemize}
+    \item Verificare che le operazioni si susseguano in una sequenza legale
+    \item Ragionare sullo stato corrente dell'attività
+\end{itemize}
+\subsection*{Tipici Errori di implementazione}
+\begin{itemize}
+    \item Controller "gonfi"
+    \item Esiste una unica classe controller che riceve tutti i numerosi eventi di sistema
+    \item Il controller svolge parte del lavoro prima di delegarlo
+    \item Il controller ha numerosi attributi e conserva informazioni sul sistema e sul dominio
+\end{itemize}
+\section{Principi OO}
+Tenere presente i principi precedentemente spiegati tenendo conto però che è non bisogna mai prendere
+decisioni ragionando singolarmente su un principio e mai attenersi strettamente alle regole senza usare
+il buon senso, la logica e l'esperienza. Chiedersi sempre quali sono le soluzioni possibilie e
+le conseguenza di ogni soluzione.
+\section{Granularità delle responsabilità}
+Caso semplice - Granularità fine - Creazione di un metodo.
+\\ Caso difficile - Granularità grossa - Refactoring + creazione metodi e attributi
