@@ -144,6 +144,64 @@ controller basati sui casiu d'uso è possibile:
     \item Il controller svolge parte del lavoro prima di delegarlo
     \item Il controller ha numerosi attributi e conserva informazioni sul sistema e sul dominio
 \end{itemize}
+
+\section{Pure Fabrication}
+\paragraph*{Problema} \'E sempre corretto creare rappresentazioni dei concetti del mondo
+reale nel dominio? Non poichè potrebbero violare altri principi (low coupling, high cohesion, ecc.)
+\paragraph*{Soluzione} Creaiamo una classe astratta ma che sostenga i principi GRASP principali,
+come low coupling e high cohesion. Così facendo andiamo a inventare una classe immaginaria.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Sostiene high cohesion
+    \item Potenzialità di riuso aumentata
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Un utilizzo eccessivo può portare ad una decomposizione del codice: ovvero si
+    potrebbe avere un eccesso di oggetti comportamentali che non possiedono informazioni richieste
+    per soddisfarli
+\end{itemize}
+\section{Polymporphism}
+\paragraph*{Problema} Come gestire l'introduzione di un nuovo tipo? Come inserire nuovi componenti
+che non richiedono la modifica di gran parte del codice? 
+\paragraph*{Soluzione} Introduciamo delle operazioni di polimorfismo.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Le estensioni sono facili da aggiungere
+    \item Si possono introdurre nuove implementazioni senza influire sui client
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Progettare interfacce e polimorfismi che ancora non si stanno gestendo, non conoscendo
+    quanta probabilità si ha di gestire quella casistica
+\end{itemize}
+\section{Indirection}
+\paragraph*{Problema} Come posso assegnare una responsabilità per evitare l'accoppiamento diretto
+tra più elementi? E di conseguenza, come posso separare gli oggetti in modo da mantenere un alto
+riuso e un accoppiamento bassso?
+\paragraph*{Soluzione} Si assegna la responsabilità ad un oggetto intermediario che media tra gli
+elementi, in modo che non ci sia un accoppiamento diretto tra di essi. L'intermediario crea una
+indirizzione (indirection) tra le componenti.
+\paragraph*{Vantaggi} Favorisce il Low Coupling.
+\section{Protected Variations}
+\paragraph*{Problema} Come posso progettare oggetti, sottosistemi e sistemi in modo tale che
+le modifiche (o l'eventuale instabilità) di questi elementi non si riversino su altri elementi?
+\paragraph*{Soluzione} Si identificano i punti in cui sono previste delle variazioni, poi si assegnano
+le responsabilità per creare una "interfaccia" stabile attorno a questi punti.
+\\ \'E conosciuto anche con Information Hiding.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Le estensioni richieste per nuove variazioni sono facili da aggiungere
+    \item è possibile introdurre nuove implementazioni senza influire sui client
+    \item favorisce Low Coupling
+    \item è possibile ridurre l'impatto o il costo dei cambiamenti
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item è inutile e costoso utilizzare PV per delle variazioni che non si verificheranno mai
+    \item in alcuni momenti conviene di più riprogettare che realizzare la protezione da tutte le
+    possibili variazioni
+\end{itemize}
 \section{Principi OO}
 Tenere presente i principi precedentemente spiegati tenendo conto però che è non bisogna mai prendere
 decisioni ragionando singolarmente su un principio e mai attenersi strettamente alle regole senza usare
@@ -151,4 +209,4 @@ il buon senso, la logica e l'esperienza. Chiedersi sempre quali sono le soluzion
 le conseguenza di ogni soluzione.
 \section{Granularità delle responsabilità}
 Caso semplice - Granularità fine - Creazione di un metodo.
-\\ Caso difficile - Granularità grossa - Refactoring + creazione metodi e attributi
+\\ Caso difficile - Granularità grossa - Refactoring + creazione metodi e attributi.
