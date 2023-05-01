@@ -3,4 +3,198 @@ Un Design pattern è un modo di riutilizzare la conoscenza astratta di un proble
 sua soluzione. Un pattern è una desrizione del problema e l'essenza della sua soluzione.
 Dovrebbe essere sufficientemente astratto per essere riutilizzato in diversi contesti.
 Le descrizioni dei pattern di solito fanno uso di caratteristiche orientate all'oggetto,
-come l'eredità e il polimorfismo.
+come l'eredità e il polimorfismo.\\
+I design pattern sono emergi da alcuni anni come una delle tecniche più effiaci per
+trasferire la conoscenza e l'esperienza dei progettisti, rendendola disponibile a tutti
+in modo comprensibile e concreto.
+\paragraph*{I DP aiutano a:}
+\begin{itemize}
+    \item Costruire del software che sia risuabile
+    \item Evitare scelte che compromettano il riutilizzo del software
+    \item Migliorare la documentazione e la manutenzione di sistemi esistenti
+\end{itemize}
+In pratica un design pattern è una regola che esprime una relazione tra un contesto,
+un problema ed una soluzione.\\
+Un design pattern nomina, astrae e identifica gli aspetti chiave di una struttura di
+design comune, che la rendono utile per creare un design OO riusabile.\\
+Identificano:
+\begin{itemize}
+    \item Le classi e le istanze che vi partecipano
+    \item I loro ruoli
+    \item Come collaborano
+    \item La distribuzione delle responsabilità
+\end{itemize}
+\section{Come sono fatti i Design Patterns?}
+Un pattern è formato da quattro elementi essenziali:
+\begin{itemize}
+    \item Il \textbf{nome} del pattern, per riassumere la sua funzionalità in una o due parole
+    \item Il \textbf{problema} nel quale il pattern è applicabile. Spiega il problema e il contesto,
+    a volte descrive dei problemi specifici del design, mentre a volte può descrivere strutture di
+    classi e oggetti.
+    \item La \textbf{soluzione} descrive in modo astratto come il pattern risolve il problema
+    Descrive gli elementi che compongono il design, le loro responsabilità e le collaborazioni
+    \item Le \textbf{conseguenze} portate dall'applicazione del pattern, i costi-benefici
+\end{itemize}
+\section{Descrizione DP}
+Il formato che si sceglie per la descrizione di un pattern non è rilevante, purchè la descrizione
+sia completa, coerente e accurata.\\
+Di seguito un esempio:
+\begin{itemize}
+    \item Nome e classificaizone pattern
+    \item Sinonimi
+    \item Scopo
+    \item Motivazione: scenario che illustra un design problem
+    \item Applicabilità
+    \item Struttura
+    \item Partecipanti: classi e oggi inclusi nel pattern
+    \item Collaborazioni
+    \item Conseguenze
+    \item Implementazione
+    \item Codice di esempio
+    \item Usi noti
+    \item Pattern correlati
+\end{itemize}
+L'obiettivo è sempre quello di aiutare gli sviluppatori a risolvere problemi già
+studiati, mostrando che la soluzione descritta è:
+\begin{itemize}
+    \item Utile
+    \item Utilizzabile
+    \item Usata
+\end{itemize}
+\section{Classificazione DP}
+\subsection*{Scope}
+Un primo criterio riguarda il raggion di azione (scope)
+\paragraph*{Classi} Pattern che definiscono le relazioni fra classi e sottoclassi. Le relazioni
+sono basate prevalentemente sul concetto di erediterietà e sono quindi statiche.
+\paragraph*{Oggetti} Pattern che definiscono relazioni tra oggetti, che possono cambiare durante
+l'esecuzione e sono quindi più dinamiche.
+\subsection*{Purpose}
+Un secondo criterio riguarda lo scopo (purpose):
+\begin{itemize}
+    \item Creazionali: i pattern di questo tipo sono relativi alle operazioni di creazione oggetti
+    \item Strutturali: sono utilizzati per definire la struttura del sistema in termini
+    di composizione di classi ed oggetti. Si basano sui concetti OO di ereditarietà e polimorfismo
+    \item Comportamentali: permettono di modellare il comportamento del sistema definendo le
+    responsabilità delle sue componenti e definendo le modalità di interazione.
+\end{itemize}
+\subsection{Creational}
+Questa categoria raccoglie i pattern che forniscono un'astrazione del processo di
+istanziazione degli oggetti. Questi pattern permettono di rendere un sistema
+indipendente da come gli oggetti sono creati, rappresentati e composti al suo interno.
+\subsection{Structural}
+I pattern di questa categoria sono dedicati alla composizione di classi e oggetti per formare
+strutture complesse. \'E possibile creare delle classi che ereditano da più classi per
+consentire di utilizzare proprietà di più superclassi indipendenti.\\
+Particolarmente utili per fare in modo che librerie di classi svilkuppate indipendentemente possano
+operare insieme.
+\subsection{Behavioral}
+Questi pattern sono dedicati all'assegnamento di responsabilità tra gli oggetti e alla
+creazione di algoritmi. Una caratteristica comune di questi pattern è data dal supporto
+fornito per seguire le comunicazioni che avvengono tra gli oggetti.\\
+L'utilizzo di questi pattern permette di dedicarsi principalmente alle connessioni tra
+oggetti, tralasciando la gestione dei flussi di controllo.
+\section{I Framework}
+Un \textbf{Framework} non è una semplice libreria. Un Framework rappresenta il design riusabile di un
+sistema (o di una sua parte), definito da un insieme di classi astratte. Un Framework è lo
+scheletro di un'applicazione che viene personalizzato da uno sviluppatore. Il programmatore di
+applicazioni implementa le interfacce e classi astratte ed ottiene automaticamente la gestione
+delle funzionalità richieste.\\
+I Framework permettono quindi di definire la struttura e lo scopo di un sistema, si tratta di un buon
+esempio di progettazione orientata agli oggetti. Permettono di raggiungere due obiettivi:
+\begin{itemize}
+    \item Riuso del design
+    \item Riuso del codice
+\end{itemize}
+\paragraph*{Classe Astratta} Una classe astratta è una classe che possiede almeno un metodo non
+implementato, definito "astratto". Si tratta di un template per le sottoclassi da cui deriveranno
+le specifiche applicazioni.\\
+Un Framework è rappresentato da un'insieme di classi astratte e dalle loro interrelazioni. I Design
+Pattern sono spesso i mattoni per la costruzione di un Framework.
+\section{DP: Adapter (Structural)}
+\begin{itemize}
+    \item Nome: Adpater
+    \item Sinonimo: Wrapper
+    \item Scopo: Converte l'interfaccia di una classe in un'altra interfaccia richiesta dal client
+    (quindi permette la cooperazione di classi che altrimenti avrebbero interfacce incompatibili)
+    \item Motivazione: in alcune circostanze non si può utilizzare una classe già esistente solo
+    perchè quest'ultima non comunica più con una interfaccia specializzata richiesta da un'applicazione.
+\end{itemize}
+Si tratta letteralmente di un adattatore per rendere due compatibili due\\ oggetti che altrimenti
+non sarebbero compatibili (come una shuko e una presa italiana).\\
+\paragraph*{Partecipanti}
+\begin{itemize}
+    \item Target: definisce l'interfaccia specializzata del client
+    \item Client: collabora con oggetti conformi all'interfaccia target
+    \item Adaptee: definisce una interfaccia che deve essere resa conforme
+    \item Adaptor: adatta l'interfaccia di Adaptee all'interfaccia Target
+\end{itemize}
+\paragraph*{Applicabilità}
+Adapter può essere utilizzato:
+\begin{itemize}
+    \item Se si vuole utilizzare una classe esistente la cui interfaccia si incompatibile
+    \item Se si vuole creare una classe riusabile che dovrà collaborare con classi non prevedibili
+    al momento della sua creazione
+    \item Se si vuole riusare un insieme di sottoclassi esistenti, ma non è facile adattare
+    l'interfaccia creando una sottoclasse per ciascuna: meglio creare un adattatatore per la classe genitore
+\end{itemize}
+\paragraph*{Conseguenze sulla classe}
+Adapter ridefinisce (overrides) parte del comportamenti di Adaptee.\\
+Una clase particolare adatta Adaptee a Target concretizzando un Adapter, quindi non è possibile
+adattare una classe e tutte le sue sottoclassi.
+\paragraph*{Conseguenze sull'oggetto}
+Gli Adapter possono funzionare in molti modi, dalla conversione di interfaccia alla completa
+ridefinizione e integrazione dei metodi, la quantità di lavoro svolta da un Adapter dipenderà
+da quanto simili sono il Target voluto e l'Adaptee disponibile.
+\paragraph*{Pattern correlati}
+\begin{itemize}
+    \item Bridge
+    \item Decorator
+    \item Proxy
+\end{itemize}
+\paragraph*{Correlazione con GRASP} \'E una specie di Indirection e Pure Fabrication, che utilizza Polymorphism.
+\section{DP: Strategy (Behavioral)}
+\begin{itemize}
+    \item Nome: Strategy
+    \item Sinonimo: Policy
+    \item Scopo: Definisce una famiglia di algoritmi, incapsula ognino in una classe e li rende
+    intercambiabili. Permette di variare gli algoritmi indipendentemente dai client che ne fanno uso.
+    \item Motivazione: In alcune circostante sono necessari algoritmi diversi in situazioni diverse per
+    risolvere lo stesso problema. Per dare più flessibilità all'implementazione, tali algoritmi non
+    sono specificati in una sola classe, ma in classi diverse. In questo modo, algoritmi diversi possono
+    essere utilizzati in momenti diversi. Inoltre, nuovi algoritmi sono facilemente inseribili.
+\end{itemize}
+\paragraph*{Partecipanti}
+\begin{itemize}
+    \item Stretegy (ArrayDisplayFormat): dichiara un'interfaccia comune per tutti gli algoritmi supportati.
+    Context utilizza tale interfaccia per invocare gli algoritmi definiti in ogni ConcreteStrategy.
+    \item ConcreteStrategy (StandardFormat, MathFormat): implementa l'algoritmo che usa l'interfaccia stretegy
+    \item Context (MyArray): è configurata con un oggetto ConcreteStrategy e mantiene un riferimento verso
+    questo; può specificare una interfaccia che permette alle Strategy di accedere ai propri dati.
+\end{itemize}
+\paragraph*{Applicabilità}
+\begin{itemize}
+    \item Più classi correlate variano soltanto per il loro comportamente. Il pattern permette
+    la configurazione di una classe con più comportamenti.
+    \item Per modellare la differenza fra diverse varianti dello stesso algoritmo. Esempio:
+    calcolo dell'ora per varie zone geografiche
+    \item Per nascondere all'utente strutture dati complesse e specifiche dell'algoritmo
+    \item Per evitare l'utilizzo di tanti if in un algoritmo. Si crea una classe divers per ogni possibile ramo.
+\end{itemize}
+\subsection*{Conseguenze}
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item La definzione di famiglie di algoritmi
+    \item Un'alternativa alla gerarchia di classi
+    \item Eliminazione di tanti if
+    \item Scelta fra varie implementazioni
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item Gli utenti diventano consapevoli dell'esistenza delle strategie
+    \item Overhead di comunicazione fra Strategy e Context
+    \item Incremento del numero di oggetti
+\end{itemize}
+\paragraph*{Pattern correlati} Flyweight.
+\section{Composite (Structural)}
+\paragraph*{Problema} Come comporre oggetti in strutture ad albero?
+%Arrivato a Slide 68 - Proseguire da qua
