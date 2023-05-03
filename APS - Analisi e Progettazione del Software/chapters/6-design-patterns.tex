@@ -290,4 +290,147 @@ Il design Observr è indicato in particolare:
     ad altri oggetti senza conoscere quali siano tali oggetti
 \end{itemize}
 \subsection*{Partecipanti}
-%Arrivato a Slide 108
+\begin{itemize}
+    \item Subject \begin{itemize}
+        \item Conosce i suoi osservatori che possono essere in un numero indefinito
+        \item Fornisce un'interfaccia per aggiungere o eliminare oggetti Observer
+    \end{itemize}
+    \item Observer \begin{itemize}
+        \item Definisce un'interfaccia di aggiornamento che deve essere avvisata dei cambiamenti di
+        un Subject
+    \end{itemize}
+    \item ConcreteObserver \begin{itemize}
+        \item Fa riferimento a un oggetto ConcreteSbject
+        \item Il suo stato deve restare coerente con quello del soggetto
+        \item Implementa l'interfaccia per l'aggiornamento della classe Observer per
+        mantenere il suo stato coerente con quello del soggetto
+    \end{itemize}
+    \item ConcreteSubject \begin{itemize}
+        \item Contiene valori di interesse per gli oggetti ConcreteObserver
+        \item Invia un avviso ai suoi osservatori quando il suo stato cambia
+    \end{itemize}
+\end{itemize}
+\subsection*{Conseguenze}
+Il pattern Observer permette di variare i Subject e gli Observer indipendentemente, è 
+possibile riutilizzare i soggetti senza il riutilizzo dei loro osservatori e viceversa.\\
+Inoltre: 
+\begin{itemize}
+    \item Astrazione della relazione esistente tra Subject e Observer: il soggetto infatti sa
+    soltano id avere una lista di osservatori, ognuno derivato dalla semplice interfaccia della classe
+    astratta Observer.
+    \item Supporto per comunicazioni in broadcast: a differenza di una normale richiesta, la notifica
+    di cambiamento inviata da un soggetto non ha bisogno di specificare il proprio destinatario.
+    La notifica è trasmessa automaticamente a tutti gli osservatori interessati.
+    \item Update imprevisti: dal momento che gli osservatori non sono a conoscenza della presenza
+    degli altri osservatori, una apparentemente innocua operazione sul soggetto può provocare una
+    cascata di aggiornamenti degli osservatori e dei loro oggetti dipendenti. Questo problema è aggravato
+    dal fatto che la semplice operazione di notifica definita nel DP non prevede dettagli su
+    cosa è cambiato nel soggetto.
+\end{itemize}
+\subsection*{Pattern correlati}
+\begin{itemize}
+    \item Mediator: definisce un oggetto che incapsula il modo in cu un insieme di oggetti
+    intergiscono mantenendo la loro indipendenza
+    \item Singleton: si assicura del fatto che una classe abbia una sola istanza e fornisce un
+    punto di accesso globale ad essa
+\end{itemize}
+\section{Factory Method (Creational)}
+\begin{itemize}
+    \item Nome - Factory Method
+    \item Altri nomi: Virtual Constructor
+    \item Classificazione - Creational
+    \item Scopo - Definire un'interfaccia per la creazione di un oggetto, lasciando alle sottoclassi 
+    la decisione su quale classe istanziare. Il Factory Method permette di posticipare l'istanziazione
+    e permetterla a runtime
+    \item Motivazione - Si vuole che un oggetto istanzi un altro oggetto, ma non si sa a priori quale
+    tipo di oggetto deve essere creato.
+\end{itemize}
+Si tratta di un pattern ampiamente usato nei Framework dove le classi astratte definiscono le relazioni
+tra gli elementi del dominio e sono responsabili per la creazione degli oggetti concreti.
+\subsection*{Applicabilità}
+Il Factory Method è applicabile quando:
+\begin{itemize}
+    \item Una classe non può prevedere il tipo di oggetti che deve creare
+    \item Una classe vuole che siano le sue sottoclassi a specificare gli oggetti che crea
+    \item Si vuole conoscere la classe alla quale è stata delegata la reponsabilità della creazione
+\end{itemize}
+La classe \textbf{Creator} affida alle sue sottoclassi la definizione del Factory Method in modo
+da ritornare l'istanza appropriata del ConcreteProduct
+\subsection*{Conseguenze}
+Utlizzare un metodo Factory per la creazione di oggetti in una classe fornisce sempre una
+flessibilità maggiore rispetto alla creazione diretta dell'oggetto. Fornisce inoltre alle sottoclassi
+un punto di aggancio per la produzione di una versione specializzata di un oggetto.
+\section{Problemi di progettazione}
+Per utilizzare i pattern nel vostro progetto è necessario tenere in mente che qualsiasi problema di 
+progettazione che si sta affrontando può avere un pattern associato che può essere applicato.
+\begin{itemize}
+    \item Dire a diversi oggetti che lo stato di qualche altro oggetto è cambiato (pattern Observer)
+    \item Mettere in ordine le interfacce con un numero di oggetti correlati che spesso devono essere
+    sviluppati in modo incrementale (pattern Facade)
+\end{itemize}
+\section{Pattern Dati}
+Pattern per la manipolazione di dati di DBMS, noi trattaremo il modello relazionale dato
+che è il più diffuso a livello commerciale. L'esigenza di definire dei pattern per questa casistica
+deriva dal fatto che i modelli ER e i modello OO (Object Oriented) sono strutturalmente molto diversi.
+\subsection{Active Record}
+Adatto nel caso in cui i record del DB corrispondono alle entità usate nella logica di business.
+Un Active Record include la parte della logica applicativa.\\
+In applicazioni semplici si ha una classe di dominio per una tabella del database e quindi ogni
+oggetto di dominio è responsabile di caricare e salvare nel database (le classi corrispondono alle struttura
+dei record nel db-schema isomorfico, cioè alle tabelle). Un oggetto incapsula dati e comportamento
+la maggior parte dei dati sono persistenti e devono essere memorizzati in un DB.\\
+Active Record usa l'approccio più ovvio: mettere la logica di accesso ai dati nell'oggetto di dominio:
+in questo modo tutti conoscono come leggere e scrivere i dati a/dal DB.
+\paragraph*{Classificazione tipica dei metodi}
+\begin{itemize}
+    \item Load \begin{itemize}
+        \item Costruzione di un'istanza dell'oggetto a partire dai risultati ritornati dalle query SQL
+        \item Se non costruiamo interamento l'oggeto al primo caricamento i metodi devono caricare le istanze
+        quando necessario (lazy-load)
+        \item Nel caso di riferimenti ad oggetti può essere necessario caricare altri oggetti e quindi navigare
+        altre tabelle.
+    \end{itemize}
+    \item Costruttuore classico - Costuire nuove istanze da inserire successivamente nel DB
+    \item Metodi finder (statici) - Incapsulano le Query SQL e ritornano istanze degli oggetti
+    \item Metodi di aggiornamento del DB \begin{itemize}
+        \item Update, aggiorna un record esistente con i valori degli attributi
+        \item Insert, aggiunge un record utilizzando i valori degli attributi
+        \item Delete, elimina il record corrispondente all'oggetto corrente
+    \end{itemize}
+    \item Metodi accessors - Classici set e get per accedere ai campi
+    \item Metodi di logica di business
+\end{itemize}
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Semplicità implementativa e d'uso nel caso di logica di business OO
+\end{itemize}
+\paragraph*{Svantaggi}
+\begin{itemize}
+    \item L'acoppiamento fra logica applicativa e DB rende difficile il refactoring separato
+    dei due progetti (progetto applicazion e del DB). Ci sono modi di realizzare il mapping su DB
+    che disaccoppiano maggiormente la logica applicativa e meccanismi di persistenza
+    \item Forza o quasi l'isomorfismo fra schema del DB e entità dle modello OO
+\end{itemize}
+\subsection{Data Mapper}
+Consiste in uno strato separato di componenti dedicati a trasferire i dati fra applicazione e DB.
+\begin{itemize}
+    \item Tratta indipendentemente i due schemi, tenendo opportunamente conto delle differenze
+    \item Bussiness logic non deve conoscere l'esistenza del DB
+    \item Nessuna interfaccia SQL nel programma
+    \item Nessuna conoscenza dello schema del DB
+    \item Inverte le dipendenze rispetto agli altri gateway
+    \item Generlalmente coinvolce altri design pattern per la gesitone della sincronizzazione 
+    fra i due schemi
+\end{itemize}
+\paragraph*{Quando usarlo} Imprescindibile per gestire un mapping complesso fra DB e logica business.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Isola i due strati (logica di business e DB mapping)
+    \item La logica di business non usa le API SQL
+    \item La logica di business non dipende da alcuna conoscenza del DB
+    \item La logica di business non deve gestire la sincronizzazione dei dati persistenti
+    \item Il layter Data Mapper può essere sostituito intergralmente senza bisogno di modificare
+    alcun dettaglio dello strato applicativo (es. se cambio il DB, il modello dell'applicazione o per test)
+\end{itemize}
+\paragraph*{Svantaggi}
+Difficoltà implementiativa.
