@@ -197,4 +197,97 @@ da quanto simili sono il Target voluto e l'Adaptee disponibile.
 \paragraph*{Pattern correlati} Flyweight.
 \section{Composite (Structural)}
 \paragraph*{Problema} Come comporre oggetti in strutture ad albero?
-%Arrivato a Slide 68 - Proseguire da qua
+Utilizzando \textbf{Composite}
+\begin{itemize}
+    \item Definisce gerarchie di classi
+    \item Il Clien tratta foglie e nodi allo stesso modo
+    \item L'aggiunta di nuovi tipi di nodi e foglie è molto semplice
+\end{itemize}
+\subsection*{Descrizione Composite}
+\begin{itemize}
+    \item Name - Composite
+    \item Intent - Comporre oggetti in strutture ad albero per rappresentare gerachie tutto-parti
+    trattare uniformemente oggetti individuali e composti, catturare l'essenza ricorsiva della
+    composizione
+    \item Motivation - In questo modo si semplifica il client dato che si possono trattare
+    strutture singole e oggetti in modo uniforme
+\end{itemize}
+Si rende anche più semplice l'aggiunta di nuove tipologie di componenti (nuove sottoclassi Leaf
+o Composite potranno essere utilizzate automaticamente nelle strutture esistenti e operre con il
+codice dei client). Può rendere il progetto troppo generico per la facile aggiunta di nuove
+componenti.
+\section{DP: Singleton (Creational)}
+\paragraph*{Problema} Assicurare che una classe abbia una sola istanza con accesso
+globale. \\
+Per esempio voglio utilizzare un'unica connessione verso il database ed impedire che un oggetto
+possa autonomamente creane di nuove.
+\paragraph*{Soluzione} Definire un metodo statico della classe che restituisce il singleton.
+\subsection*{Conseguenze}
+\paragraph*{Pro}
+\begin{itemize}
+    \item Accesso controllato ad un'unica istanza
+    \item Incapsula la creazione dell'oggetto
+    \item In alcune implementazioni possiamo gestire un pool di istanze invece che una singola
+    istanza
+\end{itemize}
+\paragraph*{Contro}
+\begin{itemize}
+    \item In alcune implementazioni ogni volta che l'oggetto viene richiesto viene anche
+    controllata la sua esistenza
+    \item Singleton non tratta distruzione dell'oggetto
+\end{itemize}
+\section{DP: Facade (Structural)}
+\paragraph*{Problema} Un client accede direttamente a numerose classi che fanno parte di un altro
+modulo. \\
+Il pattern Facade nasconde ai client il sottosistema. Questo risulta molto utile per migliorare
+l'integrazione fra componenti. Questo pattern ha lo scopo di fornire un'intefaccia unificata per
+un dato insieme di interfacce presenti in un sottosistema.
+\paragraph*{Applicabilità}
+Per ottenere interfacce semplici per sottosistemi complessi o per i casi in cui vi sono
+troppe dipendenze fra i client e le classi. \\
+Per ottenere una struttura a livelli in cui il Facade funge da entrata e uscita di ogni
+livello.
+\subsection*{Partecipanti}
+\begin{itemize}
+    \item Facade: Conosce la struttura del sottosistema e delega agli oggetti interni più
+    appropriati le richieste provenienti dall'esterno.
+    \item Classi di Subsystem: Forniscono le funzionalità interne adatte a rispondere alle richieste
+    provenienti da Facade. Esse non hanno conoscenza dell'esistenza di Facade e non dipendono da esso.
+\end{itemize}
+\subsection*{Conseguenze}
+La classe Facade nasconde il sottosistema al Client, la complessità del sottosistema viene
+spostata all'interno della classe Facade. Si disaccoppia il codice del Client dagli oggetti
+che si trovano dietro la Facade (Low coupling pattern GRASP).\\
+Risulta inoltre più facile modifica il sottosistema.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Nasconde ai client i componenti del sottosistema, riducendone così la complessità
+    \item Consente di modificare i componenti del sottosistema senza il coinvolgimento del client
+\end{itemize}
+Il Facade si interpone tra classi client e il sottosistema fungendo da intermediario fra queste 2 entità.
+(Indirection e Protected Variations).
+\subsection*{Alcuni usi noti}
+Java Virtual Machine e varie librerie standard come AWT e Swing, forniscono un seti di
+wrapper Facade che incapsulano molte delle chiamate native di basso livello del SO e GUI APIs. \\
+Il pattern Facade è spesso usato anche per fornire un'interfaccia unificata per un insieme di funzionalità
+che altrimenti andrebbero ad appesantire il client. Si nascondono inoltre le ie complessità delle
+interazioni e delle dipendenze.
+\section{DP: Observer (Behavioral)}
+Il pattern Observer definisce una relazione uno-a-molti tra oggetti in modo che quando un oggetto
+cambia stato, tutti gli oggetti che dipendono da esso siano notificati e aggiornati automaticamente.\\
+In pratica si definisce uno schema 1:N fra due oggetti chiamati Observer e Subject: i primi
+osservano un evento specifico del soggetto e non appena quest'ultimo lo genera gli osservatori
+vengono informati del cmabiamento di stato e aggiornano automaticamente le informazioni.
+\subsection*{Applicabilità}
+Il design Observr è indicato in particolare:
+\begin{itemize}
+    \item Quando un'astrazione ha due aspetti, uno dipendente dall'altro. Implementare questi
+    aspetti in oggetti separati permette al programmatore di modificarli e di riutilizzarli
+    indipendentemente
+    \item Quando il cambiamento di stato di un oggetti implica il cambiamento di stati di altri oggetti
+    e non è noto in anticipo il numero degli oggetti che dovranno essere cambiati
+    \item Quando un oggetto deve essere in gradi di notificar eil proprio cambiamento di stato
+    ad altri oggetti senza conoscere quali siano tali oggetti
+\end{itemize}
+\subsection*{Partecipanti}
+%Arrivato a Slide 108
