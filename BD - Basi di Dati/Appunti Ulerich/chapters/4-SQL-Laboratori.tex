@@ -1,0 +1,29 @@
+\chapter{SQL - Structured Query Language}
+SQL è un linguaggio per la definizione e la manipolazione dei dati
+in database relazionali adottato da molti DBMS. \\
+Ci sono diverse versioni, la prima versione ufficiale risale al 1986.
+Poi sono state rilasciate altre versioni come SQL-89, SQL-2, SQL-3\dots\\
+Noi faremo riferimento principalmente a SQL-2. Questa versione è ricca e complessa,
+tanto che nessun sistema commerciale lo implementa in maniera completa.\\
+Esistono 3 livelli di conformità:
+\begin{itemize}
+  \item Entry level: molto simile a SQL-89
+  \item Intermediate level: versione che soddisfa le esigenze di mercato
+  \item Full level: versione completa anche delle funzioni avanzate che non sono realizzate
+  in alcun DBMS
+\end{itemize}
+La maggior parte dei database è conforme solo all'entry level.\\
+Alcune famose implementazioni di SQL sono:
+\begin{itemize}
+    \item ORACLE
+    \item DB2 (IBM)
+    \item Access (Microsoft)
+    \item MSSQL server (Microsoft)
+    \item MySQL
+    \item Firebird
+\end{itemize}
+\section{SQL e Algebra Relazionale}
+SQL è relazionalmente completo: ogni espressione logica può essere tradotta in SQL. 
+Viene adottata la logica dei 3 valori (T, F, U) dell'Algebra relazionale (U = Unknown).\\
+Il modello dati di SQL è basato su tabelle anzichè relazioni (possono essere presenti righe duplicate).\\
+SQL è computazionalmente completo, ha istruzioni di controllo.
