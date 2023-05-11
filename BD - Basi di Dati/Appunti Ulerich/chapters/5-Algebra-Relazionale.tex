@@ -9,10 +9,32 @@ L'algebra relazionale è composta da un insieme di operatori che possono essere
 utilizzati su relazioni per produrre relazioni. Possono essere composti dando
 luogo a espressioni algebriche di complessità arbitraria.\\
 \section{Operatori dell'algebra relazionale}
+\paragraph*{Unarie}
 \begin{itemize}
-    \item Unione, Intersezione, Differenza (Operatori insiemistici)
     \item Ridenominazione
     \item Selezione
     \item Proiezione
+\end{itemize}
+\paragraph*{Binarie}
+\begin{itemize}
+    \item Unione, Intersezione, Differenza (Operatori insiemistici)
     \item Join (Join naturale, Prodotto cartesiano, Theta-join)
 \end{itemize}
+\section{Operatori insiemistici}
+Le relazioni sono insiemi e quindi è possibile applicare gli operatori insiemistici,
+è fondamentale sapere che è possibile applicare queste operazioni \textbf{solo a relazioni
+definite sugli stessi attributi}.
+\subsection*{Unione}
+L'unione di due relazioni $r_1$ e $r_2$ è la relazione che contiene le tuple
+che appartengono ad $r_1$ oppure ad $r_2$, oppure ad entrambe.\\
+L'unione è commutativa e associativa.
+\subsection*{Intersezione}
+L'intersezione di due relazioni $r_1$ e $r_2$ è la relazione che contiene le tuple
+che appartengono sia a $r_1$ che a $r_2$.\\
+L'intersezione è commutativa e associativa ed è inoltre esprimibile per mezzo della
+differenza:
+\begin{equation*}
+    r(X) = r_1(X) \cap r_2(X) = r_1(X) - (r_1(X) - r_2(X))
+\end{equation*}
+\subsection*{Differenza}
+
