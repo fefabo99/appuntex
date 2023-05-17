@@ -23,7 +23,7 @@ luogo a espressioni algebriche di complessità arbitraria.\\
 \section{Operatori insiemistici}
 Le relazioni sono insiemi e quindi è possibile applicare gli operatori insiemistici,
 è fondamentale sapere che è possibile applicare queste operazioni \textbf{solo a relazioni
-definite sugli stessi attributi}.
+    definite sugli stessi attributi}.
 \subsection*{Unione}
 L'unione di due relazioni $r_1$ e $r_2$ è la relazione che contiene le tuple
 che appartengono ad $r_1$ oppure ad $r_2$, oppure ad entrambe.\\
@@ -37,4 +37,48 @@ differenza:
     r(X) = r_1(X) \cap r_2(X) = r_1(X) - (r_1(X) - r_2(X))
 \end{equation*}
 \subsection*{Differenza}
+La differenze di due relazioni $r_1(X)$ e $r_2(X)$ definite su un insieme di attributi
+X è la relazione $r(X) = r_1(X) - r_2(X)$ che contiene le tuple che appartengono a $r_1(X)$, ma
+non a $r_2(X)$.\\
+La differenza NON è commutativa.\\
+\subsection*{Operatori insiemistici e valori nulli}
+Gli operatori insiemistici sono definiti anche per relazioni che contengono valori nulli.\\
+\section{Operatorri unari}
+\subsection{Operatore di ridenominazione}
+Per poter applicare operazioni insiemistiche come unione, intersezione, differenza a relazioni
+su attributi in parte diversi è necessario ridenominare attributi, in modo da uniformare
+i nomi. Questo viene fatto dall'operatore ridenominazione.\\
+Si tratta di un operatore monadico (cioè un solo argomento) che modifica lo schema lasciando
+inalterata l'istanza dell'operando. Cambia quindi il nome dell'attributo, ma non il valore.
+\paragraph*{Sintassi} Si indica con $\rho_{y \leftarrow x}(r)$ o 
+$\text{REN}_{y \leftarrow x}(r)$, dove x è
+il nome originale dell'attributo, mentre y è quello nuovo. L'operatore è sempre seguito dal
+nome della relazione che stiamo considerando.\\
+\'E possibile rinominare più attributi, in questo caso è importante l'ordine degli attributi
+dato che la sintassi sarà la seguente:
+\begin{equation*}
+    \rho_{y1, y_2 \leftarrow x_1, x_2}(r)
+\end{equation*}
+\paragraph*{Esempio}
+\begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Padre} & \textbf{Figlio} \\
+    \hline
+    Adamo          & Abele           \\
+    \hline
+    Adamo          & Caino           \\
+    \hline
+\end{tabular}
+$\text{REN}_{\text{Genitore}\leftarrow\text{Padre}}(\text{Paternità})$
+\begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{Genitore} & \textbf{Figlio} \\
+    \hline
+    Adamo          & Abele           \\
+    \hline
+    Adamo          & Caino           \\
+    \hline
+\end{tabular}\\
+Questa operazione è fondamentale per poter effettuare operazioni insiemistiche tra
+relazioni con attributi diversi, in questo modo possiamo uniformare i nomi degli attributi.
 
