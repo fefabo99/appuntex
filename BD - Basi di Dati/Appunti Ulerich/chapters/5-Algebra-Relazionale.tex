@@ -88,5 +88,96 @@ Permette di selezionare un sottoinsieme delle ennuple, producendo un risultato c
     \item Contiene un sottoinsieme delle ennuple dell'operando
     \item Contene le ennuple che soddisfano una condizione espressa dall'operatore
 \end{itemize}
+\paragraph*{Sintassi} $\sigma_{\text{condizione}}(r) \\$
+\paragraph*{Sintassi altenativa}$\text{SEL}_{\text{condizione}}(r)$
+Data una relazione r(X) è una formula ottenuta combinando con i connettivi OR, AND e NOT
+condizioni atomiche del tipo:
+\begin{itemize}
+    \item CONFR è un operatore di confronto ($=, <, >, \geq, \leq$)
+    \item A e B sono attributi in X sui cui valori CONFR abbia senso
+    \item c'è una costante per cui il confronto CONFR sia definito
+\end{itemize}
+Il risultato contien ele ennuple dell'operando che soddisfano la condizione (cioè su cui
+la condizione è vera).
+\paragraph*{Esempi} Impiegato che:
+\begin{itemize}
+    \item Guadagnano più di 50 - STIPENDIO > 50
+    \item Guadagnano più di 50 e lavorano a Milano - STIPENDIO > 50 AND FILIALE = 'Milano'
+    \item Hanno un cognome uguale al nome della filiale presso cui lavorano - COGNOME = FILIALE
+\end{itemize}
+Tradotto in Query in Algebra Realzionale: $\text{SEL}_{\text{Stipendio} > 50}(\text{Impiegati})$,
+lo stesso per le altre query, la parte scritta andrà sostituita nella parte condizione (sotto il SEL).
+\subsection*{Selezione con valori nulli}
+La condizione atomica è vera solo per valori non nulli.\\
+Se per esempio effettuo una SEL su una tabella con valori nulli, e la condizione seleziona
+tutti gli attributi (es. $\text{SEL}_\text{Età}>30 \cup \text{SEL}_\text{Età}\leq30$) 
+il risultato sarà una tabella diversa da quella di partenza, perchè le condizioni atomiche
+vengono valutate separatamente e i valori nulli non sono valori che possiamo confrontare con un numero
+dato che rappresentano un valore di verità intermedio tra vero e falso. Anche inserendo tutto in una
+unica SEL il risultato sarebbe il medesimo, quindi senza valori nulli. \\
+Per questo esistono gli operatori \textbf{IS NULL e IS NOT NULL}. Per avere la tabella iniziale
+per l'esempio Persone basterebbe quindi unire la precedente SEL con la seguente: 
+$\text{SEL}_\text{Età IS NULL}(\text{Persone})$. In questo modo otteniamo la
+stessa relazione di partenza dato che consideriamo anche i valori NULL.
 
+\section{Proiezione}
+Si occupa di selezionare solo alcune delle colonne della tabella presa in considerazione. \\
+Per fare un confronto con il SEL:
+\begin{itemize}
+    \item SEL è un operatore ortogonale di decomposizione orizzontale, infatti
+    riduce il numero di righe
+    \item PROJ è un operatore ortogonale di decomposizione verticale, infatti
+    riduce il numero di colonne
+\end{itemize}
+Si tratta anche in questo caso di un operatore monadico.
+\paragraph*{Sintassi} $\text{PROJ}_{\text{lista di attributi}}(\text{Operando})$, il risultato
+conterrà le ennuple dell'perando ristrette ai soli attributi nella ListaAttributi.
+\subsection*{Proiezione e Valori Null}
+Proiezione, unione e differenza continuano a comportarsi usualmente quindi due tuple sono uguali
+anche se ci sono dei NULL. \\
+Dato che una relazione è un insieme e un insieme non ha elementi uguali il risultato
+della PROJ non conterrà ennuple uguali, esse saranno scartate.
+\subsection*{Cardinalità delle proiezioni}La cardinalità di una relazione è il numero delle sue ennuple e
+si indica con $|R|$.\\
+Una proiezione:
+\begin{itemize}
+    \item Contiene al più tante ennuple quante l'oerando
+    \item Può anche contenerne di meno (come spiegato in precedenza)
+\end{itemize}
+Vale la proprietà che \textbf{se X è una superchiave di R, allora  $\text{PROJ}_X(R)$} contiene
+esattamente tante ennuple quante R.\\
+Per la definizione di superhciave ogni superchiave compare una sola volta nella relazione.\\
+\subsection*{Selezione e Proiezione}
+Combinando selezione e proiezione possiamo estrarre interessanti informazioni da una realzione
+\paragraph*{Esempio}
+\begin{table}[]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    Matricola & Cognome & Filiale & Stipendio \\ \hline
+    7309      & Neri    & Napoli  & 55        \\ \hline
+    5998      & Neri    & Milano  & 64        \\ \hline
+    9553      & Rossi   & Roma    & 44        \\ \hline
+    5698      & Rossi   & Roma    & 64        \\ \hline
+    \end{tabular}
+\end{table}
+Ci viene richiesto matricola e cognome degli impiegati che guadagnano più di 50:
+\paragraph*{Soluzione}
+\begin{equation*}
+    \text{PROJ}_{\text{Matricola, Cognome}}(\text{SEL}_{\text{Stipendio} > 50}(\text{Impiegati}))
+\end{equation*}
+Inserisco quindi come argomento della PROG la SEL delle tuple richieste. Combinando questi due
+operatori posso estrarre informazioni da una relazione. Non possiamo però correlare,
+mettere insieme informazioni presenti in relazioni diverse, per questo esiste il JOIN.
 
+\section{Join}
+Il Join è senz'altro l'operatore più interessante dell'algebra relazionale dato che permette
+di correlare, mettere insieme, integrare dati che si trovani in relazioni diverse. Ci sono
+diversi tipi di Join, partiamo da quello naturale.
+\subsection*{Join naturale}
+Operatore binario (generalizzazione), produce un risultato sull'unione degli attributi
+degli operandi con ennuple costruitre ciascuna a partire da una ennupla di ognuno degli operandi.
+\paragraph*{Sintassi} Date due relazioni $R_1(X_1)$ e $R_2(X_2)$, $R_1 \text{JOIN} R_2$ è una
+relazione su $X_1, X_2$. Contribuiscono quindi le ennuple che hanno gli stessi valori negli attributi
+comuni. Quando ogni ennupla contribuisce al risultato si dice \textbf{Join completo}.\\
+Un Join è non completo quando ci sono attributi sulle due relazioni che non corrispondono fra di loro. Se
+nessun attributo trova una corrispondenza si ottiene un Join vuoto.
