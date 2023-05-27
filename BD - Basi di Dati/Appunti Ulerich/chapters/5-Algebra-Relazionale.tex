@@ -181,3 +181,15 @@ relazione su $X_1, X_2$. Contribuiscono quindi le ennuple che hanno gli stessi v
 comuni. Quando ogni ennupla contribuisce al risultato si dice \textbf{Join completo}.\\
 Un Join è non completo quando ci sono attributi sulle due relazioni che non corrispondono fra di loro. Se
 nessun attributo trova una corrispondenza si ottiene un Join vuoto.
+\subsection*{Cardinalità del Join}
+\begin{enumerate}
+    \item Il Join di $R_1$ e $R_2$ contiene un numero di ennuple compreso fra zero e il prodotto di $|R_1|$
+    e $|R_2|$
+    \item Se il Join coinvolge una chiave di $R_2$ allora il numero di ennuple è compreso fra zero e $|R_1|$.
+    \item Se B è chiave in $R_2$ ed esiste vincolo di integrità referenziale fra
+    B (in $R_1$) e $R_2$, allora il numero di ennuple è uguale a $|R_1|$\\ $|R_1 \,\text{JOIN}\, R_2| = |R_1|$
+\end{enumerate}
+Il Join è commutativo e associativo.\\
+Il Join naturale non combina due tuple se queste hanno entrambe valore nullo su un attributo in
+comune
+ 
