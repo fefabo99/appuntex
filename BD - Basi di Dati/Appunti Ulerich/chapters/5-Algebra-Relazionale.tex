@@ -180,7 +180,8 @@ degli operandi con ennuple costruitre ciascuna a partire da una ennupla di ognun
 relazione su $X_1, X_2$. Contribuiscono quindi le ennuple che hanno gli stessi valori negli attributi
 comuni. Quando ogni ennupla contribuisce al risultato si dice \textbf{Join completo}.\\
 Un Join è non completo quando ci sono attributi sulle due relazioni che non corrispondono fra di loro. Se
-nessun attributo trova una corrispondenza si ottiene un Join vuoto.
+nessun attributo trova una corrispondenza si ottiene un Join vuoto.\\
+Il join si indica anche con $\bowtie$.
 \subsection*{Cardinalità del Join}
 \begin{enumerate}
     \item Il Join di $R_1$ e $R_2$ contiene un numero di ennuple compreso fra zero e il prodotto di $|R_1|$
@@ -191,5 +192,65 @@ nessun attributo trova una corrispondenza si ottiene un Join vuoto.
 \end{enumerate}
 Il Join è commutativo e associativo.\\
 Il Join naturale non combina due tuple se queste hanno entrambe valore nullo su un attributo in
-comune
+comune (e valori uguali sugli eventuali altri attributi comuni).
+\subsection*{Proprietà del Join}
+In assenza di valor nulli l'intersezione di $r_1$ e $r_2$ si può esprimere
+\begin{itemize}
+    \item mediante il join naturale $r_1 \cap r_2 = r_1 \text{JOIN} r_2$ oppure
+    \item sfruttando l'uguaglianza $r_1 \cap r_2 = r_1 - (r_1 - r_2)$
+\end{itemize}
+In presenza di valori nulli, dalle definizioni date si ha che:
+\begin{itemize}
+    \item nel primo caso il risultato non contiene tuple con valori nulli 
+    \item nel secondo caso, viceversa, tali tuple compaiono nel risultato
+\end{itemize}
+Nel Join naturale le ennuple che non contribuiscono al risultato vengono tagliate fuori, per
+questo viene utilizzato il JOIN esterno.
+\subsection*{Join esterno}
+Il Join esterno estende, con valori nulli, le ennuple che verrebbero escluse da un join del tipo
+precedente (interno). Esiste in tre versioni:
+\begin{itemize}
+    \item Sinistro $=\bowtie$
+    \item Destro $\bowtie=$
+    \item Completo $=\bowtie=$
+\end{itemize}
+\paragraph*{Sinistro $\rightarrow$ LEFT} mantiene tutte le ennuple del primo operando, estenendole
+con valori nulli, se necessario.
+\paragraph*{Destro $\rightarrow$ RIGHT} mantiene tutte le ennuple del secondo operando, estenendole
+con valori nulli se necessario.
+\paragraph*{Completo $\rightarrow$ FULL} mantiene tutte le ennuple di entrambi gli operandi
+estendendole con valori nulli se necessario.
+\subsection*{Prodotto Cartesiano}
+Un Join naturale su relazioni che non hanno attributi in comune restituisce un'istanza di 
+relazione il cui schema contiene tutti i campi di R (nell'ordine originale) seguiti da tutti
+i campi di S (nell'ordine originale). Contiene sempre un numero di ennuple pari al prodotto delle
+cardinalità degli operandi (le ennuple sono tutte combinabili).\\
+Il prodotto cartesiano ha senso solo se seguito da selezione (dato che produce dati non reali associando
+anche tuple tra loro sconnesse a livello semantico). Questa operazione viene chiamata \textbf{theta-join}.
+\subsection*{Theta-join}
+L'operazione Theta-join viene indicata con $R_1 \,\, \text{JOIN}_{\text{Condizione}}R_2$.\\
+La condizione C è spesso una congiunzione AND di atomi di confronto $A_1 \theta A_2$ dove $\theta$ è un
+operatore di confronto (>, <, =, $\leq$, $\geq$, $\neq$).\\
+Se l'operatore è sempre l'uguaglianza (=) allora si parla di equi-join.\\
+\subsection*{Join naturale e Theta-join}
+Così come è stato definito, il theta-join richiede in ingresso relazioni con schemi disgiunti,
+mentre in diversi libri di testo, lavori scientifici e anche nei DBMS viceversa il theta-join 
+accetta relazioni con schemi arbitrati e prende il posto del join naturale, ossia tutti i predicati
+del join vengono esplicitati. In questo caso per garantire l'univocità degli attributi nello schema
+risultato è necessario ridenominare gli attributi sovrapposti in una delle relazioni o adottare
+dei trucchi.\\
+Il join naturale utilizza implicitamente i nomi degli attributi per stabilire la condizione,
+l'equijoin li indica esplicitamente. I DBMS tipicamente non permettono il join naturale
+(solo ultime versioni di SQL lo permettono), però possiamo simularlo per mezzo di altri operatori.
+\subsection*{Join e Intersezione}
+Quando le due relazioni hanno lo stesso schema ($X_1 = X_2$) allora due tuple fanno match
+se e solo se hanno lo stesso valore per tutti gli attributi, ovvero sono identiche, per cui
+se $X_1 = X_2$ il join naturale equivale all'intersezione delle due relazioni.
+\subsection*{Join e ridenominazione}
+Per eseguire il Join di una relazione con se stessa in modo significativo bisogna usare la
+ridenominazione.\\ $r(X) \,\, \text{JOIN} \,\,r(X) = r(X)$.\\
+\subsection*{interrogazioni in algebra relazionale}
+Dato uno schema R di base di dati, una interrogazione è una funzione che per ogni istanza r di R
+produce una relazione su un dato insieme di attributi X.
+
  
