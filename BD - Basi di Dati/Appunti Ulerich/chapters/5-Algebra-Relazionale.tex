@@ -249,8 +249,62 @@ se $X_1 = X_2$ il join naturale equivale all'intersezione delle due relazioni.
 \subsection*{Join e ridenominazione}
 Per eseguire il Join di una relazione con se stessa in modo significativo bisogna usare la
 ridenominazione.\\ $r(X) \,\, \text{JOIN} \,\,r(X) = r(X)$.\\
-\subsection*{interrogazioni in algebra relazionale}
-Dato uno schema R di base di dati, una interrogazione è una funzione che per ogni istanza r di R
-produce una relazione su un dato insieme di attributi X.
 
- 
+\section{Interrogazioni in algebra relazionale}
+Dato uno schema R di base di dati, una interrogazione è una funzione che per ogni istanza r di R
+produce una relazione su un dato insieme di attributi X.\\
+\'E importante definire una metodologia per effettuare le Query per poter trasformare richieste verbali 
+in algebra relazionale.
+\paragraph*{Metodologia}
+\begin{enumerate}
+    \item Individua le relazioni coinvolte nella specifica dell'interrogazione, attraverso gli attributi citati e le
+    condizioni
+    \item Individua i tipi di operazioni necessarie
+    \item Individua un possibile ordinamento delle operazioni che porta ad ottenere il risultato
+    richiesto
+\end{enumerate}
+Se si hanno le tabelle sott'occhio è una buona idea effettuare l'interrogazione visivamente
+per un solo attributo.\\
+L'ordine delle operazioni è importante! Scambiando l'ordine di alcune operazioni potremmo ottenere
+espressioni non funzionanti.\\
+Esercitarsi rifacendo e capendo le query delle slide è un ottimo allenamento per assimilare
+questi concetti.\\
+In algebra relazionale non sono previsti i quantificatori universali, manca per esempio l'equivalente di tutti, in Questi
+casi è necessario rivedere la query e riformularla in modo tale da poterla esprimere in algebra relazionale, per esempio
+esprimendo "tutti guadagnao più di n" come "almeno uno guadagna meno di n, oppure n", esprimendo
+così l'operazione tramite differenza insiemistica.
+\section{Le viste}
+Si tratta di una relazione temporanea, paragonabile a una variabile definita a run time, che alla fine della
+query non esiste più. Possono risultare molto comode per salvare risultati intermedi che poi andremo
+a riutilizzare anche per altre query, in questo modo non dovremo più ricalcolare qulla query.
+\paragraph*{Sintassi} NomeVista = Query
+\section{Plus teorici}
+\subsection{Rappresentazione delle espressioni tramite alberi}
+Ogni espressione dell'algebra relazionale può essere rappresentata tramite un albero, in questo modo
+rappresentiamo l'ordine di valutazione degli operatori. Ogni operatori corrisponde
+ad un nodo, quindi gli operaetori unari hanno solo un ramo in ingrasso e uno in uscita, mentre
+quelli binari hanno 2 rami in entrata e 1 in uscita, la radice è in alto.\\
+\subsection{Equivalenza di espressioni}
+Due espressioni sono equivalenti se producono lo stesso risultato.
+\begin{itemize}
+    \item Possono essere assolute se non dipendono dallo schema
+    \item Oppure possono dipendere dallo schema
+\end{itemize}
+I risultati di due Query equivalenti sono sempre equivalenti, ma la scelta non è 
+indifferente in termini di risorse necessarie, i risultati più interessanti sono quelli che
+permettono una riduzione dei risultati intermedi portando a una semplificazione dell'espressione.
+\section{Regole base equivalenza}
+\begin{itemize}
+    \item Il Join naturale è commutativo e associativo
+    \item Selezione e proiezione si possono raggruppare
+    \item Selezione e proiezioone commutano
+    \item Push down della selezione rispetto al join
+\end{itemize}
+\section{Riassunto simboli}
+\begin{itemize}
+    \item Select - $\sigma$
+    \item Proiezione - $\pi$ 
+    \item Rename - $\rho$
+    \item JOIN - $\bowtie$
+    \item Prodotto cartesiano - $\times$
+\end{itemize}
