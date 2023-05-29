@@ -1,0 +1,83 @@
+\chapter{Progettazione Logica}
+A livello concettuale è la fase intermedia tra la progettazione concettuale e la progettazione fisica.
+Essa ha diverse fasi:
+\begin{itemize}
+    \item Richiede di scegliere il modello dei dati - Relazionale
+    \item Obiettivo - Definizione di uno schema logico relazionale corrispondente allo
+    schema ER di partenza
+    \item Aspetti importanti - Semplificazione dello schema per renderlo rappresentabile
+    mediante il modello relazionale, ottimizzandolo per aumentare l'efficienza delle
+    interrogazioni
+\end{itemize}
+L'obiettivo primarioè quello di tradurre lo schema concettuale in uno schema logico
+che rappresenti gli stessi dati in maniera corretta ed efficiente.\\
+\paragraph*{Dati in ingresso}
+\begin{itemize}
+    \item Schema concettuale
+    \item Informazioni sul carico applicativo
+    \item Modello logico
+\end{itemize}
+\paragraph*{Dati in uscita}
+\begin{itemize}
+    \item Schema logico
+    \item Documentazione associata
+\end{itemize}
+Non si tratta di una pura e semplice traduzione, dato che alcuni aspetti non
+sono direttamente rappresentabili.
+\paragraph*{Esempi} 
+\begin{itemize}
+    \item Entità $\rightarrow$ Relazione del modello relazionale con gli 
+    stessi attributi.
+    \item Generalizzazione $\rightarrow$ Dipende dalla situazione!
+\end{itemize}
+Risulta anche necessario considerare le prestazioni.\\
+Qui di seguito lo schema riassuntivo conversione ER $\rightarrow$ Modello relazionale.\\
+\begin{table}[h]
+    \centering
+    \vspace{10pt}
+    \caption*{Schema riassuntivo conversione ER - Modello relazionale}
+    \begin{tabular}{|c|c|}
+        \hline
+        \textbf{Modello ER} & \textbf{Modello relazionale}\\
+        \hline
+        Entità & Relazione (tabella)\\
+        \hline
+        Relazione & Riferimento (chiave esterna)\\
+        \hline  
+        Attributo semplice & Attributo (campo)\\
+        \hline
+        Attributo multivalore & Non presente\\
+        \hline
+        Generalizzazione & Non presente (conversione in diverse modalità)\\
+        \hline
+    \end{tabular}
+\end{table}
+\section{Ristrutturazione dello schema ER}
+Eliminazione dallo schema E/R di tutti i costrutti che non possono
+essere direttamente rappresentati nel modello logico target (relazionale nel
+nostro caso).
+\begin{itemize}
+    \item Eliminazione attributi multivalore
+    \item Eliminazione generalizzazioni
+\end{itemize}
+Inoltre:
+\begin{itemize}
+    \item Partizionamento/Accorpamento di entità associazioni
+    \item Scelta degli identificatori primari
+    \item Analisi ridondanze (non dovrebbero esserci)
+\end{itemize}
+L'obiettivo è quello di semplificare la traduzione e ottimizzare le prestazioni,
+teniamo presente che uno schema E-R ristrutturato non è più uno schema concettuale nel senso stretto
+del termine.\\
+Per ottimizzare il risultato abbiamo bisogno di analizzare le prestazioni a questo livello, ma
+le prestazioni non sono valutabili con precisione su uno schema concettuale, dipendono dalle
+caratteristiche del DBMS, dal volume dei dati e dalla caratteristiche delle operazioni.\\
+\subsection*{Indicatori dei parametri di prestazioni}
+Consideriamo indicatori dei parametri che regolano le prestazioni:
+\begin{itemize}
+    \item spazio: numero di occorrenze previste
+    \item tempo: numero di occorrenze (di entità e relationship) viste durante un'operazione
+\end{itemize}
+\subsection{Carico applicativo}
+
+
