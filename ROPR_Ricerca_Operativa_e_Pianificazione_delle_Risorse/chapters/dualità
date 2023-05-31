@@ -1,24 +1,18 @@
 \chapter{Dualità}
-Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale},
-è associato un problema chiamato \textbf{Duale}.
-La soluzione ottimale del problema Duale fornisce i \textbf{prezzi ombra} del problema Primale.
+Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale}, è associato un problema chiamato \textbf{Duale}. La soluzione ottimale del problema Duale fornisce i \textbf{prezzi ombra} del problema Primale.
 
 \paragraph*{Il Prezzo Ombra}
-Il \emph{prezzo ombra} per la risorsa $i-$esima ($y_i^*$) misura il valore marginale della risorsa, cioè,
-il tasso al quale la funzione obiettivo $z$ potrebbe essere incrementata aumentato (leggermente) la quantità di risorsa $b_i$ disponibile.
-Il metodo del simplesso identifica il prezzo ombra $y_i^*$ come segue:
+Il \emph{prezzo ombra} per la risorsa $i-$esima ($y_i^*$) misura il valore marginale della risorsa, cioè, il tasso al quale la funzione obiettivo $z$ potrebbe essere incrementata aumentato (leggermente) la quantità di risorsa $b_i$ disponibile. Il metodo del simplesso identifica il prezzo ombra $y_i^*$ come segue:
 \begin{center}
     $y_i^* =$ coefficente della $i-$esima variabile slack nella riga 0 del tableau finale. 
 \end{center}
-%DA SPOSTARE IN METODO DEL SIUMPLESSO
+%DA SPOSTARE IN METODO DEL SIMPLESSO
     
-
-\paragraph{Analisi di Sensitività} La teoria della Dualità permette l'implementazione l'e interpretazione dell'analisi di sensitività.
+\paragraph{Analisi di Sensitività} La teoria della Dualità permette l'implementazione e l'interpretazione dell'analisi di sensitività.
 \\L'Analisi di Sensitività è una tecnica che permette di decidere i valori di alcuni parametri di un problema di PL.
 
 \section{Da Primale a Duale}
 Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
-
 \begin{center}
 \includegraphics[width=0.7\textwidth]{img/dualità1.jpg}
 \end{center}
@@ -66,11 +60,8 @@ Se un problema ha:
 \end{itemize}
 
 \section{Gli Scarti Complementari}
-Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima},
-posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.
-
-Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima,
-anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
+Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima}, posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.\\
+Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima, anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
 
 \subsection{Come funziona}
 Se ho una soluzione del primale, controllo che sia ottima e trovo la corrispondente soluzione ottima del duale:
