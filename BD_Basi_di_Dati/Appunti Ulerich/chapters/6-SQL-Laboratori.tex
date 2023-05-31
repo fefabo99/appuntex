@@ -10,20 +10,193 @@ Esistono 3 livelli di conformità:
   \item Entry level: molto simile a SQL-89
   \item Intermediate level: versione che soddisfa le esigenze di mercato
   \item Full level: versione completa anche delle funzioni avanzate che non sono realizzate
-  in alcun DBMS
+        in alcun DBMS
 \end{itemize}
 La maggior parte dei database è conforme solo all'entry level.\\
 Alcune famose implementazioni di SQL sono:
 \begin{itemize}
-    \item ORACLE
-    \item DB2 (IBM)
-    \item Access (Microsoft)
-    \item MSSQL server (Microsoft)
-    \item MySQL
-    \item Firebird
+  \item ORACLE
+  \item DB2 (IBM)
+  \item Access (Microsoft)
+  \item MSSQL server (Microsoft)
+  \item MySQL
+  \item Firebird
 \end{itemize}
-\section{SQL e Algebra Relazionale}
-SQL è relazionalmente completo: ogni espressione logica può essere tradotta in SQL. 
+\section{Confronto con Algebra Relazionale e Istruzioni principali}
+\subsection{SQL e Algebra Relazionale}
+SQL è relazionalmente completo: ogni espressione logica può essere tradotta in SQL.
 Viene adottata la logica dei 3 valori (T, F, U) dell'Algebra relazionale (U = Unknown).\\
 Il modello dati di SQL è basato su tabelle anzichè relazioni (possono essere presenti righe duplicate).\\
-SQL è computazionalmente completo, ha istruzioni di controllo.
+SQL è computazionalmente completo, ha istruzioni di controllo.\\
+\paragraph*{Logica a 3 valori} Logica che utilizza:
+\begin{itemize}
+  \item True
+  \item False
+  \item Unknown
+\end{itemize}
+Che segue la seguente tabella di verità
+\begin{table}[h]
+  \centering
+  \caption{SQL Three-Value Logic Truth Table}
+  \begin{tabular}{|c|c|c|c|}
+    \hline
+    \textbf{Value 1} & \textbf{Value 2} & \textbf{AND} & \textbf{OR} \\
+    \hline
+    TRUE             & TRUE             & TRUE         & TRUE        \\
+    \hline
+    TRUE             & FALSE            & FALSE        & TRUE        \\
+    \hline
+    TRUE             & UNKNOWN          & UNKNOWN      & TRUE        \\
+    \hline
+    FALSE            & TRUE             & FALSE        & TRUE        \\
+    \hline
+    FALSE            & FALSE            & FALSE        & FALSE       \\
+    \hline
+    FALSE            & UNKNOWN          & FALSE        & UNKNOWN     \\
+    \hline
+    UNKNOWN          & TRUE             & UNKNOWN      & TRUE        \\
+    \hline
+    UNKNOWN          & FALSE            & FALSE        & UNKNOWN     \\
+    \hline
+    UNKNOWN          & UNKNOWN          & UNKNOWN      & UNKNOWN     \\
+    \hline
+  \end{tabular}
+\end{table}
+
+\subsection{Istruzioni principali DDL}
+Operazioni di definizione schema e modifica
+\begin{itemize}
+  \item CREATE - Definisce database, tabelle, domini, viste, vincoli e autorizzazioni
+  \item ALTER - Modifica attributi e vincoli
+  \item DROP - Elimina database e tabelle
+\end{itemize}
+\subsection{Istruzioni principali DML}
+Operazione di interrogazione: SELECT. Formula Query come nell'AR o anche
+richieste più elaborate.\\
+\subsection*{Aggiornamento}
+\begin{itemize}
+  \item INSERT - Inserisce nuove tuple nelle tabelle
+  \item DELETE - Elmina tuple nelle tabelle
+  \item UPDATE - Modifica tuple
+\end{itemize}
+Queste ultime possono basarsi sul risultato di una query.
+\subsection{SQL è dichiarativo}
+Essendo principalmente dichiarativo non possiamo scegliere l'ordine in cui
+avvengono le operazioni è necessario attenersi alla struttura sintattica delle
+istruzioni.
+\subsection{Notazione SQL}
+\begin{itemize}
+  \item Termini del linguaggio in MAIUSCOLO
+  \item Termini variabili (specificati dall'utente) in minuscolo
+  \item <x> usate per isolare un termine x
+  \item [x] indicano che il parametro è opzionale
+  \item | seprara opzioni alternative
+\end{itemize}
+
+\subsection{Primo esempio di Query}
+\begin{lstlisting}[language=SQL]
+  SELECT ListaAttributi
+  FROM ListaTabelle
+  [WHERE Condizione]
+\end{lstlisting}
+Dove SELECT e FROM sono obbligatori, mentre WHERE è opzionale (in realtà c'è praticamente
+sempre in quanto serve per filtrare i risultati).\\
+\section{SQL-DDL}
+Uno schema di base di dati è una collezione di oggetti: domini, tabelle,
+asserzioni, viste, privilegi. La sintassi è la seguente:
+\begin{lstlisting}[language=SQL]
+  CREATE SCHEMA 
+    [Nome Schema]
+    [[AUTHORIZATION] Autorizzazione]
+    {DefinizioneElementoSchema}
+\end{lstlisting}
+Nome schema se omesso indica l'utente che ha lanciato il comando, mentre
+autorizzazione è il proprietrio dello schema (utente che lo ha definito).\\
+\subsection{Tabelle}
+Tramite CREATE TABLE si definisce una tabella. Una tabella non è altro che uno
+schema di relazione, con CREATE viene creata un'istanza vuota.
+\begin{lstlisting}[language=SQL]
+  CREATE TABLE NomeTabella
+    (NomeAttributo1 TipoDominio1 [Valore di Default] [Vincolo1],
+    NomeAttributo2 TipoDominio2 [Valore di Default] [Vincolo2],
+    ...
+    [AltriVincoli])
+\end{lstlisting}
+In questo ambito parleremo di tabelle e non di relazioni, e di righe e non di tuple,
+perchè rispetto al modello relazionale possiamo avere righe duplicate.\\
+Qui di seguito un esempio reale di definizione di tabella:
+\begin{lstlisting}[language=SQL]
+  CREATE TABLE Impiegato(
+    Matricola CHAR(6) PRIMARY KEY,
+    Nome CHAR(20) NOT NULL,
+    Cognome CHAR(20) NOT NULL,
+    Dipart CHAR(15),
+    Stipendio NUMERIC(9) DEFAULT 0,
+    FOREIGN KEY(Dipart) REFERENCES
+    Dipartimento(NomeDip),
+    UNIQUE (Cognome,Nome)
+)
+\end{lstlisting}
+\subsection{Definizione dei Dati: I Domini}
+I domini specificano i vlori ammessi da ciascun attributo. SQL ha 
+6 domini elementari predefiniti:
+\begin{itemize}
+  \item Carattere- VARCHAR - Stringa di lunghezza variabile tra 0 e n
+  \item Numerico Esatto - INTEGER, SMALLINT, NUMERIC
+  \item Numerico Approssimato - FLOAT, REAL, DOUBLE PRECISION
+  \item Data/Ora TIMESTAMP, DATE, TIME
+  \item Intervallo Temporale
+  \item Bit (SQL-2) - BOOLEAN (SQL-3) - con dominio 0,1
+\end{itemize}
+Bit è stato poi eliminato e sostituito parzialmente da BOOLEAN in SQL-3\\
+L'utente pu definire dei domini custom (semplici, ma riutilizzabili).\\
+\paragraph*{BLOB, CLOB} sono oggetti di grandi dimensioni, costituiti da binari (BLOB)
+o caratteri (CLOB), vengono memorizzati in maniera differente dagli altri dati e sono usati per memorizzare
+informazioni non strutturate (immagini, video, testi\dots).\\
+\subsection{Il tipo Bit}
+Utilizzato spesso per definire se è presente o meno una certa proprietà, dato
+che si tratta di un BOOLEAN.
+\subsection{Carattere}
+Si indica:
+\begin{lstlisting}[language=SQL]
+  CHAR(n) - Stringa di lunghezza fissa n
+  VARCHAR(n) - Stringa di lunghezza variabile tra 0 e n
+\end{lstlisting}
+\subsection{Numerici Esatti}
+Rappresentano numeri interi o numeri decimali in virgola fissa (con un numero prefissato
+di decimali, come per i valori monetari). Precisionè il numero di cifre significative,
+scala il numero di cifre dopo la virgola.\\
+\begin{itemize}
+  \item INTEGER/SMALLINT rappresentano valori interi - La precisione varia a seconda della
+  specifica implementazione di SQL, SMALLINT richiede meno spazio di memorizzazione
+  \item NUMERIC/DECIMAL rappresentano valori decimali - La differenza fra questi due è che
+  il primo deve essere implementato esattamente con la precisione richiesta, mentre il secondo
+  può avere una precisione maggiore.
+\end{itemize}
+\subsection{Numerici Approssimati}
+Sono utili per rappresentare valori reali approssimati, ad esempio grandezze
+fisiche (rappresentazione in virgola mobile, in cui a ciascun numero corrisponde
+una coppia di valori: mantissa e esponente).\\
+REAL e DOUBLE PRECISION rappresentano valori a singola/doppia precisione in virgola
+mobile. FLOAT permette di richiedere la precisione che si desidera.
+\subsection{Data e Ora}
+Permettono di descrivere informazioni temporali, rappresentando istanti di tempo:
+\begin{itemize}
+  \item DATE rappresenta le date espresse come anno (4 cifre), mese (2 cifre) e giorno (2 cifre)
+  - DATE 'yyyy-mm-dd'
+  \item TIME [WITH TIME ZONE] rappresenta l'ora del giorno, espressa come ora (2 cifre), 
+  minuti (2 cifre) e secondi (2 cifre)
+  \item TIMESTAMP
+\end{itemize}
+Ciascuno di questi domini è strutturato e decomponibile in un insieme di campi 
+(anno, mese, giorno, ora, minuti, secondi).
+\subsection{Intervalli temporali}
+Permette di rappresentare intervalli di tempo come durate di eventi.\\
+INTERVAL rappresenta una durata temporale, esistono interval ani e mesi, oppure
+giorni e ore, ma non mesi e giorni poichè i mesi non hanno tutti lo stesso numero di
+giorni.
+\subsection*{CLOB e BLOB}
+Permettono di includere nel database oggetti molto grandi (come dati multimediali).
+Sono implementati come valore e non possono essere usati come criterio di selezione per le
+query.
+\subsection*{Domini definiti dall'utente}
