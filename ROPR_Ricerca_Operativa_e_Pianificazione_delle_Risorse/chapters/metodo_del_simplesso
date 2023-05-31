@@ -128,7 +128,7 @@ $z = \underline{c}^T \underline{x}$ diventa $z -( \underline{c}^T \underline{x})
 \end{center}
 
 
-\section{Il Metodo dele Due Fasi}
+\section{Il Metodo delle Due Fasi}
 
 In alcuni problemi di PL il punto $(0,0)$, ovvero l'origine, non è una soluzione ammissibile,
 quindi non può essere usata come \emph{Soluzione Ammissibile di Base} per il Metodo Del Simplesso.
@@ -136,3 +136,5 @@ quindi non può essere usata come \emph{Soluzione Ammissibile di Base} per il Me
 \paragraph{Come funziona?}
 Con questo metodo si risolve il problema di PL aggiungendo alla forma aumentata una variabile \emph{artificiale} che va ad "annullare" la variabile di slack (prima fase).
 La seconda fase consiste nel prendere la soluzione di base generata dalla prima fase e eseguire il metodo del simplesso partendo da lì.
+
+%TODO Finire il metodo delle due fasi
