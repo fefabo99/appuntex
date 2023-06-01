@@ -268,4 +268,64 @@ Utilizzato per definire vincoli complessi, sia intrarelazionali che interrelazio
   )
 \end{lstlisting}
 Per quanto riguarda invece i vincoli interrelazionali, si utilizza FOREIGN KEY e
-REFERENCES.
+REFERENCES.\\
+\paragraph*{FOREIGN KEY} Un vincolo di intergrità referenziale ("FOREIGN KEY") 
+fra gli attributi X di una relazione $R_1$ e un'altra relazione $R_2$ impone ai valori su X,
+in $R_1$ di comparire come vlaori della chiave primaria di $R_2$.\\
+Un vincolo di intergrità referenzialie fra gli attributi $X={A_1, A_2,...}$ di una
+tabella figlio interna e un'altra tabella padre esterna impone ai valori degli attributi X
+nella tabella Figlio di comparire come valori della chiave primaria nella Tabella Padre.\\
+Alcuni attributi della tabella figlio sono definiti come FOREIGN KEY e si devono riferire (REFERENCES)
+ad alcuni attributi della tabella padre che costituiscono una chiave (devono essere UNIQUE e NOT NULL, oppure
+PRIMARY KEY).\\
+I valori contenuti nella FOREIGN KEY devono essere sempre presenti nella tabella
+padre.\\
+La tabella Figlio viene anche definita \textbf{interna}, mentre quella Padre \textbf{esterna}.\\
+\paragraph*{Due sintassi} 
+\begin{enumerate}
+  \item Nella parte di definizione degli attributi con il costrutto sintattico
+  REFERENCES
+  \begin{lstlisting}
+    AttrFiglio CHAR(3) REFERENCES TabellaPadre(AttrPadre)
+  \end{lstlisting}
+  \item Oppure dopo le definizione degli attributi con i costrutti FOREIGN KEY e REFERENCES
+  \begin{lstlisting}
+    FOREIGN KEY (AttrFiglio) REFERENCES TabellaPadre(AttrPadre)
+  \end{lstlisting}
+\end{enumerate}
+Quando si hanno più attributi da riferire si utilizza sempre FOREIGN KEY e REFERENCES, se si
+omettono gli attributi destinazione, vengono assunti quelli della chiave primaria.
+\subsection{Aggiornamenti e Violazioni}
+Se viene eseguita un'operazione di aggiornamento che viola un vincolo di integrità referenziale
+la base di dati diventa non valida, per questo sono definite un insieme di politiche
+per evitare che questo accada. Per i vincoli di integrità SQL permette di
+scegliere delle reazioni da adottare in caso di violazioni, tali politiche vanno
+dichiarate nella dichiarazione DDL dello schema.\\
+Si possono introdurre violazioni operando sulle righe della tabella padre (esterna) o sulle righe
+della tabella efiglio (interna)
+\paragraph*{Modifiche Tabella Figlio}
+\begin{itemize}
+  \item Inserimento nuova riga
+  \item Modifica della FOREIGN KEY
+\end{itemize}
+Non venogno proposte delle reazioni, le operazioni vengono rifiutate
+\paragraph*{Tabella Padre}
+\begin{itemize}
+  \item Cancellazione riga
+  \item Modifica dell'attributo riferito
+\end{itemize}
+Vengono proposte diverse reazioni:
+\begin{itemize}
+  \item CASCADE - L'operazione modifica/cancellazione viene propagata alla tabella figlio (o tabella interna)
+  \item SET NULL - NULL nella tabella figlio in entrambi i casi
+  \item SET DEFAULT - default nella tabella figlio in entrambi i casi
+  \item NO ACTION - rifiutata in entrambi i casi
+\end{itemize}
+Le politiche di reazione possono essere definite in modo diverso per eventi di modifica/cancellazione
+\begin{lstlisting}[language=SQL]
+  Dipart CHARACTER(15) REFERENCES Dipartimento(NomeDip)
+    ON DELETE SET NULL
+    ON UPDATE CASCADE
+\end{lstlisting}
+Con CASCADE in pratica se effettuo una cancellazione cancello anche tutte le relazioni legati a quel valore,
+con NULL invece pongo a NULL la FOREIGN KEY, ma mentengo gli altri valori.
