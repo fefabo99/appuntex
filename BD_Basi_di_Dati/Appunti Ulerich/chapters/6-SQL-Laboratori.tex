@@ -195,8 +195,77 @@ Permette di rappresentare intervalli di tempo come durate di eventi.\\
 INTERVAL rappresenta una durata temporale, esistono interval ani e mesi, oppure
 giorni e ore, ma non mesi e giorni poichè i mesi non hanno tutti lo stesso numero di
 giorni.
-\subsection*{CLOB e BLOB}
+\subsection{CLOB e BLOB}
 Permettono di includere nel database oggetti molto grandi (come dati multimediali).
 Sono implementati come valore e non possono essere usati come criterio di selezione per le
 query.
-\subsection*{Domini definiti dall'utente}
+\subsection{Domini definiti dall'utente}
+\begin{lstlisting}[language=SQL]
+  CREATE DOMAIN Voto AS SMALLINT
+    DEFAULT 0
+    CHECK (VALUE >= 18 AND VALUE <= 30)
+\end{lstlisting}
+Possono mettere vincoli puù o meno utili.\\
+Al contrario dei meccanismi di definizione dei tipi nei linguaggi di programmazione,
+SQL-2 non mette a disposizione dei costruttori di dominio come record o array. Questa 
+caratteristica deriva dal modello relazionale dei dati il quale richiede che ogni
+attributo sia definito su un dominio elementare.
+\subsection{Valori di Deafult}
+Definiscono il valore che deve assumere l'attributo quando non viene specificato 
+un valore durante l'inserimento di una tupla.\\
+DEFAULT $<$ ValoreGenerico | user | null $>$
+\begin{itemize}
+  \item ValoreGenerico rappresenta un valore compatibile con il dominio,
+  rappresentato come una costante o come un’espressione.
+  \item user è l’identificativo dell’utente che effettua il comando di
+  aggiornamento della tabella.
+  \item null è il valore di DEFAULT di base.
+\end{itemize}
+\subsection{Il valore NULL}
+\'E un valore polimorfico che appartiene a tutti i domini con il significato di valore
+non noto.
+\begin{itemize}
+  \item Il valore esiste ma non è noto al database
+  \item Il valore è inapplicabile (es. numero patente per minorenni)
+  \item Non si sa se il valore è inapplicabile o meno (es. numero patente per un maggiorenne)
+\end{itemize}
+\subsection{Vincoli di Integrità}
+Un vincolo è una regola che specifica delle condizioni sui valori di un elemento
+dello schema del database. Un vincolo può essere associato ad una tabella, ad un attributo,
+ad un dominio.
+\begin{itemize}
+  \item Vincoli Intrarelazionali - Proprietà sempre valida all'interno di una relazione
+  \item Vincoli Interrelazionali - Proprietà sempre valida tra relazioni diverse
+\end{itemize}
+\paragraph*{Sintassi}
+\begin{itemize}
+  \item NOT NULL - Valore non nullo
+  \item UNIQUE - Valore unico
+  \item PRIMARY KEY - Chiave primaria
+  \item CHECK - Definisce condizioni complesse (sia intra che inter relazionali)
+\end{itemize}
+\paragraph*{Esempio}
+\begin{lstlisting}[language=SQL]
+  Nome CHAR(20) NOT NULL
+  Cognome CHAR(20) NOT NULL 
+  UNIQUE (Nome, Cognome)
+\end{lstlisting}
+NOT NULL su Nome e Cognome è un vincolo intrarelazionale,
+UNIQUE è Interrelazionale (non posso avere istanze uguali ripetute)
+\subsection{Chiave}
+Insieme di attributi che identificano univocamente una tupla all'interno di
+una relazione. Il vincolo PRIMARY KEY può essere definito una volta sola all'interno
+della relazione (implicitamente NOT NULL e UNIQUE).
+\paragraph*{Eccezioni} Il valore NULL può comparire su diverse righe senza violare
+il vincolo.
+\subsection*{CHECK e FOREING KEY}
+Utilizzato per definire vincoli complessi, sia intrarelazionali che interrelazionali.
+\begin{lstlisting}[language=SQL]
+  CREATE TABLE Studente (
+    CREATE DOMAIN Voto AS SMALLINT
+    DEFAULT 0
+    CHECK (Voto>=18 AND VOTO<=30)
+  )
+\end{lstlisting}
+Per quanto riguarda invece i vincoli interrelazionali, si utilizza FOREIGN KEY e
+REFERENCES.
