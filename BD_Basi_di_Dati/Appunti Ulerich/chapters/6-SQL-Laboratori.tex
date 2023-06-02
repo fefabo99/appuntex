@@ -329,3 +329,112 @@ Le politiche di reazione possono essere definite in modo diverso per eventi di m
 \end{lstlisting}
 Con CASCADE in pratica se effettuo una cancellazione cancello anche tutte le relazioni legati a quel valore,
 con NULL invece pongo a NULL la FOREIGN KEY, ma mentengo gli altri valori.
+\'E possibile assegnare un nome a questi vincoli, per rendere più chiaro il codice e rendere
+quindi più semplice il debugging e la scrittura della documentazione.
+\paragraph*{Sintassi nome vincoli}
+\begin{lstlisting}[language=SQL]
+  Stipendio INTEGER CONSTRAINT StipendioPositivo
+  CHECK (Stipendio > 0),
+  ...
+  CONSTRAINT ForeignKeySedi
+  FOREIGN KEY (Sede) REFERENCES Sedi
+\end{lstlisting}
+
+\section{Modifiche degli schemi}
+Necessarie per garantire l'evoluzione della base di dati a fronte di nuove esigenze.\\
+Ci sono 2 comandi SQL appositi:
+\begin{itemize}
+  \item ALTER - Modifica oggetti
+  \item DROP - Cancella oggetti dallo schema
+\end{itemize}
+\subsection{ALTER}
+\begin{itemize}
+  \item ALTER DOMAIN - modifica domini (default, vincoli)
+  \item ALTER TABLE - modifica tabelle
+\end{itemize}
+Attenzione: Quando si definisce un nuovo vincolo deve essere soddisfatto dalla istanza 
+presente, altrimenti viene rifiutato.
+\paragraph*{Modifiche degli schemi - DROP}
+\begin{itemize}
+  \item DROP DOMAIN - cancellazione del dominio (attributo)
+  \item DROP TABLE - cancellazione della tabella
+\end{itemize}
+\paragraph*{Opzioni}
+\begin{itemize}
+  \item RESTRICT - Un oggetto (dominio, tabella) non è rimosso se non è vuoto
+  \item CASCADE - viene rimosso l'oggetto e tutto ciò che è coinvolto
+  nella definizione dell'oggetto
+\end{itemize}
+\paragraph*{Sintassi ALTER}
+\begin{lstlisting}[language=SQL]
+  ALTER DOMAIN NomeDominio <
+    SET DEFAULT ValoreDefault|
+    DROP DEFAULT|
+    ADD CONSTRAINT DefVincolo |
+    DROP CONSTRAINT NomeVincolo >
+\end{lstlisting}
+Esempio ALTER su tabella
+\begin{lstlisting}[language=SQL]
+  ALTER TABLE NomeTabella <
+    ALTER COLUMN NomeAttributo<
+      SET DEFAULTNuovoDefault |
+      DROP DEFAULT> |
+    DROP COLUMN NomeAttributo |
+    ADD COLUMN DefAttributo |
+    DROP CONSTRAINTNomeVincolo
+    ADD CONSTRAINTDefVincolo >
+\end{lstlisting}
+\paragraph*{Sintassi DROP}
+\begin{lstlisting}[language=SQL]
+  DROP <schema, domain, table, view, ...> NomeElemento
+    [RESTRICT | CASCADE]
+\end{lstlisting}
+\begin{itemize}
+  \item RESTRICT - Impedisce drop se gli oggetti comprendono istanze non vuote
+  \item CASCADE - Applica drop agli oggetti collegati, Potenziale pericolosa reazione
+  a catena
+\end{itemize}
+\subsection{Cataloghi relazionali}
+Il catalogo contiene il dizionario dei dati (data dictionary) ovvero la descrizione
+della struttura dei dati contenuti nel database. Anche questa descrizione di dati (metadati)
+è rappresentata tramite una struttura relazionale.\\
+SQL-2 Organizza il catalogo su due livelli:
+\begin{itemize}
+  \item Definition\_Schema (composto da tabelle che descrivono tutte le strutture della
+  base di dati)
+  \item Information\_Schema (composto da viste che costituiscono l'interfaccia verso 
+  il dizionario dei dati)
+\end{itemize}
+
+\section{Interrogazioni SQL - Query}
+Le interrogazioni avvengono usando l'istruzione SELECT
+\begin{lstlisting}[language=SQL]
+  SELECT ListaAttributi
+  FROM ListaTabelle
+  [ WHERE Condizione ]
+\end{lstlisting}
+\begin{itemize}
+  \item SELECT indica quali attributi vogliamo nel risultato
+  \item FROM indica le tabelle da cui estrarre i dati
+  \item WHERE indica che condizioni devono essere soddisfatte
+\end{itemize}
+SELECT non significa selezione, sceglie le colonne output della query.\\
+FROM se vengono indicate più tabelle si effettua il loro prodotto cartesiano, 
+salvo diversamente specificato (es. JOIN).\\
+\subsection{Istruzione AS}
+Si possono fare ridenominazioni su attributi e anche su relazioni con la clausola AS, 
+molto utile per evitare di scrivere ogni volta l'attributo o la tabella per esteso
+(specialmente se i nomi sono lunghi).\\
+\begin{lstlisting}[language=SQL]
+  SELECT AttrEspr [[AS] Alias]{,AttrEspr [[AS] Alias]}
+  FROM Tabella [[AS] Alias]{,Tabella [[AS] Alias]}
+  [WHERE Condizione]
+\end{lstlisting}
+Esempio pratico:
+\begin{lstlisting}[language=SQL]
+  SELECT Nome AS N, Stipendio AS Salario
+  FROM Dipendente AS Dip
+  WHERE Dip.Stipendio > 1000
+\end{lstlisting}
+\subsection{Asterisco}
+Per selezionare tutti gli attributi viene utilizzato *.
