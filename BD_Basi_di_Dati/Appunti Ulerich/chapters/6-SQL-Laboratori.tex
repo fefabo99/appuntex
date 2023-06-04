@@ -599,4 +599,78 @@ Gli operatori più comuni sono:
   \item UPPER, UCASE - Trasforma la stringa in caratteri maiuscoli
   \item LOWER, LCASE - Trasforma la stringa in caratteri minuscoli
 \end{itemize}
-
+\section{Operatore JOIN}
+L'operatore JOIN rappresenta un'importante funzionalità in quanto
+permette di correlare dati in tabelle diverse.\\
+Matematicamente si tratta del prodotto cartesiano tra le due tabelle,
+che avrà un numero di righe pari al prodotto del numero di righe
+delle due tabelle e viene applicata una condizione di matching tra 
+le colonne specificate. Il puro prodotto cartesiano avviene fra le
+tabelle inserite nel FROM, mentre la condizione di matching è inserita
+o nel WHERE (\textbf{JOIN implicito}) o nel FROM esplicitando il JOIN (\textbf{JOIN esplicito}).\\
+Ad un operatore JOIN sono applicati uno o più predicati di join.\\
+Un predicato di join esprime una condizione che deve essere verificata
+dalle tuple del risultato dell'interrogazione.
+Il predicat di join permette di estrarre dal DB un sottoninsieme opportuno
+del prodotto cartesiano.
+\subsection{JOIN implicito}
+Quando la condizione di selezione viene inserita nel WHERE allora sto
+effettuando un JOIN implicito.
+\paragraph*{Esempio}
+\begin{lstlisting}[language=SQL]
+  SELECT *
+  FROM Impiegato, Dip
+  WHERE Impiegato.Dipart = Dip.Nome;
+\end{lstlisting}
+In questo caso ho estratto tutte le informazioni sugli impiegati e sui
+dipartimenti in cui lavorano.\\
+\paragraph*{Esempio Esami}
+Estrarre Matricola, Cognome, Nome Voto di tutti gli studenti che
+hanno sostenuto l'esame di 'Analisi I'.
+\begin{lstlisting}[language=SQL]
+  SELECT S.Matricola, S.Cognome, S.nome, E.Voto
+  FROM Studenti AS S, Esami AS E
+  WHERE (S.Matricola = E.Studente) AND (E.Corso = 'Analisi I')
+\end{lstlisting}
+Come già detto in precedenza il FROM efettua il prodotto cartesiano, mentre
+la condizione di WHERE indica il predicato di join.\\
+\subsection{JOIN esplicito}
+Introdotto in SQL-2, è possibile effettuare esplicitamente il JOIN
+nella clausola FROM
+\begin{lstlisting}[language=SQL]
+  SELECT AttrExpr [ [AS] Alias ] {, AttrExpr [[AS] Alias ] }
+  FROM Tabella [ [AS] Alias ]
+  { [ TipoJoin ] JOINTabella [[AS] Alias ] ONCondizJoin}
+  [ WHERE CondizQuery ]
+\end{lstlisting}
+In questo modo esplicitiamo il JOIN sulle tabelle e separiamo
+le condizioni di JOIN dalle condizioni di QUERY.
+\paragraph*{Tipi di JOIN}
+\begin{itemize}
+  \item INNER (questo prefisso non si mette dato che è il JOIN di default)
+  \item OUTER JOIN
+  \begin{itemize}
+    \item RIGTH [OUTER]
+    \item LEFT [OUTER]
+    \item FULL [OUTER]
+  \end{itemize}
+\end{itemize}
+\paragraph*{Esempio JOIN sul seguente schema}
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    ID\_impiegato & Nome & Cognome & Dipart & Ufficio & Stipendio & premioprod & Mansione & Città & IDCapo \\
+    \hline
+  \end{tabular}
+\end{center}
+\begin{tabular}{|c|c|c|}
+  \hline
+  Nome & Indirizzo & Città\\
+  \hline
+\end{tabular}
+\begin{lstlisting}[language=SQL]
+  SELECT I.Nome, I.Cognome, Dip.Citta
+  FROM Impiegato AS I JOIN Dip ON I.Dipart = Dip.Nome
+\end{lstlisting}
+Non si ha traccia delle tuple di impiegato che non corrispondono
+ad alcuna tupla di Dip.
