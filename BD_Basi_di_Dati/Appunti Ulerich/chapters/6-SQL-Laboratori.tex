@@ -438,3 +438,165 @@ Esempio pratico:
 \end{lstlisting}
 \subsection{Asterisco}
 Per selezionare tutti gli attributi viene utilizzato *.
+\subsection{FROM clausola .}
+La clausola PUNTO . permette di specificare a che relazione
+appartiene un attributo (o anche una tabella o un database).\\
+Esempio:
+\begin{lstlisting}[language=SQL]
+  SELECT Dip.Nome, Dip.Stipendio
+  FROM Dipendente AS Dip
+  WHERE Dip.Stipendio > 1000
+\end{lstlisting}
+Si possono ovviamente usare gli alias denominati con AS dato che
+viene prima letta la parte del FROM.\\
+\subsection{WHERE}
+Parte fondamentale della Query (seppur opzionale), specifica la
+condizione di selezione. L'argomento do WHERE è un'espressione booleana:\\
+\begin{lstlisting}[language=SQL]
+  WHERE [NOT] PredicatoSemplice {< AND | OR > [NOT] PredicatoSemplice}
+\end{lstlisting}
+\paragraph*{Operatori di confronto}
+\begin{itemize}
+  \item =, <>, !=, >, >=, <, <=
+  \item BETWEEN valore1 AND valore2
+  \item IN (valore1, valore2, ...)
+  \item LIKE 'stringa' (con \% e \_ per sostituire caratteri)
+  \item IS NULL, IS NOT NULL
+\end{itemize}
+Si selezionano per il risultato solo le tuple per le quali l'espressione
+che segue la clausola WHERE è vera.\\
+\paragraph*{Precedenza operatori Booleani}
+\begin{itemize}
+  \item NOT
+  \item AND
+  \item OR
+\end{itemize}
+Per stabilire la precedenza \textbf{usare sempre le parentesi}.\\
+\subsection{WHERE - Operatore Like}
+L'operatore LIKE permette di esprimere dei pattern su stringhe di
+caratteri mediante la seguente notazione:
+\begin{itemize}
+  \item \_ indica un singolo carattere arbitrario
+  \item \% indica una stringa di caratteri arbitraria (anche lunga 0)
+\end{itemize}
+\paragraph*{Esempio} Tutti nomi degli impiegati che finiscono con una i
+e hanno una 0 in seconda posizione:
+\begin{lstlisting}[language=SQL]
+  SELECT Nome
+  FROM Impiegato
+  WHERE Nome LIKE '_o%i'
+\end{lstlisting}
+\subsection{WHERE - Operatore BETWEEN}
+L'operatore BETWEEN permette di esprimere condizioni di appartenenza
+a un intervallo.
+\begin{lstlisting}[language=SQL]
+  WHERE Attributo BETWEEN Valore1 AND Valore2
+\end{lstlisting}
+\subsection{WHERE - Operatore IN}
+L'operatore IN permette di esprimere condizioni di appartenenza 
+a un insieme.
+\paragraph*{Esempio} Cognome e numero uffcio degl impiegati negli
+uffici 10 e 20:
+\begin{lstlisting}[language=SQL]
+  SELECT Cognome, ufficio
+  FRM Impiegato
+  WHERE ufficio IN ('10', '20')
+\end{lstlisting}
+Si poteva anche usare:
+\begin{lstlisting}[language=SQL]
+  WHERE ufficio = '10' OR ufficio = '20'
+\end{lstlisting}
+\subsection{WHERE - Valori nulli}
+SQL-2 usa una logica a tre valori per valutare il valore di verità
+di una clausola WHERE: True (T), Flase (F), Unkown (?).\\
+Un predicato semplice valutato su un attributo a valore nullo dà come
+risultato della valutazione ?.\\
+Una tupla per cui il valore di verità è ? non viene restituita dalla query.\\
+Se la valutazione del predcato di un constraint è ? il constraint non
+è violato.\\
+\paragraph*{Tabella di verità}
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{tabella_verit_sql.png}
+  \caption{Tabella di verità}
+  \label{fig:tabella_verita-SQL}
+\end{figure}
+Per valutare gli attributi nulli è necessario usare IS NULL o IS NOT NULL.\\
+\begin{itemize}
+  \item IS NULL - vero se attributo ha valore nullo, falso altrimenti
+  \item IS NOT NULL - vero se attributo ha valore specificato, falso altrimenti
+\end{itemize}
+\paragraph*{Esempio per la seguente tabella}
+\begin{tabular}{|c|c|c|}
+  \hline
+  A & B & C \\
+  \hline
+  a & ? & c1 \\
+  \hline
+  a1 & b & c2 \\
+  \hline
+  a2 & ? & ? \\
+  \hline
+\end{tabular}
+\begin{lstlisting}[language=SQL]
+  SELECT *
+  FROM Tabella
+  WHERE B IS NULL
+\end{lstlisting}
+Restituisce t1 e t3.
+\paragraph*{Esempio reali} Query: gli impiegati che \textbf{sono} o \textbf{potrebbero essere}
+ingegneri.
+\begin{lstlisting}[language=SQL]
+  SELECT *
+  FROM Impiegato
+  WHERE mansione = 'Ingegnere' OR mansione IS NULL
+\end{lstlisting}
+\subsection{SELECT - DISTINCT}
+In algebra relazionale i risultati della interrogazioni non contengono
+elementi duplicati, mentre in SQL le tabelle prodotte dalle interrogazioni
+possono contenere più righe identiche tra loro.\\
+I duplicati possono essere rimossi usando la parola chiave DISTINCT.
+\begin{lstlisting}[language=SQL]
+  SELECT [DISTINCT] AttrEspr
+  FROM Tabella
+  [WHERE Condizione]
+\end{lstlisting}
+\subsection{Espressioni e Funzioni}
+I predicati usati nelle interrogazioni possono coinvolgere, oltre a
+nomi di colonna anche espressioni. Le espressioni sono formulate
+applicando operatori ai valori delle colonne delle tuple.\\
+Esempi di espressioni e funzioni sono que40lle aritmetiche su stringhe,
+su date e tempi. Le espressioni possono comparire nelle clausole
+SELECT, WHERE e UPDATE.
+\paragraph*{SELECT} Una espressione usata nella clausola SELECT
+dà luogo ad una nuova colonna che non corrisponde a nessuna colonna
+della tabella su cui si effettua la selezione (argomento di FROM).\\
+Questa colonna è detta Colonna \textbf{virtuale}. Le colonne virtuali non sono
+fisicamente memorizzate, ma sono materializzate (esistono) solo come risultato
+delle interrogazioni.\\
+Anche alle colonne virtuali è possibile assegnare un alias (con il
+costrutto AS).\\
+\paragraph*{Funzioni predefinite}
+\begin{itemize}
+  \item su stringhe (UPPER, UCASE, LENGTH)
+  \item su date, intervalli (+, -, DATE, DAYOFWEEK, ...)
+  \item matematiche (*, +, -, /, TAN, SQRT, SIN, ...)
+  \item informazioni di istema (USER, CURRENT\_DATE, ...) 
+\end{itemize}
+\paragraph*{Esempio} Trovare stipendio mensile degli impiegati che guadagnano
+più di 40.\\
+Dato che lo stipendio memorizzato nel DB è annuale, bisogna dividere per 12.
+\begin{lstlisting}[language=SQL]
+  SELECT stipendio/12 AS stipendio_mensile
+  FROM Impiegato
+  WHERE stipendio > 40
+\end{lstlisting}
+Se non inserisco un ALIAS la colonna virtuale avrà un nome generato (non significativo).
+\paragraph*{Funzioni per le stringhe}
+Gli operatori più comuni sono:
+\begin{itemize}
+  \item || - concatenazione
+  \item UPPER, UCASE - Trasforma la stringa in caratteri maiuscoli
+  \item LOWER, LCASE - Trasforma la stringa in caratteri minuscoli
+\end{itemize}
+
