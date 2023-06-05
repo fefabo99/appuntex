@@ -674,3 +674,261 @@ le condizioni di JOIN dalle condizioni di QUERY.
 \end{lstlisting}
 Non si ha traccia delle tuple di impiegato che non corrispondono
 ad alcuna tupla di Dip.
+\subsection{OUTER JOIN}
+L'operatore di OUTER JOIN aggiunge l risultato le tuple di Impiegato e Dip che non hanno partecipato al JOIN,
+completandole con NULL.\\
+Consideriamo il seguente esempio:
+\begin{lstlisting}[language=SQL]
+  FROM Impiegato AS I [FULL|LEFT|RIGHT] OUTER JOIN Dip ON ...
+\end{lstlisting}
+\paragraph*{LEFT} Le tuple di impiegato che non partecipano al join vengono completate ed inserite
+nel risultato.
+\paragraph*{RIGHT} Le tuple di Dip che non partecipano al join vengono completate ed inserite nel
+risultato.
+\paragraph*{FULL} (Sia Left che Right) Sia le tuple di impiegato che quelle di Dip che non partecipano al join
+vengono completate ed inserite nel risultato.
+\subsection{Self JOIN}
+JOIN effettuato sulla stessa tabella.
+\paragraph*{Esempio}
+\begin{lstlisting}[language=SQL]
+  SELECT G1.Genitore AS Nonno
+  FROM Genitori G1, Genitori G2
+  WHERE G1.Figlio = G2.Genitore
+  AND G2.Figlio = 'Anna'
+\end{lstlisting}
+In questo caso vengono ricercati i nonni di Anna. \'E possibile fare questo perchè
+quando seleziono le tabelle nel FROM tratto delle loro copie, quindi posso anche prenderle due volte.
+\section{Operatori di ordinamento e aggregazione}
+\subsection{Ordinamento del risultato: ORDER BY}
+Le righe sono ordinate in base al primo attributo, se i valori sono uguali,
+viene ordinata in base al secondo attributo ecc.\\
+Ordinamento: ascendente (ASC), discendente (DESC), (ASC è default e può
+essere omesso).
+\paragraph*{Esempio}
+\begin{lstlisting}[language=SQL]
+  SELECT *
+  FROM Impiegato
+  ORDER BY Stipendio
+\end{lstlisting}
+L'opzione DESC è relativa al singolo attributo, quindi va specificata per ciascun attributo
+che elenco nell'ORDER BY.\\
+\subsection{Operatori aggregazione}
+Sono un'estensione rispetto all'Algebra Relazionale. Essi operano su gruppi di tuple per:
+\begin{itemize}
+  \item Effettuare calcoli sull'insieme di tuple
+  \item Verificare condizioni relative all'insieme di tuple
+\end{itemize}
+\begin{itemize}
+  \item COUNT - Conta numero di tuple di tabella
+  \item SUM - Somma valori o espressioni di attributi
+  \item MAX - Valore massimo di un attributo di tabella
+  \item MIN - Valore minimo di un attributo di tabella
+  \item AVG - Valore medio di un attributo di tabella
+  \item GROUP BY - Raggruppamento delle tuple in sottogruppi gestiti come estensione
+  delle normali interrogazioni
+\end{itemize}
+\paragraph*{Come vengono applicati}
+\begin{itemize}
+  \item Si esegue l'interrogazione sulla base di clausole FROM e WHERE.
+  \item Si applica l'operatore aggregato alla tabella risultato dell'interrogazione.
+\end{itemize}
+\subsection{COUNT}
+\begin{lstlisting}[language=SQL]
+  SELECT COUNT(< * | [DISTINCT | ALL] ListaAttr >)
+\end{lstlisting}
+\begin{itemize}
+  \item DISTINCT numero di valori distinti diversi da NULL di ListaAttr
+  \item ALL numero di valori diversi da NULL di ListaAttr
+  \item COUNT (*) conta numero di righe di una tabella
+\end{itemize}
+Se non è specificato nulla, ALL è l'opzione di default.
+\paragraph*{Esempio} Estrarre il numero di impiegati del dipartimento Produzione
+\begin{lstlisting}[language=SQL]
+  SELECT COUNT(*) AS impiegati_produzione
+  FROM Impiegato
+  WHERE dipart='Produzione'
+\end{lstlisting}
+L'operatore aggregato COUNT viene applicato al risultato dell'interrogazione.\\
+\paragraph*{COUNT e valori nulli}
+COUNT(*) conta anche le righe con valori NULL, dato che conta le righe totali della tabella.\\
+COUNT(Attributo) non conta le righe NULL.\\
+COUNT(DISTINCT Attributo) non conta le righe NULL e non conta i valori duplicati.
+\subsection{Altri operatori di aggregazione}
+\begin{lstlisting}[language=SQL]
+  < SUM | MAX | MIN | AVG > (< * | [DISTINCT | ALL] AttrExpr >)
+\end{lstlisting}
+Valutano espressioni analizzando tuple del risultato nella query che li contiene. Operano
+su tuple di tabella prese come insieme di elementi (non su elementi individuali).
+DISTINCT e ALL si applicano come per il caso di COUNT.
+\paragraph*{SUM} Restituisce la somma dei valori di AttrExpr relativamente alle tuple di tabella specificate
+nella query. Opera su attributi numerici.
+\paragraph*{MIN MAX} Restituisce il minimo/massimo dei valori di AttrExpr relativamente alle tuple di tabella 
+specificate nella query. Opera su atributi ordinabili (stringhe, numer, ecc.).\\
+\paragraph*{AVG} Restituisce la media dei valori di AttrExpr relativamente alle tuple di tabella specificate, opera
+su valori numerici.
+\subsection{Operatori di aggregazione e Target List}
+SQL impedisce di includere in una stessa target list funzioni aggregate e espressioni al livello
+di riga.
+\paragraph*{Esempio}
+\begin{lstlisting}[language=SQL]
+  SELECT Cognome, MAX(Stipendio) -- ERRORE
+  FROM Impiegato
+  WHERE Dipart = 'Amministrazione'
+\end{lstlisting}
+La soluzione è effettuare una query nidificata (spiegata in seguito).
+\begin{lstlisting}[language=SQL]
+  SELECT Cognome, Stipendio
+  FROM Impiegato
+  WHERE Dipart = 'Amministrazione'
+  AND Stipendio = (SELECT MAX(I1.Stipendio) 
+                  FROM Impiegato AS I1
+                  WHERE I1.Dipart = 'Amministrazione')
+\end{lstlisting}
+\subsection{GROUP BY}
+La clausola GROUP BY serve a definire gruppi omogenei di tuple, specificando una o
+più colonne (di raggruppamento) sulla base della/e quale/i le tuple sono raggruppate
+per valori uguali.\\
+\paragraph*{Esempio}
+Data la seguente tabella estrarre la somma degli stipendi degli impiegati che afferiscono
+allo stesso dipartimento.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.7\textwidth]{es_group_by.png}
+  \caption{Tabella esercizio}
+  \label{fig:tabella_es_groupby}
+\end{figure}
+\begin{lstlisting}[language=SQL]
+  SELECT Dipart, SUM(Stipendio)
+  FROM Impiegato
+  GROUP BY Dipart
+\end{lstlisting}
+Come viene eseguita la query? Analizziamola passo per passo:
+\paragraph*{Esecuzione senza GROUP BY}
+In questo caso mi restituisce tutti gli attributi della SELECT in un'unica tabella.\\
+Con GROUP BY invece vengono raggruppate le righe del risultato come specificato
+nel GROUP BY (nell'esempio valori Dipart).
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{tabella_groupby.png}
+  \caption{Tabella con GROUP BY}
+  \label{fig:tabella_groupby}
+\end{figure}
+\paragraph*{Applicazione SUM dopo GROUP BY} 
+Così facendo l'applicazione dell'operatore SUM avviene su gruppi di tuple con lo stesso nome.
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Dipart & sum(Stipendio) \\
+    \hline
+    Amministrazione & 125 \\
+    \hline
+    Produzione & 82 \\
+    \hline
+    Distribuzione & 45\\
+    \hline
+    Direzione & 153 \\
+    \hline
+  \end{tabular}
+  \caption{Tabella somma stipendi per dipartimento}
+  \label{tabella_stipendi}
+\end{table}
+\newpage
+Il GROUP BY raggruppa sempre gli gli attributi specificati nella clausola GROUP BY con lo stesso
+nome, permettendo poi di applicare condizioni particolari nella SELECT (per esempio AVG, COUNT, ecc.).
+\subsection{Raggruppamenti e Target List}
+\paragraph*{Importante restrizione} Una clausola di proiezione di una query contenente la clausola
+GROUP BY può solo includere:
+\begin{enumerate}
+  \item Una o più colonne se compaiono nella clausola GROUP BY
+  \item Operatori di aggregazione (COUNT, SUM, AVG, ...)
+\end{enumerate}
+Nella SELECT deve apparire l'attributo specificato nel GROUP BY, altrimenti la Query risulterà
+scorretta.
+\begin{lstlisting}[language=SQL]
+  SELECT nome, cognome -- nome e' ERRORE!
+  FROM persone
+  GROUP BY cognome
+
+  SELECT cognome, AVG(Eta) -- Corretta
+  FROM persone
+  GROUP BY cognome
+\end{lstlisting}
+Tutti gli attributi nella SELECT devono essere sepcificati anche nel GROUP BY.
+\subsection{Condizioni sui Gruppi}
+Verificano condizioni su gruppi di tuple aggregate con GROUP BY.
+\begin{itemize}
+  \item WHERE - Verifica condizioni su tuple individuali
+  \item HAVING - Verifica condizioni (espressioni booleane) su gruppi di tuple
+  (opera su raggruppamenti)
+\end{itemize}
+Le condizioni in clausola HAVING sono verificate dopo la creazione dei sottogruppi
+di tuple specificati da GROUP BY.\\
+\paragraph*{Esempio}
+Trovare i dipartimenti che spendono più di 100 in stipendi.
+\begin{lstlisting}[language=SQL]
+  SELECT Dipart, SUM(Stipendio) AS SommaStipendi
+  FROM Impiegato
+  GROUP BY Dipart
+  HAVING SommaStipendi > 100
+\end{lstlisting}
+\paragraph*{Risolviamo la Query passo per passo.}
+\begin{enumerate}
+  \item Esecuzione della query senza considerare GROUP BY e operatori
+  aggregati
+  \item Raggruppamento delle righe del risultato come specificato da GROUP BY
+  \item Applicazione dell'operatore di aggregazione SUM su Stipendio ai gruppi di
+  righe precedentemente costruiti
+  \item Selezione dei gruppi risultanti come specificato dalla clausola HAVING
+\end{enumerate}
+Qui vediamo proprio la differenza di HAVING rispetto a WHERE, dato che
+WHERE opera su tuple individuali (selezione di tuple prima di GROUP BY),
+mentre HAVING opera su predicati che operano su gruppi di tuple creati da
+GROUP BY (selezone raggruppamenti).
+\paragraph*{Esempio molto utile} Andare alla slide N 247 (62 come Pagina PDF)
+delle slide del prof \href{https://elearning.unimib.it/pluginfile.php/1533829/mod_resource/content/1/SQL.pdf}{Slide Prof}.
+\subsection{Osservazioni}
+\begin{lstlisting}[language=SQL]
+  GROUP BY attr1, attr2
+  -- Equivalente a
+  GROUP BY attr2, attr1
+\end{lstlisting}
+\paragraph*{HAVING osservazioni}
+La sintassi permette di definire la clausola HAVING anche senza la clausola GROUP BY.
+In questo caso l'intero insieme di righe è trattato come un unico raggruppamento, è
+necessario ricordarsi che per HAVING devono essere usati solo predicati in cui
+compaiono operatori aggregati.
+\section{Interrogazioni di tipo insiemistico}
+Permettono di costruire query concatenando due query SQL
+\begin{itemize}
+  \item UNION
+  \item INTERSECT
+  \item EXCEPT (differenza)
+\end{itemize}
+\paragraph*{Sintassi}
+\begin{lstlisting}[language=SQL]
+  SelectSQL { < UNION/INTERSECT/EXCEPT > [ALL] SelectSQL }
+\end{lstlisting}
+I duplicati vengono eliminati (a meno che si usi ALL).
+\subsection{UNION}
+Restituisce tutte le tuple distinte restituire da almeno una delle sottointerrogazioni a qui
+è applicata.\\
+L'operatore UNION elimina i duplicati dal risultato, mentre UNION ALL li mantiene.\\
+UNION impone alcune importanti restrizioni sulle interrogazioni su cui opera:
+\begin{itemize}
+  \item Le interrogazioni devono restituire lo stesso numero di colonne, e le colonne corrispondenti devono avere
+  lo stesso dominio (non è richiesto che abbiano la stessa lunghezza) o domini compatibili
+  \item La corrispondenza si basa sulla posizione delle colonne, indipendentemente dal loro nome
+  \item Se si usa la clausola ORDER BY questa deve essere usata una sola volta alla
+  fine dell'interrogazione e non alla fine di ogni SELECT
+\end{itemize}
+\subsection{INTERSECT, EXCEPT, MINUS}
+\begin{itemize}
+  \item L'operatore INTERSECT esegue l'intersezione
+  \item Gli operatori EXCEPT e MINUS eseguono la differenza
+\end{itemize}
+Per questi operatori valgono le stesse condizioni di applicabilità viste per l'operatore
+UNION. Le interrogazioni devono restituire lo stesso numero di clonne e le colonne corrispondenti
+devono avere lo stesso dominio (non è richiesto che abbiano la stessa lunghezza) o domini compatibili.
+La corrispondenza si basa sulla posizione delle colonne.\\
+
