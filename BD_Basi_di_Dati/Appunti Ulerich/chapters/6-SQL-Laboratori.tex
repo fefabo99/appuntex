@@ -932,3 +932,63 @@ UNION. Le interrogazioni devono restituire lo stesso numero di clonne e le colon
 devono avere lo stesso dominio (non è richiesto che abbiano la stessa lunghezza) o domini compatibili.
 La corrispondenza si basa sulla posizione delle colonne.\\
 
+\section{Interrogazioni nidificate}
+Una delle ragioni che rendono SQL un linguaggio potente è la possibilità di esprimere
+interrogazioni più complesse in termini di interrogazioni più semplici, tramite il
+meccanismo delle \textbf{subqueries} (sottointerrogazioni).\\
+La clausola WHERE di una query (detta query esterna) può infatti contenere un'altra
+query (detta subquery).\\
+La subquery viene usata per determinare uno o più valori da usare come valori di confronto
+in un predicato della query esterna.\\
+Nella clausola WHERE possono comparire predicati che confrontano un attributo (o un'espressione
+sugli attributi) con il risultato di una query SQL:
+\paragraph*{Sintassi}
+\begin{lstlisting}[language=SQL]
+  ScalarValue Operator <ANY | ALL > SelectSQL
+\end{lstlisting}
+\begin{itemize}
+  \item ANY - Il predicato è vero se almeno una riga restituita dalla query SelectSQL 
+  soddisfa il confronto
+  \item ALL - Il predicato è vero se tutte le righe restituite dalla query SelectSQL soddisfano il
+  confronto
+  \item Operator - Uno qualsiasi tra $=, <>, >, <, >=, <=$
+\end{itemize}
+La query che appare nella clausola WHERE è detta \textbf{query nidificata}.\\
+\paragraph*{Esempio} Estrarre il cognome degli impiegati che lavorano in dipartimenti con
+sede a Milano.\\
+\textit(IN = ANY).
+\begin{lstlisting}[language=SQL]
+  SELECT Cognome
+  FROM Impiegato
+  WHERE dipart ANY (SELECT nome
+                    FROM Dip
+                    WHERE Citta = 'Milano')
+
+  -- Equivale a
+
+  SELECT cognome
+  FROM Impiegato JOIN Dip
+    ON dip.Nome = impiegato.Dipart
+    WHERE Dip.Citta = 'Milano'
+\end{lstlisting}
+La forma ndificata è meno dichiarativa, ma talvolta  più leggibile (richiede meno variabili).
+La forma piana e quella nidificata possono essere combinate.
+\paragraph*{Osservazione} Le sottointerrogazioni non possono contenere operatori insiemistici (si fanno
+solo a livello esterno), la limitazione non è significativa.
+\subsection{Operatori di confronto}
+Gli operatori di confronto $=, <$, ... si possono usare solo se la subquery restituisce
+non più di una tupla (detta subquery "scalare").\\
+Se la subquery può restituire più di un valore allora si devono usare le forme:
+\begin{itemize}
+  \item ANY - la relazione = vale per almeno uno dei valori
+  \item ALL - la relazione $>$ vale per tutti i valori
+\end{itemize}
+Ricordiamo che la forma ANY = IN.
+\subsection{MAX e MIN in subquery}
+Gli operatori aggregati max e min possono essere usati in una subquery.\\
+Anche in questo caso è necessario usare ANY o ALL se vengono restituiti più valori:
+\begin{itemize}
+  \item ANY la relazione vale per aleno uno dei valori
+  \item ALL la relazione vale per tutti i valori
+\end{itemize}
+% Slide 295 - 74
