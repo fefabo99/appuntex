@@ -655,6 +655,10 @@ le condizioni di JOIN dalle condizioni di QUERY.
     \item FULL [OUTER]
   \end{itemize}
 \end{itemize}
+\paragraph*{ATTENZIONE l'ordine degli operandi è importante!} Scambiandoli il risultato può cambiare, è sempre
+consigliabile effettuare i JOIN nell'ordine in cui il testo ce lo chiede e nell'ordine con cui percorriamo
+i collegamenti fra le chiavi esterne, se per esempio devo fare il JOIN tra corso, docente e residenza, dato che la chiave
+esterna di corso riferisce a docente e la chiave esterna di docente riferisce a città, effettuerò il JOIN in questo ordine.
 \paragraph*{Esempio JOIN sul seguente schema}
 \begin{center}
   \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|}
