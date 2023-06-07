@@ -1,5 +1,5 @@
 \chapter{Branch and Bound}
-Il Branch and Bound è una tecnica per la risoluzione di problemi di ottimizzazione intera.
+Il Branch and Bound è una tecnica per la risoluzione di problemi di ottimizzazione intera.\\
 Questa è una tecnica di \emph{enumerazione implicita}, ovvero:
 \begin{itemize}
     \item "Valuta" le soluzioni possibili fino a trovare quella ottima.

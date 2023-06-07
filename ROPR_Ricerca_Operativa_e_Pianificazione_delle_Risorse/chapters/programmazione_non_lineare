@@ -43,8 +43,8 @@ $\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, 
 \begin{itemize}
     \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} > 0$, allora la funzione è crescente lungo la direzione $x$.
     \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} > 0$, allora la funzione è crescente lungo la direzione $y$.
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} < 0$, allora la funzione è crescente lungo la direzione $x$.
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} < 0$, allora la funzione è crescente lungo la direzione $y$.
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} < 0$, allora la funzione è decrescente lungo la direzione $x$.
+    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} < 0$, allora la funzione è decrescente lungo la direzione $y$.
 \end{itemize}
 $\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
 
