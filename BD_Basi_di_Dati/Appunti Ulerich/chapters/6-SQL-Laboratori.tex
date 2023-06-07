@@ -867,7 +867,8 @@ Verificano condizioni su gruppi di tuple aggregate con GROUP BY.
   (opera su raggruppamenti)
 \end{itemize}
 Le condizioni in clausola HAVING sono verificate dopo la creazione dei sottogruppi
-di tuple specificati da GROUP BY.\\
+di tuple specificati da GROUP BY, in pratica le condizioni sono verificate dopo il WHERE e dopo il GROUP BY,
+mentre il WHERE le applica prima che il GROUP BY effettui i raggruppamenti.\\
 \paragraph*{Esempio}
 Trovare i dipartimenti che spendono più di 100 in stipendi.
 \begin{lstlisting}[language=SQL]
@@ -944,6 +945,8 @@ La clausola WHERE di una query (detta query esterna) può infatti contenere un'a
 query (detta subquery).\\
 La subquery viene usata per determinare uno o più valori da usare come valori di confronto
 in un predicato della query esterna.\\
+Le subquery possono essere usate nel FROM per arricchire l'insieme di tuple su cui viene effettuata
+l'interrogazione principale oppure nel WHERE per filtrare le tuple dell'interrogazione principale.\\
 Nella clausola WHERE possono comparire predicati che confrontano un attributo (o un'espressione
 sugli attributi) con il risultato di una query SQL:
 \paragraph*{Sintassi}
@@ -1051,10 +1054,11 @@ di predicati con questi due operatori non restituisce mai il valore Unkown (NULL
                 AND Dipart = S.Nome) -- S.Nome fa riferimento alla query esterna
 \end{lstlisting}
 Il risultato della subquery dipende dal dipart specifico (selezionato nella query esterna) e quindi
-diventa: Per ogni tupla del blococ esterno, considera il valore di S.nome e risolvi la query
+diventa: Per ogni tupla del blocco esterno, considera il valore di S.nome e risolvi la query
 innestata.\\
 \'E spesso possibile ricondursi alla forma "piatta" (senza quindi subquery), ma la cosa
-non è sempre così ovvia. Per quanto riguarda l'esempio precedente:
+non è sempre così ovvia e soprattutto NON è sempre possibilie! Alcune Query possono essere espresse solo
+tramite subquery. Per quanto riguarda l'esempio precedente:
 \begin{lstlisting}[language=SQL]
   SELECT S.Nome
   FROM Dip AS S, Impiegato AS I
