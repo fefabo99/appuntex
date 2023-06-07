@@ -1,0 +1,23 @@
+\chapter{Introduzione alla Programmazione non Lineare}
+Un \textbf{problema di programmazione non lineare (PNL)} può essere formulato come: $$\text{opt}\, \mathit{f}(\mathbf{x})$$ soggetto ai seguenti vincoli: $$g_j(\mathbf{x})\, \le\, 0\quad \text{con}\quad j\, =\, 1, ..., m$$ $$x_i\, \ge\, 0\quad \text{con}\quad i\, =\, 1, ..., n$$ $\text{dove opt} = 
+\begin{cases} 
+        min \\ 
+        max
+\end{cases}
+$
+\\in cui $f\text{:}\; \R^n \to \R\,$ e $\, g_j\,\text{:}\; \R^n \to \R\,$ sono funzioni note di $x\, \in\, \R^N$.
+
+\section*{Tipologie di Programmazione non-lineare}
+A seconda delle caratteristiche del problema abbiamo diversi tipi di programmazione non lineare.
+
+\subsubsection{Ottimizzazione non vincolata}
+I problemi di ottimizzazione non vincolata non hanno vincoli sulla regione ammissibile. Quindi l'obiettivo è semplicemente $$\text{max}\, f(\mathbf{x})\quad\, o\quad\, \text{min}\, f(\mathbf{x})\quad\, x\in\R^n$$.
+
+\subsubsection{Ottimizzazione con vincoli lineari}
+I problemi di ottimizzazione con vincoli lineari sono caratterizzati da tutte le funzioni $g_i(\mathbf{x})$ lineari, ma dalla funzione obiettivo non-lineare. Sono problemi che vanno a dare origine ad una \textit{regione ammissibile convessa}. Un caso particolare è la \textit{programmazione quadratica}, in cui la funzione obiettivo è una funzione quadratica.
+
+\subsubsection{Ottimizzazione convessa}
+Problemi in cui $f(\mathbf{x})$ è una funzione \textbf{concava} o \textbf{convessa} e ogni funzione $g_i(\mathbf{x})$ è \textbf{convessa}.
+
+\subsubsection{Ottimizzazione non convessa}
+I problemi di programmazione non convessa comprendono tutti i problemi che non soddisfano le ipotesi di convessità. Sono più difficili da risolvere perché possono presentare diversi punti di minimo/massimo.
