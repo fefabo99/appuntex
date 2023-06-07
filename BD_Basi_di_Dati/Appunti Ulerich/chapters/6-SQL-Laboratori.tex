@@ -991,4 +991,117 @@ Anche in questo caso è necessario usare ANY o ALL se vengono restituiti più va
   \item ANY la relazione vale per aleno uno dei valori
   \item ALL la relazione vale per tutti i valori
 \end{itemize}
-% Slide 295 - 74
+\'E inoltre possibile selezionar epiù di una colonna tramite una sottointerrogazione, 
+in tal caso è necessario apporre delle parentesi alla lista delle colonne a sinistra
+del'operatore di confronto (Costruttore di tupla).
+\begin{lstlisting}[language=SQL]
+  SELECT Cognome, Nome
+  FROM Impiegato
+  WHERE (Cognome, Nome) IN (SELECT Cognome, Nome
+                            FROM Impiegato
+                            WHERE Dipart = 'Ricerca')
+\end{lstlisting}
+\paragraph*{Interpretazione semplice} L'interrogazione viene eseguita prima dell'interrogazione
+di esterna. Il risultato può essere salvato in una tabella temporanea, in modo da eseguire una volta 
+sola l'interrogazione nidificata.
+\subsection{Subquery Correlate}
+\paragraph*{Query correlate} A volte la query più interna fa riferimento a una
+variabile definita nella query più esterna, in questi casi l'interpretazione semplice non va
+più bene. Riconsideriamo l'interpretazione:
+\begin{enumerate}
+  \item Costruisamo prima il prodotto cartesiamo delle tabelle coinvolte dalla clausola FROM e
+  poi a ciascuna riga si applica la clausola WHERE,
+  \item Poi le subqueries sono eseguite ripetutamente per ogni tupla candidata considerata
+  nella valutazione della query esterna.
+\end{enumerate}
+L'interrogazione interna viene eseguita una volta per ciascuna tupla dell'interrogazione esterna.\\
+Due sono i concetti alla base dalla correlazione:
+\begin{itemize}
+  \item Una subquery correlta fa riferimento ad un attributo selezionato dalla query esterna
+  \item Se una subquery seleziona tuple della stessa tabella riferita dalla query esterna è necessario
+  definire un alias per tale tabella della query esterna
+\end{itemize}
+La subquery deve usare alias per riferire i valori di attributo nelle tuple candidate nella query
+principale.
+\paragraph*{Visibilità delle variabili} Una variabile è usabile solo nell'ambito della query
+in cui è definita o nell'almbito di una query nidificata (a qualsiasi livello) all'interno di essa.
+Se una interrogazione possiede delle interrogazioni nidificate allo stesso livello
+le variabili introdotto nella clausola FROM di una query NON possono essere usate
+dall'altra query.\\
+Le subquery correlate sono in grado di restituire mano a mano i risultati interessati
+della subquery alla query principale, per poi riprendere a calcolare i vari risultati nella
+subquery, quindi non viene interamente calcolata la subqeury e poi restituita alla query, ma vengono
+mano a mano calcolati i risultati.
+\subsection{EXISTS e NOT EXISTS}
+EXISTS e NOT EXISTS ammettono come parametro le query nidificate. L'operatore logico
+EXISTS restituisce il valore booleano True se la subquery restituisce almeno una tupla,
+altrimenti restituisce false, viceversa l'operatore NOT EXISTS. La valutazione
+di predicati con questi due operatori non restituisce mai il valore Unkown (NULL).
+\paragraph*{Esempio} Query: dipartimenti con almeno un programmatore.
+\begin{lstlisting}[language=SQL]
+  SELECT Nome
+  FROM Dip AS S -- Alias per la subquery
+  WHERE EXISTS (SELECT *
+                FROM Impiegato
+                WHERE Mansione = 'Programmatore'
+                AND Dipart = S.Nome) -- S.Nome fa riferimento alla query esterna
+\end{lstlisting}
+Il risultato della subquery dipende dal dipart specifico (selezionato nella query esterna) e quindi
+diventa: Per ogni tupla del blococ esterno, considera il valore di S.nome e risolvi la query
+innestata.\\
+\'E spesso possibile ricondursi alla forma "piatta" (senza quindi subquery), ma la cosa
+non è sempre così ovvia. Per quanto riguarda l'esempio precedente:
+\begin{lstlisting}[language=SQL]
+  SELECT S.Nome
+  FROM Dip AS S, Impiegato AS I
+  WHERE S.Nome = I.Dipart AND I.Mansione = 'Programmatore'
+\end{lstlisting}
+\subsection{Note finali subquery}
+\begin{itemize}
+  \item In una subquery non è possibile usare operatori insiemistici (UNION, INTERSECT, EXCEPT)
+  \item una subquery può comparire solo come operando destro in un predicato
+  \item In una subquery scalare (cioè che restituisce un solo valore)
+   non ci possono essere le clausole GROUP BY e HAVING
+  \item Le subquery possono comparire anche nelle espressioni della clausola select (non solo
+  nella clausola WHERE) e nelle clausole HAVING
+\end{itemize}
+\section{Viste in SQL}
+In SQL è possibile definire delle viste alternative degli stessi dati.
+Una vista (\textbf{view}) è una relazione virtuale attraverso cui è possibile vedere dati memorizzati
+nelle relazioni reali (dette \textbf{di base}). Una vista non contiene tuple, ma può
+essere quasi usata come una relazione di base. Una vista è definita da un'interrogazione su una o più
+relazioni di base oppure su altre viste. Una vista è materializzata eseguendo l'interrogazione che
+la definisce.\\
+Il meccanismo delle viste è utile per semplificare l'accesso ai dati e garantirne la privatezza.
+\subsection{Creazione di una vista}
+Si definiscono associando un nome ed una lista di attributi al risultato di un'interrogazione.
+\begin{lstlisting}[language=SQL]
+  CREATE VIEW NomeVista [(ListaAttributi)] AS query
+\end{lstlisting}
+\begin{itemize}
+  \item NomeVista è il nome della vista che viene creata, deve essere univoco nel database, 
+  unico quindi rispetto sia a nomi di relazioni che di viste definite dallo stesso utente.
+  \item Query è l'interrogazione di definizione della vista
+  \item  ListaAttributi è una lista di nomi da assegnare alle colonne della vista, tale
+  specifica non è obbligatoria, tranne nel caso in cui l'interrogazione contenga nella clausola di
+  proiezione funzioni di gruppo e/o espressioni
+\end{itemize}
+\paragraph*{Esempio} Si vuole creare una vista costituita da un sottoinsieme
+delle tuple della relazione Impiegati, più precisamente la vista deve
+elencare le colonne Codice, Nome e Mansione degli impiegati del 'produzione'.
+\begin{lstlisting}[language=SQL]
+  CREATE VIEW Imp10 AS
+  SELECT Codice, Nome, Mansione
+  FROM Impiegati WHERE dipart = 'produzione'
+\end{lstlisting}
+I nomi delle colonne della vista Imp10 sono rispettivamente: Codice, Nome, Mansione.\\
+Su una vista si possono eseguire sia interrogazioni che modifiche (con alcune importanti
+restrizioni).
+\subsection{Uso di espressioni e di funzioni}
+\'E possibile definire viste tramite interrogazioni che contengono espressioni o funzioni,
+queste espressioni appaiono del tutto simili alle altre colonne della vista, ma il loro
+valore è calcolato dalle relaizoni di base ogni volta che la vista è materializzata.\\
+Tali colonne sono spesso chiamate colonne virtuali, \textbf{è obbligatorio specificare un
+nome nella vista per tali colonne}.\\
+Quando si specifica una vista il sistema sostituisce nell'interrogazione la vista con la sua
+definizione.
