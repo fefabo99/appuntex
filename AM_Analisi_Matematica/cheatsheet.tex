@@ -4,7 +4,7 @@
 
 \graphicspath{ {./img/} }
 \def\arraystretch{2} %define table vertical spacing
-\setlist{nolistsep,leftmargin=*} %remove list spacing
+%\setlist{nolistsep,leftmargin=*} %remove list spacing
 \newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
 
 \begin{document}
@@ -20,9 +20,6 @@
 
 \tableofcontents
 
-
-
-\chapter{Funzioni}
 \section*{Insiemistica}
 
 Dati un elemento $m$ e un insieme $A$:
@@ -31,20 +28,31 @@ Dati un elemento $m$ e un insieme $A$:
 	\item \textbf{Maggiorante/Minorante}: $m$ si dice maggiorante/minorante di $A$ se é \emph{Maggiore/Minore o uguale} di ogni elemento di $A$.
 \end{itemize}
 
-\section*{Studio di Funzione}
-Per lo studio di una funzione bisogna trovare:
-\paragraph*{Dominio} della funzione, poni:\\
+\chapter{Studio di Funzione}
+Nello studio di funzione bisogna fare:
+\begin{itemize}
+	\item Definizione del Dominio
+	\item Intersezione con gli Assi (Segno di $f(x)$)
+	\item Limiti ai punti di frontiera e Asintoti
+	\item Derivata, Monotonia e Estremanti
+	\item Derivata Seconda, Concavià/Convessità
+\end{itemize}
+In particolare:
 
+\section{Definizione del Dominio}
+In una funzione il dominio ha i seguenti limiti:\\
 \begin{tabular}{ l|l }
 	Denominatore    & $\neq 0$                                 \\
 	Logaritmo       & Argomento $>0$                           \\
 	Radice$^n$      & Argomento $\geq 0$ (\emph{sse $n$ pari}) \\
 	$[f(x)]^{g(x)}$ & $f(x)>0$
 \end{tabular}
-\paragraph*{Limiti ai punti di frontiera del dominio}
-Trovato il dominio, trova \emph{i limiti ai punti di frontiera},
-quindi porre i limiti ad ogni punto in cui il dominio si interrompe (sia da destra che da sinistra) e eventualmente a $\pm \infty$.
-\paragraph*{Asintoti}
+
+\section{Limiti ai punti di frontiera e Asintoti}
+Trovato il dominio, bisogna trovare \emph{i limiti ai punti di frontiera},
+quindi trovare i limiti in ogni punto in cui il dominio si interrompe (sia da destra che da sinistra) e eventualmente a $\pm \infty$.
+
+\subsection{Asintoti}
 Trovati tutti i limiti, se trovi:
 \begin{itemize}
 	\item $\limite{x}{\alpha^\pm} f(x) = \pm \infty \implies$ Asintoto \emph{Verticale}.
@@ -55,34 +63,37 @@ Bisogna anche controllare la presenza di \textbf{Asintoti Obliqui}:
 	\item $m = \limite{x}{\pm \infty} \frac{f(x)}{x} \implies$ se $m$ \emph{esiste e non è nullo} trovo $q$:
 	\item $q = \limite{x}{\pm \infty} [f(x) - mx]\implies$  se $q$ esiste allora $y=mx+q$ è \emph{asintoto obliquo}
 \end{itemize}
-\paragraph*{Monotonia}
+
+\section{Derivata, Monotonia e Estremanti}
 La monotonia di una funzione si calcola \emph{ponendo $f'(x)>0$.}
 Nei punti in cui la derivata è positiva, la funzione è \textbf{Crescente}, nei punti in cui è negativa la funzione è \textbf{Decrescente}
-\subparagraph*{Punti di estremo} I punti in cui la derivata cambia direzione sono punti di estremo (max/min).
+\subsection{Punti di estremo} I punti in cui la derivata cambia direzione sono punti di estremo (max/min).
 Se il punto di estremo è il più grande/piccolo di tutta la funzione, allora sono Assoluti.
 
-\paragraph*{Convessità/Concavità}
+\section{Derivata Seconda, Concavià/Convessità}
 \begin{itemize}
 	\item $-$ conc$\mathcal{A}$va $\cap \implies f''(x)$ positiva
 	\item $+$ con$\mathcal{V}$essa $\cup \implies f''(x)$ negativa
 \end{itemize}
 
-
-\paragraph*{Retta Tangente} al grafico in $x_0$:\\
+\section{Altri elmenti di studio di una funzione}
+\subsection{Retta Tangente al grafico}
+Se viene chiesta la retta tangente al grafico in $x_0$:\\
 trova $y=mx + q$ ponendo:
 \begin{itemize}
 	\item $m=f'(x_0)$
 	\item $q=f(x_0)-f'(x_0)\cdot x_0$
 \end{itemize}
 
-\paragraph*{\textbf{Punti di Discontinuità}}
+\subsection{Punti di Discontinuità}
+I punti in cui una funzione non é continua si classificano nel seguente modo:
 \begin{enumerate}
 	\item Prima specie (Salto): i limiti dx e sx di $x_0$ esistono finiti ma sono diversi.
 	\item Seconda spece (Essenziale): Almeno uno dei limiti è inifinito o non esiste.
 	\item Terza Spece (Eliminabile): il limite di $x_0$ esiste finito ma è diverso da $f(x_0)$ o non esiste.
 \end{enumerate}
 
-\subsection*{Funzioni Pari/Dispari}
+\subsection{Funzioni Pari/Dispari}
 \small{(serve solo per le crocette)}
 \begin{itemize}
 	\item $-$ Dispari $\implies f(-x)=-f(x)$
@@ -93,111 +104,8 @@ trova $y=mx + q$ ponendo:
 $\sin(x)$ è \emph{Pari}, \emph{Decrescente} in $[0,\pi]$ e \emph{Crescente} in $[\pi,2\pi]$.
 \\$\cos(x)$ è \emph{Pari}, \emph{Crescente} in $[0,\pi]$ e \emph{Decrescente} in $[\pi,2\pi]$.
 
-\chapter{Serie}
 
-\definizione{
-	Condizione \textbf{Necessaria non Sufficiente} per la convergenza:\\
-	Il Limite della successione del termine generale $a_n$ deve essere \emph{Inifinitesimo}.
-	\[
-		\sum_{n=1}^{+\infty} a_n \text{ converge} \implies \lim_{n\to +\infty} a_n = 0
-	\]
-}
-
-\section{Serie Note}
-
-\paragraph*{Serie Telescopica}
-\begin{equation*}
-	\serie{1}{+\infty} (a_n - a_{n+k})
-\end{equation*}
-oppure
-\begin{equation*}
-	\serie{1}{+\infty} (a_{n+k} - a_n)
-\end{equation*}
-\subparagraph{Come si risolve una serie telescopica}
-É necessario applicare la definzione di serie, cioè la successione delle somme
-parziali. Devo quindi manualmente sostituire n=1, n=2, n=3, ...
-fino a quando non riconosco il pattern della serie.
-\\ \emph{Ricordati di non semplificare Numeratore e Denominatore!},
-mantenendo i numeri sostituiti sarà più facile scrivere il carattere della serie.
-
-
-\paragraph*{Serie Geometrica}
-\begin{equation*}
-	\serie{0}{+\infty} q^n \begin{cases}
-		\text{Diverge}    & q\geq 1  \\
-		\text{Converge}   & -1<q<1   \\
-		\text{Irregolare} & q\leq -1
-	\end{cases}
-\end{equation*}
-\subparagraphmark{Somma di una Serie Geometrica Convergente} Se una serie geometrica converge ($-1<q<1$),
-la somma si calcola:
-\[
-	\serie{0}{+\infty} q^n = \frac{1}{1-q}
-\]
-
-\paragraph*{Serie Armonica Generalizzata}
-\begin{equation*}
-	\sum \frac{1}{n^\alpha} \begin{cases}
-		\text{Diverge}  & \alpha\leq 1 \\
-		\text{Converge} & \alpha> 1
-	\end{cases}
-\end{equation*}
-
-\paragraph*{Serie Armonica Logaritmica}
-\begin{equation*}
-	\sum \frac{1}{n^\alpha \log^\beta(n)}
-	\begin{cases}
-		\text{Converge} & \alpha > 1 \wedge \forall \beta \\
-		\text{Converge} & \alpha = 1 \wedge \beta > 1     \\
-		\text{Diverge}  & \alpha = 1 \wedge \beta \leq 1  \\
-		\text{Diverge}  & \alpha < 1 \wedge \forall \beta
-	\end{cases}
-\end{equation*}
-
-
-\section{Criteri di Convergenza}
-  
-
-\subsection*{Serie Positive def$^{\text{\underline{nte}}}$}
-Se $a_n$ è def$^{\text{\underline{nte}}} \geq 0$ uso:
-\paragraph*{Criterio del Rapporto} 
-\[
-	\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l
-	\begin{cases}
-		\text{Converge} &  l<1\\
-		\text{Diverge} & l>1\\
-		\text{Criterio inconclusivo} & l=1
-	\end{cases}
-\]
-
-\paragraph*{Criterio della Radice} 
-\[
-	\limite{n}{+\infty} \sqrt[n]{a_n} = l
-	\begin{cases}
-		\text{Converge} &  l<1\\
-		\text{Diverge} & l>1\\
-		\text{Criterio inconclusivo} & l=1
-	\end{cases}
-\]
-
-\paragraph*{Criterio del Confronto}
-$a_n\leq b_n$ definitivamente $\implies$
-\begin{itemize}
-	\item se $b_n$ Converge $\implies$  $a_n$ Converge
-	\item se $a_n$ Diverge $+\infty$ $\implies$ $b_n$ Diverge $+\infty$
-\end{itemize}
-
-\subsection*{Serie con Segno Alterno}
-Se $a_n$ è a segno \textbf{Alterno}: 
-
-\paragraph{Criterio della Assoluta Convergenza}.\\
-$\sum a_n$ \textbf{converge assolutamente} se converge $\sum |a_n|$.\\
-Se una serie converge assolutamente, allora converge.
-
-\paragraph{Criterio di Leibniz}
-DA SCRIVERE
-\section{Limiti}
-
+\chapter{Studio dei Limiti}
 \paragraph*{\underline{Equivalenza asintotica tra funzioni}} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti
 
 \paragraph*{\underline{$o$-piccolo}} Se il limite ($\to x_0$) del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$.
@@ -288,6 +196,108 @@ $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x
 il teorema del confronto dato che $\sin$ e $\cos$ (NB solo per $x \rightarrow +\infty$)
 sono delle costanti che oscillano tra $-1$ e $1$.
 
+
+
+\chapter{Serie}
+\section{Serie Note}
+
+\paragraph*{Serie Telescopica}
+\begin{equation*}
+	\serie{1}{+\infty} (a_n - a_{n+k})
+	\text{ Oppure: }
+	\serie{1}{+\infty} (a_{n+k} - a_n)
+\end{equation*}
+
+\subparagraph{Come si risolve una serie telescopica}
+É necessario applicare la definzione di serie, cioè la successione delle somme
+parziali. Devo quindi manualmente sostituire n=1, n=2, n=3, ...
+fino a quando non riconosco il pattern della serie.
+\\ \emph{Ricordati di non semplificare Numeratore e Denominatore!},
+mantenendo i numeri sostituiti sarà più facile scrivere il carattere della serie.
+
+
+\paragraph*{Serie Geometrica}
+\begin{equation*}
+	\serie{0}{+\infty} q^n \begin{cases}
+		\text{Diverge}    & q\geq 1  \\
+		\text{Converge}   & -1<q<1   \\
+		\text{Irregolare} & q\leq -1
+	\end{cases}
+\end{equation*}
+\subparagraphmark{Somma di una Serie Geometrica Convergente} Se una serie geometrica converge ($-1<q<1$),
+la somma si calcola:
+\[
+	\serie{0}{+\infty} q^n = \frac{1}{1-q}
+\]
+
+\paragraph*{Serie Armonica Generalizzata}
+\begin{equation*}
+	\sum \frac{1}{n^\alpha} \begin{cases}
+		\text{Diverge}  & \alpha\leq 1 \\
+		\text{Converge} & \alpha> 1
+	\end{cases}
+\end{equation*}
+
+\paragraph*{Serie Armonica Logaritmica}
+\begin{equation*}
+	\sum \frac{1}{n^\alpha \log^\beta(n)}
+	\begin{cases}
+		\text{Converge} & \alpha > 1 \wedge \forall \beta \\
+		\text{Converge} & \alpha = 1 \wedge \beta > 1     \\
+		\text{Diverge}  & \alpha = 1 \wedge \beta \leq 1  \\
+		\text{Diverge}  & \alpha < 1 \wedge \forall \beta
+	\end{cases}
+\end{equation*}
+
+
+\section{Criteri di Convergenza}
+
+\definizione{
+	Condizione \textbf{Necessaria non Sufficiente} per la convergenza:\\
+	Il Limite della successione del termine generale $a_n$ deve essere \emph{Inifinitesimo}.
+	\[
+		\sum_{n=1}^{+\infty} a_n \text{ converge} \implies \lim_{n\to +\infty} a_n = 0
+	\]
+}
+
+\subsection*{Serie Positive def$^{\text{ \underline{nte}}}$}
+Se $a_n$ è def$^{\text{ \underline{nte}}} \geq 0$ uso:
+\paragraph*{Criterio del Rapporto} 
+\[
+	\limite{n}{+\infty} \frac{a_{n+1}}{a_n} = l
+	\begin{cases}
+		\text{Converge} &  l<1\\
+		\text{Diverge} & l>1\\
+		\text{Criterio inconclusivo} & l=1
+	\end{cases}
+\]
+
+\paragraph*{Criterio della Radice} 
+\[
+	\limite{n}{+\infty} \sqrt[n]{a_n} = l
+	\begin{cases}
+		\text{Converge} &  l<1\\
+		\text{Diverge} & l>1\\
+		\text{Criterio inconclusivo} & l=1
+	\end{cases}
+\]
+
+\paragraph*{Criterio del Confronto}
+$a_n\leq b_n$ definitivamente $\implies$
+\begin{itemize}
+	\item se $b_n$ Converge $\implies$  $a_n$ Converge
+	\item se $a_n$ Diverge $+\infty$ $\implies$ $b_n$ Diverge $+\infty$
+\end{itemize}
+
+\subsection*{Serie con Segno Alterno}
+Se $a_n$ è a segno \textbf{Alterno}: 
+
+\paragraph{Criterio della Assoluta Convergenza}.\\
+$\sum a_n$ \textbf{converge assolutamente} se converge $\sum |a_n|$.\\
+Se una serie converge assolutamente, allora converge.
+
+\paragraph{Criterio di Leibniz}
+DA SCRIVERE
 
 \section*{Calcolo Differenziale}
 
