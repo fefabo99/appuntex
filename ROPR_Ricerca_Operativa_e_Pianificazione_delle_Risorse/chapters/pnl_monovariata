@@ -88,7 +88,7 @@ else
     \item Pongo $x_{k+1} = \frac{\underline{x} + \bar{x}}{2}$ e $k=k+1$ 
 \end{enumerate} 
 
-Criterio di arresto: se $\underline{x} + \bar{x} \leq 2\epsilon$ allora il punto di ottimo $x^*$ avrà una distanza minore di $\epsilon$ da uno dei due. 
+Criterio di arresto: se $\underline{x} - \bar{x} \leq 2\epsilon$ allora il punto di ottimo $x^*$ avrà una distanza minore di $\epsilon$ da uno dei due. 
 
 \section{Metodo di Newton}
 Il metodo di newton è molto simile a quello di bisezione ma  considera anche la derivata seconda e non solo l'informazione relativa alla derivata prima.
@@ -132,3 +132,6 @@ Se $f(x)$ è concava allora $x_k$ converge verso un punto di massimo, perchè?
     \end{itemize} 
 \end{itemize}
 Criterio di arresto: 
+se $|x_{k+1} - x_k | \leq \epsilon$ allora $x_{k+1} = x^*$
+è la soluzione ottima, altrimenti eseguo una nuova
+iterazione del metodo di Newton e pongo $k = k + 1$
