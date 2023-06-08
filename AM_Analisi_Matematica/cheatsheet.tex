@@ -106,14 +106,15 @@ $\sin(x)$ è \emph{Pari}, \emph{Decrescente} in $[0,\pi]$ e \emph{Crescente} in 
 
 
 \chapter{Studio dei Limiti}
-\paragraph*{\underline{Equivalenza asintotica tra funzioni}} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti
 
 \paragraph*{\underline{$o$-piccolo}} Se il limite ($\to x_0$) del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$.
 Nota, che per $x_0$ si intende un valore arbitrario che può essere anche 0 o $\pm \infty$
 $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x_0 $$
 
-\paragraph*{\underline{Limiti Notevoli}}
-\begin{tabularx}{0.8\textwidth}{ |X|X| }
+\section{Limiti Notevoli}
+É importante ricordarsi questi limiti notevoli, visto che sono generalmente il modo piú rapido di risolvere i limiti
+
+\begin{tabularx}{\textwidth}{ |X|X| }
 	\hline
 	Logaritmo naturale        & $\limite{x}{0} \frac{\ln(1+x)}{x} = 1 $                   \\
 	\hline
@@ -134,10 +135,14 @@ $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x
 	\hline
 \end{tabularx}
 
+\pagebreak
 
-\paragraph*{\underline{Equivalenze Asintotiche}}
-
-\begin{tabularx}{0.67\textwidth}{|XYX|}
+\section{Equivalenze Asintotiche}
+\definizione{
+	\underline{Equivalenza asintotica tra funzioni} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti
+}
+In particolare, alcune equivalenze note sono:
+\\\begin{tabularx}{\textwidth}{|XYX|}
 	\hline
 	\multicolumn{3}{|c|}{\textbf{con \emph{x} $\to$ 0}} \\
 	\hline
@@ -156,7 +161,7 @@ $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x
 
 \paragraph*{\underline{Ordine degli infiniti $\infty$}} In generale:
 \begin{center}
-	\[ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x^x \]
+	\[ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x! \ll x^x \]
 \end{center}
 \nb{
 	\begin{itemize}
