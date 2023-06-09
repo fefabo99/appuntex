@@ -389,18 +389,23 @@ Per calcolare $g'(y_0)$
 	\item trovo $g'(y_0)=\frac{1}{f'(x_0)}$
 \end{enumerate}
 
-\section{Approssimazioni di Taylor e McLaurin}
+\section{Sviluppi di Taylor e McLaurin}
 
 \subsection{Tayolr}
+Lo sviluppo di taylor di una funzione in un punto, se esiste permette di approssimare la funzione in un polinomio.
+Essendo un'approssimazione, può anche essere usato per lo studio dei limiti.
 
-\paragraph*{\underline{Polinomio di Taylor}} di grado $k$ e centrato in $x_0$:
+
+\paragraph{Polinomio di Taylor} Il polinomio di Taylor di una funzione di grado $k$ e centrato in $x_0$ è così definito:
 $$P_k(x)=f(x_0)+f'(x_0)(x-x_0) + \frac{1}{2}f''(x_0)(x-x_0)^2 +... + \frac{1}{k!}f^{(k)}(x_0)(x-x_0)^k$$
 
+\paragraph*{Lo sviluppo} Se viene richiesto lo Sviluppo di Taylor di f(x), avendo $P(x)$ come Polinomio di Taylor di $f(x)$ allora:
+\\Sviluppo di taylor di grado $k$: $f(x) \simeq P(x) + o(x^k)$.
 
 \subsection{McLaurin}
-\paragraph*{\underline{Polinomio di Mclaurin}} di grado $k$:
+Se uno sviluppo di Taylor è centrato in $x_0=x$, allora può essere semplificato con il polinomio di Mclaurin.
+\paragraph*{Polinomio di Mclaurin} di grado $k$:
 $$P_k(x)=f(0)+f'(0)x+\frac{1}{2}f''(0)x^2+...+\frac{1}{k!}f^{(k)}(0)x^k$$
-\small{Mclaurin = Taylor con $x_0=0$}
 
 
 
