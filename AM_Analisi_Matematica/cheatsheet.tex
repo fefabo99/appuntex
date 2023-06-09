@@ -213,11 +213,53 @@ In alcuni casi ci potremmo trovare delle Forme di indecisione che ci obbligano a
 	\hline
 \end{tabularx}
 
-\subsection*{Teoremi Limiti utili per esercizi}
-\paragraph*{Teorema del Confronto} Se ho $x \rightarrow +\infty$ e ho $\sin$ o  $\cos$ potrei dover usare
+\section{Teoremi per i Limiti}
+\subsection{Teorema di de l'Hopital}
+Il teorema di de l'Hopital è utile per risolvere le forme di indecisione del tipo $[\frac{0}{0}]$ e $[\frac{\infty}{\infty}]$:
+
+\definizione{
+	Siano $f(x)$ e $g(x)$ due funzioni definite in un intorno di $x_0$.
+	\\Siano anche derivabili in un intorno di $x_0$ (privato eventualmente di ${x_0}$),
+	con $g'(x)\neq 0$, e sia $lim_{x\to x_0} f(x) = lim_{x\to x_0} g(x) = 0$ (o $\pm \infty$).
+	\[
+	\text{Se } lim_{x\to x_0} \frac{f'(x)}{g'(x)} = l \implies lim_{x\to x_0} \frac{f(x)}{g(x)} = l
+	\]
+}
+
+\subsection{Teorema del Confronto} Se ho $x \rightarrow +\infty$ e ho $\sin$ o  $\cos$ potrei dover usare
 il teorema del confronto dato che $\sin$ e $\cos$ (NB solo per $x \rightarrow +\infty$)
 sono delle costanti che oscillano tra $-1$ e $1$.
 
+\chapter{Successioni}
+
+\section{Limiti di Successioni}
+
+\subsection{Criterio del Rapporto per i Limiti di successioni}
+Se dobbiamo trovare il limite di una successione in cui sono presenti $n!$ o $n^n$
+potrebbe essere utile usare il criterio del rapporto, che ci permette di sapere se la successione
+\emph{Converge a Zero o Diverge a $+\infty$}
+
+\paragraph*{Semplificare $(n+1)$}
+Quando usiamo il criterio del rapporto ci capita spesso di incontrare alcune forme con $n+1$ che non sono immediate da semplificare:
+\begin{itemize}
+	\item $(n+1)! = (n+1) \cdot n!$
+	\item $(n+1)^n = (n+1)^n \cdot (n+1)$
+	\item $(n+1)^{\alpha} = n^{\alpha} \cdot (1+\frac{1}{n})^\alpha$ 
+\end{itemize}
+Una piccola \textbf{osservazione}:
+\\Se troviamo $(n+1)^n = (n+1)^n \cdot (n+1)$, allora abbiamo anche $(n+1)^{n} = n^{n} \cdot (1+\frac{1}{n})^ n$.
+Sappiamo inoltre che $\lim_{n\to +\infty}(1+\frac{1}{n})^n = e$.
+\\Quindi $\lim_{n\to +\infty}(n+1)^n = ... = n^n \cdot e \cdot (n+1)$
+
+\subsection{Teorema di Permanenza del Segno}
+Il Teorema di Permanenza del Segno per il limite di una successione enuncia qunato segue:
+\definizione{
+	Sia $a_n \to l$. allora:
+	\begin{itemize}
+		\item Se $l>0$ o $l=+\infty$, allora $a_n>0$ definitivamente.
+		\item Se $a_n>0$, allora $l\geq 0$.
+	\end{itemize}
+}
 
 
 \chapter{Serie}
@@ -472,7 +514,7 @@ Considerata f limitata e integrabile su un intervallo $[a,b]$
 	M(f,[a,b])=\frac{1}{b-a}\int_a^b f(x)dx
 \end{equation*}
 
-\section*{Dimostrazioni per induzione}
+\section{Dimostrazioni per induzione}
 Le due casistiche principali sono:
 \begin{itemize}
 	\item Dimostrazioni con la sommatoria $\sum$
