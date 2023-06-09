@@ -107,10 +107,6 @@ $\sin(x)$ è \emph{Pari}, \emph{Decrescente} in $[0,\pi]$ e \emph{Crescente} in 
 
 \chapter{Studio dei Limiti}
 
-\paragraph*{\underline{$o$-piccolo}} Se il limite ($\to x_0$) del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$.
-Nota, che per $x_0$ si intende un valore arbitrario che può essere anche 0 o $\pm \infty$
-$$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x_0 $$
-
 \section{Limiti Notevoli}
 É importante ricordarsi questi limiti notevoli, visto che sono generalmente il modo piú rapido di risolvere i limiti
 
@@ -139,29 +135,48 @@ $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x
 
 \section{Equivalenze Asintotiche}
 \definizione{
-	\underline{Equivalenza asintotica tra funzioni} Se il limite ($\to x_0$) di $\frac{f(x)}{g(x)} = 1$ allora $f$ e $g$ sono asintoticamente equivalenti
-}
+	\underline{\textbf{Equivalenza Asintotica} tra funzioni}: Se il limite del rapporto di $f(x)$ e $g(x)$ é uguale a 1 allora $f$ e $g$ sono asintoticamente equivalenti
+	per $x\to x_0$.
+	\[
+		\lim_{x\to x_0} \frac{f(x)}{g(x)} = 1 \implies f(x) \sim g(x) \text{ per } x\to x_0 
+	\]
+	}
 In particolare, alcune equivalenze note sono:
-\\\begin{tabularx}{\textwidth}{|XYX|}
+\\\begin{tabularx}{\textwidth}{|X|XYX|}
 	\hline
-	\multicolumn{3}{|c|}{\textbf{con \emph{x} $\to$ 0}} \\
+	\multicolumn{4}{|c|}{\textbf{con \emph{x} $\to$ 0}} \\
 	\hline
 	\hline
-	$\sin x$           & $\sim$ & $x$                   \\
+	$\lim_{x\to 0}$ & $\sin x$           & $\sim$ & $x$                   \\
 	\hline
-	$1-\cos x$         & $\sim$ & $\frac{1}{2}x^2$      \\
+	$\lim_{x\to 0}$ & $1-\cos x$         & $\sim$ & $\frac{1}{2}x^2$      \\
 	\hline
-	$\tan x$           & $\sim$ & $x$                   \\
+	$\lim_{x\to 0}$ & $\tan x$           & $\sim$ & $x$                   \\
 	\hline
-	$\ln(1+x)$         & $\sim$ & $x$                   \\
+	$\lim_{x\to 0}$ & $\ln(1+x)$         & $\sim$ & $x$                   \\
 	\hline
-	$(1+x)^\alpha -1 $ & $\sim$ & $\alpha x$            \\
+	$\lim_{x\to 0}$ & $(1+x)^\alpha -1 $ & $\sim$ & $\alpha x$            \\
 	\hline
 \end{tabularx}
 
-\paragraph*{\underline{Ordine degli infiniti $\infty$}} In generale:
+\subsection{O-Piccolo}
+Una funzione puó essere un 'o-piccolo' di un'altra.
+\definizione{
+	\underline{\textbf{$o$-piccolo}}: 
+	Se il limite del rapporto di $f(x)$ su $g(x)$ è uguale a $0$ allora $f(x)$ è $o$-piccolo di $g(x)$ per $x\to x_0$.
+   $$lim_{x\to x_0} \frac{f(x)}{g(x)} = 0 \implies f(x) = o g(x)\text{ per } x\to x_0 $$
+   \small{Questa proprietá NON é commutativa.}
+}
+Nota che per $x_0$ si intende un valore arbitrario che può essere anche 0 o $\pm \infty$.
+
+\pagebreak
+
+\section{Gerarchie di Infiniti}
+In situazioni di indecisione del tipo $[\infty \pm \infty]$ 'vince' l'infinito piú forte.
+\\In generale, la scala é la seguente:
+
 \begin{center}
-	\[ \log_ax\ll x^b\ll x^c\ll d^x\ll g^x\ll x! \ll x^x \]
+	\[ \log_ax\ll x^b\ll c^x\ll x! \ll x^x \]
 \end{center}
 \nb{
 	\begin{itemize}
