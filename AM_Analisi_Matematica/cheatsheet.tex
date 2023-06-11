@@ -459,44 +459,79 @@ $$P_k(x)=f(0)+f'(0)x+\frac{1}{2}f''(0)x^2+...+\frac{1}{k!}f^{(k)}(0)x^k$$
 
 
 \chapter{Calcolo Integrale}
-\paragraph*{Condizione di integrabilità} Per l'integrabilità di una funzione su un intervallo la condizione
-che essa sia \emph{continua è sufficiente ma non necessaria}
-\begin{multicols}{3}
-	\paragraph*{\underline{Primitive elementari}}
-	Funzioni il cui integrale è immediatamente calcolabile.
-	\columnbreak
-	\begin{tabularx}{0.7\textwidth}{ |Y|Y| }
-		\hline
-		\textbf{Funzione} & \textbf{Primitiva}    \\
-		\hline
-		$k$               & $kx$                  \\
-		$x^a$,$a\neq-1$   & $\frac{x^{a+1}}{a+1}$ \\
-		$\frac{1}{x}$     & $\log|x|$             \\
-		$\sin x$          & $-\cos x$             \\
-		$\cos x $         & $\sin x$              \\
-		$a^x$             & $\frac{a^x}{\log a}$  \\
-		\hline
-		$e^{-x}$          & $-e^{-x}$             \\
-		$\frac{1}{x^2+1}$ & $\arctan (c)$         \\
-		\hline
-	\end{tabularx}
-\end{multicols}
 
-\paragraph*{Proprietà degli integrali}
+\section{Definizione, condizioni e proprietá}
+\definizione{
+	\textbf{Condizione di integrabilità} Per l'integrabilità di una funzione su un intervallo la condizione
+	che essa sia \emph{continua è sufficiente ma non necessaria}
+}
+\subsection{le Proprietà degli Integrali}
+Gli integrali hanno le seguenti proprietá.	
 \begin{itemize}
 	\item Somma di integrali: $\int f(x)+g(x) dx = \int f(x) dx + \int g(x) dx$
 	\item Costante moltiplicativa $\int k \cdot f(x) = k \int f(x)$
 \end{itemize}
-\subsection*{I metodi di risoluzione}
-\paragraph*{Integrazione per Parti}
+
+\subsection{Media Integrale}
+Considerata f limitata e integrabile su un intervallo $[a,b]$
+\begin{equation*}
+	M(f,[a,b])=\frac{1}{b-a}\int_a^b f(x)dx
+\end{equation*}
+
+\section{Primitive Elementari}
+\paragraph{Le primitive elementari} sonon funzioni il cui integrale é immediatamente calcolabile.
+La primitiva di una funzione é l'antiderivata di essa.
+
+\begin{tabularx}{\textwidth}{ |Y|Y| }
+	\hline
+	\textbf{Funzione} & \textbf{Primitiva}    \\
+	\hline
+	$k$               & $kx$                  \\
+	$x^a$,$a\neq-1$   & $\frac{x^{a+1}}{a+1}$ \\
+	$\frac{1}{x}$     & $\log|x|$             \\
+	$\sin x$          & $-\cos x$             \\
+	$\cos x $         & $\sin x$              \\
+	$a^x$             & $\frac{a^x}{\log a}$  \\
+	\hline
+	$e^{-x}$          & $-e^{-x}$             \\
+	$\frac{1}{x^2+1}$ & $\arctan (c)$         \\
+	\hline
+\end{tabularx}
+
+
+
+\section{Metodi di Risoluzione}
+\subsection{Integrali quasi Immediati}
+Gli integrali quasi immediati sono gli integrali piú facili da integrare, spesso é utile 
+riformulare la funzione da integrare in modo da ricondurci a questa forma.
+
+\definizione{
+	\[
+		\int f'(x) \cdot g(f(x)) dx = G(f(x)) + C
+	\]
+}
+Quando dobbiamo integrare una funzione composta é sempre utile controllare la derivata della funzione interna per capire se possiamo
+ricondurci agli integrali quasi immediati.
+
+
+\subsection{Integrazione per Parti}
+L'integrazione per parti é utile quando l'integrale da risolvere é formato da due funzioni:
+Una facilmente Derivabile e una facilmente Integrabile.
+\definizione{
 $$\int f(x)g'(x)dx = f(x)g(x)-\int f'(x)g(x)dx$$
+
 \begin{center}
-	\includegraphics[width=0.4\textwidth]{integrazione-per-parti.png}
+	\includegraphics[width=0.3\textwidth]{integrazione-per-parti.png}
 \end{center}
 
-\paragraph*{\underline{Integrazione per Sostituzione}}
-\subparagraph*{\emph{Metodo Generale e Semplificato}} per itnegrali generali $f(x)$:
-\\Trovo una funzione $g(x)$ \emph{Derivabile e Invertibile} da sostituire ad $x$.
+}
+
+\subsection{Integrazione per Sostituzione}
+L'integrazione per sostituzione é utile quando, all'interno della funzione da integrare,
+abbiamo un componente "fastidioso" che vogliamo rimuovere.
+\paragraph{Procedimento}
+All'interno della funzione da integrare, trovo una funzione $g(x)$ \emph{Derivabile e Invertibile}
+ da sostituire ad $x$.
 \begin{enumerate}
 	\item decido che $y=g(x)$
 	\item Inverto $g(x)$ per isolare la x, ottenendo $x=g^{-1}(y)$
@@ -505,22 +540,9 @@ $$\int f(x)g'(x)dx = f(x)g(x)-\int f'(x)g(x)dx$$
 	\item Risolvo l'integrale
 	\item Sostiuisco $y \to g(x)$
 \end{enumerate}
-\subparagraph*{Metodo dalla definizione}: Abbiamo un integrale nella forma
-$$\int f(g(x))g'(x) dx$$
-\begin{enumerate}
-	\item $y=g(x)\to dy=g'(y)dx$
-	\item Sostituiamo per ottenere $\int f(y)dy$
-	\item Calcolo l'integrale nella nuova variabile
-	\item Sostituisco $y\to g(x)$
-\end{enumerate}
 
-\paragraph*{Formula Media Integrale}
-Considerata f limitata e integrabile su un intervallo $[a,b]$
-\begin{equation*}
-	M(f,[a,b])=\frac{1}{b-a}\int_a^b f(x)dx
-\end{equation*}
 
-\section{Dimostrazioni per induzione}
+\chapter{Dimostrazioni per induzione}
 Le due casistiche principali sono:
 \begin{itemize}
 	\item Dimostrazioni con la sommatoria $\sum$
