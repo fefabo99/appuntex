@@ -55,8 +55,8 @@ Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comp
 \subsubsection{Def. matrice definita positiva/negativa}
 Cosa significa matrice definita positiva e negativa?
 \\
-\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.
-\\
+\definizione{Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.}
+Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.
 \\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{semi definita positiva} se $$x^T Ax \geq 0\quad \forall x \in \R^2 \setminus 0$$
 Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita negativa} se $$x^T Ax < 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono negativi. 
 \\
