@@ -34,7 +34,7 @@ Esistono due tipi di algoritmi che si basano su questo funzionamento:
     \item[Dicotomici:] Algoritmi di ricerca per individuare un determinato valore (per il quale la funzione derivata si annulla) all'interno di un intervallo che ad ogni iterazione viene ridotto.
     \item[Di Approssimazione:] Algoritmi che utilizzando approssimazioni locali della funzione.
 \end{description}
-Per l'ottimizzazione di funzioni in una variabile tratteremo il \emph{Metodo di Bisezione}, che è di tipo Dicotomico, e il Metodo di Newton, che è un algoritmo di Approssimazione.
+Per l'ottimizzazione di funzioni in una variabile tratteremo il \emph{Metodo di Bisezione}, che è di tipo Dicotomico, e il \emph{Metodo di Newton}, che è un algoritmo di Approssimazione.
 
 \section{Metodo di Bisezione}
 Il metodo di Bisezione è una procedura intuitiva e semplice che puó essere applicata ad un problema PNL non vincolato quando $f(x)$ è concava/convessa, continua e derivabile.\\
