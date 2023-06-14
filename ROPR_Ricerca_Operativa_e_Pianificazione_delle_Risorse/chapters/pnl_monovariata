@@ -37,7 +37,7 @@ Esistono due tipi di algoritmi che si basano su questo funzionamento:
 Per l'ottimizzazione di funzioni in una variabile tratteremo il \emph{Metodo di Bisezione}, che è di tipo Dicotomico, e il \emph{Metodo di Newton}, che è un algoritmo di Approssimazione.
 
 \section{Metodo di Bisezione}
-Il metodo di Bisezione è una procedura intuitiva e semplice che puó essere applicata ad un problema PNL non vincolato quando $f(x)$ è concava/convessa, continua e derivabile.\\
+Il metodo di Bisezione è una procedura intuitiva e semplice che può essere applicata ad un problema PNL non vincolato quando $f(x)$ è concava/convessa, continua e derivabile.\\
 L'idea di questo algoritmo è la seguente:\\
 Se $f(x)$ è \emph{continua e concava} in un intervallo chiuso $[a,\, b]$ allora, considerando \textbf{un generico punto $x_k$}, se:
 \begin{itemize}
