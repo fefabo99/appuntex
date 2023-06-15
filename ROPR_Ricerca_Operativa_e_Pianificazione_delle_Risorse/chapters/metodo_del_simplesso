@@ -36,8 +36,10 @@ Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{for
 \begin{enumerate}
     \item Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}:
           $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$
-    \item Per ogni vincolo aggiungo una \textbf{Variabile di Slack}
-          \\Ogni vincolo riceve una variabile di slack unica, quindi se abbiamo:
+    \item Per ogni vincolo aggiungo una \textbf{Variabile di Slack/Surplus}
+          \\Ogni vincolo riceve una variabile di slack/surplus unica,
+          se il vincolo é di $\leq$ avrá una variabile di slack, se é di $\geq$ avrá una variabile di surplus.
+          quindi se abbiamo:
           \[
               \begin{cases}
                   x_1 \leq 3 \\

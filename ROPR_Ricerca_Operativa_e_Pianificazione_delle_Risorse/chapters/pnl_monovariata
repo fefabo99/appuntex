@@ -109,7 +109,7 @@ Quindi, l'idea dell'algoritmo di Newton è quella di usare l'ottimo dell'approsi
 \]
 Questa formula viene usata ad ogni generiaca iterazione $k$ per calcolare il punto successivo $x_{k+1}$
 
-\paragraph{Importante}
+\paragraph{Osservazione}
 Se $f(x)$ è concava allora $x_k$ converge verso un punto di massimo, perchè?
 \begin{itemize}
     \item $x_k$ è a Sinistra del punto di massimo
@@ -117,6 +117,7 @@ Se $f(x)$ è concava allora $x_k$ converge verso un punto di massimo, perchè?
     \item $x_k$ è a Destra del punto di massimo
     \\ $\implies f'(x_k) < 0 \implies -\frac{f'(x_k)}{f''(x_k)}<0 \implies x_{k+1}< x_k$
 \end{itemize}
+Ovvero L'algoritmo di Newton "decide" matematicamente se spostarsi a sinistra o destra.
 
 \subsection{Algoritmo}
 \begin{itemize}
