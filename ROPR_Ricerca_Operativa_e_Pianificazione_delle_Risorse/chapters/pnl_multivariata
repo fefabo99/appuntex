@@ -1,92 +1,117 @@
 \chapter{PNL Multivariata}
-\section{Gradiente ed Hessiano}
-Vogliamo estendere i concetti di derivata (prima e seconda) visti per funzioni in una variabile, al caso di funzioni in più variabili.
-\\In particolare, considereremo lo spazio euclideo $\R^2$ (ovvero lo spazio vettoriale $\R^2$ dotato di norma euclidea), da cui sarà possibile facilmente generalizzare allo spazio $\R^n$ con $n\, >\, 2$.
-\\Sia $A \subset \R^2$ e $f:\, A \rightarrow \R$ una funzione definita sull'insieme $A$.
-
-\subsection{Le derivate parziali}
-
-\subsubsection{Def. Derivata Direzionale}
-Supponiamo di voler calcolare la velocità di crescita della funzione $f(x,\, y)$ nel punto $(x_0,\, y_0)$ quando ci si muove nella direzione del vettore $v = (a,\, b)$. I punti di coordinate $(x_0 + ha,\, y_0 + hb)$ descrivono, al variare di $h$ in $\R$, la retta nel piano $\widehat{xy}$ passante per il punto $(x_0,\, y_0)$ e parallela a $v$.
-\\La derivata direzionale di $f$ in $(x_0,\, y_0)$ nella direzione individuata dal versore $v\, =\, (a,\, b)$ (con $\| v\|\, =\, 1$) si indica con $D_v\, f(x_0,\, y_0)$ e vale $$D_v\, f(x_0,\, y_0)\, =\, \lim_{h\to 0}\frac{f(x_0 + ha,\, y_0 + hb)\, -\, f(x_0,\, y_0)}{h} $$ (se il limite esiste).
-
-\subsubsection{Def. Derivata Parziale}
-Le derivate parziali di $f$ nel punto $(x_0,\, y_0)\in A$ sono definite come $$\frac{\partial f(x_0,\, y_0)}{\partial x}\, =\, \lim_{h\to 0}\frac{f(x_0 + h,\, y_0)\, -\, f(x_0,\, y_0)}{h} ,$$ $$\frac{\partial f(x_0,\, y_0)}{\partial y}\, =\, \lim_{h\to 0}\frac{f(x_0,\, y_0 + h)\, -\, f(x_0,\, y_0)}{h} ,$$ purché i limiti esistano finiti. Quindi, le derivate parziali corrispondono alla derivata direzionale rispetto ai vettori $v_1 = (1,\, 0)$ e $v_2 = (0,\, 1)$, rispettivamente.
-
-\subsubsection{Varianti di notazioni per le derivate parziali}
-$\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
-
-\subsubsection{Comportamenti delle derivate parziali}
+Nella PNL Monovariata utilizziamo le informazioni di Derivata Prima e Seconda per trovare l'ottimo.
+Anche nel caso della PNL Multivariata usiamo gli stessi concetti, bisogna peró estenderli agli spazi multidimensionali.
+\\Vogliamo estendere i concetti di derivata (prima e seconda) visti per funzioni in una variabile, al caso di funzioni in più variabili.
+\\In particolare, consideriamo uno spazio $\R^n$, ovvero uno spazio vettoriale a $n$ dimensioni.
+Se nel caso $\R^1$ avevamo Derivata I e II, nel caso $n$-dimensionale:
 \begin{itemize}
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} > 0$, allora la funzione è crescente lungo la direzione $x$.
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} > 0$, allora la funzione è crescente lungo la direzione $y$.
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial x} < 0$, allora la funzione è decrescente lungo la direzione $x$.
-    \item Se $\frac{\partial f(x_0,\, y_0)}{\partial y} < 0$, allora la funzione è decrescente lungo la direzione $y$.
-\end{itemize}
-$\frac{\partial f(x_0,\, y_0)}{\partial x},\, \quad \partial_x f(x_0,\, y_0),\, \quad f_x(x_0,\, y_0),\, \quad \frac{\partial}{\partial_x} f(x_0,\, y_0)$.
+    \item $f'(x) \to$ Gradiente.
+    \item $f''(x) \to$ Hessiana.
+\end{itemize} 
 
-\subsubsection{Derivate di ordine successivo}
-Sia $f(x,\, y)$ una funzione derivabile in $A\, \subset\, \R^2$, ovvero siano definite in $A$ le 2 derivate parziali $\frac{\partial f(x,\, y)}{\partial x}$ e $\frac{\partial f(x,\, y)}{\partial y}$. Ogni derivata parziale è una funzione definita in $A$. Se $\frac{\partial f(x,\, y)}{\partial x}$ è a sua volta derivabile, le sue derivate parziali $$\frac{\partial^2 f(x,\, y)}{\partial x \partial x},\quad \frac{\partial^2 f(x,\, y)}{\partial x \partial y}$$ sono dette \textbf{derivate seconde}. In modo simile possono essere definite le derivate parziali di $\frac{\partial f(x,\, y)}{\partial y}$, ovvero $$\frac{\partial^2 f(x,\, y)}{\partial y \partial x},\quad \frac{\partial^2 f(x,\, y)}{\partial y \partial y}$$
+\section{Derivate Parziali}
 
-\subsection{Gradiente di una funzione}
-Il gradiente di $f(x, y)$ è per definizione il vettore $\text{D}f$ le cui componenti sono le \textbf{derivate parziali} di $f$, ovvero $$\nabla f(x,\, y) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T$$
+Per conoscere Gradiente ed Hessiana dobbiamo introdurre il concetto di Derivata Parziale.
+
+\definizione{
+    Le \textbf{Derivate Parziali} (anche dette derivate direzionali) sono le derivate in un iperspazio per una determinata direzione $v$.
+    \paragraph{Quindi} se ho $f(x,y,z)$ posso ottenere
+    \[
+        \frac{d f(x,y,z)}{dx}, \frac{d f(x,y,z)}{dy}, \frac{d f(x,y,z)}{dz}
+    \]
+    Ovvero le derivate parziali di $f(x,y,z)$ in ognuna delle sue variabili.
+    \linebreak \small{
+        \nb{Se derivo $f(x,y,z)$ in $x$, allora $y$ e $z$ vengono trattate come costanti nel processo di derivazione.}
+    }
+}
+
+\section{Gradiente ed Hessiana}
+Ora possiamo quindi introdurre Gradiente ed Hessiana:
+\subsection{Gradiente}
+Il gradiente di $f(x, y)$ è per definizione il vettore $\text{D}f$ le cui componenti sono le \textbf{derivate parziali} di $f$, ovvero
+$$\nabla f(x,\, y) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T$$
 \\Anche in questo caso esistono varie notazioni per indicare il gradiente: $$\nabla f,\quad \text{D}f(x,\, y),\quad \nabla f(x,\, y),\quad \text{grad} f$$
-\\Gli elementi sulla diagonale principale vengono chiamati \textbf{derivate pure}, per distinguerli dagli altri elementi chiamati \textbf{derivate miste}.
 
-\subsection{Hessiano di una funzione}
+\subsection{Hessiana}
 L'insieme delle derivate seconde costituisce una matrice quadrata chiamata matrice Hessiana, e si denota con il simbolo $\text{D}^2 f$ o $H_f$.
 $$H_f f(x,\, y) = \left[\begin{matrix}
     \frac{\partial^2 f(x,\, y)}{\partial x \partial x} & \frac{\partial^2 f(x,\, y)}{\partial x \partial y} \\
     \frac{\partial^2 f(x,\, y)}{\partial y \partial x} & \frac{\partial^2 f(x,\, y)}{\partial y \partial y}
 \end{matrix}\right]$$
 
-\subsection{Legami fra gradiente, hessiano e punti di ottimo}
-Il gradiente riassume le informazioni di crescita della funzione lungo tutte le direzioni. I punti per cui il gradiente si annulla ($\nabla f = 0$), prendono il nome di \textbf{punti stazionari}.
+In cui ogni riga della matrice Hessiana "corrisponde" ad un elemento del Gradiente, 
+mentre ogni colonna corrisponde alla derivata parziale in ognuna delle variabili di $f$.
+\paragraph*{Derivate Pure}
+Gli elementi sulla diagonale principale vengono chiamati \textbf{derivate pure}, per distinguerli dagli altri elementi chiamati \textbf{derivate miste}.
 
-\subsubsection{Legame tra stazionarietà e gradiente}
-Se $f:\, A \subset \R^2 \rightarrow \R$ è derivabile in un punto $(x_0,\, y_0)$ di massimo o di minimo locale, allora $$\nabla f(x_0,\, y_0) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T = [0,\, 0]^T$$
-\\N.B.: 
-\begin{itemize}
-    \item nel caso 1D (le derivate tradizionali fatte finora, ad un'incognita e quindi una dimensione) un \textbf{punto stazionario} ovvero per $\mathbf{f'(x)\, =\, 0}$ può essere un punto di \textbf{massimo}, di \textbf{minimo} (o di flesso);
-    \item nel caso 2D visto nei paragrafi precedenti un \textbf{punto stazionario} ovvero per $\mathbf{\nabla f(x)\, =\, 0}$ può essere \textbf{anche} un punto di \textbf{sella}.
-\end{itemize}
-Un punto di sella è un punto in cui, ad esempio, lungo la direzione $x$ si comporta come \textit{minimo} (ovvero la funzione è convessa lungo la direzione $x$) e lungo la direzione $y$ si comporta come \textit{massimo} (ovvero la funzione è concava lungo la direzione $y$).
 
-\subsubsection{Def. matrice definita positiva/negativa}
-Cosa significa matrice definita positiva e negativa?
-\\
-\definizione{Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.}
-Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita positiva} se $$x^T Ax > 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono positivi.
-\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{semi definita positiva} se $$x^T Ax \geq 0\quad \forall x \in \R^2 \setminus 0$$
-Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{definita negativa} se $$x^T Ax < 0\quad \forall x \in \R^2 \setminus 0$$ oppure se tutti gli autovalori della matrice sono negativi. 
-\\
-\\Una matrice quadrata $A \in \R^2 \times \R^2$ è \textbf{semi definita negativa} se $$x^T Ax \leq 0\quad \forall x \in \R^2 \setminus 0$$
-\\Ma come si trovano?
+\section{Metodo Analitico per l'Ottimo}
+Il gradiente riassume le informazioni di crescita della funzione lungo tutte le direzioni. I punti per cui il gradiente
+si annulla ($\nabla f = 0$), prendono il nome di \textbf{punti stazionari}.
 
-\subsubsection{Trovare gli autovalori di una matrice}
-Premessa scontata ma dovuta: la nozione di autovalore si riferisce \textbf{solo} alle matrici \textbf{quadrate}.
-\\Sia $A$ una matrice di ordine $n$, ovvero $A \in \mathbb{K}^n$, dove $\mathbb{K} \subseteq \mathbb{R}$ o anche $\mathbb{K} \subseteq \mathbb{C}$.
-\\Si dice che lo scalare $\lambda_0 \in \mathbb{K}$ è un \textbf{autovalore} della matrice $A$ se $\exists$ un vettore colonna \textbf{non nullo} $\mathbf{v} \in \mathbb{K}^n$ tale che $$A\mathbf{v} = \lambda_0\mathbf{v}$$ dove $\mathbf{v}$ è detto \textbf{autovettore relativo all'autovalore} $\lambda_0$.
-\\Da questa uguaglianza possiamo ricavare che $$A\mathbf{v} - \lambda_0\mathbf{v} = 0$$ e di conseguenza $$(A - \lambda_0\mathbf{Id}_n)\mathbf{v} = 0$$ dove con $\mathbf{Id}_n$ indichiamo la \textbf{matrice identità} dello stesso ordine di $A$.\\
-\\Questa è la forma matriciale di un \textit{sistema lineare omogeneo}. Dalla teoria sui \textit{sistemi lineari} sappiamo che un sistema omogeneo ammette una soluzione diversa dalla soluzione banale \textit{sse} la matrice incompleta (anche detta \textit{matrice dei coefficienti}, utile per il teorema di Rouché-Capelli) associata al sistema ha \textbf{determinante uguale a 0}, quindi $$\text{det}(A - \lambda_0\text{Id}_n) = 0$$ {\footnotesize (avendo assunto $\mathbf{v}$ non nullo all'inizio, possiamo non trascriverlo)}\\
-\\Se consideriamo $\lambda$ come un'incognita, otteniamo quello che è chiamato per definizione \textbf{polinomio caratteristico} associato alla matrice $A$. Si deduce che \textcolor{blue}{gli \textbf{autovalori} di una matrice sono \textbf{gli zeri del polinomio caratteristico}}.
+\subsection{Punti stazionari n-dimensionali}
+\definizione{
+    Se abbiamo un punto $(x_0,\, y_0)$ t.c. 
+    \[
+        \nabla f(x_0,\, y_0) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T = [0,\, 0]^T
+    \]
+    Allora questo é un \textbf{punto stazionario}, e potrebbe essere un punto di massimo, minimo o di sella.
+}
 
-\subsubsection{Legame tra hessiano e convessità}
+\paragraph*{Punto di Sella}
+Se nel caso 1D ogni punto in cui la derivata si annulla é un punto di Max o Min, nel caso n-dimensionale puó anche
+essere un \emph{punto di sella}, ovvero un punto che é massimo in una direzione (variabile) e minimo nell'altra.
+
+\subsection{Trovare Massimo e Minimo}
+Una volta trovato un punto stazionario $(x,y)$, voglio capire se si tratta di un punto di Massimo o di Minimo:
+\definizione{
+    Condizione \textbf{sufficiente} affinché $(x, y)$ sia un punto di \textbf{Minimo} per $f$ è che:
+    \begin{itemize}
+        \item $\nabla f(x,\, y) = 0$ (derivate parziali tutte nulle)
+        \item $H_f (x, y)$ sia \textbf{definita positiva}
+    \end{itemize}
+    Condizione \textbf{sufficiente} affinché (x, y) sia un punto di \textbf{Massimo} per $f$ è che:
+    \begin{itemize}
+        \item $\nabla f(x, y) = 0$ (derivate parziali tutte nulle)
+        \item $H_f (x, y)$ sia \textbf{definita negativa}
+    \end{itemize}
+}
+
+
+
+\subsection{Matrice Definita Positiva/Negativa}
+Il Concetto di Matrice Definita Positiva/Negativa ci serve per distinguere i punti di Massimo, Minimo e di Sella.
+\definizione{
+    Una Matrice Quadrata si Dice:
+    \begin{itemize}
+        \item Definita Positiva se tutti gli Autovalori sono $>0$
+        \item Semi Definita Positiva se tutti gli Autovalori sono $\geq 0$
+        \item Definita Negativa se tutti gli Autovalori sono $<0$
+        \item Semi Definita Negativa se tutti gli Autovalori sono $\leq0$
+    \end{itemize}
+}
+
+\paragraph{Osservazione}
 Sia $f(x,\, y)$ una funzione derivabile due volte, allora:
 \begin{itemize}
     \item $f$ è convessa nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita positiva.
     \item $f$ è concava nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita negativa.
 \end{itemize}
 
-\subsubsection{Legame tra hessiano, gradiente e punti di ottimo}
-Sia $f: A \subset \R^2 \rightarrow \R$ una funzione continua in $A$ e avente derivate prime e seconde continue in $A$. 
-\\Condizione \textcolor{blue}{\textbf{sufficiente}} affinché (x,\, y) sia un punto di \textcolor{blue}{\textit{minimo}} per $f$ è che:
-\begin{itemize}
-    \item $\nabla f(x,\, y) = \mathbf{0}$ (derivate parziali tutte \textbf{nulle})
-    \item $H_f (x,\, y)$ sia definita \textcolor{blue}{\textbf{positiva}}
-\end{itemize}
-Condizione \textcolor{blue}{\textbf{sufficiente}} affinché (x,\, y) sia un punto di \textcolor{blue}{\textit{massimo}} per $f$ è che:
-\begin{itemize}
-    \item $\nabla f(x,\, y) = \mathbf{0}$ (derivate parziali tutte \textbf{nulle})
-    \item $H_f (x,\, y)$ sia definita \textcolor{blue}{\textbf{negativa}}
-\end{itemize}
+
+\subsection{Gli Autovalori di una Matrice}
+L'Autovalore di una matrice quadrata $A$ é un valore scalare $\lambda$ t.c.:
+\[
+    \exists v \neq 0 \text{ t.c. } Av = \lambda v    
+\]
+
+
+$v$ é un vettore colonna non nullo, ed é l'autovettore per la matrice $A$ relativo a $\lambda$ t.c.
+\[
+    Av - \lambda v = (A \cdot \lambda I) \cdot v
+\]
+Con $I$ Matrice Identitá di A.
+
+
+
+
