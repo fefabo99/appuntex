@@ -257,4 +257,56 @@ Operazione indispensabile per la traduzione nel modello relazionale.
     \item Se nessuno degli identificatori soddisfa i requisiti precedenti si introducono
     nuovi attributi (codici) contenenti valori speciali generati appositamente per questo scopo
 \end{itemize}
+\section{Traduzione verso il modello relazionale}
+Idea di base: le entità diventano relazioni sugli stessi attributi e le associazioni
+(ovvero le relazioni ER) diventano relazioni sugli identificatori delle entità coinvolte
+(più gli attributi propri).
+\subsection{Entità}
+Una entità diviene una relazione definita sugli stessi attributi e con chiave uguale
+all'identificatore.
+\subsection{Associazioni}
+Ogni associazione è tradotta con una relazione con gli stessi attributi, cui si
+aggiungono gli identificatori di tutte le entità che essa collega (FOREIGN KEY).\\
+Gli identificatori delle entità collegate costituiscono una superchiave. La chiave
+dipende dalle cardinalità massime delle entità nell'associazione. Le cardinalità minime
+determinano, a seconda del tipo di traduzione effettuata, la presenza o meno di valori nulli e quindi
+incidono su vincoli e occupazione inutile di memoria.
+\subsection{Nomi delle chiavi}
+Non è necessario mantenere per gli attributi chiave della relazione che traduce l'associazione gli
+stessi nomi delle chaivi delle relazioni referenziate, si possono scegliere nomi più espressivi
+per gli attributi chiave della relazione che rappresenta la relationship.
+\paragraph*{Esempio} Se nell'entità progetto ho una chiave denominata "Codice" la
+relazione PartecipazioneProgetto avrà una chiave denominata "CodiceProgetto" e non "Codice",
+così da risultare ancora più chiaro il riferimento.
+\subsection{Relazioni molti a molti}
+In questo caso è necessario trasformare la relazione in una relazione con una chiave
+nel modello relazionale e inserire i relativi vincoli di integrità referenziale fra le
+entità a cui era collegata la relazione nello schema ER.\\ 
+Nel caso di relazioni con più entità collegate si crea una chiave esterna per ogni entità
+collegata.
+\subsection{Relazioni uno a molti}
+In questo si accorpa la relazione con l'entità che ha cardinalità massima uno e si crea
+una chiave esterna per collegare l'entità con cardinalità massima uno con l'entità
+con cardinalità massima molti. Nel caso di cardinalità 0,1 si avrà l'attributo chiave esterna che può essere NULL.
+\subsection{Entità con identificatore esterno}
+Un identificatore esterno rappresenta un vincolo di integrità referenziale, quindi è 
+necessario rappresentarlo nel MR tramite la creazione di chiave esterna che però costituiranno
+insieme a un o più attributi chiave primaria della relazione.
+\paragraph*{Esempio a cascata}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{identificatori_esterni_a_cascata}
+    \caption{identificatori esterni a cascata}
+    \label{fig:id-esterni-cascata}
+\end{figure}
+\subsection{Relazioni uno a uno}
+In questo caso si accorpa la relazione in un'entità, si sceglie di solito quella con con cardinalità 1-1 dato
+che nel caso 0-1 la partecipazione alla relazione è opzionale e quindi si avrebbe un valore NULL.\\
+Nel caso di relazioni dove entrambe le entità hanno cardinalità 0-1 si può introdurre una relazione aggiuntiva, 
+in modo tale da rappresentare la partecipazione opzionale in entrambi i casi, senza avere valori nulli
+sugli attributi (però si introduce una relazione in più). Oppure indicare che le chiavi esterne e gli attributi
+della relazioni possono essere nulli.
+\section{Documentazione deli schemi logici}
+Si devono documentare i vincoli di integrità referenziale, in modo tale da produrre un diagramma con
+collegamenti fra relazioni (utili anche per visualizzare i cammini di join).
 
