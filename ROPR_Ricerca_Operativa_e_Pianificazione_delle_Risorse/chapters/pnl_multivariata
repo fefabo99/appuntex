@@ -30,7 +30,7 @@ Ora possiamo quindi introdurre Gradiente ed Hessiana:
 \subsection{Gradiente}
 Il gradiente di $f(x, y)$ è per definizione il vettore $\text{D}f$ le cui componenti sono le \textbf{derivate parziali} di $f$, ovvero
 $$\nabla f(x,\, y) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T$$
-\\Anche in questo caso esistono varie notazioni per indicare il gradiente: $$\nabla f,\quad \text{D}f(x,\, y),\quad \nabla f(x,\, y),\quad \text{grad} f$$
+Esistono varie notazioni per indicare il gradiente: $$\nabla f,\quad \text{D}f(x,\, y),\quad \nabla f(x,\, y),\quad \text{grad} f$$
 
 \subsection{Hessiana}
 L'insieme delle derivate seconde costituisce una matrice quadrata chiamata matrice Hessiana, e si denota con il simbolo $\text{D}^2 f$ o $H_f$.
@@ -97,3 +97,47 @@ Sia $f(x,\, y)$ una funzione derivabile due volte, allora:
     \item $f$ è convessa nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita positiva.
     \item $f$ è concava nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita negativa.
 \end{itemize}
+
+
+\section{Algoritmi Numerici per i PNL Multivariati}
+Come per la PNL Monovariata, anche per la Multivaariata esistono degli algoritmi numerici per trovare l'ottimo qual'ora
+non fosse possibile trovarlo analiticamente.
+\\Gli algoritmi che affronteremo sono:
+\begin{itemize}
+    \item Metodo del Gradiente (Steepest Descent)
+    \item Metodo di Newton
+\end{itemize}
+Entrambi gli algoritmi utilizzano strategie di tipo \textbf{Line Search}.
+\subsection{Gli algorimti Line Search}
+Questo tipo di algorimto genera una succesione di punti $x_k \in \R^n$ in modo che
+il punto $x_{k+1}$ é ottenuto a partire dal punto $x_k$ muovendosi lungo una \textbf{Direzione di Salita (Massimo) o di Discesa (Minimo)}.
+\definizione{
+    Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
+    \\Definiamo:
+    \begin{itemize}
+        \item Direzione di Discesa un generico vettore $v\in \R^n$ tale che $\left\langle v, f(x)\right\rangle < 0$
+        \item Direzione di Salita un generico vettore $v\in \R^n$ tale che $\left\langle v, f(x)\right\rangle > 0$
+    \end{itemize} 
+    Dove $\left\langle \right\rangle $ indica il Prodotto scalare tra vettori.
+}
+
+\subsection{Schema generico per il Line Search}
+Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
+\\Se vogliamo cercare un generico punto di minimo di una funzione, possiamo usare la seguente strategia:
+\begin{enumerate}
+    \item Poniamo $k=0$ e consideriamo un generico punto $x^k$
+    \item Determiniamo una Direzione di Discesa $d^k$
+    \item Cerchiamo un nuovo punto $x^{k+1}$ lungo la direzione $d^k$:
+    \[x^{k+1} = x^k \pm \alpha^k \cdot d^k\]
+    dove \begin{itemize}
+        \item $k$ é la generica iterazione
+        \item $\alpha^k$ é una quantitá scalare$ > 0$ chiamata step-size.
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Step-Size} é inversamente proporzionale al numero di iterazioni.
+\\Per trovare $\alpha^k$ pongo:
+\[ 
+    \frac{df(x^k \pm \alpha^k \cdot d^k)}{d\alpha^k} = 0 
+    \]
+e uso un metodo di Max/Min ID per trovare $\alpha^k$ ottimale.
