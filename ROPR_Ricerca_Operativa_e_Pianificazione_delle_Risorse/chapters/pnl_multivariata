@@ -169,3 +169,49 @@ E come formula generale per il punto $x^{k+1}$:
 
 \paragraph{Osservazioni}. Noto che l'algoritmo del gradiente si differenzia da un generico Line Search solo dalla determinazione della direzione di Crescita.
 Inoltre noto che se $\nexists \alpha^k > 0 \implies \nexists$ una direzione di Salita.
+
+\section{Metodo di Newton}
+A differenza del metodo del Gradiente, il metodo di Newton (N-dimensionale) utilizza un'approssimazione quadratica di $f(x)$ per ottenere un nuovo punto.
+
+\paragraph{Sviluppo di Taylor} per funzioni a piú variabili:
+\[
+  f(x^k+ \Delta x) = f(x^k) + \nabla f(x^k) \cdot \Delta x + \frac{1}{2} \Delta x \cdot H f(x^k) \Delta x   
+\]
+In questo caso $x^k+ \Delta x = x^{k+1}$
+\subsection{Direzione di Miglioramento}
+Essendo un algoritmo Line Search, Newton segue una direzione di miglioramento per il nuovo punto $(x^k+ \Delta x)$ cosí definita:
+\[
+    \frac{\delta f(x^k+ \Delta x)}{\delta \Delta x} = 0 \to H(x^k) \Delta x = -\nabla f(x^k)
+\]
+
+$\Delta x$ é il vettore spostamento, e in questo caso é l'incognita.
+
+\paragraph{Osservazione} Newton si muove ad un punto stazionario del II ordine dello sviluppo in serie 
+di Taylor della funzione.
+
+\subsection{l'Algoritmo}
+Tenendo peresente che $\Delta x = x^{k+1} - x^k$
+\begin{enumerate}
+    \item Pongo $k=0$ e considero un generico $x^k$
+    \item Calcolo $\nabla f(x^k)$ e$H(x^k)^{-1}$
+    \item Cerco un nuovo punto $x^{k+1}$:
+    \[x^{k+1} = x^k - H(x^k) \cdot \nabla f(x^k)\]
+\end{enumerate}
+
+\paragraph{Creiteri di Arresto}
+Sono gli stessi del metodo del gradiente.
+\begin{itemize}
+    \item $|f(x^{k+1} - f(x^k)| < \epsilon_1)$ Mi fermo
+    \item $||f(x^{k+1} || < \epsilon_2)$ Mi fermo, dove $|| f ||$ é la norma di $f$.
+\end{itemize}
+
+\subsection{Osservazioni Newton VS Gradiente}
+\begin{itemize}
+    \item Newton utilizza sia Gradiente che Hessiana ad ogni iterazione
+    \item Newton se converge, converge molto piú rapidamente del metodo del gradiente ma richiede uno sforzo computazionale molto maggiore.
+    \item Se la funzione é quadratica, Newton converge ad una sola iterazione.
+    \item Nel caso di funzioni piú complesse, la matrice Hessiana risulta piú complessa da calcolare.
+
+\end{itemize}
+
+
