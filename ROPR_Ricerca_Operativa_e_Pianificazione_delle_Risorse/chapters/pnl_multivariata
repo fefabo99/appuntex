@@ -141,3 +141,31 @@ Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
     \frac{df(x^k \pm \alpha^k \cdot d^k)}{d\alpha^k} = 0 
     \]
 e uso un metodo di Max/Min ID per trovare $\alpha^k$ ottimale.
+
+\section{Metodo del Gradiente}
+Il metodo del gradiente é un algoritmo Line Search e come direzione di crescita $d^k$ usa:
+\begin{itemize}
+    \item $d^k= \nabla f(x^k)$ per i problemi di Massimo
+    \item $d^k= - \nabla f(x^k)$ per i problemi di Minimo
+\end{itemize}
+E come formula generale per il punto $x^{k+1}$:
+\[x^{k+1} = x^k \pm \alpha^k \cdot \nabla f(x^k)\]
+\nb{$\pm \nabla f(x^k)$ é la direzione di crescita, quindi il $\pm$ diventa $+$ se é un problema di Massimo, e $-$ se é un problema di minimo }
+
+\subsection{L'algoritmo}
+\begin{enumerate}
+    \item Pongo $k=0$ e considero un generico $x^k$
+    \item Calcolo $\nabla f(x^k)$ e pongo la direzione di crescita $d^k=\pm \nabla f(x^k)$
+    \item Cerco un nuovo punto $x^{k+1}$ lungo la direzione $d^k$:
+    \[x^{k+1} = x^k \pm \alpha^k \cdot d^k\]
+    \item Calcolo $\alpha^k$ come la soluzione di $\frac{df(x^k \pm \alpha^k \cdot d^k)}{d\alpha^k} = 0$
+\end{enumerate}
+
+\paragraph{Creiteri di Arresto}
+\begin{itemize}
+    \item $|f(x^{k+1} - f(x^k)| < \epsilon_1)$ Mi fermo
+    \item $||f(x^{k+1} || < \epsilon_2)$ Mi fermo, dove $|| f ||$ é la norma di $f$.
+\end{itemize}
+
+\paragraph{Osservazioni}. Noto che l'algoritmo del gradiente si differenzia da un generico Line Search solo dalla determinazione della direzione di Crescita.
+Inoltre noto che se $\nexists \alpha^k > 0 \implies \nexists$ una direzione di Salita.
