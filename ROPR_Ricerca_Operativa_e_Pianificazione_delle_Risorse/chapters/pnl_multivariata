@@ -97,21 +97,3 @@ Sia $f(x,\, y)$ una funzione derivabile due volte, allora:
     \item $f$ è convessa nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita positiva.
     \item $f$ è concava nell'insieme A se e solo se $H_f (x,\, y)$ è semi definita negativa.
 \end{itemize}
-
-
-\subsection{Gli Autovalori di una Matrice}
-L'Autovalore di una matrice quadrata $A$ é un valore scalare $\lambda$ t.c.:
-\[
-    \exists v \neq 0 \text{ t.c. } Av = \lambda v    
-\]
-
-
-$v$ é un vettore colonna non nullo, ed é l'autovettore per la matrice $A$ relativo a $\lambda$ t.c.
-\[
-    Av - \lambda v = (A \cdot \lambda I) \cdot v
-\]
-Con $I$ Matrice Identitá di A.
-
-
-
-

@@ -10,7 +10,7 @@ Il corso di ROPR verrà svolto da:
 Il testo di riferimento è \emph{Frederick S. Hiller and Gerald J. Lieberman, Ricerca Operativa, McGraw-Hill, nona edizione, 2010.}
 
 
-\section{Il programma}
+\subsection*{Il programma}
 Il Syllabus indica:
 
 \begin{itemize}
@@ -33,7 +33,7 @@ Il Syllabus indica:
         \end{enumerate}
 \end{itemize}
 
-\paragraph*{Gli argomenti in specifico}
+\paragraph{Gli argomenti in specifico}
 \begin{itemize}
     \item Modelli nella Ricerca Operativa
     \item Introduzione alla Programmazione Lineare
@@ -77,3 +77,33 @@ Si accede all'orale se si hanno già raggiunti i 18 punti. L'orale ha un voto di
 \subsection*{Scritto unico}
 Scritto (voto max 28) con domande/esercizi su tutto il programma.
 Orale faoltativo si accede con un voto minimo di 15.
+
+
+\section{Prerequisiti}
+Per il corso di ROPR sono necessari alcuni prerequisiti, che verranno ripassati a lezione ma è bene conoscere già.
+\\I prerequisiti indicati a lezione sono:
+\begin{itemize}
+    \item Familiarità con le \textbf{Funzioni}.
+          \begin{itemize}
+              \item Definizione di Funzione, dominio, codominio
+              \item Definizione di F Suriettiva, iniettiva e biiettiva
+              \item Definizione di F lineare/non lineare
+              \item Definizione di F concava/convessa
+          \end{itemize}
+    \item Familiarità con gli \textbf{Spazi Vettoriali}.
+          \begin{itemize}
+              \item Definizione di Vettore, Spazio Vettoriale, Base di uno S. Vettoriale
+              \item Definizione di vettori linearmente dipendenti/indipendenti
+          \end{itemize}
+    \item Familiarità con le \textbf{Matrici e Sistemi Lineari}.
+          \begin{itemize}
+              \item Definizione di matrice, rango e determinante
+              \item Calcolo di una matrice inversa
+              \item Definizione e risoluzione di un sistema lineare
+          \end{itemize}
+    \item Basi di \textbf{Topologia}.
+    \item Basi di \textbf{Teoria dei Grafi}.
+    \item Familiarità con il \textbf{Calcolo Differenziale}.
+\end{itemize}
+Un ripasso sui principali requisiti può essere trovato su E-Learning
+

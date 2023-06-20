@@ -24,12 +24,12 @@
 
 \section{Determinante di una matrice}
 Il determinante di una radice quadrata si calcola come di seguito:
-\subsection{Determinante 2x2}
+\subsection*{Determinante 2x2}
 \[
     A=\begin{pmatrix} a & b \\c & d\end{pmatrix}\implies det(A) = |A| = a \cdot d - b \cdot c  
 \]
 
-\subsection{Determinante 3x3}
+\subsection*{Determinante 3x3}
 \begin{enumerate}
     \item Scelgo un elemento $a_{ij}$ della matrice.
     \item Prendo la sua riga (o colonna)
@@ -37,4 +37,20 @@ Il determinante di una radice quadrata si calcola come di seguito:
         $$(-1)^{1+j} \cdot a_{ij} \cdot det(B)$$
         in cui $B$ é la matrice quadrata che ottengo rimuovendo da A sia la riga che la colonna di $a_{ij}$
 \end{enumerate}
+
+\subsection{Gli Autovalori di una Matrice}
+L'Autovalore di una matrice quadrata $A$ é un valore scalare $\lambda$ t.c.:
+\[
+    \exists v \neq 0 \text{ t.c. } Av = \lambda v    
+\]
+
+
+$v$ é un vettore colonna non nullo, ed é l'autovettore per la matrice $A$ relativo a $\lambda$ t.c.
+\[
+    Av - \lambda v = (A \cdot \lambda I) \cdot v
+\]
+Con $I$ Matrice Identitá di A.
+
+
+
 %%TODO scrivere il resto
