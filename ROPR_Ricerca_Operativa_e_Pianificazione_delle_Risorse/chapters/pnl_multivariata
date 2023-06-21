@@ -188,7 +188,7 @@ A differenza del metodo del Gradiente, il metodo di Newton (N-dimensionale) util
   f(x^k+ \Delta x) = f(x^k) + \nabla f(x^k) \cdot \Delta x + \frac{1}{2} \Delta x \cdot H f(x^k) \Delta x   
 \]
 In questo caso $x^k+ \Delta x = x^{k+1}$
-\subsection{Direzione di Miglioramento}
+\paragraph{Direzione di Miglioramento}
 Essendo un algoritmo Line Search, Newton segue una direzione di miglioramento per il nuovo punto $(x^k+ \Delta x)$ cosí definita:
 \[
     \frac{\delta f(x^k+ \Delta x)}{\delta \Delta x} = 0 \to H(x^k) \Delta x = -\nabla f(x^k)
@@ -196,26 +196,40 @@ Essendo un algoritmo Line Search, Newton segue una direzione di miglioramento pe
 
 $\Delta x$ é il vettore spostamento, e in questo caso é l'incognita.
 
-\paragraph{Osservazione} Newton si muove ad un punto stazionario del II ordine dello sviluppo in serie 
+\subparagraph{Osservazione} Newton si muove ad un punto stazionario del II ordine dello sviluppo in serie 
 di Taylor della funzione.
 
 \subsection{l'Algoritmo}
 Tenendo peresente che $\Delta x = x^{k+1} - x^k$
 \begin{enumerate}
     \item Pongo $k=0$ e considero un generico $x^k$
-    \item Calcolo $\nabla f(x^k)$ e$H(x^k)^{-1}$
+    \item Calcolo $\nabla f(x^k)$ e $H(x^k)^{-1}$
     \item Cerco un nuovo punto $x^{k+1}$:
-    \[x^{k+1} = x^k - H(x^k) \cdot \nabla f(x^k)\]
+    \[x^{k+1} = x^k - H(x^k)^{-1} \cdot \nabla f(x^k)\]
 \end{enumerate}
 
-\paragraph{Creiteri di Arresto}
+\subparagraph{Criteri di Arresto}
 Sono gli stessi del metodo del gradiente.
 \begin{itemize}
     \item $|f(x^{k+1} - f(x^k)| < \epsilon_1)$ Mi fermo
     \item $||f(x^{k+1} || < \epsilon_2)$ Mi fermo, dove $|| f ||$ é la norma di $f$.
 \end{itemize}
 
-\subsection{Osservazioni Newton VS Gradiente}
+\subsection{Evitare il calcolo della Matrice Inversa}
+Nell'alogirmto di Newton il calcolo del nuovo punto ci chiede di calcolare $-H_f(x_k,y_k)^{-1} \nabla f(x_k,y_k)$ il che 
+ci richiederebbe di calcolare la matrice Hessiana e Gradiente nel punto corrente, ma anche di calcolare la \emph{Matrice inversa dell'hessiana} nel punto.
+
+Calcolare una matrice inversa é \textbf{molto oneroso dal punto di vista computazionale}, esiste peró un modo per evitare di calcolarlo.
+\paragraph{Considerazione}A noi non interessa sapere il valore di $H_f(x_k,y_k)^{-1}$, bensí ci interessa
+$-H_f(x_k,y_k)^{-1} \nabla f(x_k,y_k)= \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$, ovvero il \emph{vettore spostamento $\Delta x$} per aggiornare il punto corrente.
+\\Dalla formula della direzione di miglioramento sappiamo che il vettore $\Delta x$ puó essere calcolato come soluzione del seguente sistema:
+\[
+    H_f(x_k,y_k) \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = - \nabla f(x_k,y_k) 
+\]
+In questo modo dobbiamo soltanto risolvere un sistema di equazioni invece di calcolare una matrice inversa, il che é molto meno oneroso computazionalmente.
+
+
+\subsection{Newton VS Gradiente}
 \begin{itemize}
     \item Newton utilizza sia Gradiente che Hessiana ad ogni iterazione
     \item Newton se converge, converge molto piú rapidamente del metodo del gradiente ma richiede uno sforzo computazionale molto maggiore.
