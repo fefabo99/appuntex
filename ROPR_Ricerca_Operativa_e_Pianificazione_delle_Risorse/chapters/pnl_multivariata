@@ -135,12 +135,21 @@ Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
     \end{itemize}
 \end{enumerate}
 
-\paragraph{Step-Size} é inversamente proporzionale al numero di iterazioni.
-\\Per trovare $\alpha^k$ pongo:
+\paragraph{Step-Size} Lo Step-Size é il valore che determina di quanto ci andremo a spostare nella direzione $d_k$.
+Esso é inversamente proporzionale al numero di iterazioni.
+\\Lo step-size $\alpha^k$ corrisponde a:
+\[
+    \text{max/min } f(x^k \pm \alpha^k \cdot d^k)
+\]
+e uso un metodo di Max/Min per trovare $\alpha^k$ ottimale, per esempio con una soluzione analitica:
 \[ 
-    \frac{df(x^k \pm \alpha^k \cdot d^k)}{d\alpha^k} = 0 
-    \]
-e uso un metodo di Max/Min ID per trovare $\alpha^k$ ottimale.
+    \frac{\delta g(\alpha^{k} )}{\delta \alpha} = 0 \text{ dove } 
+    g(\alpha) = f(x^k \pm \alpha^k \cdot d^k)
+\]
+
+\subparagraph{Ovvero} Trovato un $x^{k+1}$ che ha $\alpha$ come incognita,
+lo uso per trovare lo step-size ponendo $g(\alpha) = f(x^{k+1})$ e $\alpha^* = \text{max } g(\alpha)$.
+\\$ max g(\alpha)$ lo posso spesso risolvere analiticamente, ponendo $g'(\alpha) = 0$.
 
 \section{Metodo del Gradiente}
 Il metodo del gradiente é un algoritmo Line Search e come direzione di crescita $d^k$ usa:
@@ -159,6 +168,7 @@ E come formula generale per il punto $x^{k+1}$:
     \item Cerco un nuovo punto $x^{k+1}$ lungo la direzione $d^k$:
     \[x^{k+1} = x^k \pm \alpha^k \cdot d^k\]
     \item Calcolo $\alpha^k$ come la soluzione di $\frac{df(x^k \pm \alpha^k \cdot d^k)}{d\alpha^k} = 0$
+    
 \end{enumerate}
 
 \paragraph{Creiteri di Arresto}
