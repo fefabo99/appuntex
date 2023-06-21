@@ -76,10 +76,10 @@ $k=0$ e $\epsilon$ piccolo a piacere.
     \item Calcolare $f'(x_k)$
     \item 
 \begin{lstlisting}[mathescape=true]
-if $f'(x)=0$ 
+if $f'(x_k)=0$ 
 then $x_k = x^*$
 else
-    if $f'(x)<0$
+    if $f'(x_k)<0$
         $\bar{x} = x_k$
     else
         $\underline{x} = x_k$
