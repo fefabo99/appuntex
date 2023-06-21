@@ -89,7 +89,7 @@ Permette di selezionare un sottoinsieme delle ennuple, producendo un risultato c
     \item Contene le ennuple che soddisfano una condizione espressa dall'operatore
 \end{itemize}
 \paragraph*{Sintassi} $\sigma_{\text{condizione}}(r) \\$
-\paragraph*{Sintassi altenativa}$\text{SEL}_{\text{condizione}}(r)$
+\paragraph*{Sintassi alternativa}$\text{SEL}_{\text{condizione}}(r)$
 Data una relazione r(X) è una formula ottenuta combinando con i connettivi OR, AND e NOT
 condizioni atomiche del tipo:
 \begin{itemize}
@@ -97,12 +97,12 @@ condizioni atomiche del tipo:
     \item A e B sono attributi in X sui cui valori CONFR abbia senso
     \item c'è una costante per cui il confronto CONFR sia definito
 \end{itemize}
-Il risultato contien ele ennuple dell'operando che soddisfano la condizione (cioè su cui
+Il risultato contiene le ennuple dell'operando che soddisfano la condizione (cioè su cui
 la condizione è vera).
-\paragraph*{Esempi} Impiegato che:
+\paragraph*{Esempi} Impiegati che:
 \begin{itemize}
-    \item Guadagnano più di 50 - STIPENDIO > 50
-    \item Guadagnano più di 50 e lavorano a Milano - STIPENDIO > 50 AND FILIALE = 'Milano'
+    \item Guadagnano più di 50 - STIPENDIO $>$ 50
+    \item Guadagnano più di 50 e lavorano a Milano - STIPENDIO $>$ 50 AND FILIALE = 'Milano'
     \item Hanno un cognome uguale al nome della filiale presso cui lavorano - COGNOME = FILIALE
 \end{itemize}
 Tradotto in Query in Algebra Realzionale: $\text{SEL}_{\text{Stipendio} > 50}(\text{Impiegati})$,
@@ -141,12 +141,12 @@ della PROJ non conterrà ennuple uguali, esse saranno scartate.
 si indica con $|R|$.\\
 Una proiezione:
 \begin{itemize}
-    \item Contiene al più tante ennuple quante l'oerando
+    \item Contiene al più tante ennuple quante l'operando
     \item Può anche contenerne di meno (come spiegato in precedenza)
 \end{itemize}
 Vale la proprietà che \textbf{se X è una superchiave di R, allora  $\text{PROJ}_X(R)$} contiene
 esattamente tante ennuple quante R.\\
-Per la definizione di superhciave ogni superchiave compare una sola volta nella relazione.\\
+Per la definizione di superchiave ogni superchiave compare una sola volta nella relazione.\\
 \subsection*{Selezione e Proiezione}
 Combinando selezione e proiezione possiamo estrarre interessanti informazioni da una realzione
 \paragraph*{Esempio}
@@ -165,17 +165,17 @@ Ci viene richiesto matricola e cognome degli impiegati che guadagnano più di 50
 \begin{equation*}
     \text{PROJ}_{\text{Matricola, Cognome}}(\text{SEL}_{\text{Stipendio} > 50}(\text{Impiegati}))
 \end{equation*}
-Inserisco quindi come argomento della PROG la SEL delle tuple richieste. Combinando questi due
+Inserisco quindi come argomento della PROJ la SEL delle tuple richieste. Combinando questi due
 operatori posso estrarre informazioni da una relazione. Non possiamo però correlare,
 mettere insieme informazioni presenti in relazioni diverse, per questo esiste il JOIN.
 
 \section{Join}
 Il Join è senz'altro l'operatore più interessante dell'algebra relazionale dato che permette
-di correlare, mettere insieme, integrare dati che si trovani in relazioni diverse. Ci sono
+di correlare, mettere insieme, integrare dati che si trovano in relazioni diverse. Ci sono
 diversi tipi di Join, partiamo da quello naturale.
 \subsection*{Join naturale}
 Operatore binario (generalizzazione), produce un risultato sull'unione degli attributi
-degli operandi con ennuple costruitre ciascuna a partire da una ennupla di ognuno degli operandi.
+degli operandi con ennuple costruite ciascuna a partire da una ennupla di ognuno degli operandi.
 \paragraph*{Sintassi} Date due relazioni $R_1(X_1)$ e $R_2(X_2)$, $R_1 \text{JOIN} R_2$ è una
 relazione su $X_1, X_2$. Contribuiscono quindi le ennuple che hanno gli stessi valori negli attributi
 comuni. Quando ogni ennupla contribuisce al risultato si dice \textbf{Join completo}.\\
@@ -230,7 +230,7 @@ anche tuple tra loro sconnesse a livello semantico). Questa operazione viene chi
 \subsection*{Theta-join}
 L'operazione Theta-join viene indicata con $R_1 \,\, \text{JOIN}_{\text{Condizione}}R_2$.\\
 La condizione C è spesso una congiunzione AND di atomi di confronto $A_1 \theta A_2$ dove $\theta$ è un
-operatore di confronto (>, <, =, $\leq$, $\geq$, $\neq$).\\
+operatore di confronto ($>$, $<$, $=$, $\leq$, $\geq$, $\neq$).\\
 Se l'operatore è sempre l'uguaglianza (=) allora si parla di equi-join.\\
 \subsection*{Join naturale e Theta-join}
 Così come è stato definito, il theta-join richiede in ingresso relazioni con schemi disgiunti,
@@ -269,9 +269,11 @@ L'ordine delle operazioni è importante! Scambiando l'ordine di alcune operazion
 espressioni non funzionanti.\\
 Esercitarsi rifacendo e capendo le query delle slide è un ottimo allenamento per assimilare
 questi concetti.\\
-In algebra relazionale non sono previsti i quantificatori universali, manca per esempio l'equivalente di tutti, in Questi
-casi è necessario rivedere la query e riformularla in modo tale da poterla esprimere in algebra relazionale, per esempio
-esprimendo "tutti guadagnao più di n" come "almeno uno guadagna meno di n, oppure n", esprimendo
+In algebra relazionale non sono previsti i quantificatori universali, manca per esempio l'equivalente di
+tutti (simbolo $*$ in SQL), in questi
+casi è necessario rivedere la query e riformularla in modo tale da poterla esprimere in algebra relazionale, 
+per esempio
+esprimendo "tutti guadagnano più di n" come "almeno uno guadagna meno di n, oppure n", esprimendo
 così l'operazione tramite differenza insiemistica.
 \section{Le viste}
 Si tratta di una relazione temporanea, paragonabile a una variabile definita a run time, che alla fine della
@@ -281,7 +283,7 @@ a riutilizzare anche per altre query, in questo modo non dovremo più ricalcolar
 \section{Plus teorici}
 \subsection{Rappresentazione delle espressioni tramite alberi}
 Ogni espressione dell'algebra relazionale può essere rappresentata tramite un albero, in questo modo
-rappresentiamo l'ordine di valutazione degli operatori. Ogni operatori corrisponde
+rappresentiamo l'ordine di valutazione degli operatori. Ogni operatore corrisponde
 ad un nodo, quindi gli operaetori unari hanno solo un ramo in ingrasso e uno in uscita, mentre
 quelli binari hanno 2 rami in entrata e 1 in uscita, la radice è in alto.\\
 \subsection{Equivalenza di espressioni}
