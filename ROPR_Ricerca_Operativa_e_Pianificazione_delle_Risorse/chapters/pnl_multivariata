@@ -216,17 +216,17 @@ Sono gli stessi del metodo del gradiente.
 \end{itemize}
 
 \subsection{Evitare il calcolo della Matrice Inversa}
-Nell'alogirmto di Newton il calcolo del nuovo punto ci chiede di calcolare $-H_f(x_k,y_k)^{-1} \nabla f(x_k,y_k)$ il che 
-ci richiederebbe di calcolare la matrice Hessiana e Gradiente nel punto corrente, ma anche di calcolare la \emph{Matrice inversa dell'hessiana} nel punto.
-
-Calcolare una matrice inversa é \textbf{molto oneroso dal punto di vista computazionale}, esiste peró un modo per evitare di calcolarlo.
-\paragraph{Considerazione}A noi non interessa sapere il valore di $H_f(x_k,y_k)^{-1}$, bensí ci interessa
-$-H_f(x_k,y_k)^{-1} \nabla f(x_k,y_k)= \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$, ovvero il \emph{vettore spostamento $\Delta x$} per aggiornare il punto corrente.
-\\Dalla formula della direzione di miglioramento sappiamo che il vettore $\Delta x$ puó essere calcolato come soluzione del seguente sistema:
+Osservando la formula per il calcolo del nuovo punto:
+\[ x^{k+1} = x^k - H(x^k)^{-1} \cdot \nabla f(x^k)\]
+Notiamo che ci richiede di calcolare $-H_f(x_k,y_k)^{-1}$, ovvero la \emph{Matrice inversa dell'hessiana} nel punto $(x_k,y_k)$.
+\\Calcolare una matrice inversa é \textbf{molto oneroso dal punto di vista computazionale}, esiste peró un modo per evitare di calcolarlo.
+\paragraph{Considerazione}
+Nel calcolo del nuovo punto, $[-H(x^k)^{-1} \cdot \nabla f(x^k)]$ equivale al \emph{vettore spostamento $\Delta x$} (scritto anche come $(v_1,v_2)^T$), di conseguenza:
 \[
-    H_f(x_k,y_k) \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = - \nabla f(x_k,y_k) 
+    - H(x^k)^{-1} \cdot \nabla f(x^k)=\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \implies H_f(x_k,y_k) \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = - \nabla f(x_k,y_k) 
 \]
-In questo modo dobbiamo soltanto risolvere un sistema di equazioni invece di calcolare una matrice inversa, il che é molto meno oneroso computazionalmente.
+In questo modo per poter trovare $\Delta x$ dobbiamo soltanto risolvere un sistema di equazioni invece di calcolare una matrice inversa,
+il che é molto meno oneroso computazionalmente.
 
 
 \subsection{Newton VS Gradiente}
