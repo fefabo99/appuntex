@@ -38,7 +38,7 @@ Il determinante di una radice quadrata si calcola come di seguito:
         in cui $B$ é la matrice quadrata che ottengo rimuovendo da A sia la riga che la colonna di $a_{ij}$
 \end{enumerate}
 
-\subsection{Gli Autovalori di una Matrice}
+\section{Autovalori di una Matrice}
 L'Autovalore di una matrice quadrata $A$ é un valore scalare $\lambda$ t.c.:
 \[
     \exists v \neq 0 \text{ t.c. } Av = \lambda v    
@@ -50,6 +50,28 @@ $v$ é un vettore colonna non nullo, ed é l'autovettore per la matrice $A$ rela
     Av - \lambda v = (A \cdot \lambda I) \cdot v
 \]
 Con $I$ Matrice Identitá di A.
+
+\subsection{Calcolare gli Autovalori}
+Data una matrice quadrata 2x2:
+\[
+    A=\begin{pmatrix} a_{11} & a_{12} \\ a_{21} & a_{22}\end{pmatrix}    
+\]
+Essa avrá 2 autovalori $\lambda_1$ e $\lambda_2$, calcolati come segue:
+\begin{enumerate}
+    \item Sottraggo $\lambda$ dalla diagonale di $A$:
+    \[
+        A_{\lambda}= A + \begin{pmatrix} -\lambda & 0 \\ 0 & -\lambda \end{pmatrix}  = 
+        \begin{pmatrix} a_{11} - \lambda & a_{12} \\ a_{21} & a_{22} - \lambda \end{pmatrix}
+    \]
+    \item Fisso il determinante di $A_{\lambda}$ a 0:
+
+    \[
+        det(A_{\lambda}) = 0 \to (a_{11} - \lambda) \cdot (a_{22} - \lambda) - a_{12} \cdot a_{21} = 0
+    \]
+    \item Risolvo per $\lambda$ trovando tutti gli autovalori $\lambda_1$ e $\lambda_2$.
+\end{enumerate}
+
+    
 
 
 
