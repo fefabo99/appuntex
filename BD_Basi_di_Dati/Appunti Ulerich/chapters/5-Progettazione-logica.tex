@@ -9,7 +9,7 @@ Essa ha diverse fasi:
     mediante il modello relazionale, ottimizzandolo per aumentare l'efficienza delle
     interrogazioni
 \end{itemize}
-L'obiettivo primarioè quello di tradurre lo schema concettuale in uno schema logico
+L'obiettivo primario è quello di tradurre lo schema concettuale in uno schema logico
 che rappresenti gli stessi dati in maniera corretta ed efficiente.\\
 \paragraph*{Dati in ingresso}
 \begin{itemize}
@@ -107,7 +107,7 @@ essere riassunto in una tavola degli accessi.
       & & & \\
       \hline
     \end{tabular}
-    \caption{Table with four columns}
+    \caption{Tavolta degli accessi}
     \label{tab:four-columns}
   \end{table}
   Il tipo distingue gli accessi in scrittura (S) e in lettura (L), le operazioni
@@ -158,13 +158,15 @@ Ci sono tre possibilità:
     nell'entità padre (un attributo per distinguere il tipo, quale figlia è o nessuna)
     \item Gli attributi della figlia vengono spostati nel padre
     \item Gli attributi che  provengono dalla figlia possono essere nulli
-    \item Lre relazioni che provengono da una sola figlia hanno cardinalità minima pari a 0
+    \item Le relazioni che provengono da una sola figlia hanno cardinalità minima pari a 0
 \end{itemize}
 \paragraph*{Pro e Contro}
 \begin{itemize}
     \item Vantaggi - Accesso contestuale agli attributi del padre e della figlia
     \item Svantaggi - Si ha spreco di memoria per i valori nulli
 \end{itemize}
+\paragraph*{Attenzione} Se ci sono attributi specifici nelle figlie non si posson
+accorpare nel padre, in questo caso è meglio produrre delle relazioni aggiuntive.
 \subsection{Accorpamento del genitore nelle figlie}
 \begin{itemize}
     \item L'entità padre si elimina 
@@ -184,7 +186,7 @@ che non sono in nessuna delle classi figlie.
     \item Si introduce una relazione uno-a-uno fra l'entità padre e ciascuna entità figlia
     \item Occorre inserire il vincolo che ogni istanza dell'entità padre può partecipare solo ad 
     una relazione di legame con le entità figlie
-    \item Se la generalizzazione è totale ogni istanze dell'entità padre partecipa necessariamente ad una
+    \item Se la generalizzazione è totale ogni istanza dell'entità padre partecipa necessariamente ad una
     (sola) delle relazioni di legame con le figlie
 \end{itemize}
 \paragraph*{Pro}
@@ -306,7 +308,7 @@ Nel caso di relazioni dove entrambe le entità hanno cardinalità 0-1 si può in
 in modo tale da rappresentare la partecipazione opzionale in entrambi i casi, senza avere valori nulli
 sugli attributi (però si introduce una relazione in più). Oppure indicare che le chiavi esterne e gli attributi
 della relazioni possono essere nulli.
-\section{Documentazione deli schemi logici}
+\section{Documentazione degli schemi logici}
 Si devono documentare i vincoli di integrità referenziale, in modo tale da produrre un diagramma con
 collegamenti fra relazioni (utili anche per visualizzare i cammini di join).
 
