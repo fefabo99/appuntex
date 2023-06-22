@@ -1,0 +1,56 @@
+\chapter{Ottimizzazione Non Lineare Vincolata}
+Consideriamo un generico problema di Ottimizzazione Non Lineare Vincolata:
+
+\begin{center}
+    opt $f(x)$
+    \\s.a. $g_i(x) \{ =/\leq/\geq\} l$ con i= $1,...,m$
+\end{center}
+In questo caso \emph{Non esistono algoritmi di risoluzione}, ma ci sono diversi approcci per semplificare
+e risolvere il problema.
+
+\paragraph{Gli approcci} che affronteremo noi sono:
+\begin{itemize}
+    \item Dimensionality Reduction
+    \item Moltiplicatori di Lagrange
+    \item Condizioni di Karush-Kuhn-Tucker
+\end{itemize}
+
+\section{Dimensionality Reduction}
+L'approccio del Dimensionality Reduction (o riduzione del numero delle variabili libere) consiste nell'utilizzare
+i vincoli di uguaglianza del problema per ridurre il problema a un PNL Monovariato non vincolato.
+
+\subsection{Facciamo un Esempio}
+Dato il problema:
+\begin{center}
+    min $(x_1 - 2)^2 + 2(x_2-1)^2$
+    \\s.a. $x_1+4x_2 =3$
+\end{center}
+Possiamo Esplicitare $x_1$ nel vincolo:
+\[
+    x_1+4x_2 =3 \to x_1 = 3 - 4x_2  
+\]
+Per poi sostituirlo nella funzione obiettivo:
+\[
+    \text{min }(x_1 - 2)^2 + 2(x_2-1)^2 \to  \text{min }(3 - 4x_2 - 2)^2 + 2(x_2-1)^2
+\] 
+In modo da ottenere un problema di ottimizzazione in una variabile, che possiamo risolvere analiticamente:
+\[ \text{min }(3 - 4x_2 - 2)^2 + 2(x_2-1)^2 \implies x_2=\frac{1}{3}\]
+Da cui, con la funzione obiettivo originale troviamo $x_1=\frac{5}{3}$.
+In questo modo otteniamo la soluzione $(\frac{5}{3}, \frac{1}{3})$.
+
+\section{É un metodo generalizzabile?}
+Non sempre il metodo del Dimensionality Reduction é generalizzabile. Quando é possibile?
+\\Supponiamo di avere un problema di $opt$ soggetto a $l$ vincoli di \emph{Uguaglianza}.
+\textbf{SE} é possibile esplicitare $l$ variabili in funzione delle restanti $n-l$ variabili utilizzando i vincoli
+di uguaglianza del problema, allora possiamo trasformare tale problema in un problema di $opt$ \emph{non vincolata} con $n-l$ variabili.
+
+\begin{center}
+    opt $f(x_1,...,x_n)$
+    \\s.a. $g_j(x_1,...,x_n) =b_j$ con $j=1,...,l$
+    \\$\Downarrow$
+    \\opt $f(x_1,...,x_{n-l})$
+    \\$x_{n-l+1} = g_1(x_1,...,x_{n-l})$
+    \\ $\vdots$ 
+    \\$x_{n} = g_l(x_1,...,x_{n-l})$
+\end{center}
+Questa condizione peró molto spesso NON é rispettata, quindi il Dimensionality Reduction non é sempre utilizzabile.
