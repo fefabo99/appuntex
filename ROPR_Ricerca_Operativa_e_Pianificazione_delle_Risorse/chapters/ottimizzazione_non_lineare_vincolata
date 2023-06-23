@@ -38,7 +38,7 @@ In modo da ottenere un problema di ottimizzazione in una variabile, che possiamo
 Da cui, con la funzione obiettivo originale troviamo $x_1=\frac{5}{3}$.
 In questo modo otteniamo la soluzione $(\frac{5}{3}, \frac{1}{3})$.
 
-\section{É un metodo generalizzabile?}
+\subsection{É un metodo generalizzabile?}
 Non sempre il metodo del Dimensionality Reduction é generalizzabile. Quando é possibile?
 \\Supponiamo di avere un problema di $opt$ soggetto a $l$ vincoli di \emph{Uguaglianza}.
 \textbf{SE} é possibile esplicitare $l$ variabili in funzione delle restanti $n-l$ variabili utilizzando i vincoli
@@ -54,3 +54,22 @@ di uguaglianza del problema, allora possiamo trasformare tale problema in un pro
     \\$x_{n} = g_l(x_1,...,x_{n-l})$
 \end{center}
 Questa condizione peró molto spesso NON é rispettata, quindi il Dimensionality Reduction non é sempre utilizzabile.
+
+\section{La Funzione Lagrangiana}
+Introduciamo ora il concetto di \emph{Funzione Lagrangiana}:
+\definizione{
+    Consideriamo un generico problema di PNL Vincolata con \emph{solo vincoli di uguaglianza}:
+    \begin{center}
+        opt $f(x_1,...,x_n)$
+        \\s.a. $g_j(x_1,...,x_n) =0$ con $i=1,...,m$
+    \end{center}
+    La seguente funzione in $n+m$ variabili prende il nome di \textbf{Funzione Lagrangiana} del problema:
+    \[
+        L(x_1,...,x_n,\lambda_1,...,\lambda_m) = f(x_1,...,x_n) + \sum_{i=0}^{m} \lambda_i \cdot g_i(x_1,...,x_n)
+    \]
+    Le variabili $\lambda_j$, di cui ce ne sono tante quante i vincoli, prendono il nome di \textbf{Moltiplicatori di Lagrange}.
+}
+
+\paragraph{I punti stazionari della Lagrangiana}
+Come mai ci interessa la funzione Lagrangiana?
+Se calcoliamo il Gradiente di una funzione lagrangiana e lo poniamo a zero, otteniamo 
