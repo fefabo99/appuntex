@@ -55,8 +55,11 @@ di uguaglianza del problema, allora possiamo trasformare tale problema in un pro
 \end{center}
 Questa condizione peró molto spesso NON é rispettata, quindi il Dimensionality Reduction non é sempre utilizzabile.
 
-\section{La Funzione Lagrangiana}
-Introduciamo ora il concetto di \emph{Funzione Lagrangiana}:
+\section{Il metodo dei Moltiplicatori di Lagrange}
+
+\subsection{La Funzione Lagrangiana}
+Per capire il metodo dei moltiplicatori di Lagrange, bisogna prima introdurre il concetto
+di \emph{Funzione Lagrangiana}:
 \definizione{
     Consideriamo un generico problema di PNL Vincolata con \emph{solo vincoli di uguaglianza}:
     \begin{center}
@@ -72,4 +75,26 @@ Introduciamo ora il concetto di \emph{Funzione Lagrangiana}:
 
 \paragraph{I punti stazionari della Lagrangiana}
 Come mai ci interessa la funzione Lagrangiana?
-Se calcoliamo il Gradiente di una funzione lagrangiana e lo poniamo a zero, otteniamo 
+I punti stazionari della Lagrangiana (Ovvero i punti in cui il gradiente della lagrangiana si azzera)
+sono \emph{Fortemente legati ai punti di massimo e minimo della funzione}.
+
+\subsection{Il Metodo}
+\definizione{
+    Consideriamo un generico problema di ottimizzazione non lineare del tipo:
+    \begin{center}
+        opt $f(x_1,...,x_n)$
+        \\s.a. $g_j(x_1,...,x_n) =0$ con $i=1,...,m$
+    \end{center}
+    sia $x^* = (x^*_1,...,x^*_n)$ il punto stazionario di $f$, allora esistono $m$
+    moltiplicatori di Lagrange $\lambda^* = (\lambda^*_1,...,\lambda^*_m)$
+    tali che $(x^*,\lambda^*)$ è un punto stazionario della Lagrangiana Associata.
+    \[
+        L(x,\lambda) = f(x) + \sum_{i=1}^{m} \lambda_i \cdot g_i(x)
+        \]
+    \paragraph{Osservazioni}
+    \begin{itemize}
+        \item I punti $x^*$ e $(x^*,\lambda^*)$ possono essere punti stazionari \emph{di tipo diverso}.
+        \item Tale condizione fornisce una \textbf{Condizione Necessaria ma Non Sufficiente} per l'ottimizzazione del problema vincolato.
+        
+    \end{itemize}
+}
