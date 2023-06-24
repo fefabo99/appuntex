@@ -1,0 +1,124 @@
+\chapter{Dal progetto al codice}
+Gli elaborati creati fin'ora saranno utilizzati come input per il processo
+di generazione del codice. Anche se la creazione di codice non fa parte
+dell'OOA/D (Object Oriented Analysis/Design), è comunque l'obiettivo finale
+della progettazione di un software. Durante la programmazione ci si devono
+aspettare e si devono pianificare numerosi cambiamenti e deviazioni rispetto al
+progetto e questo ha diverse implicazioni (per esempio aggiornare documentazione).
+\section{Creazione di Classi e Interfacce}
+I diagrammi di classe servono proprio a questo, dato che contengono
+\begin{itemize}
+    \item Nomi delle classi, interfacce e superclassi
+    \item attributi
+    \item firme delle operazioni
+    \item associazioni tra classi
+\end{itemize} 
+Queste informazioni sono sufficienti per creare un'implementazione di base delle
+classi, alcuni strumenti effettuano automaticamente queste operazioni (come RSA).
+\subsection{Gestione delle Eccezioni}
+Il comportamento del sistema quando sono generate delle eccezioni può essere descritto
+con i modelli dinamici, se la gestione delle eccezioni non è opportunamente progettata il
+loro effetto diventa preso un fenomeno globale e incontrollato.\\
+\paragraph*{Alcune linee guida}
+\begin{itemize}
+    \item Definire un numero finito di eccezioni che possono essere rilasciate da 
+    un componente e che siano interpretabili dal client (re-mapping delle eccezioni)
+    \item Nascondere infomrazioni inutili ai client e diminuire il set di eccezioni (es.
+    ThreadInterruptedException è scarsamente utile al client)
+    \item Attenzione a non nascondere informazioni utili
+    \item Le eccezioni sono appropriate quando si hanno fallimenti di risorse (disco, memoria, accesso rete)
+    \item Il valore dell'eccezioni può essere utilizzare per fornire info aggiuntive
+    \item In UML le eccezioni possono essere indicate nelle stringhe di proprietà dei messaggi
+    e delle dichiarazioni delle operazioni
+\end{itemize}
+\subsection{Ordine di implementazione delle classi}
+Esistono 3 stili principali, di cui l'ultimo è un mix dei primi due:
+\begin{enumerate}
+    \item Guidato dagli scenari descritti nei modelli dinamici (si implementano più parti di diverse
+    classi)
+    \item Basato sulle classi - Ordine definito in base alle dipendenze
+    \item Misto - Si implementano prima le classi che rappresentano le entità
+    principali del sistema e si implementano iterativamente le operazioni di sistema
+\end{enumerate}
+\section{Progettare la visibilità}
+La visibilità viene definita come la capacità di un oggetto di "vedere" o di avere un
+riferimento ad un altro oggetto. Affinchè un oggetto mittente invii un messaggio a un oggetto
+destinatario, il destinatario deve essere visibile al mittente - il mittente
+deve avere qualche tipo di riferimento (o puntatore) all'oggetto destinatario.\\
+Risulta fondamentale garantire le visibilità necessarie per consentire le interazioni fra gli oggetti.
+\subsection{Visibilità tra oggetti}
+Come possiamo determinare se una risorsa (ad esempio un'istanza) rientra nella portata
+di un'altra?\\
+La visibilità può essere ottenuta dall'oggetto A all'oggetto B in quattro modi comuni:
+\begin{itemize}
+    \item Visibilità per attributo - B è un attributo di A
+    \item Visibilità per parametro - B è un parametro di un metodo di A
+    \item Visibilità locale - B è un oggetto locale (non parametro) di A
+    \item Visibilità globale - B è in qualche modo visibile globalmente
+\end{itemize}
+\subsection{Visibilità per attributo}
+La visibilità per attributo da A a B esiste quando B è un attributo di A.\\
+Si tratta di una visibilità relativamente permanente perchè persiste finchè A e B esistono,
+è molto diffusa nei sistemi OO.
+\subsection{Visibilità per parametro}
+La visibilità per parametro da A e B esiste quando B viene passato come parametro ad un
+metodo di A. Si tratta di una visibilità relativamente temporanea perchè persiste solo
+nell'ambito del metodo.
+\subsection{Visibilità locale}
+La visibilità dichiarata localmente da A a B esiste quando B è dichiarato come oggetto locale
+nell'interno di un metodo di A. Si tratta di una visibilità relativamente temporanea
+perchè persiste solo nell'ambito del metodo.
+\begin{itemize}
+    \item Creare una nuova istanza locale e assegnarla ad una variabile locale
+    \item Assegnare l'oggetto di ritorno da un'invocazione di metodo ad una variabile locale
+\end{itemize}
+\paragraph*{Trasformare la visibilità} è possible trasformare la visibilità locale
+in visibilità per parametro oppure la visibilità per parametro in visibilità per attributo.
+\subsection{Visibilità globale}
+La visibilità globaile da A a B esiste quando B è globale per A. Si tratta di una
+visibilità relativamente permanente perchè persiste finchè A e B esistono. la forma 
+meno comune, puiò favorire alto accoppiamento. Un modo per ottenere questo risultato è quello
+di assegnare un'istanza a una variabile globale (possibile in C++, ma non in Java).\\
+Il metodo migliore per ottenere la visibilità globale è quello di utilizzare il pattern
+Singleton.
+\section{Test Driven Development}
+Il TDD (Test Driven Development) è una delle pratiche introdotte da Extreme Programming (XP) 
+ed è diventata una pratica molto diffusa anche in metodologie non agili. Applicabile
+anche a UP e Scrum, consente lo sviluppo iterativo ed evolutivo. Prevede Refactoring continuo
+del codice.
+\subsection{Benefici del TDD}
+Alla fine dell'attività di sviluppo è stata ottenuta sia l'implementazione della classe che i suoi
+casi di test d'unità/integrazione e quindi ci siamo tolti un bel po' di lavoro, dato che
+altrimenti andrebbe fatto tutto dopo lo sviluppo delle classe.\\
+Interfaccia e comportamenti saranno dettagliati dato che si dovrà ragionare sui
+metodi necessari ai test e sui possibili comportamenti. Il testing è oltretutto ripetibile
+automaticamente. Ci sarà anche maggior confidenza nel cambiare il sistema e il codice sarà
+migliore.
+\paragraph*{Tipologie di test}
+\begin{itemize}
+    \item Test di unità
+    \item Test di integrazione
+    \item Test di sistema
+    \item Test di accettazione
+    \item Test di regressione
+\end{itemize}
+\subsection{Test di unità}
+Il test di unità si traduce in:
+\begin{itemize}
+    \item Scrivere il codice di un test prima della classe da testare
+    \item Implmenetare parte della classe in modo che questa superi il test
+    \item Scrivere un nuovo caso di test
+    \item Reiterare
+\end{itemize}
+Dopo aver scritto i casi di test procediamo con l'implementazione.
+Una volta che i casi di test sono stati superati dall'implementazione attuale procediamo
+progettando nuovi casi di test oppure passando ad una nuova classe/metodo.
+\paragraph*{Schema dei metodi di test di unità}
+\begin{itemize}
+    \item Preparazione - Crea l'oggetto da verificare (detto anche fixture)
+    \item Esecuzione - Far fare qualcosa alla fixture al fine di eseguire alcune operazioni
+    che si desidera testare
+    \item Verifica - Verifica che i risultati ottenuti corrispondono a quelli previsti
+    \item Rilascio - Opzionalmente rilascia o ripulisce gli oggetti e le risorse utilizzate nel test
+\end{itemize}
+
