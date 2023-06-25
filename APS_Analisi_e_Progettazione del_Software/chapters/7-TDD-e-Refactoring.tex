@@ -121,4 +121,123 @@ progettando nuovi casi di test oppure passando ad una nuova classe/metodo.
     \item Verifica - Verifica che i risultati ottenuti corrispondono a quelli previsti
     \item Rilascio - Opzionalmente rilascia o ripulisce gli oggetti e le risorse utilizzate nel test
 \end{itemize}
+\paragraph*{Esempi di Framework di test}
+xUnit è un Framework per test di unità per molti linguaggi, per esempio NUnit è per .NET,
+mentre JUnit è per Java.\\
+\subsection{Ciclo del TDD}
+\begin{itemize}
+    \item Scrivere un caso di test che fallisce 
+    \begin{itemize}
+        \item Non scrivere codice di produzione fino a quando non hai scritto un
+        test unitario
+        \item Non scrivere più di un test di quanto è sufficiente per far fallire la
+        compilazione o esecuzione del test
+    \end{itemize}
+    \item Scrivi il codice più semplice possibile per far passare il test
+    \item Riscrivi o ristruttura il codice migliorandolo, oppure passa a scrivere il
+    prossimo test unitario
+\end{itemize}
+Il Refactoring può essere applicato dopo aver effettuato ciascun test, oppure dopo diversi
+test.
+\chapter{Refactoring}
+\section{Varie definizioni}
+Il refactoring è il processo di modifica di un sistema software che non altera il suo
+comportamento esterno e migliora la sua struttura interna (più semplice da capire e modificare).\\
+Un'altra definizione è che il refactoring è un cambiamneto al sistema che lascia inalterato
+il suo comportamento, ma che migliora alcune qualità funzionali come semplicità, flessibilità,
+chiarezza, performance, riusabilità, manutenibilità.\\
+\subsection{Quando fare refactoring}
+\begin{itemize}
+    \item Quando aggiugi una funzione
+    \item Quando hai bisogno di fixare un bug
+    \item Mentre fai revisione del codice
+    \item Quando il codice è difficile da capire
+\end{itemize}
+\subsection{Quando NON fare refactoring}
+\begin{itemize}
+    \item Quando il codice non funzione
+    \item Quando sei troppo vicino a una deadline
+    \item QUando il design è così pessimo che è necessario riscrivere il codice
+    \item Prima di effettuare il refactoring, assicurati di avere un buon set di casi di test
+\end{itemize}
+\subsection{Come effettuare refactoring}
+\begin{itemize}
+    \item Essere sicuro che i testi passini
+    \item Trova del codice che "smells" (puzza)
+    \item Determina come semplificare il codice
+    \item Effettuare le semplificazioni
+    \item Esegui Test per verificare che non siano stati introdotti bug
+    \item Ripeti il processo finchè la "smell" (puzza) non se nè andata
+\end{itemize}
+\subsection{Perchè fare refactoring}
+\begin{itemize}
+    \item Migliorare il design del test (che decade nel tempo)
+    \item Ridurre la quantità di codice richiesta per completare un task (rimuovendo
+    codice inutile)
+    \item Migliorare la leggibilità del codice
+    \item Ti aiuta a trovare Bug (codice più complesso è più soggetto ad avere bug)
+\end{itemize}
+\subsection{Problemi con il refactoring}
+\begin{itemize}
+    \item Database (richiede di modificare i dati per adattarsi al nuovo design,
+    la migrazione più essere molto lungha e costosa)
+    \item Personal Ownership of Code
+    \item Cambiare le interfacce (interfacce pubbliche non possono essere cambiate)
+\end{itemize}
+\subsection{Esempi di refactoring}
+\begin{itemize}
+    \item Extract Method - Trasforma un metodo lungo in uno più breve, estraendone una parte in
+    un metodo di supporto
+    \item Extract Class - Crea una nuova classe e vi muove alcuni campi e metodi di un'altra classe
+    \item Move Method - Crea un nuovo metodo, con un corpo simile, nella classe che lo
+    usa di più
+\end{itemize}
+\section{Code Smells}
+La nozione di code smells è molto importante per il refactoring.\\
+Si tratta sostanzialmente di caratteristiche che sono forti indicatori di una struttura
+cattiva che dovrebbe essere ristrutturata.\\
+\begin{quote}
+    If it stinks, change it. (M.Fowler, Refactoring)
+\end{quote}
+I code smelss sono regole empiriche che indicano che il codice potrebbe essere migliorato.
+Risulta sempre importante valutare il caso specifico, perchè non sempre un code smell porta
+necessariamente a un refactoring. Comunque un codice che presenta code smells è probabile
+che significhi che dovresti cambiare qualcosa.\\
+\section{Bad Smells in Code}
+\begin{itemize}
+    \item Duplicated Code
+    \item Long Method
+    \item Large Class
+    \item Long Parameter List
+    \item Divergent Change
+    \item Shotgun Surgery
+    \item Feature Envy
+    \item Data Clumps
+    \item Primitive Obsession
+    \item Switch Statements
+    \item Parallel Inheritance Hierarchies
+    \item Lazy Class
+    \item Speculative Generality
+    \item Temporary Field
+    \item Message Chain
+    \item Middle Man
+    \item Inappropriate Intimacy
+    \item Alternative Classes with Different Interfaces
+    \item Incomplete Library Class
+    \item Data Class
+    \item Refused Bequest
+    \item Comments
+\end{itemize}
+Uno smells è un sintonmo, il refactoring è la cura. Usa il relativo refactoring per
+il relativo smells. Anche se stessi sintomi possono necessitare di cure diverse, così come
+ogni smelss può suggerire più di un refactoring.
+\subsection{Duplicated Code}
+Due frammenti di codice che sembrano uguali.\\
+I duplicati si verificano solitamente quando più programmatori stanno lavorando
+su differenti parti di uno stesso programma simultaneamente e dato che stanno 
+lavorando su differenti task, potrebbero non accorgersi che stanno creando codice che
+è già stato creato da altri colleghi.\\
+Si tratta di duplicazione anche quando specifiche parti di codice sembrano diverse,
+ma fanno la stessa cosa. Questo tipi di codice duplicato è difficile da trovare e sistemare.\\
+
 
