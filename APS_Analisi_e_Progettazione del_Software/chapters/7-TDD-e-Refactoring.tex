@@ -239,5 +239,180 @@ lavorando su differenti task, potrebbero non accorgersi che stanno creando codic
 è già stato creato da altri colleghi.\\
 Si tratta di duplicazione anche quando specifiche parti di codice sembrano diverse,
 ma fanno la stessa cosa. Questo tipi di codice duplicato è difficile da trovare e sistemare.\\
-
-
+\subsection{Long Method}
+Un metodo contiene troppe righe di codice. Generalmente qualsiasi metodo lungo più di 10 righe
+dovrebbe iniziare a far scattare l'allarme.\\
+Questo accade perchè spesso per pigrizia è più difficile scrivere un nuovo metodo, risulta
+più facile aggiungere qualche linea di codice in più a un metodo già esistente, così facendo
+mano a mano si aggiunge codice e si arrivare ad avere un metodo enorme contenente molte righe.\\
+\paragraph*{Risoluzione} Come regola generale, se senti che qualcosa all'interno di un metodo
+necessita di un commento per essere spiegato probabilmente dovresti creare un metodo separato.\\
+Come Refactoring è buona norma usare Extract Method per ridurre la lunghezza del corpo del
+metodo.
+\subsection{Feature Envy}
+Un metodo in una classe accede dati di un altro oggetti più spesso che ai dati della sua stessa
+classe. Questo può accadere dopo aver spostato attributi in una classe dati. Se è questo il caso
+potresti voler spostare anche le operazioni da effettuare sui dati in questa classe.\\
+\paragraph*{Risoluzione} Come regola base, se le cose cambiano insieme, mantienile insieme nello
+stesso posto. Solitamente dati e funzioni che usano quei dati sono modificati insieme.\\
+Utilizza qundi Move Method per spostare i metodi nella classe corretta, se una sola parte del
+metodo acede ai dati di un'altro oggietto usa Extract Method per spostare le parti in questione.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Riduzione code duplication
+    \item Miglior organizzazione del codice
+\end{itemize}
+\subsection{Large Class}
+Una classe che contiene molti metodi, molte variabili istanziate è una clase large class, una
+classe che prova a fare troppo.\\
+Questo indica un problema di astrazione, probabilmente nel codice c'è più di un problema o 
+qualche metodo appartiene ad altre classi.\\
+Le classi solitamente vengono create piccole, ma nel tempo vengono gonfiate più il programma
+cresce. Questo accade per la stessa motivazione dei Long Methods, i programmatori solitamente trovano
+mentalmente più facile aggiungere codice ad una classe già esistente piuttosto che crearne una nuova.\\
+\paragraph*{Risoluzione} Dividi la classe in più classi, usando Extract Class per separare
+il comportamento della classe in componenti dedicate, Move Method per spostare i metodi nelle nuove
+classi e Extract Subclass per creare sottoclassi per un subset di features se sono usate solo da
+alcune istanze.
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Effettuare il refactoring di queste classi rende la vita degli sviluppatori più semplice,
+    dato che non devono ricordarsi un gran numero di attributi per ogni classe
+    \item In molti casi dividere le classi in classi più piccole evita duplicazione di codice e rende
+    più funzionale lo sviluppo
+\end{itemize}
+\subsection{Switch Statements}
+Classica situazione dove si ha uno switch complesso, più switch identifici in posti diversi
+o una cascata di if statements.\\
+Fortunatamente nella programmazione object-oriented, questo tipo di codice è raro, dato che gli
+switch e case sono poco usati, il problema del loro utilizzo è che quando una condizione viene
+aggiunta è necessario andare a ricercare tutti gli switch e case per aggiungere la nuova condizione.\\
+Come regola generale se vedi switch dovresti pensare al polimoriismo.\\
+\paragraph*{Risoluzione} Per isolare lo switch e metterlo nella classe giusta potresti aver
+bisogno di Extract Method e poi Move Method. Dopo aver specificato la struttura di ereditarietà utilizza
+Replace Condtional with Polymporphism per sostituire lo switch con polimorfismo.
+\subsection{Data Class}
+Una classe che contiene solo variabili di clase, getter/setter e nient'altro. Sta
+semplicemente operando come data holder.\\
+La vera potenza degli oggetti è che possono contenere sia dati che operazioni e operare
+sui dati contenuti in essa.
+\paragraph*{Risoluzione} Esaminare i metodi che utilizzano dati e usare Move Method per spostarli
+nella data class.
+\subsection{Long Parameter List}
+Un metodo che richiede troppi parametri.\\
+\paragraph*{Risoluzione} Rimpiazza i parametri con metodi, introduci Oggetti parametro e
+utilizzao Preserve Whole Object, cioè incapsula tutti i valori che passeresti come parametro
+in un unico oggetto.
+\begin{lstlisting}[language=java]
+    //Prima
+    int low = daysTempRange.getLow();
+    int high = daysTempRange.getHigh();
+    boolean withinPlan = plan.withinRange(low, high);
+    //Dopo
+    boolean withinPlan = plan.withinRange(daysTempRange);
+\end{lstlisting}
+\subsection{Shotgun Surgery}
+Si parla di Shotgun Surgery quando la modifica di una classe è causa di moltri altri cambiamenti ù
+in altre classi, il cambiamento di un'operazione implica il tanti piccoli cambiamenti in
+diverse operazioni e classi. Viene definita in questo modo perchè è come se si effettuasse un'operazione 
+chirurgica sparando con un fucile a pompa, quindi colpendo molte parti del corpo, richiama un approccio
+goffo e soggetto a errori, piuttosto che preciso.
+\paragraph*{Cause} Questo accade quando si programma copiando e incollando codice, ottenendo quindi
+codice duplicato e non utilizzando i corretti Design Pattern.
+\paragraph*{Problemi} Aumenta il tempo richiesto per effettuare una modifica, dato che è necessario
+effettuare più parti del codice. Aumenta la probabilità di introdurre bug dato che è necessario
+ricordarsi di modificare più punti del codice. Oltretutto si produce più codice di quanto richiesto.
+\paragraph*{Risoluzione} Move Method e Move Field. Per ridurre ridondanze e sviluppare funzioni e
+procedure apposite.
+\paragraph*{Esempio} Un metodo che implementa una funzionalità utilizzata da un gran numero 
+di classi e metodi. Cambiare questo metodo implicherebbe cambiamenti a cascata su tutti i metodi
+in un gran numero di classi.
+\subsection{Refused Bequest}
+Una classe che non usa ciò che ha ereditato dalla sua superclasse.\\
+Se una sottoclasse utilizza solo alcuni dei metodi e proprietà ereditate dai
+suoi parenti l'ereditarietà è fuori luogo. I metodi non richiesti potrebbero essere non
+utilizzati o essere ridefiniti e restituire eccezioni.\\
+Questo accade perchè si è motivati a creare ereditarietà solo per riutilizzare codice, ma
+la superclasse e la sottoclasse sono completamente diverse.
+\paragraph*{Risoluzione} Replace Inheritance with Delegation per eliminare l'ereditarietà, 
+in questo caso inutile e forzata.
+\subsection{Comments (called sweet smeel)}
+I commenti nel codice dovrebbero essere pochi e brevi, perchè il codice dovrebbe spiegarsi
+da solo, se necessita di lunghi commenti significa che non è chiaro. Dovresti effettuare
+refactoring per rendere il codice più chiaro e ridurre così i commenti.\\
+Quando senti il bisogno di scrivere un commento prima di tutto ristruttura il codice così 
+che qualsiasi  commento sia superfluo.
+\paragraph*{Refactoring}
+\begin{itemize}
+    \item Extract Method
+    \item Rename Method: rinomina il metodo in modo tale da rendere più chiaro il suo scopo
+\end{itemize}
+\subsection{Lazy Class}
+Capire e mantenere una classe è sempre un costo in termini di tempo e denaro,\\
+quindi se una clase
+non fa abbastanza per guadagnarsi la tua attenzione dovrebbe essere cancellata.\\
+\paragraph*{Cause del problema}
+Probabilmente una classe è stata progettatata per essere completamente funzionale, ma dopo alcuni 
+refactoring è diventata molto piccola oppure è stata creata per supportare sviluppi futuri che non
+sono mai stati effettivamente fatti.
+\paragraph*{Risoluzione} Componenti che non sono richiesti dovrebbero essere cancellati, le poche
+responsabilità che aveva quella classe vengono spostate in un'altra classe. 
+\paragraph*{Vantaggi}
+\begin{itemize}
+    \item Riduzione delle dimensioni del codice
+    \item Mantenimento più semplice
+\end{itemize}
+\subsection{Middle Man}
+Se una classe effettua una sola operazione, delegando il lavoro ad altre classi, perchè esiste?
+\paragraph*{Cause del problema}
+Questi smells possono essere il risultato di una eliminazione troppo aggressiva dei messaggi a catena.
+In altri casi possono essere il risultato del refactoring di una classe che era troppo grande e
+quindi dello spostamento dei metodi in altre classi. La classe di partenza resta diventa
+quindi un guscio vuoto che non fa altro che delegare il lavoro ad altre classi.\\
+In alcuni casi è da ignorare perchè potrebbe essere il risultato dell'utilizzo di Design
+Pattern come Proxy o Decorator.
+\subsection{Data Clumps}
+Qualche volta differenti parti di codice contengono gruppi identici di variabili (come parametri
+per connettersi a un database). Questi gruppi dovrebbero essere spostati nelle loro classi di
+appartenenza.
+\paragraph*{Cause} A volte questi data groups sono il risultato di un'operazione di copia e incolla 
+o di una struttura povera del programma.
+\paragraph*{Risoluzione} Usa Extract Class per creare una classe che contenga il gruppo di dati ripetuto.
+Verificare se sono tutti essenziali.
+\subsection{Message Chains}
+Una catena di chiamate di metodi su oggetti restituiti da altri metodi. Questa catena
+può risultare molto difficile da gestire e mantenere perchè anche un cambiamento minore
+della struttura degli oggetti può richiedere modifiche in molti punti del codice.
+\paragraph*{Risoluzione} Usare Hide Delegate, tecnica utilizzate per nascondere
+la complessità di un oggetto delegato. Meno il client conosce i dettagli delle relazioni
+tra oggetti più è facile apportare modifiche al programma. Può causare \textbf{Middle-man}.\\
+Un'altra soluzione è usare Extract Method per creare un metodo che prenda in input l'oggetto su
+cui vengono chiamati i metodi della atena e che restituisca il valore finale desiderato. In questo
+modo si chiama una sola funzione, semplificando lettura e manutenzione del codice.\\
+Terzo metodo è utilizzare Move Methodo per spostare il metodo nella classe che viene
+richiamata maggiormente dalla catena.
+\subsection{Speculative Generality}
+Ci sono classi, metodi o parametri che non sono utilizzati.
+\paragraph*{Cause} A volte il codice è creato per supportare in anticipo funzionalità future che
+non verrano mai implementate, il risultato è che si ottiene un codice difficile da capire e supportare.
+\paragraph*{Risoluzione} Per rimuovere classi inutilizzate usare Collapse Hierarchy per
+effettuare il merge delle sottoclassi nelle superclassi, oppure Inline Class per eliminare
+le classi inutilizzate e spostare i pochi attributi e metodi rimasti in altre classi.
+\subsection{Incomplete Library Class}
+Una libreria che stai utilizzando non ha le funzionalità che ti servono.\\
+\paragraph*{Cause}Questo si verifica perchè l'autore si rifiuta di implementare il metodo perchè
+non conviene a livello computazionale o perchè è troppo costoso in temrinidi tempo e denaro.
+Può anche essere che l'autore è inconsapevole che il metodo sia necessario.
+\paragraph*{Risoluzione} Se ci sono pochi metodi nella libreria possiamo implementarli con riferimenti esterni,
+ma questo può causare Feature Envy.\\
+Possiamo altrimenti creare sottoclassi della libreria in locale e implementare i metodi mancanti, introducendo
+una maschera per nascondere la libreria (wrapper).
+\paragraph*{Vantaggi}
+Riduce i duplicati, ma se i più progetti usano queste soluzioni risulta più difficile mantenere
+la compatibilità.
+\subsection{Fonti utili}
+Fonti consigliate dai prof (e anche da me dato che sono molto utili e ben fatte) sono i seguenti link:
+\begin{itemize}
+    \item Per il refactoring - \url{https://sourcemaking.com/refactoring/refactorings}
+    \item Per i code smells - \url{https://sourcemaking.com/refactoring/smells}
+\end{itemize}
