@@ -27,11 +27,132 @@
     requisiti del problema
 \end{itemize}
 
-\subsection*{Cosa sono i casi d'uso?}
-\subsection*{Che cos'è UP e quali sono le sue fasi?}
-UP (Unified Process) è un processo per lo sviluppo software di tipo iterativo
-
 \subsection*{UML è una metodologia?}
 No è un linguaggio visuale
+
+\subsection*{Cos'è un processo software}
+\'E un approccio disciplinato per la costruzione, il rilascio e la manutenzione del codice. Definisce chi (ruoli) fa cosa
+(attività), quando (organizzazione temporale) e come (metodologie) per raggiungere un certo obiettivo. Vi sono
+vari tipi di processi per lo sviluppo, ma la maggior parte hanno (o rielaborano) le attività fondamentali.
+\paragraph*{Come ricordarsi la risposta} Parallelo con la costruzione di una casa, costruzione-rilascio(vendita)-manutenzione.\\
+Il chi sono le varie aziende che operano (ruoli), il cosa sono le attività (caldaia, pannelli solare, cappotto, ecc.), il quando
+è (quando l'azienda arriva, organizzazione tmeporale) e come il metodo che utilizzano per il lavoro.
+\subsection*{Quali sono le attività fondamentali di processo?}
+Le seguenti attività sono solitamente incluse in ogni processo software (che tuttavia può cambiarle e gestirle come
+vuole):
+\begin{itemize}
+    \item Requisiti
+    \item Analisi
+    \item Progettazione
+    \item Implementazione
+    \item Validazione
+    \item Rilascio e installazione
+    \item Manutenzione ed evoluzione
+    \item Gestione del progetto
+\end{itemize}
+\paragraph*{Come ricordarsi la risposta}Parallelo con richiesta PC assemblato dove, chiedo quali sono le componenti,
+analizzo se sono ok, produco un preventivo (progettazione), costruisco la macchina (implementazione)
+Testo se è tutto oK (Validazione), installo il sistema operativo (rilascio e installazione), il cliente poi
+dovrà mantenere la macchina (manutenzione ed evoluzione) ed eventualmente effettuare upgrade in futuro, quindi gestirla
+(gestione del progetto).\\
+Altro esempio valido è la costruzione di una casa.
+\subsection*{Che cos'è il processo a cascata}
+Il processo a cascata è un processo software sequenziale che prevede le seguenti fasi:
+\begin{itemize}
+    \item Definizione dei requisiti
+    \item Design del sistema e del software
+    \item Implementazione e testing unitario
+    \item Integrazione e testing di sistema
+    \item Rilascio e manutenzione (che fa ripartire la cascata da uno degli step precedenti)
+\end{itemize}
+Si è rivelato essere un approccio fallimentare dato che il suo presupposto è che i requisiti
+siano stabili nel tempo, assunzione falsa dato che possono variare e anche di molto nel tempo (a
+seconda per esempio delle esigenze del cliente).
+
+\subsection*{Che cos'è UP e quali sono le sue fasi?}
+UP (Unified Process) è un processo per lo sviluppo software di tipo iterativo, incrementale
+ed evolutivo, dato che si basa su iterazioni time-boxed alla fine delle quali si verifica se i requsiti definiti sono corretti
+e se ciò che è stato prodotto durante l'iterazione (software eseguibile) è ok. Incrementale dato che
+nella successiva iterazione si riparte dai risultati prodotti dalla precedente ed evolutivo perchè è in grado
+di cambiare ed evolersi secondo le esigenze del cliente grazie alle iterazioni. Le sue fasi sono le seguenti
+\begin{itemize}
+    \item Ideazione - Analisi e stime iniziali per avviare il progetto (stime sia temporali che economiche)
+    \item Elaborazione - Realizzazione del nucleo dell'architettura, visione raffinata, identificazione di gran parte
+    dei requisiti
+    \item Costruzione - Implementazione delle capacità operative iniziali e successiva preparazione al rilascio
+    \item Transizione - Completamento del progetto
+\end{itemize}
+
+\subsection*{Che cos'è un'iterazione}
+Si tratta di una finestra temporale (2-6 settimane) all'interno della quale si produce
+un mini progetto (tranne nella fase dell'ideazione), ogni iterazione include:
+\begin{itemize}
+    \item Pianificazione
+    \item Analisi e Progettazione
+    \item Costruzione
+    \item Implementazone e Test
+    \item Release
+\end{itemize}
+\subsection*{Che cos'è il Metodo Agile}
+Lo sviluppo Agile è una forma di sviluppo che incoraggia l'agilità, ovvero una risposta
+rapida e flessibile ai cambiamenti, adottabile da qualsiasi processo iterativo. UP
+può essere reso agile aggiungendo:
+\begin{itemize}
+    \item Un piccoli insieme di attività ed elaborati
+    \item I requisiti e la progettazione non vengono completati prima dell'implementazione, ma
+    emergono in modo adattivo durante una serie di iterazioni, anche sulla base di feedback
+    \item Applicazione di UML in stile agile (fare solo ciò che serve)
+\end{itemize}
+
+\chapter{Capitolo 2 - Analisi dei requisiti e Casi d'uso}
+\subsection*{Che cosa sono i requisiti e di che tipo possono essere?}
+Un requisito è una capacità o condizione a cui il software deve essere conforme. Ogni software
+deve possedere delle funzionalità o caratteristiche di qualità.\\
+I requisiti possono essere:
+\begin{itemize}
+    \item Funzionali - Definiscono servizi o funzionalità che soddisfano le richieste dal cliente. Sono
+    descritti dai \textbf{Casi d'uso}
+    \item Non funzionali - Requisiti legati alle proprietà  del sistema (velocità, sicurezza, affidabilità, ecc.)
+\end{itemize}
+I requisiti funzionali sono spesso più vincolanti dei funzionali, un requisito non funzionale per
+essere rispettato può generare la creazione di una serie di requisiti funzionali.\\
+I requisiti sono estremamente importanti in un progetto, considerando che la loro
+definizione incompleta è una delle cause principali del fallimento di progetti.\\
+In UP vengono definiti inizialmente durante l'ideazione (insieme al cliente) e successivamente
+nella fase di elaborazione. Non è da escludere che possano essere modificati anche più tardi,
+ma con UP tendono a stabilizarsi nel tempo. Consideriamo che il 25 \% dei requisiti cambia dopo
+l'ideazione. UP incoraggia un'acquisizione dei requisiti agile, attraverso la scrittura 
+dei \textbf{Casi d'uso} con i clienti, anche tramite interviste, workshop dei requisiti con gli sviluppatori
+e clienti, e feedback dai clienti dopo ogni iterazione.
+
+\subsection*{Cosa sono i casi d'uso?}
+I casi d'uso sono storie scritte in formato testuale (preferibilmente in forma ridotta)
+e costituiscono un dialogo fra uno o più attori e un sistema che svolge un compito. Sono
+utilizzati per scoprire e registrare i requisiti funzionali (possono anche descrivere requisiti
+non funzionali).\\
+Se presenti il caso d'uso prevede anche il SSD (System Sequence Diagram - Diagrammi di Sequenza di Sistema).
+
+\subsection*{Perchè scriviamo i casi d'uso}
+\begin{itemize}
+    \item Perchè ci aiutano a identificare e descrivere i requisiti funzionali
+    \item Sono comprensibili dal cliente dato che sono i formato testuale e sono privi di gergo informatico
+    \item Mettono in risalto gli obiettivi dell'utente e il loro punto di vista
+    \item Sono utili per produrre test e la guida utente
+\end{itemize}
+
+\subsection*{Che cos'è un attore e quali sono i vari tipi}
+Un attore è qualcosa dotato di un comportamento, anche il Sistema in discussione è considerato un attore
+quando ricorre ai servizi di altri sistemi.\\
+I vari tipi di attori sono:
+\begin{itemize}
+    \item Attore primario - Utilizza direttamente i servizi del sistema in discussione affinchè
+    vengano raggiunti gli obiettivi dell'utente
+    \item Attore finale - Vuole che il sistema venga utilizzato per raggiungere i propri obiettivi 
+    (spesso coincide con il primario)
+    \item Attore di supporto - Offre un servizio al Sistema (es. Servizi esterni di pagamento)
+    \item Attore fuori scena - Attori interessati al comportamento del Caso d'uso, ma non è nessuno dei 3 sopra elencati,
+    e non interviene nel caso d'uso (es. Stato per quanto riguarda il rispetto di una normativa).
+\end{itemize}
+
 
 \end{document}
