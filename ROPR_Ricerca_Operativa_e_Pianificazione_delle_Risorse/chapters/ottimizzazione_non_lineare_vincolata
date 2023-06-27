@@ -56,6 +56,8 @@ di uguaglianza del problema, allora possiamo trasformare tale problema in un pro
 Questa condizione peró molto spesso NON é rispettata, quindi il Dimensionality Reduction non é sempre utilizzabile.
 
 \section{Il metodo dei Moltiplicatori di Lagrange}
+Il metodo dei Moltiplicatori di Lagrange é un metodo per trovare l'ottimo di problemi di PNL Vincolata.
+Si basa sul concetto di Funzione Lagrangiana e sulle sue proprietá
 
 \subsection{La Funzione Lagrangiana}
 Per capire il metodo dei moltiplicatori di Lagrange, bisogna prima introdurre il concetto
@@ -73,28 +75,61 @@ di \emph{Funzione Lagrangiana}:
     Le variabili $\lambda_j$, di cui ce ne sono tante quante i vincoli, prendono il nome di \textbf{Moltiplicatori di Lagrange}.
 }
 
-\paragraph{I punti stazionari della Lagrangiana}
-Come mai ci interessa la funzione Lagrangiana?
-I punti stazionari della Lagrangiana (Ovvero i punti in cui il gradiente della lagrangiana si azzera)
+\paragraph{Come mai ci interessa la funzione Lagrangiana?}
+I punti stazionari della funzione Lagrangiana (Ovvero i punti in cui il gradiente della lagrangiana si azzera)
 sono \emph{Fortemente legati ai punti di massimo e minimo della funzione}.
+\pagebreak
+\subsection{Condizioni di Ottimalitá del Primo Ordine}
+Consideriamo un generico problema di ottimizzazione non lineare del tipo:
+\begin{center}
+    opt $f(x_1,...,x_n)$
+    \\s.a. $g_j(x_1,...,x_n) =0$ con $i=1,...,m$
+\end{center}
+E sia $x^* = (x^*_1,...,x^*_n)$ il punto stazionario di $f$. Allora:
+\\ Esistono $m$ moltiplicatori di Lagrange $\lambda^* = (\lambda^*_1,...,\lambda^*_m)$ tali che
+$(x^*,\lambda^*)$ è un punto stazionario della Lagrangiana Associata, ovvero
+nel punto $(x^*,\lambda^*)$ \emph{Il gradiente della funzione Lagrangiana é nullo}.
+Quindi il valore della Lagrangiana sará:
+\[
+        L(x^*,\lambda^*) = f(x^*) + \sum_{i=1}^{m} \lambda_i^* \cdot g_i(x^*)
+\]
+E avremo che:
+\[
+    \frac{\delta L(x^*,\lambda^*)}{\delta x_j} = 0 \text{ con } j=1,...,n
+\]
+\[
+    \frac{\delta L(x^*,\lambda^*)}{\delta \lambda_i} = 0 \text{ con } i=1,...,m
+\]
+\paragraph{Osservazioni}
+\begin{itemize}
+    \item I punti $x^*$ e $(x^*,\lambda^*)$ possono essere punti stazionari \emph{di tipo diverso}.
+    \item Tale condizione fornisce una \textbf{Condizione Necessaria ma Non Sufficiente} per l'ottimizzazione del problema vincolato.
+    \item Come nel caso dell'ottimizzazione non vincolata, i punti che annullano il gradiente rappresentano i
+        punti candidati ad essere punto di massimo/minimo della funzione. 
+        Se $f$ é convessa, allora i punti stazionari sono punti di Minimo, se invece é concava i punti stazionari sono di Massimo.
+\end{itemize}
 
-\subsection{Il Metodo}
-\definizione{
-    Consideriamo un generico problema di ottimizzazione non lineare del tipo:
-    \begin{center}
-        opt $f(x_1,...,x_n)$
-        \\s.a. $g_j(x_1,...,x_n) =0$ con $i=1,...,m$
-    \end{center}
-    sia $x^* = (x^*_1,...,x^*_n)$ il punto stazionario di $f$, allora esistono $m$
-    moltiplicatori di Lagrange $\lambda^* = (\lambda^*_1,...,\lambda^*_m)$
-    tali che $(x^*,\lambda^*)$ è un punto stazionario della Lagrangiana Associata.
+\paragraph{Considerazioni}
+Se prendiamo le due condizioni presentate notiamo che:
+\begin{itemize}
+    \item $\frac{\delta L(x^*,\lambda^*)}{\delta \lambda_i} = 0 \text{ con } i=1,...,m$
+    é di fatto un modo "elegante" di riscrivere i vincoli $g_i(x_1,...,x_n)$.
+    \item $\frac{\delta L(x^*,\lambda^*)}{\delta x_j} = 0 \text{ con } j=1,...,n$ puó essere riscritto come 
     \[
-        L(x,\lambda) = f(x) + \sum_{i=1}^{m} \lambda_i \cdot g_i(x)
-        \]
-    \paragraph{Osservazioni}
-    \begin{itemize}
-        \item I punti $x^*$ e $(x^*,\lambda^*)$ possono essere punti stazionari \emph{di tipo diverso}.
-        \item Tale condizione fornisce una \textbf{Condizione Necessaria ma Non Sufficiente} per l'ottimizzazione del problema vincolato.
-        
-    \end{itemize}
-}
+    \frac{\delta L(x^*,\lambda^*)}{\delta x_j} = 
+    \frac{\delta f(x^*)}{\delta x_j} + \sum_{j=0}^{m} \lambda^*_i \cdot \frac{\delta g_i(x^*)}{\delta x_i} = 0
+    \]
+\end{itemize}
+Inoltre, di fatto vogliamo trovare il \emph{Punto $(x^*,\lambda^*)$ in cui il gradiente di $L$ si azzera}:
+\[
+  \nabla L(x^*,\lambda^*) = 0 \implies \nabla f(x^*) + \sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*) = 0
+  \implies  \nabla f(x^*) =  - \sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*) 
+\]
+L'insieme dei vincoli di fatto restringe lo spazio delle soluzioni ammissibili del problema al sottospazio dato dall'intersezione dei vari vincoli.
+Il gradiente della funzione nel punto di ottimo $x^*$ ($\nabla f(x^*)$) deve risultare ortogonale\footnote{In geometria elementare, di due enti che formano un angolo retto}
+a tale sottospazio.
+\\Siccome il vettore ortogonale a tale sottospazio é dato da $\sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*)$, dobbiamo quindi avere che
+\[\nabla f(x^*) =  - \sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*) \]
+Quest'ultima condizione significa che nel punto di ottimo il gradiente della funzione $f$ puó essere riscritto come combinazione lineare dei gradienti dei vincoli.
+
+\paragraph{Condizioni di Ottimalitá del Secondo Ordine}
