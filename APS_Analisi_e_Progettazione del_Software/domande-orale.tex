@@ -27,6 +27,13 @@
     requisiti del problema
 \end{itemize}
 
+\subsection*{Che cosa sono l'analisi e la progettazione Object Oriented}
+L'analisi OO (Object Oriented) definisce le classi concettuali (di dominio), servono a descrivere i concetti
+o oggetti (del mondo reale) relativi al problema.\\
+La progettazione OO definisce le classi software che servono a modellare i concetti del
+mondo reale in classi e oggetti software utilizzabili all'interno del codice scritto in un linguaggio
+OO.
+
 \subsection*{UML è una metodologia?}
 No è un linguaggio visuale
 
@@ -154,5 +161,115 @@ I vari tipi di attori sono:
     e non interviene nel caso d'uso (es. Stato per quanto riguarda il rispetto di una normativa).
 \end{itemize}
 
+\chapter{Elaborazione}
 
+\subsection*{Cosa succede nella fase dell'elaborazione?}
+Si stabilizzano la maggior parte dei requisiti (circa l'80 \%) viene programmato, definito e testato il nucleo
+dell'architettura e si attenuano i rischi maggiori. L'intera fase dura alcuni mesi (sicuramente più 
+di 1 iterazione). Qua si producono elaborati come il Modello di Dominio, il Modello di Progetto e un Documento
+sull'architettura.
+
+\subsection*{Cos'è un Modello di Dominio}
+Il modello di Dominio è un diagramma delle classi concettuali che mostrano i concetti
+del mondo reale e come sono in relazione fra di loro nel dominio di interesse. \'E il documento
+principale dell'analisi a oggetti. In esso troviamo:
+\begin{itemize}
+    \item Classi concettuali - Rappresentano un'idea un oggetto del mondo reale, è un descrittore di
+    oggetti che possiedono le stesse caratteristiche
+    \item Attributi - Proprietà elementare degli oggetti (visibilità di default private)
+    \item Associazioni - Relazione semantica fra le classi
+\end{itemize}
+Viene utilizzato per:
+\begin{itemize}
+    \item Mell'analisi per comprendere il dominio del sistema e per definire un linguaggio
+    comune sulle parti interessate
+    \item Nella progettazione come fonte di ispirazione per lo strato di dominio
+\end{itemize}
+
+\subsection*{Che cos'è un SSD}
+Un SSD è un elaborato che descrive eventi di input e output relativi al Sistema
+in discussione, illustra inoltre come gli attori (o più sistemi) interagiscono con esso.\\
+Si adotta un approccio a scatola nera, quindi tratteremo il sistema come un'unica entità che 
+interagisce con gli attori. Il testo dei Casi d'uso sarà la base per costruire questo
+diagramma. \'E buona norma produrre un SSD per ogni scenario principale di ciascun caso d'uso.
+
+\subsection*{Cosa sono le operazioni di sistema}
+Le operazioni di sistema sono funzionalità pubbliche che il sistema, a scatola nera, 
+mette a disposizione tramite la sua interfaccia. Vengono eseguite quando l'utente genera
+un evento di sistema. Ricordiamoci che siamo nel livello di dominio
+quindi non dobbiamo ragionare come se stessimo creando metodi. Un metodo software è l'implementazione di un'operazione.
+
+\subsection*{Cosa sono i Contratti}
+I contratti delle operazioni descrivono nel dettaglio il cambiamento degli oggetti di dominio
+dopo aver eseguito un'operazione di sistema. La descrizione del cambiamento
+post operazione viene effettuata nelle Post Condizioni.
+
+\subsection*{Che cos'è l'architettura logica}
+L'architettura logica si occupa di dividere le classi software in starti/pacakges/sottosistemi
+in base alla loro semantica e appartenenza a un determinato strato/package/sottositema a
+livello software.
+
+\subsection*{Con quali criteri possiamo dividere l'Architettura Logica}
+\begin{itemize}
+    \item Livello
+    \item Strato
+    \item Partizione
+\end{itemize}
+\paragraph*{Per ricordarlo}LiSP (Livello Strato Partizione) "Anagrammi che evocano forti
+emozioni sono utili per ricordare"
+\subsection*{Quali sono gli strati dell'architettura logica}
+\begin{itemize}
+    \item UI (Presentazione o Interfaccia Utente)
+    \item Logica Applicativa
+    \item Servizi Tecnici
+\end{itemize}
+
+\subsection*{Che cos'è la logica applicativa}
+Lo stato che riguarda gli oggetti di dominio, utile suddividere questo strato in:
+\begin{itemize}
+    \item Strato del dominio - Oggetti di dominio
+    \item Strato application - Oggetti che gestiscono il workflow degli oggetti di dominio
+\end{itemize}
+La logica applicativa non va messa direttamente nell'interfaccia UI.
+
+\subsection*{Cosa sono i diagrammi di interazione}
+Sono i diagrammi che descrivono il modo in cui interagiscono gli oggetti
+attraverso lo scambio di messaggi. Un'interazione è una specifica di come gli oggetti
+si scambiano messaggi nel tempo per eseguire un compito.\\
+Ci sono 4 tipi di diagrammi di interazione:
+\begin{itemize}
+    \item Diagrammi di sequenza SD - Mostrano le interazioni tra linee vita verticali
+    \item Diagrammi di comunicazione CD - Mostrano le interazioni tra oggetti in un formato a grafo o rete
+    \item Diagrammi di interazione generale
+    \item Diagrammi di temporizzazione
+\end{itemize}
+Noi abbiamo visto i primi 2
+
+\subsection*{Cosa sono i Sequence Diagram}
+Simili agli SSD per quanto riguarda la struttura, in questo caso però siamo a livello
+software e non più di dominio. negli SD infatti le linee vita rappresentano spesso 
+gli oggetti
+
+\chapter{Classi}
+
+\subsection*{Che cos'è un diagramma delle Classi Software}
+Si tratta di un diagramma che rappresenta le classi, le interfacce e le relative associazioni,
+sono utilizzati per la modellazione statica delle classi (già introdotti nel modello di
+dominio).
+
+\subsection*{Che cos'è un oggetto}
+Un oggetto è un'istanza di una classe che definisce l'insieme comune di
+caratteristiche (operazioni e attributi) condivisi da tutte le istanze.\\
+Tutti gli oggetti hanno:
+\begin{itemize}
+    \item Identificativo univoco
+    \item Valore degli Attributi - la parte dei dati (detta stato)
+    \item Operazioni - la parte del comportamento
+\end{itemize}
+
+\subsection*{Che cos'è un'interfaccia}
+Un'interfaccia è un insieme di funzionalità pubbliche identificate da un nome,
+separa le specifiche di una funzionalità dall'implementazione stessa, definendo un contratto
+con la classe che andrà a estendere l'interfaccia stessa, la classe dovrà rispettare questo
+contratto.
 \end{document}
