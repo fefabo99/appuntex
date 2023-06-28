@@ -118,7 +118,19 @@ Il che richiede di aggiustare i valori delle variabili di base per garantire che
 In pratica il metodo del simplesso nello spostarsi da un vertice ad un adiacente fa uscire dalla base una variabile in base e ne fa entrare in base una non di base,
 per poi ricalcolare il valore delle variabili di base usando il sistema di equazioni lineari.
 
-\section{I Tableau: un Cheatsheet}
+
+\section{Risoluzione con i Tableau}
+Nella sezione precedente abbiamo visto il funzionamento del metodo del simplesso in forma algebrica a livello teorico,
+non abbiamo visto peró i passaggi dell'algoritmo del simplesso perché perché la forma algebrica non é la piú adeguata a fare le computazioni richieste.
+In questo caso utilizziamo la Forma Tabellare, che registra soltano l'informazione essenziale:
+\begin{itemize}
+    \item Coefficenti delle variabili.
+    \item Termini noti delle equazioni.
+    \item Variabili di base per ogni equazione.
+\end{itemize}
+
+
+\paragraph*{Cheatsheet}
 Ricordiamo il problema in forma standard:
 \begin{center}
     max $\underline{c}^T$ $\underline{x}$
