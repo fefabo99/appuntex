@@ -292,7 +292,7 @@ reti di nodi connessi da archi, si utilizzano per visualizzare i flussi.\\
     \item Partizioni
 \end{itemize}
 
-\chapter(Design Pattern)
+\chapter{Design Pattern}
 
 \section{GRASP}
 
@@ -321,14 +321,135 @@ I Design Pattern GRASP (General Responsability Assignment Software Patterns) des
 i principi base per la progettazione di oggetti e l'assegnazione di responsabilità.\\
 I Design Pattern GRASP sono 9:
 \begin{itemize}
-    \item Creator
-    \item Information Expert
-    \item Low Coupling
-    \item Controller
-    \item High Cohesion
-    \item Pure Fabrication
-    \item Polymorfism
+    \item Creator - Chi crea l'oggetto A? Assegnare all'oggetto B la responsabilità di creare A
+    \item Information Expert - Su che principio assegnare responsabilità a una classe?
+    Fare fare le cose a chi ha le conoscenze, quindi assegnare responsabilità a una clase solo per le
+    cose che conosce (può portare a problemi di accoppiamento e coesione)
+    \item Low Coupling - Come ridurre l'impatto dei cambiamenti? 
+    \item Controller - Qual è il primo oggetto oltre alla UI a ricevere e coordinare un'operazione di sistema?
+    \item High Cohesion -
+    \item Pure Fabrication - Quale oggetto deve avere le responsabilità quando non si vogliono violare High Cohesion e 
+    Low Coupling, ma la soluzione fornita da Information Expert non è valida? Si assegna un insieme
+    di responsabilità altamente coeso a una classe artificiale di convenienza
+    \item Polymorfism - Come gestire alternative basate sul tipo? Operazioni che variano in base al tipo,
+    creare per esempio un'interfaccia che racchiude le caratteristiche principali (es. forma) e poi le
+    istanze avranno le loro specifiche (quadrato, cerchio, ecc.)
     \item Indirection
     \item Protected Variables
 \end{itemize} 
+
+\subsection*{Che cosa sono i Design Pattern GoF?}
+I Design Pattern GoF offronto una soluzione a degli specifici problemi di progettazione
+in cui uno sviluppatore piò incappare, offronto degli esempi specifici di classi che risolvo
+il problema in oggetto. Sono 23 Pattern in totale suddivisi in 3 categorie:
+\begin{itemize}
+    \item Creazionale
+    \item Strutturale
+    \item Comportamentale
+\end{itemize}
+e noi ne abbiamo visti 7:
+\begin{itemize}
+    \item Adapter
+    \item Abstract Factory
+    \item Singleton
+    \item Strategy
+    \item Observer
+    \item Composite
+    \item Facade
+\end{itemize}
+
+\subsection*{Spiega un Design Pattern a scelta}
+Il Design Pattern Singleton risponde all'esigenza di avere una sola istanza
+di una classe specifica, per esempio nella comunicazione con un Database non desidero
+avere più istanze per evitare scritture concorrenti, per questo Singleton entra in gioco.
+Definisco un metodo statico della classe che restituisce l'oggetto singleton.\\
+
+\chapter{Testing}
+
+\subsection*{Che cos'è il TDD}
+Il TDD (Test Driven Development) è una best practice applicabile ad UP, 
+consiste nel creare prima i test relativi a una classe e poi scrivere codice per far
+passare il test stesso.
+Ci si immagina quindi che il codice esista già e si scrivano i test su di esso.\\
+I tipi di test sono i seguenti:
+\begin{itemize}
+    \item Test di unità - Test di singole classi e metodi
+    \item Test d'integrazione - Verifica dell'integrazione di tutte le parti dell'architettura
+    \item Test di sistema - Detto anche test End-To-End verifica il collegato complessivo di tutte
+    le parti
+    \item Test di accettazione - Test a scatola nera per verificare il funzionamento
+    complessivo dal punto di vista dell'utente
+\end{itemize}
+
+\subsection*{Che cos'è il test di unità}
+Consiste nel preparare l'oggeto da testare (fixture), produrre dei relativi test,
+eseguire delle operazioni, validare queste operazioni (verificando che il risultato sia quello desiderato)
+e infine effettuare il Rilascio, rimuovendo eventuali parti utilizzate esclusivamente per il test.\\
+Riassumendo:
+\begin{itemize}
+    \item Preparazione
+    \item Esecuzione
+    \item Validazione
+    \item Rilascio
+\end{itemize}
+
+\subsection*{Qual è il ciclo TDD}
+Il ciclo di lavorazione (molto breve) consiste nel:
+\begin{itemize}
+    \item Produrre un test che fallisce
+    \item Scrivere il codice più semplice per far passare il test
+    \item Riscrivere o effettuare il Refactoring del codice per migliorarlo e passare a scrivere il prossimo
+    test unitario
+\end{itemize}
+
+\subsection*{Che cos'è il Refactoring}
+Si tratta di una disciplina per ristruttura il codice esistente senza cambiarne il suo comportamento,
+ma migliorando alcuni aspetti come efficienza e chiarezza. Dato che non deve
+cambiarne il comportamento ad ogni refactoring vengono rieseguiti i test di unità.\\
+I vantaggi del refactoring sono:
+\begin{itemize}
+    \item Continuo miglioramento del codice
+    \item Preparazione al cambiamento
+\end{itemize}
+I passi sono i seguenti:
+\begin{itemize}
+    \item Assicurarsi che i test passino
+    \item Trovare un code smell
+    \item Determinare come migliorare il codice
+    \item Migliorare il codice
+    \item Rieffettuare i test
+    \item Ripetere
+\end{itemize}
+
+\subsection*{Cosa sono i code smells}
+Un code smell indica una serie di caratteristiche nel codice che sono indice di una
+cattiva programmazione.\\
+Quelli studiati in totale sono 10 e possiamo dividerli in 5 categorie
+\begin{itemize}
+    \item Bloaters
+    \begin{itemize}
+        \item Long Method
+        \item Long Class
+        \item Long Parameter List
+    \end{itemize}
+    \item Objective-Orientation Abuse
+    \begin{itemize}
+        \item Switch Statement
+        \item Refused Bedquest
+    \end{itemize}
+    \item Change Preventers
+    \begin{itemize}
+        \item Shotgun Surgery
+    \end{itemize}
+    \item Dispensables
+    \begin{itemize}
+        \item Duplicated Code
+        \item Data Class
+        \item Comments
+    \end{itemize}
+    \item Couplers
+    \begin{itemize}
+        \item Feature Envy
+    \end{itemize}
+\end{itemize}
 \end{document}
