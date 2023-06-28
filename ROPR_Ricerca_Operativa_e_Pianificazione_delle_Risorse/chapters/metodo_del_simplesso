@@ -169,11 +169,33 @@ $z = \underline{c}^T \underline{x}$ diventa $z -( \underline{c}^T \underline{x})
 
 
 \section{Il Metodo delle Due Fasi}
+In generale nella fase di Inizializzazione il metodo del simplesso sceglie il vertice $(0,0)$, che peró in alcuni 
+problemi di PL non é una soluzione ammissibile, che quindi non puó essere usata come soluzione ammissibile di base.
 
-In alcuni problemi di PL il punto $(0,0)$, ovvero l'origine, non è una soluzione ammissibile,
-quindi non può essere usata come \emph{Soluzione Ammissibile di Base} per il Metodo Del Simplesso.
-\\Quando ci troviamo di fronte a questa situazione abbiamo due possibilità: usare il metodo Big M (che non vedremo) oppure usare il \emph{Metodo delle due Fasi}.
-\paragraph{Come funziona il metodo delle due Fasi?}
+In questo caso quindi bisogna trovare un'altra soluzione di base ammissibile come soluzione iniziale. 
+Ovviamente peró non possiamo scegliere arbitrariamente, abbiamo quindi due possibili metodi:
+\begin{itemize}
+    \item Metodo Big M (che non vedremo)
+    \item Metodo delle Due Fasi
+\end{itemize}
 
-Con questo metodo si risolve il problema di PL aggiungendo alla forma aumentata una variabile \emph{artificiale} che va ad "annullare" la variabile di slack (prima fase).
-La seconda fase consiste nel prendere la soluzione di base generata dalla prima fase e eseguire il metodo del simplesso partendo da lì.
+\subsection*{Come funziona il metodo delle due Fasi?}
+Come suggerisce il nome, questo metodo si divide in due fasi:
+\begin{enumerate}
+    \item Prima Fase, in cui si trova una soluzione di Base Ammissibile
+    \item Seconda Fase, in cui si risolve il problema partendo dalla soluzione di base trovata.
+\end{enumerate}
+
+\paragraph*{Fase I}
+Nella prima fase bisogna trovare una soluzione di partenza per il problema.
+Per fare ció, bisogna introdurre:
+\begin{itemize}
+    \item Delle variabili artificiali $y_i$, una per ogni vincolo che viene violato dal vertice Origine (a cui andranno sommate).
+    \item Una nuova funzione obiettivo di minimizzazione che minimizza la somma delle variabili artificiali.
+\end{itemize}
+Quindi risolviamo questo nuovo problema di PL e teniamo il Tableau Finale.
+
+\paragraph*{Fase 2}
+Nella Seconda fase, prendiamo il Tableau Finale della Fase 1, eliminiamo le colonne delle variabili artificiali
+e sostituiamo la funzione Obiettivo con la Funzione Obiettivo originale.
+Cosí facendo avremo il Tableu Iniziale della Fase 2, che una volta risolto ci dará la soluzione del problema originale.
