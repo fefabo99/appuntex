@@ -233,28 +233,30 @@ $h_j(x^*)$ puó essere attivo ($h_j(x^*)=0$) o inattivo ( $h_j(x^*)<0$), e indic
 Inoltre  esistono $m$ moltiplicatori $\lambda^* = (\lambda_1^*,...,\lambda_m^*)$ e $p$ moltiplicatori $\mu^* = (\mu_1^*,...,\mu_p^*)$
 Tali che valgono le seguenti condizioni:
 \begin{itemize}
-    \item \textbf{Condizione di Stazionarietá}, Ovvero il gradiente della Lagrangiana deve essere $=0$
+    \item \textbf{Condizione di Stazionarietá}: Il gradiente della Lagrangiana deve essere uguale a zero, ovvero il punto deve essere stazionario.
         \[\nabla f(x^*) + \sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*) + \sum_{j=1}^{p} \mu_j^* \cdot \nabla h_j(x^*) = 0 \text{\small{ Problemi di MIN}}\]
         \[\nabla f(x^*) - \sum_{i=1}^{m} \lambda_i^* \cdot \nabla g_i(x^*) - \sum_{j=1}^{p} \mu_j^* \cdot \nabla h_j(x^*) = 0 \text{\small{ Problemi di MAX}}\]
-    \item \textbf{Ammissibilitá Primale}, per cui abbiamo che:
-    \[g_i(x^*) = 0 \forall i = 1,...,m\]
-    \[h_j(x^*) \leq 0 \forall j = 1,...,p\]
-    \item \textbf{Annussibilitá Duale}
-    \[\mu^*_j \geq 0 \forall j = 1,...,p\]
-    \item \textbf{Condizioni di Complementarietá}
-    \[\mu^*_j \cdot h_j(x^*) = 0 \forall j = 1,...,p\]
+    \item \textbf{Ammissibilitá Primale}: Ogni vincolo, sia di uguaglianza che di disuguaglianza, deve essere rispettato
+    \[g_i(x^*) = 0 \; \forall i = 1,...,m\]
+    \[h_j(x^*) \leq 0 \; \forall j = 1,...,p\]
+    \item \textbf{Ammissibilitá Duale}: Tutti i Moltiplicatori Lagrangiani devono essere Non Negativi.
+    \[\mu^*_j \geq 0 \; \forall j = 1,...,p\]
+    \item \textbf{Condizioni di Complementarietá}: Il prodotto di un vincolo di disuguaglianza per il rispettivo moltiplicatore
+    deve essere sempre zero.
+    \[\mu^*_j \cdot h_j(x^*) = 0 \; \forall j = 1,...,p\]
 \end{itemize}
-Osserviamo che le condizioni di Ammissibilitá Duale e di Complementarietá implicano che
+Osserviamo in particolare che le condizioni di Ammissibilitá Duale e di Complementarietá implicano che
 nel caso di vincoli di disuguaglianza abbiamo che:
 \begin{itemize}
     \item se $h_j(x^*) < 0$ (vincolo non attivo) allora $\mu^*_j = 0$
     \item se $h_j(x^*) = 0$ (vincolo attivo) allora $\mu^*_j \geq 0$
 \end{itemize}
-\paragraph{Considerazioni Importanti}
-\begin{itemize}
-    \item Le condizioni KKT rappresentano le condizioni necessarie ma non sufficienti che caratterizzano i punti di ottimo (condizioni di ottimalitá)
-    \item I punti di ottimo devono soddisfare le condizioni di KKT
-    \item Le condizioni KKT mi consentono di "limitare" la ricerca del/dei punto/i di ottimo tra i punti che soddisfano le condizioni.
-    \item Le condizioni KKT non sono un algoritmo.
-\end{itemize}
+\paragraph{A cosa ci serve?}
+Le condizioni KKT rappresentano le \textbf{condizioni Necessarie ma Non Sufficienti} per caratterizzare i punti di ottimo in un 
+Problema di Programmazione Non Lineare Multivariata Vincolata che ha Vincoli di Disuguaglianza (PPNLMVVD\texttrademark), 
+quindi ogni puto di ottimo \emph{deve} rispettare le condizioni KKT, ma un punto che rispetta queste condizioni non é necessariamente punto di ottimo.
+\\Queste condizioni quindi mi permettono di \emph{limitare la ricerca dei punti di ottimo} tra i soli punti che le soddisfano.
+
+
+Si puó inoltre notare che le condizioni KKT non sono un algoritmo, bensí una serie di condizioni da verificare su un potenziale punto di ottimo.
 
