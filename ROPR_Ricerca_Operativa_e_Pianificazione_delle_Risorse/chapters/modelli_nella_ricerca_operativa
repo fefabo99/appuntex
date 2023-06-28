@@ -9,8 +9,8 @@ La Ricerca Operativa si occupa di Problemi di Ottimizzazione:
 }
 I problemi di ottimizzazione possono essere:
 \begin{itemize}
-    \item Minimizzazione $min f(x)$
-    \item Massimizzazione $max f(x)$
+    \item Minimizzazione $min \; f(x)$
+    \item Massimizzazione $max \; f(x)$
 \end{itemize}
 \definizione{
     In un problema di ottimizzazione la \emph{funzione} $f:R^n...$ è detta \textbf{funzione obiettivo},
@@ -29,12 +29,12 @@ Esistono due tipi principali di Ottimizzazione, determinate dall'esistenza o men
 
 Nel caso dell'ottimizzazione vincolata semplicemente si considera la regione dello spazio definita da un determinato intervallo,
 quindi le soluzioni valide di solito cambiano.
-\paragraph*{Ottimizzazione Intera e Binaria}
+\paragraph*{Altri tipi di Ottimizzazione}
 Non esiste solo l'ottimizzazione in cui le variabili assumono valori nello spazio reale, ma esistono anche ottimizzazioni con delle caratteristiche particolari.
-\\Il vincolo $X\in Z^n$ richiede che le mie soluzioni \emph{siano valori interi}, quindi \textbf{ottimizzazione intera}.
-\\Un altro vincolo molto "reale" è $x\in \{0,1\}^n$, in questo caso si chiama \textbf{ottimizzazione binaria} (vero falso, spento acceso,...).
+Esiste per esempio il vincolo $X\in Z^n$, che richiede che le mie soluzioni \emph{siano valori interi}, quindi \textbf{ottimizzazione intera}.
+Un altro vincolo molto "reale" è $x\in \{0,1\}^n$, in questo caso si chiama \textbf{ottimizzazione binaria} (vero falso, spento acceso,...).
 Entrambe queste ottimizzazioni formano le ottimizzazioni a numeri interi.
-Esiste anche l'ottimizzazione mista, in cui alcune variabili sono intere e altre binarie.
+Esiste anche l'\textbf{ottimizzazione mista}, in cui alcune variabili sono intere e altre binarie.
 
 \section{Programmazione Matematica}
 \definizione{
@@ -44,25 +44,23 @@ Esiste anche l'ottimizzazione mista, in cui alcune variabili sono intere e altre
 Ovvero, se i vincoli di un problema di ottimizzazione vengono espressi tramite delle equazioni/disequazioni, allora questo problema diventa un problema di programmazione matematica.
 
 \subsection*{Come si definiscono i vincoli}
-I vincoli vengono espressi con delle espressioni del tipo $g_i(x) \begin{cases}
-        \geq \\ = \\ \leq %%sistemare questa dicitura
-    \end{cases} 0$
+I vincoli vengono espressi con delle espressioni del tipo $g_i(x) \; \{\geq \slash = \slash \leq\} \; 0$
 in cui $g_i: X\to \R$ è una funzione generica che lega tra loro le variabili decisionali.
-Nota che i vincoli dipendo dalle \emph{stesse variabili da cui dipende la funzione obiettivo}.
+Nota che i vincoli dipendono dalle \emph{stesse variabili da cui dipende la funzione obiettivo}.
 \\L'insieme (somma) di tutti i vincoli definisce la \emph{regione ammissibile}, se $x \in X$ allora è una soluzone ammissibile.
 \\In un problema di ottimizzazione abbiamo quindi $m$ vincoli e $n$ variabili.
 
 \paragraph*{Le possibilità} Quando risolviamo un problema di PM abbiamo quindi le seguenti possibilità:
 \begin{itemize}
     \item Problema non ammissibile, $X = \emptyset$ (problema mal posto con regione ammissibile vuota)
-    \item Problema illimitato, ovvero per ogni soluzione che trovo ne posso trovare un'altra che è MIGLIORE di quella che ho trovato, (può essere illim superiormente o infer)
+    \item Problema illimitato, ovvero per ogni soluzione che trovo ne posso trovare un'altra che è MIGLIORE di quella che ho trovato, (può essere illimitata superiormente o inferiormente)
     \item Problema con soluzione ottima unica
     \item Problema con più soluzioni ottime (anche infinite), tutte le ottime hanno lo stesso valore della funzione obiettivo.
 \end{itemize}
 
-\paragraph*{Ottimi Globali e Locali}
-I punti di ottimo possono essere Locali o Globali (se la funzione è convessa Locale=Globale). NB un minimo globale è anche locale, un minimo locale non necessariamente è globale.
-Ad oggi \emph{non} sappiamo dire se una soluzione sia Globale, sappiamo solo con certezza che sia locale (a meno di usare brute force).
-\\La risoluzione di un problema di programmazione matematica consiste nel trovare una soluzione ammissibile che sia ottimo GLOBALE.
+\paragraph{Ottimi Globali e Locali}
+I punti di ottimo possono essere Locali o Globali (se la funzione è convessa Locale = Globale). 
+Nota che un minimo globale è anche locale, un minimo locale non necessariamente è globale e i punti di ottimo globali possono essere multipli.
+\\Ad oggi \emph{non} sappiamo dire se una soluzione sia Globale, sappiamo solo con certezza che sia locale (a meno di usare brute force).
+\\La risoluzione di un problema di programmazione matematica consiste nel trovare una soluzione ammissibile che sia ottimo globale.
 Alla fine della fiera la definizione di globale e locale corrisponde a quella di Analisi Matematica.
-I punti di ottimo globali possono essere multipli.

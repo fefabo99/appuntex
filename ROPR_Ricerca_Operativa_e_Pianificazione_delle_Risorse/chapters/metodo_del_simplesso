@@ -1,100 +1,126 @@
 \chapter{Metodo del Simplesso}
-Il metodo del simplesso è una pocedura algebrica che si basa su dei \emph{concetti geometrici}.
-\paragraph{Alcuni Termini}
+Il metodo del simplesso è una pocedura algebrica per la risoluzione di problemi di Programmazione Lineare che si basa su dei \emph{concetti geometrici}.
+
+\paragraph{Terminologie}
 Questo metodo si basa su alcune terminologie che ci servono per capire come funziona.
 Definiamo quindi:
 \begin{itemize}
-    \item \textbf{Frontiera del vincolo}: è la "linea" di demarcazione di un vincolo.
-    \item \textbf{Vertice}: un vertice è un punto di intersezione di coppie di frontiere di vincoli.
-          \begin{itemize}
-              \item \textbf{Vertici Adiacenti}: Due vertici si dicono adiacenti se condividono $n-1$ frontiere di vincoli.
-              \item \textbf{Spigolo}: segmento che collega due vertici adiacenti
-          \end{itemize}
-    \item \textbf{Vertice Ammissibile}: Un vertice è detto ammissibile se \emph{fa parte} della regione ammissibile
-    \item \textbf{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
+    \item \underline{Frontiera del vincolo}: è la "linea" di demarcazione di un vincolo.
+    \item \underline{Vertice}: un vertice è un punto di intersezione di coppie di frontiere di vincoli.
+    \item \underline{}{Vertici Adiacenti}: Due vertici si dicono adiacenti se condividono $n-1$ frontiere di vincoli.
+    \item \underline{Spigolo}: segmento che collega due vertici adiacenti
+    \item \underline{Vertice Ammissibile}: Un vertice è detto ammissibile se \emph{fa parte} della regione ammissibile
+    \item \underline{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
 \end{itemize}
-
-\paragraph{Test di Ottimalità}
-L'interesse per i \emph{vertici adiacenti} sta nella seguente proprietà di cui godono:
+\pagebreak
+\subsection{Il Test di Ottimalità}
+Come mai ci interessa definire i Vertici Adiacenti? 
+Ci interessa perché godono di una proprietá particolare su cui si basa tutto il metodo del simplesso:
 \definizione{
-    Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
-    \\Se una soluzione vertice non ammette soluzioni vertice a egli adiacenti con valore della funzione obiettivo
-    migliore, allora la \textbf{soluzione} in questione è \textbf{ottimale}.
+Si consideri ogni problema di PL tale da ammettere almeno una soluzione ottimale:
+
+
+Se una soluzione vertice non ammette soluzioni vertice a egli adiacenti con valore della funzione obiettivo
+migliore, allora la \textbf{soluzione} in questione è \textbf{ottimale}.
 }
 
 \begin{center}
     \includegraphics[width=0.8\textwidth]{img/Simplesso1.jpg}
 \end{center}
 
+Il Test di Ottimalitá del metodo del Simplesso si basa su questa proprietá, 
+quindi se un vertice non ha soluzioni adiacenti migliori (cioé con una soluzione della funzione obiettivo migliore), 
+esso sará la soluzione ottima del problema in questione.
+
+\section{Il Funzionamento Geometrico}
+Il funzionamento geometrico del Metodo del Simplesso é il seguente:
+
+\paragraph*{Inizializzazione} Scelgo un vertice (generalmente (0,0)) come soluzione iniziale
+\paragraph*{Test di Ottimalitá} Valuto lo spostamento nei vertici adiacenti, ovvero verifico se esiste un vertice adiacente a 
+quello in esame che ha un valore della funzione obiettivo migliore al mio.
+Se un vertice migliore esiste, allora mi sposto sul quel vertice e ri eseguo il Test di Ottimalitá, altrimenti
+il vertice in esame é la soluzione ottimale del problema.
+
+
 \section{La Procedura Algebrica}
-Il metodo del simplesso è utilizzabile sia in forma algebrica che geometrica.
-Siccome questo algoritmo è usualmente eseguito su un calcolatore, che è in grado di interpretare solo istruzioni algebriche,
-è necessario tradurre la procedura geometrica in una procedura algebrica, che si basa sulla risoluzione di un sistema di equazioni lineari.
-\paragraph{Forma Aumentata}
-Per usare il metodo del simplesso bisogna trasformare il modello dalla \emph{forma standard} alla \emph{forma aumentata}:
-\\Per fare ciò bisogna fare le seguenti operazioni:
-\begin{enumerate}
-    \item Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}:
-          $ x_1 +  x_2 \leq 5 \to  x_1 + x_2 = 5$
-    \item Per ogni vincolo aggiungo una \textbf{Variabile di Slack/Surplus}
-          \\Ogni vincolo riceve una variabile di slack/surplus unica,
-          se il vincolo é di $\leq$ avrá una variabile di slack, se é di $\geq$ avrá una variabile di surplus.
-          quindi se abbiamo:
-          \[
-              \begin{cases}
-                  x_1 \leq 3 \\
-                  x_2 \leq 2 \\
-                  x_1 + x_2 \leq 5
-              \end{cases}
-              \to
-              \begin{cases}
-                  x_1 + x_3 = 3 \\
-                  x_2 + x_4= 2  \\
-                  x_1 + x_2 + x_5 = 5
-              \end{cases}
-          \]
-          $x_3,x_4,x_5$ sono le \emph{variabili di slack}.
-          Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la \emph{quantità che manca al termine sinistro della diseguaglianza,
-              affinchè questa sia verificata con il segno di uguaglianza. }
-\end{enumerate}
-Le variabili di slack hanno alcune proprietà che sono utili da tenere a mente:
-Per un qualunque valore delle variabili decisionali:
+Come abbiamo visto, la forma geometrica del metodo del simplesso é estremamente semplice, peró non é utilizzabile dai calcolatori.
+Si puó quindi tradurre questa procedura geometrica in una procedura algebrica, che si basa sulla risoluzione di un sistema di equazioni lineari. 
+Quando si risolve un problema tramite il metodo del simplesso in forma algebrica, bisogna tradurre i vincoli funzionali
+di diseguaglianza in vincoli funzionali di eguaglianza, generando cosí una \textbf{forma aumentata} del problema.
+
+\subsection{Le variabili di Slack/Surplus} 
+Qunado si traduce un vincolo di diseguaglianza in un vincolo di eguaglianza bisogna introdurre una variabile di Slack per i vincoli di $\leq$ o di Suprlus per i vincoli di $\geq$.
+Le variabili di Slack/Surplus sono uniche per ogni vincolo e rappresentano la quantitá che manca al termine sinistro della diseguaglianza affinché questa sia verificata con il segno di uguaglianza.
+\paragraph{Proprietà}
+Data \emph{una qualunque soluzione}, tramite il valore delle variabili di Slack o Surplus otteniamo delle informazioni utili su di essa:
+Quindi per ogni vincolo avremo che:
 \begin{itemize}
-    \item Se $slack = 0 \implies$ La soluzione corrispondente giace sulla frontiera del vincolo della forma originale.
-    \item Se $slack > 0 \implies$ La soluzione corrispondente giace sul lato ammissibile della frontiera del vincolo della forma originale.
-    \item Se $slack < 0 \implies$ La soluzione corrispondente giace sul lato NON ammissibile della frontiera del vincolo.
+    \item Se Slack/Surplus $= 0 \implies$ La soluzione rispetta il vincolo e giace sulla frontiera del vincolo della forma originale.
+    \item Se Slack $> 0$ oppure Surplus $< 0  \implies$ La soluzione rispetta il vincolo e giace sul lato ammissibile della frontiera del vincolo (della forma originale).
+    \item Se Slack $< 0$ oppure Surplus $> 0 \implies$ La soluzione non rispetta il vincolo e giace sul lato non ammissibile della frontiera del vincolo.
 \end{itemize}
-Si definisce \textbf{Soluzione Aumentata} una soluzione del modello in forma originale che viene \emph{aumentata} tramite i
-corrispondenti valori delle variabili di slack.
 
-\subparagraph{Soluzione di Base}
-Si definisce soluzione di base, un vertice del modello in forma aumentata.
-\\Se abbiamo come variabili di base $x_1=4,x_2=6$ e come variabili di slack $x_2=0,x_3=0,x_4=-6$ allora la soluzione di base (non ammissibile) associata sarà $(4,6,0,0,-6)$.
-\subsection{Variabili di Base e Non}
-Un modello in forma aumentata consiste di $d$ variabili decisionali e $s$ variabili di slack.
-Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare.
-In altre parole, quando risolviamo un sistema lineare (ponendo a zero il valore di x variabili scelte arbitrariamente)
-abbiamo tante variabili azzerabili quante sono le variabili decisionali.
 
-\paragraph{Proprietà delle Soluzioni di Base}
-Una \textbf{soluzione di base} gode delle seguenti proprietà:
-\begin{enumerate} %Riformula per capire meglio
-    \item Una variabile può essere \emph{Di base} o \emph{NON di base}
-    \item Il numero delle variabili di base \emph{eguaglia il numero dei vincoli funzionali},
-          Di conseguenza il numero delle variabili non di base eguaglia il numero totale delle variabili, meno il numero dei vincoli funzionali
-    \item Le variabili NON di base \emph{vengono poste a zero}
-    \item I valori delle variabili di base sono ottenuti come risoluzione simultanea del sistema di equazioni lineari (in forma aumentata).
-    \item Se le variabili di base soddisfano i vincoli di non negatività, la soluzione di base è una soluzione ammissibile di base.
+\subsection{La Forma Aumentata}
+Quindi, per usare il metodo del simplesso in forma algebrica bisogna trasformare il problema di base in forma Aumentata.
+\paragraph{Uguaglianza e Slack} 
+Trasformo tutti i vincoli (tranne quelli di non negatività) in vincoli di \emph{eguaglianza}
+e aggiungo/sottraggo una variabile di \textbf{Slack/Surplus} per ogni vincolo.
+se il vincolo é di $\leq$ avrá una variabile di slack, se é di $\geq$ avrá una variabile di surplus.
+\\quindi se abbiamo:
+\[
+    \begin{cases}
+        x_1 \leq 3 \\
+        x_2 \geq 2 \\
+        x_1 + x_2 \leq 5
+    \end{cases}
+    \to
+    \begin{cases}
+        x_1 + x_3 = 3 \\
+        x_2 - y_1= 2  \\
+        x_1 + x_2 + x_4 = 5
+    \end{cases}
+\]
+$x_3,x_4$ sono variabili di Slack, $y_1$ é variabile di Surplus.
+\\Assumendo che $x_1 = 0$, la variabile di slack $x_3$ è la quantità che manca al termine sinistro della diseguaglianza,
+affinchè questa sia verificata con il segno di uguaglianza.
+
+Chiaramente anche il modello in forma aumentata avrá una sua soluzione, e si definisce \textbf{Soluzione Aumentata} una soluzione del modello 
+in forma originale che viene \emph{aumentata} tramite i corrispondenti valori delle variabili di slack, ovvero una soluzione della forma aumentata.
+
+\subsection{Variabili e Soluzioni di Base}
+Se prendiamo un modello in forma aumentata, noteremo che consiste di $d$ variabili decisionali, ovvero le variabili del problema originale,
+e di $s$ variabili di slack.
+Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare, 
+ovvero possiamo decidere il valore di $d$ variabili per trovare (tramite un sistema linare) il valore delle altre $s$ variabili.
+Il metodo del simplesso opera prorio cosí: azzera il valore di $d$ variabili, che vengono dette \textbf{Variabili Non di Base},
+e tramite la soluzione del sistema lineare (formato da i vincoli del problema) trova il valore delle restanti $s$ variabili, dette \textbf{Variabili di Base}.
+La soluzone formata dalle $d$ variabili Non di Base e dalle $s$ variabili di Base si chiama Soluzione di Base.
+
+\subsubsection{Proprietá delle Soluzioni di Base}
+La soluzione di base é un vertice del modello in forma aumentata, e gode delle seguenti proprietá:
+
+\begin{enumerate}
+    \item Una variabile della soluzione di base può essere \emph{Di base} o \emph{NON di base}
+    \item Il numero delle variabili di base é sempre uguale al numero dei vincoli funzionali.
+          \\Quindi il numero delle variabili non di base é il numero totale delle variabili, meno il numero dei vincoli funzionali.
+    \item Il valore delle variabili non di base é sempre zero.
+    \item I valori delle variabili di base sono ottenuti come risoluzione del sistema di equazioni lineari dati dai vincoli in forma aumentata.
+    \item Se le variabili di base ottenute soddisfano i vincoli di non negatività, la soluzione di base è una soluzione ammissibile di base.
 \end{enumerate}
+
 \paragraph{Soluzioni di Base Adiacenti}
-Due soluzioni di base ammissibili sono \emph{adiacenti} se sono caratterizzate dal \textbf{condividere le stesse variabili non di base eccetto una}.
-\\Di conseguenza, muoversi da una soluzione di base ammissibile ad una soluzione ad essa adiacente
-\emph{Implica che una variabile non di base divenga di base} e che \emph{una variabile di base divenga non di base}.
+Due soluzioni di Base Ammissibili sono Adiacenti \underline{se condividono le stesse variabili non di base eccetto una}.
+Quindi muoversi da una soluzione di base ammissibile ad una soluzione ad essa adicente 
+implica che una variabile non di base diventa di base e che una variabile di base diventa non di base.
 Il che richiede di aggiustare i valori delle variabili di base per garantire che il sistema di equazioni sia ancora soddisfatto.
+
+In pratica il metodo del simplesso nello spostarsi da un vertice ad un adiacente fa uscire dalla base una variabile in base e ne fa entrare in base una non di base,
+per poi ricalcolare il valore delle variabili di base usando il sistema di equazioni lineari.
 
 \section{I Tableau: un Cheatsheet}
 Ricordiamo il problema in forma standard:
-\begin{center} %Forma standard
+\begin{center}
     max $\underline{c}^T$ $\underline{x}$
     \\\underline{\underline{A}} $\underline{x}$ $\leq$ $\underline{b}$
     \\ $\underline{x}$ $\geq 0$
