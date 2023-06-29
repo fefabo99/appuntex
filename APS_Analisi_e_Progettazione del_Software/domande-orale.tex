@@ -78,10 +78,9 @@ seconda per esempio delle esigenze del cliente).
 
 \subsection*{Che cos'è UP e quali sono le sue fasi?}
 UP (Unified Process) è un processo per lo sviluppo software di tipo iterativo, incrementale
-ed evolutivo, dato che si basa su iterazioni time-boxed alla fine delle quali si verifica se i requsiti definiti sono corretti
+dato che si basa su iterazioni time-boxed alla fine delle quali si verifica se i requsiti definiti sono corretti
 e se ciò che è stato prodotto durante l'iterazione (software eseguibile) è ok. Incrementale dato che
-nella successiva iterazione si riparte dai risultati prodotti dalla precedente ed evolutivo perchè è in grado
-di cambiare ed evolersi secondo le esigenze del cliente grazie alle iterazioni. Le sue fasi sono le seguenti
+nella successiva iterazione si riparte dai risultati prodotti dalla precedente. Le sue fasi sono le seguenti
 \begin{itemize}
     \item Ideazione - Analisi e stime iniziali per avviare il progetto (stime sia temporali che economiche)
     \item Elaborazione - Realizzazione del nucleo dell'architettura, visione raffinata, identificazione di gran parte
@@ -97,7 +96,7 @@ un mini progetto (tranne nella fase dell'ideazione), ogni iterazione include:
     \item Pianificazione
     \item Analisi e Progettazione
     \item Costruzione
-    \item Implementazone e Test
+    \item Integrazione e Test
     \item Release
 \end{itemize}
 \subsection*{Che cos'è il Metodo Agile}
@@ -123,6 +122,12 @@ I requisiti possono essere:
 \end{itemize}
 I requisiti funzionali sono spesso più vincolanti dei funzionali, un requisito non funzionale per
 essere rispettato può generare la creazione di una serie di requisiti funzionali.\\
+I requisiti non funzionali possono entrare in contrasto fra di loro e sono divisi nelle seguente categorie:
+\begin{itemize}
+    \item Prodotto - Affidabilità, velocità, sicurezza, ecc.
+    \item Organizzativi - Processo - Che modello di sviluppo usiamo, linguaggio di programmazione
+    \item Esterni - Leggi da rispettare e normative
+\end{itemize}
 I requisiti sono estremamente importanti in un progetto, considerando che la loro
 definizione incompleta è una delle cause principali del fallimento di progetti.\\
 In UP vengono definiti inizialmente durante l'ideazione (insieme al cliente) e successivamente
@@ -248,7 +253,8 @@ Noi abbiamo visto i primi 2
 \subsection*{Cosa sono i Sequence Diagram}
 Simili agli SSD per quanto riguarda la struttura, in questo caso però siamo a livello
 software e non più di dominio. negli SD infatti le linee vita rappresentano spesso 
-gli oggetti
+gli oggetti, iniziano con un messaggio trovato. I messaggi sono il modo di comunicare tra
+gli oggetti.
 
 \chapter{Classi}
 
@@ -343,9 +349,10 @@ I Design Pattern GoF offronto una soluzione a degli specifici problemi di proget
 in cui uno sviluppatore piò incappare, offronto degli esempi specifici di classi che risolvo
 il problema in oggetto. Sono 23 Pattern in totale suddivisi in 3 categorie:
 \begin{itemize}
-    \item Creazionale
-    \item Strutturale
-    \item Comportamentale
+    \item Creazionale - Forniscono astrazione per l'istanziazione degli oggetti
+    \item Strutturale - Si occupano di organizzare le classi in strutture più complesse, sfruttando per
+    esempio ereditarietà e proprietà delle classi
+    \item Comportamentale - Si dedicano all'assegnazione di responsabilità e algoritmi
 \end{itemize}
 e noi ne abbiamo visti 7:
 \begin{itemize}
