@@ -1,4 +1,4 @@
-\chapter{Dualità}
+\chapter{Dualità e  Analisi di Sensitività}
 Ad ogni problema di programmazione lineare, che d'ora in poi chiameremo problema \textbf{Primale}, è associato un problema chiamato \textbf{Duale}. La soluzione ottimale del problema Duale fornisce i \textbf{prezzi ombra} del problema Primale.
 
 \paragraph*{Il Prezzo Ombra}
@@ -59,7 +59,7 @@ Se un problema ha:
     \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
 \end{itemize}
 
-\section{Gli Scarti Complementari}
+\section{Le condizioni degli Scarti Complementari}
 Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima}, posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.\\
 Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima, anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
 

@@ -13,6 +13,7 @@ Definiamo quindi:
     \item \underline{Vertice \emph{non} ammissibile}: Un vertice è detto \emph{non} ammissibile se \emph{non} fa parte della regione ammissibile.
 \end{itemize}
 \pagebreak
+
 \subsection{Il Test di Ottimalità}
 Come mai ci interessa definire i Vertici Adiacenti? 
 Ci interessa perché godono di una proprietá particolare su cui si basa tutto il metodo del simplesso:
@@ -129,32 +130,9 @@ In questo caso utilizziamo la Forma Tabellare, che registra soltano l'informazio
     \item Variabili di base per ogni equazione.
 \end{itemize}
 
+\paragraph{La forma tabellare} di un problema di PL in forma aumentata con $m$ vincoli e $n$ variabili é presentata come segue:
 
-\paragraph*{Cheatsheet}
-Ricordiamo il problema in forma standard:
-\begin{center}
-    max $\underline{c}^T$ $\underline{x}$
-    \\\underline{\underline{A}} $\underline{x}$ $\leq$ $\underline{b}$
-    \\ $\underline{x}$ $\geq 0$
-\end{center}
-\paragraph*{Tableau}
-Il metodo del simplesso è facilmente risolvibile tramite la \emph{Forma Tabellare}.
-\paragraph{1 - La forma aumentata}
-Per portare il problema in Forma Aumentata:
-\begin{itemize}
-    \item Vincoli
-    \begin{itemize}
-        \item \textbf{MinoreUguale }$\leq \to = \wedge$ + SLACK
-        \item \textbf{Uguale} $= \to $ INVARIATO
-        \item \textbf{MaggioreUguale} $\geq \to = \wedge$ - SURPLUS
-    \end{itemize}
-    \item Se ho una variabile non positiva: $x_i \leq 0\to$ $x_i' = -x_i$, con $x_i' \geq 0$  
-\end{itemize}
-\paragraph*{2 - Porto in forma Tabellare}
-Il problema in forma aumentata viene riscritto in forma tabellare.
-\\ATTENZIONE PERÒ: La funzione obiettivo passa da 
-$z = \underline{c}^T \underline{x}$ diventa $z -( \underline{c}^T \underline{x}) = 0$
-(Quindi la funzione obiettivo diventa Z meno i coefficenti delle variabili).
+
 \begin{center}
     \begin{tabular}{|c|c|c|cccc|c|}
         \hline
@@ -162,11 +140,80 @@ $z = \underline{c}^T \underline{x}$ diventa $z -( \underline{c}^T \underline{x})
         \hline
         Z       & R$_0$ & 1 & $c_1$ &  $c_2$     &  ...   & $c_n$      &    0     \\
         $x_1$   & R$_1$ & 0 & $a_{11}$      &  $a_{12}$      &  ...   &  $a_{1n}$      &    $b_1$     \\
+        \vdots & \vdots & \vdots & \vdots & \vdots & $\ddots$ & \vdots & \vdots \\
         $x_m$   & R$_n$ & 0 & $a_{m1}$    & $a_{m2}$       &  ...   &    $a_{mn}$    &      $b_m$   \\
         \hline
     \end{tabular}
 \end{center}
 
+\section[MDS Tabellare]{I passaggi del Metodo del Simplesso in forma Tabellare}
+\begin{enumerate}
+    \item Porto il problema in \textbf{Forma Aumentata}:
+    \begin{itemize}
+        \item Vincoli:
+        \begin{itemize}
+            \item $\leq$ diventa $ = \wedge$ + Slack
+            \item $\geq$ diventa $ = \wedge$ - Surplus
+            \item $=$ Resta Invariato
+        \end{itemize}
+        \item Le variabili non positive $x_i\leq 0$ devono diventare Non Negative, quindi
+        \[x_i = -x_i^{'} \text{ con } x_i^{'}\geq 0 \]
+        E ogni apparizione di $x_i$ viene sostituita con $-x_i^{'}$
+        \item La Funzione Obiettivo viene riformulata: 
+        \[Z = \Sigma x_i \to Z - \Sigma x_i = 0\]
+        Quindi il segno dei coefficienti in Funzione Obiettivo é invertito
+    \end{itemize}
+    \item Porto il problema in Forma Tabellare\\
+    \begin{center}
+        \begin{tabular}{c|c|c|cccc|c}
+            \small{V. BASE} & Eq    & Z & $x_1$ & $x_2$ & ... & $x_n$ & T. Noto \\
+            \hline
+            Z       & R$_0$ & 1 & $c_1$ &  $c_2$     &  ...   & $c_n$      &    0     \\
+            $x_1$   & R$_1$ & 0 & $a_{11}$      &  $a_{12}$      &  ...   &  $a_{1n}$      &    $b_1$     \\
+            \vdots & \vdots & \vdots & \vdots & \vdots & $\ddots$ & \vdots & \vdots \\
+            $x_m$   & R$_n$ & 0 & $a_{m1}$    & $a_{m2}$       &  ...   &    $a_{mn}$    &      $b_m$   \\
+        \end{tabular}
+    \end{center}
+
+    \item Eseguo il Test di Ottimalitá
+    
+        per i Problemi di Max la soluzione é ottima se i coefficienti della riga $(0)$ sono tutti $ \geq 0$, 
+        nei problemi di Min devono essere tutti $\leq 0$
+        \\Se la soluzione non é Ottima allora calcolo il nuovo tableau.
+    \begin{itemize}
+        \item \textbf{Variabile Entrante}: Entra la variabile non in base che nella riga $(0)$ ha il coefficiente:
+        \begin{itemize}
+            \item Piú Piccolo (Piú Negativo) per i problemi di Max.
+            \item Piú Grande (Piú Positivo) per i problemi di Min.
+        \end{itemize}
+        La rispettiva colonna diventa Colonna Pivot.
+        \item \textbf{Variabile Uscente}: Eseguo il Test del rapporto minimo:
+        Prendo i coefficienti positivi della colonna Pivot e li divido per i rispettivi Termini Noti.
+        La variabile con il rapporto minimo esce dalla base e la rispettiva riga diventa Riga Pivot.
+        \item \textbf{Numero Pivot}: Il coefficiente all'intersezione tra Riga e Colonna Pivot diventa Numero Pivot.
+    \end{itemize}
+    \item Determino la Nuova soluzione di Base tramite l'eliminazione Gaussiana:
+    \begin{itemize}
+        \item Nuova Riga Pivot:
+        \begin{itemize}
+            \item La variabile entrante diventa Variabile di Base della Nuova Riga Pivot.
+            \item Divido Tutti i Coefficenti e il Termine Noto della riga per il Numero Pivot.
+        \end{itemize}
+        Cosí ottenendo la Nuova Riga Pivot.
+        \item Altre Righe: Per calcolare le altre righe prima definisco:
+        \begin{itemize}
+            \item $P_i$ come l'i-esimo coefficiente della nuova riga pivot (ovvero la riga pivot appena calcolata)
+            \item $X_p$ come il coefficiente della colonna pivot nella riga in esame.
+        \end{itemize}
+        Allora il coefficiente i-esimo $x_i$ della riga in esame $X$ diventa:
+        \begin{itemize}
+            \item $x_i := x_i - |X_p|\cdot P_i$ Se $X_p$ é Positivo.
+            \item $x_i := x_i + |X_p|\cdot P_i$ Se $X_p$ é Negativo.
+        \end{itemize}
+    \item Rieseguo il test di ottimalitá, e se non ho trovato una soluzione ottima ricalcolo un nuovo Tableau.
+    \end{itemize}
+
+\end{enumerate}
 
 \section{Il Metodo delle Due Fasi}
 In generale nella fase di Inizializzazione il metodo del simplesso sceglie il vertice $(0,0)$, che peró in alcuni 
