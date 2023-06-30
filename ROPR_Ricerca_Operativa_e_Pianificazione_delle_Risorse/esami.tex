@@ -1,0 +1,73 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage[inline]{enumitem}
+\usepackage{../generalStyle}
+\usepackage{amsmath}
+
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\title{Esami di Ricerca Operativa e Pianificazione delle Risorse}
+\author{
+	Fabio Ferrario\\
+	\small{\href{https://t.me/fefabo}{@fefabo}}
+}
+
+\date{2023}
+\maketitle
+
+
+\tableofcontents
+
+\chapter{Domande di Teoria dal Mega}
+Si faccia riferimento a un problema di Massimizzazione ed, ove richiesto, ad un problema artificiale per la fase 1 del metodo del simplesso.
+
+\domandaaperta{1?}{Se B é la matrice di base associata ad una base ottima, il valore della funzione obiettivo associato alla corrispondende SBA  non negativo}
+
+\domandaaperta{2}{Il valore Nullo di una variabile indica che essa sia fuori base}
+\rispostaaperta{Falso, una variabile puó valere 0 anche nel caso sia in base (soluzione degenere)}
+
+\chapter{Domande Aperte}
+\domanda[Proprietá dei Vertici Ammissibili]{3}{
+    Si enuncino le Proprietà dei Vertici Ammissibili di un problema di PL. Si scelga poi una delle proprietà e si mostri un esempio grafico o numerico.
+}
+\rispostaaperta{
+    I vertici ammissibili di un problema di PL hanno le seguenti proprietá:
+    \begin{enumerate}
+        \item Se esiste una sola soluzione ottima, questa sará un vertice ammissibile.
+        Se esistono piú soluzioni con regione ammissibile limitata, allora almeno due di queste sono vertici ammissibili tra loro adiacenti.
+        \item Il numero di vertici ammissibili é finito e dipende da n vincoli di non negativitá e m vincoli funzionali.
+        il numero di combinazioni di m + n vincoli presi a gruppi di n é pari $\frac{(m+n)!}{m!n!}$. Questa quantitá (finita) rappresenta un limite superiore al numero di vertici ammissibili.
+        \item Se un vertice ammissibile non ha vertici adiacenti migliori, allora non ci sono vertici migliori. 
+        Quindi se il problema ha una soluzione otttima, questo vertice é la soluzione ottima.
+    \end{enumerate}
+}
+
+\domanda[Proprietá di una Soluzione di Base]{4}{Si elenchino le proprietá di una Soluzione di Base}
+\rispostaaperta{
+    \begin{enumerate}
+        \item Una variabile puó essere una variabile di base o una variabile non di base.
+        \item Il numero delle variabili di base eguaglia il numero dei vincoli funzionali.
+        \item La variabili non di base vengono poste a zero.
+        \item I valori delle variabili di base sono ottenuti come risoluzione simultanea del sistema di equazioni lineari.
+        \item Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.
+    \end{enumerate}
+}
+
+\domanda[Dualitá Debole e Forte]{5}{Si dia una defninizione di Dualitá Debole e Forte}
+\begin{itemize}
+    \item Dualitá Debole: Il valore della funzione obiettivo per una qualsiasi soluzione ammissibile del problema primale (max) non puó eccedere
+    il valore della funzione obiettivo per una qualisasi soluzione ammissibile del problema duale.
+    l valore del problema duale fornisce quindi un limite superiore del problema primale.
+Detto breve: se il primale ha soluzione illimitata allora il duale non ha soluzione.
+    \item Dualitá forte: Se esiste una soluzione ottima (finita), il valore ottimo della funzione obiettivo del problema primale è uguale al valore ottimo della funzione obiettivo del problema duale.
+\end{itemize}
+
+\domanda[Proprietá di Complementarietá]{9}{Si definisca la Proprietá di Complementarietá in PL. Si diano due esempi reali in cui é utilizzabile e cosa permette di concludere.}
+\rispostaaperta{ %Da rivedere
+    La complementarietá in un problema di Programmazione Lineare si evince dalla relazione tra problmea primale e duale.
+    In particolare, la complementarietá afferma che ogni soluzionee primale ha una soluzione complementare duale tale che $W=Z$
+    Se un problema lineare in forma primale ha soluzione ottimale x* allora anche il problema
+    }
+
+\end{document}

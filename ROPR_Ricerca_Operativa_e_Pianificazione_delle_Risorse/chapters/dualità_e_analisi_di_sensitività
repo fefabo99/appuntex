@@ -15,7 +15,16 @@ Il \emph{prezzo ombra} per la risorsa $i-$esima ($y_i^*$) misura il valore margi
 Un problema duale è strettamente legato al suo primale, infatti per passare da un problema al suo duale:
 \begin{center}
 \includegraphics[width=0.7\textwidth]{img/dualità1.jpg}
+\\
+\begin{tabular}{c|c}
+    Primale & Duale\\
+    max $c^T x$ & min $b^T \lambda$\\
+    $Ax \leq b$ & $A^T\lambda \geq c$\\
+    $x\geq 0$ & $\lambda \geq 0$
+\end{tabular}
 \end{center}
+
+
 
 Più in specifico, le regole per Primale$\to$Duale sono:
 
@@ -43,11 +52,47 @@ Quindi dato un qualunque problema di PL:
 \end{itemize}
 Si può notare che il Duale di un Duale è il suo Primale, quindi un problema di minimizzazione diventa un problema di massimizzazione.
 
-\section{Teorema della dualità}
-Riassumendo le relazioni tra primale e duale, il teorema di dualità dice:
+\section{Relazioni Primale-Duale}
+
+\subsection{Proprietá di Dualitá Debole e Forte}
+I valori delle funzioni obiettivo di un problema Primale e il suo Duale godono delle seguenti proprietá:
+\definizione{
+    \textbf{Proprietá di Dualitá Debole}: Se $x$ é una solizione ammissibile per il problema primale, 
+    e $y$ é una soluzione ammissibile per il corrispondende problema duale, allora vale la seguente disuguaglianza:
+    \[cx\leq by\] 
+}
+\definizione{
+    \textbf{Proprietá di Dualitá Forte}: Se $x^*$ é una solizione ottimale per il problema primale, 
+    e $y^*$ é una soluzione ottimale per il corrispondende problema duale, allora vale la seguente disuguaglianza:
+    \[cx^* = by^*\] 
+}
+Queste proprietá, se considerate insieme, implicano che la diseguaglianza vale per soluzioni ammssibili se una o entrambe
+non sono ottimali per i corrispondenti problemi, l'uguaglianza vale solo se entrambe le soluzioni sono ottimali.
+
+La Proprietá di dualitá debole descrive la relazione esistente tra ogni coppia di soluzioni, una del primale e una del duale, 
+nel caso in cui entrambe siano ammissibili per i rispettivi problemi.
+
+
+\subsection{Proprietá di soluzioni (ottimali) complementari}
+Ad ogni iterazione, il metodo del simplesso trova una specifica coppia di soluzioni per i due problemi,
+dove la soluzione del primale é ammissibile mentre quella del duale non é ammissibile, fatta eccezione per 
+l'ultima iterazione, quella che vedee l'arresto del metodo del simplesso.
+
+\paragraph*{Proprietá delle soluzioni complementari} Ad ogni iterazione, il metodo del simplesso identifica simultaneamente
+una soluzione vertice ammissibile $x$ per il primale e una soluzione complementare $y$ per il duale (reperibile nella riga (0), i coefficenti delle variabili di slack)
+dove: \[cx=by\]
+Se $x$ non é ottimale per il problema primale, allora y non é ammissibile per il problema duale.
+\paragraph*{Proprietá delle soluzioni ottimali complementari}
+All'iterazione finale, il metodo del simplesso identifica simultaneamente una soluzione ottimale $x^*$ per il problema primale e una soluzione
+ottimale complementare $y^*$ per il problema duale, dove:
+\[cx^*=by^*\]
+Le componenti $y_i^*$ sono i prezzi ombra del problema Primale
+
+\subsection{Teorema della dualità}
+Un ultima proprietá che riassume le relazioni primale-duale in tutti i casi possibili:
 \begin{enumerate}
     \item Se un problema ha soluzioni ammissibili e funzione obiettivo limitata (quindi ha soluzione ottimale), 
-    allora la stessa cosa vale per l'altro problema, per cui le proprietà di dualità devole e forte sono entrambe applicabili.
+    allora la stessa cosa vale per l'altro problema, per cui le proprietà di dualità debole e forte sono entrambe applicabili.
     \item Se un problema ha soluzioni ammissibili e funzione obiettivo Illimitata (non ha ottimo), allora l'altro problema non ha soluzioni ammissibili.
     \item Se un problema ha soluzioni ammissibili, allora l'altro problema o non ha soluzioni ammissibili o ha una funzione obiettivo Illimitata
 \end{enumerate}
@@ -58,6 +103,9 @@ Se un problema ha:
     \item Sol. Ammissibili, e NON Ottimo (obb. illimitata) $\implies$ L'altro NON ha soluzioni ammissibili
     \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
 \end{itemize}
+
+
+
 
 \section{Le condizioni degli Scarti Complementari}
 Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima}, posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.\\
@@ -80,4 +128,14 @@ Se ho una soluzione del primale, controllo che sia ottima e trovo la corrisponde
 \begin{itemize}
     \item $x_1 + 2x_2 +3x_3 \leq 9$ è attivo: $9 \leq 9$
     \item $x_1 + 2x_2 +x_3 \leq 7 $ NON è attivo: $ 7 \leq 9$
+\end{itemize}
+
+\section{Analisi di Sensitivitá}
+É importante condurre una analisi di sensitività per investiagre l'effetto sulal soluzione ottimale
+dal fornita dal metodo del simplesso quando i parametri del modello assumono valori differenti da quelli attuali:
+\begin{itemize}
+    \item Per alcuni parametri, la variazione in valore non influenza la soluzione ottimale
+    \item Per altri parametri la variazione in valore porta ad una nuova soluzione ottimale.
+    In questo caso la situazione é particolarmente seria nel caso in cui la variazione porti la soluzione ottimale ad ottenere
+    un valore 
 \end{itemize}
