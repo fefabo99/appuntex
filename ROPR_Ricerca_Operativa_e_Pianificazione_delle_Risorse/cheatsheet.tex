@@ -1,0 +1,73 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage{../generalStyle}
+\usepackage{enumitem}
+
+\graphicspath{ {./img/} }
+\def\arraystretch{2}
+\newcolumntype{Y}{>{\centering\arraybackslash}X} %new tabularx centered X column  
+
+\begin{document}
+\title{CheatSheet di Ricerca Operativa e Pianificazione delle Risorse}
+
+\author{
+	Fabio Ferrario\\
+	\small{\href{https://t.me/fefabo}{@fefabo}}
+}
+\date{2022/2023}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Ottimizzazione Non Lineare Vincolata}
+\section{Condizioni di KKT}
+In un problema di ottimizzazione vincolata definito come:
+\begin{center}
+    opt $f(x_1,...,x_n)$
+    \\
+    \[
+      \begin{cases}
+        g_1((x_1,...,x_n)) = 0\\
+        ... & \text{Vincoli di Uguaglianza}\\
+        g_m((x_1,...,x_n)) = 0
+      \end{cases}  
+    \]
+    \[
+      \begin{cases}
+        h_1((x_1,...,x_n)) \leq 0\\
+        ... & \text{Vincoli di Disuguaglianza}\\
+        h_l((x_1,...,x_n)) \leq 0
+      \end{cases}  
+    \]
+\end{center}
+Generiamo la Lagrangiana cosí definita:
+\[
+    L(V) = f(X) + \sum_{i=0}^{m} \lambda_i \cdot g_i(X) + \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
+\]
+\[
+    L(V) = f(X) - \sum_{i=0}^{m} \lambda_i \cdot g_i(X) - \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MAX}
+\]
+con $V=\{x_1,...,x_n,\lambda_1,...,\lambda_m, \mu_1,...,\mu_l\}$, ovvero tutte le variabili e $X=\{x_1,...,x_n\}$, ovvero tutte le variabili origniali.
+
+I punti stazionari vengono caratterizzati con le condizioni KKT che generano un sistema di $n+m+l$ incognite cosí definito:\\
+\begin{tabularx}{\textwidth}{|Y|}
+    \hline
+    Stazionarietá Problemi di MIN (-)\\
+        $ \nabla f(X) = - \sum_{i=0}^{m} \lambda_i \cdot \nabla g_i(X) - \sum_{j=0}^{l} \mu_j \cdot \nabla h_j(X)$ \\
+    \hline \hline
+    Stazionarietá Problemi di MAX (+)\\
+    $ \nabla f(X) = + \sum_{i=0}^{m} \lambda_i \cdot \nabla g_i(X) + \sum_{j=0}^{l} \mu_j \cdot \nabla h_j(X)$ \\
+    \hline
+\end{tabularx}\\
+\begin{tabularx}{\textwidth}{|l|Y|}
+    \hline
+    V. Uguaglianza & $g_i(X) = 0$ con $i=1,...,m$ \\
+    \hline
+    V. Disuguaglianza & $h_j(X) \leq 0$ con $j=1,...,l$ \\
+    \hline
+    Complementarietá & $\mu_j \cdot h_j = 0$ con $j=1,...,l$ \\ 
+    \hline
+    Non Negativitá & $\mu_j \geq 0$  con $j=1,...,l$ \\
+    \hline   
+\end{tabularx}
+\end{document}
