@@ -19,6 +19,19 @@
 
 \tableofcontents
 
+\chapter{Ottimizzazione Non Lineare}
+\section{Algoritmo del Gradiente}
+Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metodo del gradiente si effettua in questo modo:
+\begin{enumerate}
+    \item Calcolo $\nabla f(x^k)$, con la direzione di crescita $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
+    \item Calcolo $x^{k+1} = x^k \pm \alpha^k \cdot d^k$
+    \item In cui $\alpha^k$ é il max di $f(x^k \pm \alpha^k \cdot d^k)$. ovvero
+    Valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$).
+    \item Sostituisco $\alpha$ trovato in $x^{k+1}$.
+    \item Valuto i criteri di arresto (Con epsilon o con un numero predefinito di iterazioni, e nel caso ripeto)
+\end{enumerate}
+Per verificare che il punto trovato sia un punto di ottimo, semplicemente controllo che $\nabla f(x^*) = 0$.
+
 \chapter{Ottimizzazione Non Lineare Vincolata}
 \section{Condizioni di KKT}
 In un problema di ottimizzazione vincolata definito come:
