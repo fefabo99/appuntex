@@ -1,6 +1,7 @@
 \documentclass[12pt, a4paper, openany]{book}
 \usepackage{../generalStyle}
 \usepackage{enumitem}
+\usepackage{makecell}
 
 \graphicspath{ {./img/} }
 \def\arraystretch{2}
@@ -19,16 +20,99 @@
 
 \tableofcontents
 
+\chapter{Programmazione Lineare}
+\section{Il metodo del Simplesso}
+
+\paragraph*{La forma Tabellare}
+\begin{center}
+	\begin{tabular}{c|c|c|cccc|c}
+		\small{V. BASE} & Eq     & Z      & $x_1$    & $x_2$    & ...      & $x_n$    & T. Noto \\
+		\hline
+		Z               & R$_0$  & 1      & $c_1$    & $c_2$    & ...      & $c_n$    & 0       \\
+		$x_1$           & R$_1$  & 0      & $a_{11}$ & $a_{12}$ & ...      & $a_{1n}$ & $b_1$   \\
+		\vdots          & \vdots & \vdots & \vdots   & \vdots   & $\ddots$ & \vdots   & \vdots  \\
+		$x_m$           & R$_n$  & 0      & $a_{m1}$ & $a_{m2}$ & ...      & $a_{mn}$ & $b_m$   \\
+	\end{tabular}
+\end{center}
+
+\paragraph{Forma Aumentata} Per portare il problema in forma aumentata:\\
+\begin{tabularx}{\textwidth}{|X|lc|c|l|}
+	\hline
+	\multirow{3}{*}{\textbf{Vincoli}} & Minoreuguale   & $\leq$ & $ = $                          & + Slack   \\
+	\cline{2-5}
+	                                  & Maggioreuguale & $\geq$ & $ =$                           & - Surplus \\
+	\cline{2-5}
+	                                  & Uguale         & $=$    & \multicolumn{2}{c|}{Invariato}             \\
+	\hline
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|c|c|}
+	\hline
+	\multirow{2}{*}{\textbf{Variabili non positive}} & $x_i\leq 0$                                                                     & $ x_i = -x_i^{'} \text{ con } x_i^{'}\geq 0 $ \\
+	\cline{2-3}
+	                                                 & \multicolumn{2}{|l|}{Ogni apparizione di $x_i$ viene sostituita con $-x_i^{'}$}                                                 \\
+	\hline
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|X|ccc|}
+	\hline
+
+	\textbf{Funzione Obiettivo} & $Z = \Sigma x_i $ & $\to$ & $ Z - \Sigma x_i = 0$ \\
+	\hline
+\end{tabularx}
+
+\paragraph{Test di Ottimalità}.\\
+\begin{tabularx}{\textwidth}{|c|Y|Y|}
+	\hline
+	Tipo di Problema              & \textbf{ Massimo}                                    & \textbf{Minimo}                \\
+	\hline \hline
+	\textbf{Soluzione Ottima sse} & Coefficienti riga (0) $\geq 0$                       & Coefficienti riga (0) $\leq 0$ \\
+	\hline
+	\hline
+	\makecell{\textbf{Variabile Entrante}                                                                                 \\ (Colonna Pivot)} & Coefficiente riga (0) più Piccolo (Più Negativo) & Coefficiente riga (0) più Grande (Più Positivo) \\
+	\hline
+	\makecell{\textbf{Variabile Uscente}                                                                                  \\ (Riga Pivot)} & \multicolumn{2}{c|}{Test del Rapporto Minimo} \\
+	\hline
+	\textbf{Numero Pivot}         & \multicolumn{2}{c|}{Intersezione Riga/Colonna Pivot}                                  \\
+	\hline
+\end{tabularx}
+
+\paragraph{Nuova Soluzione di Base}.\\
+\begin{tabularx}{\textwidth}{|XcX|}
+	\hline
+	\multicolumn{3}{|c|}{Nuova Riga Pivot}                                          \\
+	\hline
+	Variabile Entrante          & $\to$ & Variabile di Base della nuova riga pivot. \\
+	Coefficienti e Termine Noto & $\to$ & Divisi per Numero Pivot.                  \\
+	\hline
+\end{tabularx}
+
+\begin{enumerate}
+	\item Determino la Nuova soluzione di Base tramite l'eliminazione Gaussiana:
+	      \begin{itemize}
+		      \item Altre Righe: Per calcolare le altre righe prima definisco:
+		            \begin{itemize}
+			            \item $P_i$ come l'i-esimo coefficiente della nuova riga pivot (ovvero la riga pivot appena calcolata)
+			            \item $X_p$ come il coefficiente della colonna pivot nella riga in esame.
+		            \end{itemize}
+		            Allora il coefficiente i-esimo $x_i$ della riga in esame $X$ diventa:
+		            \begin{itemize}
+			            \item $x_i := x_i - |X_p|\cdot P_i$ Se $X_p$ é Positivo.
+			            \item $x_i := x_i + |X_p|\cdot P_i$ Se $X_p$ é Negativo.
+		            \end{itemize}
+		      \item Rieseguo il test di ottimalitá, e se non ho trovato una soluzione ottima ricalcolo un nuovo Tableau.
+	      \end{itemize}
+
+\end{enumerate}
+
 \chapter{Ottimizzazione Non Lineare}
 \section{Algoritmo del Gradiente}
 Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metodo del gradiente si effettua in questo modo:
 \begin{enumerate}
-    \item Calcolo $\nabla f(x^k)$, con la direzione di crescita $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
-    \item Calcolo $x^{k+1} = x^k \pm \alpha^k \cdot d^k$
-    \item In cui $\alpha^k$ é il max di $f(x^k \pm \alpha^k \cdot d^k)$. ovvero
-    Valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$).
-    \item Sostituisco $\alpha$ trovato in $x^{k+1}$.
-    \item Valuto i criteri di arresto (Con epsilon o con un numero predefinito di iterazioni, e nel caso ripeto)
+	\item Calcolo $\nabla f(x^k)$, con la direzione di crescita $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
+	\item Calcolo $x^{k+1} = x^k \pm \alpha^k \cdot d^k$
+	\item In cui $\alpha^k$ é il max di $f(x^k \pm \alpha^k \cdot d^k)$. ovvero
+	      Valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$).
+	\item Sostituisco $\alpha$ trovato in $x^{k+1}$.
+	\item Valuto i criteri di arresto (Con epsilon o con un numero predefinito di iterazioni, e nel caso ripeto)
 \end{enumerate}
 Per verificare che il punto trovato sia un punto di ottimo, semplicemente controllo che $\nabla f(x^*) = 0$.
 \pagebreak
@@ -36,9 +120,9 @@ Per verificare che il punto trovato sia un punto di ottimo, semplicemente contro
 \section{Algoritmo di Newton}
 Data una funzione a piú variabili $f(X)$ e un punto $x^0$, una iterazione del metodo di Newton si effettua in questo modo:
 \begin{enumerate}
-    \item Calcolo $\nabla f(x^k)$ e $H(x^k)$.
-    \item Calcolo il vettore spostamento, ponendo: $H_f(x^0) V = - \nabla f(x^0)$ e risolvendo il sistema di equazioni.
-    \item trovo $x^{k+1} = x^k + V$, in cui $V$ é il vettore spostamento.
+	\item Calcolo $\nabla f(x^k)$ e $H(x^k)$.
+	\item Calcolo il vettore spostamento, ponendo: $H_f(x^0) V = - \nabla f(x^0)$ e risolvendo il sistema di equazioni.
+	\item trovo $x^{k+1} = x^k + V$, in cui $V$ é il vettore spostamento.
 \end{enumerate}
 
 
@@ -46,17 +130,17 @@ Data una funzione a piú variabili $f(X)$ e un punto $x^0$, una iterazione del m
 \section{Condizioni di KKT}
 In un problema di ottimizzazione vincolata definito come:
 \begin{center}
-    opt $f(x_1,...,x_n)$,
-    \\
-    $g_m(x_1,...,x_n) = 0$ Vincoli di Uguaglianza,
-    \\
-    $h_l(x_1,...,x_n) \leq 0$ Vincoli di Disguaglianza,
+	opt $f(x_1,...,x_n)$,
+	\\
+	$g_m(x_1,...,x_n) = 0$ Vincoli di Uguaglianza,
+	\\
+	$h_l(x_1,...,x_n) \leq 0$ Vincoli di Disguaglianza,
 \end{center}
 Generiamo la Lagrangiana cosí definita:
 \[
-    L(V) = f(X) \pm \sum_{i=0}^{m} \lambda_i \cdot g_i(X) \pm \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
+	L(V) = f(X) \pm \sum_{i=0}^{m} \lambda_i \cdot g_i(X) \pm \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
 \]
-in cui $\pm$ diventa $+$ per i problemi di MIN e $-$ per i problemi di MAX, 
+in cui $\pm$ diventa $+$ per i problemi di MIN e $-$ per i problemi di MAX,
 Abbiamo che $\lambda$ sono i moltiplicatori lagrangiani associati ai vincoli di Uguaglianza, e $\mu$ quelli associati ai vincoli di Disuguaglianza.
 \\\small{con $V=\{x_1,...,x_n,\lambda_1,...,\lambda_m, \mu_1,...,\mu_l\}$, ovvero tutte le variabili e $X=\{x_1,...,x_n\}$, ovvero tutte le variabili origniali.}
 
@@ -64,31 +148,31 @@ Abbiamo che $\lambda$ sono i moltiplicatori lagrangiani associati ai vincoli di 
 Avendo questo, bisogna quindi generare un sistema che avrá $n+m+l$ incognite utilizzando le KKT,
 riportate qui in modo semplificato:\\
 \begin{tabularx}{\textwidth}{|Y|}
-    \hline
-    Stazionarietá Problemi di MIN (-)\\
-        $ \nabla f = - \sum \lambda_i \cdot \nabla g_i - \sum \mu_j \cdot \nabla h_j$ \\
-    \hline \hline
-    Stazionarietá Problemi di MAX (+)\\
-        $ \nabla f = + \sum \lambda_i \cdot \nabla g_i + \sum \mu_j \cdot \nabla h_j$ \\
-    \hline
+	\hline
+	Stazionarietá Problemi di MIN (-)                                             \\
+	$ \nabla f = - \sum \lambda_i \cdot \nabla g_i - \sum \mu_j \cdot \nabla h_j$ \\
+	\hline \hline
+	Stazionarietá Problemi di MAX (+)                                             \\
+	$ \nabla f = + \sum \lambda_i \cdot \nabla g_i + \sum \mu_j \cdot \nabla h_j$ \\
+	\hline
 \end{tabularx}\\
 \begin{tabularx}{\textwidth}{|l|cY|}
-    \hline
-    Ammissibilitá Vincoli Uguaglianza &  $\forall$ & $ g_i = 0$\\
-    \hline
-    Ammissibilitá Vincoli Disuguaglianza &  $ \forall$ & $ h_j\leq 0$\\
-    \hline
-    Condizione di Complementarietá & $\forall$ & $ \mu_j \cdot h_j = 0$ \\ 
-    \hline
-    Non Negativitá di $\mu$ &$\forall $ & $ \mu_j \geq 0$\\
-    \hline   
+	\hline
+	Ammissibilitá Vincoli Uguaglianza    & $\forall$  & $ g_i = 0$             \\
+	\hline
+	Ammissibilitá Vincoli Disuguaglianza & $ \forall$ & $ h_j\leq 0$           \\
+	\hline
+	Condizione di Complementarietá       & $\forall$  & $ \mu_j \cdot h_j = 0$ \\
+	\hline
+	Non Negativitá di $\mu$              & $\forall $ & $ \mu_j \geq 0$        \\
+	\hline
 \end{tabularx}
 \\Dove con $\forall$ si intende chiaramente tutti quelli presenti.
 
 
 \subsection{Differenza tra max e min}
 Abbiamo due possibilitá per differenziare i punti di max dai punti di min:
-Per il max, o mettiamo la prima condizione come somma di elementi negativi ($-\sum \lambda g -\sum \mu h$) con i $\mu \geq 0$, 
+Per il max, o mettiamo la prima condizione come somma di elementi negativi ($-\sum \lambda g -\sum \mu h$) con i $\mu \geq 0$,
 oppure mettiamo la prima condizione uguale al min (come somma di elementi positivi) e tutti i $\mu \leq 0$.
 
 Per il min invece, la prima condizione é positiva e i $\mu$ sono maggiori o uguali a zero.
