@@ -31,6 +31,16 @@ Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metod
     \item Valuto i criteri di arresto (Con epsilon o con un numero predefinito di iterazioni, e nel caso ripeto)
 \end{enumerate}
 Per verificare che il punto trovato sia un punto di ottimo, semplicemente controllo che $\nabla f(x^*) = 0$.
+\pagebreak
+
+\section{Algoritmo di Newton}
+Data una funzione a piú variabili $f(X)$ e un punto $x^0$, una iterazione del metodo di Newton si effettua in questo modo:
+\begin{enumerate}
+    \item Calcolo $\nabla f(x^k)$ e $H(x^k)$.
+    \item Calcolo il vettore spostamento, ponendo: $H_f(x^0) V = - \nabla f(x^0)$ e risolvendo il sistema di equazioni.
+    \item trovo $x^{k+1} = x^k + V$, in cui $V$ é il vettore spostamento.
+\end{enumerate}
+
 
 \chapter{Ottimizzazione Non Lineare Vincolata}
 \section{Condizioni di KKT}
@@ -74,4 +84,12 @@ riportate qui in modo semplificato:\\
     \hline   
 \end{tabularx}
 \\Dove con $\forall$ si intende chiaramente tutti quelli presenti.
+
+
+\subsection{Differenza tra max e min}
+Abbiamo due possibilitá per differenziare i punti di max dai punti di min:
+Per il max, o mettiamo la prima condizione come somma di elementi negativi ($-\sum \lambda g -\sum \mu h$) con i $\mu \geq 0$, 
+oppure mettiamo la prima condizione uguale al min (come somma di elementi positivi) e tutti i $\mu \leq 0$.
+
+Per il min invece, la prima condizione é positiva e i $\mu$ sono maggiori o uguali a zero.
 \end{document}
