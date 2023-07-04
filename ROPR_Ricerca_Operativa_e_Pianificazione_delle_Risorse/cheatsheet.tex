@@ -23,51 +23,42 @@
 \section{Condizioni di KKT}
 In un problema di ottimizzazione vincolata definito come:
 \begin{center}
-    opt $f(x_1,...,x_n)$
+    opt $f(x_1,...,x_n)$,
     \\
-    \[
-      \begin{cases}
-        g_1((x_1,...,x_n)) = 0\\
-        ... & \text{Vincoli di Uguaglianza}\\
-        g_m((x_1,...,x_n)) = 0
-      \end{cases}  
-    \]
-    \[
-      \begin{cases}
-        h_1((x_1,...,x_n)) \leq 0\\
-        ... & \text{Vincoli di Disuguaglianza}\\
-        h_l((x_1,...,x_n)) \leq 0
-      \end{cases}  
-    \]
+    $g_m(x_1,...,x_n) = 0$ Vincoli di Uguaglianza,
+    \\
+    $h_l(x_1,...,x_n) \leq 0$ Vincoli di Disguaglianza,
 \end{center}
 Generiamo la Lagrangiana cosí definita:
 \[
-    L(V) = f(X) + \sum_{i=0}^{m} \lambda_i \cdot g_i(X) + \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
+    L(V) = f(X) \pm \sum_{i=0}^{m} \lambda_i \cdot g_i(X) \pm \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
 \]
-\[
-    L(V) = f(X) - \sum_{i=0}^{m} \lambda_i \cdot g_i(X) - \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MAX}
-\]
-con $V=\{x_1,...,x_n,\lambda_1,...,\lambda_m, \mu_1,...,\mu_l\}$, ovvero tutte le variabili e $X=\{x_1,...,x_n\}$, ovvero tutte le variabili origniali.
+in cui $\pm$ diventa $+$ per i problemi di MIN e $-$ per i problemi di MAX, 
+Abbiamo che $\lambda$ sono i moltiplicatori lagrangiani associati ai vincoli di Uguaglianza, e $\mu$ quelli associati ai vincoli di Disuguaglianza.
+\\\small{con $V=\{x_1,...,x_n,\lambda_1,...,\lambda_m, \mu_1,...,\mu_l\}$, ovvero tutte le variabili e $X=\{x_1,...,x_n\}$, ovvero tutte le variabili origniali.}
 
-I punti stazionari vengono caratterizzati con le condizioni KKT che generano un sistema di $n+m+l$ incognite cosí definito:\\
+\paragraph{La tabella e il sistema}
+Avendo questo, bisogna quindi generare un sistema che avrá $n+m+l$ incognite utilizzando le KKT,
+riportate qui in modo semplificato:\\
 \begin{tabularx}{\textwidth}{|Y|}
     \hline
     Stazionarietá Problemi di MIN (-)\\
-        $ \nabla f(X) = - \sum_{i=0}^{m} \lambda_i \cdot \nabla g_i(X) - \sum_{j=0}^{l} \mu_j \cdot \nabla h_j(X)$ \\
+        $ \nabla f = - \sum \lambda_i \cdot \nabla g_i - \sum \mu_j \cdot \nabla h_j$ \\
     \hline \hline
     Stazionarietá Problemi di MAX (+)\\
-    $ \nabla f(X) = + \sum_{i=0}^{m} \lambda_i \cdot \nabla g_i(X) + \sum_{j=0}^{l} \mu_j \cdot \nabla h_j(X)$ \\
+        $ \nabla f = + \sum \lambda_i \cdot \nabla g_i + \sum \mu_j \cdot \nabla h_j$ \\
     \hline
 \end{tabularx}\\
-\begin{tabularx}{\textwidth}{|l|Y|}
+\begin{tabularx}{\textwidth}{|l|cY|}
     \hline
-    V. Uguaglianza & $g_i(X) = 0$ con $i=1,...,m$ \\
+    Ammissibilitá Vincoli Uguaglianza &  $\forall$ & $ g_i = 0$\\
     \hline
-    V. Disuguaglianza & $h_j(X) \leq 0$ con $j=1,...,l$ \\
+    Ammissibilitá Vincoli Disuguaglianza &  $ \forall$ & $ h_j\leq 0$\\
     \hline
-    Complementarietá & $\mu_j \cdot h_j = 0$ con $j=1,...,l$ \\ 
+    Condizione di Complementarietá & $\forall$ & $ \mu_j \cdot h_j = 0$ \\ 
     \hline
-    Non Negativitá & $\mu_j \geq 0$  con $j=1,...,l$ \\
+    Non Negativitá di $\mu$ &$\forall $ & $ \mu_j \geq 0$\\
     \hline   
 \end{tabularx}
+\\Dove con $\forall$ si intende chiaramente tutti quelli presenti.
 \end{document}
