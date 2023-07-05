@@ -1,0 +1,69 @@
+\chapter{Algoritmi di ordinamento}
+In questo capitolo vedremo algoritmi di ordinamento, più che per la loro
+funzione primaria, per studiare come è possibile affrontare un problema con diverse
+tecniche e come l'utilizzo di diverse tecniche influenzi anche notevolmente l'efficienza.
+\section{Selection sort}
+Ordinamento per selezione, dove per selezione intendo che ad ogni passo seleziono
+il valore minimo presente nell'array, scambio l'elemento più piccolo con l'elemento in
+prima posizione, mi sposto sul secondo valore e cerco il più piccolo, andrà a sostituirlo
+nella seconda posizione, e così via fino a quando non ho un solo valore da ordinare.\\
+Qui di seguito il codice:
+\begin{lstlisting}[language=Java]
+void SelSort(int A[])
+  (n-1)+1  For i = 1 to length(A) - 1
+  (n-1)       Pmin = i
+  sum(n-i)         For j = i + 1 to length(A)
+  sum(n-i)              if A[j] < A[Pmin]
+  t-if                      Pmin = j
+  //Variabile appoggio per lo scambio
+  (n-1)            app = A[i] 
+  (n-1)            A[i] = A[Pmin]
+  (n-1)            A[Pmin] = app
+\end{lstlisting}
+Length(A) - 1, perchè l'ultimo valore sono sicuro che sarà il più grande di tutti
+dato che per gli tutti gli altri elementi ho cercato il minimo.\\
+\paragraph*{Tempo esecuzione} Il For viene eseguito (n-1)+1 volte perchè devo
+considerare anche il controllo finale che viene effettuato.\\
+Il secondo For invece è più complesso da gestire perchè dipende anche da i che è esterna
+al ciclo stesso. Ogni volta che eseguo il secondo For l'array si restringe di 1 perchè ogni
+volta ordino un valore (trovando il minimo) quindi avrò una progressione del tipo $(n + (n-1) +
+(n-2) + (n-3) + \dots + (1))$, quindi $(n-i) + 1 $, devo considerare perchè che verrà eseguito
+ogni volta che il primo For viene eseguito quindi $\sum_{i=1}^{n-1}(n-i)$.\\
+Il tempo di esecuzione sarà quindi:
+\begin{equation*}
+    5(n-1) + 2\sum{i=1}^{n-1} (n-1) + t_{if}
+\end{equation*}
+Dove 5(n-1) e la sommatoria non dipendono dall'input, mentre $t_if$ sì.
+\paragraph*{Ricerca e Analisi caso peggiore} Il caso peggiore è A ordinato al contrario,
+dato che in questo caso l'if viene eseguito ogni volta (dato che A[j] sarà sempre minore di A[Pmin]).\\
+$t_if$ avrà il seguente tempo di esecuzione $(n-1)+(n-2)+(n-3) + \dots + 1 = \sum_{i=1}^{n-1} = \sum_{i=1}^{n}i$\\
+Quindi:
+\begin{equation*}
+    T_p(n) = 5(n-1) + 3\sum_{i=1}^{n-1}(n-1) = 5(n-1) + 3\sum_{i=1}^{n}i
+\end{equation*}
+Ricordiamo questa equivalenza:
+\begin{equation*}
+    \sum_{i=1}^{f}i = \frac{f(f+1)}{2}
+\end{equation*}
+Quindi sostituendo otteniamo:
+\begin{equation*}
+    5(n-1)+3\frac{(n-1)n}{2}
+\end{equation*}
+Dato che a noi interessa l'ordine di grandezza e non ci interessano i dettagli possiamo approssimare questo
+risultato come:
+\begin{equation*}
+    \approx 5n + n^2 \approx n^2
+\end{equation*}
+\paragraph*{Nota} In realtà se è decrescente quando scambio il minimo in fondo all'array con il primo valore,
+che sarà il maggiore, sta ordinando entrambi gli elementi, però per semplificazione consideriamo che
+l'if viene eseguito ogni volta.
+\paragraph*{Ricerca e Analisi caso migliore}
+Il caso migliore è quando l'array è ordinato dato che non eseguo mai l'if, quindi dato che
+$t_{if} = 0$ ottengo:
+\begin{equation*}
+    t_m(n) = 5(n-1) + 2 \sum_{i=1}^{n-1}(n-1)+0 = 5(n-1) + \frac{2}{2}(n-1)n = 5n +n^2\\
+    \approx n^2
+\end{equation*}
+Notiamo quindi che il caso migliore e peggiore non sono molto diversi, anzi hanno lo stesso
+ordine di grandezza.
+
