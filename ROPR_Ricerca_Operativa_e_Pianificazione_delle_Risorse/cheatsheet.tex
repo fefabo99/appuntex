@@ -192,4 +192,21 @@ Con la condizione di \textbf{Complementarietá} sappiamo che: \[\mu_j \cdot h_j 
 Quindi, con $l$ variabili $mu_j$ abbiamo $2^l$ combinazioni di sistemi, in cui $mu_j = 0 \vee \mu_j \neq 0$.
 Cosí possiamo risolvere le $2^l$ combinazioni per trovare tutti i punti candidati. 
 
+\subsection{Trovare i punti di Minimo e Massimo}
+I punti trovati dalle condizioni KKT sono solo candidati a essere punti di max/min, perché le KKT sono condizioni Necessarie ma non Sufficienti.
+
+Le condizioni KKT diventano Sufficienti se:
+\begin{itemize}
+	\item Per i Punti di Massimo:
+	 \begin{itemize}
+		\item $f$ é concava.
+		\item I vincoli $h_i(X)$ sono tutti Convessi.
+	\end{itemize}
+	\item Per i Punti di Minimo:
+	\begin{itemize}
+	   \item $f$ é convessa.
+	   \item I vincoli $h_i(X)$ sono tutti Convessi.
+   \end{itemize}
+\end{itemize}
+
 \end{document}
