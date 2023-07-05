@@ -88,7 +88,7 @@ quanto tempo devo aspettare (non è la media fra T peggiore e T migliore).
 \begin{lstlisting}[language=Java]
     int RicSeq(int k, int v[])
      1  i=1
-        while v[i] != k and i <= length(v)
+        while v[i] != k AND i <= length(v)
             i++
      1  if i <= length(v)
     1/0     return(i)
@@ -127,7 +127,7 @@ ma è comunque importante valutare tutte le istruzioni.
 \begin{lstlisting}[language=Java]
     int RicSeq(int k, int v[])
      1  i=1
-     1  while v[i] != k and i <= length(v)
+     1  while v[i] != k AND i <= length(v)
             i++
      1  if i <= length(v)
      1      return(i)
@@ -150,7 +150,7 @@ il caso peggiore)
 \begin{lstlisting}[language=Java]
     int RicSeq(int k, int v[])
      1  i=1
-    n+1 while v[i] != k and i <= length(v)
+    n+1 while v[i] != k AND i <= length(v)
      n       i++
      1  if i <= length(v)
      0      return(i)
@@ -180,3 +180,29 @@ capire se l'algoritmo è efficiente e per poterlo confrontare con altri algoritm
 se confronto un algoritmo che ha come caso medio $1000n$ con uno che ha come caso medio $n^2$
 sceglierò comunque il primo, quindi non mi interessa se alcune funzioni ci mettono un po' di più di
 altre.
+
+\section{Ricerca binaria (o dicotomica)}
+La ricerca binaria si basa sull'assunzione che l'array dato in input sia ordinato.\\
+L'elemento da cercare viene confrontato ripetutamente con l'elemento al centro 
+della struttura dati e, in base al risultato del confronto, 
+viene ridotta la porzione di dati in cui si effettua la successiva ricerca. 
+Questo processo viene ripetuto fino a quando l'elemento desiderato viene trovato o 
+fino a quando la porzione di dati da esaminare diventa vuota.
+\begin{lstlisting}[language=Java]
+    int Ricerca_Binaria(int k, int v[])
+        sx = 1;
+        dx = length(v);
+        m = (sx+dx) div 2; //divisione intera
+        while(v[m] != k AND sx <= dx)
+            if v[m] > k
+                dx = m-1;
+            else 
+                sx = m+1;
+            m = (sx+dx) div 2;
+        if sx <= dx
+            return(m);
+        else
+            return(-1);
+\end{lstlisting}
+\paragraph*{Analisi caso migliore} Il caso migliore è quando il numero da cercare k si trova
+esattamente al centro dell'array, quindi in posizione $\frac{n}{2}$, dato che non entra mai nel ciclo.
