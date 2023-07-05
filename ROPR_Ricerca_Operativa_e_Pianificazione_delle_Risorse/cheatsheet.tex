@@ -59,12 +59,20 @@
 	\hline
 \end{tabularx}
 
-\paragraph{Test di Ottimalità}.\\
+\paragraph{Test di Ottimalità}
+Una volta portato il problema in forma tabellare, eseguo il test di ottimalitá:\\
 \begin{tabularx}{\textwidth}{|c|Y|Y|}
 	\hline
 	Tipo di Problema              & \textbf{ Massimo}                                    & \textbf{Minimo}                \\
 	\hline \hline
 	\textbf{Soluzione Ottima sse} & Coefficienti riga (0) $\geq 0$                       & Coefficienti riga (0) $\leq 0$ \\
+	\hline
+\end{tabularx}
+\paragraph{Nuova Soluzione di Base}Una volta verificato che la soluzione non é ottima, bisogna calcolare una nuova soluzione di base:\\
+Definisco:\\
+\begin{tabularx}{\textwidth}{|c|Y|Y|}
+	\hline
+	Tipo di Problema              & \textbf{ Massimo}                                    & \textbf{Minimo}                \\
 	\hline
 	\hline
 	\makecell{\textbf{Variabile Entrante}                                                                                 \\ (Colonna Pivot)} & Coefficiente riga (0) più Piccolo (Più Negativo) & Coefficiente riga (0) più Grande (Più Positivo) \\
@@ -74,35 +82,34 @@
 	\textbf{Numero Pivot}         & \multicolumn{2}{c|}{Intersezione Riga/Colonna Pivot}                                  \\
 	\hline
 \end{tabularx}
-
-\paragraph{Nuova Soluzione di Base}.\\
+\smallvspace
 \begin{tabularx}{\textwidth}{|XcX|}
 	\hline
-	\multicolumn{3}{|c|}{Nuova Riga Pivot}                                          \\
+	\multicolumn{3}{|c|}{Per la nuova \textbf{Riga Pivot}}                                          \\
 	\hline
-	Variabile Entrante          & $\to$ & Variabile di Base della nuova riga pivot. \\
+	Variabile di Base           & $\to$ &  Variabile Entrante. \\
 	Coefficienti e Termine Noto & $\to$ & Divisi per Numero Pivot.                  \\
 	\hline
 \end{tabularx}
+\smallvspace
+\begin{tabularx}{\textwidth}{|c|Y|}
+	\hline
+	\multicolumn{2}{|c|}{per ogni \textbf{altra Riga}}                                          \\
+	\hline
+	
+	\multirow{2}{*}{\small{Definisco}} & \small{$P_i$ $i$-esimo coefficiente della nuova riga pivot} \\
+	\cline{2-2}
+	& \small{$X_p$ coefficiente della colonna pivot nella riga in esame.} \\
+	\hline
+	\multicolumn{2}{|c|}{il coefficiente i-esimo $x_i$ della riga in esame $X$ diventa:} \\
+	\hline
+	se $X_p$ é Positivo & $x_i := x_i$ \textcolor{blue}{$ -$ } $|X_p|\cdot P_i$ \\
+	\hline
+	se $X_p$ é Negativo & $x_i := x_i + |X_p|\cdot P_i$ \\
+	\hline
 
-\begin{enumerate}
-	\item Determino la Nuova soluzione di Base tramite l'eliminazione Gaussiana:
-	      \begin{itemize}
-		      \item Altre Righe: Per calcolare le altre righe prima definisco:
-		            \begin{itemize}
-			            \item $P_i$ come l'i-esimo coefficiente della nuova riga pivot (ovvero la riga pivot appena calcolata)
-			            \item $X_p$ come il coefficiente della colonna pivot nella riga in esame.
-		            \end{itemize}
-		            Allora il coefficiente i-esimo $x_i$ della riga in esame $X$ diventa:
-		            \begin{itemize}
-			            \item $x_i := x_i - |X_p|\cdot P_i$ Se $X_p$ é Positivo.
-			            \item $x_i := x_i + |X_p|\cdot P_i$ Se $X_p$ é Negativo.
-		            \end{itemize}
-		      \item Rieseguo il test di ottimalitá, e se non ho trovato una soluzione ottima ricalcolo un nuovo Tableau.
-	      \end{itemize}
-
-\end{enumerate}
-
+\end{tabularx}
+	
 \chapter{Ottimizzazione Non Lineare}
 \section{Algoritmo del Gradiente}
 Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metodo del gradiente si effettua in questo modo:
