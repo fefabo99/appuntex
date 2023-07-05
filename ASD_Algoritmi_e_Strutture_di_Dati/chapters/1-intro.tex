@@ -84,4 +84,99 @@ si fermano mai.
 al massimo, quindi dopo quanto tempo avrò sicuramente un risultato, il \textbf{Caso minore},
 determina il tempo minimo che devo aspettare, il \textbf{Caso medio} determina mediamente
 quanto tempo devo aspettare (non è la media fra T peggiore e T migliore).
- 
+\section{Ricerca Sequenziale}
+\begin{lstlisting}[language=Java]
+    int RicSeq(int k, int v[])
+     1  i=1
+        while v[i] != k and i <= length(v)
+            i++
+     1  if i <= length(v)
+    1/0     return(i)
+        else
+    1/0     return(-1)
+\end{lstlisting}
+In questo semplice algoritmo per la ricerca sequenziale di un numero all'interno
+di un array ci concentreremo sulla ricerca del caso peggiore e quello migliore.\\
+Ricordiamo che il caso peggiore e migliore si determina a parità di dimensione dell'input,
+non ha senso dire che il caso migliore è il vettore vuoto.\\
+I numeri a fianco indicano il numero di volte per cui ogni operazione è eseguita.
+Else non viene considerato dato che non viene effettuato un controllo, quando l'if è falso rimanda
+alle istruzioni sotto l'else (a livello di linguaggio macchina è un'etichetta che indica al codice
+dove effettuare la jump nel caso in cui la condizione dell'if non fosse vera).
+\subsection{Cosa devo identificare}
+Devo identificare:
+\begin{itemize}
+    \item Quando si verifica (in che condizioni)
+    \item Il tempo di esecuzione
+\end{itemize}
+\paragraph*{Quando si verifica}
+\paragraph*{Migliore} Indicato come \textbf{t}. Posso pensare (sempre intuitivamente) che il caso migliore è quando il numero
+si trova nella prima posizione del vettore.\\
+Effettivamente in questo caso il ciclo while non viene mai attuato (a parte la verifica della condizione)
+\paragraph*{Peggiore} In questo caso devo identificare per quale input la ricerca sequenziale
+performa peggio, intuitivamente posso pensare che il caso peggiore è quando il numero non è presente
+nel vettore, dato che devo scorrere tutto il vettore.\\
+Analizzando l'esecuzione di tutte le istruzioni posso confermare la mia ipotesi.\\
+\paragraph*{Importante} Non basta fare un esempio, per identificare il caso migliore e peggiore,
+devo descrivere (anche in forma verbale) per quali input si verifica, in questo caso abbiamo detto infatti, quando
+il numero non è presente oppure quando il numero si trova nella prima posizione.
+\paragraph*{Analisi tempo di esecuzione} Il tempo di esecuzione dipende dal numero di operazioni
+eseguite, i tempi di esecuzioni maggiori si concentrano spesso nei cicli (for, while, do-while, ecc.),
+ma è comunque importante valutare tutte le istruzioni.
+\paragraph*{Tempo di esecuzione caso migliore} Indicato con $t(n)$ In questo caso vengono eseguite solamente 4 istruzioni
+\begin{lstlisting}[language=Java]
+    int RicSeq(int k, int v[])
+     1  i=1
+     1  while v[i] != k and i <= length(v)
+            i++
+     1  if i <= length(v)
+     1      return(i)
+       else
+     0      return(-1)
+\end{lstlisting}
+Le quattro istruzioni con dei commenti
+\begin{itemize}
+    \item i=1
+    \item while (controlla una volta sola dato che trova subito che k = v[i])
+    \item if i $\leq$ length(v) 
+    \item return(i)
+\end{itemize}
+Si tratta di una funzione costante $t(n) = 4$, solitamente le funzioni riguardanti i tempi
+di esecuzione sono in funzione di n, ma in questo specifico caso la funzione non dipende
+dalla dimensione dell'input, infatti se il numero è all'inizio del vettore a prescindere dalle
+dimensioni dell'array non dovrò mai scorrere il vettore (vedremo che non è praticamente mai così per
+il caso peggiore)
+\paragraph*{Analisi esecuzione caso peggiore} Indicato con $T(n)$
+\begin{lstlisting}[language=Java]
+    int RicSeq(int k, int v[])
+     1  i=1
+    n+1 while v[i] != k and i <= length(v)
+     n       i++
+     1  if i <= length(v)
+     0      return(i)
+       else
+     1      return(-1)
+\end{lstlisting}
+Il ciclo while viene eseguito n+1 volte dato che ogni volta che incremento i++, devo
+verificare di non essere uscito dall'array, quindi verrà eseguito sempre una volta in più
+rispetto all'incremento.\\
+Questo significa che $T(n) = 3 + 1 +2n = 2n + 4$ dove n è la dimensione dell'input, in
+questo caso la dimensione dell'array.\\
+Questa funzione indica il numero di istruzioni eseguite (non è propriamente un tempo).\\
+\subsection{Caso medio}
+Indicato come \textbf{$T_m(n)$}, è il tempo medio di esecuzione, non è la media fra il caso migliore e peggiore.\\
+In questo caso dobbiamo chiederci, cosa ci aspettiamo che succeda mediamente?\\ In questo caso
+mi aspetto che il caso medio sia che k si trovi in posizione $\frac{n}{2}$, quindi che sia a metà. Mi
+aspetto quindi che il caso medio sia il caso peggiore diviso due.\\
+In generale il caso medio è un po' più complesso dato che richiederebbe di conoscere la distribuzione
+di probabilità dell'input.\\
+$T_m(n)=2\frac{n}{2}+4=n+4$\\
+\paragraph*{Possibile obiezione} Sto mettendo sullo stesso piano le istruzioni if e i while
+che magari hanno più condizioni da verificare, effettivamente il while impiega leggermente
+più tempo, posso scrivere una funzione indicando con c ($c_1, c_2, c_3, \dots$) il tempo di
+esecuzione che può avere ogni istruzioni, il problema è che la funzione diventa enorme e poco
+comprensibile, alla fine a me interessa capire l'ordine di grandezza di esecuzione per poter
+capire se l'algoritmo è efficiente e per poterlo confrontare con altri algoritmi, alla fine
+se confronto un algoritmo che ha come caso medio $1000n$ con uno che ha come caso medio $n^2$
+sceglierò comunque il primo, quindi non mi interessa se alcune funzioni ci mettono un po' di più di
+altre.
