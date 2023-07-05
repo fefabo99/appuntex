@@ -2,7 +2,7 @@
 In questo capitolo vedremo algoritmi di ordinamento, più che per la loro
 funzione primaria, per studiare come è possibile affrontare un problema con diverse
 tecniche e come l'utilizzo di diverse tecniche influenzi anche notevolmente l'efficienza.
-\section{Selection sort}
+\section{Selection Sort}
 Ordinamento per selezione, dove per selezione intendo che ad ogni passo seleziono
 il valore minimo presente nell'array, scambio l'elemento più piccolo con l'elemento in
 prima posizione, mi sposto sul secondo valore e cerco il più piccolo, andrà a sostituirlo
@@ -67,3 +67,10 @@ $t_{if} = 0$ ottengo:
 Notiamo quindi che il caso migliore e peggiore non sono molto diversi, anzi hanno lo stesso
 ordine di grandezza.
 
+\section*{Insertion Sort}
+In questo caso ordino partendo dal primo numero e controllando il secondo, verifico se il primo
+è maggiore del secondo e nel caso li scambio, poi controllo il terzo numero e procedo a ordinarlo
+insieme a primi due e così via.
+\paragraph*{Esempio} \'E come ordinare un mazzo di carte pescandole mano, quindi inizialmente ho due
+carte, le ordino confrontandole ed eventualmente scambiandole, poi pesco la terza e la ordino
+con le altre due e così via, fino a quando non ho pescato tutte le carte.
