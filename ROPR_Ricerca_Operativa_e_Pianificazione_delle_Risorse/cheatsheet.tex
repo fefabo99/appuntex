@@ -127,7 +127,7 @@ Data una funzione a piú variabili $f(X)$ e un punto $x^0$, una iterazione del m
 
 
 \chapter{Ottimizzazione Non Lineare Vincolata}
-\section{Condizioni di KKT}
+\section{Funzione Lagrangiana}
 In un problema di ottimizzazione vincolata definito come:
 \begin{center}
 	opt $f(x_1,...,x_n)$,
@@ -138,14 +138,15 @@ In un problema di ottimizzazione vincolata definito come:
 \end{center}
 Generiamo la Lagrangiana cosí definita:
 \[
-	L(V) = f(X) \pm \sum_{i=0}^{m} \lambda_i \cdot g_i(X) \pm \sum_{j=0}^{l} \mu_j \cdot h_j(X) \text{ Per i problemi di MIN}
+	L(V) = f(X) \pm \sum_{i=0}^{m} \lambda_i \cdot g_i(X) \pm \sum_{j=0}^{l} \mu_j \cdot h_j(X)
 \]
 in cui $\pm$ diventa $+$ per i problemi di MIN e $-$ per i problemi di MAX,
 Abbiamo che $\lambda$ sono i moltiplicatori lagrangiani associati ai vincoli di Uguaglianza, e $\mu$ quelli associati ai vincoli di Disuguaglianza.
 \\\small{con $V=\{x_1,...,x_n,\lambda_1,...,\lambda_m, \mu_1,...,\mu_l\}$, ovvero tutte le variabili e $X=\{x_1,...,x_n\}$, ovvero tutte le variabili origniali.}
 
-\paragraph{La tabella e il sistema}
-Avendo questo, bisogna quindi generare un sistema che avrá $n+m+l$ incognite utilizzando le KKT,
+\section{Condizioni KKT}
+\paragraph{Tabella}
+Bisogna quindi generare un sistema che avrá $n+m+l$ incognite utilizzando le KKT,
 riportate qui in modo semplificato:\\
 \begin{tabularx}{\textwidth}{|Y|}
 	\hline
@@ -170,10 +171,25 @@ riportate qui in modo semplificato:\\
 \\Dove con $\forall$ si intende chiaramente tutti quelli presenti.
 
 
-\subsection{Differenza tra max e min}
-Abbiamo due possibilitá per differenziare i punti di max dai punti di min:
-Per il max, o mettiamo la prima condizione come somma di elementi negativi ($-\sum \lambda g -\sum \mu h$) con i $\mu \geq 0$,
-oppure mettiamo la prima condizione uguale al min (come somma di elementi positivi) e tutti i $\mu \leq 0$.
+\subsection{Differenziare tra Max e Min}
+Quando si usano le KKT bisogna differenziare tra problemi di Max e Problemi di Min.
+Ogni problema ha le seguenti possibili combinazioni:\\
+\begin{tabularx}{\textwidth}{|l|c|Y|}
+	\hline
+	\multirow{2}{*}{\textbf{Problema di Massimo}} & \textcolor{gray}{ $\mu_i\geq 0$ }& \textcolor{gray}{ $ \nabla f = + \sum \lambda_i \cdot \nabla g_i + \sum \mu_j \cdot \nabla h_j$} \\
+	\cline{2-3}& \textcolor{black}{$\mu_i\leq 0$} & \multirow{2}{*}{\textcolor{black}{$ \nabla f = - \sum \lambda_i \cdot \nabla g_i - \sum \mu_j \cdot \nabla h_j$}} \\
+	\cline{1-2}
+	\multirow{2}{*}{\textbf{Problema di Minimo}} &\textcolor{black}{$\mu_i\geq 0$} & \\
+	\cline{2-3}&\textcolor{gray}{ $\mu_i\leq 0$} & \textcolor{gray}{$ \nabla f = + \sum \lambda_i \cdot \nabla g_i + \sum \mu_j \cdot \nabla h_j$} \\
+	\hline
+\end{tabularx}
+é utile sapere che se scegliessimo di avere la funzione obiettivo \textbf{Sempre come somma di elementi negativi}, sia per i problemi di massimo che di minimo,
+allora potremmo, in base ai valori di $\mu$, sapere in un solo calcolo se il punto é candidato a massimo o minimo.
 
-Per il min invece, la prima condizione é positiva e i $\mu$ sono maggiori o uguali a zero.
+\subsection{Risolvere il Sistema}
+Per risolvere il sistema, o lo si risolve con il metodo classico, oppure tramite questo metodo:
+Con la condizione di \textbf{Complementarietá} sappiamo che: \[\mu_j \cdot h_j = 0 \implies \mu_j = 0 \vee h_j = 0\]
+Quindi, con $l$ variabili $mu_j$ abbiamo $2^l$ combinazioni di sistemi, in cui $mu_j = 0 \vee \mu_j \neq 0$.
+Cosí possiamo risolvere le $2^l$ combinazioni per trovare tutti i punti candidati. 
+
 \end{document}
