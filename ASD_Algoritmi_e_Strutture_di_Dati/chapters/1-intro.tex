@@ -193,7 +193,7 @@ fino a quando la porzione di dati da esaminare diventa vuota.
         sx = 1;
         dx = length(v);
         m = (sx+dx) div 2; //divisione intera
-        while(v[m] != k AND sx <= dx)
+        while (v[m] != k AND sx <= dx)
             if v[m] > k
                 dx = m-1;
             else 
@@ -204,5 +204,86 @@ fino a quando la porzione di dati da esaminare diventa vuota.
         else
             return(-1);
 \end{lstlisting}
-\paragraph*{Analisi caso migliore} Il caso migliore è quando il numero da cercare k si trova
-esattamente al centro dell'array, quindi in posizione $\frac{n}{2}$, dato che non entra mai nel ciclo.
+\paragraph*{Ricerca e analisi caso migliore} Il caso migliore è quando il numero da cercare k si trova
+esattamente al centro dell'array, quindi in posizione $\frac{n}{2}$, dato che non entra mai nel ciclo.\\
+Verifichiamo quante volte vengono eseguite le istruzioni:
+\begin{lstlisting}[language=Java]
+    int Ricerca_Binaria(int k, int v[])
+    1   sx = 1;
+    1   dx = length(v);
+    1   m = (sx+dx) div 2; //divisione intera
+    1   while (v[m] != k AND sx <= dx)
+            if v[m] > k
+                dx = m-1;
+            else 
+                sx = m+1;
+            m = (sx+dx) div 2;
+    1   if sx <= dx
+    1       return(m);
+        else
+            return(-1);
+\end{lstlisting}
+In totale abbiamo $t(n) = 6$ istruzioni eseguite. Anche in questo caso il valore non
+dipende da n perchè non dipende dalla dimensione del vettore, basta che l'elemento
+si trovi al centro dell'array.
+\paragraph*{Ricerca e analisi caso peggiore}
+Qui il caso peggiore è quando k non è presente in v.\\
+Verifichiamo quante volte vengono eseguite le istruzioni:
+\begin{lstlisting}[language=Java]
+    int Ricerca_Binaria(int k, int v[])
+    1    sx = 1;
+    1    dx = length(v);
+    1    m = (sx+dx) div 2; //divisione intera
+    tw+1 while (v[m] != k AND sx <= dx)
+    tw       if v[m] > k
+    ft           dx = m-1;
+             else 
+    ff           sx = m+1;
+    tw       m = (sx+dx) div 2;
+    1    if sx <= dx
+             return(m);
+         else
+    1        return(-1);
+\end{lstlisting}
+Quante volte cicla il while? Dipende dall'input!\\
+Indichiamo questo valore con $t_w$\\
+Quante volte testo l'if nel while? Sempre $t_w$ volte.\\
+Quante volte l'if risulta vero e quindi eseguo il codice nell'if? Anche qua dipende, quindi
+indico questo valore con $t_{if}$, per l'else assegno $f_{if}$ (flase if).\\
+Assegno $t_w$ anche per l'assegnazione di m.\\
+\paragraph*{Semplificazioni per il calcolo del tempo}
+Posso considerare il numero di esecuzioni dell'if e dell'else come una sola variabile, quindi sempre
+$t_w$, in totale ho quindi $2t_w$ esecuzioni, all'iterno del while, mentre i controlli del
+while sono $t_w +1$ (il +1 è per il controllo del while finale).\\
+Ottengo quindi:
+\begin{lstlisting}[language=Java]
+    int Ricerca_Binaria(int k, int v[])
+    1    sx = 1;
+    1    dx = length(v);
+    1    m = (sx+dx) div 2; //divisione intera
+    tw+1 while (v[m] != k AND sx <= dx)
+    2(tw)   if v[m] > k
+                 dx = m-1;
+             else 
+                 sx = m+1;
+    tw        m = (sx+dx) div 2;
+    1    if sx <= dx
+             return(m);
+         else
+    1        return(-1);
+\end{lstlisting}
+In totale avrò che $T(n) = 6 + 4t_w$\\
+Ma $t_w$ quante volte viene eseguito? Dato che ogni volta l'array viene diviso in 2 parti 
+ho la seguente progressione:
+\begin{itemize}
+    \item Passo 0 n
+    \item Passo 1 $\frac{n}{2}$
+    \item Passo 2 $\frac{n}{2^2}$
+    \item Passo 3 $\frac{n}{2^3}$
+    \item \dots
+\end{itemize}
+Questa è una tipica progressione logaritmica infatti avrò che $n = 2^r$ e quindi $r = log_2(n)$.
+Quindi il tempo peggiore sarà $T(n) = 6 + 4log_2(n)$.
+\paragraph*{Caso medio}
+In questo caso mi aspetto che mediamente dovrà dividere metà delle volte l'array rispetto
+al caso peggiore, quindi avrà $t_m(n) = 6 + 2log_2(n)$.
