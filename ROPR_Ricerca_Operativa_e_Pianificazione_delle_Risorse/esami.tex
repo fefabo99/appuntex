@@ -28,20 +28,45 @@ Si faccia riferimento a un problema di Massimizzazione ed, ove richiesto, ad un 
 \rispostaaperta{Falso, una variabile puó valere 0 anche nel caso sia in base (soluzione degenere)}
 
 \chapter{Domande di Teoria - Bibbia}
-\paragraph{nell'ambito della programmazione lineare, quali affermazioni sono corrette?} (Parametri Sensibili)
-\begin{itemize}
-    \item L'analisi di sensitivitá ha l'obiettivo di identificare i parametri sensibili.
-    \item É sempre vero che un termino noto non é un parametro sensibile se il corrispondente prezzo ombra é nullo
-    \item Dato un termine noto destro, il metodo del simplesso identifica il corrispondente prezzo ombra tramite il coefficiente della corrispondente variabile slack nella riga zero del tableau finale.
-    \item Un termine noto é un parametro sensibile se il corrispondente prezzo ombra é positivo.
-    \item Un parametro é sensibile se la sua variazione porta alla variazione della soluzione ottimale.
-\end{itemize}
+
+
+\affermazionetrue
+{L'analisi di sensitivitá ha l'obiettivo di identificare i Parametri Sensibili.}
+{Uno degli obiettivi principali dell'analisi di sensitività è l'identificazione dei PARAMETRI SENSIBILI, vale
+a dire quei parametri il cui valore non può essere modificato senza portare ad una nuova soluzione
+ottimale.}
+
+\affermazionetrue
+{Un parametro é sensibile se la sua variazione porta alla variazione della soluzione ottimale.}
+{I Parametri sensibili sono parametri il cui valore non può essere modificato senza portare a una nuova soluzione ottimale}
+
+\affermazionetrue
+{Dato un termine noto destro, il metodo del simplesso identifica il corrispondente prezzo ombra tramite il coefficiente
+della corrispondente variabile slack nella riga zero del tableau finale.}
+{}
+
+\affermazione
+{É sempre vero che un termino noto non é un parametro sensibile se il corrispondente prezzo ombra é nullo}
+
+\affermazione
+{Un termine noto é un parametro sensibile se il corrispondente prezzo ombra é positivo.}
+
+\paragraph{PL - Metodo del Simplesso}
+
+\affermazionetrue
+{I valori delle variabili di base si ricavano risolvendo il sistema di equazioni lineari determinato dai vincoli funzionali in forma aumentata.}
+{Avendo il valore 0 delle variabili non in base si può risovlere il sistema di equazioni lineari per trovare il valore delle variabili in base.}
+
+\affermazionefalse
+{Una variabile nulla é certamente una variabile di base.}
+{Una variabile nulla può essere sia in base, che fuori base. Una variabile fuori base è sicuramente nulla,
+ma se una variabile è nulla può anche essere in base}
+
+\affermazione
+{il numero delle variabili di base é sempre determinato dal numero di vincoli funzionali.}
 
 \paragraph{Nel caso di un problmea di PL, selezionare le risposte corrette:}
 \begin{itemize}
-    \item I valori delle variabili di base si ricavano risolvendo il sistema di equazioni lineari determinato dai vincoli funzionali in forma aumentata.
-    \item il numero delle variabili di base é sempre determinato dal numero di vincoli funzionali.
-    \item Una variabile nulla é certamente una variabile di base.
     \item Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.
 \end{itemize}
 \paragraph{Si consideri un problema primale in forma di massimo. Se il duale é inammissibile, allora}:

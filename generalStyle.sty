@@ -63,6 +63,12 @@
 \newcommand{\esercizio}[2]{\paragraph*{#1} #2}
 \newcommand{\procedimento}[1]{\begin{box_giallochiaro} \small{ \emph{procedimento: }#1}\end{box_giallochiaro}}
 
+%affermazioni
+\newcommand{\abstractaffermazione}[3][-]{\begin{center}\small{#1}\end{center}\textbf{#2} \\ #3}
+
+\newcommand{\affermazione}[2]{\begin{box_grigiochiaro}\abstractaffermazione[Da Capire]{#1}{#2}\end{box_grigiochiaro}}
+\newcommand{\affermazionetrue}[2]{\begin{box_verde}\abstractaffermazione[VERO]{#1}{#2}\end{box_verde}}
+\newcommand{\affermazionefalse}[2]{\begin{box_rossa} \abstractaffermazione[FALSO]{#1}{#2}\end{box_rossa}}
 
 %TABULARX Colonna X centrata
 \newcolumntype{Y}{>{\centering\arraybackslash}X} 
@@ -81,6 +87,9 @@
 \definecolor{giallochiaro}{rgb}{1,1,0.95}
 \definecolor{grigiochiaro}{rgb}{0.95,0.95,0.95}
 \definecolor{viola}{rgb}{0.41, 0.03, 0.31}
+\definecolor{verde}{rgb}{0.85,1,0.85}
+\definecolor{rosso}{rgb}{1,0.85,0.85}
+
 
 %spacers
 \newcommand{\smallvspace}{\newline \vspace*{0.3 cm} \newline}
@@ -99,10 +108,23 @@
     innerbottommargin=14pt,
 ]{box_grigiochiaro}
 \newmdenv[
+    backgroundcolor=verde,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_verde}
+\newmdenv[
+    backgroundcolor=rosso,
+    linewidth=0pt,
+    innertopmargin=14pt,
+    innerbottommargin=14pt,
+]{box_rossa}
+\newmdenv[
     frametitle={\colorbox{white}{\space DEFINIZIONE \space}},
     frametitleaboveskip=-\ht\strutbox,
     linewidth=0.5pt,
     innerbottommargin=14pt,
 ]{box_definizione}
+
 
 

@@ -149,3 +149,7 @@ dal fornita dal metodo del simplesso quando i parametri del modello assumono val
     In questo caso la situazione é particolarmente seria nel caso in cui la variazione porti la soluzione ottimale ad ottenere
     un valore 
 \end{itemize}
+
+\definizione{Uno degli obiettivi principali dell'analisi di sensitività è l'identificazione dei PARAMETRI SENSIBILI, vale
+a dire quei parametri il cui valore non può essere modificato senza portare ad una nuova soluzione
+ottimale.}
