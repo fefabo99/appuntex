@@ -191,3 +191,76 @@ O, $\Omega$, $Theta$ hanno le seguenti proprietà:
     \item Simmetria vale solo per $\Theta$
     \item Simmetria trasposta per O e $\Omega$ - Es. $2n = O(n^2) \,\, n^2=\Omega(2n)$
 \end{itemize}
+
+\section{Esercizio ricerca elementi V2 in V1}
+\paragraph*{Richiesta} Dati 2 vettori V1 e V2, con n valori interni, quanti elementi di
+V2 compaiono in V1? Valutare quindi i tempi di esecuzione dell'algoritmo.
+\paragraph*{Osservazioni} Dati i seguenti due vettori
+\begin{center}
+    V1 = (7, 4, 4, 4, 12)\\
+    V2 = (3, 7, 4, 15, 20)
+\end{center}
+Gli elementi di V2 che compaiono in V1 sono 2, il 4 non devo contarlo più volte!\\
+Viceversa, se ci fosse stato il 4 più volte in V2 e anche 1 sola volta in V1, andava contato
+più volte.
+\subsection{Implementazione}
+\begin{lstlisting}[language=Java]
+    int confronta(V1[], V2[])
+c*1        cont = 0
+c*n        for i=0 to length(V2)
+c*n            j=1
+sum(c*twi)     while (V2[i] != V1[j]) AND j <= length(V1)
+sum(c*twi)        j++;
+c*n            if j <= length(V1)
+c*tif             cont++
+c*1        Return(cont)
+\end{lstlisting}
+Dove sum(c*twi) sarebbe $\sum_{i=1}^n{c*tw_i}$\\
+\paragraph*{Tempo algoritmo}
+\begin{equation*}
+    2c*1 + 3c*n + c*t_if + 2c \sum_{i=1}^n{tw_i}
+\end{equation*}
+Posso portare fuori la c e il 2 dalla sommatoria dato che sono 2 costanti.
+\paragraph*{Ricerca caso peggiore}
+Analizzo le due istruzioni variabili, cioè
+\begin{itemize}
+    \item if
+    \item while
+\end{itemize}
+Quale pesa di più? Il controllo dell'if viene eseguito ogni volta, l'incremento del conteggio non sempre, però conta comunque
+1 istruzione, e comunque l'if viene sempre eseguito, mentre il while può essere rieseguito
+diverse volte, questo mi suggerisce che devo cercare un caso dove
+il while viene eseguito molte volte, dato che è potenzialmente molto più pesante dell'if.\\
+In generale ci capiteranno sempre 2 quantità in contrasto, come in questo caso abbiamo l'if e il while, dovremo
+determinare la quantità più pesante.\\
+Il caso peggiore è quindi quello in cui il while cicla il maggior numero di volte possibile, quando $tw_i$ è max per
+ogni i, quindi quando nessun elemento di V2 è presente in V1.\\
+\paragraph*{Tempo}
+\begin{align*}
+    tw_1=n, \,\, tw_2=n \,\, \dots tw_n=n\\
+    T_p(n) = 2c+3c*n+c*t_if+2c\sum_{i=1}^n{n}\\
+    =2c+3c*n+0+2cn^2
+\end{align*}
+Perchè $\sum_{i=1}^n{n}=n+n+n+n+n ... \,\, \text{per n volte } = n^2$\\
+Da questo risultato mi rendo conto che l'ordine di grandezza è $n^2$, per esprimerlo
+in maniera formale scrivo:
+\begin{align*}
+    = O(n^2)
+\end{align*}
+\paragraph*{Ricerca caso migliore}
+Il caso migliore è quello dove il while non viene mai eseguito (0 esecuzioni del while
+ad ogni iterazione del for).\\
+Il caso migliore NON è i 2 array sono uguali, perchè ci saranno delle iterazioni in cui il while verrà
+eseguito, il caso migliore è quando V2 contiene un solo elemento ripetuto n volte e lo stesso
+elemento è presente in V1[1].
+\begin{center}
+    V1 1,2,3,4\\
+    V2 1,1,1,1
+\end{center}
+\paragraph*{Tempo}
+\begin{align*}
+    tw_i = 0 \quad \forall i \rightarrow t_if = n\\
+    t_m(n) = 2c + 3cn + cn + 2c \sum_{i=1}^n {0}\\
+    =\Omega(n)
+\end{align*}
+In questo caso (opposto al precedente) while non viene mai eseguito e if n volte.\\
