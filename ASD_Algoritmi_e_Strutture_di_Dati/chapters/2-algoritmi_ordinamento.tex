@@ -77,8 +77,106 @@ con le altre due e così via, fino a quando non ho pescato tutte le carte.
 \subsection{Implementazione}
 \begin{lstlisting}[language=Java]
     void InsSort(A[])
-        For i=1 to length(A)
-            App = A[i]
-            
+(n-1)c  For i = 2 to length(A)
+(n-1)c      App = A[i]
+(n-1)c      j = j - 1
+sum(tw)     while App < A[j] AND j > 0
+sum(tw)         A[j+1] = A[j]
+sum(tw)         j--
+(n-1)c      A[j+1] = App
 \end{lstlisting}
-Uso il For perchè in ogni caso devo ordinare tutti i numeri dell'array
+Uso il For perchè in ogni caso devo ordinare tutti i numeri dell'array, parto da
+2 perchè un numero da solo è ordinato, quindi è inutile analizzarlo, inoltre j sarebbe uguale a 0,
+e noi partiamo a contare da 1 gli indici dell'array.\\
+\subsection{Tempi d'esecuzione, caso migliore e peggiore}
+\paragraph*{Tempo di esecuzione} Faremo alcune approssimazioni dato che cerchiamo l'ordine
+di grandezza dei tempi di esecuzione:
+\begin{itemize}
+    \item Non consideriamo l'ultima istruzione di controllo del For (quella che ci fa uscire dal ciclo)
+    \item Non considero neanche l'ultima istruzione di controllo del While
+\end{itemize}
+Il For quindi richiederà n-1 istruzioni, dove \textbf{c} è un generico tempo di esecuzione per ogni istruzione,
+dato che parte da 2 e non da 1.\\
+Il while non ha un numero di volte fisso per cui è vero, dipende dall'input! Ci sarà un caso
+peggiore e uno migliore, scrivo quindi $\sum_{i=2}^n{t_w}$ per indicare il numero di volte in cui il While è vero, 
+la sommatoria è inserita perchè devo sommare tutte le esecuzioni While per ogni i-esima esecuzione 
+del ciclo For.\\
+Qui di seguito la spiegazione della sommatoria
+\begin{align*}
+    tw_{i=2} + tw_{i=3} + tw_{i=4} + \dots + tw_{i=n} \\
+    \sum_{i=2}^n{tw_i}
+\end{align*}
+Il tempo di esecuzione è quindi
+\begin{equation*}
+    t_{is}(n) = 4c(n-1)+3c \sum_{i=2}^n tw_i
+\end{equation*}
+Dato che non è possibile definire in maniera univoca il numero di volte in cui
+il while verrà eseguito andiamo a determinare il caso migliore e quello peggiore.
+\paragraph*{Caso migliore} Il vettore è già ordinato. Analizzando il codice dobbiamo
+verificare cosa può cambiare, in questo caso il While, quindi qual è il caso dove
+il while viene eseguito meno volte? Quando App $<$ A[j] sempre, quindi $tw_i = 0$ 
+per ogni i e questo accade quando A[] è già ordinato.
+\begin{equation*}
+    t_m(n) = 4c(n-1)+3c*0=4c(n-1)
+\end{equation*}
+\paragraph*{Caso peggiore} Il while viene eseguito il maggior numero di volte per ogni
+i, cioè $tw_i=j=i-1$. Questo si verifica quando A è ordinato al contrario.\\
+\begin{equation*}
+    T_p(n) = 4c(n-1)+3c \sum_{i=2}^n (i-1)
+\end{equation*}
+Converto la sommatoria
+\begin{equation*}
+    \sum_{i=2}^n i-1 = 1+2+3+\dots+(n-1) = \sum_{i=1}^{n-1}i = \frac{(n-1)n}{2}
+\end{equation*}
+Inserisco nella formula
+\begin{equation*}
+    4c(n-1)+3c \frac{(n-1)n}{2} \approx 4cn+3c \frac{n^2}{2} \approx n^2
+\end{equation*}
+\paragraph*{Approssimazione caso migliore} Il caso migliore lo posso approssimare come n.
+\subsection{Confronto tra Selection e Insertion sort}
+Grazie alle approssimazioni possiamo confrontare i due algoritmi e notiamo subito che
+il caso migliore di Insertion è migliore di Selection Sort dato che è nel primo caso è n,
+mentre nel secondo è $n^2$.\\
+Insertion Sort è quindi migliore di Selection Sort.
+\section{Nozioni per rappresentare i tempi di esecuzione}
+\begin{equation*}
+    T(n) = O(n^2)
+\end{equation*}
+O (o grande) indica il limite asintotico superiore del tempo di esecuzione (il caso peggiore),
+in altre parole indica il tempo massimo che posso aspettare per ricevere il risultato.\\
+Mentre:
+\begin{equation*}
+    t(n) = \Omega(n)
+\end{equation*}
+Indica il limite inferiore del tempo di esecuzione (il caso migliore), quindi il tempo
+minimo che devo aspettare.\\
+Nei casi dove questi due casi corrispondono si indicano con:
+\begin{equation*}
+    \Theta(n^2)
+\end{equation*}
+$\Theta$ indica che il tempo è uguale (approssimativamente) per tutti gli input.
+\subsection{Limiti asintotici}
+I limiti asintotici sono delle funzioni per cui sono sicuro che la funzione presa in
+considerazione $f(n)$ è sempre minore del limiti asintotico. In questo caso
+dico che la funzione è asintoticamente limitata $f(n) = O(n^2)$.
+%Riprendere spiegazione teoria dato che è una possibile domanda d'esame
+Le lettere O, $\Omega$, $\Theta$, indicano una costante moltiplicativa per cui posso
+moltiplicare la funzione e trova una funziona per la quale la mia funzione n non sarà
+mai maggiore (nel caso di O), o minore (nel caso di $\Omega$) della funzione che la limita
+asintoticamente. Questa costante indica tutto ciò che ho trascurato nel calcolo dei tempi, 
+posso sceglierla a piacere per verificare che la funzione non violerà mia i limiti
+asintotici. (FORMALIZZARE QUESTA PARTE AGGIUNGENDO FORMULE - GUARDA APPUNTI IPAD)
+\begin{align*}
+    O(g(n)) = \{f(n):\exists k>0, n_0 \geq 0 \,\, \text{t.c}\,\, \\
+    0 \leq f(n) \leq k*g(n), \forall n \geq n_0 \}
+\end{align*}
+Questo ci porterà a fare delle approssimazioni come per esempio non considerare
+l'ultimo controllo del for o del while, questo produrrà delle situazioni che possono
+sembrare non sensate, per esempio potrà risultare che la condizione del while non viene mai
+eseguita, in realtà non è vero, perchè almeno 1 volta verrà eseguito, però per le approssimazioni
+che abbiamo scelto di fare non lo consideriamo.
+\paragraph*{Attenzione}
+\begin{enumerate}
+    \item Non mi interessa se il il termine di ordine maggiore sia seguito da addizioni o sottrazioni
+    \item Di fronte a un tempo costante come $\Omega$ indichiamo 1
+\end{enumerate}
