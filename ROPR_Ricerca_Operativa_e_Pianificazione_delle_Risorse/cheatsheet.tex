@@ -103,12 +103,24 @@ Definisco:\\
 	\hline
 	\multicolumn{2}{|c|}{il coefficiente i-esimo $x_i$ della riga in esame $X$ diventa:} \\
 	\hline
-	se $X_p$ é Positivo & $x_i := x_i$ \textcolor{blue}{$ -$ } $|X_p|\cdot P_i$ \\
+	$X_p > 0$ & $x_i := x_i$ \textcolor{blue}{$ -$ } $|X_p|\cdot P_i$ \\
 	\hline
-	se $X_p$ é Negativo & $x_i := x_i + |X_p|\cdot P_i$ \\
+	 $X_p < 0$ & $x_i := x_i + |X_p|\cdot P_i$ \\
+	\hline
+	$X_p = 0$ & La riga in esame resta Invariata \\
 	\hline
 
 \end{tabularx}
+\section{Due Fasi}
+\paragraph*{Fase I}
+Nella prima fase bisogna trovare una soluzione di partenza per il problema.
+Per fare ció, bisogna introdurre:
+\begin{itemize}
+    \item Delle variabili artificiali $y_i$, una per ogni vincolo che viene violato dal vertice Origine (a cui andranno sommate).
+    \item Una nuova funzione obiettivo di minimizzazione che minimizza la somma delle variabili artificiali.
+\end{itemize}
+Quindi risolviamo questo nuovo problema di PL e teniamo il Tableau Finale.
+
 	
 \chapter{Ottimizzazione Non Lineare}
 \section{Algoritmo del Gradiente}

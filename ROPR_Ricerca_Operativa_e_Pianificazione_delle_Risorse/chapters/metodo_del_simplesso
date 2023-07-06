@@ -146,7 +146,7 @@ In questo caso utilizziamo la Forma Tabellare, che registra soltano l'informazio
     \end{tabular}
 \end{center}
 
-\section[MDS Tabellare]{I passaggi del Metodo del Simplesso in forma Tabellare}
+\section[MDS Tabellare: I passaggi]{I passaggi del Metodo del Simplesso in forma Tabellare}
 \begin{enumerate}
     \item Porto il problema in \textbf{Forma Aumentata}:
     \begin{itemize}
