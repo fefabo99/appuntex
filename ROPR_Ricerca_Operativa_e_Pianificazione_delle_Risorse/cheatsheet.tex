@@ -111,15 +111,63 @@ Definisco:\\
 	\hline
 
 \end{tabularx}
-\section{Due Fasi}
-\paragraph*{Fase I}
-Nella prima fase bisogna trovare una soluzione di partenza per il problema.
-Per fare ció, bisogna introdurre:
-\begin{itemize}
-    \item Delle variabili artificiali $y_i$, una per ogni vincolo che viene violato dal vertice Origine (a cui andranno sommate).
-    \item Una nuova funzione obiettivo di minimizzazione che minimizza la somma delle variabili artificiali.
-\end{itemize}
-Quindi risolviamo questo nuovo problema di PL e teniamo il Tableau Finale.
+
+\subsection{Due Fasi}
+
+Funzione Obiettivo: Somma di tutte le variabili artificiali introdotte. (min $z= \Sigma y_i \implies$ max $z= - \Sigma y_i \implies$ max $z+\Sigma y_i = 0$)
+Vincoli: Per ogni vincolo che viene violato dalla soluzione Origine, sommo una variabile artificiale (unica) con coefficiente 1.
+
+Tableau iniziale: Le variabili artificiali devono essere in base, quindi devo azzerarle in R(0) sottraendogli il vincolo a cui sono associate.
+
+Una volta fatte entrare in base tutte le variabili artificiali, posso iterare normalmente.
+
+Finito di iterare, avró tutte le variabili artificiali =1 in (0), rimuovo quindi le colonne artificiali e ripristino la funzione obiettivo.
+
+Adesso faccio entrare in base (nello stesso modo di prima) le variabili che devono essere in base. poi itero normalmente.
+
+\section{Dualitá}
+\subsection{Passare da Primale a Duale}
+
+
+\begin{tabularx}{0.7\textwidth}{|X|c|c|}
+	\hline
+    & \textbf{Primale} & \textbf{Duale}\\
+	\hline
+    \textbf{Funzione Obiettivo} & max $c^T x$ & min $b^T \lambda$\\
+    \hline
+	\textbf{Vincoli} & $Ax \leq b$ & $A^T\lambda \geq c$\\
+    \hline
+	\textbf{Non Negativitá} & $x\geq 0$ & $\lambda \geq 0$\\
+	\hline
+    \multirow{3}{*}{\textbf{Vincoli del primale}}
+    &$\leq$ & $\lambda_i \geq 0$\\
+	\cline{2-3}
+    &$\geq$ & $\lambda_i \leq 0$\\
+	\cline{2-3}
+    &$=$ & $\lambda_i$ Free\\
+	\hline
+    \multirow{3}{*}{\textbf{Non Negativitá}}
+    &$x_j \geq 0 $ & $IIR_j \geq c$\\
+	\cline{2-3}
+    &$x_j \leq 0 $ & $IIR_j \leq c$\\
+	\cline{2-3}
+    &$x_j$ Free & $IIR_j = c$\\
+	\hline
+\end{tabularx}
+
+\paragraph{Metodo con le matrici}
+Un trucco per generare rapidamente il duale é utlizzare le matrici:\\
+Avendo il seguente problema di PL:\\
+\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-0.jpeg}\\
+si riconoscono opportunamente gli elementi che compongono il duale:\\
+\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-1.jpeg}\\
+Che come problema duale generano: \\
+\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-2.jpeg}   
+
+
+
+
+
 
 	
 \chapter{Ottimizzazione Non Lineare}
