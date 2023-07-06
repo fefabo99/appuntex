@@ -246,3 +246,12 @@ Quindi risolviamo questo nuovo problema di PL e teniamo il Tableau Finale.
 Nella Seconda fase, prendiamo il Tableau Finale della Fase 1, eliminiamo le colonne delle variabili artificiali
 e sostituiamo la funzione Obiettivo con la Funzione Obiettivo originale.
 Cosí facendo avremo il Tableu Iniziale della Fase 2, che una volta risolto ci dará la soluzione del problema originale.
+
+\section{Il Prezzo Ombra}
+Il PREZZO OMBRA per la risorsa i-ma ($y_i^*$) misura il valore marginale della risorsa, cioè, il
+tasso al quale la funzione obiettivo $Z$ potrebbe essere incrementata aumetando
+(leggermente) la quantità di risorsa $b_i$ disponibile. Il metodo del simplesso identifica il prezzo
+ombra y_i^* come segue:
+\[
+    y_i^* = \text{ Coefficiente della i-ma variabile slack nella riga 0 del tableau finale.}
+    \]

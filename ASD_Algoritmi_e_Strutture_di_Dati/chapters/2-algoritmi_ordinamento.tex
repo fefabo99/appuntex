@@ -1,5 +1,6 @@
-\chapter{Algoritmi di ordinamento}
-In questo capitolo vedremo algoritmi di ordinamento, più che per la loro
+\chapter{Calcolo tempo di esecuzione algoritmi}
+In questo capitolo vedremo come calcolare il tempo di esecuzione di algoritmi,
+partiremo ad analizzare algoritmi di ordinamento, più che per la loro
 funzione primaria, per studiare come è possibile affrontare un problema con diverse
 tecniche e come l'utilizzo di diverse tecniche influenzi anche notevolmente l'efficienza.
 \section{Selection Sort}
@@ -264,3 +265,141 @@ elemento è presente in V1[1].
     =\Omega(n)
 \end{align*}
 In questo caso (opposto al precedente) while non viene mai eseguito e if n volte.\\
+\paragraph*{Verifica caso medio}
+\'E ragionevole pensare che su molte esecuzioni il primo valore di V2 in V1 si trovi
+mediamente al centro.\\
+T medio$(n) \rightarrow V_2[j]$ viene trovato sempre in $V_1(\frac{n}{2}) \rightarrow tw_i = \frac{n}{2}\forall i$\\
+\begin{align*}
+    =2c+3cn+cn+2c\sum_{i=1}^n{frac{n}{2}} = \\
+    =2c+4cn+cn^2 = \Theta(n^2)
+\end{align*}
+\paragraph*{Riassumendo}
+\begin{itemize}
+    \item Tempo peggiore - $O(n^2)$
+    \item Tempo migliore - $\Omega(n)$
+    \item Tempo medio - $\Theta(n^2)$
+\end{itemize}
+\section{Riassunto ordini di grandezza}
+Qui di seguito sono riportati gli ordini di grandezza in ordine crescente 
+\begin{itemize}
+    \item 1 (intesa come costante)
+    \item $\log n$
+    \item $n$
+    \item $n\log n$
+    \item $n^2$
+    \item $n^3$
+    \item $2^n$
+\end{itemize}
+
+\section{Somma di due valori costituiti da bit}
+\paragraph*{Testo} Sommare due valori binari contenuti in due array e salvare il risultato
+in un terzo array.
+\paragraph*{Struttura}
+\begin{center}
+    A[1 \dots n]\\
+    B[1 \dots n]\\
+    C[1 \dots n+1]
+\end{center}
+Dove i bit più significativi sono quelli a sinistra (quelli iniziali) e quelli meno
+significativi a destra.
+\paragraph*{Considerazioni} Devo effettuare la somma bit a bit, quindi si configurano 3 casi
+\begin{itemize}
+    \item Sommo 0 con 0 e ottengo 0
+    \item Sommo 1 con 0 (o 0 con 1) e ottengo 1
+    \item Sommo 1 con 1 e ottengo 1, ma devo ricordarmi del riporto!
+\end{itemize}
+Conviene quindi gestire ogni somma come una somma a 3 bit (bit A, bit B, bit di riporto).
+\subsection{Implementazione}
+\begin{lstlisting}[language=Java]
+    void Somma(A[],B[])
+    c*1 riporto = 0;
+        //parola chiave per indicare i-- nel for e' Downto
+    c*n for i = length(A) Downto 1 
+    c*n     c[i+1] = A[i]+B[i]+riporto;
+    c*n     if c[i+1]<=1
+    c*tif       riporto = 0;
+    c*fif   else
+    c*fif       riporto = 1;
+    c*fif       c[i+1]=c[i+1]-2;
+    c*1 C[1]=riporto;
+\end{lstlisting}
+Alla fine riduco in due casi dove se la somma dei due bit mi restituisce 1 o 0 allora
+il riporto = 0, mentre se è > 1 setto il riporto a 1 e tolgo 2 dalla somma, perchè:
+\begin{itemize}
+    \item Se ho sommato 1 e 1 con riporto 0, ottengo 2 e ho riporto 1, togliendo 2 avrò 0 e in binario 1 + 1 + 0 = 10
+    \item Se ho sommato 1 e 1 con riporto 1, ottengo 3 e ho riporto 1, togliendo 2 avrò 1 e in binario 1 + 1 + 1 = 11
+\end{itemize}
+\subsection{Calcolo tempo}
+Come al solito tif è $t_if$ e indica quando l'if è vero e fif è $f_if$ e indica quando l'if
+è falso.
+\begin{equation*}
+    t(n)=2c*1+3c*n+1c*t_if + 2c*f_if
+\end{equation*}
+\paragraph*{Caso migliore} Quando ho due vettori che sommati non danno mai riporto, quindi non esistono due
+bit a 1 nella stessa posizione i.\\
+\begin{align*}
+    t_m(n)=2c+3cn+c*n+2c*0=\\
+    =4cn+2c=\Omega(n)
+\end{align*}
+\paragraph*{Caso peggiore} Quando c'è sempre riporto, quindi quando:
+\begin{center}
+    A[n]=B[n]=1\\
+    A[i] $\neq$ 0 e B[i] $\neq$ 0 per lo stesso i\\
+    $\forall 1 \leq i \leq n-1$
+\end{center}
+\begin{align*}
+    T_p(n) = 2c+3cn+c*0+2c*n=5cn+2c= O(n)
+\end{align*}
+\paragraph*{Confronto due casi}
+Il caso migliore è effettivamente più veloce del peggiore dato che il migliore ha 4cn operazioni,
+mentre il peggiore ha 5cn, ma hanno lo stesso ordine di grandezza, quindi per valori grandi non ci sarà
+molta differenza.\\
+In questo caso dato che il caso migliore e caso peggiore hanno lo stesso limite asintotico posso usare $\Theta$ 
+e dire che il tempo dell'algoritmo sarà:
+\begin{equation*}
+    t_{somma}(n)=\Theta(n)
+\end{equation*}
+\paragraph*{Tempo medio} Quando il limite asintotico del caso peggiore e caso migliore coincide,
+sicuramente il tempo medio avrà lo stesso limite asintotico, quindi non avrà molto senso calcolarlo, in
+questo caso per esempio ci aspettiamo che in metà dei bit avrò riporto e in metà dei bit no, posso scrivere
+la formula specifica, ma comunque otterrò sempre lo stesso limite asintotico, dato che se il limite superiore
+e inferiore coincidono per ordine di grandezza, se cercao qualcosa in mezzo avrà necessariamente lo stesso
+ordine di grandezza.
+\section{Esercizio - Calcolo tempo codice già scritto}
+\begin{lstlisting}[language=Java]
+    int f-y(n)
+    c   z=n;
+    c   t=0;
+    c log n while z>0
+    c log n     x= z MOD 2
+    c log n     z = z DIV 2
+    c log n     if x == 0
+    c tif*n         for i=1 to n
+    c tif*n             t=t+1
+    c   return(t)
+\end{lstlisting}
+\subsection{Calcolo tempo istruzioni}
+Capiamo che il while viene eseguito $\log n$ volte perchè dipende da $z>0$ e
+z viene diviso ogni volta per 2 (divisione intera) e questa è la tipica progressione
+logaritmica. Infatti questo non è un vero e proprio while, dato che il numero di istruzioni eseguite
+è determinato già all'inizio, potrebbe essere sostituito con un for.
+\paragraph*{Tempo di esecuzione generico}
+\begin{equation*}
+    t(n)=3c+4c \log n + 2ct_{if} n
+\end{equation*}
+\paragraph*{Caso migliore} $t_if = 0$, cioè quando non entro mai nell'if e quindi quando ho
+sempre resto nella divisione intera di z per 2, ma questo quando si verifica? Si verifica quando
+dividendo per due un numero dispari, ottengo sempre un numero dispari. La divisione intera per due tenendo
+da parte il resto non è altro che la procedura per convertire un numero decimale in un numero binario, quindi
+ottengo sempre 1 quando sto convertendo un numero decimale che in binario è composto da solo 1 e questo si verifica
+quando ho un numero del tipo $2^k - 1$. Esempi validi sono 63, 127, 1023, ecc.\\
+\begin{align*}
+    t_m(n)=3c+4c \log n + 0c = \Omega(\log n)
+\end{align*}
+\paragraph*{Caso peggiore} If sempre vero e quindi $n=2^k$
+\begin{align*}
+    t_{if}=\log n\\
+    T_p=3c+4c\log n + 2cn*\log n = O(n\log n)
+\end{align*}
+In questo caso non posso usare $\Theta$ perchè i limiti asintotici del caso migliore e caso
+peggiore sono diversi.
