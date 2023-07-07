@@ -255,7 +255,7 @@ Cosí facendo avremo il Tableu Iniziale della Fase 2, che una volta risolto ci d
 Il PREZZO OMBRA per la risorsa i-ma ($y_i^*$) misura il valore marginale della risorsa, cioè, il
 tasso al quale la funzione obiettivo $Z$ potrebbe essere incrementata aumetando
 (leggermente) la quantità di risorsa $b_i$ disponibile. Il metodo del simplesso identifica il prezzo
-ombra y_i^* come segue:
+ombra $y_i^*$ come segue:
 \[
     y_i^* = \text{ Coefficiente della i-ma variabile slack nella riga 0 del tableau finale.}
     \]

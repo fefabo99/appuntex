@@ -149,7 +149,19 @@ dal fornita dal metodo del simplesso quando i parametri del modello assumono val
     In questo caso la situazione é particolarmente seria nel caso in cui la variazione porti la soluzione ottimale ad ottenere
     un valore 
 \end{itemize}
+\subsection{Parametri sensibili}
+Uno degli obiettivi principali dell'analisi di sensitività è l'identificazione dei PARAMETRI SENSIBILI:
+\definizione{
+    Un parametro è Sensibile se modificandone il valore avrò una nuova soluzione ottimale.
+}
 
-\definizione{Uno degli obiettivi principali dell'analisi di sensitività è l'identificazione dei PARAMETRI SENSIBILI, vale
-a dire quei parametri il cui valore non può essere modificato senza portare ad una nuova soluzione
-ottimale.}
+\paragraph*{$c_j$}I coefficienti della funzione obiettivo ($c_j$) sono valutati Paramtetri Non Sensibili, e 
+per loro è utile determinare l'intervallo di variazione del coefficiente all'interno del quale la soluzione otttimale rimarrà invariata
+ovvero \textbf{L'intervallo di ammissibilità del coefficiente}.
+
+\paragraph*{$b_i$}Per il Termine noto destro di un vincolo funzionale ($b_i$) invece avremo alcuni casi in cui 
+il suo variare può influenzare l'ammissibilità di una soluzione di base ammissibile.
+Per un tale tipo di parametro, è utile determinare l'intervallo di variazione all'interno del quale la soluzione ammissibile di base
+ottimale (per la quali sono stati opportunamente modificati i valori delle variabili di base) rimarrà ammissibile 
+(\textbf{Intervallo di ammissibilità del termine noto destro}).
+Questo intervallo è anche l'intervallo all'interno del quale il \textbf{prezzo ombra} corrente del vincolo corrispondente rimane valido
