@@ -403,3 +403,20 @@ quando ho un numero del tipo $2^k - 1$. Esempi validi sono 63, 127, 1023, ecc.\\
 \end{align*}
 In questo caso non posso usare $\Theta$ perchè i limiti asintotici del caso migliore e caso
 peggiore sono diversi.
+\paragraph*{Caso medio}
+Il caso medio è quello dove per metà dei bit ho riporto e per metà no, quindi è dove eseguo il for
+metà volta, quindi sarà $\frac{n \log n}{2}$.
+\subsection{Miglioramento Algoritmo}
+C'è un modo per migliorare questo algoritmo? Sì, il for è sostituibile con t=t+n.\\
+Così facendo il caso peggiore (e quello medio) diventa:
+\begin{equation*}
+    O(n)=log n
+\end{equation*}
+\section{Esercizio for innestati}
+\begin{lstlisting}[language=Java]
+    f_x(n)
+    r=0
+    for i=1 to n-1
+        for j=
+\end{lstlisting}
+%Lezione 6 Parte 2 39:43
