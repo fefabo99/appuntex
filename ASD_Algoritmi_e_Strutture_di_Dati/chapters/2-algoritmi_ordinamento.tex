@@ -412,11 +412,94 @@ Così facendo il caso peggiore (e quello medio) diventa:
 \begin{equation*}
     O(n)=log n
 \end{equation*}
-\section{Esercizio for innestati}
+\section{Esercizio for innestati - BOZZA DA COMPLETARE}
 \begin{lstlisting}[language=Java]
     f_x(n)
-    r=0
-    for i=1 to n-1
-        for j=
+c       r=0
+c(n-1)  for i=1 to n-1
+sum(n-i)    for j=i+1 to n
+sum(sum(j))     for k=1 to j
+                    r=r+1
+        return(r)
 \end{lstlisting}
-%Lezione 6 Parte 2 39:43
+\subsection{Calcolo tempo}
+In questo caso abbiamo 3 for annidati, con indici legati uno con l'altro.\\
+In questi casi è necessario partire dal for più interno, il numero di volte per cui sarà eseguito sarà la
+sommatoria del for sopra stante, se ha più di 1 for, ci sarà una sommatoria per ogni for, per intenderci,
+il for più interno nel codice sopra riportato avrà la seguente sommatoria:
+\begin{equation*}
+    \sum_{i=1}^{n-1} (\sum_{j=i+1}^n j)
+\end{equation*}
+Analizziamo questa formula:
+\begin{itemize}
+    \item Il j più interno è il tempo di esecuzione del for più interno (for k=1 to j), dato che è un
+    semplice incremento di variabile, quindi internamente va inserito il tempo di esecuzione del for più interno
+    \item La sommatoria centrale riporta invece gli indici del for centrale, infatti parte da j = i+1 fino a n (come scritto
+    nel for)
+    \item Infine la sommatoria più esterna prende gli indici del primo for cioè parte da n fino ad arrivare a n-1
+\end{itemize}
+Questa formula rappresenta il numero di esecuzioni del for più interno.\\
+\paragraph*{For centrale} In questo caso avrò una sola sommatoria $\sum_1^{n-1} n-1$
+\paragraph*{For esterno} Come al solito in questo caso conto semplicemente quante volte viene eseguito
+guardando fino a dove arrivare il contatore, in questo caso n-1.
+\paragraph*{Risoluzione formula}
+\begin{align*}
+    t(n) = c + c(n-1) + c\sum_{i=1}^{n-1}(n-i) + 2c\sum_{i=1}^{n-1}\sum_{j=i+1}^n j + c\\
+    \approx 2c+c*n+c\sum_{i=1}^{n-1}i+2c \dots =\\
+    =2c+cn+c\frac{(n-1)(n)}{2} + 2c\sum_{i=1}^{n-1}\sum_{j=i+1}^n j + c\\
+\end{align*}
+\begin{itemize}
+    \item Con l'approssimazione tolgo i -1 per esempio in $c(n-1)$, dato che non è rilevante.\\
+    \item $\sum_{i=1}^{n-1}(n-i)$ se la leggo al contrario è come se stessi facendo \\
+    $n-1, n-2, n-3, \dots, n-n$
+    quindi la posso scrivere come $\sum_{i=1}^{n-1}i$ e quindi convertirla con la solita formula
+    della sommatoria
+    \item Per la doppia sommatoria devo cercare di convertire prima di tutto quella più interna
+\end{itemize}
+La doppia sommatoria la gestisco nella seguente maniera:
+\begin{itemize}
+    \item Devo convertire quella interna per scriverla in una forma che posso poi convertire in qualcosa
+    contenente
+    \item dato che ho $j=i+1$ posso pensare di riscriverla come $\sum_{j=1}^n j - (\sum_{j=1}^i j)$ e poi togliere
+    tutte le i che sto trascurando (la sommatoria dopo il meno serve proprio a bilanciare la prima)
+    \item Adesso posso convertire le due sommatorie come $\frac{n(n+1)}{2}-\frac{i(i+1)}{2}$, dato che
+    nel secondo caso come indice in alto alla sommatoria ho i
+    \item Quindi ora ho convertito la prima sommatoria e tornando alla formula iniziale ho
+    $\sum_{i=1}^{n-1} (\frac{n(n+1)}{2}-\frac{i(i+1)}{2})$
+    \item Ora posso fare delle approssimazioni, perchè tanto arriverò a scrivere un limite asintotico
+    \item La prima parte è fissa dato che la sommatoria indica l'incremento di i, ma nel primo termine ho
+    solo n, quindi avrò $\approx \sum_{i=1}^{n-1} \frac{n^2}{2} - \sum_{i=1}^{n-1} \frac{i(i+1)}{2}$
+    \item La prima sommatoria la approssimo da i=1 a n (anzichè n-1), tanto il -1 non influenzerà l'ordine
+    di grandezza, quindi avrò $\approx n*\frac{n^2}{2}$ mentre la seconda porto fuori il termine costante ($\frac{1}{2}$),
+     $ -\frac{1}{2}\sum_{i=1}^{n-1}(i^2 + i)$
+    \item Ora divido come prima i due termini in 2 sommatorie distinte $\approx \frac{n^3}{2} -\frac{1}{2}
+    \sum_{i=1}^n i^2 + \sum_{i=1}^n i$ in entrambe le sommatorie il limite superiore $n-1$ è stato approssimato
+    a $n$ per il solito discorso che -1 non influenza l'ordine di grandezza
+    \item La seconda sommatoria so come convertirla, mentre per la prima introduciamo una nuova formula 
+    (si trova in fondo a questo elenco), avrò quindi $\approx \frac{n^3}{2}-\frac{1}{2}(\frac{n(n+1)(2n+1)}{6}+ 
+    \frac{n(n+1)}{2})$
+    \item Così facendo ho risolto entrambe le sommatorie e ho solo n nella formula!
+\end{itemize}
+\paragraph*{Conversione importante da ricordare}
+\begin{equation*}
+    \sum_{i=1}^n i^2 = \frac{n(n+1)(2n+1)}{6}
+\end{equation*}
+\paragraph*{Conclusione risoluzione formula} Alla fine quindi avrò
+\begin{align*}
+    \approx \frac{n^3}{2}-\frac{1}{2}(\frac{n(n+1)(2n+1)}{6}+ 
+    \frac{n(n+1)}{2})
+\end{align*}
+Ora che ho solo n posso fare ulteriori approssimazioni per poter cercare un limite asintotico
+\begin{align*}
+    \approx \frac{n^3}{2} -\frac{1}{2}\frac{2n^3}{6}-\frac{1}{4}n^2
+\end{align*}
+Ho considerato solo gli ordini di grandezza maggiori, in questo modo posso dedurre che 
+\begin{align*}
+    t(n)\simeq 2c+cn+\frac{cn^2}{2} + 2c(\frac{n^3}{2}-\frac{n^3}{6}-\frac{n^2}{4})\\
+    \simeq 2c+cn+cn^2+2cn^3
+\end{align*}
+Ho tolto sia le frazioni che i termini che vengono sottratti perchè comunque sono più piccoli dato
+che il confronto è tra $\frac{n^3}{2}$ e $\frac{n^3}{6}$, dato che viene diviso per 6 è più piccolo
+del primo, $n^2$ è proprio di un ordine inferiore.\\
+\paragraph*{Non c'è caso migliore o peggiore} Questo perchè l'algoritmo ha un numero fisso di
+istruzioni eseguite dato che ci sono solo for, NON ci sono condizioni variabili come if o while.
