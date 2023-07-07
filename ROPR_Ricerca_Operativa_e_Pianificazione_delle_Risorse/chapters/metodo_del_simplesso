@@ -90,6 +90,10 @@ Chiaramente anche il modello in forma aumentata avrá una sua soluzione, e si de
 in forma originale che viene \emph{aumentata} tramite i corrispondenti valori delle variabili di slack, ovvero una soluzione della forma aumentata.
 
 \subsection{Variabili e Soluzioni di Base}
+%il numero delle variabili di base eguaglia il numero dei vincoli funzionali (equazioni).
+%Pertanto, il numero delle variabili non di base eguaglia il numero totale delle variabili
+%meno il numero dei vincoli funzionali.
+
 Se prendiamo un modello in forma aumentata, noteremo che consiste di $d$ variabili decisionali, ovvero le variabili del problema originale,
 e di $s$ variabili di slack.
 Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare, 
