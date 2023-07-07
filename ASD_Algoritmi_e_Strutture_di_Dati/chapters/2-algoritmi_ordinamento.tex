@@ -496,10 +496,16 @@ Ora che ho solo n posso fare ulteriori approssimazioni per poter cercare un limi
 Ho considerato solo gli ordini di grandezza maggiori, in questo modo posso dedurre che 
 \begin{align*}
     t(n)\simeq 2c+cn+\frac{cn^2}{2} + 2c(\frac{n^3}{2}-\frac{n^3}{6}-\frac{n^2}{4})\\
-    \simeq 2c+cn+cn^2+2cn^3
+    \simeq 2c+cn+cn^2+2cn^3 = \Theta(n^3)
 \end{align*}
 Ho tolto sia le frazioni che i termini che vengono sottratti perchè comunque sono più piccoli dato
 che il confronto è tra $\frac{n^3}{2}$ e $\frac{n^3}{6}$, dato che viene diviso per 6 è più piccolo
 del primo, $n^2$ è proprio di un ordine inferiore.\\
 \paragraph*{Non c'è caso migliore o peggiore} Questo perchè l'algoritmo ha un numero fisso di
-istruzioni eseguite dato che ci sono solo for, NON ci sono condizioni variabili come if o while.
+istruzioni eseguite dato che ci sono solo for, NON ci sono condizioni variabili come if o while, infatti
+scrivo $\Theta$.
+\subsection{Quando usare le sommatorie}
+Le sommatorie annidate una dentro l'altra sono da usare solo quando i for sono collegati da indici
+in comune (in questo caso k,j,i erano collegati), se ho due for che non sono collegati uso semplicemente n per
+indicare il numero di volte che vengono eseguiti, non userò la sommatoria.
+
