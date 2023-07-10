@@ -54,6 +54,7 @@ di uguaglianza del problema, allora possiamo trasformare tale problema in un pro
     \\$x_{n} = g_l(x_1,...,x_{n-l})$
 \end{center}
 Questa condizione però molto spesso NON è rispettata, quindi il Dimensionality Reduction non è sempre utilizzabile.
+\pagebreak
 
 \section{Il metodo dei Moltiplicatori di Lagrange}
 Il metodo dei Moltiplicatori di Lagrange è un metodo per trovare l'ottimo di problemi di PNL Vincolata.

@@ -87,6 +87,19 @@ All'iterazione finale, il metodo del simplesso identifica simultaneamente una so
 ottimale complementare $y^*$ per il problema duale, dove:
 \[cx^*=by^*\]
 Le componenti $y_i^*$ sono i prezzi ombra del problema Primale
+\subsection{Le Condizioni degli Scarti Coomplementari}
+Le condizioni degli scarti complementari dicono:
+\[
+    (c^T - \lambda^T A) \cdot x = 0
+\]
+\[
+    \lambda^T ( A x - b ) = 0
+\]
+Ovvero:
+\begin{itemize}
+    \item Se la variabile $x_i$ del primale é $\neq 0$, allora il vincolo del duale a essa associato deve essere attivo, ovvero verificarsi all'uguaglianza.
+    \item Viceversa, se l'$i$-esimo vincolo del Duale \emph{non} é attivo, allora $x_i = 0$
+\end{itemize}
 
 \subsection{Teorema della dualità}
 Un ultima proprietá che riassume le relazioni primale-duale in tutti i casi possibili:
