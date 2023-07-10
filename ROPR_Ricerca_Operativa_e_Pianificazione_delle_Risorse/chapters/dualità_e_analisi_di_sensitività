@@ -129,7 +129,7 @@ Se ho una soluzione del primale, controllo che sia ottima e trovo la corrisponde
     \item applico le \textbf{condizioni degli scarti complementari}:
     \begin{itemize}
         \item Se una variabile della soluzione è \emph{diversa da 0}, allora il corrispondente vincolo del duale attivo.
-        \item Se un vincole del primale è attivo, allora la corrispondente variabile del duale è uguale a zero.
+        \item Se un vincolo del primale è attivo, allora la corrispondente variabile del duale è uguale a zero.
     \end{itemize}
     \item Pongo a sistema le equazioni che ho trovato, se il risultato è \textbf{ammissibile per il duale}, allora esso è l'ottimo del duale e il risultato in esame è l'ottimo del primale.
 \end{enumerate}

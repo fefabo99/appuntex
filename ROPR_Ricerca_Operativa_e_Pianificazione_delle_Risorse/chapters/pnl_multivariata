@@ -1,6 +1,6 @@
 \chapter{PNL Multivariata}
 Nella PNL Monovariata utilizziamo le informazioni di Derivata Prima e Seconda per trovare l'ottimo.
-Anche nel caso della PNL Multivariata usiamo gli stessi concetti, bisogna peró estenderli agli spazi multidimensionali.
+Anche nel caso della PNL Multivariata usiamo gli stessi concetti, bisogna però estenderli agli spazi multidimensionali.
 \\Vogliamo estendere i concetti di derivata (prima e seconda) visti per funzioni in una variabile, al caso di funzioni in più variabili.
 \\In particolare, consideriamo uno spazio $\R^n$, ovvero uno spazio vettoriale a $n$ dimensioni.
 Se nel caso $\R^1$ avevamo Derivata I e II, nel caso $n$-dimensionale:
@@ -55,12 +55,11 @@ si annulla ($\nabla f = 0$), prendono il nome di \textbf{punti stazionari}.
     \[
         \nabla f(x_0,\, y_0) = \left[\frac{\partial f(x,\, y)}{\partial x},\, \frac{\partial f(x,\, y)}{\partial y}\right]^T = [0,\, 0]^T
     \]
-    Allora questo é un \textbf{punto stazionario}, e potrebbe essere un punto di massimo, minimo o di sella.
+    Allora questo è un \textbf{punto stazionario}, e potrebbe essere un punto di massimo, minimo o di sella.
 }
 
 \paragraph*{Punto di Sella}
-Se nel caso 1D ogni punto in cui la derivata si annulla é un punto di Max o Min, nel caso n-dimensionale puó anche
-essere un \emph{punto di sella}, ovvero un punto che é massimo in una direzione (variabile) e minimo nell'altra.
+Se nel caso 1D ogni punto in cui la derivata si annulla è un punto di Max o Min, nel caso n-dimensionale puó anche essere un \emph{punto di sella}, ovvero un punto che è massimo in una direzione (variabile) e minimo nell'altra.
 
 \subsection{Trovare Massimo e Minimo}
 Una volta trovato un punto stazionario $(x,y)$, voglio capire se si tratta di un punto di Massimo o di Minimo:
@@ -100,8 +99,7 @@ Sia $f(x,\, y)$ una funzione derivabile due volte, allora:
 
 
 \section{Algoritmi Numerici per i PNL Multivariati}
-Come per la PNL Monovariata, anche per la Multivaariata esistono degli algoritmi numerici per trovare l'ottimo qual'ora
-non fosse possibile trovarlo analiticamente.
+Come per la PNL Monovariata, anche per la Multivariata esistono degli algoritmi numerici per trovare l'ottimo qualora non fosse possibile trovarlo analiticamente.
 \\Gli algoritmi che affronteremo sono:
 \begin{itemize}
     \item Metodo del Gradiente (Steepest Descent)
@@ -109,8 +107,7 @@ non fosse possibile trovarlo analiticamente.
 \end{itemize}
 Entrambi gli algoritmi utilizzano strategie di tipo \textbf{Line Search}.
 \subsection{Gli algorimti Line Search}
-Questo tipo di algorimto genera una succesione di punti $x_k \in \R^n$ in modo che
-il punto $x_{k+1}$ é ottenuto a partire dal punto $x_k$ muovendosi lungo una \textbf{Direzione di Salita (Massimo) o di Discesa (Minimo)}.
+Questo tipo di algoritmo genera una succesione di punti $x_k \in \R^n$ in modo che il punto $x_{k+1}$ sia ottenuto a partire dal punto $x_k$ muovendosi lungo una \textbf{Direzione di Salita (Massimo) o di Discesa (Minimo)}.
 \definizione{
     Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
     \\Definiamo:
@@ -130,13 +127,13 @@ Dati $f:\R^n \to \R$, $x\in \R^n$ con $f$ Derivabile in $x$.
     \item Cerchiamo un nuovo punto $x^{k+1}$ lungo la direzione $d^k$:
     \[x^{k+1} = x^k \pm \alpha^k \cdot d^k\]
     dove \begin{itemize}
-        \item $k$ é la generica iterazione
-        \item $\alpha^k$ é una quantitá scalare$ > 0$ chiamata step-size.
+        \item $k$ è la generica iterazione
+        \item $\alpha^k$ è una quantità scalare $ > 0$ chiamata step-size.
     \end{itemize}
 \end{enumerate}
 
-\paragraph{Step-Size} Lo Step-Size é il valore che determina di quanto ci andremo a spostare nella direzione $d_k$.
-Esso é inversamente proporzionale al numero di iterazioni.
+\paragraph{Step-Size} Lo Step-Size è il valore che determina di quanto ci andremo a spostare nella direzione $d_k$.
+Esso è inversamente proporzionale al numero di iterazioni.
 \\Lo step-size $\alpha^k$ corrisponde a:
 \[
     \text{max/min } f(x^k \pm \alpha^k \cdot d^k)
@@ -152,14 +149,14 @@ lo uso per trovare lo step-size ponendo $g(\alpha) = f(x^{k+1})$ e $\alpha^* = \
 \\$ max g(\alpha)$ lo posso spesso risolvere analiticamente, ponendo $g'(\alpha) = 0$.
 
 \section{Metodo del Gradiente}
-Il metodo del gradiente é un algoritmo Line Search e come direzione di crescita $d^k$ usa:
+Il metodo del gradiente è un algoritmo Line Search e come direzione di crescita $d^k$ usa:
 \begin{itemize}
     \item $d^k= \nabla f(x^k)$ per i problemi di Massimo
     \item $d^k= - \nabla f(x^k)$ per i problemi di Minimo
 \end{itemize}
 E come formula generale per il punto $x^{k+1}$:
 \[x^{k+1} = x^k \pm \alpha^k \cdot \nabla f(x^k)\]
-\nb{$\pm \nabla f(x^k)$ é la direzione di crescita, quindi il $\pm$ diventa $+$ se é un problema di Massimo, e $-$ se é un problema di minimo }
+\nb{$\pm \nabla f(x^k)$ è la direzione di crescita, quindi il $\pm$ diventa $+$ se è un problema di Massimo, e $-$ se è un problema di minimo }
 
 \subsection{L'algoritmo}
 \begin{enumerate}
@@ -171,33 +168,32 @@ E come formula generale per il punto $x^{k+1}$:
     
 \end{enumerate}
 
-\paragraph{Creiteri di Arresto}
+\paragraph{Criteri di Arresto}
 \begin{itemize}
-    \item $|f(x^{k+1} - f(x^k)| < \epsilon_1)$ Mi fermo
-    \item $||f(x^{k+1} || < \epsilon_2)$ Mi fermo, dove $|| f ||$ é la norma di $f$.
+    \item $|f(x^{k+1}) - f(x^k)| < \epsilon_1$ mi fermo.
+    \item $||f(x^{k+1}) || < \epsilon_2$ mi fermo, dove $|| f ||$ è la norma di $f$.
 \end{itemize}
 
-\paragraph{Osservazioni}. Noto che l'algoritmo del gradiente si differenzia da un generico Line Search solo dalla determinazione della direzione di Crescita.
-Inoltre noto che se $\nexists \alpha^k > 0 \implies \nexists$ una direzione di Salita.
+\paragraph{Osservazioni} Noto che l'algoritmo del gradiente si differenzia da un generico Line Search solo dalla determinazione della direzione di Crescita.
+Inoltre noto che se $\nexists\; \alpha^k > 0 \implies \nexists$ una direzione di Salita.
 
 \section{Metodo di Newton}
-A differenza del metodo del Gradiente, il metodo di Newton (N-dimensionale) utilizza un'approssimazione quadratica di $f(x)$ per ottenere un nuovo punto.
+A differenza del metodo del Gradiente, il metodo di Newton ($n$-dimensionale) utilizza un'approssimazione quadratica di $f(x)$ per ottenere un nuovo punto.
 
-\paragraph{Sviluppo di Taylor} per funzioni a piú variabili:
+\paragraph{Sviluppo di Taylor} per funzioni a più variabili:
 \[
   f(x^k+ \Delta x) = f(x^k) + \nabla f(x^k) \cdot \Delta x + \frac{1}{2} \Delta x \cdot H f(x^k) \Delta x   
 \]
 In questo caso $x^k+ \Delta x = x^{k+1}$
 \paragraph{Direzione di Miglioramento}
-Essendo un algoritmo Line Search, Newton segue una direzione di miglioramento per il nuovo punto $(x^k+ \Delta x)$ cosí definita:
+Essendo un algoritmo Line Search, Newton segue una direzione di miglioramento per il nuovo punto $(x^k+ \Delta x)$ così definita:
 \[
     \frac{\delta f(x^k+ \Delta x)}{\delta \Delta x} = 0 \to H(x^k) \Delta x = -\nabla f(x^k)
 \]
 
-$\Delta x$ é il vettore spostamento, e in questo caso é l'incognita.
+$\Delta x$ è il vettore spostamento, e in questo caso è l'incognita.
 
-\subparagraph{Osservazione} Newton si muove ad un punto stazionario del II ordine dello sviluppo in serie 
-di Taylor della funzione.
+\subparagraph{Osservazione} Newton si muove ad un punto stazionario del II ordine dello sviluppo in serie di Taylor della funzione.
 
 \subsection{l'Algoritmo}
 Tenendo peresente che $\Delta x = x^{k+1} - x^k$
@@ -211,30 +207,30 @@ Tenendo peresente che $\Delta x = x^{k+1} - x^k$
 \subparagraph{Criteri di Arresto}
 Sono gli stessi del metodo del gradiente.
 \begin{itemize}
-    \item $|f(x^{k+1} - f(x^k)| < \epsilon_1)$ Mi fermo
-    \item $||f(x^{k+1} || < \epsilon_2)$ Mi fermo, dove $|| f ||$ é la norma di $f$.
+    \item $|f(x^{k+1}) - f(x^k)| < \epsilon_1$ mi fermo.
+    \item $||f(x^{k+1}) || < \epsilon_2$ mi fermo, dove $|| f ||$ è la norma di $f$.
 \end{itemize}
 
 \subsection{Evitare il calcolo della Matrice Inversa}
 Osservando la formula per il calcolo del nuovo punto:
 \[ x^{k+1} = x^k - H(x^k)^{-1} \cdot \nabla f(x^k)\]
 Notiamo che ci richiede di calcolare $-H_f(x_k,y_k)^{-1}$, ovvero la \emph{Matrice inversa dell'hessiana} nel punto $(x_k,y_k)$.
-\\Calcolare una matrice inversa é \textbf{molto oneroso dal punto di vista computazionale}, esiste peró un modo per evitare di calcolarlo.
+\\Calcolare una matrice inversa è \textbf{molto oneroso dal punto di vista computazionale}, esiste però un modo per evitare di calcolarlo.
 \paragraph{Considerazione}
 Nel calcolo del nuovo punto, $[-H(x^k)^{-1} \cdot \nabla f(x^k)]$ equivale al \emph{vettore spostamento $\Delta x$} (scritto anche come $(v_1,v_2)^T$), di conseguenza:
 \[
     - H(x^k)^{-1} \cdot \nabla f(x^k)=\begin{pmatrix} v_1 \\ v_2 \end{pmatrix} \implies H_f(x_k,y_k) \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = - \nabla f(x_k,y_k) 
 \]
 In questo modo per poter trovare $\Delta x$ dobbiamo soltanto risolvere un sistema di equazioni invece di calcolare una matrice inversa,
-il che é molto meno oneroso computazionalmente.
+il che è molto meno oneroso computazionalmente.
 
 
 \subsection{Newton VS Gradiente}
 \begin{itemize}
-    \item Newton utilizza sia Gradiente che Hessiana ad ogni iterazione
-    \item Newton se converge, converge molto piú rapidamente del metodo del gradiente ma richiede uno sforzo computazionale molto maggiore.
-    \item Se la funzione é quadratica, Newton converge ad una sola iterazione.
-    \item Nel caso di funzioni piú complesse, la matrice Hessiana risulta piú complessa da calcolare.
+    \item Newton utilizza sia Gradiente che Hessiana ad ogni iterazione.
+    \item Newton se converge, converge molto più rapidamente del metodo del gradiente ma richiede uno sforzo computazionale molto maggiore.
+    \item Se la funzione è quadratica, Newton converge ad una sola iterazione.
+    \item Nel caso di funzioni più complesse, la matrice Hessiana risulta più complessa da calcolare.
 
 \end{itemize}
 
