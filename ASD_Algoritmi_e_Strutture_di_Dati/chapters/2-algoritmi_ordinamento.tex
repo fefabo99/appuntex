@@ -513,5 +513,57 @@ Se sono palesi le approssimazioni possiamo anche non esplicitare cosa abbiamo fa
 saltiamo molti passaggi o facciamo approssimazioni non palesi dobbiamo esplicitare cosa abbiamo fatto scrivendo
 due righe.
 \section{Esercizio - Verifica se la matrice data è simmmetrica}
-%\begin{lstlisting}[language=Java]
-
+\begin{lstlisting}[language=Java] 
+    boolean Sim(M[][])
+        i=2, simmetrica=TRUE;
+        while i <= length(M) AND simmetrica==TRUE
+            j=1
+            while j<1 AND simmetrica
+                if M[i,j] != M[j,i]
+                    simmetrica = FALSE;
+                j++;
+            i++;
+        return(simmetrica);
+\end{lstlisting}
+\paragraph*{Tempo esecuzione}
+\begin{equation}
+    t(n) = 3c + 3ctw_1 + 3ctw_2 + ct_{if}
+\end{equation}
+Sicuramente sarà il ciclo più interno a pesare di più, dato che 
+\paragraph*{Caso peggiore}
+Devo verificare qual è il ciclo peggiore, sicuramente è quello interno,
+dato che se viene eseguito tante volte verrà rieseguito n volte in base a quante volte
+eseguirò il primo while, il caso peggiore è quando la matrice è simmetrica.
+\begin{equation}
+    t_if = 0 \qquad M[i,j] = M[j,i] \quad \forall_{i,j} \dots
+\end{equation}
+M è simmetrica.\\
+\paragraph*{N esecuzioni While}
+\begin{align}
+    tw_1 = n-1\\
+    tw_{2,i} = \sum_{j=1}^{n-1} i = \frac{(n-1)n}{2}
+\end{align}
+Ricordiamoci che il caso peggiore dipende sempre dal numero di istruzioni eseguite, è slegato da
+cosa deve fare l'algoritmo.
+\begin{align}
+    T_p(n) = 3c + 3c(n-1) +3c \frac{(n-1)n}{2}+0=\\
+    \approx 3c + 3cn +3cn^2 + 0 = O(n^2)
+\end{align}
+\paragraph*{Caso migliore}
+Quando entro 1 volta sono nei while e quando l'if è subito vero e setta simmetrica=false,
+il caso migliore quindi non è semplicemente quando la matrice non è simmetrica, ma è quando
+subito i primi due valori sono diversi, così mi accorgo subito che la matrice non è simmetrica.
+\begin{equation*}
+    t_m(n) = 3c+3c+3c+c = 10c = \Omega(1)
+\end{equation*}
+Notiamo che essendo Omega una costante, il caso migliore non dipende dalla dimensione
+dell'input, dato che è sempre il primo elemento che mi fa capire che la matrice non è simmetrica.
+\subsection{Come interrompo un ciclo?}
+Per interrompere un ciclo NON utilizzare break o return, ma utilizzare una variabile booleana come in
+questo caso.
+\paragraph*{Caso medio} Mediamente mi accoregerò a metà matrice che non è simmetrica, 
+per questo il caso medio è 
+\begin{equation*}
+    t_m \approx \frac{n^2}{4} = \Theta(n^2)
+\end{equation*}
+Dato che ho diviso per due il caso peggiore

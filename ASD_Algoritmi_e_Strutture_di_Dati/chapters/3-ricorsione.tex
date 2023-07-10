@@ -1,0 +1,30 @@
+\chapter{Ricorsione}
+La programmazione ricorsiva è strettamente legata all'induzione matematica, si basa
+sul fatto che per risolvere un problema mi riconduco a un problema non ancora risolto, 
+ma più semplice, fino ad arrivare a un caso base già risolto.\\
+I vantaggi della ricorsione sono due:
+\begin{itemize}
+    \item Più semplice rispetto agli algoritmi iterativi (solitamente)
+    \item La logica ricorsiva è più efficiente rispetto a quella iterativa
+\end{itemize}
+\section{Fattoriale}
+\subsection{Iterativo}
+\begin{lstlisting}[language=Java]
+    int Fatt(n)
+        Ris=1
+        For i=n downto 1
+            Ris=Ris*i;
+        return Ris;
+\end{lstlisting}
+\subsection{Ricorsivo}
+\begin{lstlisting}
+    int Fatt(int n)
+        if n==0
+            return(1);
+        else
+             Ris=(Fatt(n-1));
+             Tot = n*Ris;
+             return(Tot);
+\end{lstlisting}
+                  
+
