@@ -30,6 +30,64 @@ Si faccia riferimento a un problema di Massimizzazione ed, ove richiesto, ad un 
 \chapter{Domande di Teoria - Bibbia}
 
 
+\subsection{Programmazione Lineare e Metodo del Simplesso}
+
+\affermazionetrue
+{Un vertice ammissibile é una soluzione ammissibile che non giace lungo un segmento che connette altre due soluzioni ammissibili.}
+{Dalla definizione}
+
+\affermazionetrue
+{Dato un vertice (soluzione) ammissibile, se non esiste uno spigolo, incidente in esso, cui compete un tasso positivo di miglioramento, allora la soluzione corrente é ottimale.}
+{Il TEST DI OTTIMALITÀ consiste nel verificare se
+esiste uno spigolo con tasso positivo di
+miglioramento. Se tale condizione non è
+soddisfatta allora la soluzione corrente è
+ottimale.}
+
+\affermazionefalse
+{In ogni problema di PL con $n$ variabili di decisione e $m$ vincoli, ogni vertice ammissibile giace all'intersezione di n+m frontiere di altrettanti vincoli.}
+{In ogni problema di programmazione lineare con $n$
+variabili di decisione, ogni vertice ammissibile giace
+all'intersezione di $n$ frontiere di altrettanti vincoli, }
+
+\affermazionetrue
+{Una soluzione che giace lungo un segmento che collega due altre soluzioni ammissibili non é un vertice ammissibile.}
+{Dalla definizione}
+
+\affermazionetrue
+{I valori delle variabili di base si ricavano risolvendo il sistema di equazioni lineari determinato dai vincoli funzionali in forma aumentata.}
+{Avendo il valore 0 delle variabili non in base si può risovlere il sistema di equazioni lineari per trovare il valore delle variabili in base.}
+
+\affermazionefalse
+{Una variabile nulla é certamente una variabile di base.}
+{Una variabile nulla può essere sia in base, che fuori base. Una variabile fuori base è sicuramente nulla,
+ma se una variabile è nulla può anche essere in base}
+
+\affermazionetrue
+{il numero delle variabili di base é sempre determinato dal numero di vincoli funzionali.}
+{Proprietá numero (2) delle soluzioni di base.}
+
+\affermazionetrue
+{Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.}
+{Prporietá numero (5) delle soluzioni di base.}
+
+
+\subsection{Dualità}
+\paragraph{Si consideri un problema primale in forma di massimo. Se il duale é inammissibile, allora}:
+
+\affermazionefalse
+{Il primale é sempre illimitato come corollario del teorema della dualitá Debole}
+{Il primale potrebbe anche non avere soluzioni ammissibili.}
+
+\affermazionefalse
+{Il primale ha almeno una soluzione ottima}
+{Se il duale é inammissibile, allora il primale o non ha soluzioni, oppure ha funzione obiettivo illimitata, quindi il primale non ha ottimo.}
+
+\affermazione
+{Valgono le condizioni degli scarti complementari.}
+
+\subsection{Analisi di sensitività}
+
 \affermazionetrue
 {L'analisi di sensitivitá ha l'obiettivo di identificare i Parametri Sensibili.}
 {Uno degli obiettivi principali dell'analisi di sensitività è l'identificazione dei PARAMETRI SENSIBILI, vale
@@ -51,53 +109,6 @@ della corrispondente variabile slack nella riga zero del tableau finale.}
 \affermazione
 {Un termine noto é un parametro sensibile se il corrispondente prezzo ombra é positivo.}
 
-\paragraph{PL - Metodo del Simplesso}
-
-\affermazionetrue
-{I valori delle variabili di base si ricavano risolvendo il sistema di equazioni lineari determinato dai vincoli funzionali in forma aumentata.}
-{Avendo il valore 0 delle variabili non in base si può risovlere il sistema di equazioni lineari per trovare il valore delle variabili in base.}
-
-\affermazionefalse
-{Una variabile nulla é certamente una variabile di base.}
-{Una variabile nulla può essere sia in base, che fuori base. Una variabile fuori base è sicuramente nulla,
-ma se una variabile è nulla può anche essere in base}
-
-\affermazionetrue
-{il numero delle variabili di base é sempre determinato dal numero di vincoli funzionali.}
-{Proprietá numero (2) delle soluzioni di base.}
-
-\affermazionetrue
-{Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.}
-{Prporietá numero (5) delle soluzioni di base.}
-
-\paragraph{Si consideri un problema primale in forma di massimo. Se il duale é inammissibile, allora}:
-
-\affermazione
-{Il primale é sempre illimitato come corollario del teorema della dualitá Debole}
-
-\affermazionefalse
-{Il primale ha almeno una soluzione ottima}
-{Se il duale é inammissibile, allora il primale o non ha soluzioni, oppure ha funzione obiettivo illimitata, quindi il primale non ha ottimo.}
-
-\affermazione
-{Valgono le condizioni degli scarti complementari.}
-
-\subsection{PL}
-\affermazione
-{Un vertice ammissibile é una soluzione ammissibile che non giace lungo un segmento che connette altre due soluzioni ammissibili.}
-{}
-
-\affermazione
-{Dato un vertice (soluzione) ammissibile, se non esiste uno spigolo, incidente in esso, cui compete un tasso positivo di miglioramento, allora la soluzione corrente é ottimale.}
-{}
-
-\affermazione
-{In ogni problema di PL con n variabili di decisione e m vincoli, ogni vertice ammissibile giace all'intersezione di n+m frontiere di altrettanti vincoli.}
-{}
-
-\affermazionetrue
-{Una soluzione che giace lungo un segmento che collega due altre soluzioni ammissibili non é un vertice ammissibile.}
-{}
 
 \subsection{KKT}
 \affermazionetrue

@@ -87,8 +87,8 @@ All'iterazione finale, il metodo del simplesso identifica simultaneamente una so
 ottimale complementare $y^*$ per il problema duale, dove:
 \[cx^*=by^*\]
 Le componenti $y_i^*$ sono i prezzi ombra del problema Primale
-\subsection{Le Condizioni degli Scarti Coomplementari}
-Le condizioni degli scarti complementari dicono:
+\subsection{Le Condizioni degli Scarti Complementari}
+Le condizioni degli scarti complementari sono così definiti:
 \[
     (c^T - \lambda^T A) \cdot x = 0
 \]
@@ -99,6 +99,29 @@ Ovvero:
 \begin{itemize}
     \item Se la variabile $x_i$ del primale é $\neq 0$, allora il vincolo del duale a essa associato deve essere attivo, ovvero verificarsi all'uguaglianza.
     \item Viceversa, se l'$i$-esimo vincolo del Duale \emph{non} é attivo, allora $x_i = 0$
+\end{itemize}
+
+\paragraph{Un utilizzo pratico}
+Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima}, posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.\\
+Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima, anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
+
+\paragraph{Come funziona}
+Se ho una soluzione del primale, controllo che sia ottima e trovo la corrispondente soluzione ottima del duale:
+
+\begin{enumerate}
+    \item Controllo che la soluzione in esame sia \textbf{ammissibile per il primale}
+    \item applico le \textbf{condizioni degli scarti complementari}:
+    \begin{itemize}
+        \item Se una variabile della soluzione è \emph{diversa da 0}, allora il corrispondente vincolo del duale attivo.
+        \item Se un vincolo del primale NON è attivo, allora la corrispondente variabile del duale è uguale a zero.
+    \end{itemize}
+    \item Pongo a sistema le equazioni che ho trovato, se il risultato è \textbf{ammissibile per il duale}, allora esso è l'ottimo del duale e il risultato in esame è l'ottimo del primale.
+\end{enumerate}
+\paragraph{I vincoli attivi} Un vincolo è attivo per una soluzione se applicando i valori delle variabili esso risulta \emph{rispettato all'uguaglianza}.
+\\Per esempio, se ho una soluzione $(3,0,2)$, i vincoli:
+\begin{itemize}
+    \item $x_1 + 2x_2 +3x_3 \leq 9$ è attivo: $9 \leq 9$
+    \item $x_1 + 2x_2 +x_3 \leq 7 $ NON è attivo: $ 7 \leq 9$
 \end{itemize}
 
 \subsection{Teorema della dualità}
@@ -127,31 +150,6 @@ Se un problema ha:
     \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
 \end{itemize}
 
-
-
-
-\section{Le condizioni degli Scarti Complementari}
-Se ho una soluzione del problema primale e voglio controllare se essa è \textbf{ottima}, posso farlo senza risolvere il problema usando le \emph{Condizioni degli Scarti Complementari}.\\
-Le condizioni degli scarti complementari mi permettono, oltre che a controllare se la soluzione del primale in esame sia ottima, anche a \textbf{trovare la soluzione del duale} senza dover usare il metodo del simplesso su di esso.
-
-\subsection{Come funziona}
-Se ho una soluzione del primale, controllo che sia ottima e trovo la corrispondente soluzione ottima del duale:
-
-\begin{enumerate}
-    \item Controllo che la soluzione in esame sia \textbf{ammissibile per il primale}
-    \item applico le \textbf{condizioni degli scarti complementari}:
-    \begin{itemize}
-        \item Se una variabile della soluzione è \emph{diversa da 0}, allora il corrispondente vincolo del duale attivo.
-        \item Se un vincolo del primale è attivo, allora la corrispondente variabile del duale è uguale a zero.
-    \end{itemize}
-    \item Pongo a sistema le equazioni che ho trovato, se il risultato è \textbf{ammissibile per il duale}, allora esso è l'ottimo del duale e il risultato in esame è l'ottimo del primale.
-\end{enumerate}
-\paragraph{I vincoli attivi} Un vincolo è attivo per una soluzione se applicando i valori delle variabili esso risulta \emph{rispettato all'uguaglianza}.
-\\Per esempio, se ho una soluzione $(3,0,2)$, i vincoli:
-\begin{itemize}
-    \item $x_1 + 2x_2 +3x_3 \leq 9$ è attivo: $9 \leq 9$
-    \item $x_1 + 2x_2 +x_3 \leq 7 $ NON è attivo: $ 7 \leq 9$
-\end{itemize}
 
 \section{Analisi di Sensitivitá}
 É importante condurre una analisi di sensitività per investiagre l'effetto sulal soluzione ottimale
