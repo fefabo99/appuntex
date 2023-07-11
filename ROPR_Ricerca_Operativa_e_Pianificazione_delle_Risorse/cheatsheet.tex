@@ -129,31 +129,31 @@ Adesso faccio entrare in base (nello stesso modo di prima) le variabili che devo
 \subsection{Passare da Primale a Duale}
 
 
-\begin{tabularx}{0.7\textwidth}{|X|c|c|}
+\begin{tabular}{|l|c|c|c|}
 	\hline
-    & \textbf{Primale} & \textbf{Duale}\\
+    & \textbf{Primale} & \textbf{Duale} & \textbf{Ritorno} \\
 	\hline
-    \textbf{Funzione Obiettivo} & max $c^T x$ & min $b^T \lambda$\\
+    \textbf{Funzione Obiettivo} & max $c^T x$ & min $b^T \lambda$ & max $c^T x$ \\
     \hline
-	\textbf{Vincoli} & $Ax \leq b$ & $A^T\lambda \geq c$\\
-    \hline
-	\textbf{Non Negativitá} & $x\geq 0$ & $\lambda \geq 0$\\
+	%\textbf{Vincoli} & $ax \leq b$ & $a^T\lambda \geq c$ &\\
+    %\hline
+	%\textbf{Non Negativitá} & $x\geq 0$ & $\lambda \geq 0$ &\\
+	%\hline
+    \multirow{3}{*}{Vincoli $\implies$ Non Negativitá}
+    &$x_i^Ta \leq c$ & $\lambda_i \geq 0$& $x_i^Ta \leq c$\\
+	\cline{2-4}
+    &$x_i^Ta \geq c$  & $\lambda_i \leq 0$&  $x_i^Ta \geq c$ \\
+	\cline{2-4}
+    &$x_i^Ta = c$ & $\lambda_i$ Free&  $x_i^Ta = c$\\
 	\hline
-    \multirow{3}{*}{\textbf{Vincoli del primale}}
-    &$\leq$ & $\lambda_i \geq 0$\\
-	\cline{2-3}
-    &$\geq$ & $\lambda_i \leq 0$\\
-	\cline{2-3}
-    &$=$ & $\lambda_i$ Free\\
+    \multirow{3}{*}{Non Negatività $\implies$ Vincoli}
+    &$x_j \geq 0 $ & $\lambda^T_ja \geq c$& $x_j \geq 0 $\\
+	\cline{2-4}
+    &$x_j \leq 0 $ & $\lambda^T_ja \leq c$& $x_j \leq 0 $\\
+	\cline{2-4}
+    &$x_j$ Free & $\lambda^T_ja = c$& $x_j$ Free\\
 	\hline
-    \multirow{3}{*}{\textbf{Non Negativitá}}
-    &$x_j \geq 0 $ & $IIR_j \geq c$\\
-	\cline{2-3}
-    &$x_j \leq 0 $ & $IIR_j \leq c$\\
-	\cline{2-3}
-    &$x_j$ Free & $IIR_j = c$\\
-	\hline
-\end{tabularx}
+\end{tabular}
 
 \paragraph{Metodo con le matrici}
 Un trucco per generare rapidamente il duale é utlizzare le matrici:\\
@@ -162,7 +162,21 @@ Avendo il seguente problema di PL:\\
 si riconoscono opportunamente gli elementi che compongono il duale:\\
 \includegraphics[width=0.8\textwidth]{dualita-cheatsheet-1.jpeg}\\
 Che come problema duale generano: \\
-\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-2.jpeg}   
+\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-2.jpeg}
+
+
+\section{Gli Scarti Complementari}
+Se abbiamo una soluzione ammissibile per il primale possiamo verificarne l'ottimalità tramite le condizioni degli scarti complementari:
+Quindi, data $x^*$:
+\begin{tabular}{|c|c|}                                                            
+\hline
+$x_i^* \neq 0$ & i-esimo (corrispondente) vincolo del duale attivo. \\
+\hline
+i-esimo vincolo del primale NON attivo & $\lambda_i = 0$\\
+\hline
+\end{tabular}
+Pongo quindi a sistema le equazioni trovate per trovare la soluzione corrispondente del Duale.
+Se i valori delle funzioni obiettivo sono uguali, allora le due soluzioni sono entrambe ottime.
 	
 \chapter{Ottimizzazione Non Lineare}
 \section{Algoritmo del Gradiente}
