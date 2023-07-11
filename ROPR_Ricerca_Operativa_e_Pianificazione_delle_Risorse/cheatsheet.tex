@@ -181,24 +181,48 @@ Se i valori delle funzioni obiettivo sono uguali, allora le due soluzioni sono e
 \chapter{Ottimizzazione Non Lineare}
 \section{Algoritmo del Gradiente}
 Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metodo del gradiente si effettua in questo modo:
+
 \begin{enumerate}
-	\item Calcolo $\nabla f(x^k)$, con la direzione di crescita $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
+	\item Calcolo $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
 	\item Calcolo $x^{k+1} = x^k \pm \alpha^k \cdot d^k$
-	\item In cui $\alpha^k$ é il max di $f(x^k \pm \alpha^k \cdot d^k)$. ovvero
-	      Valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$).
+	\item Calcolo $\alpha^k$ come \emph{Max} $f(x^k \pm \alpha^k \cdot d^k)$.
+			\\\small{ovvero valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$)}
 	\item Sostituisco $\alpha$ trovato in $x^{k+1}$.
-	\item Valuto i criteri di arresto (Con epsilon o con un numero predefinito di iterazioni, e nel caso ripeto)
+	\item Valuto i criteri di arresto
 \end{enumerate}
 Per verificare che il punto trovato sia un punto di ottimo, semplicemente controllo che $\nabla f(x^*) = 0$.
+\begin{center}
+	\begin{tabular}{|l|c|c|}
+		\hline
+		Nuovo punto & $x^{k+1}$ & $ x^k \pm \alpha^k \cdot d^k$\\
+		\hline
+		Direzione di Crescita & $d^k$ & $\pm \nabla f(x^k)$ ($+$ max e $-$ min)\\
+		\hline
+		Step Size & $\alpha^k$ & max $f(x^k \pm \alpha^k \cdot d^k)$\\
+		\hline
+	\end{tabular}
+\end{center}
+
 \pagebreak
 
-\section{Algoritmo di Newton}
+\section{Algoritmo di Newton (Multivariato)}
 Data una funzione a piú variabili $f(X)$ e un punto $x^0$, una iterazione del metodo di Newton si effettua in questo modo:
 \begin{enumerate}
 	\item Calcolo $\nabla f(x^k)$ e $H(x^k)$.
-	\item Calcolo il vettore spostamento, ponendo: $H_f(x^0) V = - \nabla f(x^0)$ e risolvendo il sistema di equazioni.
+	\item Calcolo $V$ Vettore Spostamento: $H_f(x^k) V = - \nabla f(x^k)$
+		\\ \small{è un sistema di equazioni, risolvo per $v_1,...,v_n$}
 	\item trovo $x^{k+1} = x^k + V$, in cui $V$ é il vettore spostamento.
 \end{enumerate}
+
+\begin{center}
+	\begin{tabular}{|l|c|c|}
+		\hline
+		Vettore Spostamento &$V$& $H_f(x^k) V = - \nabla f(x^k)$\\
+		\hline
+		Nuovo punto & $x^{k+1}$ & $ x^k + V $\\
+		\hline
+	\end{tabular}
+\end{center}
 
 
 \chapter{Ottimizzazione Non Lineare Vincolata}
