@@ -250,5 +250,39 @@ importante, perchè \textbf{un Divide et Impera lo riconosco dal fatto che l'inp
 con un deminatore strettamente maggiore di 1!}, mentre A può anche essere 1, ci sono dei casi limite
 dove il sottoproblema è 1 solo (nel merge sono 2), l'importante per essere divide et impera è che la parte
 che consideriamo nella chiamata ricorsiva non è n - qualcosa, ma è $\frac{n}{\text{qualcosa}}$, qualcosa
-maggiore di 1.
+maggiore di 1.\\
+La parte $\frac{n}{b}$ può essere solitamente approssimata, per esempio nella Merge Sort se è pari
+ho la metà esatta, se è dispari invece approssimo dato che la divisione qua mi sembra intera, ma in alcuni casi (non comuni),
+non è così, devo verificare se il cambio del comportamento nelle due casistiche (per esempio pari e dispari) non mi cambi
+radicalmente il problema.\\
+\section{Metodi per calcolo tempo in algoritmi ricorsivi}
+Vedremo i 3 sopra citati
+\subsection{Metodo iterativo o dell'albero di ricorsione}
+Prende in input un'equazione di ricorrenza e iterativamente cerca di ricondursi al caso base.
+\paragraph*{Esempio}
+\begin{equation*}
+    T(n)=
+    \begin{cases}
+        6 \qquad n=1 \\
+        8 + T(n-1) \qquad n>1
+    \end{cases}
+\end{equation*}
+\begin{align*}
+    T(n)=8+T(n-1)=8+[8+T(n-2)=2*8+T(n-2)]\\
+    =2*8+[8+T(n-3)]=3*8+T(n-3)=3*8+[8+T(n-4)]=\\
+    4*8+T(n-4)
+\end{align*}
+Genericamente a un passo k avrò:
+\begin{equation*}
+    k_n = k*8+T(n-k)
+\end{equation*}
+Se scelgo $k=n-1$ ottengo:
+\begin{align*}
+    (n-1)8+T(n+(n-1))=(n-1)*8+T(1)=(n-1)*8+6=\Theta(n)
+\end{align*}
+Genericamente il tempo di esecuzione sarà questo (tempo medio), potrebbe
+essere che il caso peggiore o migliore cambiano l'equazioni di ricorrenza.
+\subsection*{Altro esempio}
+Anche in questo caso link per la spiegazione scritta a mano: 
+Ecco il PDF \href{https://drive.google.com/file/d/1X2pnz8e_e90ANsCgoa3XvzzbBoAKjfts/view?usp=sharing}{Link al PDF}.
 
