@@ -86,4 +86,98 @@ sarebbe come avere h=1 fisso e k=k-1, quindi h non lo considero.\\
 Le varie chiamate ricorsive mi portano a scorrere tutti i valori e quando mi riconduco al caso base, 
 la risoluzione di tutte le chiamate aperte mi porta a controllare mano a mano tutti gli indici dell'array
 restituendo mano a mano il contatore incrementato o meno a in base al fatto che ci sia z o meno.
-        
+
+\section{Divide et Impera}
+Si tratta di un approccio di tipo ricorsivo che consiste in 3 fasi:
+\begin{itemize}
+    \item Problema P è diviso in due o più sottoproblemi - DIVIDE
+    \item Ogni sottoproblema è risolto ricorsivamente - IMPERA
+    \item Le soluzioni ai sottoproblemi sono riunite a formare la soluzione completa - COMBINA
+\end{itemize}
+\subsection{Ordinamento tramite Divide et Impera - Merge Sort}
+Problema P, ordina un vettore A di n elementi (usando Divide et Impera):
+\begin{itemize}
+    \item Divide - Divido in 2 parti l'array da ordinare, ogni parto con $\frac{n}{2}$
+    elementi, approssimando verso il basso nel caso il valore non fosse intero (n dispari)
+    \item Impera - Ordina la prima metà, poi ordina la seconda metà
+    \item Combina - Fonde (MERGE) in modo ordinato le due metà ordinate
+\end{itemize}
+\textbf{Merge sort è un algoritmo di ordinamento STABILE}.
+\paragraph*{Definizione di algoritmo di ordinamento STABILE}
+Un algoritmo di ordinamento si dice stabile se elementi di uguale valore al termine dell'ordinamento 
+mantengono tra di loro l'ordine che avevano inizialmente.\\
+Quindi se ho per esempio [1, 5, 3, 2a, 7, 0, 2b], una volta ordinato
+avrò [0, 1, 2a, 2b, 3, 5, 7], i 2 anche se identici hanno preservato il loro ordina iniziale, quindi
+2a si trova ancora prima di 2b.\\
+Non è necessario che un algoritmo di ordinamento sia stabile per poter funzionare, ma questa 
+caratteristica può essere utile per determinati utilizzi (strutture dati).
+\subsection{Esecuzione ordinamento}
+Dato che è necessario disegnare e usare diversi colori la spiegazione viene
+riportata scritta a mano, qui di seguito il link per la visualizzazione.
+\paragraph*{Note importanti} Nel libro sembra che l'esecuzione dei sottopassi sia effettata in maniera
+parallela, NON è così, viene ordinata prima la prima metà, poi le sotto metà della prima, fino ad arrivare ai casi base,
+poi si torna indietro a ritroso, non si ordinano parallelamente tutti i sotto array.\\
+Nella spiegazione infatti gli ordinamenti sono stati messi a livelli di altezza diversi per sottolineare
+questo aspetto.\\
+Ecco il PDF \href{https://drive.google.com/file/d/1Ne8wRM-v0vQZlO_I1bBfiiJK-7Co7vqX/view?usp=sharing}{Link al PDF}.
+\subsection{Implementazione codice}
+\begin{lstlisting}
+void MergeSort (A[], int pin, int pfin)
+    if pin < pfin
+        m = (pin + pfin) DIV 2 //DIVIDE
+        //divisione intera approssima verso il basso
+        MergeSort(A[], pin, m) //IMPERA
+        MergeSort(A[], n+1, pfin) //IMPERA
+        Merge(A[], pin, m, pfin) //COMBINA
+
+B[] //Array di appoggio per Merge
+
+void Merge(A[],In, meta, fin2)
+    I1=In
+    I2=meta+1
+    Ib=In
+    while I1 <= meta AND I2 <= fine
+        if A[I1]<=A[I2] //Maggiore uguale rende Merge stabile
+            B[Ib] = A[I1]
+            IB++
+            I1++
+        else
+            B[Ib] = A[I2]
+            IB++
+            I2++
+    while I1 <= meta
+        B[Ib] = A[I1]
+        Ib++
+        I1++
+    while I2 <= fine
+        B[Ib] = A[I2]
+        Ib++
+        I2++
+    Ib=In
+    while Ib <= fine //ricopio l'array ordinato nell'array iniziale
+        A[Ib]=B[Ib]
+        Ib++
+\end{lstlisting}
+\begin{itemize}
+    \item pin e pfin sono rispettivamente l'indice iniziale e finale dell'array che sto analizzano
+    (serve per dividere l'array per la divide)
+    \item Li sommo e divido per 2 (divisione intera) per dividere l'Array e poi do in input la pin e la metà
+    a una chiamata ricorsiva di MergeSort - DIVIDE
+    \item Chiamo una funzione Merge (diversa da MergeSort) che ordina i sottoarray
+\end{itemize}
+\paragraph*{Merge}
+\begin{itemize}
+    \item Qua è come se inserisci indice inizio1, fine1, inizio2, fine2, ma dato che fine1 è la
+     metà dell'array, e inizio2 e m+1, passo solo meta come parametro, ma il ragionamento in realtà è quello di passare
+     gli indici di 2 array
+    \item if A[I1] $\leq$ A[I2] rende Merge stabile perchè se sono uguali scelgo di ordinare prima A[I1] quindi l'elemento
+    di sinistra, questo mantiene i due elementi com'erano ordinati inizialmente
+    \item Dopo il primo while aggiungo 2 while perchè potrebbe essere che la prima parte è ordinata e ho finito gli
+    elementi, ma nella seconda ci siano ancora elementi, servono quindi a continuare a copiare gli elementi rimasti
+    in una delle due parti quando l'altra parte è già stata ordinata. Chiaramente verrà eseguito uno dei due while, mai tutti
+    e due.
+    \item Ultimo while serve a ricopiare tutto nell'array iniziale A (copia B in A)
+\end{itemize}
+\paragraph*{Osservazione, perchè uso B e non lavoro direttamente su A?} Si può fare un MergeSort che non usa array
+di appoggio, ma è molto più complicato da implementare perchè durante l'ordinamento del Merge mi cambierebbe
+l'ordine degli elementi nell'array dato che li sto ordinando, e questa complicazione è difficile da gestire.
