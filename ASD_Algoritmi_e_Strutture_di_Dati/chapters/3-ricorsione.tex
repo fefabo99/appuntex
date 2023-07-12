@@ -167,9 +167,9 @@ void Merge(A[],In, meta, fin2)
 \end{itemize}
 \paragraph*{Merge}
 \begin{itemize}
-    \item Qua è come se inserisci indice inizio1, fine1, inizio2, fine2, ma dato che fine1 è la
+    \item Qua è come inserire indice inizio1, fine1, inizio2, fine2, ma dato che fine1 è la
      metà dell'array, e inizio2 e m+1, passo solo meta come parametro, ma il ragionamento in realtà è quello di passare
-     gli indici di 2 array
+     gli indici di inizio e fine di 2 array
     \item if A[I1] $\leq$ A[I2] rende Merge stabile perchè se sono uguali scelgo di ordinare prima A[I1] quindi l'elemento
     di sinistra, questo mantiene i due elementi com'erano ordinati inizialmente
     \item Dopo il primo while aggiungo 2 while perchè potrebbe essere che la prima parte è ordinata e ho finito gli
@@ -177,7 +177,78 @@ void Merge(A[],In, meta, fin2)
     in una delle due parti quando l'altra parte è già stata ordinata. Chiaramente verrà eseguito uno dei due while, mai tutti
     e due.
     \item Ultimo while serve a ricopiare tutto nell'array iniziale A (copia B in A)
+    \item Quest'ultimo ciclo while in realtà è un for perchè la dimensione dell'array da copiare è fissa, so già
+    quante istruzioni devo eseguire
 \end{itemize}
 \paragraph*{Osservazione, perchè uso B e non lavoro direttamente su A?} Si può fare un MergeSort che non usa array
 di appoggio, ma è molto più complicato da implementare perchè durante l'ordinamento del Merge mi cambierebbe
 l'ordine degli elementi nell'array dato che li sto ordinando, e questa complicazione è difficile da gestire.
+\subsection{Calcolo tempo Merge Sort}
+In $\longleftrightarrow$ Fin = n\\
+cioè la quantità di elementi compresi tra In e Fin nell'array
+\paragraph*{Funzione Merge} In questa funzione ho 4 while
+\begin{itemize}
+    \item W1 Confronta i 2 array
+    \item W2 Ricopia i restanti della prima parte
+    \item W3 Ricopia i restanti della seconda parte
+    \item W4 - Ultimo ciclo while è in realtà un for che viene eseguito n volte
+\end{itemize}
+W1 confronta i 2 elementi, W2 e W3 non vengono mai eseguiti insieme, o eseguo l'uno o l'altro.\\
+Se conto quante volte itero il primo e quante il secondo e terzo ottengo n perchè se per
+esempio ho 100 elementi e nel primo while ricopio 80 elementi in B dai confronti e me ne restano 20 
+nella seconda parte, i restanti 20 elementi saranno copiati nel terzo while. In pratica W1+W2+W3 è uguale
+a n iterazioni.\\
+Il tempo della MERGE ci verrà quindi $\Theta(n)$, che è stato possibile calcolare senza troppi sforzi
+perchè è comunque una funzione iterativa, sapevamo già come fare.
+\paragraph*{Tempo MergeSort} Questa è una parte ricorsiva.\\
+Per prima cosa applichiamo un ragionamento che vale per tutti gli algoritmi divide et impera:
+\begin{center}
+    Il tempo di esecuzione di una Divide et Impera è dato da:
+    \begin{equation*}
+        D(n)+I(n)+C(n)
+    \end{equation*}
+    Quindi la somma delle 3 fasi (Divide Impera Combina)
+\end{center}
+Consideriamo anche che \textbf{le parti Divide e Combina sono iterative, mentre Impera è ricorsiva}.\\
+Nella merge sort:
+\begin{itemize}
+    \item Divide è calcola M (metà) $\Theta(1)=c$
+    \item Combina è MERGE $\Theta(n)$
+    \item Divide + Combina è asintoticamente $\Theta(n)$
+    \item Impera le chiamate ricorsive sono 2 e gli vengono dati $\frac{n}{2}$ elementi
+\end{itemize}
+\paragraph*{Equazione di ricorrenza della Merge Sort}
+\begin{equation*}
+    T(n)=
+    \begin{cases}
+        \Theta(1) \qquad n=1 \\
+        2T(\frac{n}{2}) + \Theta(n) \qquad n>1
+    \end{cases}
+\end{equation*}
+Si chiama equazione di ricorrenza perchè T(n) compare anche a destra dell'equazione, in questo caso
+in $2T(\frac{n}{2})$. Per calcolare i tempi di esecuzione di un algoritmo ricorsivo generico abbiamo
+bisogno di risolvere queste equazioni di ricorrenza dove la nostra incognita (nel nostro caso i tempi di calcolo) si trova
+sia a destra e che sinistra dell'uguale.
+\paragraph*{Come risolvere un'equazione di ricorrenza} Ci sono principalmente tre metodi:
+\begin{itemize}
+    \item Metodo iterativo - Itero l'applicazione della ricorrenza volta per volta l'incognita fino a quando arrivo a un caso base
+    \item Metodo per sostituzione - Ipotizzo quale possa essere la soluzione dell'equazione e poi verificarla
+    con una dimostrazione
+    \item Metodo principale o metodo dell'esperto - Funziona SOLO per i Divide et Impera, controlla se si
+    verificano determinate condizioni (3) e in base alle condizioni ci restituisce i tempi di esecuzione
+\end{itemize}
+\paragraph*{Equazione generica per tutti gli algoritmi Divide et Impera}
+\begin{equation*}
+    T(n)=
+    \begin{cases}
+        \Theta(1) \qquad \text{caso base}\\
+        aT(\frac{n}{b}) + D(n)+C(n)
+    \end{cases}
+\end{equation*}
+In generale negli algoritmi Divide et Impera $a \geq 1$ e $b > 1$, questa differenza è molto
+importante, perchè \textbf{un Divide et Impera lo riconosco dal fatto che l'input è diviso in una frazione
+con un deminatore strettamente maggiore di 1!}, mentre A può anche essere 1, ci sono dei casi limite
+dove il sottoproblema è 1 solo (nel merge sono 2), l'importante per essere divide et impera è che la parte
+che consideriamo nella chiamata ricorsiva non è n - qualcosa, ma è $\frac{n}{\text{qualcosa}}$, qualcosa
+maggiore di 1.
+
