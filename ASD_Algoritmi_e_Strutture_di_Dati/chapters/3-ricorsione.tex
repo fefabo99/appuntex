@@ -285,4 +285,93 @@ essere che il caso peggiore o migliore cambiano l'equazioni di ricorrenza.
 \subsection*{Altro esempio}
 Anche in questo caso link per la spiegazione scritta a mano: 
 Ecco il PDF \href{https://drive.google.com/file/d/1X2pnz8e_e90ANsCgoa3XvzzbBoAKjfts/view?usp=sharing}{Link al PDF}.
-
+\subsection{Metodo di sostituzione}
+Non molto utilizzato, consiste nell'ipotizzare un tempo di esecuzione e poi
+dimostrare per induzione che è quello.\\
+Non ci sarà all'esame, serve solo sapere che esiste.
+\subsection{Teorema dell'esperto o Metodo principale}
+Questo è molto utile, dato che è abbastanza semplice da usare, ma si può applicare
+solo a Divide et Impera, funziona nella maggior parte dei casi Divide et Impera, in alcuni
+però non funziona, dato che per applicarlo devo sapere qualche regola, che in alcuni casi non viene
+rispettata.
+\paragraph*{Equazione di ricorrenza Divide et Impera}
+\begin{itemize}
+    \item Parte iterativa - $D(n)+C(n)=F(n)$ Divide, Combina
+    \item Parte ricorsiva - $aT(\frac{n}{b})$ Impera
+\end{itemize}
+La parte più problematica è la parte ricorsiva, ma se noi scriviamo $n^{\log_b a}$ non abbiamo
+il tempo di esecuzione della parte ricorsiva, ma abbiamo un'idea approssimata. Dobbiamo confrontare
+la parte iterativa e ricorsiva e capire quale pesa di più (o se asintoticamente hanno lo stesso peso).
+\paragraph*{Caso 1 - Parte ricorsiva pesa di più} Se 
+\begin{equation*}
+    F(n)=O(n^{(\log_b a)-\epsilon}), \quad \exists \epsilon>0 \rightarrow T(n) = \Theta(n^{\log_b a})
+\end{equation*}
+Questo significa che se F(n) è limitato superiormente dal tempo di esecuzione della parte ricorsiva - $\epsilon$
+allora il tempo di esecuzione dell'algoritmo è quello della parte ricorsiva, devo trovare quindi almeno un 
+$\epsilon$ per cui si verifichi questa condizione.
+\paragraph*{Caso 2 - Parte ricorsiva e iterativa hanno lo stesso tempo}
+\begin{equation*}
+    F(n)=\Theta(n^{\log_b a}) \rightarrow T(n) = \Theta(n^{\log_b a}\log n)
+\end{equation*}
+Questo caso è quello in cui i tempi sono gli stessi, infatti nell'equazioni si equivalgono e non
+è presente nessuna $\epsilon$, in questo caso basterà semplicemente scrivere il tempo esecuzione è il tempo
+della parte ricorsiva moltiplicata per un fattore $\log n$, quindi il tempo è $n^{\log_b a}*\log n$.
+\paragraph*{Caso 3 - Parte iterativa pesa di più}
+\begin{equation*}
+    F(n) = \Omega(n^{(\log_b a)+\epsilon}) \quad \epsilon>0
+\end{equation*}
+In questo caso non basta che si verifichi questa condizione, ma devo anche verificare che:
+\begin{equation*}
+    \text{se} \quad aF(\frac{n}{b})\leq k*F(n) \qquad k<1
+\end{equation*}
+Se è verificata anche questa condizione allora posso dire che:
+\begin{equation*}
+    \rightarrow T(n)= \Theta(f(n))
+\end{equation*}
+\paragraph*{Osservazione} Dato che il teorema dell'esperto funziona solo con Divide et Impera, e questa
+tipologia di algoritmi come caso base hanno $\Theta(1)$, posso anche sottointendere il caso base e scrivere solo
+il caso generale.
+\subsection{Esempio applicazione teorema dell'esperto su MergeSort}
+Ricordiamo che l'equazione di ricorrenza di MergeSort è la seguente:
+\begin{equation*}
+    T(n)=
+    \begin{cases}
+        \Theta(1) \qquad n=1 \\
+        2T(\frac{n}{2}) + \Theta(n) \qquad n>1
+    \end{cases}
+\end{equation*}
+Quindi abbiamo che la per la parte ricorsiva $n^{\log_b a}$
+\begin{itemize}
+    \item a = 2 cioè il numero di sottoproblemi in cui viene diviso il problema
+    \item b = 2 cioè per quanto viene diviso l'input ($\frac{n}{2}$)
+\end{itemize}
+Quindi sostituendo abbiamo che:
+\begin{equation*}
+    n^{\log_b a} = n^{\log_2 2} = n^1 = n
+\end{equation*}
+E abbiamo che la parte iterativa è $F(n) = \Theta(n)$, quindi la parte ricorsiva e
+iterativa hanno lo stesso tempo di esecuzione, ci troviamo nel Caso 2, quindi abbiamo che:
+\begin{equation*}
+    T(n) = \Theta(n^{\log_b a}*n) = \Theta(n*\log n)
+\end{equation*}
+\subsection{Altro esempio}
+\begin{equation*}
+    T(n) = 9T(\frac{n}{3})+n
+\end{equation*}
+Come detto prima sott'intendo il caso base $\Theta(1)$\\
+Qua abbiamo che $a=9$ e $b=3$ e $F(n)=n$. La parte ricorsiva sarà:
+\begin{equation*}
+    n^{\log_b a} = n^{\log_3 9} = n^2
+\end{equation*}
+Abbiamo quindi che $F(n) = O(n^2)$ dato che la parte ricorsiva ha un tempo di
+esecuzione più grande quindi siamo nel caso 1, ma non basta dire questo, dobbiamo anche trovare
+un $\epsilon$ tale per cui:
+\begin{equation*}
+    F(n) = O(n^{2-\epsilon}) \qquad \epsilon>0 \qquad \text(es) \quad \epsilon = \frac{1}{2}
+\end{equation*}
+Notiamo che per quel valore di $\epsilon$ il tempo resta asintoticamente identico, per questo possiamo
+dire che il tempo di esecuzione è:
+\begin{equation*}
+    T(n)=\Theta(n^{\log_b a}) = \Theta(n^2)
+\end{equation*}
+Cioè il tempo di esecuzione è determinato dalla parte ricorsiva.
