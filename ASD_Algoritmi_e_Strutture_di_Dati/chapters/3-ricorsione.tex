@@ -387,7 +387,7 @@ Esercizi relativi a:
     \item Utilizzo del teorema dell'esperto per calcolare i tempi di esecuzione
     \item Simulazione esecuzione algoritmo di ordinamento (in questo caso MergeSort)
 \end{itemize}
-\section{Esercizi esame}
+\section{Esercizi esame (primo parziale o prima parte completo)}
 Tipologie di esercizi presenti all'esame:
 \begin{itemize}
     \item Simulare l'esecuzione di un algoritmo di ordinamento (uno fra Selection Sort, 
@@ -398,4 +398,179 @@ Tipologie di esercizi presenti all'esame:
     \item Calcolare il tempo di esecuzione di un algoritmo (iterativo o ricorsivo)
     \item Domanda di teoria
 \end{itemize}
-
+\section{Quick Sort}
+Algoritmo di ordinamento Divide et Impera mediamente più rapido di MergeSort, dato che i tempi sono
+i seguenti:
+\begin{align*}
+    \Theta(n\log n) \qquad \text{Caso medio}\\
+    \O(n^2) \qquad \text{Caso peggiore}
+\end{align*}
+Quick sort a differenza di merge sort, ha un caso peggiore, ed è un caso abbastanza lento dato 
+che è dell'ordine $n^2$. I tempi di esecuzione asintotici però nascondo delle costanti e le costanti
+di Quick sort sono più piccole di Merge sort, per questo è mediamente più veloce, oltretutto il caso peggiore
+è molto raro.\\
+Tendenzialmente il caso peggiore può essere un problema quando l'algoritmo ha come caso di peggiore
+un caso che si presenta spesso.\\
+Quick Sort si comporta molto male quando l'array è già ordinato o semi ordinato, però vedremo che c'è una tecnica
+per far sì che non ci sia un caso che lo metta in crisi, creando una versione randomizzata.
+\subsection{Differenze tra Merge Sort e Quick Sort}
+\paragraph*{Note positive di Quick Sort}
+\begin{itemize}
+    \item Mergesort è un algoritmo di ordinamento non in loco dato che sfrutta delle variabili di
+    appoggio che dipendono dalle dimensioni dell'input (quindi si occupa più spazio con input più grandi)
+    \item Quick sort è un algoritmo di ordinamento in loco dato che ha delle variabili di appoggio, ma sono costanti,
+    non dipendono dall'input (lo spazio occupato dalle variabili è sempre lo stesso), questo significa che
+    l'algoritmo occupa poca memoria
+\end{itemize}
+\paragraph*{Note negative di Quick Sort}
+\begin{itemize}
+    \item Il caso peggiore di Quick Sort è $n^2$, quindi peggiore di Merge, anche se vedremo che il caso peggiore è
+    raro, la presenza di esso mi permette di garantire un tempo di esecuzione maggiore, rispetto a Merge
+    \item Quick Sort non è stabile, quindi elementi con lo stesso valore possono avere un ordine di verso
+    rispetto a quello iniziale alla fine dell'esecuzione
+\end{itemize}
+\subsection{Logica Divide et Impera}
+Nel Quick sort c'è un ribaltamento della complessità delle parti dato che la divide è più
+complessa della combina.
+\paragraph*{Divide} L'array è diviso in 2 parti (non necessariemente uguali, possono essere due
+parti con una quantità di valori molto diversa fra loro).\\
+Per decidere come dividere l'array l'algoritmo prende un elemento come riferimento denominato
+PIVOT e considera i numeri a sinistra "Piccoli" e quelli a destra "Grandi".\\
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{img/quicksort_pivot.jpg}
+\end{center}
+Come Pivot scelgo il più semplice, che è il primo elemento, potrei anche scegliere un elemento non 
+dell'array, ma conviene prendere un numero dell'array perchè se prendo un Pivot troppo piccolo
+o grande rischio di ricadere nel caso peggiore. Se scelgo il primo elemento dell'array sono sicuro che
+quello almeno è un valore dell'array e se sono fortunato ho una buona idea dei valori che ci sono
+nell'array.\\
+Ordino a sinistra gli elementi uguali o più piccoli e a destra quelli uguali o più piccoli. NON viene
+specificato che quelli che erano a destra stanno a destra e viceversa, per questo motivo Quicksort non
+è stabile.\\
+Questa fase di Divide viene chiamata \textbf{PARTITION}.
+\paragraph*{Impera} Ricorsivamente ordina la prima parte e la seconda parte.
+\paragraph*{Combina} Non fa niente, perchè dovrebbe affianca la prima parte con la seconda, ma
+l'algoritmo è in loco, quindi è già tutto ordinato e nell'array.
+\paragraph*{Nota sulle edizioni del libro di testo}
+\begin{itemize}
+    \item La prima e seconda edizione del libro riportano Quicksort con il partizionamento di Hoare (che è
+    quello che faremo noi)
+    \item Dalla terza in poi viene riportata quella di Lomuto (non si sa perchè)
+\end{itemize}
+\subsection{Simulazione esecuzione}
+Anche in questo caso appunti a mano, 
+\href{https://drive.google.com/file/d/1en_l67ZHW-SypCBgg8bRPyY_YHawljrf/view?usp=sharing}{Quicksort}.
+\newpage
+\subsection{Implementazione}
+\begin{lstlisting}[language=Java]
+    QuickSort(A[], Inizio, Fine)
+        if Inizio < Fine
+            Q = Partition(A[],Inizio,Fine)
+            QuickSort(A[],Inizio,Q)
+            QuickSort(A[],Q+1,Fine)
+\end{lstlisting}
+La combina non c'è perchè a fine Impera mi risulta tutto ordinato, else non c'è perchè
+se Inizio non è più < Fine significa che non devo fare più nulla.
+\paragraph*{Implementazione Partition}
+\begin{lstlisting}[language=Java]
+    Partition(A[], I, F)
+        Pivot=A[I]
+        sx=I-1
+        dx=F+1
+        while sx < dx
+            do
+                sx++
+            while A[sx] < Pivot
+            do
+                dx--
+            while A[dx] > Pivot
+            if sx < dx // controllo per scambio valori
+                app = A[sx]
+                A[sx] = A[dx]
+                A[dx] = app
+        return(dx)
+\end{lstlisting}
+\paragraph*{Osservazioni}
+\begin{itemize}
+    \item sx e dx partono fuori perchè così ad ogni iterazione io li faccio spostare, così facendo
+    devo farli partire fuori perchè all'inizio dell'esecuzione così analizzeranno i primi valori, posso anche
+    far partire dal primo e ultimo valore, ma la gestione degli spostamenti in questo caso
+    risulterebbe più complessa
+    \item Fare fermare gli indici degli array quando si accavallano o trovano il Pivot previene che
+    che essi sforino i limiti dell'array
+\end{itemize}
+\subsection{Scelta del Pivot}
+Come Pivot posso fare qualsiasi scelta, tranne nel caso in cui scelgo l'ultimo
+valore e quello è il maggiore di tutti perchè in quel caso il taglio del vettore mi
+produrrebbe 2 parti costituire da, 1 parte tutto ciò che sta a sinistra del Pivot compreso
+il Pivot (in questo caso tutto il vettore), dall'altra parte un vettore vuoto, e questo causa
+un loop delle chiamate ricorsive perchè in realtà non stanno dividendo il vettore, continua a passare lo stesso
+vettore.\\
+\paragraph*{Soluzione} Se scelgo l'ultimo valore lo scambio con qualsiasi altro valore e lo tengo come Pivot, 
+così non c'è possibilità che generi un loop.
+\subsection{Tempi di esecuzione Partition}
+La partition fa scorrere gli indici fino a quando non si accavallano, se per
+esempio scorrono tutti senza mai bloccarsi fino a quado si incontrano a metà hanno fatto n iterazioni, se
+per esempio scambiano ogni volta fanno $\frac{n}{2}+\frac{n}{2}+\frac{n}{2}$ tutti e 3 i while, quindi
+alla fine fanno circa n.\\
+Possiamo dire quindi che
+\begin{equation*}
+    T_{\text{Part}}(n)=\Theta(n)
+\end{equation*}
+\subsection{Tempo di esecuzione Quicksort}
+\begin{equation*}
+    T_{QS}(n)
+    \begin{cases}
+        \Theta(1)\\
+        n+2T(Q)+T(n-Q)
+    \end{cases}
+\end{equation*}
+L'array non viene diviso in 2 metà uguali, possiamo affermare comunque che è b + 2 e quindi ho
+$T(\frac{n}{2})$? Dobbiamo verificarlo.\\
+Iniziamo dicendo che il tempo dipende dalla velocità di Partition n + la velocità di risoluzione di Quicksort in un array
+con Q elementi (prima parte) + la seconda parte che è $T(n-Q)$, solo che Q dipende dall'input.\\
+Prendiamo due casi estremi per controllare il tempo di esecuzione.
+\paragraph*{1 - Ipotiziamo che l'array viene sempre diviso bene a metà} Ipotesi poco realistica, ma che utilizziamo per
+verificare i tempi di esecuzione.\\
+Qui i tempi sono:
+\begin{equation*}
+    T_{QS}=2T(\frac{n}{2})+n = \Theta(n \log n)
+\end{equation*}
+Dato che è esattamente il tempo di MergeSort.
+\paragraph*{1 - Ipotizziamo che 1 elemento è da una parte e n-1 dall'altra} Cioè la divisione più sbilanciata.\\
+In questo caso il tempo è:
+\begin{equation*}
+    T_{QS}=T(1)+T(n-1)+n = 1+T(n-1)+n = T(n-1)+n
+\end{equation*}
+Risolvo T(n-1) scrivendo il suo albero.\\
+Avrò la seguente equazione:
+\begin{equation*}
+    n+n+(n-1)+(n-2)+(n-3)+\dots+(2)=n+(\sum_{i=1}^n i)-1=n-1+\frac{n(n-1)}{2}
+\end{equation*}
+In questo caso quindi è circa $n^2$, per determinare se è il caso peggiore dovrei
+fare uno studio di funzione sull'equazione di ricorrenza, però intuitivamente, quando viene effettuata la divisione
+sbilanciata? Quando l'array è ordinato! Perchè il primo valore, che sceglierò come Pivot, sarà il più piccolo di tutti e
+quindi avrò le 2 parti sbilanciate dato che un array avrà 1 valore solo, il Pivot che è il più piccolo, e l'altro array 
+contenente n-1 valori.\\
+Se A è ordinato o ordinato al contrario sono nel caso in cui il taglio è sempre sbilanciato e quindi il caso peggiore, quindi
+avrò un tempo tendente a $n^2$.\\
+Possiamo quindi dire che il tempo di esecuzione di Quick Sort è:
+\begin{equation*}
+    TQ_s(n)\leq CQ^2
+\end{equation*}
+Minore o uguale perchè nel caso peggiore è proprio $n^2$.
+\subsection{Come ridurre di molto la probabilità che si scelga un Pivot pessimo}
+Si randomizza la scelta del Pivot, così anche se viene dato un array ordinato o un array
+con tutti i valori più piccoli nella prima parte ad ogni esecuzione di Partizion (quindi
+ad ogni chiamata ricorsiva) il Pivot viene scelto il maniera casuale:
+\begin{lstlisting}[language=Java]
+    Partition
+        Pos=Random(I,F)
+        Scambio(A[I], A{Pos})
+\end{lstlisting}
+Aggiungendo questa parte a Partition non esisterà più un input specifico che mi mette
+in crisi l'esecuzione dell'algoritmo, dato che ad ogni passo viene scelto casualmente
+il Pivot, lo scambio avviene perchè se per caso Random seleziona l'ultima posizione e l'ultimo
+valore è il più grande di tutti si genera un loop, così facendo scambio il valore scelto con il
+primo ed elimino la possibilità che l'algoritmo possa andare in loop.\\
+Così facendo ho ridotto di molto la probabilità che si presenti il caso peggiore.
