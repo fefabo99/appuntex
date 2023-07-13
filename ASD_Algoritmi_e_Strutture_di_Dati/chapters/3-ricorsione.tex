@@ -573,4 +573,20 @@ in crisi l'esecuzione dell'algoritmo, dato che ad ogni passo viene scelto casual
 il Pivot, lo scambio avviene perchè se per caso Random seleziona l'ultima posizione e l'ultimo
 valore è il più grande di tutti si genera un loop, così facendo scambio il valore scelto con il
 primo ed elimino la possibilità che l'algoritmo possa andare in loop.\\
-Così facendo ho ridotto di molto la probabilità che si presenti il caso peggiore.
+Così facendo ho ridotto di molto la probabilità che si presenti il caso peggiore.\\
+Con varie dimostrazioni comunque notiamo che non basta che il taglio sia sbilanciato in
+alcuni tagli per aumentare così tanto il tempo, servirebbe che in ogni chiamata ricorsiva
+faccia male i tagli, ma l'algoritmo è randomizzato, ciò rende estremamente improbabile che
+questo accada. Mentre la versione non randomizzata risulta più sensibile agli input.\\
+
+\section{Esiste un algoritmo di ordinamento con tempo Theta n?}
+Gli algoritmi che possiamo fare sono infiniti, dobbiamo affermare in maniera molto
+pesante che un algoritmo non sia possibile da scrivere.\\
+Per quanto riguarda i confronti non è possibile scrivere un algoritmo di ordinamento
+con un tempo inferiore a $n \log n$. Gli algoritmi sui confronti si basano sul farsi una serie
+di domande (confronti) per capire qual è l'ordine, quante domande devo fare per capire 
+l'ordine? Se ho n numeri ho $n!$ possibili ordinamenti quindi devo farmi almeno 
+$2^k > n!$ domande per poter ordinare il numero, ma quanto vale questo k?\\
+Verrà dimostrato che non è possibile farsi meno di $n \log n$ domande utilizzando
+i confronti, quindi non è possibile fare meglio di Mergesort e Quicksort.
+%iniziare lezione 13%
