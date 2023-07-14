@@ -599,8 +599,9 @@ una caratteristica generale che vale per tutte le tipologie di algoritmi prese i
 considerazione, in questo caso considero il confronto.
 
 \section*{Counting sort}
-Counting sort è un algoritmo che non si basa sui confronti, infatti riesce ad avere un
-tempo di esecuzione $O(n)$, ma funziona se il range di valori da ordinare sia $1...k$.
+Counting sort è un algoritmo di ordinamento stabile 
+che non si basa sui confronti, infatti riesce ad avere un
+tempo di esecuzione $O(n)$, ma funziona se il range di valori da ordinare sia $1...k$
 con $k=O(n)$. Counting sort ha un tempo di esecuzione lineare solo se i numeri hanno delle
 specifiche caratteristiche, in caso contrario performa peggio di Quicksort e Mergesort.\\
 Per essere precisi ha un tempo di esecuzione $O(n+k)$, infatti se ho 1000 numeri da ordinare,
@@ -613,4 +614,83 @@ La posizione del numero dipende dal suo valore nel senso che se ho 100 valori e 
 circa metterlo all'inizio.\\
 Non si basa sui confronti, ma distribuisce i numeri all'interno dell'array.\\
 \paragraph*{Implementazione}
-Counting sort utilizza 3 array d'appoggio ed è composto da 3 fasi.\\
+Counting sort utilizza 3 array d'appoggio:
+\begin{itemize}
+    \item $A[1\dots n]$
+    \item $B[1\dots n]$
+    \item $C[1\dots k]$
+\end{itemize} 
+ed è composto da 3 fasi:
+\begin{enumerate}
+    \item Azzera C[] - $\Theta(k)$ 
+    \item Conto quante volte compare ogni elementi di A, memorizzandole in C - $\Theta(n)$
+    \item Somma in C gli elementi da sinistra verso destra da C[2] a C[n] - $\Theta(k)$
+    \item Scorri A dalla fine verso l'inizio e piazza in B i numeri sulla base dei valori in C - $\Theta(n)$
+\end{enumerate}
+In pratica l'algoritmo conta tutte le occorrenza dei numeri contenuti in A e salva il conteggio
+in C, poi somma da sinistra verso destra i vari indici, così facendo otterrà la posizione iniziale
+di ogni numero ordinato! Nella quarta fase inizierà a copiare i numeri da A nella posizione giusta
+in B (dalla fine verso l'inizio) e ogni volta che troverà un numero decrementerà il conteggio in C,
+così facendo poi quando troverà un'altra volta quel numero lo metterà a sinistra del numero
+precedentemente copiato, così facendo non ordino solo l'array, ma lo ordini stabilmente!\\
+\paragraph*{Tempo di esecuzione} Sommando le varie fasi ottengo che:
+\begin{equation*}
+    T_{CS}(n,k)=\Theta(n)+ \Theta(k)+ \Theta(n)+ \Theta(k)=\Theta(n)+\Theta(k)=\Theta(n+k)
+\end{equation*}
+\subsection{Implementazione codice}
+\begin{lstlisting}[language=Java]
+    CountingSort(A[], B[], C[], k)
+        for i=1 to k
+    2k      C[i]=0
+        for i=1 to length(A)
+    3n      Pos=A[i]
+            C[Pos]++
+        for i=2 to k
+    2k      C[i]=C[i]+C[i-1]
+        for i= length(A) downto 1
+    5n      p1=A[i]
+            p2=C[p1]
+            B[p2]=A[i]
+            C[p1]--
+\end{lstlisting}
+Notiamo nuovamente che il tempo è:
+\begin{equation*}
+    T_{CS}(n,k)=4k+8n = \Theta(n+k)
+\end{equation*}
+\paragraph*{Riassumendo Countingsort}
+\begin{itemize}
+    \item Risulta più veloce di Quicksort solo per specifici input
+    \item \'E stabile
+    \item Riordinamento non in loco
+    \item Dà quindi meno garanzie rispetto a Merge o Quick se non sappiamo che tipo di input stiamo trattando
+\end{itemize}
+
+\section{Radix sort}
+Radix ci serve per capire perchè ci servono gli algoritmi stabili.\\
+Se devo ordinare per più campi come posso fare?
+\paragraph*{Esempio}
+\begin{itemize}
+    \item Ordina per Cognome
+    \item Ordina poi i gruppi con lo stesso Cognome per nome
+    \item Ordina per età
+\end{itemize}
+Dovrei lanciare un algoritmo per ordinare tutto per cognome, poi per ogni
+sottogruppo dovrei lanciare ogni volta un algoritmo di ordinamento per ogni gruppo e sottogruppo,
+non c'è un modo più efficiente?\\
+Se partissi a ordinare dal gruppo meno importante (nell'esempio età) e poi procedo a ritroso?
+Funziona! Mi trovo tutto ordinato facendo molti meno passaggi, funziona però se mantengono
+ad ogni passaggio l'ordinamento effettuato nel passo precedente e questa è una caratteristica
+degli algoritmi \textbf{stabili}, quindi questa tecnica funziona solo se utilizzo un algoritmo stabile.
+\subsection{Implementazione}
+\begin{lstlisting}[language=Java]
+    Radix sort(AC[])
+        For r = Meno signficativo to significativo
+            sort_stabile(A[],R)
+\end{lstlisting}
+Si tratta più di una pseudo implementazione per capirci, inoltre la significatività può
+essere data in input o scelta secondo diversi criteri. Evidenziamo l'utilità degli algoritmi
+stabili.
+\paragraph*{Tempo esecuzione} Il tempo dipende principalmente dal tempo di esecuzione dell'algoritmo
+di ordinamento, se per esempio posso usare Counting allora il tempo sarà lineare, se invece non posso
+usarlo sceglierò Merge e quindi il tempo sarà $n \log n$. Posso scegliere qualsiasi algoritmo
+di ordinamento, basta che sia stabile. 
