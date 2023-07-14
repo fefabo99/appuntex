@@ -109,7 +109,13 @@ al next ha anche il previous che è l'indirizzo della casella precedente, così 
 spostarmi anche all'indietro. In questo modo la cancellazione è più semplice.
 \subsection{Liste circolari}
 Qua l'ultimo P.next non è null, ma punta il primo elemento della lista così che la lista non
-finisca mai, ma continui a girare.
+finisca mai, ma continui a girare e previous di head punta l'ultimo valore. Sia le liste
+semplici che doppie possono essere trasformate in circolari. I tipi di liste
+restano quindi sempre 2:
+\begin{itemize}
+    \item Semplice
+    \item Doppia
+\end{itemize}
 \section{Implementazione Operazioni Lista}
 \subsection{Search}
 \begin{lstlisting}[language=Java]
