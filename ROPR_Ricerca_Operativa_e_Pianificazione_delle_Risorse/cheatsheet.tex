@@ -19,6 +19,20 @@
 \maketitle
 
 \tableofcontents
+\chapter{Gli esercizi d'esame}
+Gli esercizi possibile all'esame sono:
+\begin{itemize}
+	\item Metodo del Simplesso e Due Fasi
+	\item Scarti Complementari
+	\item Analisi di Sensitività
+	\item Branch and Bound per PLI o PLB
+	\item Risoluzione Analitica di PNL Multivariato
+	\item Metodo del Gradiente
+	\item Algoritmo di Newton
+	\item Condizioni KKT
+\end{itemize}
+
+Oltre a varie possibili domande di teoria.
 
 \chapter{Programmazione Lineare}
 \section{Il metodo del Simplesso}
@@ -219,7 +233,7 @@ Data una funzione a piú variabili $f(X)$ e un punto $x^0$, ogni passo del metod
 	\item Calcolo $d^k=\pm \nabla f(x^k)$ ($+$ max e - min)
 	\item Calcolo $x^{k+1} = x^k \pm \alpha^k \cdot d^k$
 	\item Calcolo $\alpha^k$ come \emph{Max} $f(x^k \pm \alpha^k \cdot d^k)$.
-			\\\small{ovvero valuto $f$ nel nuovo punto e massimizzo la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$)}
+			\\\small{ovvero valuto $f$ nel nuovo punto e massimizzo (minimizzo per i problemi di minimo) la funzione risultante $g(\alpha)$, generalmente in modo analitico ($g'(\alpha)=0$)}
 	\item Sostituisco $\alpha$ trovato in $x^{k+1}$.
 	\item Valuto i criteri di arresto
 \end{enumerate}
@@ -231,7 +245,7 @@ Per verificare che il punto trovato sia un punto di ottimo, semplicemente contro
 		\hline
 		Direzione di Crescita & $d^k$ & $\pm \nabla f(x^k)$ ($+$ max e $-$ min)\\
 		\hline
-		Step Size & $\alpha^k$ & max $f(x^k \pm \alpha^k \cdot d^k)$\\
+		Step Size & $\alpha^k$ & max/min $f(x^k \pm \alpha^k \cdot d^k)$\\
 		\hline
 	\end{tabular}
 \end{center}
@@ -321,7 +335,7 @@ allora potremmo, in base ai valori di $\mu$, sapere in un solo calcolo se il pun
 \subsection{Risolvere il Sistema}
 Per risolvere il sistema, o lo si risolve con il metodo classico, oppure tramite questo metodo:
 Con la condizione di \textbf{Complementarietá} sappiamo che: \[\mu_j \cdot h_j = 0 \implies \mu_j = 0 \vee h_j = 0\]
-Quindi, con $l$ variabili $mu_j$ abbiamo $2^l$ combinazioni di sistemi, in cui $mu_j = 0 \vee \mu_j \neq 0$.
+Quindi, con $l$ variabili $\mu_j$ abbiamo $2^l$ combinazioni di sistemi, in cui $\mu_j = 0 \vee \mu_j \neq 0$.
 Cosí possiamo risolvere le $2^l$ combinazioni per trovare tutti i punti candidati. 
 
 \subsection{Trovare i punti di Minimo e Massimo}
