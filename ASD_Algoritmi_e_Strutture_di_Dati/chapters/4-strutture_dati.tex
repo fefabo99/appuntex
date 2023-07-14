@@ -77,4 +77,119 @@ all'ultimo. Nelle liste dinamiche l'accesso \textbf{non è diretto}.
     a runtime lo spazio utilizzato
     \item Tempo - Dato che il tempo di accesso è variabile, in quanto l'accesso non è diretto.
 \end{itemize}
-
+\section{Tipi di liste}
+\begin{itemize}
+    \item Lista dinamica semplice
+\end{itemize}
+\subsection{Lista dinamica semplice}
+La lista dinamica semplice è composta da head[L] una testa che è un array contenente un puntatore
+al primo elemento della lista.\\
+Un puntatore è un indirizzo di memoria (in formato esadecimale).\\
+Le celle di memoria contenegono n dati (n caselle), l'ultima casella solitamente denominata
+\textbf{next} contiene il puntatore alla prossima casella, l'ultimo next contiene null.\\
+Chiamiamo P=head[L] il puntatore alla prima casella (indirizzo di memoria), per selezionare 
+l'elemento tramite puntatore utilizzo la seguente scrittura: P.variabile.\\
+Per spostarmi nella casela successiva scrivo P=P.next, così facendo P punta la seconda casella,
+se adesso quindi gli dirò P.variabile, P punterà la variabile della seconda cella.\\
+All'ultima cella P=P.next sarà uguale a null, devo stare attento in questo momento perchè se provo
+ad accedere ai dati significa che sto provando ad accedere a una casella null e questo generà
+un brutto errore.\\
+Le liste mal gestite possono creare altri errori molto ambigui, perchè se non cancello le caselle di
+memoria utilizzata e le libero, qualcun altro le può puntare e quando scorro la lista vado a 
+prelevare dei dati che non ho scritto io, che spesso sono cose che se vengono stampate non
+hanno senso.\\
+\paragraph*{Gestione liste} Uno svantaggio della lista è che devono essere gestite bene
+perchè la loro mal gestione può provare grossi errori e incoerenze.
+\paragraph*{Osservazione scorrimento liste semplici} Le liste così strutturate posso
+scorrerle solo in avanti, non posso tornare indietro, quindi se sto cercando una casella da cancellare
+mi devono fermare un passo prima.
+\subsection{Lista dinamica doppia o doppiamente concatenata}
+La lista dinamica doppia è strutturata come la lista semplice, ma nelle celle oltre 
+al next ha anche il previous che è l'indirizzo della casella precedente, così posso
+spostarmi anche all'indietro. In questo modo la cancellazione è più semplice.
+\subsection{Liste circolari}
+Qua l'ultimo P.next non è null, ma punta il primo elemento della lista così che la lista non
+finisca mai, ma continui a girare.
+\section{Implementazione Operazioni Lista}
+\subsection{Search}
+\begin{lstlisting}[language=Java]
+    pointer Search(L,k)
+        P=head[L]
+        while P.key != k AND P != null
+            P = P.next
+        return(P)
+\end{lstlisting}
+\begin{itemize}
+    \item L è l'indice della Lista
+    \item P != null per evitare Null pointer exception
+    \item return Null non è un problema, il problema è se facessi P.key con P=null, ma questo
+    non può accadere per come abbiamo scritto il codice
+\end{itemize}
+\paragraph*{Caso migliore} k è nel primo elemento. $T(n)=\Omega(1)$
+\paragraph*{Caso peggiore} $k \notin  L$ dato che devo scorrere tutta la lista.
+$T(n) = O(n)$\\
+\paragraph*{Tempo di esecuzione uguale ad array} In questo caso il tempo di esecuzione è uguale
+agli array, ma se prendiamo per esempio la ricerca dicotomica vedremo che i tempi delle liste sono
+peggio perchè è più dispendioso per una lista posizionarmi a uno specifico indice richiesto.\\
+\subsection{Insert}
+\begin{lstlisting}[language=Java]
+    Insert(L,x)
+        x.Prev = null
+        x.Next = head[L]
+        if head[L] != null
+            head[L].Prev = x
+        head[L] = x
+\end{lstlisting}
+Nello pseudocodice non è indicato, ma nella realtà devo preoccuparmi di allocare dello
+spazio per la casella, calcolando quanto spazio mi serve, verificando quanto spazio
+occupano tutte le variabili della casella. Questo si fa con funzioni del tipo size.
+\paragraph*{Dove mi conviene inserire l'elemento?} Mi conviene inserirlo all'inizio
+perchè se lo inserisco alla fine ogni volta richiedo n esecuzioni per scorrere tutta la lista, per
+questo inserisco l'elemento in testa.
+\paragraph*{Casi particolari da controllare} All'inizio dell'implementazione mi conviene pensare la
+lista popolata, ma i casi particolari vanno trattati e sono:
+\begin{itemize}
+    \item Prima casella - Ha previous = null
+    \item Lista vuota - Ha subito next = null
+\end{itemize}
+Devo stare attento a come manipolo la next, perchè rischio di perdere il collegamento
+ai dati cancellando il next sbagliato o sovrascrivendolo e rischio di generare loop.
+\paragraph*{Riassumendo} In una lista doppia mi è richiesto di cambiare 4 cambi, settare i
+la prev di x, la next di x va agganciata a next, head[L].prev va aggiornata, e la nuova
+head sarà x. L'If serve per controllare se la lista è vuota, dato che se è vuota il Prev non va
+settato, altrimenti head[L] sarà l'x appena aggiunto.\\
+Assumiamo che x sia un puntatore valido, altrimenti dovremmo fare il test (anche per verificare
+che la sizeof sia andata a buon fine).
+\subsection{Delete}
+\begin{lstlisting}[language=Java]
+    Delete(L,x)
+        if x.prev != null
+            (x.prev).next = x.next
+        else
+            head[L]=x.next
+        if x.next != null
+            (x.next).prev = x.prev
+        /* Free(x) */
+\end{lstlisting}
+Assumiamo che la search dell'elemento da cercare sia stata già fatta.\\
+Io devo cancellare la casella data in input e sistemare i puntatori della casella prima e di
+quella successiva per agganciarli.\\
+(x.Prev).next punta la next della casella prima.\\
+(x.next).prev punta la prev della casella dopo.\\
+Con queste due funzioni cancello la cella, ma la memoria di x resta allocata e non
+più raggiungibile quindi a seconda del linguaggio di programmazione devo preoccuparmi
+di liberare quella memoria.\\
+Ora mi occupo dei casi particolari:
+\begin{itemize}
+    \item Cancellazone del primo elemento
+    \item Cancellazione dell'ultimo elemento
+\end{itemize}
+Nel secondo if non c'è bisogno dell'else perchè se x.next = null allora
+non devo fare nulla perchè è l'ultimo elemento della lista e quindi è giusto che x.next sia null.\\
+Testando funziona anche se cancello l'unico elemento all'interno della lista.\\
+Il tempo della cancellazione è costante, se non considero la ricerca, se considero la ricerca allora
+il tempo della cancellazione dipenderà da essa dato che la search ha tempo $O(n)$.\\
+Questa cancellazione chiaramente non va bene per le liste semplici, perchè non ho previous.\\
+Dovrei modificare l'algoritmo per ripartire da head e tornare alla casella prima oppure tenermi due
+puntatori che scorrono la lista e il secondo sta un passo indietro così quando trovo il valore
+da cancellare il puntatore di appoggio ha la casella precedente.
