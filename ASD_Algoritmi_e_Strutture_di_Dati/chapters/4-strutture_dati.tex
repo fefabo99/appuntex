@@ -1,0 +1,80 @@
+\chapter{Strutture dati}
+Il dato viene memorizzato fisicamente in bit 0/1, che possono corrispondere
+ad acceso/spento, magnetizzato/non magnetizzato, ecc.\\
+Esistono diverse strutture dati perchè in base all'utilizzo (es. scrivo tanto e leggo poco oppure
+scrivo poche volte e cerco tante volte) serve creare una struttura ottimizzata per le
+mie necessità.\\
+Chiaramente memorizzare i dati in un'unica riga di bit risulterebbe particolarmente
+scomodo e inefficiente, per questo i bit vengono aggregati nelle seguenti categorie:
+\begin{itemize}
+    \item Tpi di dati (int, char, ecc.)
+    \item Aggregazioni di tipi di dati (Array - insieme di dati uguali, Record - insieme di dati diversi) 
+\end{itemize}
+\section{ADT}
+Abstract Data Type ADT, è la sigla con cui vengono indicate le strutture dati.
+\subsection{Operazioni base della struttura dati}
+\begin{itemize}
+    \item Insert(S x)
+    \item Delete(S, x)
+    \item Search(S, k) - Usa k dato che nella ricerca ha senso mettere una chiave da cercare, non
+    ha senso richiedere di cercare un dato dandogli il dato stesso
+    \item Min/Max(S) - Minimo o Massimo sull'intera struttura dati
+    \item Predecessor/Successor(S,k) - Elemento appena prima di k (in termini di valore)
+    \item x $\rightarrow$ nil/null - In caso di mancata risposta (es. cerco elemento che non c'è) viene restituito null
+\end{itemize}
+S indica la struttura dati, mentre
+X, K indicano rispettivamente:
+\begin{itemize}
+    \item x(elemento) - Indica un dato completo (es. temperatura)
+    \item k(key) - Identificativo del dato
+\end{itemize}
+\paragraph*{Delete} In realtà è un'operazione complessa composta da una Search (ricerca)
+\paragraph*{Search} Cerca il dato in un indice k e restituisce x (puntatore al dato),
+in generale infatti x sarà da intendersi come un puntatore a memoria.
+\paragraph*{Update} Non è un'operazione base dato che è la composizione di una search, una delete e una
+insert, però per comodità viene utilizzata per evitare di scrivere ogni volta le tre operazioni.
+\paragraph*{Operazioni e struttura dati} Quando introduco una struttura dati devo implementare e ottimizzare le
+operazioni di base.
+\section{Array}
+Allocazione statica di un'area di memoria dove ci sarà un'aggregazione di dati.
+\subsection{Perchè l'Array richiede che venga data la dimensione da allocare?}
+Perchè l'array ha necessità di riservare la memoria PRIMA che vengano salvati dei dati.\\
+A volte me la cavo (es. salva le temperature dei mesi, alloco 31 valori e sono apposto), ma
+per situazioni dove il dato è variabile è un problema perchè:
+\begin{itemize}
+    \item Se alloco tanta memoria per ogni variabile ci sarà sicuramente uno spreco
+    per quelli piccoli e se quelli grandi sono pochi lo spreso sarà ancora maggiore
+    \item Se alloco poca memoria non ci stanno i dati!
+\end{itemize}
+\paragraph*{Perchè usare gli array?}
+Il vantaggio dell'allocazione statica è che mi permette di sapere dove sono i dati attraverso indici,
+perchè in ogni casella avrò un indirizzo di memoria che la punta e se voglio avere la 100-esima casella,
+mi basterà sommare 100 caselle al primo indirizzo dell'array e questo è un grosso vantaggio.
+\paragraph*{Riassumendo}
+\begin{itemize}
+    \item Svantaggi - Occupano più spazio di quanto richiesto
+    \item Vantaggio - Tempo in quanto che ogni dato richiede lo stesso tempo di accesso dato che
+    l'accesso è \textbf{diretto}
+\end{itemize}
+\section{Liste Dinamiche}
+Una lista dinamica, organizza i dati in maniera dinamica, contrapposte agli Array, 
+dato che essi sono statici, cioè prima del loro utilizzo viene allocata una parte di
+memoria ben definita e resta riservata per quella variabile staticamente (quindi è fisso).\\
+La lista invece non ha questa necessità dato che quando ho bisogno di memoria ne richiedo
+l'allocazione, quindi la memoria allocata varierà durante l'esecuzione.\\
+La lista dinamica è realizzata nel seguente modo:\\
+Ho delle celle che contenegono 2 valori, il valore memorizzata dalla cella e il puntatore della prossima cella.
+La prima cella è una testa che punta il primo valore, la seconda cella contiene il valore 
+e il puntatore alla terza cella e così via.\\
+Se cancello una cella modifico il puntatore precedente per farlo puntare a quella successiva a quella
+cancellata e così facendo risparmio spazio. Se voglio aggiungre valori aggiungo celle e puntatori.\\
+Il problema è che il tempo di accesso ai dati sarà variabile, perchè se devo accedere al primo elemento
+lo trovo subito, ma se devo accedere all'ultimo devo scorrere tutti i dati uno ad uno fino ad arrivare 
+all'ultimo. Nelle liste dinamiche l'accesso \textbf{non è diretto}.
+\paragraph*{Riassumendo}
+\begin{itemize}
+    \item Vantaggi - Spazio occupato, dato che occupo solo ciò che mi serve e posso ridurre o aumentare
+    a runtime lo spazio utilizzato
+    \item Tempo - Dato che il tempo di accesso è variabile, in quanto l'accesso non è diretto.
+\end{itemize}
+
