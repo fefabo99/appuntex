@@ -585,8 +585,32 @@ pesante che un algoritmo non sia possibile da scrivere.\\
 Per quanto riguarda i confronti non è possibile scrivere un algoritmo di ordinamento
 con un tempo inferiore a $n \log n$. Gli algoritmi sui confronti si basano sul farsi una serie
 di domande (confronti) per capire qual è l'ordine, quante domande devo fare per capire 
-l'ordine? Se ho n numeri ho $n!$ possibili ordinamenti quindi devo farmi almeno 
-$2^k > n!$ domande per poter ordinare il numero, ma quanto vale questo k?\\
-Verrà dimostrato che non è possibile farsi meno di $n \log n$ domande utilizzando
-i confronti, quindi non è possibile fare meglio di Mergesort e Quicksort.
-%iniziare lezione 13%
+l'ordine? Se ho n numeri ho $n!$ possibili ordinamenti, facendo un alberto per verificare
+il numero di domande che mi faccio quando confronto i numeri ottengo che devo farmi almeno 
+$2^k$ domande per poter ordinare il numero e $2^k > n!$, quindi k deve essere $\geq \log n !$.\\
+Ma questo logaritmo è grande o piccolo? Attraverso l'approssimazione di Stirling approssimiamo il fattoriale
+e troviamo che questo numero è $\Theta(n \log n n)$, ma quindi $k > \log n! > \Omega(n \log n)$.
+Questo dimostra che non è possibile far meno di $n \log n$ domande utilizzando
+i confronti, quindi non è possibile fare meglio di Mergesort e Quicksort, posso
+ridurre le costanti nascoste, ma asintoticamente non posso fare meglio di così.\\
+\paragraph*{Importanza di questa dimostrazione} Questa dimostrazione è importante perchè
+evidenzia la complessità di dimostrare che un algoritmo non si possa fare, devo trovare 
+una caratteristica generale che vale per tutte le tipologie di algoritmi prese in
+considerazione, in questo caso considero il confronto.
+
+\section*{Counting sort}
+Counting sort è un algoritmo che non si basa sui confronti, infatti riesce ad avere un
+tempo di esecuzione $O(n)$, ma funziona se il range di valori da ordinare sia $1...k$.
+con $k=O(n)$. Counting sort ha un tempo di esecuzione lineare solo se i numeri hanno delle
+specifiche caratteristiche, in caso contrario performa peggio di Quicksort e Mergesort.\\
+Per essere precisi ha un tempo di esecuzione $O(n+k)$, infatti se ho 1000 numeri da ordinare,
+con un range di valori compreso da 1 a 1000 avrò un tempo di $O(1000 + 1000)$ essendo $n=1000$,
+avrò $O(2n)$ che è ancora un tempo lineare, nel caso invece avessi 1000 valori, ma con un range molto
+più ampio, per esempio compreso da $1\dots 1.000.000$ mi ritrovo ad avere un tempo di esecuzione $O(n+1.000.000)$,
+ed essendo n=1000, il tempo di esecuzione non sarà più lineare, in questo caso sarà meglio Quicksort o Mergesort.\\
+\subsection{Funzionamento}
+La posizione del numero dipende dal suo valore nel senso che se ho 100 valori e analizzo il 5 so che dovrò
+circa metterlo all'inizio.\\
+Non si basa sui confronti, ma distribuisce i numeri all'interno dell'array.\\
+\paragraph*{Implementazione}
+Counting sort utilizza 3 array d'appoggio ed è composto da 3 fasi.\\
