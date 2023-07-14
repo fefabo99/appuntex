@@ -127,28 +127,26 @@ Se ho una soluzione del primale, controllo che sia ottima e trovo la corrisponde
 \subsection{Teorema della dualità}
 Un ultima proprietá che riassume le relazioni primale-duale in tutti i casi possibili:
 \begin{enumerate}
-    \item Se il Primale ha soluzioni ammissibili e funzione obiettivo Limitata, quindi ha soluzione ottimale, allora vale anche per il Duale, per cui le proprietá di dualitá Debole e Forte sono applicabili
-    \item Se il Primale ha soluzioni ammissibili e funzione obiettivo Illimitata, quindi non ha ottimo, allora  il Duale non ha soluzioni ammissibili.
-    \item Se il Primale non ha soluzioni ammissibili, allora il Duale o non ha soluzioni ammissibili o ha una funzione obiettivo Illimitata.
+    \item Se il Primale \textbf{ha soluzioni ammissibili} e \textbf{funzione obiettivo Limitata}, quindi ha soluzione ottimale, allora vale anche per il Duale, per cui le proprietá di dualitá Debole e Forte sono applicabili
+    \item Se il Primale \textbf{ha soluzioni ammissibili} e \textbf{funzione obiettivo Illimitata}, quindi non ha ottimo, allora  il \textbf{Duale non ha soluzioni ammissibili}.
+    \item Se il Primale\textbf{ non ha soluzioni ammissibili}, allora il Duale o non ha soluzioni ammissibili o ha una funzione obiettivo Illimitata.
 \end{enumerate}
-O, in parole povere:
 
-\begin{tabularx}{0.5\textwidth}{|c|c|c|c|}
-    \multicolumn{2}{|c|}{Primale} & \multicolumn{2}{|c|}{Duale}\\
-    Soluzioni Ammissibili & Funzione Obiettivo & Soluzioni Ammissibili & Funzione Obiettivo \\
+\paragraph*{In praole povere} il teorema della dualitá é riassunto in questa tabella:
+\newline
+\begin{tabularx}{\textwidth}{|Y|Y|Y|Y|}
+    \hline
+    \multicolumn{2}{|c}{\textbf{Primale}} & \multicolumn{2}{|c|}{\textbf{Duale}}\\
+    \hline
+    \textbf{Soluzioni Ammissibili} & \textbf{Funzione Obiettivo} & \textbf{Soluzioni Ammissibili} & \textbf{Funzione Obiettivo} \\
+    \hline
     Si & Limitata & Si & Limitata \\
+    \hline
     Si & Illimitata & No & - \\
-    No & - & \multicolumn{2}{|c|}{No sol. amm. $\vee$ F.Obb. Illimitata}
-    
+    \hline
+    No & - & \multicolumn{2}{|c|}{No sol. amm. $\vee$ F.Obb. Illimitata}\\
+    \hline
 \end{tabularx}
-
-
-Se un problema ha:
-\begin{itemize}
-    \item Sol. Ammissibili, e Ottimo $\implies$ Idem per l'altro (Dualità forte e debole applicabili)
-    \item Sol. Ammissibili, e NON Ottimo (obb. illimitata) $\implies$ L'altro NON ha soluzioni ammissibili
-    \item No Sol. Ammissibili $\implies$ L'altro o non ha sol. amm. o ha f.obb Illimitata
-\end{itemize}
 
 
 \section{Analisi di Sensitivitá}
