@@ -160,18 +160,30 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
 }
 
 \domanda[Dualitá Debole e Forte]{5}{Si dia una defninizione di Dualitá Debole e Forte}
+\rispostaaperta{
 \begin{itemize}
     \item Dualitá Debole: Il valore della funzione obiettivo per una qualsiasi soluzione ammissibile del problema primale (max) non puó eccedere
     il valore della funzione obiettivo per una qualisasi soluzione ammissibile del problema duale.
-    l valore del problema duale fornisce quindi un limite superiore del problema primale.
-Detto breve: se il primale ha soluzione illimitata allora il duale non ha soluzione.
+    il valore del problema duale fornisce quindi un limite superiore del problema primale.
+    Detto breve: se il primale ha soluzione illimitata allora il duale non ha soluzione.
     \item Dualitá forte: Se esiste una soluzione ottima (finita), il valore ottimo della funzione obiettivo del problema primale è uguale al valore ottimo della funzione obiettivo del problema duale.
 \end{itemize}
+}
+
+\domanda[Dualitá e le proprietà]{}{Descrivere la proprietá di dualitá debole, di dualitá forte, la proprietá delle soluzioni complementari e la proprietá delle soluzioni ottimali complementare. Infine si presenti il teorema di dualitá}
+\rispostaaperta{
+    \subparagraph{Dualitá Debole} Dualitá Debole: Il valore della funzione obiettivo per una qualsiasi soluzione ammissibile del problema primale (max) non puó eccedere
+    il valore della funzione obiettivo per una qualisasi soluzione ammissibile del problema duale.
+    \subparagraph{Dualitá Forte} Se esiste una soluzione ottima (finita), il valore ottimo della funzione obiettivo del problema primale è uguale al valore ottimo della funzione obiettivo del problema duale.
+    \subparagraph{Proprietá delle soluzioni Complementari} Ad ogni iterazione del metodo del simplesso, l'algoritmo calcola contemporaneamente una soluzione ammissibile per il primale e una soluzione per il duale (dato dai valori delle variabili di slack nella riga 0) i cui valori della funzione obiettivo si eguagliano. La soluzione del duale é ammissibile (e ottima) solo all'ultima iterazione del simplesso.
+    \subparagraph{Proprietá delle soluzioni Ottime Complementari}  All'ultima iterazione il metodo del simplesso calcola contermporaneamente una soluzione ottima per il primale, e ottima per il duale, in cui vale la dualitá forte quindi i valori delle funizoni obiettivo si eguagliano.
+    \subparagraph{Teorema della dualitá} Se il primale é ammissibile e ha funzione obiettivo limitata, quindi ha ottimo, lo stesso vale per il duale. Se il primale ha soluzioni ammissibili, ma funzione obiettivo illimitata, il duale non ha soluzioni ammissibili. Se il primale non ha soluzioni ammissibili, il duale o  non ha soluzioni ammissibili o ha funzione obiettivo illimitata. 
+}
 
 \domanda[Proprietá di Complementarietá]{9}{Si definisca la Proprietá di Complementarietá in PL. Si diano due esempi reali in cui é utilizzabile e cosa permette di concludere.}
 \rispostaaperta{ %Da rivedere
     La complementarietá in un problema di Programmazione Lineare si evince dalla relazione tra problmea primale e duale.
-    In particolare, la complementarietá afferma che ogni soluzionee primale ha una soluzione complementare duale tale che $W=Z$
+    In particolare, la complementarietá afferma che ogni soluzione primale ha una soluzione complementare duale tale che $W=Z$
     Se un problema lineare in forma primale ha soluzione ottimale x* allora anche il problema
     }
 
