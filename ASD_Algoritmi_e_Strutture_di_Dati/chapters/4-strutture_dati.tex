@@ -199,3 +199,114 @@ Questa cancellazione chiaramente non va bene per le liste semplici, perchè non 
 Dovrei modificare l'algoritmo per ripartire da head e tornare alla casella prima oppure tenermi due
 puntatori che scorrono la lista e il secondo sta un passo indietro così quando trovo il valore
 da cancellare il puntatore di appoggio ha la casella precedente.
+\section{Esercizi}
+\subsection{Data una lista in input invertirla}
+Due possibilità:
+\begin{itemize}
+    \item Scambio prev/next
+    \item Dal fondo all'inizio copio in altra lista
+\end{itemize} 
+Il primo caso è un po' complesso perchè manipolare così tanti puntatori
+potrebbe generare dei problemi di celle che diventano irraggiungibili e
+non funziona con le liste semplici.\\
+Mentre la seconda possibilità è più semplice.
+\begin{lstlisting}[language=Java]
+    Ribalta(L)
+        p=head[L]
+        head[L2] = p
+        while p != null
+            ListInsert(L2, p)
+            p = p.next
+        Return(head[L2])
+\end{lstlisting}
+Se viene richiesto all'esame scrivo l'algoritmo e scrivo
+il codice di ListInsert.\\
+\subsection{Ricerca palindroma in una lista doppia}
+\begin{lstlisting}[language=Java]
+    boolean Palindroma(L1)
+        P1=head[L1]
+        P2=tail[L1]
+        while P1.key == P2.key AND P1 != P2 AND P2.next != P1
+            P1=P1.next
+            P2=P2.prev
+        if P1==P2 OR P2.next == P1
+            return(TRUE)
+        else
+            return(FALSE)
+\end{lstlisting}
+All'esame potremo usare tail a meno che non sia esplicitamente
+vietato dal testo, basta esplicitare che si suppone che la lista ci dia
+oltre a head anche tail.
+\paragraph*{Tempo}Dato che devo scorrere l'intera lista, metà da un puntatore
+e metà dall'altra, quindi il tempo è $\Theta(n)$.
+\section{Esercizi Lista ricorsivi}
+\subsection{Conta quante volte è presente uno specifico elemento in una lista}
+\begin{lstlisting}[language=Java]
+    int Conta (P, k)
+    if (P == null)
+        return(0)
+    else
+        Tot1 = Conta(P.next, k)
+        if (P.key == k)
+            Tot = 1
+        else
+            Tot = 0
+        return Tot+Tot1
+\end{lstlisting}
+Si potrebbe anche fare Divide et Impera? Sì, ma sarebbe meno efficiente perchè
+comunque dovrei scansionare tutta la lista per capire la dimensione e poi fare
+le divisioni, non è sempre così, ma in questo caso non conviene.
+\subsection{Contare quante coppie di valori in posizione consecutiva sono presenti in una lista}
+Esempio 3,3,3,4,4 sono 3 coppie (3,3,3 conta per 2 perchè sono 2 coppie).
+\begin{lstlisting}[language=Java]
+    int Conta (P)
+        if P == null OR p.next == null
+            return(0)
+        else
+            if P.key == (P.next).key
+                r=1
+            else
+                r=0
+            r2=conta(p.next)
+            return(r+r2)
+\end{lstlisting}
+Il caso base aggiuntivo serve perchè chiaramente se ho una lista di 1 elemento
+non ci saranno coppie, o comunque se sono arrivato ad avere un elemento non posso
+scansionare quello dopo perchè non esiste.
+\subsection{Ordinare una lista}
+Quali algoritmi posso implementare?
+\begin{itemize}
+    \item Selection Sort - Sì
+    \item Insertio Sort - Sì
+    \item Merge Sort - Sì, ma è inefficiente perchè la divisione richiede molto tempo
+    \item Quick Sort - Sì ed è efficiente, perchè creare due indici che scorrono uno verso destra
+    e uno verso sinistra e scegliere il Pivot è semplice
+\end{itemize}
+\section{Stack - Pile}
+Uno Stack (tradotto Pila) è una struttura di tipo LIFO (Last In First Out), quindi
+l'ultimo elemento inserito sarà il primo a uscire. La uso quando mi è comodo gestire 
+una struttura dati in maniera LIFO, per esempio la gestione delle chiamate ricorsive dove solo quando
+ho una return del caso base inizio a svuotare lo stack, oppure quando il compilatore sta analizzando i begin e
+end, mano a mano che trovo begin metto una B sullo stack, quando trovo un end, tolgo la B dallo stack, fino
+ad avere tutto lo stack vuoto, se non è vuoto significa che il codice è scritto male, per esempio c'è un
+begin senza end, oppure se lo stack è vuoto e lo voglio svuotare ancora vuol dire che ci sono troppi end.
+\subsection{Operazioni}
+\begin{itemize}
+    \item Push(S,k) - Chiedo di inserire un elemento k nello stack S
+    \item Pop(S) - Chiedo di togliere un elemento da S, non devo specificare quale perchè è per forza l'ultimo!
+    \item Stackempty(S) (o isempty o emptysack) restituisce True se lo stack è vuoto e False altrimenti
+    \item Top(S) - Restituisce il valore in cima allo stack senza toglierlo dallo stack (posso realizzarla facendo
+    una Pop e poi una Push dello stesso elemento tolto)
+\end{itemize}
+Prima di fare la Pop è buona norma verificare se lo stack è vuoto, altrimenti non posso fare la Pop.\\
+Corrispondenza con operazioni base delle strutture dati:
+\begin{itemize}
+    \item Push $\rightarrow$ Insert
+    \item Pop $\rightarrow$ Delete
+    \item Search - In questo caso devo svuotare mano a mano lo stack e cercare l'elemento e poi reinserire tutto
+    \item Min/Max - Devo svuotare tutto e mano a mano verificare elemento per elemento se è il minore
+\end{itemize}
+Chiaramente Search e Min/Max sono forzature, gli Stack non sono adatti per questo tipo di operazioni.\\
+\section{Realizzazione Stack}
+Posso farlo in maniera statica (Array) o dinamica (Liste).
+%L16-1 54:01%
