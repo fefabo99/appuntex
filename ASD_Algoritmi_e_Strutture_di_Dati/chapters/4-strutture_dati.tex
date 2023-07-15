@@ -494,3 +494,82 @@ di un sistema operativo perchè io devo servire il primo che è arrivato, oltret
 se ho più processi da gestire posso creare una coda circolare dove per n tempo faccio
 andare un processo poi lo stoppo e lo rimetto in fondo alla coda e faccio andare il secondo,
 questo non è possibile nello stack.
+\paragraph*{Sentinella} Per capire se ho fatto il giro di tutta la coda e quindi sono
+tornato allo stato iniziale posso inserire all'interno della coda un valore sentinella che
+quando viene letto segnala che sono alla fine della coda e quindi (in caso di coda circolare)
+ho passato tutta la coda e sto ricominciando da capo.
+\subsection{Implementazione}
+Posso implementare la coda sempre o Staticamente (Array) o Dinamicamente (Liste)
+\paragraph*{Array}  
+\begin{itemize}
+    \item Ho bisogno di 2 indici, uno per la testa per prelevare e uno per la coda per inserire,
+    altrimenti devo scorrere ogni volta l'array e richiede n tempo
+    \item La cosa migliore è rendere circolare l'array
+    \item Se head[q] = tail[q] la coda è vuota
+    \item Devo sempre tenere una cella libera perchè se la coda è piena ho comunque
+    head[q] = tail[q], ma qua non è piena la coda, quindi tengo una casella libera, quando arrivo
+    ad aver occupato tutto tranne quella dico che la coda è piena, per questo la coda di n celle contiene al
+    massimo n-1 elementi 
+\end{itemize}
+\begin{lstlisting}[language=Java]
+    Enqueue(Q,x)
+        if h[Q] == t[Q]+1   (Mod n)
+            Error(Overflow)
+        else
+            Q[t[Q]]=X
+            t[Q]++          (Mod n)
+\end{lstlisting}
+Il Mod n è una notazione compatta del codice per per dire che l'array è circolare, perchè prendiamo per esempio
+un array di 10 elementi, se arrivo al 10 e faccio n+1 trovo 11 che non è uguale a head che
+sarebbe 1, in questo caso però essendo circolare è come se facessi (10+1)Mod(n) dove n=10,
+quindi mi trovo ad avere 1=1 ed è giusto.
+\subsection{Liste dinamiche}
+Mi serve avere un puntatore alla testa della lista e uno alla coda dove inserisco
+in coda e prelevo in testa, è sufficiente utilizzare una lista semoplice.\\
+Non è efficiente inserire in testa e prelevare in coda perchè per 
+riaggiornare il tail dovrei scorrere tutta la lista.\\
+La lista doppia mi porterebbe ad avere un sacco di puntatori Prev che non userei mai.\\
+Head verrà usata per la dequeue e per verificare se la coda è vuota, mentre il Tail mi servirà
+per l'enqueue.
+\subsection{Copia elementi da una coda Q1 a un'altra coda Q2}
+\begin{lstlisting}[language=Java]
+    Copia(Q1, Q2)
+        while not(QueueEmpty(Q1))
+            r=Dequeue(Q1)
+            Enqueue(Q2,r)
+\end{lstlisting}
+Questa implementazione però distrugge Q1, per evitare questo uso la seguente implementazione:
+\begin{lstlisting}[language=Java]
+    Copia(Q1, Q2)
+        Enqueue(Q1, -1)
+        do
+        r=dequeue(Q1)
+        if r != -1
+            Enqueue(Q2, r)
+            Enqueue(Q1, r)
+        while not(r != 1)
+\end{lstlisting}
+Qua all'inizio dell'algoritmo inserisco un valore sentinella che mi dice che ho percorso tutta la lista 
+in questo modo posso percorrere la lista e copiare gli elementi in Q2 e ricopiarli subito in Q1, quando
+arrivo a -1 mi fermo.
+\paragraph*{Osservazione inversione elementi coda} Invertire una coda appoggiandomi solo a code richiede che svuoti tutta la coda tranne l'elemento
+in posizione n-1, poi lo copia in un'altra coda, poi svuoto l'elemento n-2 e lo metto in coda all'altra
+coda, ecc. e questo richiede $n^2$, invertire una coda usando solo code è piuttosto inefficiente.\\
+\subsection{Implementare una coda usando due pile}
+Quando faccio una Deque prelevo il primo elemento della pila, quando faccio un enque svuoto la prima
+pila dentro la seconda pila e tengo tutto così perchè se mi viene richiesta una dequeue ho già la seconda
+pila con in cima l'elemento da togliere dalla coda se, invece faccio enqueue lo metto sul primo stack.\\
+Quando il secondo stack si svuota copio dentro il primo.
+\paragraph*{Implementazione alternativa} La precedente implementazione è più efficiente di quella
+che proporremo adesso, ma il problema è che ci sono delle situazioni dove quando richiedo un elemento
+facendo dequeue devo aspettare molto e io preferisco aspettare di più a mettermi in coda che tanto
+comunque dopo devo aspettare, rispetto ad aspettare di più per togliermi dalla coda.\\
+Ogni volta che faccio una enqueue sposto tutta la prima pila nella seconda pila, aggiungo l'elemento 
+alla prima pila e ci ricopio dentro la seconda pila, così in cima avrà subito pronto l'elemento per la
+dequeue e in fondo c'è l'ultimo elemento inserito. Risulta mediamente meno efficiente, però soddisfa
+la richiesta di aspettare meno in fase di dequeue e di aspettare di più in fase di enqueue.
+\subsection{Note per esame}
+Esercizi Stack e Code non so come siano implementate, posso usare solo i loro costrutti, sotto
+poi l'implementazione è con liste o array, ma NON lo so e quindi non posso usare puntatori, next, ecc.
+Mi posso appoggiare solo alle operazioni della struttura dati.
+%Da fare Lezione 18%
