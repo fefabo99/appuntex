@@ -308,5 +308,189 @@ Corrispondenza con operazioni base delle strutture dati:
 \end{itemize}
 Chiaramente Search e Min/Max sono forzature, gli Stack non sono adatti per questo tipo di operazioni.\\
 \section{Realizzazione Stack}
+Che errori possono generarsi con gli stack?
+\begin{itemize}
+    \item Stack Overflow - Tipicamente significa che ho finito la memoria, dato che lo stack è tipicamente
+    una struttura dinamica se continuo ad allocare spazio per lo stack prima o poi lo finisco
+    \item Stack Underflow - Sto chiedendo la Pop su uno stack vuoto, quindi voglio virtualmente scavare sotto
+    lo stack
+\end{itemize}
 Posso farlo in maniera statica (Array) o dinamica (Liste).
-%L16-1 54:01%
+\subsection{Array}
+Dovrei stabilire a priori la memoria da utilizzare, quindi:
+\begin{itemize}
+    \item Array di n celle
+    \item t[s] variabile che indica la posizione dell'ultimo elemento inserito (si tratta di un array di Stack quindi con t[s] indico l'ultimo
+    elemento inserito dello stack s)
+    \item Quando faccio una push controllo se l'array ha ancora spazio (t{s} != length(s)) allora
+    posso salvare il valore facendo t[s]++, S[t[s]] = k
+    \item Per la Pop(s)
+\end{itemize}
+\paragraph*{Push} Codice
+\begin{lstlisting}[language=Java]
+    Push(s,k)
+        if t[s]==length(s)
+            error("Overflow")
+        else
+            t[s]++
+            S[t[s]]=k
+\end{lstlisting}
+\paragraph*{Pop} Codice
+\begin{lstlisting}[language=Java]
+    Pop(s)
+    if t[s] == 0
+        errore("underflow")
+    else
+        r=s[t[s]]
+        t[s]-- //Se togliessi questa riga di codice avrei la top
+        return(r)
+\end{lstlisting}
+Con t[s]-- dico allo stack di non guardare più l'ultima cella di memoria.
+\paragraph*{Stackempty} Codice
+\begin{lstlisting}[language=Java]
+    Stackempty(s)
+    if t[s] == 0
+        return(TRUE)
+    else
+        return(FALSE)
+\end{lstlisting}
+\paragraph*{Osservazione variabile indice ultimo elemento t[s]} Grazie a questa variabile
+evitiamo ogni volta di scorrere l'array per arrivare all'ultimo elemento così facendo
+i tempi di esecuzione per tutte le funzioni sono costanti, altrimenti sarebbero n.
+\subsection{Liste dinamiche}
+\begin{itemize}
+    \item Lista semplice supporta tutte le operazioni
+    \item Occupa solo lo spazio richiesto (non come l'array)
+    \item Non richiede una stima iniziale
+    \item Posso usare le head come puntamento all'ultimo valore dello stack
+\end{itemize}
+Le liste sono più adatte rispetto agli array per l'implementazione degli stack.
+\paragraph*{Implementazione}
+\paragraph*{Push - Pop - Stackempty} Codice
+\begin{lstlisting}[language=Java]
+    Push(s,x)
+        x.next=head[s]
+        head[s]=x
+
+    Pop(s)
+        if head[s] == null
+            error("underflow")
+        else
+            r=head[s]
+            head[s]=head[s].next //se tolgo questa riga ho top
+            return(r)
+
+    Stackempty(s)
+        if head[s] == null
+            return(true)
+        else
+            return(false)
+\end{lstlisting}
+Se lo facessi con Tail (inserimenti in coda) avrei bisogno di più tempo perchè
+quando faccio la Pop dovrei scorrere tutta la lista per poi assegnare Tail al penultimo elemento
+questo perchè essendo una lista semplice ho solo il next, così facendo avrei tempo n.\\
+Potrei usare una lista doppia, ma useri più spazio. La scelta migliore è
+l'inserimento in testa tramite lista semplice.
+\section{Esercizi Stack}
+\subsection{Cancellare da uno stack un elemento k dato in input}
+Utilizzando solo stack come strutture d'appoggio.\\
+Intuitivamente mi viene da usare la Top per controllare e poi nel caso
+usao la Pop, ma è sbagliato perchè in ogni caso devo spostare l'elemento,
+poi se è k lo butto, se non è k lo salvo nello stack d'appoggio.
+\paragraph*{Implementazione} Codice
+\begin{lstlisting}[language=Java]
+    Cancella(s,k)
+        while NOT(Stackempty(s))
+            r=pop(s)
+            if r != k
+                push(sa, r) //sa e' lo stack d'appoggio
+        while NOT(stackempty(sa))
+            r = pop(sa)
+            push(s,r)
+\end{lstlisting}
+\paragraph*{Tempo esecuzione} $T(n)=3t_{w_1}+1t_{if}+3t_{w_2} = 3n + 1t_{if}+3t_{w_2}$\\
+Dove $t_{w_2}=t_{if}$.
+\paragraph*{Caso migliore} S contiene solo il valore di k ripetuto n volte
+\begin{align*}
+    t_{if} = t_{w_2} = 0\\
+    t_m(n)=3n = \Omega(n)
+\end{align*}
+\paragraph*{Caso peggiore} $k \notin S$ quindi $t_{if} = t_{w_2} = t_{w_1} = n$\\
+\begin{equation*}
+    T_p(n)=3n+n+3n=7n=O(n)
+\end{equation*}
+Dato che il tempo peggiore e migliore hanno asintoticamente lo stesso tempo di esecuzione
+\begin{equation*}
+    T(n)=\Theta(n)
+\end{equation*}
+\subsection{Scrivere un algoritmo che salva 2 stack in un array solo}
+Lo posso fare facendo partire il primo stack dall'inizio dell'array e quando faccio una
+push incremento l'indice, mentre l'altro array lo faccio partire dalla fine e quando faccio la push
+decremento l'indice, per verificare se vado in overflow basta verificare che t[s1]+1 != t[s2]
+perchè in questo caso andrei a scrivere nell'altro stack.\\
+Dividere in 2 l'array non porterebbe nessun vantaggio rispetto a fare 2 array distinti.
+\subsection{Copiare un stack S in S1 così da ottenerne 2 copie esatte dei datil, con lo stesso
+ordine}
+Come al solito come appoggio posso usare solo altri stack.\\
+Utilizzo uno stack di appoggio dove travaso il primo stack e poi ricopio lo stack
+d'appoggio nello stack S1 e nello stack di partenza S.
+\begin{lstlisting}[language=Java]
+    Duplica(s, s1)
+        while not(stackempty(s))
+            r=pop(s)
+            push(sa,r)
+        while not(stackempty(sa))
+            r=pop(sa)
+            push(s,r)
+            push(s1,r)
+\end{lstlisting}
+\subsection{Trova nello stack p un elemento k}
+\begin{lstlisting}[language=Java]
+    boolean Trova(P, k)
+        trovato=false
+        while not(stackempty(p) AND trovato==false)
+            r=pop(p)
+            if r == k
+                trovato=true
+        return(trovato)
+\end{lstlisting}
+\subsection{Verifichiamo che le parentesi di una stringa siano bilanciate (n aperte = n chiuse)}
+\begin{lstlisting}[language=Java]
+    Check(s)
+        i=1
+        Err = false
+        while not(Err) AND i <= length(s)
+            if s[i] == '(' or '['
+                push(P,s[i])
+            else
+                if s[i] == ')'
+                    if stackempty(P) OR top(P) != ')'
+                        Err = true
+                    else
+                        Pop(P)
+                    if s{i} == ']'
+                    ...
+                    //controlli ]
+            i++
+        if not(stackempty(P))
+            Err = true
+        return(Err)
+\end{lstlisting}
+
+\section{Queue - Coda}
+Si tratta di una struttura dati dinamica gestita con una politica di tipo FIFO
+(First IN First Out).\\
+\paragraph*{Operazioni}
+\begin{itemize}
+    \item Enqueue(Q, X) - come la Push
+    \item Dequeue(Q) - come la Pop
+    \item QueueEmpty(Q) - come la Stackempty
+    \item Top(Q) - Tendenzialmente non prevista
+\end{itemize}
+Top non è prevista perchè se tolgo un elemento e lo rimetto qua va a finire in fondo!
+Quindi implementarla non è banale come negli stack.\\
+\paragraph*{Utilizzi della coda} La coda è molto utile per la gestione dei processi
+di un sistema operativo perchè io devo servire il primo che è arrivato, oltretutto
+se ho più processi da gestire posso creare una coda circolare dove per n tempo faccio
+andare un processo poi lo stoppo e lo rimetto in fondo alla coda e faccio andare il secondo,
+questo non è possibile nello stack.
