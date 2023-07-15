@@ -204,9 +204,19 @@ Se si chiede di fare l'analisi di sensitività di un termine noto ($b_i$) della 
 \end{itemize}
 
 
-\subsection{Analisi sui termini noti}
-Trovo la slack associata all'equazione e $\forall$ R con slack$\neq 0$ faccio: T.noto + (slack $\cdot \Delta) \geq 0$.
-Isolo Delta e metto a sistema per trovare il range
+\chapter{BranchAndBound}
+I problemi di Branch and Bound si risolvono in questo modo:
+
+\begin{itemize}
+	\item Apro il nodo k e risolvo il rilassamento lineare:
+	\begin{itemize}
+		\item Aggiorno $Z*$ se la soluzione è intera (binaria)
+		\item Fisso il mio Upper(Lower) Bound come l'arrotondamento (se necessario) della soluzione.
+	\end{itemize} 
+	\item Prendo la variabile frazionaria (o il primo indice se binario) e ne "vincolo" le soluzioni
+	\item Elaboro tutti i nodi fino a che non si chiudono.
+\end{itemize}
+
 \chapter{Ottimizzazione Non Lineare}
 
 \section{Risoluzione analitica per PNL Multivariati}
