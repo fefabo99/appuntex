@@ -671,3 +671,133 @@ Mentre su un albero ben bilanciato il tempo di ricerca peggiore è $\log n$.\\
 Quindi quando ho un albero binario che è praticamente una lista ho dei tempi di ricerca peggiori.\\
 Comunque a priori non ci preoccuperemo di bilanciare l'albero e compattarlo, verso la fine invece
 ci preoccuperemo anche di questo.
+\subsection{Vantaggi Albero Binario di Ricerca}
+Tramite la stampa simmetrica posso stampare tutti i valori in ordine! Dato
+che stampo albero sx, root, albero dx.
+\subsection{Implementazione Ricerca}
+L'operazione più semplice dato che non devo scrivere nell'albero, lo percorro
+soltanto. Meglio avere comunque una funzione che mi restituisce il puntatore,
+così posso avere tutte le informazioni del dato richiesto.
+\begin{lstlisting}[language=Java]
+    SBT_Search(X, K)
+        if x == nulla
+            return(x)
+        else
+            if x.key == k
+                return(x)
+            else if x.key > k
+                R = SBT_Search(x.left, K)
+                else
+                    R = SBT_Search(x.right, k)
+                    return(R)
+\end{lstlisting}
+Il caso migliore è quando l'elemento cercato è la radice.\\
+Il caso peggiore è quando per rendermi conto che l'elemento richiesto non è presente
+nell'albero devo percorrere l'albero. Cioè $k \notin T$ e il tempo sarà $T_p(n)=O(h)$ dove
+$h=n$ al masssimo, ma se l'albero è bilanciato avrò $h= \log n$.
+\paragraph*{Ricerca del minimo} è l'elemento più a sinistra dell'albero che non ha figli a sinistra
+(può averne a destra).
+\begin{lstlisting}[language=Java]
+    SBT_min(x)
+        if x == null
+            return(x)
+        while x.left != null
+            x = x.left
+        return(x)
+\end{lstlisting}
+\paragraph*{Ricerca del successore di un elemento x} Se l'albero destro di x è presente, il
+successore sarà sicuramente in quell'albero, se non c'è invece devo risalire fino a quando
+non ho che il nodo è un figlio sinistro, in quel caso il parent sarà il successore.
+\begin{lstlisting}[language=Java]
+    SBT_Successor(x)
+        if right(x) != null
+            R=SBT_min(x.right)
+            return(R)
+        else
+            while  x == Parent.right AND x.Parent != null
+                x=x.Parent
+            return(x.Parent)
+\end{lstlisting}
+Il tempo è $\log h$ se l'albero è bilanciato, altrimenti è $h$, dipende sempre dall'altezza
+dell'albero.
+\subsection{Operazioni di Inserimento}
+Come facciamo ad aggiungere un valore in un albero binario di ricerca in modo
+da mantenerlo come tale?\\
+La logica è quella di cercare il numero che voglio inserire e quando trovo un nodo
+dove vorrei scendere, ma non c'è nulla allora effettuo l'inserimento.
+\begin{lstlisting}
+    SBT_insert(T,Z)
+        y=null,
+        x=root[T]
+        while x != null
+            y=x
+            if (z.key <= x.key)
+                x=x.left
+            else
+                x=x.right
+        if y == null //verifico se l'albero e' vuoto
+            root[T] = Z
+        else
+            Z.Parent = y
+            if Z.key <= y.key
+                y.left = Z
+            else
+                y.right = Z
+\end{lstlisting}
+\paragraph*{Tempi di esecuzione} Come prima se l'albero è ben bilanciato $T=\log h$, altrimenti
+$O(h)$.
+\subsection{Cancellazione elementi da albero}
+Se l'elemento da cancellarè è una foglia non ci sono problemi, il probla è che se è un nodo
+interno devo gestire i collegamenti che vengono a mancare.\\
+Se cancello un nodo che ha un solo figlio, basta cancellare l'elemento e collegare il sotto
+albero con quello sopra e l'albero resta coerente.\\
+\paragraph*{Cancellazione nodo con 2 figli} Devo mettere un numero che sia simile a quello
+appena tolto, il successore mantiene l'albero coerente! E il successore è il minimo del sottoalbero di
+destra, e il minimo è una foglia oppure non ha figli a sinistra quindi rientra nella casistica
+dove è facile cancellarlo!
+\begin{lstlisting}[language=Java]
+    SBT_Delete(x)
+        if x.left == x.right == null
+            if x.Parent == null //Verifico se il valore 
+                Root[T] = null
+            else
+                if x == x.Parent.left
+                    x.Parent.left = null
+                else
+                    x.Parent.right = null
+        else if x.left == null XOR x.right = null
+        // con XOR indico se solo uno dei due e' null
+            Contrazione(T,x)
+        else
+            s=SBT_Successor(T,x)
+            appoggio = s.key
+            s.key = x.key
+            x.key = appoggio
+            SBT_Delete(s,T)
+            //Chiamata ricorsiva per cancellare x
+            //che pero' adesso e' al posto del successore
+            //dato che li ho scambiati
+    
+    Contrazione(T, x)
+        if x.parent == null
+            if x.left != null
+                root[T] = x.left
+            else
+                root[T] = x.right
+        else 
+            if x == x.parent.left AND x.left != null
+                x.parent.left = x.left
+                //seguono tutti gli if per i left e right
+                //in base alla casistica
+\end{lstlisting}
+La chiamata ricorsiva è una finta ricorsione dato che in realtà effettua una sola
+chiamata perchè quando chiedo di cancellare s (che in realtà è x appena scambiato) so già
+che sarà una foglia o un nodo con solo un figlio, quindi andrà a finire in un caso base,
+così facendo non devo riscrivere il codice.
+\paragraph*{Tempo} Come al solito dipende dall'altezza dell'albero h, se è bilanciato
+$O(\log h)$ altrimenti $O(h)$.
+\subsection{Alberi AVL}
+Sono alberi che implementano anche le funzionalità di bilanciamento, assegnano dei valori ai nodi
+che misurano il livello di sbilanciamento e quando lo sbilanciamento è troppo allora si interviene
+effettuando delle rotazioni più o meno complesse in base alla struttura dell'albero.\\
+Questo viene fatto chiaramente al fine di mantenere il tempo delle operazioni logaritmico.
