@@ -572,4 +572,102 @@ la richiesta di aspettare meno in fase di dequeue e di aspettare di più in fase
 Esercizi Stack e Code non so come siano implementate, posso usare solo i loro costrutti, sotto
 poi l'implementazione è con liste o array, ma NON lo so e quindi non posso usare puntatori, next, ecc.
 Mi posso appoggiare solo alle operazioni della struttura dati.
-%Da fare Lezione 18%
+\section{Alberi binari}
+Le liste possono essere organizzate in maniera differente, non per forza in maniera sequenziale,
+ma posso anche organizzarle in strutture ad albero, in questo modo posso ridurre di molto
+i tempi di ricerca, perchè con un controllo esclude metà albero.\\
+Un Albero è un grafo non orientato, connesso e aciclico.
+\subsection{Grafo}
+Un grafo è un insieme di nodi collegati tramite archi e può essere orientato (archi hanno un verso),
+non orientato
+\subsection{Albero radicato}
+Un albero dove in cima ho solo un punto a cui sono collegati tutti gli archi è un
+albero radicato e il primo nodo è chiamato \textbf{root} (radice).\\
+\subsection{Alberi binari}
+Sono alberi dove per ogni nodo ho collegato 2 elementi. Esistono anche i ternari, e ci sono strutture
+dati che prevedono il collegamento di n elementi, ma sono struttura particolari.
+\paragraph*{Definizioni}
+\begin{itemize}
+    \item Nodo antenato - Nodo che viene prima di un nodo x
+    \item Discendente - Nodo che viene dopo il nodo x 
+    \item Sottoalbero - Albero che si ha dopo un certo nodo
+    \item Il figlio di un nodo è il nodo immediatamente successivo a quello considerato, nell'albero
+    binario si parla di figlio destro e sinistro
+    \item Padre - Nodo immediatamente precedente a quello considerato (negli alberi binari 2 nodi possono
+    avere lo stesso padre)
+    \item Foglie - Nodo che sotto di sè non ha elementi
+    \item I nodi che non sono ne foglie ne radice, sono i nodi interni
+    \item Grado(x) - Numero di figli di un nodo x, NON il numero di figli possibili, ma quelli effettivi
+    \item Profondità - Numero di livelli superiori che un nodo ha
+    \item Altezza dell'albero, è la massima profondità ottenibili da tutti i nodi dell'albero
+\end{itemize}
+Radice è l'antenato principale e non è figlio di nessun nodo.
+\paragraph*{Definizione informale albero binario} Un albero binario è una struttura in cui c'è un nodo a cui
+sono collegati al più due figli
+\paragraph*{Definizione formale albero binario} Si tratta di una definizione ricorsiva.\\
+Si tratta di una struttura ricorsiva con:
+\begin{itemize}
+    \item Caso Base: Non contiene nodi
+    \item Oppure 3 insiemi disgiunti:
+    \begin{itemize}
+        \item 1 radice
+        \item 1 Albero binario a sinistra
+        \item 1 Albero binario a destra
+    \end{itemize}
+\end{itemize}
+Un albero senza nodi è un albero binario particolare (a livello pratico puntatore null).
+\paragraph*{Albero pienamento binario} Un nodo ha 2 figli o non ha figli
+\paragraph*{Albero binario completo} Ogni nodo ha 2 figli tranne le foglie che si trovano tutte
+allo stesso livello.
+\paragraph*{Quanti nodi ci sono in un albero binario completo?} La radice ha $2^0$ nodi, profondità
+1 ha $2^1$ nodi, ecc. ogni livello dell'albero aggiunge $2^n$ nodi. Un albero completo con n nodi, 
+ha come altezza $\log_2 n$.
+\section{Implementazione Albero Binario}
+Utilizzerò le liste e il primo puntatore sarà chiamato \textbf{Root[T]} e punterà a una cella
+con 3 campi:
+\begin{itemize}
+    \item Left
+    \item Right
+    \item K
+    \item Parent (Opzionale) - Campo che permette di risalire al nodo precedente
+\end{itemize}
+\subsection{Stampare tutte le chiavi di un albero binario}
+Mi conviene appoggiarmi a uno stack dove quando inizio salvo il puntatore al primo nodo
+nello stack, poi faccio la pop e stampo la chiave, poi prendo il puntatore all'albero destro
+e lo metto nello stack, prendo quello sinistro e lo metto nello stack, poi faccio la pop
+di quello sinistro, stampo il valore e metto nello stack il sottoalbero destro e quello sinistro,
+fino a quando non arrivo alle foglie. Così facendo sto facendo una cosa simile a \textbf{Merge Sort},
+cioè percorre mano mano i nodi e lascio in sospeso le varie metà.\\
+Uso la ricorsione perchè le chiamate ricorsive si appoggiano a uno stack!
+\begin{lstlisting}[language=Java]
+    StampaRic(X)
+        if x != null
+            print(x.key) //anticipata
+            StampaRic(x.left)
+            //simmetrica
+            StampaRic(x.right)
+            //posticipata
+\end{lstlisting}
+A seconda di dove mettiamo la print possiamo ottenere:
+\begin{itemize}
+    \item Stampa anticipata (Preorder) - Come nell'esempio
+    \item Simmetrica (Inorder)
+    \item Posticipata (Postorder)
+\end{itemize}
+Nello standard, l'albero di sinistra viene sempre stampato prima di quello di destra.
+\subsection{Alberi Binari di Ricerca}
+\paragraph*{Definizione} Un albero binario di ricerca è un albero binario tc:\\
+$\forall x \in B$:\\
+\begin{itemize}
+    \item Se y $\in$ sottoalbero radicato in left(x) $\rightarrow$ key(y) $\leq$ key(x)
+    \item Se y $\in$ sottoalbero radicato in right(x) $\rightarrow$ key(y) $>$ key(x)
+\end{itemize}
+In parole povere nel sottoalbero destro ci sono elementi più grandi di x e nel sinistro ci sono 
+tutti gli elementi più piccoli o uguali e questa proprietà vale per tutti i nodi.
+\paragraph*{Problema} Per un insieme di numeri ci sono diversi alberi di ricerca che posso scrivere,
+ma quali sono i migliori? Sono quelli più distribuiti perchè quando faccio la ricerca di un
+valore taglio più valori perchè se faccio un albero con un solo ramo il caso peggiore è $O(n)$.\\
+Mentre su un albero ben bilanciato il tempo di ricerca peggiore è $\log n$.\\
+Quindi quando ho un albero binario che è praticamente una lista ho dei tempi di ricerca peggiori.\\
+Comunque a priori non ci preoccuperemo di bilanciare l'albero e compattarlo, verso la fine invece
+ci preoccuperemo anche di questo.
