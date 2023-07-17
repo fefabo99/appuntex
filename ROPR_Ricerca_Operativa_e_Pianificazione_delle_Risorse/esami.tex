@@ -108,6 +108,23 @@ della corrispondente variabile slack nella riga zero del tableau finale.}
 \affermazione
 {Un termine noto é un parametro sensibile se il corrispondente prezzo ombra é positivo.}
 
+\subsection{Gradiente/Newton 2D}
+
+\affermazionetrue
+{Il metodo di Newton (se) converge, converge molto più velocemente del metodo del gradiente, ma ogni iterazione richiede uno sforzo computazionale maggiore}
+{Newton potrebbe non convergere, ma se converge converge più rapidamente perchè utilizza le informazioni di Gradiente ed Hessiana invece che solo del gradiente.
+Richiede uno sforzo computazionale maggiore perchè oltre che il gradiente ad ogni iterazione deve calcolare l'inversa della Hessiana}
+
+\affermazionetrue
+{Nel caso di funzioni quadratiche, il metodo di Newton converge al punto stazionario al più in una iterazione, partendo da qualsisasi punto.}
+
+\affermazionefalse
+{Il metodo di Newton converge sempre ad un punto di minimo locale.}
+{Se la funzione è Concava Newton converge ad un punto di massimo.}
+
+\affermazionefalse
+{Il Metodo di Newton applicato ad una funzione continua quadratica può non convergere se il punto iniziale è lontano dal punto di ottimo}
+{Il Metodo di Newton, se la funzione è quadratica, converge sempre in una iterazione.}
 
 \subsection{KKT}
 \affermazionetrue
