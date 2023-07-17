@@ -1,0 +1,22 @@
+\chapter{Heap - BOZZA}
+%Riguardare lezioni e completare%
+Utilizzati per esempio per Heap Sort, che come tempi è
+confrontabile con Quick e Mergesort, avviene in loco, non è stabile.
+\section{Che cos'è un Heap}
+\'E un array visto come un albero binario quasi completo.\\
+Un array sappiamo che come proprietà ha length(A) per indicare la lunghezza 
+dell'array ed è una proprietà statica, mentre negli Heap c'è anche
+heapsize(A) $\leq$ length(A) che è una proprietà dinamica dato che gli elementi
+appartenenti all'Heap variano nel tempo.
+\paragraph*{Proprietà} A[parenti(i)] $\geq$ A[i].\\
+Questo oltre a definire la struttura dell'Heap ci dice che la radice sarà il valore
+massimo. Sapere il minimo risulta più vago e anche l'ordine è meno preciso dell'albero binario
+di ricerca.\\
+\subsection{Cosa serve l'Heap}
+Serve per implementare code con priorità, perchè con lo Heap riesco a valutare
+chi è l'elemento più importante (la radice), dato che qua non mi interessa l'ordine globale,
+mi interessa definire la priorità e ridefinirla quando la radice viene tolta dalla coda.
+\subsection{Heapify}
+\begin{lstlisting}[language=Java]
+    Heapify(A, h)
+\end{lstlisting}
