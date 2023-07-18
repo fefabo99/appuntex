@@ -35,45 +35,53 @@ Gli esercizi possibile all'esame sono:
 Oltre a varie possibili domande di teoria.
 
 \chapter{Programmazione Lineare}
-\section{Il metodo del Simplesso}
+\section{Metodo del Simplesso}
 
-\paragraph*{La forma Tabellare}
+%\paragraph*{La forma Tabellare}
+%\begin{center}
+%	\begin{tabular}{c|c|c|cccc|c}
+%		\small{V. BASE} & Eq     & Z      & $x_1$    & $x_2$    & ...      & $x_n$    & T. Noto \\
+%		\hline
+%		Z               & R$_0$  & 1      & $c_1$    & $c_2$    & ...      & $c_n$    & 0       \\
+%		$x_1$           & R$_1$  & 0      & $a_{11}$ & $a_{12}$ & ...      & $a_{1n}$ & $b_1$   \\
+%		\vdots          & \vdots & \vdots & \vdots   & \vdots   & $\ddots$ & \vdots   & \vdots  \\
+%		$x_m$           & R$_n$  & 0      & $a_{m1}$ & $a_{m2}$ & ...      & $a_{mn}$ & $b_m$   \\
+%	\end{tabular}
+%\end{center}
+
+\subsection*{Forma Aumentata} Per portare il problema in forma aumentata:\\
 \begin{center}
-	\begin{tabular}{c|c|c|cccc|c}
-		\small{V. BASE} & Eq     & Z      & $x_1$    & $x_2$    & ...      & $x_n$    & T. Noto \\
-		\hline
-		Z               & R$_0$  & 1      & $c_1$    & $c_2$    & ...      & $c_n$    & 0       \\
-		$x_1$           & R$_1$  & 0      & $a_{11}$ & $a_{12}$ & ...      & $a_{1n}$ & $b_1$   \\
-		\vdots          & \vdots & \vdots & \vdots   & \vdots   & $\ddots$ & \vdots   & \vdots  \\
-		$x_m$           & R$_n$  & 0      & $a_{m1}$ & $a_{m2}$ & ...      & $a_{mn}$ & $b_m$   \\
-	\end{tabular}
+\begin{tabularx}{0.8\textwidth}{|Xc|Y|X|}
+	\hline
+	\multicolumn{4}{|c|}{Vincoli}\\
+	\hline
+	 Minoreuguale   & $\leq$ & $ = $                          & + Slack   \\
+	\hline
+	 Maggioreuguale & $\geq$ & $ =$                           & - Surplus \\
+	\hline
+	Uguale         & $=$    & \multicolumn{2}{c|}{Invariato}             \\
+	\hline
+\end{tabularx}
+
+\begin{tabularx}{0.8\textwidth}{|X|c|c|}
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Variabili non positive}}\\
+	\hline
+	$x_i\leq 0$ & $ x_i = -x_i^{'} \text{ con } x_i^{'}\geq 0 $ \\
+	\hline
+	\multicolumn{2}{|l|}{Ogni apparizione di $x_i$ viene sostituita con $-x_i^{'}$}\\
+	\hline
+\end{tabularx}
+\begin{tabularx}{0.8\textwidth}{|YYY|}
+	\hline
+	\multicolumn{3}{|c|}{\textbf{Funzione Obiettivo} }\\
+	\hline
+	$Z = \Sigma x_i $ & $\to$ & $ Z - \Sigma x_i = 0$ \\
+	\hline
+\end{tabularx}
 \end{center}
 
-\paragraph{Forma Aumentata} Per portare il problema in forma aumentata:\\
-\begin{tabularx}{\textwidth}{|X|lc|c|l|}
-	\hline
-	\multirow{3}{*}{\textbf{Vincoli}} & Minoreuguale   & $\leq$ & $ = $                          & + Slack   \\
-	\cline{2-5}
-	                                  & Maggioreuguale & $\geq$ & $ =$                           & - Surplus \\
-	\cline{2-5}
-	                                  & Uguale         & $=$    & \multicolumn{2}{c|}{Invariato}             \\
-	\hline
-\end{tabularx}
-\begin{tabularx}{\textwidth}{|X|c|c|}
-	\hline
-	\multirow{2}{*}{\textbf{Variabili non positive}} & $x_i\leq 0$                                                                     & $ x_i = -x_i^{'} \text{ con } x_i^{'}\geq 0 $ \\
-	\cline{2-3}
-	                                                 & \multicolumn{2}{|l|}{Ogni apparizione di $x_i$ viene sostituita con $-x_i^{'}$}                                                 \\
-	\hline
-\end{tabularx}
-\begin{tabularx}{\textwidth}{|X|ccc|}
-	\hline
-
-	\textbf{Funzione Obiettivo} & $Z = \Sigma x_i $ & $\to$ & $ Z - \Sigma x_i = 0$ \\
-	\hline
-\end{tabularx}
-
-\paragraph{Test di Ottimalità}
+\subsection*{Test di Ottimalità}
 Una volta portato il problema in forma tabellare, eseguo il test di ottimalitá:\\
 \begin{tabularx}{\textwidth}{|c|Y|Y|}
 	\hline
@@ -91,13 +99,11 @@ Definisco:\\
 	\hline
 	\makecell{\textbf{Variabile Entrante}                                                                                 \\ (Colonna Pivot)} & Coefficiente riga (0) più Piccolo (Più Negativo) & Coefficiente riga (0) più Grande (Più Positivo) \\
 	\hline
-	\makecell{\textbf{Variabile Uscente}                                                                                  \\ (Riga Pivot)} & \multicolumn{2}{c|}{Test del Rapporto Minimo} \\
+	\makecell{\textbf{Variabile Uscente}                                                                                  \\ (Riga Pivot)} & \multicolumn{2}{c|}{Test del Rapporto Minimo (T.noto/Pivot)} \\
 	\hline
 	\textbf{Numero Pivot}         & \multicolumn{2}{c|}{Intersezione Riga/Colonna Pivot}                                  \\
 	\hline
 \end{tabularx}
-\nb{Il test del rapporto minimo é T.noto/Pivot}
-\smallvspace
 \begin{tabularx}{\textwidth}{|XcX|}
 	\hline
 	\multicolumn{3}{|c|}{Per la nuova \textbf{Riga Pivot}}                                          \\
@@ -106,7 +112,6 @@ Definisco:\\
 	Coefficienti e Termine Noto & $\to$ & Divisi per Numero Pivot.                  \\
 	\hline
 \end{tabularx}
-\smallvspace
 \begin{tabularx}{\textwidth}{|c|Y|}
 	\hline
 	\multicolumn{2}{|c|}{per ogni \textbf{altra Riga}}                                          \\
@@ -129,31 +134,27 @@ Definisco:\\
 
 \subsection{Due Fasi}
 
-Funzione Obiettivo: Somma di tutte le variabili artificiali introdotte. (min $z= \Sigma y_i \implies$ max $z= - \Sigma y_i \implies$ max $z+\Sigma y_i = 0$)
-Vincoli: Per ogni vincolo che viene violato dalla soluzione Origine, sommo una variabile artificiale (unica) con coefficiente 1.
-
-Tableau iniziale: Le variabili artificiali devono essere in base, quindi devo azzerarle in R(0) sottraendogli il vincolo a cui sono associate.
-
-Una volta fatte entrare in base tutte le variabili artificiali, posso iterare normalmente.
-
-Finito di iterare, avró tutte le variabili artificiali =1 in (0), rimuovo quindi le colonne artificiali e ripristino la funzione obiettivo.
-
-Adesso faccio entrare in base (nello stesso modo di prima) le variabili che devono essere in base. poi itero normalmente.
+\textbf{Funzione Obiettivo}:
+Somma di tutte le variabili artificiali introdotte.
+\begin{center}
+	(min $Z= \Sigma y_i \implies$ max $Z= - \Sigma y_i \implies$ max $Z+\Sigma y_i = 0$)
+\end{center}
+\textbf{Vincoli}: Per ogni vincolo che viene violato dalla soluzione Origine, sommo una variabile artificiale (unica) con coefficiente 1.\\
+Tableau iniziale: Le variabili artificiali devono essere in base, quindi devo azzerarle in R(0) sottraendogli il vincolo a cui sono associate.\\
+Una volta fatte entrare in base tutte le variabili artificiali, posso iterare normalmente.\\
+Finito di iterare, avró tutte le variabili artificiali =1 in (0), rimuovo quindi le colonne artificiali e ripristino la funzione obiettivo.\\
+Adesso faccio entrare in base (nello stesso modo di prima) le variabili che devono essere in base. poi itero normalmente.\\
 
 \section{Dualitá}
 \subsection{Passare da Primale a Duale}
 
-
+\begin{center}
 \begin{tabular}{|l|c|c|c|}
 	\hline
     & \textbf{Primale} & \textbf{Duale} & \textbf{Ritorno} \\
 	\hline
     \textbf{Funzione Obiettivo} & max $c^T x$ & min $b^T \lambda$ & max $c^T x$ \\
     \hline
-	%\textbf{Vincoli} & $ax \leq b$ & $a^T\lambda \geq c$ &\\
-    %\hline
-	%\textbf{Non Negativitá} & $x\geq 0$ & $\lambda \geq 0$ &\\
-	%\hline
     \multirow{3}{*}{Vincoli $\implies$ Non Negativitá}
     &$x_i^Ta \leq c$ & $\lambda_i \geq 0$& $x_i^Ta \leq c$\\
 	\cline{2-4}
@@ -169,38 +170,44 @@ Adesso faccio entrare in base (nello stesso modo di prima) le variabili che devo
     &$x_j$ Free & $\lambda^T_ja = c$& $x_j$ Free\\
 	\hline
 \end{tabular}
+\end{center}
 
-\paragraph{Metodo con le matrici}
+\paragraph{Duale con le matrici}
 Un trucco per generare rapidamente il duale é utlizzare le matrici:\\
-Avendo il seguente problema di PL:\\
-\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-0.jpeg}\\
-si riconoscono opportunamente gli elementi che compongono il duale:\\
-\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-1.jpeg}\\
-Che come problema duale generano: \\
-\includegraphics[width=0.8\textwidth]{dualita-cheatsheet-2.jpeg}
+Avendo il seguente problema di PL:
+\begin{center}
+\includegraphics[width=0.5\textwidth]{dualita-cheatsheet-0.jpeg}
+\end{center}
+si riconoscono opportunamente gli elementi che compongono il duale e se lo si genera:\\
+\includegraphics[width=0.5\textwidth]{dualita-cheatsheet-1.jpeg}
+\includegraphics[width=0.5\textwidth]{dualita-cheatsheet-2.jpeg}
 
-
+\pagebreak
 \section{Gli Scarti Complementari}
 Se abbiamo una soluzione ammissibile per il primale possiamo verificarne l'ottimalità tramite le condizioni degli scarti complementari:
-Quindi, data $x^*$:
-\begin{tabular}{|c|c|}                                                            
+Quindi, dato $x^*$:\\
+\begin{center}
+\begin{tabularx}{0.8\textwidth}{|Y|Y|}                                                            
 \hline
-$x_i^* \neq 0$ & i-esimo (corrispondente) vincolo del duale attivo. \\
+$x_i^* \neq 0$ & $i$-esimo (corrispondente) vincolo del duale attivo. \\
 \hline
-i-esimo vincolo del primale NON attivo & $\lambda_i = 0$\\
+$i$-esimo vincolo del primale NON attivo & $\lambda_i = 0$\\
 \hline
-\end{tabular}
-Pongo quindi a sistema le equazioni trovate per trovare la soluzione corrispondente del Duale.
-Se i valori delle funzioni obiettivo sono uguali, allora le due soluzioni sono entrambe ottime.
+\end{tabularx}
+\end{center}
+Pongo quindi a sistema le equazioni trovate per trovare la soluzione corrispondente del Duale.\\
+Se i valori delle funzioni obiettivo sono uguali, e la soluzione trovata é ammissibile per il duale,
+allora le due soluzioni sono entrambe ottime.
 	
 
 \section{Esercizi su Analisi di Sensitività}
-\paragraph{Analisi sui termini noti}
-Se si chiede di fare l'analisi di sensitività di un termine noto ($b_i$) della $i$-esima equazione di vincolo, dato il tableu dell'ultima iterazione:
+\paragraph{Analisi su Termini Noti}
+Analisi di sensitività di un termine noto ($b_i$) relativo alla $i$-esima equazione di vincolo,
+dato il tableu dell'ultima iterazione:
 \begin{itemize}
-	\item Trovo la variabile di Slack della $i$-esima equazione di vincolo.
-	\item Per ogni Riga del tableau in cui il coefficiente della variabile di slack è $\neq 0$ faccio:
-	\[\text{T.Noto} + \text{(Coefficiente della variabile di slack} \cdot \Delta ) \geq 0\]
+	\item Identifico la variabile di Slack della $i$-esima equazione di vincolo.
+	\item $\forall$ Riga del tableau in cui il coefficiente della Slack in esame è $\neq 0$ faccio:
+	\[\text{T.Noto} + \text{(Coefficiente della Slack} \cdot \Delta ) \geq 0\]
 	\item Metto a sistema le disequazioni trovate e risolvo per Delta.
 \end{itemize}
 
