@@ -96,6 +96,7 @@ Definisco:\\
 	\textbf{Numero Pivot}         & \multicolumn{2}{c|}{Intersezione Riga/Colonna Pivot}                                  \\
 	\hline
 \end{tabularx}
+\nb{Il test del rapporto minimo é T.noto/Pivot}
 \smallvspace
 \begin{tabularx}{\textwidth}{|XcX|}
 	\hline
@@ -218,6 +219,23 @@ I problemi di Branch and Bound si risolvono in questo modo:
 \end{itemize}
 
 \chapter{Ottimizzazione Non Lineare}
+
+\section{Metodo di Bisezione}
+
+\begin{itemize}
+	\item Calcolo $f'(x_k)$
+	\item Se $f$ è \textbf{concava}:
+	\begin{itemize}
+		\item $f'(x_k) < 0 \implies \bar{x} = x_k$
+		\item $f'(x_k) > 0 \implies \underline{x} = x_k$
+	\end{itemize}
+	\item Cerco il nuovo punto: $x_{k+1} = \frac{\underline{x} + \bar{x}}{2}$
+	\item Se $f'(x_k) = 0$ sono al punto di ottimo
+\end{itemize}
+Criterio di arresto: $\underline{x} - \bar{x} \leq 2\epsilon$
+
+\section{Algoritmo di Newton 1D}
+Nuovo punto: $x_{k+1}=x_k- \frac{f'(x_k)}{f''(x_k)}$
 
 \section{Risoluzione analitica per PNL Multivariati}
 Per risolvere analiticamente un problema di PNL multivariato:

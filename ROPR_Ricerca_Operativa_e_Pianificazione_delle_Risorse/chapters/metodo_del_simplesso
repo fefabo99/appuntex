@@ -199,7 +199,7 @@ In questo caso utilizziamo la Forma Tabellare, che registra soltano l'informazio
         \end{itemize}
         La rispettiva colonna diventa Colonna Pivot.
         \item \textbf{Variabile Uscente}: Eseguo il Test del rapporto minimo:
-        Prendo i coefficienti positivi della colonna Pivot e li divido per i rispettivi Termini Noti.
+        Prendo i coefficienti strettamente positivi della colonna Pivot e divido i rispettivi Termini Noti per essi..
         La variabile con il rapporto minimo esce dalla base e la rispettiva riga diventa Riga Pivot.
         \item \textbf{Numero Pivot}: Il coefficiente all'intersezione tra Riga e Colonna Pivot diventa Numero Pivot.
     \end{itemize}
