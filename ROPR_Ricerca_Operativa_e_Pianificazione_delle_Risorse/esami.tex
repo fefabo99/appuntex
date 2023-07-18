@@ -108,6 +108,25 @@ della corrispondente variabile slack nella riga zero del tableau finale.}
 \affermazione
 {Un termine noto é un parametro sensibile se il corrispondente prezzo ombra é positivo.}
 
+\subsection{Metodo di Bisezione}
+\affermazionetrue
+{
+    Si consideri il metodo di bisezione per la determinazione del punto massimo di una funzione $f(x)$: Nei punti estremi dell'intervallo
+    di ricerca dell'ottimo $[l,u]$ puó succedere che i valori di $f(l)$ e $f(u)$ abbiano lo stesso segno.
+}
+{
+    Se una funzione é pari sappiamo che $f(x)=f(-x)$, quindi possono avere lo stesso segno
+}
+\affermazionetrue
+{Consideriamo il metodo di bisezione applicato ad una funzione convessa: se $f'(x)>0$ allora $x$ é un estremo superiore}
+{Se la funzione é convessa, quando la derivata é $>0$ allora ci troviamo a destra dell'ottimo, quindi dobbiamo modificare l'estremo superiore}
+
+\affermazione
+{L'Algoritmo di Bisezione fornisce una soluzione analitica al problema di trovare un massimo (o minimo) di una funzione in una variabile}
+
+\affermazione
+{Gli algoritmi di ottimizzazione non linare permettono di individuare gli ottimi globali di una funzione continua.}
+
 \subsection{Gradiente/Newton 2D}
 
 \affermazionetrue
@@ -127,6 +146,9 @@ Richiede uno sforzo computazionale maggiore perchè oltre che il gradiente ad og
 {Il Metodo di Newton, se la funzione è quadratica, converge sempre in una iterazione.}
 
 \subsection{KKT}
+\affermazionetrue
+{Le condizioni KKT rappresentano delle condizioni di ottimalitá e non un algoritmo di ottimizzazione.}
+
 \affermazionetrue
 {Le condizioni KKT non sono un algorimto di ottimizzazione.}
 {Le KKT non sono un algoritmo bensí delle condizioni necessarie non sufficienti per i punti di ottimo.}
@@ -148,6 +170,10 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
 
 \affermazionetrue
 {In un problema di PNL Vincolata, nel punto di ottimo il gradiente della funzione $f$ puó essere riscritto come combinazione lineare dei gradienti dei vincoli.}
+
+\affermazionefalse
+{Nel punto di ottimo di un problema di PNL Vincolata il gradiente della funzione obiettivo é sempre nullo}
+{In PNL Vincolata non abbiamo bisogno di sapere se il gradiente della funzione obiettivo sia nullo, perché avendo i vincoli non é detto che l'ottimo sia anche l'ottimo della f.obiettivo.}
 
 \chapter{Domande Aperte}
 \domanda[Proprietá dei Vertici Ammissibili]{3}{
