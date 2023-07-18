@@ -206,11 +206,17 @@ Analisi di sensitività di un termine noto ($b_i$) relativo alla $i$-esima equaz
 dato il tableu dell'ultima iterazione:
 \begin{itemize}
 	\item Identifico la variabile di Slack della $i$-esima equazione di vincolo.
-	\item $\forall$ Riga del tableau in cui il coefficiente della Slack in esame è $\neq 0$ faccio:
+	\item $\forall$ Riga del tableau \small{(tranne $R_0$)} in cui il coefficiente della Slack in esame è $\neq 0$ faccio:
 	\[\text{T.Noto} + \text{(Coefficiente della Slack} \cdot \Delta ) \geq 0\]
 	\item Metto a sistema le disequazioni trovate e risolvo per Delta.
 \end{itemize}
 
+\paragraph{Analisi su Coefficienti Funzione Obiettivo}
+Analisi di sensitivitá sui coefficienti $c_i$:
+\begin{itemize}
+	\item Se $c_i$ é un base nell'equazione $R_i$: metto a sistema $R_0 + \Delta R_i \geq 0$ e trovo $\Delta$.
+	\item Se non é in base sottraggo $\Delta$ dal suo coefficiente in $R_0$, che deve peró rimanere $\geq 0$ 
+\end{itemize}
 
 \chapter{BranchAndBound}
 I problemi di Branch and Bound si risolvono in questo modo:
