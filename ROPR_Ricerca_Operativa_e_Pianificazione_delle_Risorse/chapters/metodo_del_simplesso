@@ -94,6 +94,10 @@ in forma originale che viene \emph{aumentata} tramite i corrispondenti valori de
 %Pertanto, il numero delle variabili non di base eguaglia il numero totale delle variabili
 %meno il numero dei vincoli funzionali.
 
+\definizione{
+    Si definisce \textbf{Soluzione di Base} un vertice del modello in forma aumentata.
+}
+
 Se prendiamo un modello in forma aumentata, noteremo che consiste di $d$ variabili decisionali, ovvero le variabili del problema originale,
 e di $s$ variabili di slack.
 Abbiamo quindi a disposizione $d$ gradi di libertà per risolvere il sistema lineare, 
@@ -113,6 +117,9 @@ La soluzione di base é un vertice del modello in forma aumentata, e gode delle 
     \item I valori delle variabili di base sono ottenuti come risoluzione del sistema di equazioni lineari dati dai vincoli in forma aumentata.
     \item Se le variabili di base ottenute soddisfano i vincoli di non negatività, la soluzione di base è una soluzione ammissibile di base.
 \end{enumerate}
+
+\paragraph*{Soluzione di base Ammissibile}
+Una soluzione di base é \textbf{ammissibile} se il valore delle sue variabili di base sono \emph{Non negative}
 
 \paragraph{Soluzioni di Base Adiacenti}
 Due soluzioni di Base Ammissibili sono Adiacenti \underline{se condividono le stesse variabili non di base eccetto una}.

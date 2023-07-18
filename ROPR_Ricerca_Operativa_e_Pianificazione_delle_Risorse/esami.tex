@@ -19,15 +19,7 @@
 
 \tableofcontents
 
-\chapter{Domande di Teoria dal Mega}
-Si faccia riferimento a un problema di Massimizzazione ed, ove richiesto, ad un problema artificiale per la fase 1 del metodo del simplesso.
-
-\domandaaperta{1?}{Se B é la matrice di base associata ad una base ottima, il valore della funzione obiettivo associato alla corrispondende SBA  non negativo}
-
-\domandaaperta{2}{Il valore Nullo di una variabile indica che essa sia fuori base}
-\rispostaaperta{Falso, una variabile puó valere 0 anche nel caso sia in base (soluzione degenere)}
-
-\chapter{Domande di Teoria - Bibbia}
+\chapter{Affermazioni True or False}
 
 \subsection{Programmazione Lineare e Metodo del Simplesso}
 
@@ -43,12 +35,6 @@ miglioramento. Se tale condizione non è
 soddisfatta allora la soluzione corrente è
 ottimale.}
 
-\affermazionefalse
-{In ogni problema di PL con $n$ variabili di decisione e $m$ vincoli, ogni vertice ammissibile giace all'intersezione di n+m frontiere di altrettanti vincoli.}
-{In ogni problema di programmazione lineare con $n$
-variabili di decisione, ogni vertice ammissibile giace
-all'intersezione di $n$ frontiere di altrettanti vincoli, }
-
 \affermazionetrue
 {Una soluzione che giace lungo un segmento che collega due altre soluzioni ammissibili non é un vertice ammissibile.}
 {Dalla definizione}
@@ -57,10 +43,6 @@ all'intersezione di $n$ frontiere di altrettanti vincoli, }
 {I valori delle variabili di base si ricavano risolvendo il sistema di equazioni lineari determinato dai vincoli funzionali in forma aumentata.}
 {Avendo il valore 0 delle variabili non in base si può risovlere il sistema di equazioni lineari per trovare il valore delle variabili in base.}
 
-\affermazionefalse
-{Una variabile nulla é certamente una variabile di base.}
-{Una variabile nulla può essere sia in base, che fuori base. Una variabile fuori base è sicuramente nulla,
-ma se una variabile è nulla può anche essere in base}
 
 \affermazionetrue
 {il numero delle variabili di base é sempre determinato dal numero di vincoli funzionali.}
@@ -69,6 +51,56 @@ ma se una variabile è nulla può anche essere in base}
 \affermazionetrue
 {Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.}
 {Prporietá numero (5) delle soluzioni di base.}
+
+\affermazionetrue
+{Un problema di PL può ammettere infinite soluzioni ottime}
+{Se in un problema abbiamo due soluzioni ottime, anche lo spigolo che li collega é ottimo }
+
+\affermazionetrue
+{Esistono problemi di PL che ammettono un'unica soluzione ottima}
+
+\affermazionetrue
+{Dato un problema di PL, due soluzioni di base ammissibili vengono dette adiacenti se condividono tutte le variabili non di base eccetto una}
+
+\affermazione
+{Se un problema ha piú di una soluzione di base ottimale, almeno una delle variabili non di base ha un coefficiente nullo nella riga (0)}
+
+\affermazione
+{In ogni problema di programmazione lineare con $m$ variabili di decisione, ogni vertice è la soluzione simultanea
+di un sistema di $m$ equazioni, ognuna rappresentante la frontiera di uno degli $m$ vincoli}
+{}
+
+\affermazione
+{Se un problema di PL ammette più di una soluzione di base ottimale, allora incrementre il valore di una \textbf{qualsiasi variabile non di base} non cambia il valore della funzione obiettivo}
+
+
+\affermazionefalse
+{Esistono problemi di PL che ammettono esattamete due soluzioni ottime (distinte)}
+{Se due soluzioni sono ottime, anche lo spigolo che li collega lo é.}
+
+\affermazionefalse
+{Un problema di PL che ha regione ammissibile non vuota ammette \emph{sempre} soluzione ottima}
+{No, la regione ammissibile potrebbe essere illimitata.}
+
+
+\affermazionefalse
+{Due Vertici ammissibili sono adiacenti se il segmento che li collega non é uno spigolo della regione ammissibile}
+{Due vertici sono adiacenti se condividono le stesse variabili non di base tranne una.}
+
+\affermazionefalse
+{Una variabile nulla é certamente una variabile di base.}
+{Una variabile nulla può essere sia in base, che fuori base. Una variabile fuori base è sicuramente nulla,
+ma se una variabile è nulla può anche essere in base}
+
+\affermazionefalse
+{Il valore Nullo di una variabile indica che essa sia fuori base}
+{Una variabile puó valere 0 anche nel caso sia in base (soluzione degenere)}
+
+\affermazionefalse
+{In ogni problema di PL con $n$ variabili di decisione e $m$ vincoli, ogni vertice ammissibile giace all'intersezione di n+m frontiere di altrettanti vincoli.}
+{In ogni problema di programmazione lineare con $n$
+variabili di decisione, ogni vertice ammissibile giace
+all'intersezione di $n$ frontiere di altrettanti vincoli, }
 
 
 \subsection{Dualità}
@@ -176,6 +208,9 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
 {In PNL Vincolata non abbiamo bisogno di sapere se il gradiente della funzione obiettivo sia nullo, perché avendo i vincoli non é detto che l'ottimo sia anche l'ottimo della f.obiettivo.}
 
 \chapter{Domande Aperte}
+
+\section{Programmazione Lineare e Metodo del Simplesso}
+
 \domanda[Proprietá dei Vertici Ammissibili]{3}{
     Si enuncino le Proprietà dei Vertici Ammissibili di un problema di PL. Si scelga poi una delle proprietà e si mostri un esempio grafico o numerico.
 }
@@ -185,7 +220,7 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
         \item Se esiste una sola soluzione ottima, questa sará un vertice ammissibile.
         Se esistono piú soluzioni con regione ammissibile limitata, allora almeno due di queste sono vertici ammissibili tra loro adiacenti.
         \item Il numero di vertici ammissibili é finito e dipende da n vincoli di non negativitá e m vincoli funzionali.
-        il numero di combinazioni di m + n vincoli presi a gruppi di n é pari $\frac{(m+n)!}{m!n!}$. Questa quantitá (finita) rappresenta un limite superiore al numero di vertici ammissibili.
+        il numero di combinazioni di $m$ + $n$ vincoli presi a gruppi di n é pari $\frac{(m+n)!}{m!n!}$. Questa quantitá (finita) rappresenta un limite superiore al numero di vertici ammissibili.
         \item Se un vertice ammissibile non ha vertici adiacenti migliori, allora non ci sono vertici migliori. 
         Quindi se il problema ha una soluzione otttima, questo vertice é la soluzione ottima.
     \end{enumerate}
@@ -202,7 +237,27 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
     \end{enumerate}
 }
 
-\domanda[Dualitá Debole e Forte]{5}{Si dia una defninizione di Dualitá Debole e Forte}
+\domanda[Numero di Sol. di Base]{$\bigcirc$}{Si supponga che per un problema di PL in forma standard si abbiano $m$ variabili e $n$ vincoli.
+Cosa si può dire sul numero di soluzioni di base?
+}
+
+\domanda[]{$\bigcirc$}{Dato un problema di PL con regione ammissibile illimitata, dire quale delle seguenti affermazioni é vera:
+\begin{enumerate}
+    \item La procedura del Simplesso non puó mai partire perché, essendo il problema illimitato, non esiste una soluzione di base ammissibile.
+    \item Esiste Sempre una soluzione ottima del problema
+    \item Il suo duale é sempre inammissibile
+\end{enumerate}
+}
+\rispostaaperta{
+    La risposta giusta é la 3: Il suo duale é sempre inammissibile come corollario del Teorema della Dualitá.
+    La risposta 1 é sbagliata, perché Il simplesso potrebbe partire da un punto come l'origine, mentre la risposta 2 è sbagliata perche se la regione ammissibile é illimitata generalmente non esiste soluzione ottima.
+
+}
+
+\pagebreak
+\section{Dualità}
+
+\domanda[Dualitá Debole e Forte]{$\bigcirc$}{Si dia una defninizione di Dualitá Debole e Forte}
 \rispostaaperta{
 \begin{itemize}
     \item Dualitá Debole: Il valore della funzione obiettivo per una qualsiasi soluzione ammissibile del problema primale (max) non puó eccedere
@@ -213,7 +268,7 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
 \end{itemize}
 }
 
-\domanda[Dualitá e le proprietà]{}{Descrivere la proprietá di dualitá debole, di dualitá forte, la proprietá delle soluzioni complementari e la proprietá delle soluzioni ottimali complementare. Infine si presenti il teorema di dualitá}
+\domanda[Dualitá e le proprietà]{$\bigcirc$}{Descrivere la proprietá di dualitá debole, di dualitá forte, la proprietá delle soluzioni complementari e la proprietá delle soluzioni ottimali complementare. Infine si presenti il teorema di dualitá}
 \rispostaaperta{
     \subparagraph{Dualitá Debole} Dualitá Debole: Il valore della funzione obiettivo per una qualsiasi soluzione ammissibile del problema primale (max) non puó eccedere
     il valore della funzione obiettivo per una qualisasi soluzione ammissibile del problema duale.
@@ -223,11 +278,16 @@ ma per stabilire se sono punti di ottimo devo verificare anche altre condizioni}
     \subparagraph{Teorema della dualitá} Se il primale é ammissibile e ha funzione obiettivo limitata, quindi ha ottimo, lo stesso vale per il duale. Se il primale ha soluzioni ammissibili, ma funzione obiettivo illimitata, il duale non ha soluzioni ammissibili. Se il primale non ha soluzioni ammissibili, il duale o  non ha soluzioni ammissibili o ha funzione obiettivo illimitata. 
 }
 
-\domanda[Proprietá di Complementarietá]{9}{Si definisca la Proprietá di Complementarietá in PL. Si diano due esempi reali in cui é utilizzabile e cosa permette di concludere.}
+%%%%DA COMPLETARE
+\domanda[Proprietá di Complementarietá]{$\bigcirc$}{Si definisca la Proprietá di Complementarietá in PL. Si diano due esempi reali in cui é utilizzabile e cosa permette di concludere.}
 \rispostaaperta{ %Da rivedere
     La complementarietá in un problema di Programmazione Lineare si evince dalla relazione tra problmea primale e duale.
     In particolare, la complementarietá afferma che ogni soluzione primale ha una soluzione complementare duale tale che $W=Z$
-    Se un problema lineare in forma primale ha soluzione ottimale x* allora anche il problema
+    Se un problema lineare in forma primale ha soluzione ottimale $x^*$ allora anche il problema
     }
 
+\domanda[Teorema della Dualità]{$\bigcirc$}
+{Si supponga che un problema primale di PL abbia \emph{Soluzione Illimitata}.
+Cosa si può dire del problema duale? (é sufficiente enunciare il teorema, non è necessaria la sua dimostrazione.)}
+\rispostaaperta{Dal teorema della dualitá: Se un primale ha funzione obiettivo Illimitata, allora il duale Non ha soluzioni ammissibili.}
 \end{document}
