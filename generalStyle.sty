@@ -49,6 +49,7 @@
 \newcommand{\spiegazione}[1]{\begin{box_giallochiaro} \small{ \emph{Spiegazione: }#1}\end{box_giallochiaro}}
 \newcommand{\esempio}[1]{\begin{box_grigiochiaro} \textbf{Esempio: }#1\end{box_grigiochiaro}}
 \newcommand{\quickDefinizione}[1]{\paragraph{Quick Definizione} #1}
+\newcommand{\formula}[2]{\begin{box_formula} \begin{center} \textbf{#1}: #2 \end{center}  \end{box_formula}}
 
 \newcommand{\nb}[1]{\underline{\emph{\textbf{N.B.}}} \small{#1}}
 
@@ -125,6 +126,13 @@
     linewidth=0.5pt,
     innerbottommargin=14pt,
 ]{box_definizione}
+
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=3pt,
+    innerbottommargin=3pt,
+]{box_formula}
 
 
 

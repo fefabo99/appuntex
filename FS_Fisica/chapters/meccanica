@@ -12,20 +12,20 @@ La meccanica è la branca della fisica che studia il moto dei corpi, esprimendol
 Sia dato un sistema di riferimento orientato x.
 Sia dato un punto materiale.
 Avremo queste tre formule (dei \emph{moduli}):
-\begin{itemize}
-    \item \textbf{Spostamento}: $\vettore{s}=\Delta x = x_2-x_1$
-    \item \textbf{Velocità Media}: $\vettore{v_m} = \frac{(x_f-x_i)}{(t_f-ti)} = \frac{\Delta x}{\Delta t}$
-    \item \textbf{Velocità Istantanea}: $\vettore{v_x} = \lim_{t\to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$
-\end{itemize}
+
+\formula{Spostamento}{$\vettore{s}=\Delta x = x_2-x_1$}
+\formula{Velocità Media}{$\vettore{v_m} = \frac{(x_f-x_i)}{(t_f-ti)} = \frac{\Delta x}{\Delta t}$}
+\formula{Velocità Istantanea}{$\vettore{v_x} = \lim_{t\to 0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$}
+
 \paragraph{Spostamento $\neq$ Distanza}
 Lo \emph{spostamento} è un vettore che si annulla quando il punto torna alla posizione di partenza (in un tempo diverso),
 mentre la distanza è uno scalare che indica \emph{tutta la distanza che il punto ha già percorso}.
 \paragraph{L'accelerazione} L'acelerazione è la variazione della velocità nel tempo.
 Le formule dell'acelerazione sono:
-\begin{itemize}
-    \item \textbf{Accelerazione Media}: $a_m = \frac{v_f-v_i}{t_f-t_i} = \frac{\Delta v}{\Delta t}$
-    \item \textbf{Accelerazione Istantanea}: $a_x = \lim_{\Delta t \to 0} = \frac{\Delta v}{\Delta t} = \frac{dv_x(t)}{dt}= \frac{d}{dt}\frac{dx}{dt} = \frac{d^2x}{dt^2}$
-\end{itemize}
+
+\formula{Accelerazione Media}{$a_m = \frac{v_f-v_i}{t_f-t_i} = \frac{\Delta v}{\Delta t}$}
+\formula{Accelerazione Istantanea}{$a_x = \lim_{\Delta t \to 0} = \frac{\Delta v}{\Delta t} = \frac{dv_x(t)}{dt}= \frac{d}{dt}\frac{dx}{dt} = \frac{d^2x}{dt^2}$}
+
 \emph{L'accelerazione è la derivata della velocità}.
 \subsection{I tipi di Moto}
 Esistono tre tipi di moto del punto materiale 1D, ed essi variano in base all'accelerazione e alla velocità:
