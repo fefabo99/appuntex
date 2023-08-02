@@ -12,14 +12,12 @@
     Velocità Istantanea & $\vettore{v} = \lim_{x\to0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$ &\\
     \hline
     \hline
-    Accelerazione Media & $a_m = \frac{\Delta v}{\Delta t} = \frac{v_f-v_i}{t_f - t_i} $ & $[m/s^2]$\\
-    \hline
     Accelerazione Istantanea & $a = \frac{\Delta v }{\Delta t} = \frac{d^2x}{dt^2}$&\\
     \hline
     \hline
-    Spostamento & $x(t) = x_i + v_it + \frac{1}{2} at^2 $ & $[m]$\\
+    \textbf{Spostamento} & $x(t) = x_i + v_it + \frac{1}{2} at^2 $ & $[m]$\\
     \hline
-    Velocità Finale & $v_f(t) = v_i + at$ & \\
+    \textbf{Velocità} & $v(t) = v_i + at$ & \\
     \hline
     \hline
     \multicolumn{3}{|c|}{Moto Circolare Uniforme}\\
