@@ -1,0 +1,258 @@
+
+
+\chapter{Dinamica}
+La Dinamica è la parte della Meccanica che studia l'influenza delle \underline{\textbf{forze} nel moto}
+\\Fin'ora abbiamo solo considerato le equazioni della cinematica, cioè il moto di particelle indipendenetemente dalle cause stesse del moto.
+Per determinare le cause di un moto dovremmo considerare si ala massa del corpo, che le forze che agiuscono su questa massa.
+
+In alcuni casi le Forze determinano degli \emph{spostamenti}, ovvero un moto, ma in altri casi applicando delle forze non si verificano moti, per esempio il fatto che stiamo seduti senza cadere al suolo.
+\definizione{
+    Un oggetto che stia fermo, o sia in moto rettilineo uniforme, accelera se e solo se
+    la forza totale, come somma vettoriale delle forze,
+    detta anche la \textbf{risultante delle forze}, è diversa da zero
+}
+
+
+\section{I Legge di Newton e l'inerzia}
+Newton disse che "le forze determinano i cambiamenti di velocità delle masse", cioè delle \emph{Accelerazioni}.
+\paragraph*{Introduzione}
+Si consideri un oggetto fermo su un piano, se lo si spinge orizzontalmente, si muoverà solo quando \emph{la forza applicata supererà la forza di attrito del tavolo}.
+
+Per mantenere il corpo a velocità costante, bisognerà applicare una forza che eguagli la forza di attrito con il piano.
+La forza di attrito quindi è una forza che va nella \textbf{direzione opposta} alla forza che stiamo applicando.
+Se applichi una forza maggiore, l'oggetto accellererà.
+
+\paragraph{Enunciato}
+La prima legge di Newton enuncia:
+\definizione{
+    \textbf{Prima Legge di Newton:}
+    Quando un punto materiale non è soggetto a forze esterne, oppure la loro risultante è nulla, allora il punto materiale ha una velocità \textbf{Costante o Nulla}.
+}
+In parole povere, un corpo permane nel suo stato di quiete (o moto rettilineo uniforme) a meno che non intervenga una forza esterna a modificare tale stato.
+
+
+\section{II Legge di Newton}
+Introduciamo prima il concetto di \textbf{Massa}:
+
+\paragraph*{La Massa}
+La massa di un oggetto specifica \textbf{quanta inerzia ha l'oggetto all'azione di una forza.}\\
+Più grande è la massa, meno l'oggetto accelera come conseguenza della forza applicata.
+La massa è uno scalare e la sua unità di misura in SI è il \emph{kg}
+La massa è una caratteristica intrinseca dell'oggetto e non dipende dall'ambiente circostante.
+È diversa dal peso che invece dipenderà dal luogo dove l'oggetto è misurato.
+
+\paragraph{Enunciato della Seconda Legge}
+\definizione{
+    L' accelerazione di un oggetto è direttamente proporzionale alla risultante delle forze agenti
+    ed è inversamente proporzionale alla massa.
+    \[\sum \vettore{F} = m\vettore{a}\]
+}
+ 
+Si possono quindi correlare la massa e le forze agenti in base alla II legge di Newton.\\
+La forza è un vettore e quindi l'espressione precedente è valida \emph{per tutte e tre le componenti cartesiane della forza}
+
+\paragraph*{Il Newton $N$}
+Consideriamo il modulo della formula scritta in modo compatto: $F=ma$, la sua unità di misura è il \textbf{Newton}.
+\definizione{
+    \textbf{1N} (Newton) è quella forza che impressa ad una massa di 1 kg, determina una sua accelerazione di $1 m/s^2$.
+    \[1 [N] = 1[kg \cdot m/s^2]\]
+}
+Notare che con la stessa forza, all'incrementare della massa l'accelerazione decrementa.
+
+\section{I Sistemi Inzerziali} %Copiato papale papale dalle slide lezione 5, da sistemare
+Si definisce inerzia la resistenza naturale di un oggetto alle modificazioni della sua velocità.
+
+Un sistema di riferimento si dice inerziale se \textbf{Esso non accelera}.
+In un sistema di riferimento inerziale vale il primo principio della dinamica.
+Se in un sistema inerziale un osservatore nota che l'accelerazione di un oggetto è nulal, o, in modo equivalente, che la risultante delle forze è nulla,
+allora esse saranno nulle in qualunque altro sistema inerziale. Le leggi della meccanica classica sono invarianti solo per osservatori inerziali.
+
+La terra non è un vero sistema inerziale a causa della rotazione e rivoluzione, ma siccome le accelerazioni in gioco sono molto piccole rispetto a quelle dovute alla gravità
+(dell'ordine di qualche punto percnetuale), la terra è in ottima approssimazione un sistema inerziale.
+il passaggiuo tra due sistemi di riferimento inerziali si da attraverso le trasformazioni di galileo.
+
+\subsection{Sistemi di riferimento non inerziali e forze apparenti}
+Se ci troviamo su una piattaforma rotante e rilasciamo una pallina da tennis sul pavimento di essa (a velocità nulla) osserveremo che 
+essa accelera e si muove verso l'esterno della piattaforma stessa. Ci sembrerà che il primo principio di Newton sia invalido,
+un osservatore esterno però noterà che la palla ha una velocità iniziale quando viene lasciata libera sul pavimento della piattaforma (perchè la piattaforma si muove),
+e continua a muoversi di moto rettilineo uniforme.
+
+Sulla piattaforma rotante, poichè la palla si muove senza che su di essa agisca alcuna forza, il primo principio della dinamica non è valido: ed è detto non inerziale.
+Anche il secondo principio della dinamica non è valido in un sistema non inerziale.
+È comunque possibile usare le leggi di newton anche in questo tipo di sistema di riferimento, a patto che si utilizzi un trucco:
+
+Il trucco che usiamo è di scrivere l'equazione F = ma come se, oltre alle altre forze che possono essere presenti,
+agisse una forza uguale a F=mv2 /r (o m$\omega$2r ) in direzione radiale e verso l'esterno.
+Questa forza supplementare, che possiamo denominare forza centrifuga perché sembra che agisca verso l'esterno,
+è detta forza apparente o pseudoforza. È una pseudoforza («pseudo» vuol dire «falso») perché non vi è alcun
+oggetto che la esercita e perché, se osservato da un sistema di riferimento inerziale, questo effetto non esiste.
+Abbiamo inventato questa pseudoforza in modo da potere usare anche in un sistema di riferimento non inerziale il
+secondo principio della dinamica, F = ma.
+
+\section{III Legge di Newton}
+Se due corpi interagiscono tra di loro, la forza $F_{12}$ esercitata dal corpo $1$ sul corpo $2$ è uguale in ampiezza,
+ed ha la stessa direzione e verso opposto della forza $F_{21}$ esercitata dal corpo 2 sul corpo 1.
+\definizione{
+    La terza legge di newton enuncia:
+    \[ F_{12} = - F_{21} \]
+    "Ad ogni azione corrisponde una reazione uguale e contraria".
+    \\La forza dall'oggetto 1 all'oggetto 2 è detta \emph{azione}, l'altra è detta \emph{reazione}
+}
+\nb{l'azione e la reazione agiscono su oggetti diversi!}
+
+\section{La Forza di Gravità e la Forza Peso}
+La terra attrae tutti gli oggetti, quindi esercita una forza. Essa è chiamata \emph{Forza di Gravità $F_g$}.
+La forza di gravità è diretta verso il centro della terra e la sua ampiezza è chiamata \textbf{peso} di un oggetto.
+\definizione{Un corpo di massa $m$, che è soggetto solo alla forza di gravità, si muovo di moto uniformemente accelerato
+    con accelerazione $g$ verso il centro della Terra.
+    \begin{center}
+        $g \sim 9.81m/s^2$ e si chiama Accelerazione di Gravità
+    \end{center}
+    \begin{center}
+        $F_g = mg$ è il \textbf{peso} di un oggetto ed è pari al modulo della forza di gravità
+    \end{center}
+}
+\subsection{La Forza Normale}
+Se abbiamo un oggetto su un tavolo, su cui si esercita la forza di gravità, perchè non accelera in direzione di $F_g$?
+A causa della presenza del tavolo che esercita una \textbf{Forza Normale}, con stesso modulo e direzione della forza di gravità ma \emph{di verso opposto}.
+La forza normale è una forza di contatto, si verifica quindi SOLO quando un oggetto è a contatto con un altro.
+\nb{La forza normlae NON è la forza di reazione della terza legge di newton perchè è esercitata sullo stesso corpo.}
+il modulo di $F_g$ e $F_n$ è uguale finchè il tavolo non si rompe: $F_g = F_n = mg$
+
+\subsection{La Tensione}
+Se cosideriamo un oggetto trainato da una corda (su una superficie orizzontale senza attrito), avremo che \emph{la forza esercitata dalla corda sulla scatola} è la \textbf{Tensione}
+e si indica di solito con $\vettore{T}$.\\
+Questa forza è applicata al punto di fissaggio del filo, diretta lungo il filo e con verso quello di allontamento dal corpo.
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{Tensione.jpg}
+\end{center}
+
+
+\section{La Forza Elastica}
+La forza elastica di una molla (o di un corpo) è descritta dalla \textbf{legge di Hook} nel segunte modo:
+\formula{Forza di Hooke}{$F=-kx$}
+Dove $-k$ è la \textbf{costante elastica} ed è una misura della rigidità della molla.
+maggiore è $k$, più rigida è la molla: 
+ovvero maggiore è $k$, maggiore sarà la forza per uno stesso valore di spostamento.
+
+
+
+
+\subsection{Il Lavoro \emph{W}}
+\definizione{
+    Si definisce Lavoro $W$ fatto su un qualunque corpo da una forza di modulo costante F come
+    il prodotto scalare della forza $\vettore{F}$ per il vettore spostamento $\vettore{d}$ del corpo
+    \begin{center}
+        $W=\vettore{F} \cdot \vettore{d}$, $W$ è uno scalare con segno
+    \end{center}
+}
+Il \textbf{Segno} del lavoro $W$ dipende dall'angolo tra $F$ è lo spostamento.
+Cioè, se per fare il lavoro bisogna dare energia al sistema, allora $W>0$.
+Se invece cede energia, allora $W<0$.
+
+\paragraph{Unita di Misura}
+Se la forza di 1 Newton determina lo spostamento di un oggetto di 1 metro nella stessa direzione della forza,
+allora si è realizzato il lavoro di \textbf{1 N $\cdot$ m = 1 Joule}.
+\paragraph*{Il Lavoro come integrale}
+Se abbiamo una traiettoria \emph{non lineare}, il lavoro può essere calcolato dividendo 
+il percorso in dei pezzi lineari, così facendo il calcolo del lavoro diventa di fatto un integrale:
+\[
+    W = \int_a^b \vettore{F} \cdot d\vettore{s}
+\]
+
+\subsubsection*{Lavoro svolto da una Forza Elastica}
+Come sappiamo la forza elastica \emph{non} è una forza costante, quindi l'equazione del lavoro non è valida in questo caso.
+Si può però suddividere lo spostamento della molla in parti inifinitesime, di fatto valutando un integrale:
+
+\[
+    W_{molla} = \int_{x_i}^{x_f} F dx
+\]
+Sviluppando questo integrale:\\
+$W = \int_{x_f}^{x_i} -kx \,dx 
+= -k \int_{x_f}^{x_i} x \,dx 
+= (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i}
+= (-\frac{1}{2}k) (x^2_f - x^2_i)
+$
+\\Quindi il lavoro svolto da una forza elastica è:
+\[
+    W_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f \;[J]
+\]
+Il Lavoro $W_m$ è quindi \textbf{positivo quando il blocco si avvicina alla posizione 
+di riposo $x=0$} ed è negativo quando se ne allontana. 
+Il Lavoro è nullo se la distanza finale da $x=0$ non è mutata.
+\\Si può notare che se la posizione di partenza $x_i$ è 0, allora la formula è notevolmente semplificata.
+
+\section{Energia Cinetica}
+L'energia cinetica rappresenta la quantità di energia associata al moto di una particella che si muove alla velocità $v$.
+\[
+  K=\frac{1}{2}mv^2 [J]  
+\]
+L'energia cineta e la velocità della particella aumentano se svogliamo un lavoro positivo sulla particella, 
+invece diminuiscono se il lavoro svolto è negativo.
+
+\subsection{Teorema dell'energia cinetica}
+Chiamiamo $\Delta K$ la variazione di energia cinetica del corpo, e $W$ il lavoro totale compiuto su di esso. 
+Allora vale:
+\[\Delta K = K_f - K_i = W\]
+Vale anche:
+\[K_f = K_i + W\]
+
+
+\section{Potenza}
+La potenza è la rapidità con la quale viene eseguito un lavoro $W$ in un intervallo di tempo $\Delta t$.
+\\La potenza media è data dall'espressione:
+\[ 
+    P_m = \frac{W}{\Delta t}    
+\]
+\\La potenza istantanea è la rapidità con la quale vienesvolto istantaneamente un lavoro:
+\[  
+    P = \frac{dL}{dt}    
+\]
+\\Se una forza $\vettore{F}$ agisce su un oggetto nella direzione che forma un angolo $\theta$ rispetto alla sua velocità istantanea $\vettore{v}$ allora la Potenza istantanea vale:
+\[
+    P = Fv \cos \theta = \vettore{F} \cdot \vettore{v}  
+\]
+
+\section{Energia Potenziale}
+\paragraph*{Forze Conservative e non}
+Una forza si dice conservativa se il lavoro netto che compie su una particella che percorre un cammino chiuso, da una posizione iniziale alla medesima posizione, è pari a zero.
+La forza gravitazionale e quella elastica sono forze conservative, la forza d'attrito dinamico non è conservativa.
+
+
+\paragraph*{Energia potenziale }L'energia potenziale è l'energia associata alla configurazione di un sistema in cui agisce una forza conservativa. 
+Quando la forza conservativa compie lavoro $W$ su una particella entro tale sistema, la variazione di energia potenziale $\Delta U$ sel sistema è definita come:
+
+
+\[
+    \Delta U = -W [J] 
+\]
+
+\subsection{Energia Potenziale Gravitazionale}
+
+L'energia potenziale associata al sistema costituito dalla terra e dalla particella è chiamata Energia Potenziale Gravitazionale.
+Se la particella si muove da un'altezza iniziale $y_i$ ad una finale $y_f$, 
+il cambiamento dell'energia potenziale gravitazionale è definito come:
+\[
+  \Delta U = mg(\Delta y)  
+\]
+Ponendo $y_i = 0$ e la corrispondente energia potenziale gravitazionale del sistema $U_i = 0$, 
+quando la particella si trova ad un'altezza $y$ l'energia potenziale gravitazionale è:
+\[
+    U(y) = mgy
+\]
+
+\subsection{Energia potenziale Elastica}
+L'energia potenziale elastica E l'energia potenziale associata allo stato di compressione o allungamento di un oggetto elastico.
+Per una molla che esercita una forza elastica $F=-kx$, quando il suo capo libero subisce uno spostamento $x$ l'energia potenziale elastica é:
+\[U (x) = \frac{1}{2} kx^2\]
+La configurazione di riferimento vede la molla in stato di riposo con il suo capo libero i $x =0$ , ove l'energia potenziale associata è $U=0$.
+
+\section*{Energia Meccanica}
+L'energia meccanica di un sistema è la somma dell'energia cinetica $K$ e dell'energia potenziale $U$:
+\[ E_{mec} = K + U \]
+\paragraph*{Principio di conservazione dell'energia meccanica}
+Un sistema si dice isolato quando non vi sono forze esterne a provocare variazioni di energia all'interno.
+Quando in un sistema isolato agiscono solo forze conservative, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare.
+Tale principio di conservazione dell'energia meccanica si esprime come:
+\[\Delta E_{mec} = \Delta K + \Delta U = 0\]
+La variazione dell'energia meccanica è uaguale al lavoro svolto dalle forze NON conservative : $\Delta E_m = W_{nc}$
