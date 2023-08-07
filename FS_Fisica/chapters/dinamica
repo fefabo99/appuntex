@@ -357,19 +357,79 @@ La configurazione di riferimento vede la molla in stato di riposo con il suo cap
 
 
 \section{Forze Conservative}
+Abbiamo visto che il lavoro della forza gravitazionale e di quella elastica dipoendono solo dal punto iniziale dal punto finale dello spostamento,
+mentre il percorso che è stato fatto è ininfluente sul lavoro eseguito: Queste forze si dicono Conservative.
+\\Il lavoro delle forze di attrito invece dipende dalla lunghezza del percorso fatto, queste forze quindi si dicono Non conservative.
 
+\paragraph*{Proprietà delle forze conservative}
+Le forze conservative hanno due Proprietà:
+\begin{enumerate}
+    \item Una forza è conservativa se il lavoro fatto su una particella che si muove tra due punti qualunque è indipendente dal cammino intrapreso.
+    \item Il lavoro fatto da una forza conservativa che si muove lungo un cammino chiuso è 0.
+\end{enumerate}
+Si nota che queste due proprietà sono quivalenti.
 
-\paragraph*{Forze Conservative e non}
-Una forza si dice conservativa se il lavoro netto che compie su una particella che percorre un cammino chiuso, da una posizione iniziale alla medesima posizione, è pari a zero.
-La forza gravitazionale e quella elastica sono forze conservative, la forza d'attrito dinamico non è conservativa.
+\paragraph{Forze conservative, energia potenziale e lavoro}
+Solo per le forze conservative si può definire una energia potenziale associata.
+La relazione tra lavoro ed energia potenziale è valida per ogni forza conservativa: $W=-\Delta U$.ù
+Il termine energia potenziale implica che un oggetto ha il potenziale di:
+\begin{itemize}
+    \item O di guadagnare energia cinetica al costo di energia potenziale
+    \item O di compiere lavoro quando è rilasciato in un certo punto a causa della forza conservativa esercitata su di esso da un altro membro del sistema.
+\end{itemize}
 
+\subsection{Relazione tra Forze conservative e Energia potenziale}
+Consideriamo un ogggetto, che si muove lungo la direzione $x$, soggetto alla componente $x$ di una forza conservativa $F_x$ che ne determina uno spostamento $\Delta x$.
+Determiniamo ora $F_x$, se l'energia potenziale del sistema è conosciuta.
+Abbiamo visto che per il teorema Lavoro-Energia: $W=F_x\Delta x= - \Delta U$
+Se passiamo agli infinitesimi, cioè supponiamo che la forzxa determini uno spostamento infinitesimale $dx$, allora
+la variazione di energia potenziale sarà anch'essa infinitesimale $(dU)$.
+\[\implies f_xdx = -dU \implies F_x=-\frac{dU}{dx}\]
+Ogni forza conservativa che agisce su un oggetto di un sistema = - la derivata dell'energia potenziale nella direzione dello spostamento.
 
-\section*{Energia Meccanica}
+\paragraph*{Conclusioni finali}
+In generale, l'enertgia non può essere nè creata nè distrutta ma solo trasformata da una forma all'altra.
+L'energia totale in un sistema isolato si conserva, ovvero resta costante.
+
+\section{Energia Meccanica}
 L'energia meccanica di un sistema è la somma dell'energia cinetica $K$ e dell'energia potenziale $U$:
 \[ E_{mec} = K + U \]
 \paragraph*{Principio di conservazione dell'energia meccanica}
 Un sistema si dice isolato quando non vi sono forze esterne a provocare variazioni di energia all'interno.
-Quando in un sistema isolato agiscono solo forze conservative, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare.
+Quando in un sistema isolato agiscono \textbf{solo forze conservative}, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare, è quindi una costante.
 Tale principio di conservazione dell'energia meccanica si esprime come:
 \[\Delta E_{mec} = \Delta K + \Delta U = 0\]
-La variazione dell'energia meccanica è uaguale al lavoro svolto dalle forze NON conservative : $\Delta E_m = W_{nc}$
+Vedremo come la variazione dell'energia meccanica è uguale al lavoro svolto dalle forze NON conservative : $\Delta E_m = W_{nc}$
+
+\section{Forze Non Conservative} %Fatta male, da rivedere
+Una forza è non conservativa se causa una variazione dell'energia meccanica $E_{mecc}= E_k + U$
+\\Le forze di attrito in generale trasformano l'energia cinetica in calore, e non in energia potenziale.
+Ed il calore non è riconvertito in energia cinetica o potenziale.
+\subsection{Lavoro effettuato da forze Non conservative}
+Si sollevi e sposti un libro applicando una forza esterna; essa farà un certo lavoro, che indichiamo con $W_{est}$, del quale supponiamo di non sapere nulla a priori.
+La forza gravitazionale, che invece è conservativa, farà un lavoro $W_g$.
+Il lavoro totale sul libro, $W_{est}+W_g$ sarà eguale alla variazione dell'energia cinetica:
+\\$W_{est} + W_g = \Delta K$, ma la forza gravitazionale è conservativa ($W_g = -\Delta U$),
+Quindi: $W_{est}=\Delta K + \Delta U$, cioè il lavoro della forza esterna è uguale alla variazione dell'energia meccanica.
+\subsection*{Lavoro Non conservativo: Attrito dinamico}
+L'attrito dinamico è una forza non conservativa. Se la forza di attrito agisce per una lunghezza $d$, allora la variazione di energia cinetica $\Delta K_{attrito}$:
+\formula{Variazione K per Attrito}{$\Delta K_{attrito} = -f_k d$}
+Il lavoro della forza esterna è uguale alla variazione di energia meccanica. 
+
+\section{Momento Lineare}
+In molte occasioni è utile sapere qualcosa sia riguardo l'oggetto che la sua velocità. Si definisce:
+\definizione{
+    \formula{Momento Lineare}{$\vettore{p}=m\vettore{v}$}
+    Il momento Lineare (p) di una particella di massa m e che si muove a velocità v è il prodotto di massa per velocità.
+    è un vettore con direzione e verso di $\vettore{v}$.
+}
+Newton definì il momento come "quantità di moto".
+Le sue dimensioni sono $[\frac{kg\cdot m}{s}]$, e poichè si tratta di un vettore si può divedere nelle varie direzioni ($p_x=mv_x$, $p_y=mv_y$, ...).
+\\Il concetto di momento dà immediatamente un "senso" alla massa: due particelle di massa diversa e stessa velocità avranno momenti diversi associati.
+Facciamo la connessione tra la II legge di newton e il momento: deriviamo il momento rispetto al tempo:
+\[\frac{d\vettore{p}}{dt} = \frac{d(mv)}{dt} = ma = \Sigma F\]
+La derivata della quantità di moto di un punto materiale di massa m è uguale alla risultante delle forze applicate.
+Se $Sigma F=0$, allora la derivata temporale del momento è uguale a zero e il momento è costante.
+Se una particella è isolata, il $p$ sarà sempre costante.
+\subsection*{Conservazione del momento lineare}
+\definizione{Legge di conservazione del momento lineare: Quando due o più particelle di un sistema isolato interagiscono, il momento lineare totale del sistema resta costante. }
