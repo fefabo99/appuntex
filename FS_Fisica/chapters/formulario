@@ -30,6 +30,9 @@
     \hline
     Velocità angolare &$ \omega = \frac{2\pi}{T}$ & $[rad/s]$ \\
     \hline
+\end{tabularx}
+\begin{tabularx}{\textwidth}{|l|Yc|}
+    \hline
     \multicolumn{3}{|c|}{Moto circolare Uniformemente Accelerato}\\
     \hline
     Legge Oraria &     $\begin{cases} \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\ \omega = \omega _0 + \alpha t \end{cases}$ & \\
