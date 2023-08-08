@@ -17,9 +17,8 @@ In alcuni casi le Forze determinano degli \emph{spostamenti}, ovvero un moto, ma
 Newton disse che "le forze determinano i cambiamenti di velocità delle masse", cioè delle \emph{Accelerazioni}.
 \paragraph*{Introduzione}
 Si consideri un oggetto fermo su un piano, se lo si spinge orizzontalmente, si muoverà solo quando \emph{la forza applicata supererà la forza di attrito del tavolo}.
-
-Per mantenere il corpo a velocità costante, bisognerà applicare una forza che eguagli la forza di attrito con il piano.
-La forza di attrito quindi è una forza che va nella \textbf{direzione opposta} alla forza che stiamo applicando.
+\\Per mantenere il corpo a velocità costante, bisognerà applicare una forza che eguagli la forza di attrito con il piano.
+La forza di attrito è una forza che va nella \textbf{direzione opposta} alla forza che stiamo applicando, quindi finché sono uguali la loro risultante sará nulla.
 Se applichi una forza maggiore, l'oggetto accellererà.
 
 \paragraph{Enunciato}
@@ -38,16 +37,15 @@ Introduciamo prima il concetto di \textbf{Massa}:
 La massa di un oggetto specifica \textbf{quanta inerzia ha l'oggetto all'azione di una forza.}\\
 Più grande è la massa, meno l'oggetto accelera come conseguenza della forza applicata.
 La massa è uno scalare e la sua unità di misura in SI è il \emph{kg}
-La massa è una caratteristica intrinseca dell'oggetto e non dipende dall'ambiente circostante.
+ed è una caratteristica intrinseca dell'oggetto e non dipende dall'ambiente circostante.
 È diversa dal peso che invece dipenderà dal luogo dove l'oggetto è misurato.
 
 \paragraph{Enunciato della Seconda Legge}
 \definizione{
-    L' accelerazione di un oggetto è direttamente proporzionale alla risultante delle forze agenti
-    ed è inversamente proporzionale alla massa.
+    L' \textbf{accelerazione} di un oggetto è direttamente proporzionale alla \textbf{risultante delle forze} agenti
+    ed è inversamente proporzionale alla \textbf{massa}.
     \[\sum \vettore{F} = m\vettore{a}\]
 }
- 
 Si possono quindi correlare la massa e le forze agenti in base alla II legge di Newton.\\
 La forza è un vettore e quindi l'espressione precedente è valida \emph{per tutte e tre le componenti cartesiane della forza}
 
@@ -60,15 +58,18 @@ Consideriamo il modulo della formula scritta in modo compatto: $F=ma$, la sua un
 Notare che con la stessa forza, all'incrementare della massa l'accelerazione decrementa.
 
 \section{I Sistemi Inzerziali} %Copiato papale papale dalle slide lezione 5, da sistemare
-Si definisce inerzia la resistenza naturale di un oggetto alle modificazioni della sua velocità.
-
-Un sistema di riferimento si dice inerziale se \textbf{Esso non accelera}.
+\definizione{
+    Si definisce inerzia la resistenza naturale di un oggetto alle modificazioni della sua velocità.
+}
+Un sistema di riferimento si dice inerziale se \textbf{esso non accelera}.
 In un sistema di riferimento inerziale vale il primo principio della dinamica.
-Se in un sistema inerziale un osservatore nota che l'accelerazione di un oggetto è nulal, o, in modo equivalente, che la risultante delle forze è nulla,
-allora esse saranno nulle in qualunque altro sistema inerziale. Le leggi della meccanica classica sono invarianti solo per osservatori inerziali.
-
+\\Se in un sistema inerziale un osservatore nota che l'accelerazione di un oggetto è nulla, o, in modo equivalente, che la risultante delle forze è nulla,
+allora esse saranno nulle in qualunque altro sistema inerziale.
+Le leggi della meccanica classica sono invarianti solo per osservatori inerziali.
+\paragraph{La terra come sistema inzerziale}
 La terra non è un vero sistema inerziale a causa della rotazione e rivoluzione, ma siccome le accelerazioni in gioco sono molto piccole rispetto a quelle dovute alla gravità
-(dell'ordine di qualche punto percnetuale), la terra è in ottima approssimazione un sistema inerziale.
+(dell'ordine di qualche punto percentuale), la terra è in ottima approssimazione un sistema inerziale.
+
 il passaggiuo tra due sistemi di riferimento inerziali si da attraverso le trasformazioni di galileo.
 
 \subsection{Sistemi di riferimento non inerziali e forze apparenti}
@@ -77,12 +78,13 @@ essa accelera e si muove verso l'esterno della piattaforma stessa. Ci sembrerà 
 un osservatore esterno però noterà che la palla ha una velocità iniziale quando viene lasciata libera sul pavimento della piattaforma (perchè la piattaforma si muove),
 e continua a muoversi di moto rettilineo uniforme.
 
-Sulla piattaforma rotante, poichè la palla si muove senza che su di essa agisca alcuna forza, il primo principio della dinamica non è valido: ed è detto non inerziale.
-Anche il secondo principio della dinamica non è valido in un sistema non inerziale.
+Sulla piattaforma rotante, poichè la palla si muove senza che su di essa agisca alcuna forza, il \textbf{primo principio della dinamica non è valido}: ed è detto non inerziale.
+Anche il \textbf{secondo principio della dinamica non è valido} in un sistema non inerziale.
 È comunque possibile usare le leggi di Newton anche in questo tipo di sistema di riferimento, a patto che si utilizzi un trucco:
 
-Il trucco che usiamo è di scrivere l'equazione F = ma come se, oltre alle altre forze che possono essere presenti,
-agisse una forza uguale a F=mv2 /r (o m$\omega$2r ) in direzione radiale e verso l'esterno.
+\paragraph*{Usare le leggi di Newton in sistemi Non inerziali}
+Il trucco che usiamo è di scrivere l'equazione $F = ma$ come se, oltre alle altre forze che possono essere presenti,
+agisse una forza uguale a $F=mv^2 /r$ (o $m\omega^2r$ ) in direzione radiale e verso l'esterno.
 Questa forza supplementare, che possiamo denominare forza centrifuga perché sembra che agisca verso l'esterno,
 è detta forza apparente o pseudoforza. È una pseudoforza («pseudo» vuol dire «falso») perché non vi è alcun
 oggetto che la esercita e perché, se osservato da un sistema di riferimento inerziale, questo effetto non esiste.
@@ -116,10 +118,10 @@ La forza di gravità è diretta verso il centro della terra e la sua ampiezza è
 Se abbiamo un oggetto su un tavolo, su cui si esercita la forza di gravità, perchè non accelera in direzione di $F_g$?
 A causa della presenza del tavolo che esercita una \textbf{Forza Normale}, con stesso modulo e direzione della forza di gravità ma \emph{di verso opposto}.
 La forza normale è una forza di contatto, si verifica quindi SOLO quando un oggetto è a contatto con un altro.
-\nb{La forza normlae NON è la forza di reazione della terza legge di Newton perchè è esercitata sullo stesso corpo.}
+\\\nb{La forza normlae NON è la forza di reazione della terza legge di Newton perchè è esercitata sullo stesso corpo.}
 il modulo di $F_g$ e $F_n$ è uguale finchè il tavolo non si rompe: $F_g = F_n = mg$
 
-\subsection{La Tensione}
+\section{La Tensione}
 Se cosideriamo un oggetto trainato da una corda (su una superficie orizzontale senza attrito), avremo che \emph{la forza esercitata dalla corda sulla scatola} è la \textbf{Tensione}
 e si indica di solito con $\vettore{T}$.\\
 Questa forza è applicata al punto di fissaggio del filo, diretta lungo il filo e con verso quello di allontamento dal corpo.
@@ -150,11 +152,11 @@ Se $F=f_k$ allora l'oggetto si muoverà do moto uniforme a velocità costante, m
 \paragraph{Quindi} Riassumento gli attriti:
 \begin{itemize}
     \item La direzione della forza di attrito statico tra due superfici in contatto è quella della forza applicata ed in verso opposto
-    \formula{Attrito Statico}{$F=f_s\geq\mu_s\cdot n$}
-    con $\mu_s$ coefficiente di attrito statico (scalare, dipende dai materiali) e $n$ modulo della forazza normale.
+    \formula{Attrito Statico}{$F=f_s\leq\mu_s\cdot N$}
+    con $\mu_s$ coefficiente di attrito statico (scalare, dipende dai materiali) e $N$ modulo della forza normale.
     \\Nota che quando l'oggetto sta per muoversi, vale l'eguale $F=f_s=mu_s\cdot n=f_{s-max}$
     \item La direzione della forza di attrito dinamico che agisce su un oggetto è nella direzione e verso opposto alla direzione del moto sulla superficie.
-    \formula{Attrito dinamico}{$f_k\geq\mu_k\cdot n$}
+    \formula{Attrito dinamico}{$f_k=\mu_k\cdot N$}
     con $\mu_k$ coefficiente di attrito dinamico
 \end{itemize}
 I coefficienti di attrito dipendono dai materiali e dalla natura delle superfici, e quello dinamico dipende in generale anche da v.
@@ -277,8 +279,10 @@ Di conseguenza, vale anche:
 Se consideriamo due Automobili della stessa massa che devono fare lo stesso percorso, 
 queste compieranno lo stesso lavoro. Ma, se una delle due macchine è più \emph{Potente} dell'altra, questa ci metterà meno tempo. 
 
-La \textbf{potenza} è la rapidità con la quale viene eseguito un lavoro $W$ in un intervallo di tempo $\Delta t$.
-\\Se una forza esterna è applicata ad una particella e se il lavoro nell'intervallo di tempo $\Delta t$ è $W$, avremo:
+\definizione{
+    La \textbf{potenza} è la rapidità con la quale viene eseguito un lavoro $W$ in un intervallo di tempo $\Delta t$.
+}
+Se una forza esterna è applicata ad una particella e se il lavoro nell'intervallo di tempo $\Delta t$ è $W$, avremo:
 \formula{Potenza Media}{$P_m = \frac{W}{\Delta t}$ [Watt]}  
 Poichè il lavoro contribuisce a far variare l'energia di un oggetto, si può definire come potenza la velocità di trasferimento dell'energia.
 \paragraph*{Potenza Istantanea} Analogamente alla velocità ed accelerazione, potremmo definire un concetto di potenza istantanea:
@@ -288,7 +292,7 @@ Ovvero la variazione inifinitesimale del lavoro $dW$ fatto nell'intervallo di te
 \[
     P = Fv \cos \theta = \vettore{F} \cdot \vettore{v}  
 \]
-Cioè la potenza è anche il prodotta scalare della Forza e la velocità.
+Cioè la potenza è anche il prodotto scalare della Forza e la velocità.
 \paragraph*{L'unità di misura}
 Se consideriamo il lavoro di 1J compiuto in 1 secondo, la potenza sarà di 1 Watt:
 \[
@@ -301,7 +305,7 @@ Se consideriamo il lavoro di 1J compiuto in 1 secondo, la potenza sarà di 1 Wat
 1 Cavallo Vapore [HP], che è una unità non SI ma tra le più usate, vale 746 Watt.
 \\Si può dunque definire una unità di misura di energia (o lavoro, che sono equivalenti) a partire da una potenza:
 \[ P = \frac{W}{\Delta t} \implies W = P \cdot \Delta t\]
-1 Kilowattora [kWh] è l'energia ocnvertita o consumata in 1 ora alla 'velocità' costante di 1kW.
+1 Kilowattora [kWh] è l'energia convertita o consumata in 1 ora alla 'velocità' costante di 1kW.
 Alternativamente, è il lavoro compiuto in 1 ora dalla potenza costante di 1kW.
 
 \pagebreak
