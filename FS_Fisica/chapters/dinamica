@@ -79,7 +79,7 @@ e continua a muoversi di moto rettilineo uniforme.
 
 Sulla piattaforma rotante, poichè la palla si muove senza che su di essa agisca alcuna forza, il primo principio della dinamica non è valido: ed è detto non inerziale.
 Anche il secondo principio della dinamica non è valido in un sistema non inerziale.
-È comunque possibile usare le leggi di newton anche in questo tipo di sistema di riferimento, a patto che si utilizzi un trucco:
+È comunque possibile usare le leggi di Newton anche in questo tipo di sistema di riferimento, a patto che si utilizzi un trucco:
 
 Il trucco che usiamo è di scrivere l'equazione F = ma come se, oltre alle altre forze che possono essere presenti,
 agisse una forza uguale a F=mv2 /r (o m$\omega$2r ) in direzione radiale e verso l'esterno.
@@ -93,7 +93,7 @@ secondo principio della dinamica, F = ma.
 Se due corpi interagiscono tra di loro, la forza $F_{12}$ esercitata dal corpo $1$ sul corpo $2$ è uguale in ampiezza,
 ed ha la stessa direzione e verso opposto della forza $F_{21}$ esercitata dal corpo 2 sul corpo 1.
 \definizione{
-    La terza legge di newton enuncia:
+    La terza legge di Newton enuncia:
     \[ F_{12} = - F_{21} \]
     "Ad ogni azione corrisponde una reazione uguale e contraria".
     \\La forza dall'oggetto 1 all'oggetto 2 è detta \emph{azione}, l'altra è detta \emph{reazione}
@@ -116,7 +116,7 @@ La forza di gravità è diretta verso il centro della terra e la sua ampiezza è
 Se abbiamo un oggetto su un tavolo, su cui si esercita la forza di gravità, perchè non accelera in direzione di $F_g$?
 A causa della presenza del tavolo che esercita una \textbf{Forza Normale}, con stesso modulo e direzione della forza di gravità ma \emph{di verso opposto}.
 La forza normale è una forza di contatto, si verifica quindi SOLO quando un oggetto è a contatto con un altro.
-\nb{La forza normlae NON è la forza di reazione della terza legge di newton perchè è esercitata sullo stesso corpo.}
+\nb{La forza normlae NON è la forza di reazione della terza legge di Newton perchè è esercitata sullo stesso corpo.}
 il modulo di $F_g$ e $F_n$ è uguale finchè il tavolo non si rompe: $F_g = F_n = mg$
 
 \subsection{La Tensione}
@@ -393,7 +393,7 @@ L'energia totale in un sistema isolato si conserva, ovvero resta costante.
 
 \section{Energia Meccanica}
 L'energia meccanica di un sistema è la somma dell'energia cinetica $K$ e dell'energia potenziale $U$:
-\[ E_{mec} = K + U \]
+\formula{Energia MEeccanica}{$E_{mec} = K + U$}
 \paragraph*{Principio di conservazione dell'energia meccanica}
 Un sistema si dice isolato quando non vi sono forze esterne a provocare variazioni di energia all'interno.
 Quando in un sistema isolato agiscono \textbf{solo forze conservative}, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare, è quindi una costante.
@@ -423,13 +423,82 @@ In molte occasioni è utile sapere qualcosa sia riguardo l'oggetto che la sua ve
     Il momento Lineare (p) di una particella di massa m e che si muove a velocità v è il prodotto di massa per velocità.
     è un vettore con direzione e verso di $\vettore{v}$.
 }
-Newton definì il momento come "quantità di moto".
-Le sue dimensioni sono $[\frac{kg\cdot m}{s}]$, e poichè si tratta di un vettore si può divedere nelle varie direzioni ($p_x=mv_x$, $p_y=mv_y$, ...).
-\\Il concetto di momento dà immediatamente un "senso" alla massa: due particelle di massa diversa e stessa velocità avranno momenti diversi associati.
-Facciamo la connessione tra la II legge di newton e il momento: deriviamo il momento rispetto al tempo:
+\underline{Newton definì il momento come "quantità di moto".}
+\\Le sue dimensioni sono $[\frac{kg\cdot m}{s}]$, e poichè si tratta di un vettore si può divedere nelle varie direzioni ($p_x=mv_x$, $p_y=mv_y$, ...).
+\\Il concetto di momento dà immediatamente un "senso" alla massa: \textbf{due particelle di massa diversa e stessa velocità avranno momenti diversi associati}.
+
+\paragraph{Il Momento e la II Legge di Newton}
+Esiste una forte connessione tra il momento e la seconda legge di Newton, infatti se \emph{deriviamo} il momento \emph{rispetto al tempo}:
 \[\frac{d\vettore{p}}{dt} = \frac{d(mv)}{dt} = ma = \Sigma F\]
-La derivata della quantità di moto di un punto materiale di massa m è uguale alla risultante delle forze applicate.
-Se $Sigma F=0$, allora la derivata temporale del momento è uguale a zero e il momento è costante.
-Se una particella è isolata, il $p$ sarà sempre costante.
+La derivata del momento di un punto materiale di massa $m$ è uguale alla risultante delle forze applicate.
+Se $\Sigma F=0$, allora la derivata del momento è uguale a zero, quindi il momento è costante.
+Se una particella è isolata, il suo momento $\vettore{p}$ sarà sempre costante.
 \subsection*{Conservazione del momento lineare}
-\definizione{Legge di conservazione del momento lineare: Quando due o più particelle di un sistema isolato interagiscono, il momento lineare totale del sistema resta costante. }
+\definizione{
+    Legge di \textbf{conservazione del momento lineare}: 
+    Quando due o più particelle di un sistema \textbf{isolato} interagiscono, 
+    il momento lineare totale del sistema resta costante. 
+}
+Questa legge vale per una qualunque forza in un sistema isolato, l'unica cosa importante è che siano interne al sistema.
+
+\subsection{Impulso}
+\definizione{
+    Sia $\vettore{F}$ una forza costante che agisce su una particella per un certo $\Delta t$.
+    Si definisce \textbf{Impulso}:
+    \formula{Impulso}{$\vettore{I} = \vettore{F} \cdot \Delta t$}
+}
+
+\paragraph{Teorema Impulso-Momento}
+Sia ora $\vettore{F}$ una forza che agisce su una particella, e questa $\vettore{F}=\vettore{F}(t)$.
+Applichiamo la II legge di Newton: 
+\[\vettore{F} = \frac{d\vettore{p}}{dt} \implies d\vettore{p} = \vettore{F} dt\]
+Integriamo l'espressione tra i due istanti di tempo tra i quali agisce la forza:
+\[ \Delta \vettore{p} = \vettore{p_f}-\vettore{p_i}= \int_{t_1}^{t_f} \vettore{F} dt = \vettore{I}\]
+L'impulso della forza $\vettore{F}$ che agisce su una particella è uguale alla variazione del momento lineare della particella determinato dalla forza.
+L'impulso non è una caratteristica specifica di una particella, bensì è una misura della modifica del momento lineare da parte delle forze esterne.
+
+
+\section{Urti}
+Un urto è un evento tra due particelle che interagiscono per un breve intervallo di tempo,
+determinando reciprocamente forze di impulso. Esse sono assunte essere molto maggiori di ogni forza esterna agente.
+Nota che in fisica un urto non vuol dire per forza contatto: due particelle cariche possono interagire e fare un urto anche a distanza.
+
+\paragraph*{Classificazione}
+Gli urti possono essere caratterizzati in due differenti tipi:
+\begin{itemize}
+    \item Urti Elastici: Durante l'urto tra due corpi l'Energia Cinetica totale del sistema non cambia ma si conserva completamente.
+    \item Urti Anelastici: L'Energia Cinetica Totale non si conserva, ma parte viene dispersa (per esempio in calore o suono). Il momento però viene conservato
+\end{itemize}
+
+\subsection{Gli Urti Anelastici}
+Come abbiamo detto, un urto anelastico tra due corpi è un urto nel quale non si conserva l'energia cinetica totale, 
+ma invece \textbf{il momento si conserva}.
+Anche qui si dividono in due categorie:
+\begin{itemize}
+    \item Perfettamente Anelastici, in cui gli oggetti viaggiano insieme dopo l'urto.
+    \item Anelastici, in cui gli oggetti non viaggiano insieme ma parte dell'energia cinetica è persa.
+\end{itemize}
+\subsubsection{Urto Perfettamente Anelastico (1D)}
+Siano date due particelle di massa m1 e m2 che si muovono con velocità iniziale v1i e v2i lungo una traiettoria rettilinea.
+Dopo la collisione, le due masse si incollano assieme e si muovono di velocità comune vf.
+Essendo perfettamente anelastici, il momento viene conservato:
+\[m_1\cdot v_{1i} + m_2 \cdot v_{2i} = (m_1+m_2) \cdot v_f \implies v_f = \frac{m_1\cdot v_{1i} + m_2 \cdot v_{2i}}{m_1+m_2}\]
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/urtoPerfettamenteAnelastico.jpg}
+\end{center}
+
+\subsection{Gli urti Elastici}
+In un urto elastico tra due corpi è un urto nel quale si conserva l'energia cinetica totale, oltre che il momento.
+
+\paragraph*{Urto elastico 1D}
+Su cibsuderu l'urto Perfettamente Elastico come da figura. Il momento e l'energia cinetica si conservano.
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/urtoElastico.jpg}
+\end{center}
+Avremo quindi:
+\begin{itemize}
+    \item Conservazione del momento: 
+    $$m_1 \cdot v_{1i} + m_2 \cdot v_{2i} = m_1 \cdot v_{1f} + m_2 \cdot v_{2f}$$
+    \item Conservazione dell'Energia Cinetica:
+    $$\frac{1}{2}\cdot m_1 \cdot v^2_{1i} + \frac{1}{2}\cdot m_2 \cdot v^2_{2i} = \frac{1}{2}\cdot m_1 \cdot v^2_{1f} + \frac{1}{2}\cdot m_2 \cdot v^2_{2f}$$
+\end{itemize}
