@@ -5,35 +5,35 @@
 \section*{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
-    \multicolumn{3}{|c|}{Moto Uniformemente Accelerato}\\
-    \hline
-    Velocità Media & $v_m = \frac{\Delta x}{\Delta y} = \frac{x_f-x_i}{t_f-t_i}$ & $[m/s]$\\
-    \hline
-    Velocità Istantanea & $\vettore{v} = \lim_{x\to0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$ &\\
-    \hline
-    \hline
-    Accelerazione Istantanea & $a = \frac{\Delta v }{\Delta t} = \frac{d^2x}{dt^2}$&\\
-    \hline
+    \multicolumn{3}{|c|}{\uppercase{Moto Uniformemente Accelerato}}\\
     \hline
     \textbf{Spostamento} & $x(t) = x_i + v_it + \frac{1}{2} at^2 $ & $[m]$\\
     \hline
     \textbf{Velocità} & $v(t) = v_i + at$ & \\
     \hline
     \hline
-    \multicolumn{3}{|c|}{Moto Circolare Uniforme}\\
+    Velocità Media & $v_m = \frac{\Delta x}{\Delta y} = \frac{x_f-x_i}{t_f-t_i}$ & $[m/s]$\\
+    \hline
+    Velocità Istantanea & $\vettore{v} = \lim_{x\to0} \frac{\Delta x}{\Delta t} = \frac{dx}{dt}$ &\\
+    \hline
+    Accelerazione Istantanea & $a = \frac{\Delta v }{\Delta t} = \frac{d^2x}{dt^2}$&\\
+    \hline
+    \hline
+    \multicolumn{3}{|c|}{\uppercase{Moto Circolare Uniforme}}\\
     \hline
     Velocità Tangenziale & $v = \frac{2\pi r}{T}$ & $[m/s]$\\
     \hline
-    Accelerazione centripeta & $a_c = \frac{v^2}{r}$ & $[m/s^2]$\\
+    Velocità Angolare &$ \omega = \frac{2\pi}{T}$ & $[rad/s]$ \\
+    \hline
+    Accelerazione Centripeta & $a_c = \frac{v^2}{r}$ & $[m/s^2]$\\
     \hline
     Periodo & $T=\frac{2\pi r }{v}$ & \\
     \hline
-    Velocità angolare &$ \omega = \frac{2\pi}{T}$ & $[rad/s]$ \\
-    \hline
+    
 \end{tabularx}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
-    \multicolumn{3}{|c|}{Moto circolare Uniformemente Accelerato}\\
+    \multicolumn{3}{|c|}{\uppercase{Moto circolare Uniformemente Accelerato}}\\
     \hline
     Legge Oraria &     $\begin{cases} \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\ \omega = \omega _0 + \alpha t \end{cases}$ & \\
     \hline
@@ -48,8 +48,6 @@
     & $\begin{cases} x(t) = R \cdot \cos(\theta _0 + \omega t) \\ y(t) = R \cdot \sin(\theta _0 + \omega t) \end{cases}$ &\\
     \hline
 \end{tabularx}
-Dalla legge oraria del moto armonico si ha che:
-\[v_x = \frac{d}{dt} x(t),v_y = \frac{d}{dt} y(t),a_x = \frac{d}{dt} v_x(t), a_y = \frac{d}{dt} v_y(t)\]
 
 \renewcommand\tabularxcolumn[1]{m{#1}}
 

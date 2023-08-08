@@ -2,15 +2,19 @@
 \section{La legge di gravitazione di Newton}
 Nel 1655 Isaac Newton dimostrò che esiste un'atttrazione tra ogni corpo dell'universo.
 Questa tendenza dei corpi ad avvicinarsi prende il nome di \emph{Gravitazione} ed è determinata dalla distanza e dalla \textbf{massa} dei corpi.
-\\Quindi, date due masse separte da una distanza $r$, l'ampiezza della forza gravitazionale è:
+\definizione{
+Date due masse separte da una distanza $r$, l'ampiezza della forza gravitazionale è:
 
-\[
-    F_g = G\cdot \frac{m_1 \cdot m_2}{r^2} [N]
-\]
-Dove $G$ è la costante di gravitazione universale:
-\[
-    G = 6,67 \cdot 10^{-11} [N \cdot \frac{m^2}{kg^2}]
-\]
+\formula
+{Forza di Attrazione Gravitazionale}
+{$F_g = G\cdot \frac{m_1 \cdot m_2}{r^2}$ [N]}
+
+Dove $G$ è la \textbf{costante di gravitazione universale}:
+\begin{center}
+    $G = 6,67 \cdot 10^{-11}$ [N $\cdot \frac{m^2}{kg^2}$]
+\end{center}
+}
+Si tratta di una forza quadratica inversa, perchè la sua ampiezza varia come l'inverso della distanza tra le particelle.
 \paragraph{Forma vettoriale}
 In forma vettoriale, la formula della legge di gravitazione si presenta in questo modo:
 \[
@@ -18,6 +22,9 @@ In forma vettoriale, la formula della legge di gravitazione si presenta in quest
 \]
 In cui $\vettore{r}$ rappresenta il vettore posizione della particella 2 rispetto alla 1,
 quindi $\frac{\vettore{r}}{r}$ è il versore, orientato e diretto come l'asse $\vettore{F}$, di modulo 1.
+
+La forza di gravitazione universale esercitata da una massa sferica $m_1$ di dimensione finita su una particella $m_2$ ha
+lo stesso modulo che avrebbe se la massa fosse concentrata tutta al centro (baricentro).
 
 \section{L'energia potenziale gravitazionale}
 In precedenza abbiamo parlato di energia potenziale gravitazionale,

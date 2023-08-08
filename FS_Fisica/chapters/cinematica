@@ -1,6 +1,6 @@
 \chapter{Cinematica}
 La Cinematica è la parte della Meccanica che studia il moto e le sue caratteristiche \underline{indipendentemente dalle cause}
-\subsection{Punto 1D}
+\section{Moto del Punto 1D}
 Sia dato un sistema di riferimento orientato x.
 Sia dato un punto materiale.
 Avremo queste tre formule (dei \emph{moduli}):
@@ -19,22 +19,23 @@ Le formule dell'acelerazione sono:
 \formula{Accelerazione Istantanea}{$a_x = \lim_{\Delta t \to 0} = \frac{\Delta v}{\Delta t} = \frac{dv_x(t)}{dt}= \frac{d}{dt}\frac{dx}{dt} = \frac{d^2x}{dt^2}$}
 
 \emph{L'accelerazione è la derivata della velocità}.
-\subsection{I tipi di Moto}
+\section{I tipi di Moto}
 Esistono tre tipi di moto del punto materiale 1D, ed essi variano in base all'accelerazione e alla velocità:
 \paragraph*{Moto Vario} Se l'accelerazione varia continuamente, il moto non è facile da analizzare. Infatti non lo vedremo in questo corso.
-\paragraph*{Moto rettilineo uniforme}\emph{Velocità costante, accelerazione: 0}.
-\\Questo tipo di moto si verifica quando la velocità è costante e ha le seguenti formule per velocità istantanea e spostamento:
-\begin{itemize}
-    \item $x(t)= x_i + v_x \cdot t$
-    \item $v_x = k$, con $k\in R$ quindi COSTANTE.
-\end{itemize}
-\paragraph*{Moto Uniformemente accelerato} \emph{Con accelerazione costante}.
-\\In questo caso l'accelerazione istantanea = accelerazione media in ogni istante, e la velocità cambia \emph{linearmente} durante il moto.
-\begin{itemize}
-    \item $x(t) = x_i + v_x\cdot t +\frac{1}{2} a_x \cdot t^2$
-    \item $v_x(t) = v_{ix} + a_x \cdot t$
-    \item $a_x = k1$ con $k1 \in R$.
-\end{itemize}
+\subsection{Moto rettilineo Uniforme}
+Nel Moto Rettilineo Uniforme (MRU) la velocità è costante e l'accelerazione è 0.
+La Formula per lo spostamento è:
+\formula{Spostamento MRU}{$x(t)= x_i + v_x \cdot t$}
+Essendo uniforme sappiamo che $v_x = k$, con $k\in R$
+
+\subsection{Moto Uniformemente Accelerato}
+Come dice il nome, il Moto Uniformemente Accelerato ha Accelerazione costante. 
+Siccome è costante è uguale in ogni momento, mentre la velocità cambia \emph{linearmente} durante il moto.
+
+\formula{Spostamento MRUA}{$x(t) = x_i + v_i\cdot t +\frac{1}{2} a \cdot t^2$}
+\formula{Velocità MRUA}{$v(t) = v_{i} + a \cdot t$}
+in questo caso sappiamo che $a = k$ con $k \in R$.
+
 Notare che se $a_x=0$ si ottiene il moto rettilineo uniforme.
 
 \paragraph*{La Caduta di un Grave}
@@ -61,7 +62,7 @@ possiamo da una ottenere l'altra e viceversa:
               \item se la velocità non è costante allora $v_x(t) = v_i + a_x \cdot t$
           \end{itemize}
 \end{itemize}
-\subsection{La cinematica nel punto materiale 2D}
+\section{La cinematica del punto materiale 2D}
 Fin'ora abbiamo considerato solo il moto in una dimensione, adesso considereremo quella in 2 dimensioni.
 Quando studio il movimento 2D posso studiarlo in due modi: o studio il suo movimento in un piano o studio il cambiamento delle sue coordinate nel tempo.
 \subparagraph*{Movimento in un piano} Per studiare il movimento nel piano (quindi senza usare le coordinate) posso considerare ogni
@@ -93,7 +94,7 @@ Analogamente ai casi simili già visti, $a_m$ avrà la stessa direzione del vett
 \end{enumerate}
 Un utile notazione diversa degli stessi concetti la si ha considerando le componenti cartesiane, in cui l'accelerazione è la somma delle acc di tutte le dimensioni cartesiane.
 $$ a = \frac{dv_x}{dt}i + \frac{dv_y}{dt}j + \frac{dv_z}{dt}k $$
-\subsection{Moto uniformemente accelerato in 2D}
+\section{Moto Uniformemente Accelerato in 2D}
 Per detereminare le equazioni del moto in 2D si estendono i concetti per il moto 1D.
 Questo passaggio logico è molto semplice: si \emph{scompone il moto 2D in 2 moti 1D} sugli assi XY.
 \paragraph*{Moto con accelerazione costante}
@@ -155,41 +156,40 @@ Se risolviamo $x_f$ rispetto a $t$ e la inseriamo in $y_f$ otteniamo:
 Si noti che $y=...$ è l'equazione di una parabola per l'origine degli assi.
 
 
-\subsection{Moto Circolare uniforme}
+\section{Moto Circolare Uniforme}
 Il MCU è il moto di un punto materiale lungo una circonferenza, con \textbf{modulo della velocità costante}.
-\\Nel Moto Circolare uniforme, dato un punto P sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.
+\\Nel Moto Circolare uniforme, dato un punto $P$ sulla circonferenza, questo punto percorrerà spazi uguali in eguali intervalli di tempo.
 \\In questo tipo di moto il modulo della velocità è costante, però c'è una \textbf{variazione della direzione} del vettore velocità,
 quindi c'è \emph{sempre in gioco un'accelerazione}, infatti è definita acelerazione la variazione nel tempo del vettore velocità.
 
-\paragraph*{Accelerazione Centripeta} O accelerazione istantanea, è diretta verso il centro della circonferenza:
-\[
-    a_r = \frac{v^2}{r}
-\]
-Il pedice r indica che è diretta lungo il raggio r del cerchio.
+\subsection*{Le componenti del MCU}
+
+\paragraph{Accelerazione Centripeta} O accelerazione istantanea, è diretta verso il centro della circonferenza:
+\formula{Accelerazione Centripeta}{$a_r = \frac{v^2}{r}$}
+
+Il pedice r indica che è \textbf{diretta lungo il raggio r} del cerchio.
 Anche se la velocità è costante, l'accelerazione centripeta \emph{c'è sempre}.
 
-\paragraph*{Il Periodo} Il tempo richiesto perchè una particella (a velocità costante) faccia il giro completo di una circonferenza è calcolato come:
-\[
-    T = \frac{2\pi r}{v}
-\]
-\paragraph*{Velocità Tangenziale} Questa velocità (indicata con $v$) è lo spazio percorso dal punto materiale sulla circonferenza in un periodo di tempo:
-\[
-    v= \frac{2\pi r}{T} [m/s]   
-\]
-\paragraph*{Velocità Angolare} A differenza della veocità tangenziale, la velocità angolare indica l'\emph{angolo} percorso dal punto (in radianti) in un periodo di tempo:
-\[
-    \omega = \frac{2\pi}{T} [\frac{rad}{s}]
-\]
+\paragraph{Il Periodo} Il tempo richiesto perchè una particella (a velocità costante) faccia il giro completo di una circonferenza è calcolato come:
+\formula{Periodo}{$T = \frac{2\pi r}{v}$}
+
+\paragraph{Velocità Tangenziale} Questa velocità (indicata con $v$) è lo spazio percorso dal punto materiale sulla circonferenza in un periodo di tempo:
+\formula{Velocità Tangenziale}{$v= \frac{2\pi r}{T}$ [m/s]}
+
+\paragraph{Velocità Angolare} A differenza della veocità tangenziale, la velocità angolare indica l'\textbf{angolo} percorso dal punto (in radianti) in un periodo di tempo:
+\formula{Velocità Angolare}{$\omega = \frac{2\pi}{T}$ [rad/s]}
+
 
 \subsection{Moto Circolare Uniformemente Accelerato}
 Nel moto circolare unifromemente accelerato entra in gioco l'accelerazione totale come somma vettoriale dell'acelerazione centripeta e dell'acelerazione tangenziale.
 Di conseguenza l'equazione del moto sarà il sistema:
-\[
+\formula{Legge Oraria MCUA}
+{$
     \begin{cases}
         \theta = \theta _0 + \omega _0 t + \frac{1}{2} \alpha t^2 \\
         \omega = \omega _0 + \alpha t
     \end{cases}
-\]
+$}
 Nel caso del moto circolare uniformemente accelerato $\alpha$ è l'accelerazione angolare, mentre $a$ è l'accelerazione tangenziale
 
 \paragraph*{Accelerazione tangenziale/angolare}
@@ -198,9 +198,9 @@ Il rapporto tra acelerazione tangenziale e angolare è così definito:
     a_t = \alpha r \implies \alpha = \frac{a}{r}
 \]
 
-\subsection{Moto Armonico}
-Il moto circolare uniforme può essere scomposto in due moti sinusoidali $\sin$ e $\cos$.
-Il moto circolare uniforme e quello uniformemente accelerato possono essere perfettamente paragonati al moto rettilineo (uniforme e uniformemente accelerato).
+\section{Moto Armonico} %Andrebbe rifatto, lezione 3
+Il moto circolare uniforme può essere scomposto in \textbf{due moti sinusoidali} $\sin$ e $\cos$.
+\\MCU e MCUA possono essere perfettamente paragonati al moto rettilineo (uniforme e uniformemente accelerato).
 In questo caso $\theta$ è $x$, mentre la velocità $v$ diventa $\omega$.
 \paragraph{Legge oraria (equazione del moto)} Questa legge descrive il moto circolare uniforme come angolo in funzione del tempo:
 \[
