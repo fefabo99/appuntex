@@ -2,7 +2,7 @@
 
 \setlength{\extrarowheight}{10pt}
 
-\section*{Cinematica}
+\section{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
     \multicolumn{3}{|c|}{\uppercase{Moto Uniformemente Accelerato}}\\
@@ -53,13 +53,13 @@
 
 \section{Dinamica}
 \subsection{Leggi di newton}
-\begin{tabularx}{\textwidth}{|c|X|cc|}
+\begin{tabularx}{\textwidth}{|c|X|c|}
     \hline
-    I & Se la somma delle forze che agiscono su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, mentre se è in moto continuerà a muoversi di moto rettilineo uniforme & & \\
+    I & Se la somma delle forze che agiscono su un corpo è nulla, allora il corpo in quiete rimarrà in quiete, mentre se è in moto continuerà a muoversi di moto rettilineo uniforme &  \\
     \hline
-    II & La forza agente su un corpo è direttamente proporzionale all'accelerazione e ne condividide direzione e verso, ed è direttamente proprorzionale alla massa. & $\vettore{F} = m \cdot \vettore{a} $& $[N]$ \\
+    II & La forza agente su un corpo è direttamente proporzionale all'accelerazione e ne condividide direzione e verso, ed è direttamente proprorzionale alla massa. & $\vettore{F} = m \cdot \vettore{a} $ $[N]$ \\
     \hline
-    III & Se un corpo A esercita una forza su un corpo B, allora il corpo B esercita su A una forza uguale e contraria.  &  $F_{ab} = -F_{ba}$ &\\
+    III & Se un corpo A esercita una forza su un corpo B, allora il corpo B esercita su A una forza uguale e contraria.  &  $F_{ab} = -F_{ba}$ \\
     \hline
 \end{tabularx}
 
@@ -70,29 +70,42 @@
     \hline
     Forza di Gravità (Peso) & $F_g = mg $& \\
     \hline
-    Forza Normale & Stesso modulo e direzione di $F_g$ ma di \emph{Verso opposto} &\\
+    Forza Normale & \small{Stesso modulo e direzione di $F_g$ ma di \emph{Verso opposto}} &\\
     \hline
     \hline
-    Lavoro & $W = \vettore{F} \cdot \vettore{d}$ &  [J $= N \cdot M$]\\
+    \multicolumn{3}{|c|}{\uppercase{Lavoro W}}\\
     \hline
-    Lavoro su traiettoria non lineare & $W = \int_a^b \vettore{F} \cdot d\vettore{s}$ & [J]\\
+    \textbf{Lavoro} & $W = \vettore{F} \cdot \vettore{d}$ &  [J $= N \cdot M$]\\
     \hline
-    Lavoro di una forza elastica & $W_m = \frac{1}{2}kx_i^2 - \frac{1}{2}kx_f^2$ & [J] \\
+    \small{Lavoro su traiettoria non lineare} & $W = \int_a^b \vettore{F} \cdot d\vettore{s}$ & [J]\\
     \hline
+    Lavoro di una Forza Elastica & $W_m = \frac{1}{2}kx_i^2 - \frac{1}{2}kx_f^2$ & [J] \\
+    \hline
+    \hline
+    \multicolumn{3}{|c|}{\uppercase{Energia E/U}}\\
     \hline
     Energia Cinetica & $J = \frac{1}{2}mv^2$ & [J] \\
     \hline
     Teorema Energia cinetica & $\Delta K = K_f - K_i = W$ & [J]\\
     \hline
     \hline
-    Energia Potenziale & $\Delta U = -W$ & [J] \\
+    Teorema Energia Potenziale & $\Delta U = -W$ & [J] \\
     \hline
-    Energia Potenziale Gravitazionale & $U(y) = mgy$ & \\
+    Energia Potenziale Gravitazionale & $U(y) = mgy$ & [J] \\
     \hline
-    Energia Potenziale Elastica & $U(x) = \frac{1}{2}kx^2$ & \\
+    Energia Potenziale Elastica & $U(x) = \frac{1}{2}kx^2$ & [J] \\
     \hline
-    Energia Meccanica & $E_{mec} = K + U$ & \\
+    Energia Meccanica & $E_{mec} = K + U$ & [J]\\
     \hline
+    \hline
+    Momento Lineare & $\vettore{p} = m\cdot \vettore{v}$& [m $\cdot$ kg / s]\\
+    \hline
+    Momento e $\Sigma$F & $\frac{d}{dt} \vettore{p} = \Sigma F$ & \\
+    \hline
+    Impulso & $I = \vettore{F} \cdot \Delta t$ & \\
+    \hline
+    
+
 \end{tabularx}
 
 \section{Elettrostatica}

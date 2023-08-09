@@ -335,7 +335,7 @@ La conversione da energia potenziale in energia cinetica avviene lungo \emph{tut
 }
 Chiaramente questa definizione vale soltanto per oggetti vicini alla terra, per la quale $g$ è una costante.
 
-\subsection{Teorema Lavoro-Energia Potenziale (per forze conservative)}
+\subsection[Teorema Lavoro-Energia Potenziale]{Teorema Lavoro-Energia Potenziale (Per forze conservative)}
 Sia un oggetto di massa $m$ all'altezza $y_i$.
 \begin{center}
     \includegraphics[width=.3\textwidth]{img/EnergiaPotenzialeGravitazionale.jpg}
@@ -374,8 +374,9 @@ Le forze conservative hanno due Proprietà:
 Si nota che queste due proprietà sono quivalenti.
 
 \paragraph{Forze conservative, energia potenziale e lavoro}
-Solo per le forze conservative si può definire una energia potenziale associata.
-La relazione tra lavoro ed energia potenziale è valida per ogni forza conservativa: $W=-\Delta U$.ù
+L'energia Potenziale Associata ad una forza è definibile \textbf{solo se questa forza è conservativa}.
+\\La relazione tra lavoro ed energia potenziale è valida per ogni forza conservativa: 
+$$W=-\Delta U$$
 Il termine energia potenziale implica che un oggetto ha il potenziale di:
 \begin{itemize}
     \item O di guadagnare energia cinetica al costo di energia potenziale
@@ -386,27 +387,28 @@ Il termine energia potenziale implica che un oggetto ha il potenziale di:
 Consideriamo un ogggetto, che si muove lungo la direzione $x$, soggetto alla componente $x$ di una forza conservativa $F_x$ che ne determina uno spostamento $\Delta x$.
 Determiniamo ora $F_x$, se l'energia potenziale del sistema è conosciuta.
 Abbiamo visto che per il teorema Lavoro-Energia: $W=F_x\Delta x= - \Delta U$
-Se passiamo agli infinitesimi, cioè supponiamo che la forzxa determini uno spostamento infinitesimale $dx$, allora
+Se passiamo agli infinitesimi, cioè supponiamo che la forza determini uno spostamento infinitesimale $dx$, allora
 la variazione di energia potenziale sarà anch'essa infinitesimale $(dU)$.
 \[\implies f_xdx = -dU \implies F_x=-\frac{dU}{dx}\]
-Ogni forza conservativa che agisce su un oggetto di un sistema = - la derivata dell'energia potenziale nella direzione dello spostamento.
+Ogni forza conservativa che agisce su un oggetto di un sistema è uguale a meno la derivata dell'energia potenziale nella direzione dello spostamento.
 
 \paragraph*{Conclusioni finali}
-In generale, l'enertgia non può essere nè creata nè distrutta ma solo trasformata da una forma all'altra.
+In generale, l'energia non può essere nè creata nè distrutta ma solo trasformata da una forma all'altra.
 L'energia totale in un sistema isolato si conserva, ovvero resta costante.
 
 \section{Energia Meccanica}
 L'energia meccanica di un sistema è la somma dell'energia cinetica $K$ e dell'energia potenziale $U$:
-\formula{Energia MEeccanica}{$E_{mec} = K + U$}
+\formula{Energia Meccanica}{$E_{mec} = K + U$}
 \paragraph*{Principio di conservazione dell'energia meccanica}
 Un sistema si dice isolato quando non vi sono forze esterne a provocare variazioni di energia all'interno.
 Quando in un sistema isolato agiscono \textbf{solo forze conservative}, l'energia meccanica $E_{mecc}$ complessiva del sistema non può cambiare, è quindi una costante.
 Tale principio di conservazione dell'energia meccanica si esprime come:
-\[\Delta E_{mec} = \Delta K + \Delta U = 0\]
+\formula{Principio di conservazione di $E_{mec}$}{$\Delta E_{mec} = \Delta K + \Delta U = 0$}
 Vedremo come la variazione dell'energia meccanica è uguale al lavoro svolto dalle forze NON conservative : $\Delta E_m = W_{nc}$
 
 \section{Forze Non Conservative} %Fatta male, da rivedere
-Una forza è non conservativa se causa una variazione dell'energia meccanica $E_{mecc}= E_k + U$
+Una forza è non conservativa se causa una variazione dell'energia meccanica 
+$$\Delta E_{mec} = \Delta K + \Delta U \neq 0$$
 \\Le forze di attrito in generale trasformano l'energia cinetica in calore, e non in energia potenziale.
 Ed il calore non è riconvertito in energia cinetica o potenziale.
 \subsection{Lavoro effettuato da forze Non conservative}
@@ -434,7 +436,7 @@ In molte occasioni è utile sapere qualcosa sia riguardo l'oggetto che la sua ve
 \paragraph{Il Momento e la II Legge di Newton}
 Esiste una forte connessione tra il momento e la seconda legge di Newton, infatti se \emph{deriviamo} il momento \emph{rispetto al tempo}:
 \[\frac{d\vettore{p}}{dt} = \frac{d(mv)}{dt} = ma = \Sigma F\]
-La derivata del momento di un punto materiale di massa $m$ è uguale alla risultante delle forze applicate.
+La \textbf{derivata del momento} di un punto materiale di massa $m$ è \textbf{uguale alla risultante delle forze} applicate.
 Se $\Sigma F=0$, allora la derivata del momento è uguale a zero, quindi il momento è costante.
 Se una particella è isolata, il suo momento $\vettore{p}$ sarà sempre costante.
 \subsection*{Conservazione del momento lineare}
@@ -457,7 +459,7 @@ Sia ora $\vettore{F}$ una forza che agisce su una particella, e questa $\vettore
 Applichiamo la II legge di Newton: 
 \[\vettore{F} = \frac{d\vettore{p}}{dt} \implies d\vettore{p} = \vettore{F} dt\]
 Integriamo l'espressione tra i due istanti di tempo tra i quali agisce la forza:
-\[ \Delta \vettore{p} = \vettore{p_f}-\vettore{p_i}= \int_{t_1}^{t_f} \vettore{F} dt = \vettore{I}\]
+\formula{Teorema Impulso-Momento}{$\Delta \vettore{p} = \vettore{p_f}-\vettore{p_i}= \int_{t_1}^{t_f} \vettore{F} dt = \vettore{I}$}
 L'impulso della forza $\vettore{F}$ che agisce su una particella è uguale alla variazione del momento lineare della particella determinato dalla forza.
 L'impulso non è una caratteristica specifica di una particella, bensì è una misura della modifica del momento lineare da parte delle forze esterne.
 
