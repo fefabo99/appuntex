@@ -1,0 +1,84 @@
+\chapter{Fluidostatica e Fluidodinamica}
+
+Un fluido è costituito da molecole che sono disposte senza un ordine preciso.
+Esse sono tenute assieme da forze di legame debole, e dalle forze esercitate dalle pareti di un contenitore.
+Sia i liquidi che i gas sono dei fluidi.
+
+La materia si trova in 4 stati classici: solido, liquido gassoso, plasma (gas ionizzato).
+Un solido ha volume e forma definiti, un gas non ha ne volume ne forma propria, un liquido ha volume definito ma non una forma definita e il plasma è come un afas da questo punto di vista.
+
+Ciò che appare solido può essere in realtà un liquido, ma con una densità molto elevata, che, dopo giorni, mesi od anni
+si deforma (gocciola) come un liquido.
+
+Per studiare le proprietà dinamiche collettive non servirà conoscere in dettaglio le forze di coesione tra le molecole,
+alla stessa stregua che non ci siamo posti la domanda nella dinamica classica. Si tratta di fenomeni collettivi quelli
+che studieremo
+
+La fluidostatica studia i liquidi fermi, le loro caratteristiche in funzione di pressione, densità e profondità.
+La fluidodinamica tratta i liquidi in movimento, sotto certe condizioni di base, e nell'equazione di Bernoulli si
+metteranno assieme le caratteristiche del moto, in base alla densità, pressione, velocita punto per punto. 
+
+\section{La Pressione}
+
+\begin{center}
+    \includegraphics[width=.15\textwidth]{img/pressione1.jpg}
+\end{center}
+Le forze esercitate da un fluido su un oggetto sono sempre perpendicolari alle superfici dell'oggetto stesso.
+Lo stesso vale per le forze esercitate del liquido sulle pareti del contenitore.
+
+
+    Se prendiamo un pistone attivo su una piccola camera del vuoto, connesso con una molla di costante K conosciuta e lo immergiamo in un liquido
+    il pistone si abbassa finchè si raggiunge un equilibrio nel quale le forze esterne pareggiano la forza eguale e contraria esercitata dalla molla sul pistone.
+    \begin{center}
+        \includegraphics[width=.3\textwidth]{img/pressione2.jpg}
+    \end{center}
+\definizione{
+    Se F è il modulo della forza esercitata sul pistone e A la superficie del pistone, si definisce pressione P del liquido come il rapporto:
+    \formula{Pressione}{$P=\frac{F}{A}$ [Pascal]}
+    La pressione P, è equamente distribuita
+    in un fluido a riposo, ed ha lo stesso valore indipendentemente dall'orientazione del sensore.
+}
+Poichè la pressione è una forza per unità di area, le unità sono [Newton]/{$m^2$}, ovvero il Pascal.
+La presisone di 1 Pascal è quella esercitata dalla forza di 1 Newton su 1 metro quadro di superficie.
+
+\paragraph{Pressione in un punto}
+Se prendiamo lo stesso strumento di prima e consideriamo un liquido che agisca su di esso determinando una forza $F$.
+Detta $dF$ la forza infinitesima esercitata dal liquido sulla superficie infinitesimale $dA$,
+allora la pressione in quel punto è definita come:
+\[P= \frac{dF}{dA}\]
+
+\section{La Legge di Stevino}
+è ben noto che la pressione dipende dalla profondità alla quale viene misurata in un fluido.
+La pressione eserictata sulla colonna d'aria sulla Terra aumenta all'approssimarsi della Terra.
+Ad alta quota gli aerei devono essere pressurizzati per poter mantenere una situazione confortevole, poichè la pressione esterna è molto debole.
+Allo stesso modo un sub subisce una pressione aumentata man mano che scende in profondità.
+\subsection{Densità}
+Definiamo prima il concetto di \textbf{Densità di una sostanza} $\rho$:
+\definizione{
+    la \textbf{Densità} di una sosteanza è uno scalare definito come il rapporto tra la massa ed il volume:
+    \formula{Densità}{$\rho = \frac{m}{V}$}
+    Essa varia con la temperatura poichè il volume della sostanza cambia con la temperatura.
+}
+se $\rho$ è costante, allora il liquido è \textbf{incompressibile}.
+
+\subsection{Variazione della Pressione con la profondità}
+Si consideri un fluido di densità $\rho$ (costante) a riposo, in un contenitore aperto.
+Se consideriamo un volume virtuale di liquido dentro il nostro contenitore, di altezza $h$ e sezione $A$.
+Sia $P$ la pressione esercitata dal liquido sotto il nostro volume e $P_0$ la pressione atmosferica esercitata sull'analoga superficie superiore.
+\begin{itemize}
+    \item La forza esercitata dall'atmosfera sulla superficie superiore è $F_0=P_0\cdot A$ verso il basso.
+    \item La forza esercitata dal fluido sulla parete inferiore è $F=P\cdot A$ verso l'alto.
+    \item La forza peso del liquido è $F_p=M g = \rho \cdot V \cdot g = \rho \cdot A \cdot h \cdot g$ verso il basso.
+\end{itemize}
+La massa del liquido è $M=\rho V = \rho A \cdot h$.
+Poichè nulla si muove, vuol dire che la somma delle forze agenti è nulla sulle varie componenti.
+Fissiamo un sistema di riferimento con $Y>0$ rivolto verso l'alto:
+\[ \Sigma F = 0 = PA - P_0A - \rho \cdot g \cdot A \cdot h \implies P = P_0 + \rho \cdot g \cdot h\]
+Come riferimento si prenda 1.00 atm = 1.013$\cdot10^5$ Pa.
+
+\definizione{
+    \textbf{Legge di stevino}: La pressione P alla profondità $h$ sotto la superficie di un liquido aperto in atmosfera super quella atmosferica della quantità $\rho \cdot g \cdot h$:
+    \formula{Legge di Stevino}{$P = P_0 + \rho \cdot g \cdot h$}
+    La pressione è la stessa per una data profondità, indipendentemente dalla forma e diametro del contenitore.
+}
+
