@@ -33,7 +33,7 @@ Lo stesso vale per le forze esercitate del liquido sulle pareti del contenitore.
         \includegraphics[width=.3\textwidth]{img/pressione2.jpg}
     \end{center}
 \definizione{
-    Se F è il modulo della forza esercitata sul pistone e A la superficie del pistone, si definisce pressione P del liquido come il rapporto:
+    Se F è il modulo della Forza esercitata e A la superficie sul quale agisce, si definisce pressione P del liquido come il rapporto:
     \formula{Pressione}{$P=\frac{F}{A}$ [Pascal]}
     La pressione P, è equamente distribuita
     in un fluido a riposo, ed ha lo stesso valore indipendentemente dall'orientazione del sensore.
@@ -82,3 +82,31 @@ Come riferimento si prenda 1.00 atm = 1.013$\cdot10^5$ Pa.
     La pressione è la stessa per una data profondità, indipendentemente dalla forma e diametro del contenitore.
 }
 
+\section{Il Principio di Pascal}
+\definizione{
+    Il cambio di pressione esercitata su un fluido è trasmessa in modo inalterato ad ogni punto del fluido ed alle pareti del contenitore.
+}
+In quanto principio vuol dire che non si dimostra ma si osserva. Non c'è alcuna formula associata a questo principio.
+
+Se applichiamo un apressione sulla superficie di un liquido in un contenitore, essa si trasmettrerà inalterata nel liquido all'interno del contenitore e quindi alle pareti.
+Quindi, ad esempio, la pressione atmosferica, viene percepita e misurata anche da un sub che
+Si immerge nel mare.
+La pressa idraulica (o martinetto) sono un’applicazione diretta del principio di Pascal.
+
+\subsection{La pressa o Martinetto Idraulico}
+Un'applicazione della legge di pascal è la pressa idraulica.
+
+\begin{center}
+    \includegraphics[width=.4\textwidth]{img/martinettoIdraulico.jpg}
+\end{center}
+il liquido sia incompressibile e si supponga il meccanismo in figura.
+Sia $F_1$ la forza esercitata sul pistone di area $A_1$ per la lunghezza $d_1$.
+La pressione si trasmette attraverso il liquido sull'altro pistone di superficie maggiore $A_2$.
+Poiche la pressione si trasmette inalterata (Legge di Pascal):
+\[ P = \frac{F_1}{A_1}=\frac{F_2}{A_2} \implies F_2 = F_1 \cdot \frac{A_2}{A_1}\]
+La forza $F_1$ viene quindi magnificata del rapporto $\frac{A_2}{A_1}$.
+Poichè la quantità di liquido rimane costante, possiamo ricavare una analoga relazione eguaglianzo i volumi di liquido spostato:
+\[ A_1\cdot d_1 = A_2\cdot d_2 \implies d_2=d_1\cdot \frac{A_1}{A_2} \]
+I freni idraulici, gli elevatori etc usano lo stesso principio.
+
+\section[Forze di Buoyant]{Forze di Buoyant o Principio di Archimede} %Lez 13 slide 13
