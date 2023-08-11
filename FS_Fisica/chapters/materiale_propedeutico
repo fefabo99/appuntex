@@ -1,7 +1,7 @@
-\chapter{Materiale Propedeutico}
+\chapter*{Materiale Propedeutico}
 In questo capitolo introdurremo degli argomenti che sono propedeutici al corso, in modo da ripassare le cose necessarie.
-\section{Trigonometria}
-\subsection{Angoli e la loro Misura}
+\section*{Trigonometria}
+\subsection*{Angoli e la loro Misura}
 Quando vogliamo misurare un angolo possiamo usare due misure: \emph{Gradi} e \emph{Radianti}.
 \definizione{
     \textbf{L'angolo di un grado} è \emph{la trecentosessantesima parte di un angolo giro}.
@@ -24,7 +24,7 @@ In parole povere:
     \item $deg \to rad$: $(z$°$ \cdot \pi)/180$
 \end{itemize}
 
-\subsection{Seno, Coseno e Tangente}
+\subsection*{Seno, Coseno e Tangente}
 \definizione{
     Sia P un punto appartenente alla circonferenza C di centro (0,0) e di raggio 1 (circonferenza trigonometrica),
     e sia $\alpha$ l'angolo positivo descritto dal semiasse positivo delle ascisse per sovrapporsi alla semiretta $OP$.
@@ -39,7 +39,7 @@ un giro completo e si giunge allo stesso punto P.
 Si dice che le funzioni seno e coseno sono periodiche con periodo $2\pi$
 %Mettere la definizione di Tangente
 
-\subsection{Teoremi trigonometrici sul triangolo rettangolo}
+\subsection*{Teoremi trigonometrici sul triangolo rettangolo}
 Se abbiamo un vettore (di cui sappiamo il modulo) e un angolo su un asse cartesiano possiamo dividere il vettore sugli assi usando i
 \emph{teoremi trigonometrici sul triangolo rettangolo}.
 \\Se disegnamo un angolo rettangolo che usa come ipotenusa il nostro vettore, usiamo la definizione per trovare i due cateti:

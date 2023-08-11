@@ -13,7 +13,7 @@ Se il fluido è in moto, il suo movimento movimento può essere identificato da 
 \end{itemize}
 \paragraph*{Numero di Reynolds}
 Esiste un numero, detto numero di Reynolds, in base al quale si può stabilire se un fluido si muove in regime laminare o turbolento.
-Valori bassi (<2000) corrispondono ad un regime laminare, alti (>4000) ad un regime turbolento.
+Valori bassi ($<2000$) corrispondono ad un regime laminare, alti ($>4000$) ad un regime turbolento.
 
 Questo numero dipende dalla velicità del fluido, dalla sua viscosità ed ad una lunghezza sulla quale si esamina il flusso.
 
@@ -47,8 +47,8 @@ La \textbf{velocità} del fluido dipende dal \textbf{diametro della sezione} nor
 Basti pensare a quando riduci il diametro di una canna d'acqua, la velocità del flusso aumenta.
 
 \paragraph{La portata Volumica}
-L'equazione di Continuità impone che la \textbf{Portata Volumica} ($R_v$),
-ovvero la sezione di un tubo per la velocità del fluido, 
+L'equazione di Continuità impone che Portata Volumica ($R_v$),
+ovvero la \textbf{sezione di un tubo per la velocità del fluido}, 
 \textbf{deve essere sempre costante}.
 
 \definizione{
@@ -95,7 +95,7 @@ Mentre il lavoro da esse fatto è rispettivamente:
 \end{center}
 Il lavoro totale $W$ fatto da queste forze è:
     \[ W=W_1 + W_2 = p_1 \cdot A_1 \cdot \Delta x -  p_2 \cdot A_2 \cdot \Delta x \]
-    \[ \implies  W= (p_1-P_2) \cdot V\]
+    \[ \implies  W= (p_1-p_2) \cdot V\]
 
 Ricordando il teorema dell'energia meccanica, ovvero che il lavoro di una forza esterna su un sistema è uguale alla variazione di energia meccanica, 
 avremo che $ W = \Delta K + \Delta U$,
