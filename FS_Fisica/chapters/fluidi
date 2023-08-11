@@ -3,13 +3,17 @@
 Un fluido è costituito da molecole che sono disposte senza un ordine preciso.
 Esse sono tenute assieme da forze di legame debole, e dalle forze esercitate dalle pareti di un contenitore.
 Sia i liquidi che i gas sono dei fluidi.
-
-La materia si trova in 4 stati classici: solido, liquido gassoso, plasma (gas ionizzato).
-Un solido ha volume e forma definiti, un gas non ha ne volume ne forma propria, un liquido ha volume definito ma non una forma definita e il plasma è come un afas da questo punto di vista.
+\paragraph{Gli stati della materia}
+La materia si trova in 4 stati classici: solido, liquido gassoso, plasma (gas ionizzato):
+\\Un solido ha volume e forma definiti, un gas non ha \emph{ne volume ne forma} propria, 
+un liquido ha volume definito ma non una forma definita e 
+il plasma è come un gas da questo punto di vista.
 
 Ciò che appare solido può essere in realtà un liquido, ma con una densità molto elevata, che, dopo giorni, mesi od anni
 si deforma (gocciola) come un liquido.
 
+
+\paragraph{Lo studio dei fluidi}
 Per studiare le proprietà dinamiche collettive non servirà conoscere in dettaglio le forze di coesione tra le molecole,
 alla stessa stregua che non ci siamo posti la domanda nella dinamica classica. Si tratta di fenomeni collettivi quelli
 che studieremo
@@ -62,6 +66,10 @@ Definiamo prima il concetto di \textbf{Densità di una sostanza} $\rho$:
 se $\rho$ è costante, allora il liquido è \textbf{incompressibile}.
 
 \subsection{Variazione della Pressione con la profondità}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{img/stevino.jpg}
+\end{wrapfigure}
 Si consideri un fluido di densità $\rho$ (costante) a riposo, in un contenitore aperto.
 Se consideriamo un volume virtuale di liquido dentro il nostro contenitore, di altezza $h$ e sezione $A$.
 Sia $P$ la pressione esercitata dal liquido sotto il nostro volume e $P_0$ la pressione atmosferica esercitata sull'analoga superficie superiore.
@@ -70,6 +78,7 @@ Sia $P$ la pressione esercitata dal liquido sotto il nostro volume e $P_0$ la pr
     \item La forza esercitata dal fluido sulla parete inferiore è $F=P\cdot A$ verso l'alto.
     \item La forza peso del liquido è $F_p=M g = \rho \cdot V \cdot g = \rho \cdot A \cdot h \cdot g$ verso il basso.
 \end{itemize}
+
 La massa del liquido è $M=\rho V = \rho A \cdot h$.
 Poichè nulla si muove, vuol dire che la somma delle forze agenti è nulla sulle varie componenti.
 Fissiamo un sistema di riferimento con $Y>0$ rivolto verso l'alto:
@@ -77,21 +86,22 @@ Fissiamo un sistema di riferimento con $Y>0$ rivolto verso l'alto:
 Come riferimento si prenda 1.00 atm = 1.013$\cdot10^5$ Pa.
 
 \definizione{
-    \textbf{Legge di stevino}: La pressione P alla profondità $h$ sotto la superficie di un liquido aperto in atmosfera super quella atmosferica della quantità $\rho \cdot g \cdot h$:
+    \textbf{Legge di stevino}: La pressione P alla profondità $h$ sotto la superficie di un liquido aperto in atmosfera supera quella atmosferica della quantità $\rho \cdot g \cdot h$:
     \formula{Legge di Stevino}{$P = P_0 + \rho \cdot g \cdot h$}
     La pressione è la stessa per una data profondità, indipendentemente dalla forma e diametro del contenitore.
 }
 
 \section{Il Principio di Pascal}
 \definizione{
-    Il cambio di pressione esercitata su un fluido è trasmessa in modo inalterato ad ogni punto del fluido ed alle pareti del contenitore.
+    Il \textbf{cambio di pressione} esercitata su un fluido è \textbf{trasmessa in modo inalterato} ad ogni punto del fluido ed alle pareti del contenitore.
 }
-In quanto principio vuol dire che non si dimostra ma si osserva. Non c'è alcuna formula associata a questo principio.
+In quanto principio vuol dire che \underline{non si dimostra ma si osserva}.
+Non c'è alcuna formula associata a questo principio.
 
 Se applichiamo un apressione sulla superficie di un liquido in un contenitore, essa si trasmettrerà inalterata nel liquido all'interno del contenitore e quindi alle pareti.
 Quindi, ad esempio, la pressione atmosferica, viene percepita e misurata anche da un sub che
 Si immerge nel mare.
-La pressa idraulica (o martinetto) sono un’applicazione diretta del principio di Pascal.
+La pressa idraulica (o martinetto) sono un'applicazione diretta del principio di Pascal.
 
 \subsection{La pressa o Martinetto Idraulico}
 Un'applicazione della legge di pascal è la pressa idraulica.
@@ -110,3 +120,68 @@ Poichè la quantità di liquido rimane costante, possiamo ricavare una analoga r
 I freni idraulici, gli elevatori etc usano lo stesso principio.
 
 \section[Forze di Buoyant]{Forze di Buoyant o Principio di Archimede} %Lez 13 slide 13
+Le forze di Buoyant, anche dette forze di galleggiamento o principio di Archimede è una forza che
+agisce su un oggetto immerso in un liquido \textbf{esercitata dal liquido stesso}.
+\\Il \textbf{prinicpio di Archimede} è il prinicpio che ci indica l'intensità di questa forza:
+essa è uguale al peso del liquido spostato.
+Tale principio non enumera alcuna condizione sull'oggetto, quindi può essere di qualunque tipo.
+
+\paragraph{esempio}
+
+Si ponga l'attenzione sul volumetto di liquido nel contenitore.
+\begin{center}%{wrapfigure}{r}{0.15\textwidth}\centering
+    \includegraphics[width=.15\textwidth]{img/buoyant.jpg}
+\end{center}
+Sia il liquido composto da acqua pura, così come il cubetto.
+Il cubetto si trova in equilibrio; è soggetto alla forza peso $F_g$ che lo trascina verso il basso.
+la forza di galleggiamento compensa la forza peso, quindi la forza di galleggiamento $B$ esercitata sul cubo è eguale in modula d $F_g$, che è il peso del liquido nel cubo:
+\[B=F_g\]
+Se rimpiazzassimo il cubo d'acqua con un cubo di acciaio delle stesse dimensioni, il liquido circostante si comporterebbe nello stesso modo.
+Per cui la forza di galleggiamento \textbf{sarebbe la stessa di quella esercitata su un cubo di liquido delle stesse dimensioni}.
+Quindi la forza di galleggiamento è la stessa, in intensità, di quella agente sul cubo di liquido e non cubo di acciaio.
+
+\paragraph{La definizione del Principio di Archimede}
+\definizione{
+    Il \textbf{Principio di Archimede} stabilisce che un corpo immerso in un fluido subisce una spinta dal basso verso l'alto pari al peso del liquido spostato,
+    dove la spinta esercitata dal fluido è una forza detta spinta di archimede (o spinta idrostatica, o forza di Buoyant)
+    \formula{Forza di Buoyant}{$B=(\rho \cdot V) \cdot g$}
+}
+Ricordiamo che $\rho=\frac{m}{V}\implies m = \rho \cdot V$ e che la forza peso è $F_g=m\cdot g = (\rho \cdot V) \cdot g$.
+
+\paragraph{L'origine della forza di galleggiamento} %Dimostrazione sulle slides
+La forza di galleggiamento è dovuta alla pressione differenziale esercitata dalla parte immersa dell'oggetto.
+
+\begin{wrapfigure}{l}{0.26\textwidth}\centering
+    \includegraphics[width=.26\textwidth]{img/buoyant2.jpg}
+\end{wrapfigure}
+
+\subsection{Oggetto Totalmente Sommerso}
+Prendiamo un oggetto di Volume $V_0$ immerso in un fluido di densità $\rho_f$.
+Il Modulo della forza di galleggiamento è $B=\rho_f \cdot V_0 \cdot g$
+Se l'oggetto ha massa $M$, e densità $\rho_0$, allora il suop peso è: $F_g=M\cdot g=\rho_0 \cdot V_0 \cdot g$
+La forza totale sull'oggetto è: $B-F_g=(\rho_f-\rho_0)\cdot V_0 g$.
+
+Se la densità dell'oggetto è Minore di quella del fluido, allora la forza gravitazionale è inferiore a quella di galleggiamento e l'oggetto accelera verso l'alto.
+Nel caso contrario, l'oggetto affonda.
+
+\subsection{Oggetto Galleggiante}
+Sia l'oggetto di volume $V_0$, in equilibrio nel fluido e galleggiante, cioè parzialmente sommerso. 
+Ciò significa che la forza di galleggiamento verso l'alto è 
+\textbf{bilanciata} dalla forza di gravità agente verso il basso.
+poichè l'oggetto è in equilibrio $F_a = F_g$:
+\[
+    B = F_g 
+    \begin{cases}
+        B &= (\rho_f \cdot V_f) \cdot g \\
+        F_g &= M \cdot g = (\rho_0 \cdot V_0) \cdot g
+    \end{cases}
+    \implies \frac{\rho_0}{\rho_f} = \frac{V_f}{V_0}
+\]
+Quindi, \textbf{si ha galleggiamento quando la spinta di archimede uguaglia in modulo la forza di gravità}.
+
+\subsection{Peso apparente di un oggetto in un fluido}
+Si consideri un oggetto su di una bilancia: supponiamo abbia un certo peso (=forza peso).
+Ripetiamo l'operazione sott'acqua o più in generale all'interno di un fluido:
+il peso sarà minore a causa della spinta di galleggiamento che l'acqua applica all'oggetto:
+\[ P_{app} = P-B\]
+Nel caso in cui l'oggetto sia galleggiante avremo che $P=B$, quindi il peso apparente è nullo. 
