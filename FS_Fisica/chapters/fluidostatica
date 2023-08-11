@@ -1,4 +1,4 @@
-\chapter{Fluidostatica e Fluidodinamica}
+\chapter{Fluidostatica}
 
 Un fluido è costituito da molecole che sono disposte senza un ordine preciso.
 Esse sono tenute assieme da forze di legame debole, e dalle forze esercitate dalle pareti di un contenitore.
@@ -185,3 +185,4 @@ Ripetiamo l'operazione sott'acqua o più in generale all'interno di un fluido:
 il peso sarà minore a causa della spinta di galleggiamento che l'acqua applica all'oggetto:
 \[ P_{app} = P-B\]
 Nel caso in cui l'oggetto sia galleggiante avremo che $P=B$, quindi il peso apparente è nullo. 
+

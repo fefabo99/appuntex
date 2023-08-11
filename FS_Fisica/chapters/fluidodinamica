@@ -1,0 +1,143 @@
+\chapter{Fluidodinamica}
+
+La fluidodinamica studia il moto dei fluidi nel loro insieme, in funzione del tempo.
+Non segue il moto di ogni singola particella (molecola), che sarebbe impossibile anche al giorno d'oggi se non
+con metodi statistici e non deterministici.
+
+Se il fluido è in moto, il suo movimento movimento può essere identificato da due tipi:
+\begin{itemize}
+    \item Stazionario o Laminare: Le particelle seguono dei cammini che non si incrociano e che si chiamano linee di flusso.
+    Per un determinato punto, la velocità del fluido è costante nel tempo.
+    \item Turbolento: Il moto è irregolare e con zone di turoblenza, con movimenti basso/alto e viceversa. 
+    Presenta la formazione di vortici che si mescolano e fondono tra di loro.
+\end{itemize}
+\paragraph*{Numero di Reynolds}
+Esiste un numero, detto numero di Reynolds, in base al quale si può stabilire se un fluido si muove in regime laminare o turbolento.
+Valori bassi (<2000) corrispondono ad un regime laminare, alti (>4000) ad un regime turbolento.
+
+Questo numero dipende dalla velicità del fluido, dalla sua viscosità ed ad una lunghezza sulla quale si esamina il flusso.
+
+\subsection{La Viscosità}
+Viscosità è il termine usate per indicare il grado di attrito o frizione interna del fluido.
+L'attrito interno, o forza viscosa, è associata alla resistenza che due strati adiacenti di fluido oppongono al muovere relativamente l'uno sull'altro.
+
+La viscosità causa la trasformazione di parte dell'energia cinetica in energia interna.
+
+\paragraph{Il fluido ideale}
+Nello studio dei moti di un fluidi si considera un fluido «ideale» cioè con determinate caratteristiche:
+\begin{itemize}
+    \item Liquido \textbf{non viscoso}, cioè le forze interne sono trascurate.
+    \item Il flusso è \textbf{Laminare} (stazionario) cioè la velocità è costante nel tempo, punto per punto.
+    \item Il fluido è \textbf{Incompressibile} (volume costante).
+    \item Il fluido è \textbf{Irrotazionale}, cioè non ha un momento angolare (non fa ruotare oggetti sferici).
+\end{itemize}
+
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \includegraphics[width=.25\textwidth]{img/lineaFlusso.jpg}
+\end{wrapfigure}
+Si può visualizzare il moto di un fluido mediante dei traccianti, 
+in un fluido ideale ogni elemento segue una linea, senza incrociare le altre linee: si chiama \textbf{linea di flusso}.
+
+Come già visto nella cinematica, il vettore velocità di una particella lungo una traittoria qualunque è sempre tangente alla traiettoria.
+In questo caso, e per analogia, il vettore velocità è tangente alla linea di flusso.
+
+\section{Equazione di Continuità} %Scritta molto riassunta.
+La \textbf{velocità} del fluido dipende dal \textbf{diametro della sezione} normale A attraversata.
+Basti pensare a quando riduci il diametro di una canna d'acqua, la velocità del flusso aumenta.
+
+\paragraph{La portata Volumica}
+L'equazione di Continuità impone che la \textbf{Portata Volumica} ($R_v$),
+ovvero la sezione di un tubo per la velocità del fluido, 
+\textbf{deve essere sempre costante}.
+
+\definizione{
+    \textbf{Equazione di continuità} per il flusso di un fluido ideale:
+    La velocità di un fluido aumenta al diminuire della sezione di passaggio.
+    \[ A_1\cdot v_1 = A_2 \cdot v_2 \]
+    Analogamente, si può dire che la portata volumica $R_v$ è sempre costante:
+    \formula{Equazione di Continuità}{$R_v=A \cdot v = $ Costante}
+    in cui A è la sezione del tubo e $v$ la velocità del fluido.
+}
+L'unità di misura della portata volumica è $[A\cdot v]= [m^3/s]$.
+\paragraph{La portata Massica}
+Se moltiplichiamo la portata volumica per la densità del fluido, otteniamo la portata massica,
+ovvero la massa nell'unità di tempo.
+\[R_v \cdot \rho = \frac{\Delta m }{\Delta t} = \text{ Costante}\]
+La massa che ogni secondo entra nel segmento di tubo è uguale alla massa che ogni secondo ne esce.
+\begin{center}
+    \includegraphics[width=.5\textwidth]{img/equazioneContinuita.jpg}
+\end{center}
+
+\section{Equazione di Bernoulli}
+L'equazione di Bernoulli permette di connettere la pressione , la velocità e l'altezza di un liquido.
+\paragraph{Dimostrazione del principio di Bernoulli}
+\begin{wrapfigure}{r}{0.35\textwidth}
+    \centering
+    \includegraphics[width=.35\textwidth]{img/bernoulli.jpg}
+\end{wrapfigure}Si consideri un tubo di flusso, con fluido che scorre in regime laminare, con le condizioni come in figura.
+Dopo un certo intervallo di tempo $\Delta t$ una certa quantità di liquido sia entrata da sinistra ed un identico volume esca da destra.
+I due volumi sono identici perchè il fluido è incompressibile.
+
+Siano anche $y_1,v_1,p_1$ l'altezza, velocità e pressione del fluido all'estremità sinistra, e
+$y_2,v_2,p_2$ le analoghe a destra.
+Siano $A_1$ ed $A_2$ le due sezioni del tupo, $\rho$ la densità e $m$ la massa del liquido.
+
+Per il principio di Pascal sappiamo che le forze a sinistra e destra sono rispettivamente:
+\begin{center}
+    Forza a Sinistra: $F_1 = p_1 \cdot A_1$\\
+    Forza a Destra: $F_2 = p_2 \cdot A_2$
+\end{center}
+Mentre il lavoro da esse fatto è rispettivamente:
+\begin{center}
+    Lavoro a Sinistra: $W_1 = F_1 \cdot \Delta x= p_1 \cdot A_1 \cdot \Delta x $\\
+    Lavoro a Destra: $W_2 = - F_2 \cdot \Delta x= - p_2 \cdot A_2 \cdot \Delta x$
+\end{center}
+Il lavoro totale $W$ fatto da queste forze è:
+    \[ W=W_1 + W_2 = p_1 \cdot A_1 \cdot \Delta x -  p_2 \cdot A_2 \cdot \Delta x \]
+    \[ \implies  W= (p_1-P_2) \cdot V\]
+
+Ricordando il teorema dell'energia meccanica, ovvero che il lavoro di una forza esterna su un sistema è uguale alla variazione di energia meccanica, 
+avremo che $ W = \Delta K + \Delta U$,
+dove: $\Delta K = \frac{1}{2}mv_2^2 - \frac{1}{2}mv_1^2$ e $\Delta U = mgy_2 - mgy_1$
+Una parte del lavoro effettuato fa cambiare l'energia cinetica del liquido, e parte fa cambiare l'energia potenziale.
+% Avendo
+% \begin{itemize}
+%     \item $W= (p_1-P_2) \cdot V$
+%     \item $ \rho = \frac{m}{V}$
+% \end{itemize}
+Allora:
+\[W = \Delta K + \Delta U \implies p_1 + \frac{1}{2}\rho v_1^2 + \rho g y_1 =  
+p_2 + \frac{1}{2}\rho v_2^2 + \rho g y_2 = \text{Costante} \]
+Che è esattamente il Teorema di Bernoulli.
+
+\definizione{
+    Teorema di Bernoulli: In un fluido a flusso laminare, la somma della pressione, dell'energia cinetica per unità di volume e 
+    dell'energia potenziale gravitazionale per unità di volume è costante.
+    \formula{Equazione di Bernoulli}{$p + \frac{1}{2} \cdot \rho \cdot v^2 + \rho \cdot g \cdot y=$ Costante}
+    Che sono rispettivamente $p$, $K$ e $U_g$.
+}
+
+Da questa definizione possiamo notare due casi particolari:
+\paragraph{Fluido a Riposo} Se il fluido è a riposo, allora $v_1=v_2=0$, e quindi:
+$p_1 + \rho g y_1 = p_2 + \rho g y_2 = \text{ costante } \implies p_2=p_1 + \rho g (y_2-y_1)$
+Ovvero la legge di stevino.
+
+\paragraph{Fluido ad altezza costante} in cui $y_2 = y_1$.
+avremo che:
+\[p_2 + \frac{1}{2}\rho v_1^2 = p_2 + \frac{1}{2}\rho v_2^2\]
+Ovvero l'equazione di venturi:
+Se lungo una linea di flusso orizzontale aumenta la velocità del liquido, allora deve diminuire la sua pressione e viceversa.
+In altre parole, dove la velocità del fluido è elevata, la pressione è bassa e viceversa.
+
+\section{Equazione di Torricelli}%Salto la dimostrazione
+Una delle applicazioni del teorema di Bernoulli è la deduzione della velocità di
+fuoriuscita di un fluido da un recipiente nell'ipotesi che la superficie del foro sia
+molto più piccola rispetto alla superficie libera.
+\definizione{
+    La velocità di un fluido in uscita da un foro è pari alla radice quadrata del doppio prodotto dell'accelerazione di gravità e della distanza $h$ fra il pelo libero del fluido
+    e il centro del foro che è stato pèraticato.
+    \formula{Equazione di Torricelli}{$v=\sqrt{2 \cdot g\cdot h}$}
+    La velocità è uguale a quella che avrebbe il fluido durante una caduta libera dall'altezza $h$.
+
+}
