@@ -23,10 +23,77 @@ Il passaggio di calore (ovvero di energia) da un sistema all'altro porta a delle
 I cambiamenti sono piú veloci all'inizio e rallentano con il passare del tempo, finché le proprietá dei due sistemi tendono ad assumere valori costanti.
 Una volta raggionta questa situazione, diciamo che i sistemi sono in \textbf{equilibrio termico}.
 
-\paragraph{Il principio Zero della termodinamica}
+\paragraph{Il principio Zero della Termodinamica}
 \definizione{Se due corpi A e B si trovano in equilibrio termico con un terzo corpo T, allora sono in equilibrio termico reciproco.}
 Quando due sistemi si trovano in equilibrio termico, diciamo che hanno la stessa temperatura.
 
+\section{La Temperatura}
+Quando due sistemi si trovano in equilibrio termico, diciamo che hanno la stessa temperatura.
+
+Il senso comune di temperatura è fallace e non è quello fisico.
+Se tocco due oggetti che hanno temperaature simili od eguli potrei percepirle con "temperature" diverse, perchè toccando il ferro o l'acqua
+con la mano provo non solo la temperatura ma anche la capacitá dell'oggetto a trasferire calore alla mia mano:
+se l'oggetto è capace di sottrarre rapidamente calore dalla mia mano, lo percepirò come freddo.
+
+\subsection{Principio Zero: Enunciato alternativo}
+Un altro enunciato del principio zero che fa riferimento alla temperatura è il seguente:
+\definizione{Esista una grandezza scalare chiamata temperatura, che è una proprietà di tutti i sistemi termodinamici in equilibrio.
+Due sistemi sono in equilibrio termico se, e solo se, sono uguali le loro temperature.}
+
+\subsection{La misura della temperatura: il Kelvin}
+La temperatura è una delle grandezze fondamentali del sistema internazionale. 
+L'unità nel S.I è il Kelvin.
+
+Nonostante si possa con le attuali conoscenze aumentare la temperatura a volontà, non si può abbasrla senza limite
+e la temperatura più bassa possibile, detta zero assoluto, è stata fissata come Zero nella scala Kelvin, di conseguenza
+la scala Kelvin usa soltanto valori positivi.
+
+\paragraph{Il punto triplo dell'acqua}
+Per definire le scale di temperatura servono dei fenomeni termici riproducibili cui si associa un valore della scala Kelvin.
+Per questa scala si usa il punto triplo dell'acqua.
+L'acqua liquida, il ghiaccio e il vapore acqueo coesistono, in equilibrio termico ad un solo valore di pressione e temperatura.
+A questa temperatura è stato attribuito il valore di $T_3=273.16K$.
+
+Si è stabilito inoltre che l'unità Kelvin è $\frac{1}{273.16}$ della differenza di temperatura tra il punto triplo e lo zero assoluto.
+
+In fisica si usa sempre il Kelvin se non espressamente indicato.
+
+\section{La dilatazione Termica}
+La dilatazione termica è un fenomeno comune che viene anche usato nelle cotruzioni, sia in modo attivo che passivo.
+
+Analizziamo un solido generico. Gli atomi sono mantenuti assieme in un reticolo regolare dalle forze elettrostatiche,
+in modo simile all'azione che eserciterebbero delle molle congiungenti gli atomi.
+Possiamo quindi immaginare il reticolo cristallino come una griglia tridimensionale in cui gli atomi sono collegati tra di essi tramite molle:
+\begin{itemize}
+    \item Se due atomi si avvicinano troppo, gli elettroni di un aotmo entrano in interazione con gli elettroni dell'atomo vicino.
+    \item Se due atomi si allontanono troppo, vuol dire che si avvicineranno al acmpo elettrico generato da altri atomi.
+\end{itemize}
+
+Si genera un'oscillazione in 3D come un sistema di molle in cui l'aumento della temperatura fa aumentare la vibrazione degli atomi.
+
+Quindi, per temperature crescenti l'ampiezza delle vibrazioni aumenta e quindi aumenta la distanza media tra gli atomi, dando una espansione del corpo.
+
+\subsection{La dilatazione Lineare}
+\definizione{
+    La variazione di qualsiasi dimensione lineare di un solido è chiamata dilatazione lineare.
+    Se L è la lunghezza di questa dimensione lineare e $\Delta T$ la variazione di temperatura, alloral la variazione di lunghezza sará:
+    \formula{Dilatazione Lineare}{$\Delta L = \alpha \cdot L \cdot \Delta T$}
+    con $\alpha$ ($[\alpha]=K^{-1}$) coefficiente di dilatazione lineare
+}
+Il coefficiente $\alpha$ dipende dal materiale e varia anche con la temperatura.
+
+\subsection{La dilatazione Volumica}
+\definizione{
+    Se le tre dimensioni di un corpo si dilatano, allora aummenterà il suo volume:
+    \formula{Dilatazione Volumica}{$\Delta V = \beta \cdot V \cdot \Delta T$}
+    in cui $\beta = 3 \alpha$.
+}
+
+\paragraph{Il comportamento dell'acqua}
+L'acqua non si comporta come le altre sostanze:
+per $T>4$ si dilata al crescere della temperatura, come gli altri elementi.
+Per $0C<T<4C$ invece si contrae all'aumentare della temperatura.
+a $T=4C$ la sua densitá (anche detta massa volumica) è massima.
 
 \section{Trasformazioni Notevoli}
 Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
