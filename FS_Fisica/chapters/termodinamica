@@ -1,4 +1,33 @@
 \chapter{Termodinamica}
+La Termodinamica è la branca della fisica classica che studia le \textbf{trasformazioni di calore in lavoro e viceversa}
+in un sistema detto sistema termodinamico.
+
+Tali trasformazioni coinvolgono cambiamenti di variabili che caratterizzano il sistema, dette \textbf{variabili termodinamiche} quali:
+\begin{itemize}
+    \item Temperatura
+    \item Pressione
+    \item Volume
+    \item Composizione chimica.
+\end{itemize}
+Le variabili termodinamiche sono il risultato macroscopico di fenomeni su scala microscopica e nanoscopica.
+
+\section[Il principio Zero]{Il principio Zero della termodinamica}
+Il principio Zero è cosí chiamato perchè è stato elaborato dopo il principio uno.
+
+Le proprietà fisiche e chimiche di molti corpi cambiano con la temperatura.
+Si possono usare questi effetti per comprendere e misurare il concetto di Temperatura.
+Definiamo prima di tutto l'equilibrio termico:
+\paragraph*{Equilibrio termico}
+Si considerino due sistemi messi a "contatto" termico all'interno di un contenitore termicamente isolante.
+Il passaggio di calore (ovvero di energia) da un sistema all'altro porta a delle modifiche delle proprietá dei due sistemi.
+I cambiamenti sono piú veloci all'inizio e rallentano con il passare del tempo, finché le proprietá dei due sistemi tendono ad assumere valori costanti.
+Una volta raggionta questa situazione, diciamo che i sistemi sono in \textbf{equilibrio termico}.
+
+\paragraph{Il principio Zero della termodinamica}
+\definizione{Se due corpi A e B si trovano in equilibrio termico con un terzo corpo T, allora sono in equilibrio termico reciproco.}
+Quando due sistemi si trovano in equilibrio termico, diciamo che hanno la stessa temperatura.
+
+
 \section{Trasformazioni Notevoli}
 Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
 
