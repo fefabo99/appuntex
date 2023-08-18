@@ -1,4 +1,4 @@
-\chapter{Termodinamica}
+f\chapter{Termodinamica}
 La Termodinamica è la branca della fisica classica che studia le \textbf{trasformazioni di calore in lavoro e viceversa}
 in un sistema detto sistema termodinamico.
 
@@ -91,9 +91,61 @@ Il coefficiente $\alpha$ dipende dal materiale e varia anche con la temperatura.
 
 \paragraph{Il comportamento dell'acqua}
 L'acqua non si comporta come le altre sostanze:
-per $T>4$ si dilata al crescere della temperatura, come gli altri elementi.
-Per $0C<T<4C$ invece si contrae all'aumentare della temperatura.
-a $T=4C$ la sua densitá (anche detta massa volumica) è massima.
+per $T>4°C$ si dilata al crescere della temperatura, come gli altri elementi.
+Per $0°C<T<4°C$ invece si contrae all'aumentare della temperatura.
+a $T=4°C$ la sua densitá (anche detta massa volumica) è massima.
+
+\section{il numero di Avogadro}
+I gas (ma anche la materia) sono costituiti da un numero molto elevato di atomi.
+Non saremo mai in grado di descrivere cosa avviene per ciascun atomo di un certo gas,
+ma potremo vedere gli effetti collettivi macroscopici delle proprietà microscopiche,
+cioè interpretare il
+significato di temperatura e pressione in base al comportamento delle molecole che lo compongono.
+
+Risulta così utile confrontare quello che accade per un\textbf{ numero eguale e costante di atom}i (o molecole), introducendo il
+concetto di mole.
+
+\paragraph{Mole}
+La \textbf{mole} è una delle unità fondamentali del SI ed è definita come il numero di atomi contenuti in 12.0 g dell'isotopo
+del carbonio avente numero di massa 12 ($_6^{12}C$).
+
+\paragraph{Il numero di Avogadro}
+Quanti atomi o molecole ci sono in una mole?
+\formula{Numero di Avogadro}{$N_A=6.022\cdot 10^{23}$ mol$^{-1}$}
+Avogadro fu il primo che ipotizzò che tutti i gas contengano lo stesso numero di atomi o molecole
+quando occupano lo stesso voluma ad una data temperatura e pressione.
+
+Il numero di moli di un gas (materiale) sarà $n=\frac{N}{N_A}$, con $N$ numero di atomi (molecole) del campione.
+
+\paragraph{Massa Molare} Si definisce massa molare M la massa di una mole di sostanza,
+ka massa $M_{cam}$ di un campione sarà dunque:  $M_{cam}=n\cdot M$, oppure  $M_{cam}=m\cdot N_A$.
+
+
+\section{I gas Ideali o Perfetti}
+Il gas perfetto, detto anche gas ideale è un gas le cui proprietà rappresentino il comportamento limite dei gas reali, quando la loro densità tende a zero.
+
+Il gas perfetto è un'utile astrazione:
+\begin{itemize}
+    \item Tutti i gas reali, tanto più approssimano le caratteristiche del gas perfetto quanto minore è la loro densità.
+    \item le proprietà termodinamiche del gas perfetto sono legate tra loro da relazioni particolarmente semplici.
+\end{itemize}
+
+\subsection{Equazione di stato del gas perfetto}
+Sia dato un gas ideale contenuto in un cilindro, termicamente isolato e
+munito di pistone, con dentro una determinata quantità di gas. La
+posizione del pistone determina il volume del gas.
+La temperatura può essere regolata dall'esterno. Sul pistone si possano
+posare dei pallini di piombo per variare la pressione in modo noto.
+Gli esperimenti fatti usando un simile apparecchio hanno permesso di
+determinare che la pressione, T, n, sono legati dall'espressione:
+\formula{Equazione di stato del gas perfetto}{$pV = nRT$}
+con $n$ numero di moli nel volume V, $p$ pressione nel cilindro, $T$ temperatura nel cilindro (in kelvin).
+R invece è la costante dei gas, ovvero $R\simeq 8.31 J \cdot $ mole$/K$.
+$R = k N_A$ con k costante di boltzmann.
+
+Storicamente, l'equazione di stato dei gas perfetti formulata da E.Clapeyron è la sintesi di 3 leggi:
+La legge di Avogadro, Legge di Boyle-Mariotte e legge di Gay-Lussac.
+
 
 \section{Trasformazioni Notevoli}
 Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
