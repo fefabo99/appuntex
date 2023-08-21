@@ -414,6 +414,7 @@ L'energia interna del sistema sará quindi sempre la stessa:
 \[\Delta E_{int} = 0 \implies \Delta Q - \Delta L = 0\]
 Il lavoro totale compouto dal sistema durante il processo ciclico é eguale alla quantitá di calore trasferito al sistema.
 
+\pagebreak
 \section{Il lavoro effettuato dalle trasformazioni}
 \subsection{Lavoro a T costante}
 Supponiamo un gas ideale (n moli) che sia chiuso in un pistone con cilindro, e possa espandersi da un volume $V_i$ ad un volume $V_f$.
@@ -452,7 +453,19 @@ Il lavoro effettuato da una trasformazione isocora é sempre 0.
 il lavoro effettuato da una trasformazione isobara é: $W=p \cdot \Delta V$
 
 \subsection{Recap}
-Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
+Esistono 4 trasformazioni notevoli principali, ognuna caratterizzata da un valore che rimane costante.
+
+\begin{center}
+    \begin{tabularx}{\textwidth}{|X|X|X|}
+        Trasformazione & Valore Costante & Conseguenza \\
+        \hline 
+        \textbf{Isocora} & V & $W=0$ \\
+        \textbf{Isobara} & P & $W = P \cdot \Delta V$ \\
+        \textbf{Isoterma} & T & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ \\
+        \textbf{Adiabatica} & Q=0 & \\
+        
+    \end{tabularx}
+\end{center}
 
 \begin{center}
     \begin{tabularx}{\textwidth}{|X|X|X|X|}
