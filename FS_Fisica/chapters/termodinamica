@@ -122,7 +122,8 @@ ka massa $M_{cam}$ di un campione sarà dunque:  $M_{cam}=n\cdot M$, oppure  $M_
 
 
 \section{I gas Ideali o Perfetti}
-Il gas perfetto, detto anche gas ideale è un gas le cui proprietà rappresentino il comportamento limite dei gas reali, quando la loro densità tende a zero.
+Il gas perfetto, detto anche gas ideale è un gas le cui proprietà rappresentino il comportamento limite dei gas reali,
+ \textbf{quando la loro densità tende a zero}.
 
 Il gas perfetto è un'utile astrazione:
 \begin{itemize}
@@ -131,20 +132,73 @@ Il gas perfetto è un'utile astrazione:
 \end{itemize}
 
 \subsection{Equazione di stato del gas perfetto}
+L'equazione di stato del gas perfetto é un equazione che lega Pressione, Temperatura e numero di moli.
+
+\paragraph{L'Esperimento}
 Sia dato un gas ideale contenuto in un cilindro, termicamente isolato e
 munito di pistone, con dentro una determinata quantità di gas. La
 posizione del pistone determina il volume del gas.
 La temperatura può essere regolata dall'esterno. Sul pistone si possano
 posare dei pallini di piombo per variare la pressione in modo noto.
-Gli esperimenti fatti usando un simile apparecchio hanno permesso di
-determinare che la pressione, T, n, sono legati dall'espressione:
-\formula{Equazione di stato del gas perfetto}{$pV = nRT$}
-con $n$ numero di moli nel volume V, $p$ pressione nel cilindro, $T$ temperatura nel cilindro (in kelvin).
-R invece è la costante dei gas, ovvero $R\simeq 8.31 J \cdot $ mole$/K$.
-$R = k N_A$ con k costante di boltzmann.
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/eqGasPerfetti.png}
+\end{center}
+
+\definizione{
+    Sperimentalmente é stato determinato che la pressione, T, n, sono legati dall'espressione:
+    \formula{Equazione di stato del gas perfetto}{$pV = nRT$}
+    con $n$ numero di moli nel volume V, $p$ pressione nel cilindro, $T$ temperatura nel cilindro (in kelvin).
+    R invece è la costante dei gas, ovvero $R\simeq 8.31 J \cdot $ mole$/K$.
+    $R = k N_A$ con k costante di boltzmann.
+}
 
 Storicamente, l'equazione di stato dei gas perfetti formulata da E.Clapeyron è la sintesi di 3 leggi:
 La legge di Avogadro, Legge di Boyle-Mariotte e legge di Gay-Lussac.
+
+%\section{Caratteristiche dei gas perfetti e le origini microscopiche della pressione}
+%Questa sezione (slide 15 lezione 14) andrebbe scritta, ma non sono sicuro che serva.
+
+\section{Equazione di stato per i gas reali}
+Nel 1873 il fisico olandese J.D Van der Waals propose un equazione di stato per i gas reali.
+Tale equazione é molto simile a quella dei gas perfetti, con alcuni termini che la correggono per tenere conto del fatto sche si tratta appunto di gas reali.
+
+\formula{Equazione di Van der Waals}{$(p+\frac{an^2}{V^2}) (V-nb) = nRT$}
+a e b sono costanti determinate sperimentalmente.
+notiamo le correzioni che sono state fatte:
+\begin{enumerate}
+    \item Correzione per il volume: Tiene conto del fatto che le molecole occupano un certo volume, e che quindi il volume totale a disposizione é minore di quello del caso ideale.
+    \item Correzione per la pressione: Le molecole sui bordi delle pareti assorbono un po del momento lineare, quindi la pressione totale esercitata dalle molecole sul pistone é 
+    minore che nel caso ideale.
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/statoGas.png}
+\end{center}
+
+\section{Il Calore}
+GLi oggetti tendono a stabilire un equilibrio termico con l'ambiente circostante.
+
+\definizione{
+    Si definisce calore l'energia che fluisce tra un sistema e il suo ambiente a causa della differenza di temperatura fra essi.
+}
+Si puó ben notare quindi che calore $\neq$ temperatura.
+
+\begin{itemize}
+    \item Se la temperatura di un sistema é maggiore della temperatura dell'ambiente ($T_s>T_a$), l'energia fluisce dal sistema all'ambiente
+    sotto forma di calore $Q$ fino al raggiungimento dell'equilibrio termico.
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{img/calore1.png}
+    \end{center}
+    \item Se ($T_s=T_a$) non c'é trasferimento di energia.
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{img/calore2.png}
+    \end{center}
+    \item Se la ($T_s<T_a$), l'energia fluisce dall'ambiente al sistema.
+    \begin{center}
+        \includegraphics[width=.8\textwidth]{img/calore3.png}
+    \end{center}
+\end{itemize}
+
+Per convenzione, la quantitá di calore $Q>0$ se fa aumentare l'energia interna $E_{int}$ del sistema.
 
 
 \section{Trasformazioni Notevoli}
