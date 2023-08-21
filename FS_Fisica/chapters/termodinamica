@@ -200,6 +200,117 @@ Si puó ben notare quindi che calore $\neq$ temperatura.
 
 Per convenzione, la quantitá di calore $Q>0$ se fa aumentare l'energia interna $E_{int}$ del sistema.
 
+\subsection{L'Unitá di misura del Calore}
+Storicamente ci sono due unitá diverse: la prima fu la caloria
+\paragraph*{La caloria} (o piccola caloria, cal) é la quantitá di calore necessaria per innalzare la temperatura di un grammo di $H_2O$ da 14.5 a 15.5C.
+La grande caloria é equivalente a 1kcal = 1000 cal.
+
+\paragraph{Il Joule} dal 1948 si usa il joule, perché \textbf{Il calore é un tipo di energia} (O lavoro, che sono equivalenti)
+\begin{center}
+    1 cal $\approx$ 4.18 Joule
+\end{center}
+
+\section{Calore, Temperatura ed Energia Interna}
+Calore, temperatura ed energia interna sono tre concetti diversi.
+\\Il \textbf{calore}, come del resto il lavoro, é un mezzo di trasferimento di energia all'interno o all'esterno del sistema.
+Esso, sempre come il lavoro, non é una proprietá intrinseca del sistema, diversamente da p,V,T,E$_{int}$.
+
+Una variazione di temperatura di un gas corrisponde ad una variazione dell'energia cinetica media traslazionale dei suoi atomi e delle sue moloecole.
+Se noi forniamo energia ad un gas, l'energia interna aumenta (Cinetica, vibrazionale, rotazionale,...) ma soltanto la frazione di energia che si trasforma in 
+energia cinetica traslazionale corrisponde ad un aumento di temperatura.
+
+la \textbf{temperatura} é un indicatore della capacitá di due corpi a contatto di scambiarsi calore,
+se due corpi hanno temperature uguali, essi non si scambiano calore, ovvero non trasferiscono energia sotto forma di calore l'uno all'altro.
+
+Se uno dei due corpi é piú grande dell'altro, ma sono alla stessa temperatura, il primo possederá maggior energia interna del secondo, ma nemmeno in questo caso trasferirá calore al secondo.
+
+\paragraph{trasferire calore} 
+Possiamo accrescere la temperatura di un corpo senza cedergli calore, per esempio compiendo lavoro su di esso.
+Al contrario, possiamo trasferire calore da un corpo a temperatura maggiore ad un altro a temperatura minore, senza variare le loro temperature,
+per esempio nei processi di fusione o evaporazione.
+
+\paragraph*{Somma degli scambi termici}
+Se un sistema é isolato, non scambia energia con l'esterno, quindi la somma degli scambi terici interni $\Delta Q=0$.
+
+
+\section{Capacitá Termica e Calore Specifico}
+Possiamo variare lo stato di un corpo fornendogli o sottraendogli energia termica (calore),
+oprrue energia meccanica (lavoro): a ció corrispondera una variazione di tempratura T.
+
+Se trasferiamo una quantitá di calore Q ad un corpo, la variazione di temperatura T dipende dalle cricostane in cui il calore é trasmesso.
+
+Se compiamo un lavoro su un corpo, possiamo anche in questo caso variare la temperatura senza fornire calore.
+
+\subsection{Capacitá termica}
+\definizione{
+    La capacitá termica $C$ é la costante di proporzionalitá tra il calore somministrato e la variazione di temperatura indotta.
+    \formula{Capacitá Termica}{$Q=C\cdot \Delta T = C \cdot (T_2-T_1)$}
+}
+\nb{C é la capacitá termica}
+
+Attenzione che capcacitá non va intesa come un qualcosa che ha un limite (come un secchio): il trasferimento puó avvenire senza limiti finché 
+c'é un $\Delta T$.
+
+\subsection{Calore specifico}
+Due oggetti dello stesso materiale hanno capacitá termiche porporzionali alla loro massa, é utile quindi definire
+una capacitá termica per unitá di massa o calore specifico (c), che si riferisce non all'oggetto specifico ma alla massa unitaria del materiale di cui é fatto.
+\formula{Calore Specifico}{$c=\frac{C}{m}$}
+il calore specifico dell'acqua é $1 \frac{[cal]}{[K]\cdot [g]}$.
+Come giá indicto, é importnte conoscere come il calore sia stato assorbito.
+Per i solidi ed i liquidi i calori specifici a volume costante o a pressione costante variano di poco, ma variano molto nei gas come vedremo.
+
+\section{Calore Latente di trasformazione}
+Quando un corpo solido o un liquido assorbe calore, \textbf{non é detto che la sua temperatura debba aumentare}:
+potrebbe anche cambiare stato passando da una fase a un'altra fase, solida, liquida o gassosa.
+in questi casi si assorbe calore per rompere legami chimici od elettrostatici.
+
+\definizione{
+    Il calore latente (L) é la quantitá di calore Q (per unitá di massa) da trasferire per far avvniere il cambiamento di fase completo.
+    \formula{Calore Latente}{$Q=L\cdot m$}
+
+    si chiama calore latente di evaporazione se si passa dalla fase liquida a quella gassosa (e viceversa) e calora latente di fusione
+    se si passa dalla fase solida a quella liquida (e viceversa)
+}
+Il calore latente é una costante e l'unitá di misura é:
+\[Q=L\cdot m \implies L = \frac{Q}{m} = \frac{[J]}{[kg]}\]
+
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/caloreLatente.png}
+\end{center}
+
+\section{Calore e Lavoro}
+
+\paragraph*{L'esperimento}
+Consideriamo un gas perfetto contenuto in un cilindro con pistone mobile.
+La pressione del gas é bilanciata da pallini di piombo.
+Il sistema sia isolato termicamente, a parte alla base dobe puó scambiare calore (un fornello per esempio) a T variabile:
+\begin{itemize}
+    \item Stato inizile del sistema "i": $p_i,V_i,T_i$
+    \item Stato finale del sistema "f": $p_f,V_f,T_f$
+\end{itemize}
+Il processo di trasformazione é detto "Processo/trasformazione termodinamico/a".
+Il sitema puó:
+\begin{itemize}
+    \item Ricevere/Cedere calore (dalla sorgente) ($\Delta Q > 0 / \Delta Q < 0$)
+    \item Fare lavoro alzando il pistone o ricevere lavoro aumentando i pallini di piombo ($\Delta L > 0 / \Delta L < 0$)
+\end{itemize}
+Tutti i processi siano lenti, cosicché il sistema sia sempre in equilibrio termodinamico.
+
+Cosa succede se rimuoviamo un pallino di Piombo?
+Il gas spinge il pistone con una certa forza F, diretta verso l'alto di modulo: $|F|=pA$, con p pressione e A superficie del pistone.
+Questa forza fa sollevare il pistone di una piccola quantitá $ds$, anch'essa direatta verso l'alto.
+
+\subparagraph{Il lavoro}
+\[dL = F \cdot ds = (pA) \cdot ds \cdot \cos(0) = p A ds = p dV\]
+con dV é il cambiamento infinitesio di volume del gas dovuto allo spostamento del pistone.
+
+\subsection{Generalizzando}
+Se ora leviamo molti pallini, per far passare il pistone da $V_i$ a $V_f$:
+\formula{Lavoro fatto/subito dal sistema}{$L= \int dL = \int_{V_i}^{V_f} p dV$}
+durante la variazione di volumw possono cambiarea cneh p e T in generale.
+Per calcolarci líntegrale dovremmo sapere come varia p al variare di V.
+
+
 
 \section{Trasformazioni Notevoli}
 Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
