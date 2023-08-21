@@ -59,24 +59,22 @@ Si è stabilito inoltre che l'unità Kelvin è $\frac{1}{273.16}$ della differen
 In fisica si usa sempre il Kelvin se non espressamente indicato.
 
 \section{La dilatazione Termica}
-La dilatazione termica è un fenomeno comune che viene anche usato nelle cotruzioni, sia in modo attivo che passivo.
+La dilatazione termica è un fenomeno comune che viene anche usato nelle costruzioni, sia in modo attivo che passivo.
 
 Analizziamo un solido generico. Gli atomi sono mantenuti assieme in un reticolo regolare dalle forze elettrostatiche,
 in modo simile all'azione che eserciterebbero delle molle congiungenti gli atomi.
 Possiamo quindi immaginare il reticolo cristallino come una griglia tridimensionale in cui gli atomi sono collegati tra di essi tramite molle:
 \begin{itemize}
-    \item Se due atomi si avvicinano troppo, gli elettroni di un aotmo entrano in interazione con gli elettroni dell'atomo vicino.
-    \item Se due atomi si allontanono troppo, vuol dire che si avvicineranno al acmpo elettrico generato da altri atomi.
+    \item Se due atomi si avvicinano troppo, gli elettroni di un atomo entrano in interazione con gli elettroni dell'atomo vicino.
+    \item Se due atomi si allontanono troppo, vuol dire che si avvicineranno al campo elettrico generato da altri atomi.
 \end{itemize}
-
-Si genera un'oscillazione in 3D come un sistema di molle in cui l'aumento della temperatura fa aumentare la vibrazione degli atomi.
-
-Quindi, per temperature crescenti l'ampiezza delle vibrazioni aumenta e quindi aumenta la distanza media tra gli atomi, dando una espansione del corpo.
+Si genera un'oscillazione in 3D come un sistema di molle in cui \textbf{l'aumento della temperatura fa aumentare la vibrazione degli atomi}.
+\\Quindi, per temperature crescenti l'ampiezza delle vibrazioni aumenta e quindi aumenta la distanza media tra gli atomi, \textbf{dando una espansione del corpo}.
 
 \subsection{La dilatazione Lineare}
 \definizione{
     La variazione di qualsiasi dimensione lineare di un solido è chiamata dilatazione lineare.
-    Se L è la lunghezza di questa dimensione lineare e $\Delta T$ la variazione di temperatura, alloral la variazione di lunghezza sará:
+    Se L è la lunghezza di questa dimensione lineare e $\Delta T$ la variazione di temperatura, allora la variazione di lunghezza sará:
     \formula{Dilatazione Lineare}{$\Delta L = \alpha \cdot L \cdot \Delta T$}
     con $\alpha$ ($[\alpha]=K^{-1}$) coefficiente di dilatazione lineare
 }
@@ -91,9 +89,9 @@ Il coefficiente $\alpha$ dipende dal materiale e varia anche con la temperatura.
 
 \paragraph{Il comportamento dell'acqua}
 L'acqua non si comporta come le altre sostanze:
-per $T>4°C$ si dilata al crescere della temperatura, come gli altri elementi.
-Per $0°C<T<4°C$ invece si contrae all'aumentare della temperatura.
-a $T=4°C$ la sua densitá (anche detta massa volumica) è massima.
+per $T>4^\circ C$ si dilata al crescere della temperatura, come gli altri elementi.
+Per $0^\circ C<T<4^\circ C$ invece si contrae all'aumentare della temperatura.
+a $T=4^\circ C$ la sua densitá (anche detta massa volumica) è massima.
 
 \section{il numero di Avogadro}
 I gas (ma anche la materia) sono costituiti da un numero molto elevato di atomi.
@@ -101,8 +99,7 @@ Non saremo mai in grado di descrivere cosa avviene per ciascun atomo di un certo
 ma potremo vedere gli effetti collettivi macroscopici delle proprietà microscopiche,
 cioè interpretare il
 significato di temperatura e pressione in base al comportamento delle molecole che lo compongono.
-
-Risulta così utile confrontare quello che accade per un\textbf{ numero eguale e costante di atom}i (o molecole), introducendo il
+\\Risulta così utile confrontare quello che accade per un\textbf{ numero eguale e costante di atom}i (o molecole), introducendo il
 concetto di mole.
 
 \paragraph{Mole}
@@ -113,36 +110,24 @@ del carbonio avente numero di massa 12 ($_6^{12}C$).
 Quanti atomi o molecole ci sono in una mole?
 \formula{Numero di Avogadro}{$N_A=6.022\cdot 10^{23}$ mol$^{-1}$}
 Avogadro fu il primo che ipotizzò che tutti i gas contengano lo stesso numero di atomi o molecole
-quando occupano lo stesso voluma ad una data temperatura e pressione.
-
-Il numero di moli di un gas (materiale) sarà $n=\frac{N}{N_A}$, con $N$ numero di atomi (molecole) del campione.
+quando occupano lo stesso volume ad una data temperatura e pressione.
+\\Il \textbf{numero di moli} di un gas (materiale) sarà $n=\frac{N}{N_A}$, con $N$ numero di atomi (molecole) del campione.
 
 \paragraph{Massa Molare} Si definisce massa molare M la massa di una mole di sostanza,
-ka massa $M_{cam}$ di un campione sarà dunque:  $M_{cam}=n\cdot M$, oppure  $M_{cam}=m\cdot N_A$.
+la massa $M_{cam}$ di un campione sarà dunque:  $M_{cam}=n\cdot M$, oppure  $M_{cam}=m\cdot N_A$.
 
 
 \section{I gas Ideali o Perfetti}
-Il gas perfetto, detto anche gas ideale è un gas le cui proprietà rappresentino il comportamento limite dei gas reali,
- \textbf{quando la loro densità tende a zero}.
-
-Il gas perfetto è un'utile astrazione:
+Il gas perfetto, detto anche gas ideale è un gas le cui proprietà rappresentano il comportamento limite dei gas reali,
+\textbf{quando la loro densità tende a zero}.
+\\Il gas perfetto è un'utile astrazione:
 \begin{itemize}
-    \item Tutti i gas reali, tanto più approssimano le caratteristiche del gas perfetto quanto minore è la loro densità.
+    \item Tutti i gas reali, tanto più approssimano le caratteristiche del gas perfetto quanto \textbf{minore è la loro densità}.
     \item le proprietà termodinamiche del gas perfetto sono legate tra loro da relazioni particolarmente semplici.
 \end{itemize}
 
 \subsection{Equazione di stato del gas perfetto}
 L'equazione di stato del gas perfetto é un equazione che lega Pressione, Temperatura e numero di moli.
-
-\paragraph{L'Esperimento}
-Sia dato un gas ideale contenuto in un cilindro, termicamente isolato e
-munito di pistone, con dentro una determinata quantità di gas. La
-posizione del pistone determina il volume del gas.
-La temperatura può essere regolata dall'esterno. Sul pistone si possano
-posare dei pallini di piombo per variare la pressione in modo noto.
-\begin{center}
-    \includegraphics[width=.3\textwidth]{img/eqGasPerfetti.png}
-\end{center}
 
 \definizione{
     Sperimentalmente é stato determinato che la pressione, T, n, sono legati dall'espressione:
@@ -155,6 +140,18 @@ posare dei pallini di piombo per variare la pressione in modo noto.
 Storicamente, l'equazione di stato dei gas perfetti formulata da E.Clapeyron è la sintesi di 3 leggi:
 La legge di Avogadro, Legge di Boyle-Mariotte e legge di Gay-Lussac.
 
+\paragraph{L'apparecchio per la sperimentazione}
+Sia dato un gas ideale contenuto in un cilindro, termicamente isolato e
+munito di pistone, con dentro una determinata quantità di gas. La
+posizione del pistone determina il volume del gas.
+La temperatura può essere regolata dall'esterno. Sul pistone si possano
+posare dei pallini di piombo per variare la pressione in modo noto.
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/eqGasPerfetti.png}
+\end{center}
+Questo apparecchio é utilizzato per vari esperimenti su pressione, volume e temperatura di un gas.
+
+
 %\section{Caratteristiche dei gas perfetti e le origini microscopiche della pressione}
 %Questa sezione (slide 15 lezione 14) andrebbe scritta, ma non sono sicuro che serva.
 
@@ -163,22 +160,23 @@ Nel 1873 il fisico olandese J.D Van der Waals propose un equazione di stato per 
 Tale equazione é molto simile a quella dei gas perfetti, con alcuni termini che la correggono per tenere conto del fatto sche si tratta appunto di gas reali.
 
 \formula{Equazione di Van der Waals}{$(p+\frac{an^2}{V^2}) (V-nb) = nRT$}
-a e b sono costanti determinate sperimentalmente.
-notiamo le correzioni che sono state fatte:
+$a$ e $b$ sono costanti determinate sperimentalmente.
+\\Notiamo le correzioni che sono state fatte:
 \begin{enumerate}
-    \item Correzione per il volume: Tiene conto del fatto che le molecole occupano un certo volume, e che quindi il volume totale a disposizione é minore di quello del caso ideale.
-    \item Correzione per la pressione: Le molecole sui bordi delle pareti assorbono un po del momento lineare, quindi la pressione totale esercitata dalle molecole sul pistone é 
+    \item \textbf{Correzione per il volume}: Tiene conto del fatto che le molecole occupano un certo volume, e che quindi il volume totale a disposizione é minore di quello del caso ideale.
+    \item \textbf{Correzione per la pressione}: Le molecole sui bordi delle pareti assorbono un po del momento lineare, quindi la pressione totale esercitata dalle molecole sul pistone é 
     minore che nel caso ideale.
 \end{enumerate}
 \begin{center}
     \includegraphics[width=.8\textwidth]{img/statoGas.png}
 \end{center}
+\pagebreak
 
 \section{Il Calore}
-GLi oggetti tendono a stabilire un equilibrio termico con l'ambiente circostante.
+Gli oggetti tendono a stabilire un equilibrio termico con l'ambiente circostante.
 
 \definizione{
-    Si definisce calore l'energia che fluisce tra un sistema e il suo ambiente a causa della differenza di temperatura fra essi.
+    Si definisce calore l'\textbf{energia} che fluisce tra un sistema e il suo ambiente a causa della \textbf{differenza di temperatura} fra essi.
 }
 Si puó ben notare quindi che calore $\neq$ temperatura.
 
@@ -197,7 +195,6 @@ Si puó ben notare quindi che calore $\neq$ temperatura.
         \includegraphics[width=.8\textwidth]{img/calore3.png}
     \end{center}
 \end{itemize}
-
 Per convenzione, la quantitá di calore $Q>0$ se fa aumentare l'energia interna $E_{int}$ del sistema.
 
 \subsection{L'Unitá di misura del Calore}
@@ -210,36 +207,33 @@ La grande caloria é equivalente a 1kcal = 1000 cal.
     1 cal $\approx$ 4.18 Joule
 \end{center}
 
-\section{Calore, Temperatura ed Energia Interna}
-Calore, temperatura ed energia interna sono tre concetti diversi.
-\\Il \textbf{calore}, come del resto il lavoro, é un mezzo di trasferimento di energia all'interno o all'esterno del sistema.
-Esso, sempre come il lavoro, non é una proprietá intrinseca del sistema, diversamente da p,V,T,E$_{int}$.
-
-Una variazione di temperatura di un gas corrisponde ad una variazione dell'energia cinetica media traslazionale dei suoi atomi e delle sue moloecole.
+\section{Recap: Calore, Temperatura ed Energia Interna}
+Calore, temperatura ed energia interna sono tre concetti diversi, specifichiamo quindi le loro differenze:
+\paragraph{Il Calore}
+Come il lavoro, il calore é un \textbf{mezzo di trasferimento di energia all'interno o all'esterno del sistema}.
+Esso, sempre come il lavoro, \textbf{non é una proprietá intrinseca del sistema}, diversamente da p,V,T,E$_{int}$.
+\\Una variazione di temperatura di un gas corrisponde ad una variazione dell'energia cinetica media traslazionale dei suoi atomi e delle sue moloecole.
 Se noi forniamo energia ad un gas, l'energia interna aumenta (Cinetica, vibrazionale, rotazionale,...) ma soltanto la frazione di energia che si trasforma in 
 energia cinetica traslazionale corrisponde ad un aumento di temperatura.
 
-la \textbf{temperatura} é un indicatore della capacitá di due corpi a contatto di scambiarsi calore,
+\paragraph{La Temperatura}
+la temperatura é un \textbf{indicatore della capacitá di due corpi a contatto di scambiarsi calore},
 se due corpi hanno temperature uguali, essi non si scambiano calore, ovvero non trasferiscono energia sotto forma di calore l'uno all'altro.
+\\Se uno dei due corpi é piú grande dell'altro, ma sono alla stessa temperatura, il primo possederá maggior energia interna del secondo, ma nemmeno in questo caso trasferirá calore al secondo.
 
-Se uno dei due corpi é piú grande dell'altro, ma sono alla stessa temperatura, il primo possederá maggior energia interna del secondo, ma nemmeno in questo caso trasferirá calore al secondo.
-
-\paragraph{trasferire calore} 
+\paragraph{Il Trasferimento di Calore} 
 Possiamo accrescere la temperatura di un corpo senza cedergli calore, per esempio compiendo lavoro su di esso.
 Al contrario, possiamo trasferire calore da un corpo a temperatura maggiore ad un altro a temperatura minore, senza variare le loro temperature,
 per esempio nei processi di fusione o evaporazione.
 
-\paragraph*{Somma degli scambi termici}
-Se un sistema é isolato, non scambia energia con l'esterno, quindi la somma degli scambi terici interni $\Delta Q=0$.
+Se un sistema é isolato, non scambia energia con l'esterno, quindi la somma degli scambi termici interni $\Delta Q=0$.
 
 
 \section{Capacitá Termica e Calore Specifico}
-Possiamo variare lo stato di un corpo fornendogli o sottraendogli energia termica (calore),
-oprrue energia meccanica (lavoro): a ció corrispondera una variazione di tempratura T.
-
-Se trasferiamo una quantitá di calore Q ad un corpo, la variazione di temperatura T dipende dalle cricostane in cui il calore é trasmesso.
-
-Se compiamo un lavoro su un corpo, possiamo anche in questo caso variare la temperatura senza fornire calore.
+Se variamo lo stato di un corpo fornendogli energia termica, sotto forma di calore, oppure energia meccanica, sotto forma di lavoro,
+avremo una \textbf{variazione della temperatura T}.
+\\Se trasferiamo una quantitá di calore Q ad un corpo, la variazione di temperatura T dipenderá dalle cricostanze in cui il calore é trasmesso.
+Se compiamo un lavoro su un corpo (per esempio strofinandolo), possiamo anche in questo caso variare la temperatura senza fornire calore.
 
 \subsection{Capacitá termica}
 \definizione{
@@ -247,68 +241,78 @@ Se compiamo un lavoro su un corpo, possiamo anche in questo caso variare la temp
     \formula{Capacitá Termica}{$Q=C\cdot \Delta T = C \cdot (T_2-T_1)$}
 }
 \nb{C é la capacitá termica}
-
-Attenzione che capcacitá non va intesa come un qualcosa che ha un limite (come un secchio): il trasferimento puó avvenire senza limiti finché 
+\\Attenzione che capcacitá non va intesa come un qualcosa che ha un limite (come un secchio): il trasferimento puó avvenire senza limiti finché 
 c'é un $\Delta T$.
 
 \subsection{Calore specifico}
-Due oggetti dello stesso materiale hanno capacitá termiche porporzionali alla loro massa, é utile quindi definire
-una capacitá termica per unitá di massa o calore specifico (c), che si riferisce non all'oggetto specifico ma alla massa unitaria del materiale di cui é fatto.
-\formula{Calore Specifico}{$c=\frac{C}{m}$}
-il calore specifico dell'acqua é $1 \frac{[cal]}{[K]\cdot [g]}$.
-Come giá indicto, é importnte conoscere come il calore sia stato assorbito.
+Due oggetti dello stesso materiale hanno capacitá termiche porporzionali alla loro massa:
+\definizione{
+    La capacitá termica per unitá di massa, o \textbf{calore specifico} é cosí definita:
+    \formula{Calore Specifico}{$c=\frac{C}{m}$}
+    Essa si riferisce non all'oggetto specifico ma alla massa unitaria del materiale 
+}
+il calore specifico dell'acqua é $1 \frac{[cal]}{[K]\cdot [kg]}$.
+Come giá indicato, é importnate conoscere come il calore sia stato assorbito.
 Per i solidi ed i liquidi i calori specifici a volume costante o a pressione costante variano di poco, ma variano molto nei gas come vedremo.
 
 \section{Calore Latente di trasformazione}
 Quando un corpo solido o un liquido assorbe calore, \textbf{non é detto che la sua temperatura debba aumentare}:
 potrebbe anche cambiare stato passando da una fase a un'altra fase, solida, liquida o gassosa.
-in questi casi si assorbe calore per rompere legami chimici od elettrostatici.
+in questi casi \emph{si assorbe calore per rompere legami chimici od elettrostatici.}
 
 \definizione{
-    Il calore latente (L) é la quantitá di calore Q (per unitá di massa) da trasferire per far avvniere il cambiamento di fase completo.
+    Il calore latente (L) é la quantitá di calore Q (per unitá di massa) da trasferire per far avvenire il cambiamento di fase completo.
     \formula{Calore Latente}{$Q=L\cdot m$}
 
-    si chiama calore latente di evaporazione se si passa dalla fase liquida a quella gassosa (e viceversa) e calora latente di fusione
-    se si passa dalla fase solida a quella liquida (e viceversa)
 }
-Il calore latente é una costante e l'unitá di misura é:
+
+si chiama calore latente di evaporazione se si passa dalla fase liquida a quella gassosa (e viceversa) e calora latente di fusione
+se si passa dalla fase solida a quella liquida (e viceversa).
+\\Il calore latente é una costante e l'unitá di misura é:
 \[Q=L\cdot m \implies L = \frac{Q}{m} = \frac{[J]}{[kg]}\]
 
 \begin{center}
     \includegraphics[width=.8\textwidth]{img/caloreLatente.png}
 \end{center}
 
+\pagebreak
 \section{Calore e Lavoro}
+\begin{wrapfigure}{l}{0.2\textwidth}
+    \centering
+    \includegraphics[width=.2\textwidth]{img/caloreLavoro.png}
+\end{wrapfigure}
+\paragraph{L'esperimento}
 
-\paragraph*{L'esperimento}
 Consideriamo un gas perfetto contenuto in un cilindro con pistone mobile.
 La pressione del gas é bilanciata da pallini di piombo.
 Il sistema sia isolato termicamente, a parte alla base dobe puó scambiare calore (un fornello per esempio) a T variabile:
 \begin{itemize}
-    \item Stato inizile del sistema "i": $p_i,V_i,T_i$
-    \item Stato finale del sistema "f": $p_f,V_f,T_f$
+    \item Stato inizile del sistema $i$: $p_i,V_i,T_i$
+    \item Stato finale del sistema $f$: $p_f,V_f,T_f$
 \end{itemize}
 Il processo di trasformazione é detto "Processo/trasformazione termodinamico/a".
 Il sitema puó:
 \begin{itemize}
-    \item Ricevere/Cedere calore (dalla sorgente) ($\Delta Q > 0 / \Delta Q < 0$)
-    \item Fare lavoro alzando il pistone o ricevere lavoro aumentando i pallini di piombo ($\Delta L > 0 / \Delta L < 0$)
+    \item Ricevere/Cedere calore (dalla sorgente) \\($\Delta Q > 0 / \Delta Q < 0$)
+    \item Fare lavoro alzando il pistone o ricevere lavoro aumentando i pallini di piombo\\ ($\Delta L > 0 / \Delta L < 0$)
 \end{itemize}
 Tutti i processi siano lenti, cosicché il sistema sia sempre in equilibrio termodinamico.
-
-Cosa succede se rimuoviamo un pallino di Piombo?
-Il gas spinge il pistone con una certa forza F, diretta verso l'alto di modulo: $|F|=pA$, con p pressione e A superficie del pistone.
+\\\textbf{Cosa succede se rimuoviamo un pallino di Piombo?}\\
+Il gas spinge il pistone con una certa forza F, diretta verso l'alto di modulo: $|F|=pA$, con $p$ pressione e $A$ superficie del pistone.
 Questa forza fa sollevare il pistone di una piccola quantitá $ds$, anch'essa direatta verso l'alto.
 
-\subparagraph{Il lavoro}
+\paragraph{Il Lavoro svolto}
+Dalla definizione di lavoro quindi, avremo che:
 \[dL = F \cdot ds = (pA) \cdot ds \cdot \cos(0) = p A ds = p dV\]
-con dV é il cambiamento infinitesio di volume del gas dovuto allo spostamento del pistone.
+dove $dV$ é il cambiamento infinitesio di volume del gas dovuto allo spostamento del pistone.
 
-\subsection{Generalizzando}
-Se ora leviamo molti pallini, per far passare il pistone da $V_i$ a $V_f$:
-\formula{Lavoro fatto/subito dal sistema}{$L= \int dL = \int_{V_i}^{V_f} p dV$}
-durante la variazione di volumw possono cambiarea cneh p e T in generale.
-Per calcolarci líntegrale dovremmo sapere come varia p al variare di V.
+\subsection{Lavoro Associato ad una variazione di Volume}
+In generale, un sistema puó anche scambiare energia con il suo ambiente attraverso il lavoro.
+La quantitá di lavoro $W$ compiuto da un sistema quando si espande o quando si riduce da un volume iniziale $V_i$ ad un volume finale $V_f$ é:
+
+\formula{Lavoro - Volume}{$W= \int dW = \int_{V_i}^{V_f} p \cdot dV$}
+durante la variazione di volume possono cambiare anche p e T in generale.
+Per calcolarci l'integrale dovremmo sapere come varia p al variare di V.
 
 %TODO riscrivere queste due slide, ora non ho tempo
 \begin{center}
@@ -317,6 +321,7 @@ Per calcolarci líntegrale dovremmo sapere come varia p al variare di V.
     
 \end{center}
 
+\pagebreak
 
 \section{Meccanismi di trasferimento del calore}
     Esistono tre modi che permettono il trasferimento di calore:
@@ -361,6 +366,8 @@ Per calcolarci líntegrale dovremmo sapere come varia p al variare di V.
                 \end{equation}
 
             \nb{Queste formule non sono richieste all'esame.}
+
+\pagebreak
 
 \section{La prima legge della termodinamica}
 La prima legge della Termodinamica esprime la conservazione di energia di un sistema che ha scambi con l'esterno.
