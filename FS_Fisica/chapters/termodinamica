@@ -310,9 +310,141 @@ Se ora leviamo molti pallini, per far passare il pistone da $V_i$ a $V_f$:
 durante la variazione di volumw possono cambiarea cneh p e T in generale.
 Per calcolarci líntegrale dovremmo sapere come varia p al variare di V.
 
+%TODO riscrivere queste due slide, ora non ho tempo
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/lez14slide35.png}\\
+    \includegraphics[width=.8\textwidth]{img/lez14slide36.png}
+    
+\end{center}
 
 
-\section{Trasformazioni Notevoli}
+\section{Meccanismi di trasferimento del calore}
+    Esistono tre modi che permettono il trasferimento di calore:
+    \begin{itemize}
+        \item Conduzione, mediante il contatto.
+        \item Convezione, tramite masse fluide.
+        \item Irraggiamento, tramite onde elttromagnetiche.
+    \end{itemize}
+
+\subsection{Conduzione}
+    La conduzione avviene mediante il contatto
+    tra due superfici. La conduzione di calore $P_c$ su unità di tempo,
+    attraverso una lastra le cui superifici sono mantenute alle 
+    temperature $T_1$ e $T_2$ è dettata dalla legge di Fourier:
+    \formula{Legge di Fourier}{$P_c = \frac{Q}{t} = k\cdot A\frac{T_1 - T_2}{l}$}
+    Dove $A$ e $l$ sono l'area e la lunghezza della lastra e $k$ è la 
+    conducibilità terminca del materiale. Grandi valori di $k$ indicano
+    ottimi conduttori termici.
+
+    \paragraph{Resistenza termica alla conduzione} La resistenza 
+    termica $R$ per una lastra di spessore $l$ è definita come:
+    \formula{Resistenza Termica}{$R = \frac{l}{k}$}
+    Grandi valori di $R$ corrispondono a buoni isolanti termici.
+
+    \subsection{Convezione} La convezione ha luogo quando le differenze
+    di temperatura causano il moto che trasferisce calore all'interno 
+    di un fluido.
+
+    \subsection{Irraggiamento} L'irraggiamento è il trasferimento di 
+            calore attraverso l'emissione e l'assorbimento di energia 
+            elettromagnetica. La potenza $P_r$ irraggiata da un oggetto è:
+                \formula{Legge di Stefan}{ $P_r = \sigma \varepsilon AT^4$}
+            
+            Dove $\sigma = 5,6703 \cdot 10^{-8} \; [\frac{W}{m^2 \cdot K^4}
+            ]$ è la costante di Stefan-Boltzmann, $\varepsilon$ è l'emittanza
+            caratteristica della superficie, $A$ è l'area irraggiante e $T$ la 
+            temperatura superficiale in Kelvin. La potenza $P_a$ che un oggetto
+            assorbe per via radiativa dell'ambiente a temperatura uniforme
+            $T_{amb}$ (in Kelvin) è:
+                \begin{equation}
+                    P_a = \sigma \varepsilon AT^4_{amb}
+                \end{equation}
+
+            \nb{Queste formule non sono richieste all'esame.}
+
+\section{La prima legge della termodinamica}
+La prima legge della Termodinamica esprime la conservazione di energia di un sistema che ha scambi con l'esterno.
+
+Per un sistema termodinamico, per il quale l'energia interna é l'unico tipo di energia possibile ($\Delta U = \Delta K = 0$),
+il principio di conservazione dell'energia é:
+\definizione{
+    L'energia di un sistema aumenta all'aumentare del calore fornito al sistema, e diminuisce per il lavoro fatto dal sistema.
+    \formula{Pima Legge Termodinamica}{$\Delta Q - \Delta W = \Delta E_{int}$}
+}
+\paragraph{Calore}$\Delta Q$ é l'energia trasferita (sotto forma di calore) fra il sistema e l'ambiente esterno per effetto di una differenza di temperatura fra essi esistente.
+Un trasferimento di calore che avvenga interamente entro il contorno del sistema non é compreso in $\Delta Q$. $\Delta Q >0$ se il calore é trasferito dall'ambiente esterno al sistema.
+\paragraph{Lavoro} $\Delta W$ é il lavoro compiuto sul (o dal) sistema per effetto di forze che agiscono attraverso il contorno del sistema.
+Un lavoro svolto da forze che agiscono internamente all'interno del sistema nel entra nel computo di L. $\Delta L>0$ se il lavoro é compiuto dal sistema.
+
+\paragraph{Enunciato Alternativo}
+L’energia di un sistema termodinamico cresce quando vi è trasferimento di energia mediante l’immissione di calore
+$\Delta Q$ e diminuisce quando si asporta energia mediante il lavoro $\Delta L$ compiuto dal sistema. Questo avviene
+nell’ipotesi che non ci sono variazioni di energia cinetica e potenziale: $\Delta U = \Delta K = 0$.
+
+La quantitá $\Delta E_{int}$ é indipendente dal precorso fatto.
+
+\section{Casi Particolari: Trasformazioni}
+Esistono quattro casi particolari per la prima legge della termodinamica ($\Delta Q - \Delta W = \Delta E_{int}$):
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/primaLeggeTermo.png}
+\end{center}
+Vediamoli piú nel dettaglio.
+
+\subsection{Trasformazione Adiabatica}
+In una trasformazione adiabatica di un gas perfetto il sistema é \textbf{perfettamente isolato}, quindi:
+\[\Delta Q = 0 \implies \Delta E_{int} = -\Delta L\]
+Quindi il lavoro compiuto sul sitema ($L<0$) fa aumentare l'energia interna, mentre il lavoro compiuto dal sistema 
+fa diminuire l'energia interna.
+
+\subsection{Trasformazione Isocora}
+Nella trasformazione isocora di un gas perfetto il volume é costante, quindi:
+\[\Delta V = 0 \implies \Delta E_{int} = \Delta Q\]
+Se viene fornito calore al sistema, l'energia interna aumenta.
+
+\subsection{Trasformazioni Cicliche}
+Le trasformazioni Cicliche di un gas perfetto sono quelle trasformazioni per le quali dopo alcuni scambi di calore e lavoro il sistema ritorna nello stato iniziale.
+L'energia interna del sistema sará quindi sempre la stessa:
+\[\Delta E_{int} = 0 \implies \Delta Q - \Delta L = 0\]
+Il lavoro totale compouto dal sistema durante il processo ciclico é eguale alla quantitá di calore trasferito al sistema.
+
+\section{Il lavoro effettuato dalle trasformazioni}
+\subsection{Lavoro a T costante}
+Supponiamo un gas ideale (n moli) che sia chiuso in un pistone con cilindro, e possa espandersi da un volume $V_i$ ad un volume $V_f$.
+Supponiamo che la temperatura T sia tenuta costante.
+É una espansione isoterma:
+\begin{wrapfigure}{r}{0.2\textwidth}
+    \centering
+    \includegraphics[width=.2\textwidth]{img/espansioneIsoterma.png}
+\end{wrapfigure}
+
+Ricordando la legge di stato di un gas perfetto:
+$p \cdot V = n \cdot R \cdot T$
+Sappiamo che $n$ e $R$ sono sempre costanti, ed essendo la trasformazione isoterma anche $T$ é costante, quindi:
+\[p \cdot V = n \cdot R \cdot T \implies p \cdot V = \text{costante} \implies p = \frac{\text{costante}}{V}\]
+
+Il grafico $p-V$ per tre valori diversi della temperatura T ci mostra che il 'percorso' di un gas con una trasformazione isoterma
+segue il percorso dell'iperbole.
+
+\paragraph{Il Lavoro}
+ricordando che $p V = nRT \implies p = \frac{nRT}{V}$,
+Il lavoro eseguito per un'espanisone isoterma é:
+
+\[W = \int_{V_i}^{V_f} p dV = \int_{V_i}^{V_f} \frac{nRT}{V} dV = \frac{nRT}{V} \int_{V_i}^{V_f}  dV = nRT [\ln V]_{V_i}^{V_i} \]
+ovvero:
+\formula{Lavoro di una trasformazione Isoterma}{$W=nRT\cdot \ln(\frac{V_f}{V_i})$}
+
+quindi:
+\begin{itemize}
+    \item Se $V_f>V_i$, quindi si verifica una espansione, allora $L>0$
+    \item Se $V_f<V_i$, quindi si verifica una compressione, allora $L<0$
+\end{itemize}
+\subsection{Lavoro di una trasformazione Isocora}
+Il lavoro effettuato da una trasformazione isocora é sempre 0.
+
+\subsection{Lavoro di una trasformazione Isobara}
+il lavoro effettuato da una trasformazione isobara é: $W=p \cdot \Delta V$
+
+\subsection{Recap}
 Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che rimane costante.
 
 \begin{center}
@@ -328,3 +460,12 @@ Esistono 4 trasformazioni notevoli, ognuna caratterizzata da un valore che riman
         \hline 
     \end{tabularx}
 \end{center}
+
+\section{Energia interna e temperatura}
+Come conseuenza della prima legge della termodinamica abbiamo visto che la variazione di energia cinetica di un gas dipende solo dallo stato iniziale e dallo stato finale del gas.
+Specifichiamo ora come:
+\definizione{
+    \[\Delta E_{int} = n C \Delta T\]
+    La variazione di energia interna di n moli di un gas in un contenitore é eguale al prodotto del numero di moli e della capacitá termica.
+    Questa relazione vale per qualunque tipo di trasformazione.
+}
