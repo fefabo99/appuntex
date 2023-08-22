@@ -73,7 +73,7 @@ La legge di Coulomb esprime la forza elettrostatica agente su particelle cariche
 
 \definizione{ 
     Quando due particelle si \emph{attraggono/respingono} esse \textbf{accelerano}.
-    Le forze di attrazione e repulsione hanno stesso modolo (quindi sono forti uguali) ma hanno segno opposto.
+    Le forze di attrazione e repulsione hanno stesso modulo (quindi sono forti uguali) ma hanno segno opposto.
     \formula{Forza di Coulomb}{$F = k \cdot \frac{q_1 \cdot q_2}{r^2} \frac{\vettore{r}}{r}$}
         
     
@@ -93,7 +93,7 @@ In questa definizione:
 \small{Si osserva che la forma di questa legge è uguale a quella della legge di Newton per la forza gravitazionale tra due masse.
 ($F_N = G \frac{m_1 \cdot m_2}{r^2}$)}
 \paragraph{La costante di Coulomb} $k = \frac{1}{4 \pi \epsilon_0}$ in cui $\epsilon_0$ è la costante universale
-$$k=\frac{1}{4 \pi \epsilon_0}= 8.85\cdot 10^{9} [\frac{N\cdot m^2}{C^2}]$$ 
+$$k=\frac{1}{4 \pi \epsilon_0}= 8.988\cdot 10^{9} [\frac{N\cdot m^2}{C^2}]$$ 
 $$\epsilon_0 = 8.85\cdot 10^{-12} [\frac{C^2}{N\cdot m^2}]$$
 
 \subsection*{L'unità di misura} 
@@ -237,7 +237,7 @@ Sia data una carica $Q^+$ ed una superficie sferica attorno ad essa, di raggio $
     \includegraphics[width=.8\textwidth]{img/superficieGaussiana.jpg}
 \end{center}
 I vettori del campo elettrico sulla superficie hanno modulo $E=k \cdot \frac{Q}{r^2}$, in direzione radiale verso l'esterno.
-Le linee del campo elettrico hanno una densità che è data dall'intensità del campo (figura a sinistra).
+\\Le linee del campo elettrico hanno una \textbf{densità che è data dall'intensità del campo} (figura a sinistra).
 Le linee di campo attraversano questa superficie, che è detta \textbf{superficie gaussiana}.
 \\Consideriamo una carica doppia $2Q^+$. Il modulo del campo elettrico sulla stessa superficie sarà raddoppiato.
 La densità delle linee di campo sarà raddoppiata (figura centrale).
@@ -255,9 +255,10 @@ La grandezza che ci consente di gare il paragone tra le densità di linee di cam
 \subsection{Flusso del campo Elettrico}
 \definizione{Il flusso del campo elettrico $\vettore{E}$ attraverso una superficie infinitesima $\Delta A$ è il prodotto scalare del campo elettrico
 ed il vettore area $\vettore{\Delta A}$ in quel punto.
-\formula{Flusso di Campo Elettrico}{$\Delta \Phi = \vettore{E} \cdot \vettore{\Delta A}$} 
+\formula{Flusso \textbf{Infinitesimale} di Campo Elettrico}{$\Delta \Phi = \vettore{E} \cdot \vettore{\Delta A}$}
 }
-Il vettore area $\vettore{\Delta A}$ è il vettore che ha per modulo l'area $\Delta A$, e per direzione quella perpendicolare all'area stessa.
+Il vettore area $\vettore{\Delta A}$ è il vettore ottenuto moltiplicando $\Delta A$ con un versore $\vettore{n}$ perpendicolare alla superficie,
+così ottenendo un vettore che ha per modulo l'area $\Delta A$, e per direzione quella perpendicolare all'area stessa.
 
 \subsubsection{Superficie piana e parallela con campo $\vettore{E}$ uniforme} 
 Se ho un vettore $\vettore{E}$, che scompongo nelle sue coordinate
@@ -278,7 +279,7 @@ Passando al limite per aree piccole a piacere (dA):
     \Phi = \int E \cdot \cos(\theta) \,dA  = E\cdot \cos(\theta) \cdot \int dA = E\cdot \cos(\theta)\cdot  A 
 \]
 
-quindi la formila del flusso totale (per una superficie piana) è:
+quindi la formula del flusso totale (per una superficie piana) è:
 \formula{Flusso totale}{ $\Phi = \int E \cdot dA  = E\cdot \cos(\theta)\cdot  A $}
 Si può dimostrare facilmente che:\\
 Campi con verso uscente danno flussi positivi, campi con verso entrante danno flussi negativi.
@@ -303,13 +304,33 @@ Il teorema di gauss afferma:
 \definizione{
     Il flusso $\Phi$ del campo elettrico attraverso una superficie chiusa è equale alla carica totale $Q$
     racchiusa nella superficie diviso $\epsilon_0$
-    \formula{Teorema di Gauss}{$\Phi = \oint \vettore{E} \vettore{dA} = \frac{Q}{\epsilon_0}$ }
+    \formula{Teorema di Gauss}{$\Phi = \oint \vettore{E} \cdot \vettore{dA} = \frac{Q}{\epsilon_0}$ }
 }
 Questa espressione è corretta solo nel vuoto e con ottima approssimazione in aria. In un qualunque altro mezzo serve una piccola correzzione.
-\textbf{Non hanno alcuna importanza né la dimensione della superficie, né la sua forma; l’importante è che
+\textbf{Non hanno alcuna importanza né la dimensione della superficie, né la sua forma; l'importante è che
 sia chiusa.}
 
 \subsubsection{Applicazione del teorema di Gauss}
-\begin{center}
-    \includegraphics[width=.8\textwidth]{img/lez16slide40.jpg}
-\end{center}
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \includegraphics[width=.25\textwidth]{img/gauss.jpg}
+\end{wrapfigure}
+Vediamo ora una applicazione del teorema di Gauss:
+
+Siano date, come in figura, due cariche puntiformi uguali per intensità ma opposte di segno, e le linee
+di forza che rappresentano il loro campo elettrico.
+\\Sono messe in evidenza le sezioni di 4 superfici gaussiane:
+\begin{enumerate}
+    \item S1 racchiude la carica Positiva.
+    \item S2 racchiude la carica Negativa.
+    \item S3 non racchiude alcuna carica.
+    \item S4 racchiude entrambe le cariche.
+\end{enumerate}
+Adesso applichiamo il teorema di gauss alle superfici e alle cariche posizionate come in figura.
+Avremo che:
+\begin{enumerate}
+    \item S1: solo linee uscenti $\Phi > 0, Q>0$.
+    \item S2: solo linee entranti $\Phi < 0, Q<0$.
+    \item S3: le linee che entrano sono le stesse che escono, quindi $\Phi = 0, Q=0$ .
+    \item S4:racchiude entrambe le cariche, quindi la carica netta è nulla $\Phi = 0, Q=0$.
+\end{enumerate}
