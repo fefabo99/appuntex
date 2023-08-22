@@ -220,3 +220,12 @@ stesso orientamento di E se la carica q è positiva, e orientamento opposto se n
 Anche per il campo elettrico, come per le forze, vige il principio di sobrapposizione.
 Infatti se una particella è soggetta a più forze generate da più particelle, la forza finale cui è soggett è la somma delle forze di interazione con le singole particelle.
 
+\subsection{La densità di Carica}
+Definiamo le tre densità di carica:
+\begin{itemize}
+    \item Densità di Carica Lineare $\lambda$: numero di cariche per unità di lunghezza $[\lambda] = \frac{[C]}{[m]}$
+    \item Densità di Carica Superficiale $\sigma$: numero di cariche per unità di superficie $[\sigma] = \frac{[C]}{[m^2]}$
+    \item Densità di Carica Volumetrica $\rho$: numero di cariche per unità di volume $[\rho] = \frac{[C]}{[m^3]}$
+\end{itemize}
+
+%\subsection{Campo elettrico generato da una carica lineare} %Da scrivere, non ho tempo e voglia
