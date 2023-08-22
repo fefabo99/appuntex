@@ -453,33 +453,45 @@ Il lavoro effettuato da una trasformazione isocora é sempre 0.
 il lavoro effettuato da una trasformazione isobara é: $W=p \cdot \Delta V$
 
 \subsection*{Recap}
+
+
 Esistono 4 trasformazioni notevoli principali, ognuna caratterizzata da un valore che rimane costante.
 
 \begin{center}
-    \begin{tabularx}{\textwidth}{|X|X|X|}
-        Trasformazione & Valore Costante & Conseguenza \\
+    \begin{tabularx}{\textwidth}{|Xc|l|l|l|l|}
+        \hline
+        nome & cost & Lavoro & $\Delta E_{int}$ & Q \\
         \hline 
-        \textbf{Isocora} & V & $W=0$ \\
-        \textbf{Isobara} & P & $W = P \cdot \Delta V$ \\
-        \textbf{Isoterma} & T & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ \\
-        \textbf{Adiabatica} & Q=0 & \\
+        \textbf{Isocora} & V & $W=0$ & $\Delta E_{int} = Q$ & $ Q = nc_v\cdot \Delta T$ \\
+        \textbf{Isobara} & P & $W = P \cdot \Delta V$ & \textcolor{gray}{$\Delta E_{int}$} & $ Q = nc_p\cdot \Delta T$\\
+        \textbf{Isoterma} & T & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ & $\Delta E_{int} = 0$ & $Q = T\cdot W$\\
+        \textbf{Adiabatica} & Q &  & $\Delta E_{int} = - \Delta W $& $Q=0$  \\
+        \hline
         
     \end{tabularx}
 \end{center}
 
-\begin{center}
-    \begin{tabularx}{\textwidth}{|X|X|X|X|}
-        \hline
-        \textbf{Isocora} & \textbf{Isobara} & \textbf{Isoterma} & \textbf{Adiabatica}\\
-        \hline
-        Volume Costante & Pressione Costante & Temperatura costante & Senza Calore\\
-        \hline
-        V cost & P cost & T cost & Q=0\\
-        $W = 0$ & $W = P \cdot \Delta V$ & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ & \\ 
-        $\Delta E_{int} = Q = nc_v\cdot \Delta T$& & $\Delta E_{int} = 0$ & \\
-        \hline 
-    \end{tabularx}
-\end{center}
+In generale avremo che: 
+\begin{itemize}
+    \item $\Delta E_{int} = \Delta Q - \Delta W $
+    \item $c_p$ è il calore specifico a Pressione Costante
+    \item $c_v$ è il calore specifico a Volume Costante
+    \item $Q=m\cdot c \cdot \Delta T$
+\end{itemize}
+
+% \begin{center}
+%     \begin{tabularx}{\textwidth}{|X|X|X|X|}
+%         \hline
+%         \textbf{Isocora} & \textbf{Isobara} & \textbf{Isoterma} & \textbf{Adiabatica}\\
+%         \hline
+%         Volume Costante & Pressione Costante & Temperatura costante & Senza Calore\\
+%         \hline
+%         V cost & P cost & T cost & Q=0\\
+%         $W = 0$ & $W = P \cdot \Delta V$ & $W = nRT \cdot \ln(\frac{V_f}{V_i})$ & \\ 
+%         $\Delta E_{int} = Q = nc_v\cdot \Delta T$& & $\Delta E_{int} = 0$ & \\
+%         \hline 
+%     \end{tabularx}
+% \end{center}
 
 \section{Energia interna e temperatura}
 Come conseuenza della prima legge della termodinamica abbiamo visto che la variazione di energia cinetica di un gas dipende solo dallo stato iniziale e dallo stato finale del gas.
