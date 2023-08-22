@@ -223,9 +223,93 @@ Infatti se una particella è soggetta a più forze generate da più particelle, 
 \subsection{La densità di Carica}
 Definiamo le tre densità di carica:
 \begin{itemize}
-    \item Densità di Carica Lineare $\lambda$: numero di cariche per unità di lunghezza $[\lambda] = \frac{[C]}{[m]}$
-    \item Densità di Carica Superficiale $\sigma$: numero di cariche per unità di superficie $[\sigma] = \frac{[C]}{[m^2]}$
-    \item Densità di Carica Volumetrica $\rho$: numero di cariche per unità di volume $[\rho] = \frac{[C]}{[m^3]}$
+    \item Densità di Carica Lineare $\lambda$: numero di cariche per unità di lunghezza $$[\lambda] = \frac{[C]}{[m]}$$
+    \item Densità di Carica Superficiale $\sigma$: numero di cariche per unità di superficie $$[\sigma] = \frac{[C]}{[m^2]}$$
+    \item Densità di Carica Volumetrica $\rho$: numero di cariche per unità di volume $$[\rho] = \frac{[C]}{[m^3]}$$
 \end{itemize}
 
 %\subsection{Campo elettrico generato da una carica lineare} %Da scrivere, non ho tempo e voglia
+%Slide 27 lezione 16
+\section{Il Teorema di Gauss}
+\subsection{Introduzione al teorema di Gauss}
+Sia data una carica $Q^+$ ed una superficie sferica attorno ad essa, di raggio $r$
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/superficieGaussiana.jpg}
+\end{center}
+I vettori del campo elettrico sulla superficie hanno modulo $E=k \cdot \frac{Q}{r^2}$, in direzione radiale verso l'esterno.
+Le linee del campo elettrico hanno una densità che è data dall'intensità del campo (figura a sinistra).
+Le linee di campo attraversano questa superficie, che è detta \textbf{superficie gaussiana}.
+\\Consideriamo una carica doppia $2Q^+$. Il modulo del campo elettrico sulla stessa superficie sarà raddoppiato.
+La densità delle linee di campo sarà raddoppiata (figura centrale).
+Sostanzialmente, questa è la Legge di Gauss: questa legge mette in relazione i campi elettrici in tutti i puti di una superficie 
+gaussiana chiusa con le cariche chiusa dalla superficie stessa.
+\\Se avessimo la figura di destra, diremmo che la carica $Q$ è negativa, perchè le frecce sono verso l'interno, e visto che le linee di campo sono dimezzate dal primo caso 
+la carica sarà dimezzata (-0.5Q).
+\paragraph*{Quindi} ci troveremo davanti due casi:
+\begin{itemize}
+    \item Conosciamo la carica e usiamo il Teorema di Gauss per calcolare il campo in un dato punto.
+    \item Conosciamo il campo su una superficie gaussiana e ci calcoliamo la carica contenuta nella superficie.
+\end{itemize} 
+La grandezza che ci consente di gare il paragone tra le densità di linee di campo è il \textbf{flusso del campo elettrico}.
+
+\subsection{Flusso del campo Elettrico}
+\definizione{Il flusso del campo elettrico $\vettore{E}$ attraverso una superficie infinitesima $\Delta A$ è il prodotto scalare del campo elettrico
+ed il vettore area $\vettore{\Delta A}$ in quel punto.
+\formula{Flusso di Campo Elettrico}{$\Delta \Phi = \vettore{E} \cdot \vettore{\Delta A}$} 
+}
+Il vettore area $\vettore{\Delta A}$ è il vettore che ha per modulo l'area $\Delta A$, e per direzione quella perpendicolare all'area stessa.
+
+\subsubsection{Superficie piana e parallela con campo $\vettore{E}$ uniforme} 
+Se ho un vettore $\vettore{E}$, che scompongo nelle sue coordinate
+cartesiane, solo la componente lungo $x$ in figura contribuisce
+al flusso di campo che passa attraverso.
+\begin{center}
+    \includegraphics[width=.5\textwidth]{img/flussoDiCampo.jpg}
+\end{center}
+ E tanto più il campo è parallelo alla superficie tanto meno ci passa. Il passaggio massimo
+è quando sono perpendicolari 
+(cioè la normale alla superficie è parallela al campo)
+\[
+    \Delta\Phi = \vettore{E} \cdot \vettore{\Delta A} = \vettore{E} \cdot \vettore{\Delta A}\cdot \cos(\theta) 
+\]
+Per trovare il flusso attraverso \textbf{l'area totale}, bisogna fare la somma del dlusso su tutte le aree:
+Passando al limite per aree piccole a piacere (dA):
+\[
+    \Phi = \int E \cdot \cos(\theta) \,dA  = E\cdot \cos(\theta) \cdot \int dA = E\cdot \cos(\theta)\cdot  A 
+\]
+
+quindi la formila del flusso totale (per una superficie piana) è:
+\formula{Flusso totale}{ $\Phi = \int E \cdot dA  = E\cdot \cos(\theta)\cdot  A $}
+Si può dimostrare facilmente che:\\
+Campi con verso uscente danno flussi positivi, campi con verso entrante danno flussi negativi.
+
+\subsubsection{Superficie chiusa e Campo $\vettore{E}$ uniforme}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{img/flussoDiCampo2.jpg}
+\end{wrapfigure}
+Dobbiamo valutare la somma dei flussi attraverso tutta la superficie:
+se la superficie fosse un parallelepipedo, dovremmo fare la somma dei flussi attraferso le 6 facce.
+Per una superficie qualunque come in figura (quindi con forma non ben definita) dovremo fare l'integrale su ogni piccola area.
+\\Questo si chiama Flusso Netto:
+\formula{Flusso Netto}{$\Phi = \oint \vettore E \cdot \vettore{dA}$}
+dove il 'cerchietto' indica la superficie chiusa.
+
+\paragraph{Unità di misura del flusso elettrico} $ [\Phi] = [E][A] = \frac{[N][m^2]}{[C]}$
+
+
+\subsection{Il teorema di Gauss}
+Il teorema di gauss afferma:
+\definizione{
+    Il flusso $\Phi$ del campo elettrico attraverso una superficie chiusa è equale alla carica totale $Q$
+    racchiusa nella superficie diviso $\epsilon_0$
+    \formula{Teorema di Gauss}{$\Phi = \oint \vettore{E} \vettore{dA} = \frac{Q}{\epsilon_0}$ }
+}
+Questa espressione è corretta solo nel vuoto e con ottima approssimazione in aria. In un qualunque altro mezzo serve una piccola correzzione.
+\textbf{Non hanno alcuna importanza né la dimensione della superficie, né la sua forma; l’importante è che
+sia chiusa.}
+
+\subsubsection{Applicazione del teorema di Gauss}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/lez16slide40.jpg}
+\end{center}
