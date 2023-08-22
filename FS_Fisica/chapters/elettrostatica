@@ -1,40 +1,83 @@
 \chapter{Elettrostatica}
+\section*{Brevi cenni storici}
+L'elettrostatica fu studiata già dagli antichi filosofi greci:
+\\un pezzo d'ambra strofinato e avvicinato a pagliuzze sottili le attrae. Oggi sappiamo che tale
+attrazione è dovuta a forze elettriche. I filosofi greci avevano anche scoperto che alcune pietre con
+proprietà magnetiche naturali attraggono e catturano pezzetti di ferro. Oggi sappiamo che ciò è
+dovuto alla forza magnetica.
+
+Si capì intorno al 1700 che i fenomeni elettrici e magnetici erano intrinsecamente legati e nacque
+cosi l'elettromagnetismo. Eminenti studiosi furono Michael Faraday e J.C. Maxwell; quest'ultimo
+mise in forma matematica molte delle idee e risultati sperimentali di Faraday in forma matematica e
+pose le basi teoriche dell'elettromagnetismo.
+
 \section{La carica elettrica}
 La carica elettrica è un fenomeno intrinseco delle particelle fondamentali.
+
 \paragraph{le cariche} Esistono cariche elettriche \emph{Positive} e \emph{Negative}.
-\\Normalmente in un corpo esse si eguagliuano, dando al corpo una \textbf{carica neutra}.
+\\Normalmente in un corpo il numero di cariche positive e negative si eguagliuano, dando al corpo una \textbf{carica neutra}.
 Quando un oggeto si squilibra, esso ha delle \emph{cariche in eccesso}, ovvero si carica di elettricità statica.
 \\Si nota sperimentalmente che \textbf{le particelle cariche dello stesso segno si attraggono}.
+
+L'elettrostatica studia i fenomeni che avvengono tra particelle cariche ferme (o quasi ferme) una rispetto all'altra.
+L'elettrodinamica invece studia i fenomeni generati da cariche elettriche in movimento.
 
 \paragraph*{Fenomeni Elettrostatici} Se strofino della seta su del vetro, la seta "strappa" cariche negative dal vetro lasciando il vetro \emph{carico positivamente}
 La \emph{Messa a terra} scarica nel terreno tutti gli squilibri.
 
-\subsection{Definizioni di Base} Le sostanze si possono comportare in diversi modi con le cariche:
+\subsection{Definizioni di Base}
+ Le sostanze si possono comportare in diversi modi con le cariche, e si classificano in base alla facilità che el cariche hanno di muoversi attraverso esse:
 \begin{itemize}
-    \item Conduttori, le cariche si possono muovere più o meno liberamente all'interno.
-    \item Isolanti, Le cariche all'interno sono \emph{fisse}.
-    \item Sostanze naturali che in acluni casi sono conduttori e in altri casi isolanti (Silicio, germanio,...)
-    \item Superconduttori, sostanze perfettamente conduttrici in cui le cariche si possono muovere in modo "perenne".
+    \item \textbf{Conduttori}, le cariche si possono muovere più o meno liberamente all'interno.
+    \item \textbf{Isolanti}, Le cariche all'interno sono \emph{fisse}.
+    \item \textbf{Semiconduttori} Sostanze naturali che in acluni casi sono conduttori e in altri casi isolanti (Silicio, germanio,...)
+    \item \textbf{Superconduttori}, sostanze perfettamente conduttrici in cui le cariche si possono muovere in modo "perenne".
 \end{itemize}
 
-\subsection{I conduttori}
-Il percorso conduttivo è il passaggio di una carica da un sistema all'altro.
-\\Gli atomi sono formati da particelle cariche, ovvero \emph{Elettroni, Protoni e Neutroni}.
-\paragraph*{La carica} di un singolo elettrone e di un singolo protone hanno la stessa intensità ma segno opposto.
+\section{I Conduttori}
+Il \textbf{percorso conduttivo} è il passaggio di una carica da un sistema all'altro, 
+per esempio quando strofiniamo una bacchetta di rame con un panno di lana si trasferiscono cariche dalla lana al rame.
+Quando poi la bacchetta di rame tocca terra, le cariche saranno trasferite sulla terra che funge da enorme conduttore che le neutralizza.
 
-La conduzione nei metalli avviene grazie allo spostamento di elettroni liberi da un atomo all'altro.
+\paragraph{Le Particelle Cariche}
+La struttura e la natura elettrica degli atomi sono responsabili delle proprietà dei conduttori e degli isolanti.
+Gli atomi sono formati da particelle cariche, ovvero \emph{Elettroni $-$, Protoni $+$ e Neutroni}.
 
+\paragraph*{L'intensità della Carica} la carica di un singolo elettrone e di un singolo protone hanno la\textbf{ stessa intensità ma segno opposto}.
+Quindi un atomo elettricamente neutro contiene un numero uguale di elettroni e protoni.
+
+\begin{center}
+    \includegraphics[width=.6\textwidth]{img/caricaElettrone.jpg}
+\end{center}
+
+\paragraph*{La conduzione nei metalli}
+Gli elettroni esterni dei metalli, quando più atomi si aggregano, non restano legati ai singoli atomi ma diventano \textbf{liberi} di muoversi all'interno del solido, diventando 
+\textbf{Elettroni di Conduzione}.
+Se un elettrone libero lascia il solido, resta un eccesso di carica nel metallo, facendo diventare gli atomi carichi positivamente (ioni positivi).
+
+\paragraph{Carica Indotta}
 La carica indotta è la carica dovuta alla mobilità della carica nei conduttori, ovvero se spostiamo la carica da una parte di un oggetto all'altra questo genera una carica indotta.
 
-\section{La legge di Cuolomb}
-La legge di Coulomb esprime la forza elettrostatica agente su particelle cariche \emph{nei corpi puntiformi}
+\subsection{Conduttori Sferici}
+Se si pone una carica su un guscio sferico di materiale conduttore, la carica si espande uniformemente sulla superficie esterna, in modo da occupare il massimo spazio disponibile, per minimizzare la repulsione reciproca.
+
+Se si toglie carica negatica da un guscio sferico metallico, la carica positiva viene uniformemente distribuita sulla superficie della sfera, per lo stesso motivo appena indicato.
+
+Per il primo teorema del guscio (che vedremo in seguito), la sfera attirerà o respingerà una carica esterna come se tutte le cariche
+fossero concentrate nel suo centro.
+
+\pagebreak
+
+\section{La legge di Coulomb}
+La legge di Coulomb esprime la forza elettrostatica agente su particelle cariche \emph{nei corpi puntiformi}.
 
 \definizione{ 
     Quando due particelle si \emph{attraggono/respingono} esse \textbf{accelerano}.
     Le forze di attrazione e repulsione hanno stesso modolo (quindi sono forti uguali) ma hanno segno opposto.
+    \formula{Forza di Coulomb}{$F = k \cdot \frac{q_1 \cdot q_2}{r^2} \frac{\vettore{r}}{r}$}
+        
+    
     \begin{center}
-        Forza di Coulomb $F = k \frac{q_1 \cdot q_2}{r^2} \frac{\vettore{r}}{r}$
-        \\
         \includegraphics[width=0.4\textwidth]{coulomb.jpg}
     \end{center}
 }
@@ -44,31 +87,136 @@ In questa definizione:
     \item $k$ è la costante di Coulomb
     \item $q_1,q_2$ sono le cariche delle particelle
     \item $r$ è la distanza tra le particelle
-    \item $\frac{\vettore{r}}{r}$ è il versore diretto come la retta congiungente e orientato nel verso di allontanamento delle particelle.
+    \item $\frac{\vettore{r}}{r}$ è il versore, di intensità $1$, diretto come la retta congiungente e orientato nel verso di allontanamento delle particelle.
+    Questo versore serve soltanto a dare direzione e verso alla forza.
 \end{itemize}
-\paragraph*{La costante di Coulomb} $k = \frac{1}{4 \pi \epsilon_0}$ in cui $\epsilon_0$ è la costante universale.
-\paragraph{Osservazione} La forma di questa legge è uguale a quella della legge di Newton per la forza gravitazionale tra due masse.
-\\Newton: $F = G \frac{m_1 \cdot m_2}{r^2}$
-\
-\paragraph{Il Coulomb $[C]$} 
-L'unità di misura della forza di Coulomb è il \emph{Coulomb [C]}.
-Nota che il coulomb \emph{non} è un unità fondamentale ma è derivata dall'Ampere.
+\small{Si osserva che la forma di questa legge è uguale a quella della legge di Newton per la forza gravitazionale tra due masse.
+($F_N = G \frac{m_1 \cdot m_2}{r^2}$)}
+\paragraph{La costante di Coulomb} $k = \frac{1}{4 \pi \epsilon_0}$ in cui $\epsilon_0$ è la costante universale
+$$k=\frac{1}{4 \pi \epsilon_0}= 8.85\cdot 10^{9} [\frac{N\cdot m^2}{C^2}]$$ 
+$$\epsilon_0 = 8.85\cdot 10^{-12} [\frac{C^2}{N\cdot m^2}]$$
+
+\subsection*{L'unità di misura} 
+L'unità di misura della forza di Coulomb è il \emph{Coulomb [C]}, che \textbf{non} è un unità fondamentale del SI ma 
+è derivata dall'Ampere:
 \begin{center}
-    1 Coulomb = 1 Ampere $\cdot$ Secondo
+    1 [Coulomb] = 1 [Ampere] $\cdot$ [Secondo]
 \end{center}
 
-\subsection*{La Composizione delle forze elettrostatiche}
+\subsection{La Composizione delle forze elettrostatiche}
 Se abbiamo tante particelle in vicinanza con una particella $q$, la forza totale che agisce sulla particella è data dalla somma vettoriale delle forze 
-$F_{q TOT} = F_{q2} + F_{q3} + ...$
+$$F_{q TOT} = F_{q2} + F_{q3} + ...$$
+Per conoscere la forza agente totale su una particella carica circondata da molte altre, si calcola prima la forza individuale che agisce sulla carica,
+poi si disegnano i vettori forza agenti con le regole di composizione dei vettori.
 
 \section{Teorema dei gusci per le cariche elettrostatiche}
-Questo teorema è esattamente analogo a quello gravitazionale:
+Il Teorema dei Gusci per le cariche elettrostatiche è esattamente analogo a quello gravitazionale.
 
 \definizione{
+    \textbf{I Teorema del Guscio:}
     Una superficie sferica uniformemente carica attrae o repsinge una carica esterna 
     come se tutta la carica della sfera fosse concentrata nel suo centro
 }
 \definizione{
+    \textbf{II Teorema del Guscio:}
     Una carica posta all'interno di una superficie chiusa uniformemente carica non risente
     di forze elettrostatiche nette da parte della superificie chiusa.
 }
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/gusciElettrostatica.jpg}
+\end{center}
+
+\section{La carica è quantizzata e si conserva}
+Qualunque carica q può essere scritta come:
+\formula{Carica}{$q=n\cdot e$ con $n=\pm1,\pm2,\pm3,...$}
+dove $e$ è la carica elementare e vale:
+$$e01.502\cdot10^{-19} [C]$$
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/caricaQuantizzata.jpg}
+\end{center}
+La carica elementare è una delle costanti fondamentali della natura.
+\\Quando una grandezza fisica assume solo valori discreti (e non varia con continuità) allora si dice quantizzata.
+Il quanto elementare di carica è molto piccolo, $10^9$ cariche entrano in un filamento di lampadina da 100W
+ogni secondo ed altrettante ne fuoriescono. Data la necessità di un numero molto grande di cariche per
+avere effetti visibili, la quantizzazione non è evidente.
+
+\subsection*{La carica si conserva}
+Se strofiniamo una bacchetta di vetro con un panno, una carica + si accumula sulla bacchetta ed una - appare
+sulla seta. Lo strofinamento NON CREA la carica, ma la trasferisce da un oggetto all'altro.
+Questo è il principio di conservazione della carica elettrica, formulato da B. Franklin. 
+
+\pagebreak
+
+\section{Il Campo Elettrico}
+Il concetto di campo è quello di una \textbf{azione a distanza}.
+La presenza di una massa modifica lo spazio e crea un'attrazione su di essa per tute le altre masse che potremmo mettere nello spazio considerato.
+Lo stesso avviene per la carica elettrica: la sua presenza modifica lo spazio circostante ed è percepita
+da una qualunque altra carica che venga mesa in quello spazio.
+
+Il campo elettrico è un campo \textbf{vettoriale}, perchè porta con se informazioni relative alla
+forza di attrazione o repulsione, la direzione di azione e il verso.
+Tale campo consiste nella distribuzione di vettori campo elettrico E, uno per ciascun punto dello spazio attorno alla carica.
+
+\paragraph*{Esempio di Campo}
+\begin{wrapfigure}{l}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{img/campoElettrico.jpg}
+\end{wrapfigure}
+Consideriamo una distribuzione di carica. Questa modifica lo spazio intorno a sé .
+Avviciniamo una carica $q_0$ chiamata carica esplorativa che appunto serve per testare le caratteristiche dello
+spazio dal punto di vista elettrico, dobbiamo fare l'ipotesi che questa carica di prova non modifichi lo spazio
+a sua volta!
+
+$q_0$, che supponiamo sia semrpe $>0$ sentirà una forza elttrostatica $\vettore{F}$ che agisce su di essa:
+il campo elettrico $\vettore{E}$ nel punto dove si trova $q_0$ è definito come:
+\[  E=\frac{F}{q_0}\]
+L'unità di misura del campo elettrico è $[E]=\frac{[N]}{C}$.
+Se spostiamo poi la carica esplorativa in un altro punto dello spazio vicino alla bacchetta otteniamo una mappa della distribuzione del campo elettrico
+
+Il concetto di campo elettrico serve appunto per svincolare la descrizione dello spazio occupato da una carica da quello di carica di prova.
+
+\subsubsection*{Definizione di Campo Elettrico}
+\definizione{
+    Per definizione il campo elettrico generato da una carica $Q$ in un punto dello spazio circostante è dato dal rapporto tra la forza che la carica $Q$
+    eserciterebbe su una carica $q^+$ collocata in tale punto, detta carica di prova e considerata convenzionalmente positiva.
+
+    \formula{Campo Elettrico}{$\vettore{E} = \frac{\vettore{F}}{q^+}$ [$\frac{N}{C}$]}
+}
+
+\subsection{Linee di Campo Elettrico}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{img/lineeCampoElettrico.jpg}
+\end{wrapfigure}
+Si prenda una carica esplorativa, e la si collochi vicino ad una sfera carica negativamente:
+La carica sarà attratta con un vettore forza diretto radialmente come la congiungente della particella ed il centro della sfera, e diretto verso il centro.
+\textbf{Il campo può essere rappresentato dalle linee di campo}.
+In tutti i punti, la direzione della linea di campo che passa per quel punto coincide con la direzione e verso del vettore campo elettrico.
+
+\paragraph{Regole per disegnare le linee di campo elettrico}
+\begin{itemize}
+    \item Il vettore campo elettrico deve essere tangente alla linea di campo passante per quel punto
+    \item Deve avere verso concorde
+    \item la densità di curve è proporzionale all'intensità del campo elettrico
+\end{itemize}
+\nb{Le linee di forza elettrica escono dalle cariche positive ed entrano in quelle negative}
+
+\subsection{Campo elettrico generato da una carica puntiforme}
+Per calcolare il campo elettrico generato da una particella collochiamo una carica esploratrice $q_0>0$
+e la spostiamo in ogni punto dello spazio.
+\\Alla generica distanza $r$, la \textbf{forza di attrazione/repulsione} generata sulla particella esploratrice è data dalla legge di Coulomb:
+\[ F=k\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r}\]
+Il \textbf{Campo elettrico}  sarà:
+\[ E=\frac{F}{q_0} = k\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r}\]
+di modulo:
+\[E = \frac{1}{4\pi \epsilon_0 }\cdot \frac{|q_1|}{r^2}\]
+Essendo $q_0>0$ $F$ e $E$ hanno sempre lo stesso verso.
+$E$ è uscente per carica generante il campo positiva, entrante per carica generante il campo negativa.
+
+La forza elettrostatica F agente su una particella carica posta in un campo elettrico esterno E, ha lo
+stesso orientamento di E se la carica q è positiva, e orientamento opposto se negativa.
+
+\subsubsection{Principio di Sovrapposizione}
+Anche per il campo elettrico, come per le forze, vige il principio di sobrapposizione.
+Infatti se una particella è soggetta a più forze generate da più particelle, la forza finale cui è soggett è la somma delle forze di interazione con le singole particelle.
+

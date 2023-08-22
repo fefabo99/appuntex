@@ -35,12 +35,12 @@ Se tocco due oggetti che hanno temperaature simili od eguli potrei percepirle co
 con la mano provo non solo la temperatura ma anche la capacitá dell'oggetto a trasferire calore alla mia mano:
 se l'oggetto è capace di sottrarre rapidamente calore dalla mia mano, lo percepirò come freddo.
 
-\subsection{Principio Zero: Enunciato alternativo}
+\subsection*{Principio Zero: Enunciato alternativo}
 Un altro enunciato del principio zero che fa riferimento alla temperatura è il seguente:
 \definizione{Esista una grandezza scalare chiamata temperatura, che è una proprietà di tutti i sistemi termodinamici in equilibrio.
 Due sistemi sono in equilibrio termico se, e solo se, sono uguali le loro temperature.}
 
-\subsection{La misura della temperatura: il Kelvin}
+\subsection*{La misura della temperatura: il Kelvin}
 La temperatura è una delle grandezze fondamentali del sistema internazionale. 
 L'unità nel S.I è il Kelvin.
 
@@ -71,7 +71,7 @@ Possiamo quindi immaginare il reticolo cristallino come una griglia tridimension
 Si genera un'oscillazione in 3D come un sistema di molle in cui \textbf{l'aumento della temperatura fa aumentare la vibrazione degli atomi}.
 \\Quindi, per temperature crescenti l'ampiezza delle vibrazioni aumenta e quindi aumenta la distanza media tra gli atomi, \textbf{dando una espansione del corpo}.
 
-\subsection{La dilatazione Lineare}
+\subsection*{La dilatazione Lineare}
 \definizione{
     La variazione di qualsiasi dimensione lineare di un solido è chiamata dilatazione lineare.
     Se L è la lunghezza di questa dimensione lineare e $\Delta T$ la variazione di temperatura, allora la variazione di lunghezza sará:
@@ -80,7 +80,7 @@ Si genera un'oscillazione in 3D come un sistema di molle in cui \textbf{l'aument
 }
 Il coefficiente $\alpha$ dipende dal materiale e varia anche con la temperatura.
 
-\subsection{La dilatazione Volumica}
+\subsection*{La dilatazione Volumica}
 \definizione{
     Se le tre dimensioni di un corpo si dilatano, allora aummenterà il suo volume:
     \formula{Dilatazione Volumica}{$\Delta V = \beta \cdot V \cdot \Delta T$}
@@ -197,7 +197,7 @@ Si puó ben notare quindi che calore $\neq$ temperatura.
 \end{itemize}
 Per convenzione, la quantitá di calore $Q>0$ se fa aumentare l'energia interna $E_{int}$ del sistema.
 
-\subsection{L'Unitá di misura del Calore}
+\subsection*{L'Unità di misura del Calore}
 Storicamente ci sono due unitá diverse: la prima fu la caloria
 \paragraph*{La caloria} (o piccola caloria, cal) é la quantitá di calore necessaria per innalzare la temperatura di un grammo di $H_2O$ da 14.5 a 15.5C.
 La grande caloria é equivalente a 1kcal = 1000 cal.
@@ -235,7 +235,7 @@ avremo una \textbf{variazione della temperatura T}.
 \\Se trasferiamo una quantitá di calore Q ad un corpo, la variazione di temperatura T dipenderá dalle cricostanze in cui il calore é trasmesso.
 Se compiamo un lavoro su un corpo (per esempio strofinandolo), possiamo anche in questo caso variare la temperatura senza fornire calore.
 
-\subsection{Capacitá termica}
+\subsection*{Capacitá termica}
 \definizione{
     La capacitá termica $C$ é la costante di proporzionalitá tra il calore somministrato e la variazione di temperatura indotta.
     \formula{Capacitá Termica}{$Q=C\cdot \Delta T = C \cdot (T_2-T_1)$}
@@ -244,7 +244,7 @@ Se compiamo un lavoro su un corpo (per esempio strofinandolo), possiamo anche in
 \\Attenzione che capcacitá non va intesa come un qualcosa che ha un limite (come un secchio): il trasferimento puó avvenire senza limiti finché 
 c'é un $\Delta T$.
 
-\subsection{Calore specifico}
+\subsection*{Calore specifico}
 Due oggetti dello stesso materiale hanno capacitá termiche porporzionali alla loro massa:
 \definizione{
     La capacitá termica per unitá di massa, o \textbf{calore specifico} é cosí definita:
@@ -306,7 +306,7 @@ Dalla definizione di lavoro quindi, avremo che:
 \[dL = F \cdot ds = (pA) \cdot ds \cdot \cos(0) = p A ds = p dV\]
 dove $dV$ é il cambiamento infinitesio di volume del gas dovuto allo spostamento del pistone.
 
-\subsection{Lavoro Associato ad una variazione di Volume}
+\subsection*{Lavoro Associato ad una variazione di Volume}
 In generale, un sistema puó anche scambiare energia con il suo ambiente attraverso il lavoro.
 La quantitá di lavoro $W$ compiuto da un sistema quando si espande o quando si riduce da un volume iniziale $V_i$ ad un volume finale $V_f$ é:
 
@@ -331,7 +331,7 @@ Per calcolarci l'integrale dovremmo sapere come varia p al variare di V.
         \item Irraggiamento, tramite onde elttromagnetiche.
     \end{itemize}
 
-\subsection{Conduzione}
+\subsection*{Conduzione}
     La conduzione avviene mediante il contatto
     tra due superfici. La conduzione di calore $P_c$ su unità di tempo,
     attraverso una lastra le cui superifici sono mantenute alle 
@@ -346,11 +346,11 @@ Per calcolarci l'integrale dovremmo sapere come varia p al variare di V.
     \formula{Resistenza Termica}{$R = \frac{l}{k}$}
     Grandi valori di $R$ corrispondono a buoni isolanti termici.
 
-    \subsection{Convezione} La convezione ha luogo quando le differenze
+    \subsection*{Convezione} La convezione ha luogo quando le differenze
     di temperatura causano il moto che trasferisce calore all'interno 
     di un fluido.
 
-    \subsection{Irraggiamento} L'irraggiamento è il trasferimento di 
+    \subsection*{Irraggiamento} L'irraggiamento è il trasferimento di 
             calore attraverso l'emissione e l'assorbimento di energia 
             elettromagnetica. La potenza $P_r$ irraggiata da un oggetto è:
                 \formula{Legge di Stefan}{ $P_r = \sigma \varepsilon AT^4$}
@@ -397,18 +397,18 @@ Esistono quattro casi particolari per la prima legge della termodinamica ($\Delt
 \end{center}
 Vediamoli piú nel dettaglio.
 
-\subsection{Trasformazione Adiabatica}
+\subsection*{Trasformazione Adiabatica}
 In una trasformazione adiabatica di un gas perfetto il sistema é \textbf{perfettamente isolato}, quindi:
 \[\Delta Q = 0 \implies \Delta E_{int} = -\Delta L\]
 Quindi il lavoro compiuto sul sitema ($L<0$) fa aumentare l'energia interna, mentre il lavoro compiuto dal sistema 
 fa diminuire l'energia interna.
 
-\subsection{Trasformazione Isocora}
+\subsection*{Trasformazione Isocora}
 Nella trasformazione isocora di un gas perfetto il volume é costante, quindi:
 \[\Delta V = 0 \implies \Delta E_{int} = \Delta Q\]
 Se viene fornito calore al sistema, l'energia interna aumenta.
 
-\subsection{Trasformazioni Cicliche}
+\subsection*{Trasformazioni Cicliche}
 Le trasformazioni Cicliche di un gas perfetto sono quelle trasformazioni per le quali dopo alcuni scambi di calore e lavoro il sistema ritorna nello stato iniziale.
 L'energia interna del sistema sará quindi sempre la stessa:
 \[\Delta E_{int} = 0 \implies \Delta Q - \Delta L = 0\]
@@ -416,7 +416,7 @@ Il lavoro totale compouto dal sistema durante il processo ciclico é eguale alla
 
 \pagebreak
 \section{Il lavoro effettuato dalle trasformazioni}
-\subsection{Lavoro a T costante}
+\subsection*{Lavoro a T costante}
 Supponiamo un gas ideale (n moli) che sia chiuso in un pistone con cilindro, e possa espandersi da un volume $V_i$ ad un volume $V_f$.
 Supponiamo che la temperatura T sia tenuta costante.
 É una espansione isoterma:
@@ -446,13 +446,13 @@ quindi:
     \item Se $V_f>V_i$, quindi si verifica una espansione, allora $L>0$
     \item Se $V_f<V_i$, quindi si verifica una compressione, allora $L<0$
 \end{itemize}
-\subsection{Lavoro di una trasformazione Isocora}
+\subsection*{Lavoro di una trasformazione Isocora}
 Il lavoro effettuato da una trasformazione isocora é sempre 0.
 
-\subsection{Lavoro di una trasformazione Isobara}
+\subsection*{Lavoro di una trasformazione Isobara}
 il lavoro effettuato da una trasformazione isobara é: $W=p \cdot \Delta V$
 
-\subsection{Recap}
+\subsection*{Recap}
 Esistono 4 trasformazioni notevoli principali, ognuna caratterizzata da un valore che rimane costante.
 
 \begin{center}
