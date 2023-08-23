@@ -334,3 +334,199 @@ Avremo che:
     \item S3: le linee che entrano sono le stesse che escono, quindi $\Phi = 0, Q=0$ .
     \item S4:racchiude entrambe le cariche, quindi la carica netta è nulla $\Phi = 0, Q=0$.
 \end{enumerate}
+
+\subsection{Derivazione della legge di Coulomb dal Teorema di Gauss}
+Sòòlo09e consideriamo una particella carica e vogliamo calcolarci il campo elettrico generato da essa utilizzando il Toerema Di Gauss,
+allora \emph{otterremo la legge di Coulomb}.
+\begin{wrapfigure}{l}{0.28\textwidth}
+    \centering
+    \includegraphics[width=.28\textwidth]{img/gaussCoulomb.jpg}
+\end{wrapfigure}
+
+Il campo generato da una particella carica è a simmetria sferica, quindi consideriamo una sfera centrata attorno alla particella stessa
+cosicchè il campo avrà lo stesso modulo in ogni punto della sfera.
+
+Supponiamo che la carica sia $>0$, di conseguenza il flusso sarà $>0$, e consideriamo un elemento $\vettore{dA}$ della superficie.
+Il vettore $\vettore{E}$ è perpendicolare a $\vettore{dA}$ in ogni punto:
+Il flusso infinitesimo $d\Phi$ è:
+$$ d\Phi = \vettore{E} \cdot \vettore{dA} = E \cdot dA \cdot \cos(\theta) = E \cdot dA $$
+il flusso totale è la somma dei flussi infinitesimi, quindi $\Phi = \oint d\Phi$, e applicando il teorema di gauss:
+$$\Phi = \oint E \cdot dA = \frac{Q}{\epsilon_0} \implies ... \implies \Phi = E \cdot 4\pi r^2 = \frac{Q}{\epsilon_0}$$ 
+Il $4\pi r^2$ compare perchè l'area di una sfera è $A= 4\pi r^2$ e $\oint dA = A$.
+\\Da qui otteniamo il campo elettrico $E$:
+$$E= \frac{Q}{4\pi \epsilon_0 r^2}$$
+Che è esattamente il campo elettrico prodotto da una carica puntiforme come espresso dalla legge di Coulomb.
+
+\subsection{Cariche in eccesso} %Lez17Slide7 Scritte un po a caso
+\subsubsection{Carica in eccesso su di un conduttore carico isolato}
+Una conseguenza del teorema di Gauss è il seguente enunciato:
+\definizione{
+    Una carica fornita ad un conduttore isolato si dispone totalmente sulla superficie esterna del conduttore.
+    Nessuna carica in eccesso può trovarsi all'interno del corpo del conduttore
+}
+In un conduttore isolato da terra, una carica in eccesso si distribuisce sempre sulla superficie.
+
+\subsubsection{Carica in eccesso su di un conduttore carico isolato contenente una cavità}
+Si consideri lo stesso conduttore di prima, con una cavità ed un eccesso di carica Q.
+Consideriamo in questo caso la superficie gaussiana proprio intorno alla cavità, giusto
+sotto la superficie ma sempre dentro il conduttore. Poiché E=0 dentro il conduttore (non
+ci sono correnti come già visto nel caso precedente), il flusso attraverso la superficie è =0.
+Ma se il flusso è =0, per il teorema di Gauss non può contenere cariche, per cui NON sono
+nella cavità foro, ma restano sempre sulla superficie esterna.
+\subsubsection{Il conduttore Rimosso}
+Sempre su un conduttore, per esempio piatto, supponiamo di congelare le cariche, e rimuovere piano piano
+tutto il conduttore con uno strumento. Ciò equivale ad allargare il buco del caso precedente, fino a
+rimuovere il conduttore.
+Il campo rimarrebbe lo stesso per tutti i punti esterni. Ciò significa che un conduttore è solo un mezzo per far
+muovere liberamente le cariche, mentre il campo elettrico è generato dalle cariche, non dal conduttore.
+
+\section{Campi Elettrici Generati}
+\subsection[Filo infinitamente lungo]{
+    Campo elettrico generato da un filo conduttore infinitamente lungo
+}
+Si consideri un filo infinitamente lungo sul quale sono distribuite delle cariche +.
+La distribuzione di carica e il campo E hanno simmetria cilindrica.
+$\lambda$, ovvero la densità lineare, è (come da definizione) $\lambda = \frac{Q}{h}$, quindi $Q=\lambda \cdot h$.
+\paragraph{Calcoliamo il campo E} in un punto a distanza r dal filo.
+\\Costriuamo la superficie gaussiana cilindrica, di raggio $r$ e altezza $h$ a piacere. Per simmetria, il campo $\vettore{E}$ è radiale con linee uscenti dal filo.
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/campoFilo.jpg}
+\end{center}
+
+Calcoliamo il flusso del campo con il teorema di Gauss:
+$$
+\Phi = \oint \vettore{E} \cdot \vettore{dA} = \frac{Q}{\epsilon_0} = 
+\int_{\text{sup Alta}} \vettore{E} \cdot \vettore{dA} + 
+\int_{\text{sup Bassa}} \vettore{E} \cdot \vettore{dA} +
+\int_{\text{sup Lat}} \vettore{E} \cdot \vettore{dA}
+$$
+Siccome nelle superfici alta e bassa $\vettore{E}$ e $\vettore{dA}$ sono \textbf{perpendicolari}, allora abbiamo che:
+$$\int_{\text{sup Alta}} \vettore{E} \cdot \vettore{dA} = 0 \; \land \; \int_{\text{sup Bassa}} \vettore{E} \cdot \vettore{dA} = 0 $$
+Inoltre ricordiamo che $Q=\lambda \cdot h$, quindi il flusso $\Phi$:
+$$
+\Phi = \oint \vettore{E} \cdot \vettore{dA} = \frac{\lambda \cdot h}{\epsilon_0} = 
+\int_{\text{sup Lat}} \vettore{E} \cdot \vettore{dA}
+$$
+Il prodotto scalare di $\vettore{E} \cdot \vettore{dA}$ è $E \cdot dA$, visto che sono paralleli. Inoltre la superficie del cilindro $A= 2\pi r \cdot h$.
+Quindi $\int_{\text{sup Lat}} \vettore{E} \cdot \vettore{dA} = E \cdot 2\pi r \cdot h$ e:
+$$\implies E \cdot 2\pi r \cdot h = \frac{\lambda h}{\epsilon_0} \implies E = \frac{\lambda}{2 \pi \epsilon_0 r}$$
+Per cui il \textbf{Modulo del campo elettrico generato da una carica lineare distribuita su un filo di lunghezza infinita} è $E = \frac{\lambda}{2 \pi \epsilon_0 r}$
+
+\subsection{Campo elettrico esterno generato da un conduttore carico}
+Distribuiamo una certa carica sulla superficie di un conduttore di forma qualunque.
+A parte i conduttori sferici, dove si distrivuisce in modo uniforme, negli altri casi non è sempre semplice calcolare la sua distribuzione perchè non sarà omogenea dappertutto.
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/lez17Slide11.jpg}
+\end{center}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/lez17Slide14.jpg}
+\end{center}
+
+\section{Il potenziale Elettrico}
+Sappiamo che se una forza è conservativa, allora si può associare una energia potenziale e il suo lavoro è indifferente da come viene svolto (dipende solo da stato iniziale e stato finale).
+Se è così allora in un sistema chiuso che contempli tale forza si può applicare il principio di conservazione meccanica.
+\\è stato verificato sperimentalmente che la forza elettrica è conservativa, quindi vi si può associare una energia potenziale.
+
+\paragraph*{Misrurare l'energia potenziale elettrica}
+Nel caso gravitazionale, avevamo misurato l'energia potenziale U di un corpo in questo modo:
+\begin{enumerate}
+    \item Assegno $U=0$ ad un livello di riferimento.
+    \item Calcolo il lavoro $W$ svolto dalla forza gravitazionale per portare il corpo ad un'altezza diversa.
+    \item Definisco la variazione dell'energia potenziale come $\Delta U = -W$.
+\end{enumerate}
+\begin{wrapfigure}{r}{0.28\textwidth}
+    \centering
+    \includegraphics[width=.28\textwidth]{img/potenzialeElettrico.jpg}
+\end{wrapfigure}
+Per il caso elettrico seguiamo lo \textbf{stesso procedimento}:
+Definisco l'energia potenziale elettrica $U_o=0$ in un punto posto a distanza infinita dalla carica,
+poi trasporto la carica dalla distanza infinita fino ad un punto $P$, e definisco $\Delta = -W$, quindi $U=-W_{\infty}$.
+\\L'energia potenziale è il lavoro compiuto per trasportare la carica dall'infinito fino al punto P.
+ 
+In analogia al caso gravitazionale, definiamo il potenziale elettrico per un punto P generico come:
+\definizione{
+    Ul potenziale elettrico in un punto P è eguale all'energia potenziale elettrica, per unità di carica, necessaria
+    a trasportare una carica esplorativa da distanta infinita al punto P.
+    \formula{Potenziale Elettrico}{$V = \frac{U}{q_0}$}
+}
+Il potenziale elettrico è una grandezza scalare che può assumere valori positivi e negativi, come il lavoro, la carica e l'energia potenziale.
+
+Come possiamo definire un campo elettrico per ogni punto dello spazio intorno ad una carica, così possiamo associare
+ad ogni punto un potenziale. Se conosciamo il potenziale in un punto, e là poniamo una carica q, allora:
+\definizione{
+    L'energia potenziale di una particella è data dalla carica della particella
+    moltiplicata per il potenziale
+    \formula{Energia Potenziale elettrica}{$U= q \cdot V$}
+}
+\nb{La scelta storica di dare i nomi «potenziale» ed «energia potenziale» fa un po' confondere.. Non sono la stessa cosa
+anche se sono due grandezze legate.}
+
+\paragraph{L'unità di misura} del potenziale elettrico è il Volt [V] = Volt = [Joule]/[Coulomb].
+
+\section{il Moto in un Campo Elettrico}
+Se in un campo elettrico ci spostiamo da un punto iniziale «i» ad un punto finale «f», il potenziale elettrico varia
+dando luogo alla differenza di potenziale:
+$$ \Delta V = V_f - V_i$$
+Se a muoversi è una particella di carica q, allora l'energia potenziale del sistema, per definizione di potenziale,
+cambia come:
+$$\Delta U = q \Delta V $$
+Poichè la forza è conservativa, la variazione di energia potenziale è indipendente dal particolare cammino percorso
+\subsection*{Lavoro svolto dal campo}
+Vale la relazione generale tra l'energia potenziale e il lavoro:
+$$W=-\Delta U \implies W = -q \Delta V$$
+\subsection*{La conservazione dell'energia meccanica}
+Se una particella si muove attraverso un campo elettrico spinta da solo le forze del campo, l'energia meccanica si conserva.
+L'equazione che esprime la conservazione dell'energia meccanica nel passaggio dal punto «i» al punto «f» è:
+$$ U_i + K_i = U_f + K_f \implies \Delta K = -\Delta U \implies \Delta K = -q \Delta V $$
+\subsection*{Lavoro svolto da una forza esterna}
+Se oltre alla forza elettrica agisce un'altra forza sul sistema, essa è una forza esterna.
+Essa può compiere lavoro sul sitema ma non è detto che sia ocnservativa (per cui non possiamo associarla in generale ad un potenziale).
+Teniamo conto di questa possibilità in questo modo: Energia iniziale + Lavoro esterno = energia finale
+
+$$ U_i + K_i + W_{est} = U_f + K_f \implies \Delta K +\Delta U = W_{est} \implies \Delta K + q \Delta V = W_{est} $$
+Il lavoro della forza esterna è uguale alla varaizione dell'energia meccanica, e siccome può essere positivo o negativo, l'energia
+può variare in modo positivo o negtivo.
+
+Se la particella è ferma all'inizio ed alla fine del moto (ovvero $K_i = K_f$)
+$$W_{est} = q \Delta V = - W$$
+
+\subsection*{L'elettronVolt}
+è un'altra unità del lavoro. è il prodotto della carica elementare "e" per la differenza di potenziale di 1 volt.
+
+\section{Superfici Equipotenziali}
+Una superficie equipotenziale è il luogo dei punti che hanno lo stesso potenziale.
+Il lavoro compiuto per portare una carica di prova da una di queste
+superfici a un'altra non dipende dalla posizione dei punti iniziale e finale su
+queste superfici, ne dal cammino che li unisce.
+$$W = -\Delta U = 0$$
+Il campo elettrico E è sempre perpendicolare alle superfici equipotenziali.
+Se E non fosse perpendicolare ad una superficie equipotenziale, avrebbe una componente non nulla su tale superficie
+e quindi si compirebbe lavoro per spostarla lungo la superficie, che è in contraddizione con la definizione di
+superficie equipotenziale.
+
+\section{Calcolo del potenziale dato il campo elettrico}
+Si può calcolare la $\Delta V$ se si conosce il vettore $\vettore{E}$ in tutti i punti lungo un qualunque percorso tra i punti iniziale e finale.
+
+\definizione{
+    La differenza di potenziale tra due punti $i$ e $f$ qualunque del campo elettrico è:
+    \formula{Differenza di potenziale}{$V_f-V_i = - \int_i^f \vettore{E} \cdot \vettore{dS}$}
+    ovvero meno l'integrale lungo il percorso lineare $\vettore{E} \cdot \vettore{dS}$.
+}
+Se il potenziale iniziale è nullo ($V_i=0$) allora la formula per il potenziale è:
+$$V= - \int_i^f \vettore{E} \cdot \vettore{dS}$$
+Questa equazione ci dà il potenziale V in ogni punto $f$ del campo elettrico, relativo al potenziale zero del punto iniziale.
+
+\subsection{Caso particolare: Campo uniforme}
+Spostiamoci dal punto i su una linea equipotenziale a potenziale $V_i$, al punto f di potenziale $V_f$, minore del precendete.
+La distanza tra le due superfici equipotenziali sia $\Delta x$. L'angolo tra E e ds è 0.
+\formula{$\Delta V$ per campo uniforme}{$\Delta V=-E\Delta x$}
+Percorrendo la distanza $\Delta x$ in verso concorde a quello del campo, il potenziale decresce. Viceversa aumenta.
+IL vettore campo elettrico è diretto da potenziali maggiori a potenziali minori.
+
+\subsection{Gocce d'acqua o salmoni?}
+\begin{center}
+    \includegraphics[width=.8\textwidth]{img/gocceSalmoni.jpg}
+\end{center}
+
+
+
