@@ -336,7 +336,7 @@ Avremo che:
 \end{enumerate}
 
 \subsection{Derivazione della legge di Coulomb dal Teorema di Gauss}
-Sòòlo09e consideriamo una particella carica e vogliamo calcolarci il campo elettrico generato da essa utilizzando il Toerema Di Gauss,
+Se consideriamo una particella carica e vogliamo calcolarci il campo elettrico generato da essa utilizzando il Toerema Di Gauss,
 allora \emph{otterremo la legge di Coulomb}.
 \begin{wrapfigure}{l}{0.28\textwidth}
     \centering
@@ -358,22 +358,30 @@ $$E= \frac{Q}{4\pi \epsilon_0 r^2}$$
 Che è esattamente il campo elettrico prodotto da una carica puntiforme come espresso dalla legge di Coulomb.
 
 \subsection{Cariche in eccesso} %Lez17Slide7 Scritte un po a caso
-\subsubsection{Carica in eccesso su di un conduttore carico isolato}
+Le cariche in eccesso sono le cariche che "forniamo" ad un oggetto in equilibrio elettrostatico.
+I conduttori hanno alcune proprietà sulle cariche in eccesso:
+
+\paragraph{Carica in eccesso su di un conduttore carico isolato}
 Una conseguenza del teorema di Gauss è il seguente enunciato:
 \definizione{
-    Una carica fornita ad un conduttore isolato si dispone totalmente sulla superficie esterna del conduttore.
-    Nessuna carica in eccesso può trovarsi all'interno del corpo del conduttore
+    Una carica fornita ad un conduttore isolato si dispone \textbf{totalmente sulla superficie esterna del conduttore}.
+    Nessuna carica in eccesso può trovarsi all'interno del corpo del conduttore.
 }
-In un conduttore isolato da terra, una carica in eccesso si distribuisce sempre sulla superficie.
+In pratica, se un conduttore è perfettamente isolato (quindi non ha messa a terra), ogni carica in eccesso si distribuirà
+sempre sulla superficie esterna del conduttore, quindi:
+\begin{center}
+    $E = 0$ all'interno di un conduttore isolato.
+\end{center}
 
-\subsubsection{Carica in eccesso su di un conduttore carico isolato contenente una cavità}
-Si consideri lo stesso conduttore di prima, con una cavità ed un eccesso di carica Q.
-Consideriamo in questo caso la superficie gaussiana proprio intorno alla cavità, giusto
-sotto la superficie ma sempre dentro il conduttore. Poiché E=0 dentro il conduttore (non
-ci sono correnti come già visto nel caso precedente), il flusso attraverso la superficie è =0.
-Ma se il flusso è =0, per il teorema di Gauss non può contenere cariche, per cui NON sono
-nella cavità foro, ma restano sempre sulla superficie esterna.
-\subsubsection{Il conduttore Rimosso}
+\paragraph{Carica in eccesso su di un conduttore carico isolato contenente una cavità}
+Consideriamo un conduttore isolato (come prima), con un eccesso di carica $Q$ e \textbf{una cavità al suo interno}.
+In questo caso, consideriamo la superficie gaussiana intorno a questa cavitò.
+Sappiamo che \textbf{all'interno del conduttore $E=0$}, ovvero non ci sono correnti, 
+quindi il flusso $\Phi$ attraverso la superficie è uguale a zero.
+
+Ma se il flusso è $\Phi=0$, per il teorema di Gauss non può contenere cariche, per cui NON sono
+nella cavità foro, ma\textbf{ restano sempre sulla superficie esterna}.
+\paragraph{Il conduttore Rimosso}
 Sempre su un conduttore, per esempio piatto, supponiamo di congelare le cariche, e rimuovere piano piano
 tutto il conduttore con uno strumento. Ciò equivale ad allargare il buco del caso precedente, fino a
 rimuovere il conduttore.
@@ -422,6 +430,8 @@ A parte i conduttori sferici, dove si distrivuisce in modo uniforme, negli altri
     \includegraphics[width=.8\textwidth]{img/lez17Slide14.jpg}
 \end{center}
 
+
+\pagebreak
 \section{Il potenziale Elettrico}
 Sappiamo che se una forza è conservativa, allora si può associare una energia potenziale e il suo lavoro è indifferente da come viene svolto (dipende solo da stato iniziale e stato finale).
 Se è così allora in un sistema chiuso che contempli tale forza si può applicare il principio di conservazione meccanica.
