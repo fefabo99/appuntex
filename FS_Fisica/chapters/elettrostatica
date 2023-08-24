@@ -433,33 +433,33 @@ A parte i conduttori sferici, dove si distrivuisce in modo uniforme, negli altri
 
 \pagebreak
 \section{Il potenziale Elettrico}
+
 Sappiamo che se una forza è conservativa, allora si può associare una energia potenziale e il suo lavoro è indifferente da come viene svolto (dipende solo da stato iniziale e stato finale).
-Se è così allora in un sistema chiuso che contempli tale forza si può applicare il principio di conservazione meccanica.
-\\è stato verificato sperimentalmente che la forza elettrica è conservativa, quindi vi si può associare una energia potenziale.
+Se è così allora in un sistema chiuso che contempli tale forza si può applicare il \textbf{principio di conservazione meccanica}.
+\\è stato verificato sperimentalmente che \textbf{la forza elettrica è conservativa}, quindi vi si può associare una energia potenziale.
 
 \paragraph*{Misrurare l'energia potenziale elettrica}
-Nel caso gravitazionale, avevamo misurato l'energia potenziale U di un corpo in questo modo:
-\begin{enumerate}
-    \item Assegno $U=0$ ad un livello di riferimento.
-    \item Calcolo il lavoro $W$ svolto dalla forza gravitazionale per portare il corpo ad un'altezza diversa.
-    \item Definisco la variazione dell'energia potenziale come $\Delta U = -W$.
-\end{enumerate}
-\begin{wrapfigure}{r}{0.28\textwidth}
-    \centering
-    \includegraphics[width=.28\textwidth]{img/potenzialeElettrico.jpg}
-\end{wrapfigure}
-Per il caso elettrico seguiamo lo \textbf{stesso procedimento}:
-Definisco l'energia potenziale elettrica $U_o=0$ in un punto posto a distanza infinita dalla carica,
-poi trasporto la carica dalla distanza infinita fino ad un punto $P$, e definisco $\Delta = -W$, quindi $U=-W_{\infty}$.
-\\L'energia potenziale è il lavoro compiuto per trasportare la carica dall'infinito fino al punto P.
- 
-In analogia al caso gravitazionale, definiamo il potenziale elettrico per un punto P generico come:
+% Nel caso gravitazionale, avevamo misurato l'energia potenziale U di un corpo in questo modo:
+% \begin{enumerate}
+%     \item Assegno $U=0$ ad un livello di riferimento.
+%     \item Calcolo il lavoro $W$ svolto dalla forza gravitazionale per portare il corpo ad un'altezza diversa.
+%     \item Definisco la variazione dell'energia potenziale come $\Delta U = -W$.
+% \end{enumerate}
+Per misurare l'energia potenziale elettrica $U$ usiamo un procedimento \emph{analogo a quello a quello gravitazionale}:
+Definisco l'energia potenziale elettrica $U_0=0$ in un punto posto a distanza infinita dalla carica,
+poi trasporto la carica dalla distanza infinita fino ad un punto $P$, e definisco:
+$$\Delta U = U - 0 = -W \implies U=-W_{\infty}$$
+\\L'energia potenziale è il \textbf{lavoro compiuto per trasportare la carica dall'infinito fino al punto P}.
+In analogia al caso gravitazionale, definiamo il\textbf{ potenziale elettrico} per un punto P generico come:
 \definizione{
-    Ul potenziale elettrico in un punto P è eguale all'energia potenziale elettrica, per unità di carica, necessaria
+    Il potenziale elettrico in un punto P è eguale all'energia potenziale elettrica, per unità di carica, necessaria
     a trasportare una carica esplorativa da distanta infinita al punto P.
     \formula{Potenziale Elettrico}{$V = \frac{U}{q_0}$}
 }
 Il potenziale elettrico è una grandezza scalare che può assumere valori positivi e negativi, come il lavoro, la carica e l'energia potenziale.
+\begin{center}
+    \includegraphics[width=.3\textwidth]{img/potenzialeElettrico.jpg}
+\end{center}
 
 Come possiamo definire un campo elettrico per ogni punto dello spazio intorno ad una carica, così possiamo associare
 ad ogni punto un potenziale. Se conosciamo il potenziale in un punto, e là poniamo una carica q, allora:
@@ -468,40 +468,41 @@ ad ogni punto un potenziale. Se conosciamo il potenziale in un punto, e là poni
     moltiplicata per il potenziale
     \formula{Energia Potenziale elettrica}{$U= q \cdot V$}
 }
-\nb{La scelta storica di dare i nomi «potenziale» ed «energia potenziale» fa un po' confondere.. Non sono la stessa cosa
-anche se sono due grandezze legate.}
+\begin{box_grigiochiaro} 
+    \textbf{Attenzione}La scelta storica di dare i nomi «potenziale» ed «energia potenziale» fa un po' confondere.
+    Non sono la stessa cosa anche se sono due grandezze legate.
+\end{box_grigiochiaro}
 
 \paragraph{L'unità di misura} del potenziale elettrico è il Volt [V] = Volt = [Joule]/[Coulomb].
 
 \section{il Moto in un Campo Elettrico}
-Se in un campo elettrico ci spostiamo da un punto iniziale «i» ad un punto finale «f», il potenziale elettrico varia
-dando luogo alla differenza di potenziale:
+Se in un campo elettrico ci spostiamo da un punto iniziale «i» ad un punto finale «f», 
+il potenziale elettrico varia dando luogo alla \textbf{differenza di potenziale}:
 $$ \Delta V = V_f - V_i$$
 Se a muoversi è una particella di carica q, allora l'energia potenziale del sistema, per definizione di potenziale,
 cambia come:
-$$\Delta U = q \Delta V $$
-Poichè la forza è conservativa, la variazione di energia potenziale è indipendente dal particolare cammino percorso
-\subsection*{Lavoro svolto dal campo}
-Vale la relazione generale tra l'energia potenziale e il lavoro:
-$$W=-\Delta U \implies W = -q \Delta V$$
-\subsection*{La conservazione dell'energia meccanica}
-Se una particella si muove attraverso un campo elettrico spinta da solo le forze del campo, l'energia meccanica si conserva.
-L'equazione che esprime la conservazione dell'energia meccanica nel passaggio dal punto «i» al punto «f» è:
-$$ U_i + K_i = U_f + K_f \implies \Delta K = -\Delta U \implies \Delta K = -q \Delta V $$
-\subsection*{Lavoro svolto da una forza esterna}
-Se oltre alla forza elettrica agisce un'altra forza sul sistema, essa è una forza esterna.
-Essa può compiere lavoro sul sitema ma non è detto che sia ocnservativa (per cui non possiamo associarla in generale ad un potenziale).
-Teniamo conto di questa possibilità in questo modo: Energia iniziale + Lavoro esterno = energia finale
+\formula{Variazione dell'energia Potenziale elettrica}{$\Delta U = q  \cdot \Delta V $}
+Poichè la forza è conservativa, la variazione di energia potenziale è \textbf{indipendente dal cammino} percorso.
 
-$$ U_i + K_i + W_{est} = U_f + K_f \implies \Delta K +\Delta U = W_{est} \implies \Delta K + q \Delta V = W_{est} $$
+\paragraph{Lavoro svolto dal campo}
+La relazione Lavoro-Energia Potenziale è valida anche in questo caso:
+$$W=-\Delta U \implies W = -q \cdot \Delta V$$
+
+\section{Energia Meccanica}
+Se una particella si muove attraverso un campo elettrico da un punto $i$ a un punto $f$ \textbf{spinta da solo le forze del campo},
+subirà una variazione di potenziale $\Delta V$, e l'energia meccanica totale \textbf{si conserva} ($\Delta E_{mec} = \Delta K + \Delta U = 0$):
+$$\Delta K = -\Delta U \implies \Delta K = -q \Delta V $$
+
+\subsection*{Lavoro svolto da una forza esterna}
+Se oltre alla forza elettrica agisce anche una \textbf{froza esterna}, allora essa 
+può \textbf{compiere lavoro} e non è detto che sia conservativa, quindi non può in generale essere associata a un potenziale.
+Sapendo che $E_{mec-i} + W_{est} = E_{mec-f}$:
+
+$$ \Delta E_{mec} =W_{est} \implies \Delta K +\Delta U = W_{est} \implies \Delta K + q \Delta V = W_{est} $$
 Il lavoro della forza esterna è uguale alla varaizione dell'energia meccanica, e siccome può essere positivo o negativo, l'energia
 può variare in modo positivo o negtivo.
-
-Se la particella è ferma all'inizio ed alla fine del moto (ovvero $K_i = K_f$)
+\\Se la particella è ferma all'inizio ed alla fine del moto (ovvero $K_i = K_f$):
 $$W_{est} = q \Delta V = - W$$
-
-\subsection*{L'elettronVolt}
-è un'altra unità del lavoro. è il prodotto della carica elementare "e" per la differenza di potenziale di 1 volt.
 
 \section{Superfici Equipotenziali}
 Una superficie equipotenziale è il luogo dei punti che hanno lo stesso potenziale.
@@ -519,7 +520,7 @@ Si può calcolare la $\Delta V$ se si conosce il vettore $\vettore{E}$ in tutti 
 
 \definizione{
     La differenza di potenziale tra due punti $i$ e $f$ qualunque del campo elettrico è:
-    \formula{Differenza di potenziale}{$V_f-V_i = - \int_i^f \vettore{E} \cdot \vettore{dS}$}
+    \formula{Differenza di potenziale}{$\Delta V = - \int_i^f \vettore{E} \cdot \vettore{dS}$}
     ovvero meno l'integrale lungo il percorso lineare $\vettore{E} \cdot \vettore{dS}$.
 }
 Se il potenziale iniziale è nullo ($V_i=0$) allora la formula per il potenziale è:
@@ -530,13 +531,36 @@ Questa equazione ci dà il potenziale V in ogni punto $f$ del campo elettrico, r
 Spostiamoci dal punto i su una linea equipotenziale a potenziale $V_i$, al punto f di potenziale $V_f$, minore del precendete.
 La distanza tra le due superfici equipotenziali sia $\Delta x$. L'angolo tra E e ds è 0.
 \formula{$\Delta V$ per campo uniforme}{$\Delta V=-E\Delta x$}
-Percorrendo la distanza $\Delta x$ in verso concorde a quello del campo, il potenziale decresce. Viceversa aumenta.
-IL vettore campo elettrico è diretto da potenziali maggiori a potenziali minori.
-
+\begin{box_grigiochiaro} 
+    Percorrendo la distanza $\Delta x$ in verso concorde a quello del campo, il potenziale decresce. Viceversa aumenta.
+    \\Il vettore campo elettrico è diretto da potenziali maggiori a potenziali minori.  
+\end{box_grigiochiaro}
 \subsection{Gocce d'acqua o salmoni?}
 \begin{center}
     \includegraphics[width=.8\textwidth]{img/gocceSalmoni.jpg}
 \end{center}
 
+\section{Calcolo del Potenziale dovuto ad una carica puntiforme}
+Una carica puntiforme $q$ isolata, a una distanza $r$ da essa genererà il potenziale:
+\formula{Potenziale di Carica Puntiforme}{$V = \frac{1}{4\pi \epsilon_0} \cdot \frac{q}{r}$}
+$V$ e $q$ hanno lo stesso segno.
+\\Se invece di avere una sola carica se ne hanno $n$, vale il principio di addizione dei campi (e dei potenziali):
+$$V = \Sigma V_i = \frac{1}{4 \pi \epsilon_0} \Sigma \frac{q_i}{r_i}$$
 
+\subsection*{Potenziale dovuto ad una distribuzione continua di carica}
+Quando una distribuzione di carica $q$ è continua, la sommatoria precendete non è applicabile, quindi la formula diventa:
+$$ V = \frac{1}{4\pi \epsilon_0} \int \frac{dq}{r}$$
 
+\section{Calcolo di $E$ conoscendo $V$}
+La compenente $E$ in qualunque direzione è la derivata del potenziale elettrico, cambiata di segno, rispetto alla distanza in quella direzione:
+\formula{Campo $E$ conoscendo $V$}{$E = - \frac{\delta V}{\delta s}$}
+considerando i tre assi $x,y,z$ allora diventa:
+$$E_x = - \frac{\delta V}{\delta x},E_y = - \frac{\delta V}{\delta y},E_z = - \frac{\delta V}{\delta z} $$
+Se si conosce quindi $V$ in tutti i punti di una sitribuzione di carica, allora si possono trovare le componenti di $E$ lungo le tre direzioni
+semplicemente integrando il Campo rispetto alla distanza in quella direzione.
+
+\paragraph*{E uniforme}
+Se il campo e è uniforme, allora:
+$E = - \frac{\Delta V}{\Delta s}$ nella direzione in cui è diretta.
+
+%Slide12Lez18 da finire
