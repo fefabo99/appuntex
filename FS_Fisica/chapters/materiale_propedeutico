@@ -21,7 +21,7 @@ Quando vogliamo misurare un angolo possiamo usare due misure: \emph{Gradi} e \em
 In parole povere:
 \begin{itemize}
     \item $rad \to deg$: $(\alpha \cdot 180)/\pi$
-    \item $deg \to rad$: $(z$°$ \cdot \pi)/180$
+    \item $deg \to rad$: $(z^{\circ} \cdot \pi)/180$
 \end{itemize}
 
 \subsection*{Seno, Coseno e Tangente}

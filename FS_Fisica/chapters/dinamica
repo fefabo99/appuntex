@@ -186,7 +186,7 @@ Il lavoro di una forza può essere nullo ($W=0$), in particolare lo è se:
 \begin{itemize}
     \item La forza è nulla.
     \item La forza non determina alcuno spostamento.
-    \item La forza applicata è perpendicolare allo spostamento ($\cos 90°=0$).
+    \item La forza applicata è perpendicolare allo spostamento ($\cos 90^{\circ}=0$).
 \end{itemize}
 
 \paragraph{Unita di Misura}
