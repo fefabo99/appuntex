@@ -201,21 +201,6 @@ In tutti i punti, la direzione della linea di campo che passa per quel punto coi
 \end{itemize}
 \nb{Le linee di forza elettrica escono dalle cariche positive ed entrano in quelle negative}
 
-\subsection*{Campo elettrico generato da una carica puntiforme}
-Per calcolare il campo elettrico generato da una particella collochiamo una carica esploratrice $q_0>0$
-e la spostiamo in ogni punto dello spazio.
-\\Alla generica distanza $r$, la \textbf{forza di attrazione/repulsione} generata sulla particella esploratrice è data dalla legge di Coulomb:
-\[ F=k\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r}\]
-Il \textbf{Campo elettrico}  sarà:
-\[ E=\frac{F}{q_0} = k\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r}\]
-di modulo:
-\[E = \frac{1}{4\pi \epsilon_0 }\cdot \frac{|q_1|}{r^2}\]
-Essendo $q_0>0$ $F$ e $E$ hanno sempre lo stesso verso.
-$E$ è uscente per carica generante il campo positiva, entrante per carica generante il campo negativa.
-
-La forza elettrostatica F agente su una particella carica posta in un campo elettrico esterno E, ha lo
-stesso orientamento di E se la carica q è positiva, e orientamento opposto se negativa.
-
 \subsubsection{Principio di Sovrapposizione}
 Anche per il campo elettrico, come per le forze, vige il principio di sobrapposizione.
 Infatti se una particella è soggetta a più forze generate da più particelle, la forza finale cui è soggett è la somma delle forze di interazione con le singole particelle.
@@ -357,7 +342,7 @@ Il $4\pi r^2$ compare perchè l'area di una sfera è $A= 4\pi r^2$ e $\oint dA =
 $$E= \frac{Q}{4\pi \epsilon_0 r^2}$$
 Che è esattamente il campo elettrico prodotto da una carica puntiforme come espresso dalla legge di Coulomb.
 
-\subsection{Cariche in eccesso} 
+\subsection{Distribuzione delle Cariche} 
 Le cariche in eccesso sono le cariche che "forniamo" ad un oggetto in equilibrio elettrostatico.
 I conduttori hanno alcune proprietà sulle cariche in eccesso:
 
@@ -380,7 +365,8 @@ Sappiamo che \textbf{all'interno del conduttore $E=0$}, ovvero non ci sono corre
 quindi il flusso $\Phi$ attraverso la superficie è uguale a zero.
 
 Ma se il flusso è $\Phi=0$, per il teorema di Gauss non può contenere cariche, per cui NON sono
-nella cavità foro, ma\textbf{ restano sempre sulla superficie esterna}.
+nella cavità foro, ma \textbf{restano sempre sulla superficie esterna}.
+
 \paragraph{Il conduttore Rimosso}
 Sempre su un conduttore, per esempio piatto, supponiamo di congelare le cariche, e rimuovere piano piano
 tutto il conduttore con uno strumento. Ciò equivale ad allargare il buco del caso precedente, fino a
@@ -389,9 +375,27 @@ Il campo rimarrebbe lo stesso per tutti i punti esterni. Ciò significa che un c
 muovere liberamente le cariche, mentre il campo elettrico è generato dalle cariche, non dal conduttore.
 
 \section{Campi Elettrici Generati}
-\subsection*[Filo infinitamente lungo]{
-    Campo elettrico generato da un filo conduttore infinitamente lungo
+\subsection*{Campo elettrico generato da una carica puntiforme}
+Per calcolare il campo elettrico generato da una particella collochiamo una carica esploratrice $q_0>0$
+e la spostiamo in ogni punto dello spazio.
+\\Alla generica distanza $r$, la \textbf{forza di attrazione/repulsione} generata sulla particella esploratrice è data dalla legge di Coulomb:
+\[ F=k\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1 q_0}{r^2}\frac{\vettore{r}}{r}\]
+Il \textbf{Campo elettrico}  sarà:
+\[ E=\frac{F}{q_0} = k\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r} = \frac{1}{4\pi \epsilon_0 }\cdot \frac{q_1}{r^2}\frac{\vettore{r}}{r}\]
+di modulo:
+\[E = \frac{1}{4\pi \epsilon_0 }\cdot \frac{|q_1|}{r^2}\]
+
+Essendo $q_0>0$ $F$ e $E$ hanno sempre lo stesso verso.
+$E$ è uscente per carica generante il campo positiva, entrante per carica generante il campo negativa.
+
+La forza elettrostatica F agente su una particella carica posta in un campo elettrico esterno E, ha lo
+stesso orientamento di E se la carica q è positiva, e orientamento opposto se negativa.
+\paragraph*{Recap}
+\definizione{
+Il modulo del campo elettrico $E$ generato da una carica puntiforme $q$ alla distanza $r$ dalla particella è:
+\formula{Campo Elettrico di Carica Puntiforme}{$E=\frac{1}{1\pi \epsilon_0} \cdot \frac{q}{r^2}$}
 }
+\subsection[Filo Infinitamente lungo]{Campo elettrico generato da un filo conduttore infinitamente lungo}
 Si consideri un filo infinitamente lungo sul quale sono distribuite delle cariche +.
 La distribuzione di carica e il campo E hanno simmetria cilindrica.
 $\lambda$, ovvero la densità lineare, è (come da definizione) $\lambda = \frac{Q}{h}$, quindi $Q=\lambda \cdot h$.
@@ -418,11 +422,15 @@ $$
 Il prodotto scalare di $\vettore{E} \cdot \vettore{dA}$ è $E \cdot dA$, visto che sono paralleli. Inoltre la superficie del cilindro $A= 2\pi r \cdot h$.
 Quindi $\int_{\text{sup Lat}} \vettore{E} \cdot \vettore{dA} = E \cdot 2\pi r \cdot h$ e:
 $$\implies E \cdot 2\pi r \cdot h = \frac{\lambda h}{\epsilon_0} \implies E = \frac{\lambda}{2 \pi \epsilon_0 r}$$
-Per cui il \textbf{Modulo del campo elettrico generato da una carica lineare distribuita su un filo di lunghezza infinita} è $E = \frac{\lambda}{2 \pi \epsilon_0 r}$
+Quindi avremo che:
+\definizione{
+    Il modulo del campo elettrico generato da una carica lineare distribuita su un filo di lunghezza infinita è
+    $$E = \frac{\lambda}{2 \pi \epsilon_0 r}$$
+}
 
 \subsection*{Campo elettrico esterno generato da un conduttore carico}
 Distribuiamo una certa carica sulla superficie di un conduttore di forma qualunque.
-A parte i conduttori sferici, dove si distrivuisce in modo uniforme, negli altri casi non è sempre semplice calcolare la sua distribuzione perchè non sarà omogenea dappertutto.
+A parte i conduttori sferici, dove si distribuisce in modo uniforme, negli altri casi non è sempre semplice calcolare la sua distribuzione perchè non sarà omogenea dappertutto.
 \begin{center}
     \includegraphics[width=.8\textwidth]{img/lez17Slide11.jpg}
 \end{center}
