@@ -1,0 +1,41 @@
+\chapter{Elettrodinamica}
+    \section{Condensatori} 
+    Un condensatore è un accoppiamento di due conduttori tali che ci sia una induzione di carica completa tra l'uno e l'altro.
+    Consiste di due conduttori isolati aventi cariche uguali ma di segno opposto $+q$ e -$q$.
+
+        \subsection{Capacità di un condensatore}
+        La Capacità di un condensatore si calcola:
+        \formula{Capacità di un Condensatore}{ $C=\frac{Q}{\Delta V}$}
+        Ovvero la carica su una delle due armature diviso la differenza di potenziale tra le due.
+        $C$ è una  costante di proporzionalità dipendente dalla geometria del condensatore e indica la sua capacità elettrica.
+        
+        \paragraph{Calcolo della capacità di un condensatore}
+        In generale, per calcolare la capacità di un condesatore:
+            \begin{itemize}
+                \item Si assume che ci sia una carica $q$ sulle armature.
+                \item Si calcola $E$ tra le due armature in funzione di $q$, con la legge di Gauss.
+                \item Si calcola $\Delta V = - \int \vettore{E} \cdot d\vettore{S}$
+                \item Si calcola $C = \frac{Q}{\Delta V}$
+            \end{itemize}
+        Siccome la capacità di un condensatore dipende dalla geometria di esso, per alcuni tipi di condensatori esistono formule già costruite.
+        
+        \subsection{Capacità elettrica di un condensatore piano}
+            Si hanno due piastre piane, di carica $+q$ e $-q$, separate da una distanza $d$.
+            La Capacità di un condensatore formato in questo modo è:
+            \formula{Capacità di un Condensatore Piano}{$C=\frac{\epsilon_0 \cdot A}{d}$}
+            ricordiamo che per una piastra piana il campo è $E=\frac{\sigma}{\epsilon_0}$.
+       
+        \subsection{Capacità elettrica di un condensatore cilindrico}
+            Si hanno due cilindri concentrici, uno dentro l'altro, quello interno con carica $+q$ e quello esterno con carica $-q$.
+            Siano entrambi di altezza $L$, con $a$ raggio del cilindro interno e $b$ quello del cilindro esterno $b$.
+            La carica di un condensatore di questo tipo è:
+            \formula{Capacità di un Condensatore Cilindrico}{$C=\frac{2\pi\epsilon_0L}{\ln(\frac{b}{a})}$}
+    
+        \subsection{Capacità elettrica di un condensatore sferico}
+            Si hanno due sfere, una dentro l'altra, con $a$ raggio della sfera interna e $b$ raggio della sfera esterna.
+            In questo caso, la carica del condensatore di questo tipo sarà:
+            \formula{Capacità di un Condensatore Sferico}{$C=4\pi\epsilon_0\cdot \frac{a\cdot b}{b-a}$}
+
+            \paragraph{Capacità di una sfera isolata}
+            Se considerassimo una sfera isolata come un condensatore con l'armatura esterna a distanza infinita, allora possiamo calcolare la capacità della sfera isolata come:
+            \formula{Capacità di una sfera isolata}{$C = 4\pi\epsilon_0 r$}
