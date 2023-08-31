@@ -19,23 +19,83 @@
             \end{itemize}
         Siccome la capacità di un condensatore dipende dalla geometria di esso, per alcuni tipi di condensatori esistono formule già costruite.
         
-        \subsection{Capacità elettrica di un condensatore piano}
-            Si hanno due piastre piane, di carica $+q$ e $-q$, separate da una distanza $d$.
-            La Capacità di un condensatore formato in questo modo è:
-            \formula{Capacità di un Condensatore Piano}{$C=\frac{\epsilon_0 \cdot A}{d}$}
-            ricordiamo che per una piastra piana il campo è $E=\frac{\sigma}{\epsilon_0}$.
-       
-        \subsection{Capacità elettrica di un condensatore cilindrico}
-            Si hanno due cilindri concentrici, uno dentro l'altro, quello interno con carica $+q$ e quello esterno con carica $-q$.
-            Siano entrambi di altezza $L$, con $a$ raggio del cilindro interno e $b$ quello del cilindro esterno $b$.
-            La carica di un condensatore di questo tipo è:
-            \formula{Capacità di un Condensatore Cilindrico}{$C=\frac{2\pi\epsilon_0L}{\ln(\frac{b}{a})}$}
-    
-        \subsection{Capacità elettrica di un condensatore sferico}
-            Si hanno due sfere, una dentro l'altra, con $a$ raggio della sfera interna e $b$ raggio della sfera esterna.
-            In questo caso, la carica del condensatore di questo tipo sarà:
-            \formula{Capacità di un Condensatore Sferico}{$C=4\pi\epsilon_0\cdot \frac{a\cdot b}{b-a}$}
+            \subsubsection{Capacità elettrica di un condensatore piano}
+                Si hanno due piastre piane, di carica $+q$ e $-q$, separate da una distanza $d$.
+                La Capacità di un condensatore formato in questo modo è:
+                \formula{Capacità di un Condensatore Piano}{$C=\frac{\epsilon_0 \cdot A}{d}$}
+                ricordiamo che per una piastra piana il campo è $E=\frac{\sigma}{\epsilon_0}$.
+        
+            \subsubsection{Capacità elettrica di un condensatore cilindrico}
+                Si hanno due cilindri concentrici, uno dentro l'altro, quello interno con carica $+q$ e quello esterno con carica $-q$.
+                Siano entrambi di altezza $L$, con $a$ raggio del cilindro interno e $b$ quello del cilindro esterno $b$.
+                La carica di un condensatore di questo tipo è:
+                \formula{Capacità di un Condensatore Cilindrico}{$C=\frac{2\pi\epsilon_0L}{\ln(\frac{b}{a})}$}
+        
+            \subsubsection{Capacità elettrica di un condensatore sferico}
+                Si hanno due sfere, una dentro l'altra, con $a$ raggio della sfera interna e $b$ raggio della sfera esterna.
+                In questo caso, la carica del condensatore di questo tipo sarà:
+                \formula{Capacità di un Condensatore Sferico}{$C=4\pi\epsilon_0\cdot \frac{a\cdot b}{b-a}$}
 
-            \paragraph{Capacità di una sfera isolata}
-            Se considerassimo una sfera isolata come un condensatore con l'armatura esterna a distanza infinita, allora possiamo calcolare la capacità della sfera isolata come:
-            \formula{Capacità di una sfera isolata}{$C = 4\pi\epsilon_0 r$}
+                \paragraph{Capacità di una sfera isolata}
+                Se considerassimo una sfera isolata come un condensatore con l'armatura esterna a distanza infinita, allora possiamo calcolare la capacità della sfera isolata come:
+                \formula{Capacità di una sfera isolata}{$C = 4\pi\epsilon_0 r$}
+        
+        \subsection{Condensatori in Parallelo}
+        Se prendiamo due condensatori e li mettiamo in Parallelo, la capacità totale
+        $C_{eq}$ sarà la somma delle singole capacità:
+        \formula{Capacità condensatori In Parallelo}{$C_{eq} = \sum C_j$}
+
+        \subsection{Condensatori in Serie}
+        Se prendiamo due condensatori e li mettiamo uno dietro l'altro in serie, il reciproco della capacità totale
+        $\frac{1}{C_{eq}}$ sarà uguale alla somma dei singoli reciproci:
+        \formula{Capacità condensatori In Serie}{$\frac{1}{C_{eq}} = \sum \frac{1}{C_j}$}
+    
+\section{Corrente Elettrica}
+La corrente elettrica all'interno di un conduttore è definita come:
+\formula{Corrente Elettrica}{$i=\frac{dq}{dt}$[A]}
+Dove $dq$ è la quantità di carica (positiva) che passa in un tempo $dt$ attraverso un piano immaginario che taglia trasversalmente il conduttore.
+Per convenzione, il \textbf{verso della corrente} è quello nel quale si muovono i portatori di carica positivi, quindi da + a -.
+
+\paragraph{Unità di misura} L'unità di misura della corrente è l'Ampere [A], ovvero $\frac{[C]}{[s]}$.
+
+\section{Resistenze}
+La resistenza di un conduttore è definita come:
+\formula{Resitenza}{$R= \frac{\Delta V}{i} [\Omega]$}
+dove $\Delta V$ è la differenza di potenziale tra le due superfici e $i$ è la corrente elettrica.
+
+\subsection{Legge di Ohm}
+La legge di ohm dice che la differenza di potenziale ai capi di una resistenza è uguale all'intensità di corrente per la resistenza:
+\formula{Legge di Ohm}{$\Delta V = i \cdot R$}
+
+\subsection{Potenza Dissipata}
+La potenza dissipata da una resistenza è:
+\formula{Potenza Dissipata}{$P_{dis} = R \cdot i^2$[W]}
+La potenza si misura in Watt.
+
+\section{Analisi dei circuiti}
+Quando si ha un circuito, non è sempre facile capire in che direzione vanno le correnti.
+Nel caso di un circuito semplice, con soltanto un Generatore e senza nodi, la corrente va dal polo positivo del generatore a quello negativo.
+
+In circuiti più complessi però bisogna utilizzare le due \textbf{Leggi di Kirchoff} per capire in che direzione vanno le correnti.
+Definiamo innanzitutto due elementi:
+\begin{itemize}
+    \item \textbf{Nodo} In un circuito un nodo è la congiunzione tra tre fili.
+    \item \textbf{Maglia} In un circuto una maglia è un percorso chiuso all'interno di esso. Una maglia può contenere altre maglie.
+\end{itemize}
+Ora possiamo definire le leggi di Kirchoff:
+
+\subsection{Legge dei Nodi}
+La prima legge di Kirchoff dice:
+La somma di tutte le correnti su un nodo deve essere uguale a zero.
+\[\sum i = 0 \]
+Questo significa che la somma delle correnti entranti è uguale alla somma delle correnti uscenti.
+
+\subsection{Legge delle Maglie}
+La seconda legge di Kirchoff dice:
+La somma di tutte le Forze Elettromotrici $\xi $ e di tutte le potenze dissipate all'interno di una maglia deve essere uguale a Zero.
+\[\sum \xi + \sum i \cdot R = 0\]
+Da qui bisogna fare una precisazione per i segni:
+\begin{itemize}
+    \item Il segno della F.e.m di un generatore è $\xi  > 0$ se segue il verso naturale. Qundi se percorriamo un generatore dal polo - al polo + allora f.e.m è positivo.
+    \item Il segno della potenza dissipata di una resistenza è negativo se seguiamo la direzione della corrente.
+\end{itemize}
