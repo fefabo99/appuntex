@@ -383,13 +383,14 @@ Il termine energia potenziale implica che un oggetto ha il potenziale di:
     \item O di compiere lavoro quando è rilasciato in un certo punto a causa della forza conservativa esercitata su di esso da un altro membro del sistema.
 \end{itemize}
 
-\subsection{Relazione tra Forze conservative e Energia potenziale}
-Consideriamo un ogggetto, che si muove lungo la direzione $x$, soggetto alla componente $x$ di una forza conservativa $F_x$ che ne determina uno spostamento $\Delta x$.
-Determiniamo ora $F_x$, se l'energia potenziale del sistema è conosciuta.
-Abbiamo visto che per il teorema Lavoro-Energia: $W=F_x\Delta x= - \Delta U$
+\subsection[Forze Conservative e Energia Potenziale]{Relazione tra Forze conservative e Energia potenziale}
+Consideriamo un oggetto che si muove lungo $x$ soggetto ad una forza conservativa $F_x$ che ne determina uno sostamento $\Delta x$.
+\\Se \textbf{conosciamo l'energia potenziale del sistema}, allora \textbf{possiamo determinare $F_x$}:
+Abbiamo visto che per il teorema Lavoro-Energia Potenziale:
+$$\text{\small{Teorema Lavoro-Energia Potenziale: }} W=F_x\Delta x= - \Delta U$$
 Se passiamo agli infinitesimi, cioè supponiamo che la forza determini uno spostamento infinitesimale $dx$, allora
 la variazione di energia potenziale sarà anch'essa infinitesimale $(dU)$.
-\[\implies f_xdx = -dU \implies F_x=-\frac{dU}{dx}\]
+\[ F_xdx = -dU \implies F_x=-\frac{dU}{dx}\]
 Ogni forza conservativa che agisce su un oggetto di un sistema è uguale a meno la derivata dell'energia potenziale nella direzione dello spostamento.
 
 \paragraph*{Conclusioni finali}
