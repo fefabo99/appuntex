@@ -67,6 +67,10 @@ Come abbiamo già detto, la terza legge di Keplero enuncia:
     \[\frac{a^3}{T^2} = \text{costante}\]
 }
 \paragraph{Dimostrazione}
+Partiamo dal presupposto che se un pianeta è in orbita la forza di attrazione gravitazionale
+esercitata dal sole sui pianeti è di fatto una forza centripeta:
+\[ F_g = F_C \implies G \cdot \frac{M_s \cdot M_p}{r^2} = M_p \cdot \omega^2 r \]
+
 Si consideri il pianeta di massa $M_p$ che si muova attorno al Sole di massa $M_s$ con orbita circolare.
 Poichè la forza gravitazionale esercitata dal Sole sul pianeta e che tiene il pianeta in movimento circolare è definita radialmente,
 possiamo applicare la II legge di Newton ($\Sigma F = ma = mv^2/r$, in cui $v^2/r$ è l'accelerazione centripeta )
