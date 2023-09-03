@@ -316,7 +316,7 @@ Un \textbf{sistema} è un insieme di due o più oggetti che esercitano forze l'u
 Se la configurazione del sistema muta, allora l'energia potenziale del sistema cambia.
 
 \subsection{Energia potenziale Gravitazionale}
-Se un oggeto è vicino alla Terra, la Terra esercita su di esso la forza gravitazionale $mg$, con direazione della forza pari a quella del moto dell'oggetto.
+Se un oggetto è vicino alla Terra, la Terra esercita su di esso la forza gravitazionale $mg$, con direazione della forza pari a quella del moto dell'oggetto.
 La forza gravitazionale \textbf{compie un lavoro sull'oggetto}, che quindi incrementa la sua energia, cinetica in particolare.
 \\Quando un oggetto si trova ad una certa distanza dal suolo, il sistema Terra-Oggetto ha una \textbf{energia potenziale che può trasformare in lavoro}.
 La conversione da energia potenziale in energia cinetica avviene lungo \emph{tutto il tratto della caduta dell'oggetto}.
@@ -509,3 +509,27 @@ Avremo quindi:
     \item Conservazione dell'Energia Cinetica:
     $$\frac{1}{2}\cdot m_1 \cdot v^2_{1i} + \frac{1}{2}\cdot m_2 \cdot v^2_{2i} = \frac{1}{2}\cdot m_1 \cdot v^2_{1f} + \frac{1}{2}\cdot m_2 \cdot v^2_{2f}$$
 \end{itemize}
+
+\section{Baricentro}
+
+Il moto di un corpo esteso e non puntiforme può essere descritto come il moto di un punto nel quale si concentri tutta la massa del corpo.
+Tale punto è detto \textbf{Baricentro}.
+\\Il Baricentro può essere definito sia per un oggetto singolo che per un gruppo di particelle di massa $m$ separate tra loro.
+
+Al baricentro può essere applicata la $II$ legge di Newton, cioè se la risultante delle forze esterne $\Sigma F$ è applicata al baricentro
+di un corpo di massa $M$ totale, allora il baricentro si muove di accelerazione:
+\[ a = \frac{\Sigma F}{M}\]
+Ovvero, il corpo si muove \textbf{come se la risultante delle forze fosse applicata alla singola massa M collocata al baricentro}.
+
+\subsection*{Baricentro di un sistema di particelle}
+Condiseriamo un sistema di molte Masse (particelle).
+la coordinata del baricentro $x_{CM}$ sarà:
+\formula{Baricentro Particelle}{$x_{CM} = \frac{\sum m_i \cdot x_i}{\sum m_i}$}
+dove $x_i$ è la coordinata $x$ della $i$-esima particella.
+Questo concetto vale identico per le coordinate $y$ e $z$.
+
+\subsection*{Baricentro di un oggetto solido}
+Per un oggetto solido si può considerare che sia costituito da un numero molto grande di particelle.
+Le sommatorie allora postranno essere estese ad integrali, fatte su delle masse infinitesime:
+
+\formula{Baricentro Corpo Solido}{$x_{CM} = \frac{1}{M} \cdot \int x dm $}
