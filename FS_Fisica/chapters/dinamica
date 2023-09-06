@@ -251,7 +251,7 @@ Il Lavoro è nullo se la distanza finale da $x=0$ non è mutata.
 
 \pagebreak
 
-\section{Energia Cinetica e il Teorema Lavoro-Energia Cinetica}
+\section{Energia Cinetica}
 
 \definizione{
 L'energia cinetica rappresenta la quantità di energia associata al moto di una particella che si muove alla velocità $v$.
@@ -264,7 +264,7 @@ L'energia cinetica e la velocità della particella aumentano se svogliamo un lav
 sulla particella, quindi aumentiamo l'energia della particella, 
 invece diminuiscono se il lavoro svolto è negativo.
 
-\subsection{Teorema dell'energia cinetica}
+\subsection{Teorema Lavoro-Energia Cinetica}
 Il lavoro fatto su una particella dalla risultante delle forze $\Sigma F$ che agiscono su di essa è eguale alla variazione di energia cinetica della particella.
 Questo teorema è detto \emph{Teorema Lavoro-Energia Cinetica}.
 \definizione{
@@ -275,6 +275,17 @@ Allora vale:
 Di conseguenza, vale anche:
 \[K_f = K_i + W\]
 
+\paragraph{Dimostrazione}
+Si consideri una massa m che si muova verso destra sotto l'azione della risultante delle forze $\Sigma F$ dal punto $x_i$ al punto $x_f$.
+Poichè $\Sigma F$ è costante, allora vale che $\Sigma F = m \cdot a$ (Newton II).
+\\Quindi, sapendo che $W = \int_{x_i}^{x_f} F \cdot dx$ avremo che:
+\[W = \int_{x_i}^{x_f} F \cdot dx =  \int_{x_i}^{x_f} m \cdot a \cdot dx \]
+Dalla definizione di Accelerazione sappiamo che $a = \frac{dv}{dt}$, quindi:
+\[=  m \int_{x_i}^{x_f} \frac{dv}{dt} \cdot dx  =  m \int_{x_i}^{x_f} dv \cdot \frac{dx}{dt} \]
+Anche qui, dalla definizione di Velocità sappiamo che $\frac{dx}{dt} = v$.
+\\Facendo quindi un cambio di variabile di integrazione ($x_i\to v_i$ e $x_f \to v_f$):
+\[W = m \int_{v_i}^{v_f} v \cdot dv = m [\frac{v^2}{2}]_{v_i}^{v_f} = \frac{1}{2} m \cdot v_f^2 - \frac{1}{2} m \cdot v_i^2\]
+Ovvero la variazione di energia cinetica.
 \section{Potenza}
 Se consideriamo due Automobili della stessa massa che devono fare lo stesso percorso, 
 queste compieranno lo stesso lavoro. Ma, se una delle due macchine è più \emph{Potente} dell'altra, questa ci metterà meno tempo. 
