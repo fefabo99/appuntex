@@ -234,20 +234,19 @@ Si può però suddividere lo spostamento della molla in parti inifinitesime, di 
     W_{molla} = \int_{x_i}^{x_f} F dx
 \]
 Sviluppando questo integrale:
-\[W = \int_{x_f}^{x_i} -kx \,dx 
-= -k \int_{x_f}^{x_i} x \,dx 
-= (-\frac{1}{2}k)\bigg[x^2 \bigg]_{x_f}^{x_i}
-= (-\frac{1}{2}k) (x^2_f - x^2_i)
+\[W = \int_{x_i}^{x_f} (-kx) \,dx 
+= -k \int_{x_i}^{x_f} x \,dx 
+= -\frac{1}{2}k\bigg[x^2 \bigg]_{x_i}^{x_f}
+= -\frac{1}{2}k (x^2_i - x^2_f)
 \]
 \\Quindi il lavoro svolto da una forza elastica è:
-\formula{Lavoro di una forza elasitca}
+\formula{Lavoro di una Forza Elasitca}
 {
    $W_m = \frac{1}{2}kx^2_i - \frac{1}{2}kx^2_f$ [J]
 }
-Il Lavoro $W_m$ è quindi \textbf{positivo quando il blocco si avvicina alla posizione 
-di riposo $x=0$} ed è negativo quando se ne allontana. 
+Il lavoro  $W_m$ della molla è \textbf{Positivo} quando \textbf{agisce nello stesso verso della forza} 
+ovvero quando la molla si avvicina alla posizione di riposo, mentre è negativo quando se ne allontana.
 Il Lavoro è nullo se la distanza finale da $x=0$ non è mutata.
-\\Si può notare che se la posizione di partenza $x_i$ è 0, allora la formula è notevolmente semplificata.
 
 \pagebreak
 
@@ -270,7 +269,7 @@ Questo teorema è detto \emph{Teorema Lavoro-Energia Cinetica}.
 \definizione{
 Chiamiamo $\Delta K$ la variazione di energia cinetica del corpo, e $W$ il lavoro totale compiuto su di esso. 
 Allora vale:
-\formula{Teorema dell'energia Cinetica}{$\Delta K = K_f - K_i = W$}
+\formula{Teorema Lavoro-Energia Cinetica}{$\Delta K = K_f - K_i = W$}
 }
 Di conseguenza, vale anche:
 \[K_f = K_i + W\]
