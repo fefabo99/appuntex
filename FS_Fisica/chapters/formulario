@@ -2,6 +2,53 @@
 
 \setlength{\extrarowheight}{10pt}
 
+\section{Unità di misura}
+
+\begin{tabularx}{\textwidth}{|Y|cc|}
+    \hline
+    \multicolumn{3}{|c|}{\uppercase{Sistema Internazionale}}\\
+    \hline
+    \textbf{Grandezza} & \textbf{Nome} & \textbf{Simbolo} \\
+    \hline
+    Lunghezza & Metro & [m] \\
+    Massa & Kilogrammo & [kg] \\
+    Tempo & Secondo & [s] \\
+    Corrente Elettrica & Ampere & [A]\\
+    Temperatura & Kelvin & [K] \\
+    Quantità di Sostanza & Mole & [mol] \\
+    \hline
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{|Y|cc|}
+    \hline
+    \multicolumn{3}{|c|}{\uppercase{Unità di Misura}}\\
+    \hline
+    \textbf{Grandezza} & \textbf{Unità} &  \textbf{Composizione} \\
+    \hline
+    Forza & \textbf{Newton} & $[N] = \frac{Kg \cdot m}{s^2} $ \\
+    \hline
+    Energia & \multirow{3}{*}{\textbf{Joule}} &  \multirow{3}{*}{$[J] = N \cdot m$} \\
+    Calore & & \\
+    Lavoro & & \\
+    \hline
+    \hline
+    Carica Elettrica & \textbf{Coulomb} & $[C] = A\cdot s$\\
+    \hline
+    Campo Elettrico & \multicolumn{2}{c|}{Newton/Coulomb $\frac{N}{C}$} \\
+    \hline
+    Differenza di Potenziale & \multirow{2}{*}{\textbf{Volt}} & \multirow{2}{*}{$[V] = \frac{J}{C}$} \\
+    Forza Elettromotrice & & \\
+    \hline
+    Carica Condensatore & Farad & $[F] = \frac{C}{V}$\\
+    \hline
+    Resistenza & Ohm & $[\Omega] = \frac{V}{A} $ \\
+    \hline
+    \hline
+    Campo Magnetico & \multicolumn{2}{c|}{Ampere/Metro $\frac{A}{m}$} \\
+    \hline
+\end{tabularx}
+
+
 \section{Cinematica}
 \begin{tabularx}{\textwidth}{|l|Yc|}
     \hline
