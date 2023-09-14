@@ -69,6 +69,18 @@ La monotonia di una funzione si calcola \emph{ponendo $f'(x)>0$.}
 Nei punti in cui la derivata è positiva, la funzione è \textbf{Crescente}, nei punti in cui è negativa la funzione è \textbf{Decrescente}
 \subsection{Punti di estremo} I punti in cui la derivata cambia direzione sono punti di estremo (max/min).
 Se il punto di estremo è il più grande/piccolo di tutta la funzione, allora sono Assoluti.
+\subsection{Derivabilità}
+Nei punti di estremo potrebbero esserci problemi di derivabilità, per questo è necessario studiare la derivabilità attraverso
+il calcolo del limite del rapporto incrementale.
+\begin{equation*}
+	\lim_{h \rightarrow 0} \frac{f(x_0 + h) - f(x_0)}{h}
+\end{equation*}
+Dove h è il punto per cui sto studiando la derivabilità. Dovrò studiare $h^-$ e $h^+$ e verificare che i due
+limiti esistano, siano finiti e siano uguali, in quel caso la funzione sarà derivabile in quel punto.
+\paragraph*{Nota bene} Non vanno bene altri metodi per verificare la derivabilità come per esempio derivare la funzione
+e poi calcolarne il limite per quel punto. Utilizzare sempre il limite del rapporto incrementale.\\
+Chiaramente per risolvere il limite posso usare i metodi che voglio, anche De l'Hopital (anche se richiede la derivazione
+di f), chiaro che deve rispettare le condizioni di applicabilità del metodo.
 
 \section{Derivata Seconda, Concavià/Convessità}
 Derivando la derivata prima si trova la derivata seconda, il cui segno da informazioni sulla Concavià e Convessità della funzione.
