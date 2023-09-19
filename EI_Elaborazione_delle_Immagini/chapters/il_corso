@@ -1,0 +1,33 @@
+
+\chapter*{Il corso}
+Il corso di Elaborazione delle Immagini 2023-2024 è erogato dai professori
+\textbf{Schettini} Raimondo e \textbf{Ciocca} Gianluigi.
+
+\section*{Programma del corso}
+Durante il corso lo studente acquisirà competenze specifiche che lo porranno in grado di comprendere la catena di alborazione
+analisi e classificazione di immagini e video.
+Lo studente acquisirà inoltre le competenze necessarie per progettare, sviluppare ed integrare specifici moduli
+in sistemi applicativi complessi.
+
+\paragraph{Programma Esteso}
+\begin{enumerate}
+    \item Cenni sulla percezione visiva, la visione umana e artificiale, il colore. Acquisizione e digitalizzazione di immagini.
+    \item Miglioramento delle immagini con operatori puntuali.
+    \item Filtraggio spaziale lineare e non-lineare.
+    \item Spazi colore. Elaborazione delle immagini a colori.
+    \item Segmentazione di immagini per regioni e per contorni.
+    \item Analisi tessiturale; Morfologia Matematica.
+    \item Descrizione e rappresentazione di immagini (regioni, contorni, approssimazione poligonale).
+    \item Riconoscimento, classificazione supervisionata e non supervisionata.
+    \item Introduzione alle reti neurali convoluzionali profonde.
+\end{enumerate}
+
+\section*{L'esame}
+L'esame è composto di due parti,
+Esame Scritto che a sua volta è composto di domande a risposta chiusa e domande a risposta aperte inerenti agli argomenti trattati nel corso.
+
+Prova pratica concernente la Realizzazione e discussione di un progetto l'elaborazione ed analisi di immagini. Gruppo di al massimo 3 persone con valutazione individuale.
+
+Il voto finale è la media dei voti dello scritto e del progetto.
+
+Saranno anche erogati alcuni esercizi di laboratorio facoltativi la cui consegna dà dei punti aggiuntivi nel voto finale.
