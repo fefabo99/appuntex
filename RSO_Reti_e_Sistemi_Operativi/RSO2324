@@ -21,6 +21,7 @@
 
 %Fine indice - Inizio Appunti
 
-\input{chapters/Organizzazione_del_corso.tex}
+\input{chapters/0_Organizzazione_del_corso.tex}
+\input{chapters/1_SO_struttura_e_servizi.tex}
 
 \end{document}
