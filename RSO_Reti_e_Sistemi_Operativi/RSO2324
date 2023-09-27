@@ -1,0 +1,26 @@
+\documentclass[10pt, a4paper, openany]{book}
+\usepackage[italian]{babel}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{fancyvrb}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{floatflt,epsfig}
+\pagenumbering{arabic}
+
+\graphicspath{ {./images/} }
+\renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}}
+
+\begin{document}
+\title{RSO - Reti e Sistemi Operativi}
+\author{Sara Angeretti}
+\date{Ottobre 2023}
+
+\maketitle
+\tableofcontents
+
+%Fine indice - Inizio Appunti
+
+\input{chapters/Organizzazione_del_corso.tex}
+
+\end{document}
