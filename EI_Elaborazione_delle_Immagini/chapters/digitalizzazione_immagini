@@ -117,3 +117,4 @@ Slide con la matrice.
 \section{Compressione delle immagini}
 Standard più usato JPEG. Prima di fare una compressione, devo fare una trasformazione del colore.\\
 Le singole bande vengono compresse per ridurre la ridondanza del segnale. Poi l'immagine viene decompressa e restituita. Il JPEG ha un fattore di imagine quality. Se andiamo ad aumentare il fattore di compressione, diventa più piccola l'immagine in fase di comprensione ma in fase di decompresione sui bordi vanno a crearsi degli artefatti.\\
+Ovviamente il JPEG introduce gli artefatti ma è possibile con metodi e tecniche precise rimuovere questi artefatti. Parliamo di rastauro immagini compresse.
