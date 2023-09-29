@@ -1,0 +1,148 @@
+\chapter{Statistica Descrittiva}
+Che cos'è la statistica? La statistica è l'arte di imparare dai dati.
+La statistica si divide in tre rami: \textbf{Statistica Descrittiva}, Porbabilità e Statistica inferenziale.
+La statistica descrittiva é il ramo della statistica che ci permette di \textbf{Descrivere i dati}.
+\section{Descrivere i dati}
+Se misuriamo una variabile in un campione otteniamo un insieme di dati:
+$$x_1, x_2, ..., x_N \text{ con N Numero di dati}$$
+Se questo insieme contiene un \emph{numero ridotto di valori distinti}, per descrivere questi dati
+in maniera chiara e immediata è utile riassumerli in una \textbf{tabella delle frequenze}:
+\begin{center}
+    \begin{tabularx}{.95\textwidth}{ c|X|X }
+        Valori & Frequenza Assoluta $F_i$ & Frequenza Relativa $P_i$ \\
+        \hline
+        &&
+    \end{tabularx}
+\end{center}
+Notiamo che abbiamo due tipi di frequenza:
+\begin{itemize}
+    \item Frequenza Assoluta $F_i$: Numero di volte in cui compare $i$ nell'insieme di dati.
+    \item Frequenza Relativa $P_i$ :Frazione di volte in cui compare $i$ nell'insieme di dati ($P_i = F_i / N$)
+\end{itemize}
+Il dato che compare con frequenza più alta è detto \textbf{Moda}.
+\paragraph{Tipi di dati}I dati possono essere di due tipi:
+\begin{itemize}
+    \item Qualitativi, ovvero "categorie".
+    \item Quantitativi, ovvero numerici.
+\end{itemize}
+In questo corso useremo i dati \textbf{quantitativi}.
+
+\subsection*{Rappresentare i dati}
+Per rappresentare i dati attraverso le frequenze risulta efficace e immediato l'utilizzo di un \textbf{istogramma},
+ovvero un grafico a barre che rappresenta la tabella, da cui chiaramamente è possibile risalire alla tabella stessa.
+
+\paragraph{Raggruppamento dei Dati}
+Capita spesso di avere degli insiemi di dati che assumono un numero elevato di \textbf{valori distinti}, 
+in questi casi puó essere conveniente suddividerli in classi e determinare la frequenza di ciascuna classe.
+
+In questo modo c'è una perdita d'informazioni (sui valori specifici),ma spesso non è un problema e così facendo possiamo
+calcolare le frequenze delle classi e avere un'idea migliore della distribuzione dei dati.
+
+\subsection{Dati Bivariati}
+Quando per ciascun individuo vengono misurate due variabili ci troviamo un insieme di N dati a coppie detti \textbf{dati bivariati}.
+$$(x_1,y_1), (x_2,y_2), ..., (x_N, y_N)$$
+Queste coppie di dati sono \emph{inseparabili}.\\
+Anche in questo caso è possibile calcolare le frequenze, sia assolute che relative, dette \textbf{frequenze congiunte}.
+
+\paragraph{Correlazione}
+Se facciamo un \emph{Diagramma di dispersione} (o scatterplot), possiamo evidenziare se c'è una correlazione tra i dati osservandone la tendenza.
+\osservazione{
+    \begin{center}
+        CORRELATION $\neq$ CAUSATION
+    \end{center}
+    \paragraph{Correlazione non significa causalità!} Non è detto che l'aumento di una variabile causi la diminuzione dell'altra o viceversa, potrebbe esserci una causa comune. 
+}
+
+\section{Riassumere i dati}
+Dopo aver rappresentato i dati vogliamo ora riassumerli mediante quantità numeriche, dette \textbf{Statistiche Campionarie}, al fine di sintetizzare le proprietà
+salienti dei dati.
+
+\subsection{Media Campionaria}
+La Media Campionaria $\overline{x}$ é una metrica utile per caratterizzare l'insieme di dati:
+\definizione{
+    La Media Campionaria dei dati $x_i$ contenuti in un insieme di $N$ valori è:
+    $$ \overline{x} := \frac{\sum_{i=1}^{N} x_i}{N}$$
+}
+
+\paragraph{Media da una tabella}
+Se ho una tabella delle frequenze è intuitivamente facile fare una media campionaria partendo da essa:
+\begin{center}
+    \begin{tabular}{ c|c }
+        Valori & Freq\\
+        \hline
+        $z_1$& $f_1$ \\
+        $z_2$& $f_2$ \\
+        $\vdots$ & $\vdots$ \\
+        $z_N$& $f_N$ 
+    \end{tabular}
+    $ \implies \overline{x} := \frac{\sum_{i=1}^{N} z_i \cdot f_i}{\sum_{i=1}^{N} f_i}$
+\end{center}
+
+\paragraph{Trasformazioni Lineari Affini dei dati}
+Quando faccio una trasformazione lineare, per esempio nei cambi di unitá di misura, anche la media è lineare:
+$$ (y_i := a x_i + b)_{i=1,...,N} \text{ con } a,b \in \R $$
+$$ \overline{y} = a \overline{x} + b $$
+
+
+\subsection{Mediana Campionaria}
+La Mediana é il valore centrale dell'insieme ordinato.
+\definizione{
+    Dato un insieme \textbf{Ordinato} di $N$ dati, la Mediana $m$ é cosí definita:
+    \begin{itemize}
+        \item se $N$ dispari: $m := x_{(\frac{N+1}{2})}$
+        \item se $N$ pari $m := \frac{x_{(\frac{N}{2})}+x_{(\frac{N}{2}+1)}}{2}$
+    \end{itemize} 
+}
+Ovvero se abbiamo un numero dispari di elementi, la mediana é il valore $(\frac{N+1}{2})$ esimo della lista (ovvero il valore centrale), se invece abbiamo
+un numero pari di elementi, la mediana è la media dei due valori centrali ($\frac{N}{2}$ e $\frac{N}{2}+1$).
+
+\osservazione{
+La mediana è insesibile alle code, se per esempio quindi aumento anche di molto il valore dell'ultima cifra lasciando invariate
+le altre la mediana non cambierà (a differenza della media).
+}
+
+\section{Coefficiente di correlazione lineare}
+Posso misurare il grado di correlazione tra una coppia di dati attraverso il coefficiente di correlazione lineare. 
+
+\begin{equation}
+    r = \frac{\sum_{k=1}^N (x_i - x)(y_i - y)}{(N -1)S_x S_y}
+\end{equation}
+
+Si può mostrare che:
+\begin{equation}
+    -1<=r<=1
+\end{equation}
+
+In generale $r > 0$ indica una correlazione positiva
+\\ $r < 0$ indica una correlazione negativa 
+
+\subsection{Correlazioni significative}
+$|r| > 0.7$ Correlazione significativa
+\\$|r| < 0.3$ Correlazione debole
+
+\section{Percentili e quantili}
+Per analizzare la distribuzione dei dati è utile fissare un numero k che rappresenta la posizione all'interno dato all'interno dell'insieme
+questo valore percentuale è detto \textbf{k-esimo Percentile Campionario}, valore t per cui
+\begin{itemize}
+    \item almeno il k\% dei dati è $ <= t$
+    \item almeno il $(100 -k)\%$ dei dati è $<= t$
+\end{itemize}
+
+I casi più importanti sono per k = 25, 50, 75
+\\ Risulta pratico scrivere $k = 100p$ dove $p = \frac{k}{100}\in [0, 1]$, dove i casi importanti sono per:
+\begin{itemize} 
+    \item $p = \frac{1}{4}: k = 100p$ = 25-esimo percentile = primo quartile $q_1$
+    \item $p = \frac{1}{2}: k = 100p$ = 50-esimo percentile = secondo quartile $q_2$ = mediana m
+    \item $p = \frac{3}{4}: k = 100p$ = 75-esimo percentile = terzo quartile $q_3$
+\end{itemize}
+
+Per calcolare il k-esimo percentile t è necessario:
+\begin{enumerate}
+    \item Ordinare l'insieme di dati $x_1 <= x_2 <= \dots <= x_n$
+    \item Se $N_p$ non è intera $t=x_i$ è il dato la cui posizione i è l'intero successivo a $N_p$
+    \item Se $N_p$ è intera $t = \frac{x_(Np) x_(Np+1)}{2}$ è la media aritmetica fra il dato in posizione N e il successivo 
+\end{enumerate}
+
+\paragraph{Nota per R} Esistono diverse definizioni di quantile, R per esempio ne utilizza una diversa di default.
+
+\'E possibile utilizzare i \textbf{Boxplot} per la rappresentazione dei quantili
