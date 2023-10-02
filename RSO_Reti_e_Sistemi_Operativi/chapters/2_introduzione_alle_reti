@@ -7,7 +7,6 @@ Due prospettive:
 \end{itemize}
 Nell'immagine che schematizza, sui bordi della rete troviamo un grandissimo numero di devices (cell, laptops, \dots) che eseguono \textit{applicazioni di rete} che richiedono uno scambio di dati e che la rete si occupa di collegare. Alcuni nodi di questa applicazione eseguono parte di un'applicazione e altri nodi interconnessi eseguono altre parti di applicazioni (sistemi distribuiti).
 
-\section{Da cosa è composta la rete?}
 \subsection{Visione nuts and bolts}
 \begin{description}
     \item[hosts], sono dispositivi \textit{end system} ovvero terminali.
@@ -32,7 +31,7 @@ Questi protocolli si basano su \textbf{standards}.\\
 Un lavoro fondamentale a riguardo è svolto da \textbf{enti di standardizzazione} (il più famoso è IETF, \textit{Internet Engineering Task Force}) che stilano documenti (RFC, \textit{Request for Comments}) che spiegano come i protocolli devono essere implementati e come i dispositivi che implementano questi protocolli devono comportarsi.\\
 Gli standard sono fondamentali per la comunicazione univoca tra i dispositivi, senza di essi non ci sarebbe interoperabilità tra i dispositivi.
 
-\subsection{Visione dei servizi}
+\subsection{Visione come infrastruttura di servizi}
 Internet può essere visto come un'\textbf{infrastruttura} che fornisce \textbf{servizi} alle applicazioni distribuite.\\
 \`E una vista importante perché la rete sottostante è fondamentale per quando dobbiamo per esempio programmare delle applicazioni o dei servizi: da questo pov è molto importante il concetto di socket, un'interfaccia che ci permette di interfacciarci alla rete senza necessariamente sapere come la rete sotto funziona.
 
@@ -46,8 +45,16 @@ Altro esempio: un giro di tavolo per fare le presentazioni, seguo delle convenzi
 Emulano il funzionamento dei protocolli umani.\\
 Tutte le comunicazioni di rete sono gestite da protocolli.
 \definizione{I protocolli di rete definiscono le regole per i messaggi inviati in rete. In particolare definiscono il formato dei messaggi, l'ordine in cui vengono inviati e ricevuti tra le entità di rete (host, commutatori, \dots) e le azioni da intraprendere una volta che questi messaggi vengono inviati e ricevuti.}
-% \\I protocolli di rete definiscono le regole per i messaggi inviati in rete. In particolare definiscono il formato dei messaggi, l'ordine in cui vengono inviati e ricevuti tra le entità di rete (host, commutatori,\, \dots) e le azioni da intraprendere una volta che questi messaggi vengono inviati e ricevuti.
 
 \subsection{Cos'è un protocollo?}
+\begin{center}
+    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti3.jpg}
+\end{center}
+
+\section{Da cosa è composta la rete? Più nel dettaglio.}
+\subsection{Network edge}
+Primo segmento della struttura generale della rete. Ci troviamo sui bordi della rete (quindi c'è un po' una diatriba sul fatto che appartengano o meno alla rete, in ogni caso sono molto importanti), dove si trovano gli \textbf{hosts} (client, server). Sono intesi in senso un po' lato, ovvero:
+\begin{itemize}
+    \item I client sono intesi
 
 
