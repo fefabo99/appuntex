@@ -1,0 +1,39 @@
+\chapter{Algoritmi Greedy}
+\section{Definizione}
+A differenza degli algoritmi di programmazione dinamica, gli algoritmi \textbf{greedy} non si basano su risultati precedenti già calcolati, ma fanno una serie di scelte \emph{basandosi su quella che risulta essere la scelta migliore ad ogni istante}, ovvero fa una scelta \emph{localmente ottima} sperando che tale scelta porterà ad una soluzione \emph{globalmente ottima}.
+\\Spesso la difficoltà degli algoritmi greedy non sta tanto nello scrivere l'algoritmo in se, ma nel determinare \emph{se} l'algoritmo funziona.
+\paragraph{Applicazioni}
+Il metodo Greedy è molto potente e può essere applicato a una vasta gamma di problemi, ad esempio viene spesso usato per algoritmi per \emph{alberi di connessione minimi}, o Dijkstra per il problema dei \emph{cammini minimi da sorgente unica}.
+
+\section{Algoritmo: Scheduling di Attività}
+
+\subsection*{Introduzione}
+Il primo esempio è il problema della programmazione di più attività in competizione che richiedono l'uso \emph{esclusivo} di una risorsa comune, con l'obiettivo di selezionare il più grande insieme di attività mutualmente compatibili.
+\paragraph{Mutualmente compatibili} significa che date due attività \emph{i} e \emph{j} esse non si devono sovrapporre, quindi i deve iniziare dopo (o durante) la fine di j oppure viceversa.
+
+\subsection*{Sottostruttura ottima}
+Possiamo facilmente verificare che il problema della selzione di attività presenta una \textbf{sottostruttura ottima} (quindi una sua soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi).
+\\Sia $A \subseteq S$ una \emph{soluzione ottima} (S è insieme delle attività) e sia $a_i \in A$. $a_i$ induce i due sottoproblemi:
+\begin{itemize}
+	\item $S^-_i = \{k \in S : f_k \leq S_i\}$
+	\item $S^+_i = \{k \in S : f_i \leq S_k\}$
+\end{itemize}
+è immediato verificare che:
+\begin{itemize}
+	\item $A \cap S^-_i$ è una soluzione ottima per $S^-_i$
+	\item $A \cap S^+_i$ è una soluzione ottima per $S^+_i$
+\end{itemize}
+Da qui si può dedurre una soluzione risolvibile tramite programmazione dinamica, però noi vogliamo fare una scelta Greedy
+
+\subsection*{La scelta Greedy}
+Se risolvessimo il problema tramite la programmazione lineare, dovremmo considerare ogni volta tutte le scelte previste dalla sua ricorrenza, noi però possiamo considerare una sola scelta: quella \emph{golosa}.
+Tra tutte le attività che possiamo scegliere ce ne deve essere una che finisce per prima. Se noi scegliamo quell'attività la risorsa risulterebbe disponibile per il maggior numero possibile di attività successo (questo succede perchè le attività sono ordinate per tempo di fine).
+Ma questa intuizione è corretta? Se scegliamo la prima attività, sappiamo che non esistono altre attività che finiscono prima di $a_1$, quindi non ne troveremmo prima, inoltre bisogna considerare il seguente teorema:
+\paragraph*{teorema} Consideriamo un sottoproblema non vuoto $S_k$ e sia $a_m$ l'attività in $S_k$ che ha il primo tempo di fine; allora l'attività $a_m$ p inclusa in qualche sottoinsieme massimo di attività mutualmente compatibili di $S_k$.
+
+\section{Sistemi di Indipendenza}
+\paragraph*{Definizione} Data la coppia $<E,F>$ dove $E$ è un insime finito e $F$ è una famiglia di sottoinsiemi di $E$, definiamo tale coppia \emph{sistema di indipendenza} Se vale la seguente proprietà:
+$$\forall A \in F \wedge B\subseteq A \implies B \in F$$
+\textbf{Ovvero}: dato un insieme di sottoinsiemi di $E$ chiamato $F$ e preso un qualsiasi elemento $A$ (che è un insieme) da $F$, in $F$ abbiamo anche tutti i sottoinsiemi di $A$
+
+\paragraph*{Osservazione} Un grafo può essere visto come un sistema di indipendenza in cui solo lati e vertici costituiscono gli insiemi indipendenti.

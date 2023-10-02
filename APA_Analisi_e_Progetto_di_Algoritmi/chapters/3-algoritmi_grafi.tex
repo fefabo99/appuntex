@@ -1,0 +1,462 @@
+\chapter{Algoritmi su Grafi}
+Questo capitolo tratta di molti algoritmi (e rispettive varianti) che operano sui \emph{grafi}.
+
+\section{Riassunto sui grafi}
+Innanzitutto, è bene fare un piccolo ripasso su cosa sono i grafi e di che tipo sono.
+
+\paragraph{Definizione di Grafo} Un grafo è un \emph{insieme di elementi detti nodi} (o vertici) che possono essere \emph{collegati fra loro da linee chiamate archi} (o lati o spigoli).
+Più \textbf{formalmente}, si dice grafo una coppia ordinata $G=(V,E)$ di insiemi, con $V$ insieme dei nodi ed $E$ insieme degli archi, tali che gli elementi di $E$ siano coppie di elementi di $V$.
+
+\paragraph{Tipi di grafi} Esistono vari tipi di grafi, che si differenziano per struttura e/o funzione.
+Tra questi abbiamo:
+\begin{itemize}
+	\item \textbf{Grafo Semplice}: Grafo non orientato che non comprende cappi e archi multipli.
+	\item \textbf{Grafo Completo}: è un grafo semplice nel quale ogni vertice è collegato a tutti gli altri vertici, quindi $n_{archi} = n_{vertici} * (n_{vertici} - 1)/2$.
+	\item \textbf{Albero}: è un grafo non orientato $G$ connesso $tc$:
+		\\$G$ è \emph{aciclico} $\vee$ $|E| = |V| - 1$.
+		\\Se ogni nodo di un Albero ha  $\{0,1,2\}$ figli, allora è detto \textbf{Albero Binario}.
+	\item \textbf{DAG}: Grafo diretto (orientato) senza cicli, quindi aciclico.
+			Un grafo diretto può dirsi aciclico se una visita in profondità NON presenta archi all'indietro.
+\end{itemize}
+
+\subsection*{Altre definizioni}
+\paragraph{Chiusura Transitiva}
+Dato un grafo $G=(N,A)$ (diretto o non) si dice la \emph{chiusura transitiva} quel grafo $G*=(N,A*)$ in cui esiste un arco tra i nodi $i$ e $j$ se esiste un cammino tra $i$ e $j$.
+\spiegazione{La chiusura transitiva di un grafo è un'altro grafo con gli stessi vertici che per ogni nodo $i$ e $j$ ha un arco se e solo se nel grafo originale esisteva un cammino tra di essi.}
+\section{Algoritmi di Visita}
+Esistono due tipi di algoritmi di visita dei grafi, in ampiezza (BFS) e in profondità (DFS)
+
+\paragraph{Colore dei nodi $col[u]$}
+Sia BFS che DFS per funzionare assegnano un colore ad ogni vertice per capire se è già stato scoperto o no
+\begin{itemize}
+	\item White: Vertice non ancora scoperto
+	\item Gray: Vertice scoperto ma la cui lista di adiacenza non è ancora stata scandita del tutto
+	\item Black: Vertice scoperto e di cui ho scandito per intero la lista di adiacenza
+\end{itemize}
+\paragraph{Predecessore del nodo $\pi[u]$}
+Il predecessore di $u$ è il nodo che mi ha permesso di scoprirlo, quindi quello da cui sono "passato" nella mia ricerca per scoprire $u$
+\paragraph{Tempo di scoperta del nodo $d[u]$}
+Il tempo di scoperta di $u$ indica quanti "passaggi" (quindi quanti nodi ho scoperto prima) mi ci sono voluti per arrivare a $u$
+
+\subsection{Algoritmo BFS}
+BFS (Breadth-First search) è un algoritmo di visita di un grafo in ampiezza.
+\\L'algoritmo scopre tutti i vertici raggiungibili partendo da un vertice sorgente $s$, quindi soltanto della sua componente connessa.
+\\La scoperta avviene in ampiezza, ovvero parte da tutti i vertici a distanza 1 dalla sorgente, poi 2 e così via.
+\\Alla fine dell'esecuzione, tutti i vertici della componente connessa di $s$ avranno colore NERO.
+
+\paragraph{Pseudocodice} Algoritmo BFS
+\begin{lstlisting}
+def BFS(G, s)
+    for ogni v $\in$ V\{s}
+        col[v] = White
+        d[v] = $\infty$
+        $\pi$[v] = NIL
+    col[s] = Gray
+    d[s] = 0
+    $\pi$[s] = NIL
+    ENQUEUE(Q,s)
+    while Q$\neq \emptyset$
+        u = DEQUEUE(Q)
+        for ogni v $\in$ adj[u]
+            if col[v]==White
+                col[v] = Grigio
+                d[v] = d[u] +1
+                $\pi$[v] = u
+                ENQUEUE(Q,v)
+        col[u] = Nero
+    
+\end{lstlisting}
+\paragraph{Spiegazione Codice}
+BFS inizializza tutti i nodi del grafo (tranne $s$) in modo da renderli "elaborabili", quindi li mette bianchi, con distanza infinita e con padre NULL.
+In seguito crea una coda $Q$ che andrà a contenere tutti i nodi grigi, quindi quelli di cui va ancora completata la lista di adiacenza,
+dove inserisce s, che è il primo nodo Grigio.
+\\Nel ciclo while l'algoritmo prende il primo nodo da $Q$ e va a scoprire tutti i nodi bianchi (quindi non ancora elaborati) nella sua lista di adiacenza, inserendoli di volta in volta in $Q$.
+Quando la lista di adiacenza è stata scandita per intero, vuol dire che il nodo è stato "scoperto del tutto" e quindi diventa Nero.
+Il ciclo ricomincia finchè $Q$ non sarà vuota.
+
+\paragraph*{Tempo di esecuzione}
+Il tempo totale di esecuzione di BFS è $O(V + E)$.\\
+Di cui $O(V)$ è il tempo delle operazioni con la coda, e $O(E)$ è il tempo per l'ispezione di ADJ.
+
+\paragraph{Sottografo dei predecessori}
+La visita in ampiezza costruisce un albero BF \emph{(Albero di ricerca in ampiezza)}, che ha alla radice il vertice sorgente $s$.
+Quando durante l'ispezione della lista di adiacenza di un vertice $u$ viene scoperto un vertice \emph{ bianco $v$},
+il vertice $v$ e l'arco $(u,v)$ che lo collega a $u$ vengono aggiunti all'albero.
+Il vertice $u$ viene detto \emph{padre} di $v$.
+
+\riassunto{BFS}{
+	L'algoritmo BFS effettua una visita in ampiezza di un grafo partendo da un nodo sorgente $s$ fornito.
+	Utilizza una coda $Q$, che andrà a contenere tutti i nodi grigi, quindi quelli di cui ha iniziato la scannerizzazione di ADJ.
+	Quindi parte dal primo nodo in $Q$ (che sarà $s$) e ne scannerizza la lista di adiacenza, inserendo ogni nodo bianco (trasformato in grigio) all'interno di $Q$.
+	Una volta finito il nodo diventa nero.
+	Grazie all'assegnazione di un valore $\pi$ ai nodi BFS è in grado di costruire un albero BFS.
+}
+
+
+\subsection{Algoritmo DFS}
+DFS (Depth-First search) è un algoritmo di visita di un grafo in profondità.
+\\Alla fine dell'esecuzione dell'algoritmo siamo in grado di determinare quante sono le componenti connesse
+del grafo ed a quale componente connessa appartiene ogni nodo.
+
+\paragraph{Classificazione degli archi}
+Dato un grafo orientato, DFS differenzia ogni arco $(u,v)$ in 4 modi diversi
+\begin{itemize}
+	\item Arco dell'albero: $col[v] = BIANCO$, quindi è la prima volta che visitamo $v$
+	\item Arco all'indietro: $col[v] = GRIGIO$, quindi $v$ è antenato di $u$
+	\item Arco in avanti: $col[v] = NERO \land d[u] < d[v]$, quindi $v$ è stato scoperto dopo $u$
+	\item Arco di attraversamento: $col[v] = NERO \land d[u] > d[v]$, quindi $v$ è stato scoperto prima di $u$
+\end{itemize}
+In un grafo NON ORIENTATO esistono soltanto gli archi dell'albero e gli archi all'indietro.
+
+\paragraph{Pseudocodice} Algoritmo DFS
+\begin{lstlisting}
+def DFS(G)
+    for ogni u $\in$ V
+        col[u] = White
+        $\pi$[u] = NIL
+    time = 0
+    for ogni u $\in$ V
+        if col[u] == White
+            DFS-VISIT(u)
+\end{lstlisting}
+\begin{lstlisting}
+	def DFS-VISIT(G,u)
+		col[u] = Gray
+		time++
+		d[u] = time
+		for ogni w $\in$ Adj[u]
+			if color[w] == White
+				$\pi$[w] = u
+				DFS-VISIT(G,w)
+		col[u] = Black
+		time ++
+		f[u] = time    
+\end{lstlisting}
+
+\paragraph{Spiegazione pseudocodice}
+DFS comincia inizializzando il grafo come BFS ma senza impostare d[].
+Poi fa un ciclo su ogni nodo del grafo, chiamato DFS-VISIT su tutti i nodi bianchi che trova.
+DFS-VISIT(G,u) visita tutti i nodi adiacenti a $u$, operando ricorsivamente su ogni nodo bianco che trova.
+Alla fine dell'esecuzione DFS-VISIT mette nero il nodo in esame e procede con il primo nodo bianco che trova nell'albero.
+\paragraph*{Tempo di calcolo}
+DFS ha un tempo di esecuzione di $\theta(V+E)$.
+DFS-VISIT è chiamata una volta per ogni vertice (quando è bianco, quindi $\theta(V)$)
+e il ciclo in DFS-VISIT è chiamato una volta per ogni arco (ogni volta che c'è una adiacenza, quindi $\theta(E)$)
+
+\paragraph{Sottografo dei predecessori}
+Anche DFS genera un \emph{sottografo dei predecessori $G_\pi<V,E_\pi>$}, ma a differenza di BFS
+$G_\pi$ forma effettivamente una \emph{foresta di alberi}, in cui ogni albero rappresenta una componente connessa del grafo.
+Nota che, a differenza del sottografo dei predecessori di BFS, $G_\pi$ contiene tutti i vertici di $G$.
+\\Formalmente, il sottografo dei predecessori (o foresta DF) è così definito:
+$G\pi = (V, E\pi )$ , dove:
+$E\pi = {(\pi[v], v) : v \in V \land \pi[v] \neq NIL}$
+\\in pratica, $G_\pi$ è formato da tutti i vertici di $G$ e tutti gli archi che vanno dal "padre" di un nodo $v$ a $v$.
+
+\riassunto{DFS}{
+DFS è un algoritmo di visita (in profondità) che visita tutte le componenti connesse di un grafo $G$.
+DFS inizia mettendo bianco ogni vertice di $G$, poi chiama DFS-VISIT per un nodo $u$ e visita l'intera lista di adiacenza di quel nodo usando delle chiamate ricorsive su ogni nodo bianco.
+Quando il controllo ritorna a DFS significa che ha controllato l'intera componente connessa di $u$.
+L'algoritmo cerca il prossimo nodo bianco e il ciclo ricomincia.
+Ogni volta che DFS trova un nodo bianco significa che ha trovato una nuova compoente connessa.
+DFS ha un tempo di $\theta(V+E)$, in particolare chiama $DFS-VISIT$ una volta per vertice, con il ciclo al suo interno chiamato una volta per arco.
+}
+
+\subsection*{Ordinamento Topologico}
+Questo paragrafo spiega come utilizzare la visita in profondità per eseguire l'ordinamento topologico di un
+grafo \emph{orientato aciclico} o DAG (Directed acyclic graph).
+\\Un ordinamento topologico di un DAG $G<V,E>$ è un ordinamento lineare di tutti i suoi vertici tale che , se $G$ contiene un arco $(u,v)$
+allora $u$ appare prima di $v$ nell'ordinamento.
+\\In pratica, un ordinamento topologico può essere visto come un ordinamento dei suo vertici lungo una linea orizzontale in modo che tutti gli archi orientati siano diretti da sinistra a destra.
+\\l'algoritmo TOPOLOGICAL-SORT(G) per ottenere un ordinamento topologico chiama DFS per calcolare i tempi di completamento $v.f$ e poi completata l'ispezione inserisce il vertice in una lista concatenata che poi ritorna.
+
+
+\section{Cammini minimi}
+Alcuni algoritmi sui grafi molto importanti sono quelli che calcolano i \emph{cammini minimi} per grafi orientati \textbf{pesati},
+quindi grafi (orientati) che hanno un peso assegnato su ogni arco.
+
+\paragraph*{definizioni}
+Sia $G=(V,E)$ un grafo orientato con costi w sugli archi,
+il costo di un cammino $p=<v_1,v_2,...v_k>$ è dato dalla somma del peso di tutti i vertici di quel cammino.
+\\Il \textbf{Cammino minimo} tra una coppia di vertici $x$ e $y$ è \emph{un cammino di costo
+	minore o uguale a quello di ogni altro cammino tra gli stessi vertici}.
+\\\textbf{Sottostruttura ottima}: ogni sottocammino di un cammino minimo è anch'esso minimo.
+\\\textbf{Albero dei cammini minimi}: I cammini minimi da un vertice $s$ a tutti gli altri vertici del grafo possono
+essere rappresentati tramite un albero radicato in $s$, detto albero dei cammini minimi
+
+\paragraph*{Gli algoritmi} che studieremo sono di due tipi: da sorgente unica, come Dijkstra e Bellman-Ford, oppure quelli che calcolano i cammini minimi per ogni coppia di vertici, come Floyd-Warshall.
+\subsection{Algoritmo di Floyd-Warshall}
+L'algoritmo di Floyd-Warshall calcola il \emph{peso} del cammino minimo da $i$ a $j$ \emph{per ogni coppia di vertici} $(i,j)$ del grafo (pesato e orientato) su cui viene eseguito.
+
+\paragraph{Funzionamento}
+L'idea alla base di questo algoritmo è un processo iterativo che, scorrendo tutti i nodi, ad ogni passo $h$ si ha
+(data una matrice D) nella posizione $[i,j]$ la \emph{distanza di peso minimo} dal nodo di indice $i$ a quello $j$ attraversando solo nodi di indice minore o uguale a $h$.\\
+\textit{Quindi $D^h$ equivale alla matrice che contiene i cammini minimi utilizzando come nodi intermedi al massimo i nodi di indice $h$.}
+\\Se non vi è collegamento tra due nodi allora nella cella corrispondente c'è infinito.
+Ovviamente alla fine (con h = numero di nodi) leggendo la matrice si ricava la distanza minima fra i vari nodi del grafo.
+L'algoritmo di Floyd-Warshall è un algoritmo di programmazione dinamica bottom-up.
+
+\paragraph{Equazione di Ricorrenza}
+
+\begin{equation*}
+	d^{(h)}_{i,j}= \begin{cases}
+		W_{ij},                                                & \text{if $h = 0$} \\
+		min\{ d^{(h-1)}_{ij},d^{(h-1)}_{ih} + d^{(h-1)}_{jh}\} & \text{if $h > 0$}
+	\end{cases}
+\end{equation*}
+\spiegazione{
+	La variabile $d^{(h)}_{i,j}$, che contiene il peso del cammino minimo da $i$ a $j$ con al più $h$ vertici intermedi e vale:
+	il peso del cammino $(i,j)$ se non usiamo vertici intermedi (se non c'è il collegamento questo vale infinito), oppure il minore tra i pesi dei cammini che utilizzano un cammino intermedio,
+	quindi tra il cammino che non usa $h$ come vertice intermedio e la somme dei due cammini da $i$ a $h$ e da $h$ a $j$.
+}
+\paragraph*{Struttura di un cammino minimo}
+L'algoritmo considera i vertici "intermedi" di un cammino minimo, dove un vertice intermedio di un cammino semplice $p=<v_1,..,v_l>$
+è un vertice qualsiasi di $p$ diverso da $v_1$ e $v_l$ ovvero un vertice qualsiasi dell'insieme $\{v_2,...,v_{l-1}\}$.
+
+\paragraph{Pseudocodice} Algoritmo di Floyd-Warshall
+
+\begin{lstlisting}
+def FLOYD-WARSHALL (G, W)
+    D$^{(0)}$ = W
+    for $h=1$ to $n$
+        for $i=1$ to $n$
+            for $j=1$ to $n$
+                $d^{(h)}_{ij}$$min\{ d^{(h-1)}_{ij},d^{(h-1)}_{ih} + d^{(h-1)}_{jh}\}$
+
+
+\end{lstlisting}
+
+\paragraph{Spiegazione Codice}
+L'algoritmo inizia mettendo nella matrice $D$ il peso di ogni arco senza nodi intermedi.
+Procede poi con tre cicli for, il cui più esterno è h e il più interno j, in cui confronta i cammini minimi
+di ogni nodo con ogni altro nodo aumentando di volta in volta il (possibile) numero di nodi intermedi (h)
+
+\paragraph{Tempo di esecuzione}
+\begin{center}
+	$O(|V|^3)$
+\end{center}
+
+\subsection*{Variante di FW: Cammini minimi $\leq L$}
+
+Dato un grafo orientato e senza cappi $(V,E,W)$ e dato un itnero L\textgreater0 calcolare
+$\forall (i,j) \in V^2$ il peso di un cammino minimo da i a j di lunghezza $\leq L$
+
+\paragraph{Variabili introdotte} $D^{(k,l)}= (d^{(k,l)}_{ij})$ \\
+dove $d^{(k,l)}_{ij}$ è il peso del cammino minimo da $i$ a $j$
+con vertici intermedi $\in \{1,...,k\}$ di lunghezza $\leq l$
+
+\paragraph{Caso base} (k,l) con k=0
+
+\begin{equation*}
+	d^{(0,l)}_{ij}= \begin{cases}
+		0      & \text{if $i = j$}                      \\
+		w_{ij} & \text{if $i \neq j \land (i,j) \in E$} \\
+		\infty & \text{altrimenti}
+	\end{cases}
+\end{equation*}
+
+\subparagraph{Spiegazione caso base}
+Se i = j allora la distanza è 0, siccome il cammino deve essere di lunghezza $\leq$l un cammino di lunghezza 0 è accettato
+\\Se $i \neq j \land (i,j) \in E$ allora è $w_{ij}$, perchè siccome cè un solo cammino sarà sempre di lunghezza 1, che è minore o uguale ad ogni l
+\\Infinito altrimenti, perchè non c'è un cammino che collega i a j
+
+\paragraph{Passo ricorsivo} $(k,l)$ con $k>0$
+
+\begin{equation*}
+	d^{(k,l)}_{(ij)} = \begin{cases}
+		min\{d^{(k-1,l)}_{ij}, d^{(k-1,l_1)}_{(ik)} + d^{(k-1,l_2)}_{(kj)}  \} & \text{if $l > 1$ e $l_1,l_2\in\{1,...,l\}, l_1+l_2\leq l$ } \\
+		min\{d^{(k-1,l)}_{ij}, \infty \}                                       & \text{if $l = 1$}
+	\end{cases}
+\end{equation*}
+
+\subparagraph*{Spiegazione Passo ricorsivo}
+Se $l > 1$ vuol dire che ci può essere un vertice intermedio k tra i e j, quindi bisogna trovare il minimo tra
+la distanza a k-1 e la somma di due percorsi di lunghezza minore di l tra due percorsi (ovviamente minori di k) che utilizzando k come intermedio e la
+cui somma non superi l.
+
+Invece se k non fa parte del cammino minimo, si sceglie il minore tra un eventuale percorso tra i e j che non include k oppure infinito.
+
+\paragraph{Pseudocodice}
+
+\begin{lstlisting}
+CAMMINIMINIMI_MINORE_DI_L(V,E,W,L)
+for l=1 to L //Caso base puro (k=0)
+    for i=1 to n
+        for j=1 to n
+            if i==j
+                $d^{(0,l)}_{ij} = 0 $
+            elif $(i,j) \in E$
+                $d^{(0,l)}_{ij} = w_ij $
+            else
+                $d^{(0,l)}_{ij} = \infty $
+for k=1 to n //Caso passo
+    for l=1 to L
+        for ogni i
+            for ogni j
+                if l==1
+                    $d^{(k,l)}_{ij}$ = min{$d^{(k-1,l)}_{ij},\infty$} 
+                else
+                    for $l_1$ = 0 to L
+                        for $l_2$ = 0 to L
+                            if $l_1$ + $l_2 \leq L$
+                                $d^{(k,l)}_{ij}$ = min{$d^{(k-1,l)}_{ij}$, $d^{(k-1,l_1)}_{ik}$ + $d^{(k-1,l_2)}_{jk}$} 
+\end{lstlisting}
+
+\section{Cammini minimi da sorgente unica}
+Gli algoritmi di Dijkstra e di Bellman-Ford risolvono il problema dei cammini minimi da sorgente unica.
+Quindi vengono usati quando vogliamo trovare un cammino minimo che va da un dato vertice sorgente $s \in V$ a
+ciascun vertice $v \in V$ in un grafo orientato pesato $G = (V, E)$
+
+\paragraph{Differenze}
+Dijkstra funziona soltanto se tutti i pesi degli archi sono NON NEGATIVI, mentre
+Bellman-Ford non ha bisogno di questa premessa.
+
+\paragraph{Funzionamento comune}
+Come tutti gli algoritmi per cammini minimi entrambi si basano sulla
+proprietà della Sottostruttura ottima di un cammino.\\
+In questi algoritmi vengono assegnati due attributi per ogni vertice del grafo:
+\begin{itemize}
+	\item $\pi(v)$ Che indica il predecessore di $v$ nel cammino minimo
+	\item $d(v)$ Che indica la distanza di $v$ dal nodo sorgente $s$
+\end{itemize}
+
+Inoltre questi algoritmi hanno bisogno di due funzioni d'appoggio, INITIALIZE e RELAX
+
+\paragraph*{Inizializzazione del grafo}
+Per gli algoritmi di questo tipo viene spesso utilizzata una funzione INITIALIZE, che imposta
+le distanze e i "padri" di ogni nodo rendendo s la nostra sorgente (quindi a distanza zero)
+
+\begin{lstlisting}
+
+INITIALIZE(G, s)
+    for ogni $v \in V$
+        v.d = $\infty$
+        v.$\pi$ = NIL
+    s.d = 0
+\end{lstlisting}
+
+\paragraph{Tecnica del rilassamento}
+La tecnica del rilassamento di un $arco (u,v)$ consiste nel verificare se, passando per $u$, è possibile migliorare il cammino minimo
+per v precedentemente trovato. Quindi partendo da stime per eccesso delle distanze le decrementiamo progressivamente
+fino a renderle esatte
+
+\begin{lstlisting}
+
+RELAX(u, v, w)
+    if v.d > u.d + w(u, v)
+        v.d = u.d + w(u, v)
+        v.$\pi$ = u
+    
+    
+\end{lstlisting}
+
+In sostanza, se la distanza del vertice $v$ è maggiore della distanza di $u$ più il peso
+dell'arco che va da $u$ a $v$, allora sostituisci la distanza di $v$ con $u.d + w(u, v)$
+e imposta $u$ come padre di $v$
+
+\subsection{Algoritmo di Dijkstra}
+L'algoritmo di Dijkstra ritorna in output l'insieme S contenente tutti i cammini minimi per ogni nodo del grafo.
+In Dijkstra il rilassamento viene eseguito esattamente \emph{una volta per arco}.
+
+\paragraph{Attenzione}
+Dijkstra funziona solo se w $\geq$  0 $\forall$ w $\in$ W
+
+\paragraph{Pseudocodice} Algoritmo di Dijkstra
+
+\begin{lstlisting}
+DIJKSTRA(G, w, s)
+    INITIALIZE(G,s)
+    S = $\phi$
+    Q = G.V
+    While Q $\neq \phi$
+        u = extract-min(Q)
+        S = S $\cup$ ${u}$
+        for ogni vertice  $v \in Adj[u]$ 
+            RELAX(u, v, w)
+\end{lstlisting}
+
+	\paragraph{Spiegazione codice}
+	$Q$ è una coda che contiene tutti i vertici del grafo ed $S$ è l'insieme delle soluzioni.
+	Viene estratto il vertice con distanza minore dalla sorgente (al primo giro sarà sempre $s$ dato che è
+	a distanza 0) e viene aggiunto all'insieme delle soluzioni. Viene poi fatto il rilassamento per ogni vertice adiacente
+	a quello aggiunto alla soluzione, aggiornandone la stima della distanza dalla sorgente e il predecessore.
+	viene ripetuto per ogni nodo rimanente nella coda Q.
+
+	\paragraph{Greedy}
+	Dijkstra segue l'approccio Greedy, quindi sceglie sempre il vertice più "leggero" o "vicino" in $V \setminus  S$
+	da aggiungere all'insieme $S$. Vi è un'analogia con il criterio per l'ordinamento negli algoritmi Greedy
+
+	\paragraph{Tempo di esecuzione}
+	\begin{itemize}
+		\item $O(E + |V|*log|V|)$ Se utiliziamo lo Heap di Fibonacci per estrarre velocemente il nodo a distanza minore nella coda
+		\item $O(|V|^2)$ Altrimenti (implementazione naive)
+	\end{itemize}
+
+	\subsection{Algoritmo di Bellman-Ford}
+
+	\paragraph{Attenzione}
+	Bellman-Ford funziona anche se i pesi degli archi sono negativi
+
+
+	\paragraph{Funzionamento}
+	Bellman-Ford ritorna in Output un valore booleano che indica se esiste oppure no un ciclo di peso
+	negativo che è raggiungibile dalla sorgente. Se tale ciclo non esiste, l'algoritmo fornisce i cammini minimi
+	e i loro pesi. L'algoritmo restituisce true se e solo se il grafo non contiene cicli di peso negativo che sono
+	raggiungibili dalla sorgente.\\
+	In Bellman-Ford il rilassamento viene eseguito $|V|-1$ volte per arco indipendentemente dalla morfologia del grafo.
+	Bellman-Ford NON segue un approccio Greedy.
+
+	\paragraph{Pseudocodice} algoritmo di Bellman-Ford
+	\begin{lstlisting}
+BELLMAN-FORD(G, w, s)
+    INITIALIZE(G, s)
+    for i = 1 to |V|-1
+        for ogni (u,v) $\in$ E
+            RELAX(u, v, w)
+    for ogni (u,v) $\in$ E
+        if v.d > u.d + w(u, v)
+            return FALSE
+    RETURN TRUE
+\end{lstlisting}
+
+	\paragraph{Spiegazione codice}
+	Dopo aver inizializzato il grafo, Bellman-Ford procede rilassando ogni arco $|V|-1$ volte,
+	Se il grafo ha N nodi è certo che dopo N-1 giri tutti i nodi hanno a loro assegnato il costo minimo per essere raggiunti dal nodo sorgente.
+	L'ultimo ciclo controlla se ci sono cicli di peso negativo, in tal caso ritorna FALSE
+
+	\paragraph{Tempo di esecuzione}
+	\begin{center}
+		$O(|V|*|E|)$
+	\end{center}
+
+	\section{Strutture dati per insiemi disgiunti}
+	Alcune applicazioni richiedono di raggruppare $n$ elementi distinti in una collezione di insiemi disgiunti.
+	Queste applicazioni spesso richiedono l'esecuzione di due particolari operazioni: trovare l'unico insieme che contiene un determinato elemento e unire due insiemi.
+
+	\paragraph{Definizione}
+	Una struttura dati per insiemi disgiunti serve a \emph{mantenere una collezione $S = \{S_1,S_2,...,S_k\}$ di insiemi disgiunti}.
+	Ogni insieme $S_i$ è individuato da un rappresentante, che è un elemento dell'insieme.
+
+	\paragraph{Operazioni}
+	Ogni elemento di un insieme è rappresentato da un oggetto.
+	Quindi, indicando con $x$ un oggetto, supportiamo le segenti operazioni:
+	\begin{itemize}
+		\item \textbf{Make-set(x)}, che crea un nuovo insieme (e lo aggiunge alla struttura dati) il cui unico elemento e rappresentante è $x$, che non può trovarsi in un altro insieme.
+		\item \textbf{Union(x,y)} unisce gli insiemi dinamici che contengono $x$ e $y$ in un unico insieme.
+		\item \textbf{Find-set(x)} restituisce un puntatore al rappresentenate dell'insieme (unico) che contiene $x$.
+	\end{itemize}
+	\subsection*{Applicazioni delle strutture dati per insiemi disgiunti}
+
+	\section{Alberi di Copertura Minimi}
+	\paragraph*{Alberi di Copertura}
+	Sia $G=(V,E)$ un grafo non orientato e connesso.
+	Si definisce albero ricoprente di G un sottografo $T\subseteq G$ Tale che:
+	\begin{itemize}
+		\item $T$ è un albero;
+		\item $T$ contiene tutti i vertici di $G$
+	\end{itemize}
+	\subparagraph*{Ovvero} Un albero di copertura di un grafo è un albero con gli stessi vertici di $G$, quindi rimane 
+	la possibilità di avere un cammino che porta da ogni nodo a ogni nodo ma vengono tolti gli archi "ridondanti".
+
+	\paragraph*{Peso di un albero di copertura} Se $G$ è pesato, il peso del suo albero di copertura è dato
+	dalla somma dei costi degli archi contenuti nell'albero.
+	\\Un albero di copertura minimo è un albero di copertura il cui peso totale è il minimo

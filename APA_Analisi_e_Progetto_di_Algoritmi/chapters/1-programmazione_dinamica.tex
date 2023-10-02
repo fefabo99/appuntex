@@ -1,0 +1,370 @@
+\chapter{Programmazione Dinamica}
+\section{Introduzione}
+\paragraph{La programmazione dinamica} è una tecnica di programmazione che viene utilizzata per risolvere problemi più velocemente rispetto ad una soluzione ricorsiva a discapito di un maggiore consumo di memoria.
+\\Viene tipicamente applicata a \emph{problemi di ottimizzazione}. Questi problemi ammettono (in genere) molte soluzioni possibili, ciascuna con un valore, di cui ci interessa trovare quella con il valore ottimo (massimo o minimo) che chiameremo \emph{soluzione ottimale}.
+
+\paragraph{Approccio generale}
+La programmazione dinamica risolve un problema combinando le soluzioni dei suoi sottoproblemi.\\
+l'approccio generale si può riassumere in 4 passi:
+\begin{enumerate}
+	\item Caratterizzare la struttura di una soluzione ottimale.
+	\item Definire ricorsivamente il valore di una soluzione ottimale (e quindi di tutte).
+	\item Calcolare il valore delle soluzinoi ottimali, tipicamente in maniera bottom-up,
+	      memorizzando i loro valori in tabelle.
+	\item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
+\end{enumerate}
+
+\paragraph{Proprietà necessarie} per applicare la porgrammazione dinamica in modo utile ed efficiente:
+\begin{enumerate}
+	\item \textbf{Sottostruttura ottima} :Una soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi
+	\item \textbf{Sovrapposizione dei sottoproblemi}: L'insieme dei sottoproblemi distinti ha cardinalità di molto inferiore all'insieme delle soluzioni possibili da cui vogliamo seleziona quella ottima. Quindi un problema deve apparire molte volte come sottoproblema di altri problemi
+\end{enumerate}
+
+\paragraph{DP vs D-et-I}
+Come il metodo divide-et-impera, la programmazione dinamica risolve un problema combinando le soluzioni dei suoi sottoproblemi.\\
+La programmazione dinamica è utile quando i sottoproblemi si sovrappongono, ovvero \emph{diversi sottoproblemi contengono gli stessi sottoproblemi}\\
+D-et-I risolverebbe inutilmente i sottoproblemi ogni volta, mentre un algoritmo di programmazione dinamica risolve ogni sottoproblema una sola volta e ne memorizza la soluzione in una tabella, in modo da evitare di dover ripetere ogni volta il calcolo della soluzione di un sottoproblema già risolto.
+\subparagraph{Esempio: Fibonacci}
+Calcolando il numero di Fibonacci, se utilizziamo la tecnica D-et-I l'albero delle chiamate ricorsive \emph{esplode}.
+Se invece utilizzando la programmazione dinamica memorizziamo i valori già calcolati possiamo evitare di ripetere inutilmente calcoli già risolti.
+
+\section{Weighted Interval Scheduling}
+\paragraph{Introduzione}Il problema dello scheduling di attività riguarda la gestione di un insime di attività caratterizzate da un tempo di inizio, un tempo di fine e un valore.
+L'obiettivo è quello di determinare un insieme di attività mutualmente compatibili il cui valore totale è massimo.
+
+Un insieme di attività si dice\emph{ mutualmente compatibili} se per ogni attività di tale insieme, nessun'altra attività dell'insieme si sovrappone a questa.
+
+
+\paragraph{Pseudocodice}
+$p(i)$ è il più grande indice i > j tale che l'intervallo di indice i non si sovrappone all'intervallo di indice j.
+\begin{lstlisting}
+WIS
+	M[0] = 0
+	for i = 1 to n
+		M[i] = max(v$_i$ + M[p(i)], M[i-1])
+\end{lstlisting}
+In pratica, essendo OPT la soluzione ottimale, il valore di M[i] è:
+\begin{itemize}
+	\item $v_i$ = $M[p(i)]$ se $i \in OPT$
+	\item $M[i-1]$ se $i \notin OPT$
+\end{itemize}
+
+\section{Knapsack Problem 0/1}
+\paragraph{il problema} Ci sono n oggetti ai quali sono associati un peso e un valore. Ho uno zaino di capictà in peso C. L'obiettivo è prendere k oggetti tali per cui il valore sia massimo senza superare la capacità dello zaino.\\
+Questo tipo di problema si chiama \emph{0/1} perchè un oggetto \emph{O lo prendo tutto o non lo prendo proprio}. Si utilizza questa terminologia per differenziare lo 0/1 dal Knapsack Frazionario che vedremo in seguito.
+\paragraph{Input} $I = \{e_1,...,e_n\} \forall  i, e_i$ ha associati due valori: $v_i$ (valore) e $w_i$ (peso). W = Peso totale dello zaino.
+\paragraph{Output} Trovare un sottoinsieme $ S \subset I $ di elementi $S = \{e_{j,1}, ..., e_{j,k}\} , 1 \leq j_l \leq n$ tc. soddisfa 2 vincoli:
+\begin{itemize}
+	\item max$(\Sigma_{e_i \in S}V_i)$ ;
+	\item $\Sigma_{e_i \in S} W_i \leq W$.
+\end{itemize}
+
+\paragraph{Sottostruttura ottima}
+La sottostruttura ottima del problema non è molto straight-forward. facciamo un esempio:
+\subparagraph*{}Se abbiamo un problema (che non necessariamente ci interessa definire) la cui soluzione S è $\{e_2,e_3,e_4\}$.\\
+Se eliminiamo l'elemento $e_i$, S è comunque la soluzione ottimale dell'input I (senza considerare $e_i$)? No, perche se nell'input esisteva un altro elemento con lo stesso peso e valore di $e_i$ che non era stato considerato per mancanza di spazio, allora la solzione ottimale è diversa.
+\\Bisogna quindi aggiungere il vincolo che gli elementi sono ordinati e la soluzione è espressa in funzione dell'ordine degli elementi
+
+\section{LCS}
+LCS, o Longest Common Susbequence è un problema di programmazione dinamica in cui si richiede di trovare la più grande sottosequenza comune a due sottosequenze.
+
+\paragraph{Definizione del problema}
+Date due sequenze $X$ e $Y$, trovare \emph{la più lunga sottosequenza comune di caratteri} (non necessariamente consecutivi).\\
+Una sottosequenza di una data sequenza è la sequenza stessa alla quale sono stati tolti zero o più elementi.
+Una sottosequenza comune di due sequenze è una sottosequenza di entrambe.
+\\Il problema della LCS può essere risolto in modo efficiente applicando la programmazione dinamica.
+
+\subsection*{Sottostruttura ottima di una LCS}
+LCS gode della proprietà della sottostruttura ottima, infatti:
+\\Data una sequenza $X=\{x_1,x_2,...,x_m\}$ definiamo $X_i=\{x_1,x_2,...,x_i\}$ l'i-esimo prefisso di X per $i = 0,...,m$
+\paragraph{Teorema}
+Siano $X=\{x_1,x_2,...,x_m\}$ e $Y=\{y_1,y_2,...,y_n\}$ le sequenze; sia $Z=\{z_1,z_2,...,z_m\}$ una qualsiasi LCS di X e Y.
+\begin{enumerate}
+	\item Se $x_m = y_n$, allora $z_k = x_m =y_n$ e $Z_{k-1}$ è  una LCS di $X_{m-1}$ e $Y_{n-1}$
+	\item Se $x_m \neq y_n$, allora $z_k \neq x_m$ implica che Z è una LCS di $X_{m-1}$ e $Y$
+	\item Se $x_m \neq y_n$, allora $z_k \neq y_n$ implica che Z è una LCS di $X$ e $Y_{n-1}$
+\end{enumerate}
+La caratterizzazione di questo teorema dimostra che una LCS di due sequenze contiene al suo interno una LCS di prefissi delle due sequenze.
+Quindi il problema della più lunga sottosequenza comune gode della proprietà della sottostruttura ottima
+
+\spiegazione{
+	Se sappiamo che \emph{Z è una (qualsiasi) LCS di X e Y}, allora se ne deduce che:
+	\\(1) Se gli ultimi elementi di X e Y sono uguali, allora è anche l'ultimo elemento di Z. Inoltre implica che $Z_{k-1}$, quindi Z se togliamo il suo ultimo elemento, è una LCS di X e Y a cui sono stati tolti l'ultimo elemento ciascuno.
+	\\Se gli ultimi elementi di X e Y NON sono uguali invece, qui ci sono due opzioni: (2) o l'ultimo elemento di Z è uguale all'ultimo elemento di Y, in tal caso Z è una lcs di Y e X senza l'ultimo elemento, oppure (3) viceversa
+}
+\paragraph{La soluzione ricorsiva}
+Definiamo $c[i,j]$ come la lunghezza di una LCS delle sequenze $X_i$ e $Y_j$
+\begin{equation*}
+	c[i,j] = \begin{cases}
+		0                       & \text{se $i = 0$ o $j = 0$} \\
+		c[i-1,j-1] + 1          & \text{se $x_i = y_j$}       \\
+		max(c[i,j-1], c[i-1,j]) & \text{se $x_i \neq y_j$}
+	\end{cases}
+\end{equation*}
+
+\paragraph{pseudocodice}
+\begin{lstlisting}
+def LCS-LENGHT(X,Y):
+	m = X.lenght
+	n = Y.lenght
+	b[1..m,1..n] e c[0..m,0..m] -> nuove tabelle
+	for i = 1 to m
+		c[i,0] = 0
+	for j= 0 to n
+		c[0,j] = 0
+	for i = 1 to m
+		for j = 1 to n
+			if $x_i$ == $y_i$
+				c[i,j] = c[i-1,j-1] + 1  
+				b[i,j] = $\nwarrow $
+			elif c[i - 1,j] $\geq$ c[i,j-1]
+				c[i,j] = c[i-1,j]  
+				b[i,j] = $\uparrow $
+			else
+				c[i,j] = c[i,j-1]  
+				b[i,j] = $\leftarrow $
+	return c e b
+\end{lstlisting}
+
+
+
+\subsection*{Esercizio: LCS $\geq L$}
+
+\paragraph*{Istanza} Date due sequenze:\\
+$X = <x_1,...,x_m>$ di lunghezza $m$\\
+$Y = <y_1,...,y_n>$ di lunghezza $n$\\
+e dato un $L \geq 0$ stabilire se \emph{La lunghezza di una qualunque LCS di $X$ e $Y$ è $\geq L$}.
+\\Quindi TRUE sse $\exists$ una LCS(X,Y) di lunghezza $geq L$
+
+\paragraph*{Istanza di un qualunque sottoproblema}
+\begin{itemize}
+	\item[] $X_i$ (con $0 \leq i \leq m$)
+	\item[] $Y_j$ (con $0 \leq j \leq n$)
+	\item[] $l$ (con $0 \leq l \leq L$)
+\end{itemize}
+Quindi ogni sottoproblema è individuato da una n-pla (i, j, l) con $0 \leq i \leq m$, $0 \leq j \leq n$, $0 \leq l \leq L$.
+La soluzione di ogni sottoproblema sarà un valore \emph{True/False} a se cibda cge esusta i nebi yba LCS di $X_i$ e $Y_j$ di lunghezza $geq l$.
+Pertanto introduciamo una variabile per ogni sottoproblema destinata a contenerne la soluzione.
+\paragraph*{Definizione delle Variabiili}
+$\forall i\in \{0,...,m\}, \forall j\in\{0,...n\}, \forall l\in \{0...,L\}$
+$C_{ijl}$ è definita come soluzione del sottoproblema (i,j,l), ossia vale True sse la lunghezza di una qualunque LCS di $X_i$ e $Y_j$ è $\geq l$.
+Per ogni i,j,l come sopra dobbiamo ora calcoalre il valore di $c_{ijl}$.
+\paragraph*{Caso Base}
+\begin{equation}
+	c_{ijl} = \begin{cases}
+		\text{True}  & \text{se $l = 0$}                     \\
+		\text{False} & \text{se $l>0 \wedge (i<l \vee j<l)$}
+	\end{cases}
+\end{equation}
+\spiegazione{
+	Se $l=0$ c.. è truè perchè ovviamente qualunque LCS è maggiore o uguale a 0.\\
+	Se invece $l>0$, ma una delle due stringhe è minore di $l$ allora automaticamente non può esistere una LCS più lunga di $l$
+}
+\paragraph*{Passo Ricorsivo}
+Comprende tute le tuple (i,j,l) con $l>0 \wedge i\geq l \wedge j \geq l$
+\begin{itemize}
+	\item[Caso 1] sse $x_i = y_j$\\ $c_{ijl} = c_{i-1,j-1,l-1}$ %Non c'è il +1 perchè è True/False pirla%
+	\item[Casi 2] se  $x_i \neq y_j$,
+		\begin{itemize}
+			\item[2a] LCS($X_i,Y_j$) termina con $z_k \neq x_i$ \\ $c_{i-1,j,l}$
+			\item[2b] LCS($X_i,Y_j$) termina con $z_k \neq y_j$ \\ $c_{i,j-1,l}$
+		\end{itemize}
+\end{itemize}
+Risolvendo $\exists$ una LCS($X_i,Y_j$) di lunghezza $\geq l$ sse ciò si verifica in almeno uno dei due casi, per cui:
+$c_{ijl} = c_{i-1,j,l} \vee c_{i,j-1,l}$.
+Riassumendo, il passo ricorsivo è:
+Dati $l>0 \wedge i\geq l \wedge j \geq l$
+\begin{equation}
+	C_{ijl} = \begin{cases}
+		C_{i-1,j-1,l-1}              & x_i = y_j    \\
+		C_{i-1,j,l} \vee C_{i,j-1,l} & x_i \neq y_j
+	\end{cases}
+\end{equation}
+
+\spiegazione{
+	Siccome si tratta di programmazione dinamica, e siccome tutti i valori che abbiamo calcolato vengono salvati in una matrice (C)
+	prendo il valore di quella matrice, già inizializzata con il caso base, che più si "addice al caso"}
+
+\paragraph*{Soluzione}
+Con istanza X,Y,L la soluzione del problema è il valore di $c_{m,n,L}$
+
+\paragraph*{Pseudocodice} LCS $\geq$ L
+\begin{lstlisting}[style=small]
+def LCS-MAGGIORE-L(X,Y,L)
+	m = lenght[X]
+	n = lenght[Y]
+	for i=0 to m
+		for j=0 to n
+			c$_{i,j,0}$ = True
+	for l=1 to L
+		for i=0 to m
+			for j=0 to n
+				if i < l $\vee$ j < l
+					c$_{i,j,l}$ = False
+				elif x$_i$ = y$_j$
+					c$_{i,j,l}$ = c$_{i-1,j-1,l-1}$
+				elif x$_i$ \neq y$_j$
+					c$_{i,j,l}$ = c$_{i-1,j,l}$ $\vee$ c$_{i,j-1,l}$
+	return c$_{m,n,L}$
+\end{lstlisting}
+
+\section{LIS}
+LIS, o Longest Increasing Subsequence è un algoritmo che calcola la lunghezza della più lunga sottosequenza crescente di una determinata sequenza.
+A differenza di LCS, LIS viene calcolata su una sola sequenza, in questo caso una sottosequenza è un qualunque sequenza di caratteri che fanno parte della nostra sequenza.
+
+\paragraph*{Definizione del Problema}
+Data una sequenza $X$ di $n$ caratteri, si vuole trovare la lunghezza della più lunga sottosequenza di caratteri \emph{strettamente crescenti} (in ordine lessicografico).
+\\\textbf{Istanza:} $X=<x_1,...,x_n>$, \textbf{Soluzione:} La più lunga sotto sequenza di $X$ strettamente crescente.
+
+
+\subsection*{Sottoproblema} Il sottoproblema di taglia $i$ è la più lunga sottosequenza strettamente crescente che termini con l'\emph{i-esimo} carattere di $X$.
+\\Nel caso di $i=1$, la soluzione è ovviamente $1$, siccome ogni sottosequenza di dimensione 1 è strettamente crescente (e decrescente).
+Mentre per i sottoproblemi di taglia maggiore di 1, ipotizzando di aver già risolto i sottoproblemi più piccoli ci basta vedere quale sia la massima lunghezza di una LIS compatibile con li carattere $x_i$ (ovvero che sia abbia l'ultimo carattere minore di $x_i$)
+e aggiungerci 1.
+
+\paragraph{Definizione delle variabili}
+Definiaimo $S[i]$ come la soluzione al sottopbroblema di taglia $i$, ovvero come la lunghezza della 
+più lunga sottosequenza strettamente crescente che \emph{termini} con l'i-esimo carattere di $X$
+
+\subsection*{Equazioni di ricorrenza}
+\paragraph*{Caso Base} con $i=1$,
+ $$S[i]=\begin{cases}
+	 1
+ \end{cases}$$
+visto che è la lunghezza massima di una sottosequenza di dimensione 1.
+\paragraph*{Passo Ricorsivo} con $1<i\leq n$,
+$$
+S[i] = \begin{cases}
+	1+\text{max}\{S[j]\} | 0 \leq j < i | x_j < x_i
+\end{cases}
+$$
+Ovvero, la soluzione è la più grande tra le soluzioni precedenti in cui l'ultimo carattere è minore del carattere $i$ aumentata di uno.
+\subsection*{Soluzione}
+la soluzione di LIS è il max$\{S[i]| 0 < i \leq n\}$.
+\\A differenza di LCS, in LIS la soluzione non sarà mai allo stesso posto ma alla posizione del carattere in cui termina la sottosequenza più grande.
+\subsection*{Pseudocodice}
+\begin{lstlisting}
+	def LIS(X):
+		S[1] = 1
+		for i = 2 to n
+			max = 0
+			for j = 0 to i
+				if S[j] > max AND X[j] < X[i]
+					max = S[j]
+			S[i] = max + 1
+		return max(S) 
+
+\end{lstlisting}
+
+\subsection*{Tempo e Spazio}
+Il tempo dell'algoritmo è pari a $\Theta(n^2)$
+\\Lo spazio è pari a $\Theta(n)$
+
+\paragraph*{Per ricostruire la sequenza} potremmo ripercorrere l'array $S$ all'indietro controllando,
+ogni volta che troviamo un valore minore di quello analizzato se il carattere nella posizione di tale valore sia compatibile con quello nella posizione che stiamo analizzando.
+
+
+\section{LGCS / LICS} %Pagina 24 degli appunti pdf che ho preso da Elearning
+LGCS, o Longest Growing Common Subsequence (LICS - Longest Increasing Common Subsequence), è una variazione di LCS in cui si richiede
+di trovare la più lunga sottosequenza comune di caratteri \emph{strettamente crescenti} (in ordine alfabetico).
+
+\paragraph*{Definizione del Problema}
+Date due sequenze $X$ e $Y$, rispettivamente di $m$ ed $n$ caratteri, trovare \emph{la lunghezza della più lunga sottosequenza comune di caratteri strettamente crescenti}
+
+\subsection*{Sottoproblema}
+Il sottoproblema non prende in considerazione l'intero input, ma solo i prefissi di $X$ e $Y$ rispettivamente di dimensione $i$ e $j$.
+è così definito:
+\\Date due sequenze X e Y, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni al prefisso $X_i$ e $Y_j$.
+\\Ad ogni sottoproblema è associata una \textbf{variabile} $c_{i,j}$ così definita:
+\\$c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$
+\\Il problema così definito però non è risolvibile perchè \emph{manca dell'informazione}, bisogna quindi definire un problema ausiliario nel quale introdurre l'informazione mancante necessaria.
+
+\subsection*{Problema ausiliario}
+Il problema ausiliario, che ci serve a fornire le informazioni mancanti per risolvere il problema originale, è definito come segue:
+
+\paragraph*{Definizione di Problema Ausiliario}
+Date due sequenze X e Y, la soluzione è data dalla lunghezza della più lunga sottosequenza comune crescente \emph{che termini con $x_n =y_m$}.
+
+\spiegazione{
+	Viene aggiunto il vincolo che l'ultimo elemento della Soluzione sia l'ultimo elemento delle stringhe \emph{solo nel caso in cui coincidano}.
+	Se questi non coincidono, la soluzione è la sequenza vuota.
+	Questa richiesta, quando applicata ai sottoproblemi ci permetterà di sapere qual'è l'ultimo elemento di un sottoproblema.
+}
+
+\paragraph*{Sottoproblema} date due sequenze $X$ e $Y$ , rispettivamente di $m$ ed $n$ caratteri, si determini la lunghezza di una tra le più lunghe sottosequenze crescenti comuni
+a $X_i$ e a $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+\\ad ogni sottoproblema è associata la varaible $c_{i,j}$ così definita:
+\\ $c_{i,j}$ = lunghezza di una tra le più lunghe sottosequenze crescenti comuni a $X_i$ e $Y_j$ e che termina con $x_i$ e $y_j$ solo se questi coincidono.
+
+\spiegazione{
+	Si noti quindi che per un qualunque sottoproblema di dimensione $(s, t)$, solo imponendo che la soluzione $c_{s,t}$ si riferisca ad una sottosequenza crescente comune
+	a $X_s$ e $Y_t$ che termina con $x_s = y_t$ è possibile stabilire se un altro elemento $x_u = y_v$ con $u > s$ e $v > t$ possa essere accodato a tale sottosequenza (andando
+	a verificare che $x_s = y_t < x_u = y_v$).
+}
+
+\subsection*{Equazioni di ricorrenza}
+\paragraph*{Nota bene} %dopo spostare in teoria TODO
+un equazione di ricorrenza è composta da:
+\begin{itemize}
+	\item Un caso base che definisce i casi più semplici che possono essere subito risolti senza ricorrere alle soluzioni dei sottoproblemi più piccoli
+	\item Un passo ricorsivo che definisce come risolvere i casi più complessi a partire dalle soluzioni dei sottoproblemi più piccolo (che si assume essre già risolti)
+\end{itemize}
+
+\paragraph*{Caso Base}
+Fano parte del caso base:
+\begin{itemize}
+	\item tutte le coppie $(i,j)$ con $i = 0 \vee j= 0$
+	\item tutte le coppie $(i,j)$ tale che $x_i \neq y_j$.
+\end{itemize}
+Quindi: il caso base base si ha per quei sottoproblemi di dimensione $(i,j)$ con $i < 0 \vee j < 0 \vee x_i \neq y_j$.
+è scrivibile come:
+\begin{center}
+	$$c_{i,j} = 0$$
+	\\se $i=0 \vee j=0 \vee x_i \neq y_j$
+\end{center}
+\spiegazione{
+	Per la definizione del problema, noi sappiamo solamente che se $x_i$ e $y_j$ non coincidono, oppure una delle due stringe ($X$ o $Y$) è vuota, allora anche la soluzione per quel sottoproblema è vuota,
+	perchè non abbiamo sottosequenze comuni crescenti.
+}
+
+\paragraph*{Passo ricorsivo}
+Il passo ricorsivo lo si ha per un qualunque sottoproblema di dimensione $(i,j)$ tale che $x_i = y_j$, ossia quando i prefissi $X_i$ e $Y_j$ terminano con lo stesso elemento.
+\\In questo caso, la lunghezza della LGCS fra $X_i$ e $Y_j$ è uguale alla \emph{lunghezza della più lunga LGCS fra X e Y calcolata per un sottoproblema minore di dimensione (h,k)}
+che termina con \emph{un carattere minore di $x_i = y_j$ aumentata di uno}.
+Ovvero:
+
+\begin{center}
+	$$c_{i,j} = 1 + \text{max}\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$$
+	\\se $i>0\wedge j>0 \wedge x_i = y_j$
+\end{center}
+
+Dato che può accadere che l'insieme $\{c_{h,k} | 1 \leq h < i, 1 \leq k < j, x_h < x_i\}$ sia vuoto, assumiamo per definizione che max$\{\emptyset\} = 0$
+così che il cporrispondente valore di $c_{i,j}$ risulti uguale a 1.
+
+\paragraph*{Soluzione del problema}
+Una volta calcolati tutti i valori di $c$ fino a $c_{m,n}$ si hanno a disposizione tutte sottosequenze LGCS fra qualsiasi prefisso di $X$ e di $Y$.
+Quindi la soluzione del problema iniziale è:
+\begin{equation*}
+	max\{c_{i,j} | 1\leq i\leq m \wedge 1 \leq j \leq n \}
+\end{equation*}
+
+\paragraph*{Pseudocodice} di LGCS con implementazione Bottom-Up
+
+\begin{lstlisting}
+def LGCS(X,Y)
+	max = 0
+	for i = 1 to m
+		for j = 1 to n
+			if x$_i \neq$ y$_j$
+				c[i,j] = 0 #caso base
+			else
+				temp = 0
+				for h = 1 to i-1
+					for k=1 to j-1
+						if (x$_h <$ x$_i$) $\wedge$ (c[h,k] > temp)
+							temp = c[h,k]
+				c[i,j] = 1 + temp
+			if c[i,j] > max
+				max = c[i,j]
+	return max
+\end{lstlisting}

@@ -1,0 +1,34 @@
+\chapter{NP Completezza} %copiato diretto dagli appunti, va sistemato che non si capisce una sega TODO
+\section{Cenni Teorici}
+Lo studio della NP-Completezza inizia formalizzando il concetto dei problemi risolvibili in tempo polinomiale.
+In primo luogo, sebbene sia ragionevole considerare intrattabile un problema che richiede $\theta(n^{100})$, ci sono pochissimi problemi nella pratica che richiedono un tempo polinomiale così alto.
+Una volta che viene scoperto un algoritmo con un tempo polinomiale, spesso seguono altri alogritmi più efficienti.
+In secondo luogo, per molti modelli di calcolo, un problema che può essere risolto in tempo polinomiale in un modello può essere riolsto sempre in tempo polinomiale in un altro modello.
+In terzo luogo, la classe dei problemi risolvibili in tempo polinomiale ha delle interessanti proprietà in chiusura, in quanto i polinomi sono chiusi rispetto all'addizione, alla moltiplicazione e alla composizione.
+
+\paragraph*{Problema di decisione}
+Un problema di decisione è un problema tale per cui la risposta è \emph{si o no}.
+\paragraph*{Classe di complessità}
+Nella teroia della complessità computazionale, una classe di complessità è un insieme di problemi di una certa complessità.
+Un esempio tipico di definizione di classe di complessità a la forma:
+L'insieme di problemi che, se esistem la soluzione, possono essere risolti d una macchina astratta $M$ usando $O(f(n))$ della risorsa $R$, con $n$ dimensione dell'input
+\section{P}
+$P$ è una classe di complessità che rappresenta l'insieme di tutti i problemi di decisione che possono essere risolti in tempo polinomiale, ovvero quei problemi tali che dato un input, riescono a dare un output si o no in tempo polinomiale.
+I problemi P sono i problemi che possono essere risolti da una macchina di Turing deterministica in tempo polinomiale.
+\section{NP}
+NP è una classe di complessità che rappresenta l'insieme di tutti i problemi di decisione per i quali le istanze che danno si come risposta possono essere verificate in tempo polinomiale.
+Ovvero: se la Sibilla Cumana mi dice che, dato un input $x$, la risposta è si, posso verificare la correttezza dell'affermazione in tempo polinomiale.
+I problemi NP sono i problemi che possono essere risolti da una macchina di Turing non-deterministica in tempo polinomiale.
+\section{NP-Completo}
+NP-completo è una classe di complessità che rappresenta l'insieme di tutti i problemi $x\in NP$ tali che è possibile una riduzione da un qualsiasi altro problema $y \in NP$ a x in tempo polinomiale.
+Intuitivamente, possiamo risolvere $y$ velocemente se sappiamo risolvere $x$ velocemente.
+\section{NP-Hard}
+Un problema $x$ è NP-Hard se e solo se esiste un problema $y$ NP-completo tale che $y$ è riducibile a x in tempo polinomiale.
+Intuitivamente questi sono i problemi che sono almeno difficili quanto i problemi NP-completi.
+I problemi NP-hard non necessariamente sono in NP e non necessariamente sono problemi di decisione.
+I problemi NP-hard e NP sono i problemi NP-completi.
+Non tutti i problemi NP-hard sono NP-completi: affinchè un problema NP-hard $x$ sia NP-complete, x deve essere in NP.
+è importante notare che poichè un qualsiasi problema NP-completo può essere ridottoa a qualsiasi altro problema NP-completo in tempo polinomiale e tutti i problemi in NP sono riducibili in tempo polinomiale a problemi NP-completi.
+Tutti i problemi NP possono essere ridotti a un qualsiasi problema NP-hard in tempo polinomiale.
+La conseguenza di queste osservaizoni è che se esiste una soluzione in tempo polinomiale a un qualsiasi problema NP-hard, allora esiste una soluzione a tutti i problemi NP in tempo polinomiale!
+\end{document}
