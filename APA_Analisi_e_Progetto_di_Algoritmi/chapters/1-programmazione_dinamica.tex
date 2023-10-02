@@ -2,7 +2,9 @@
 \section{Introduzione}
 \paragraph{La programmazione dinamica} è una tecnica di programmazione che viene utilizzata per risolvere problemi più velocemente rispetto ad una soluzione ricorsiva a discapito di un maggiore consumo di memoria.
 \\Viene tipicamente applicata a \emph{problemi di ottimizzazione}. Questi problemi ammettono (in genere) molte soluzioni possibili, ciascuna con un valore, di cui ci interessa trovare quella con il valore ottimo (massimo o minimo) che chiameremo \emph{soluzione ottimale}.
-
+\subsection{Problemi di ottimizazione}
+Per ogni istanza del problema esiste un insieme di soluzioni possibili (feasible solutions).\\
+La funzione obiettivo che associa un valore ad ogni soluzione possibile.
 \paragraph{Approccio generale}
 La programmazione dinamica risolve un problema combinando le soluzioni dei suoi sottoproblemi.\\
 l'approccio generale si può riassumere in 4 passi:
@@ -14,7 +16,7 @@ l'approccio generale si può riassumere in 4 passi:
 	\item Costruire una soluzione ottimale usando le informazioni già calcolate e memorizzate.
 \end{enumerate}
 
-\paragraph{Proprietà necessarie} per applicare la porgrammazione dinamica in modo utile ed efficiente:
+\paragraph{Proprietà necessarie} per applicare la programmazione dinamica in modo utile ed efficiente:
 \begin{enumerate}
 	\item \textbf{Sottostruttura ottima} :Una soluzione ottima è esprimibile in termini di soluzioni ottime di sottoproblemi
 	\item \textbf{Sovrapposizione dei sottoproblemi}: L'insieme dei sottoproblemi distinti ha cardinalità di molto inferiore all'insieme delle soluzioni possibili da cui vogliamo seleziona quella ottima. Quindi un problema deve apparire molte volte come sottoproblema di altri problemi
@@ -26,7 +28,9 @@ La programmazione dinamica è utile quando i sottoproblemi si sovrappongono, ovv
 D-et-I risolverebbe inutilmente i sottoproblemi ogni volta, mentre un algoritmo di programmazione dinamica risolve ogni sottoproblema una sola volta e ne memorizza la soluzione in una tabella, in modo da evitare di dover ripetere ogni volta il calcolo della soluzione di un sottoproblema già risolto.
 \subparagraph{Esempio: Fibonacci}
 Calcolando il numero di Fibonacci, se utilizziamo la tecnica D-et-I l'albero delle chiamate ricorsive \emph{esplode}.
-Se invece utilizzando la programmazione dinamica memorizziamo i valori già calcolati possiamo evitare di ripetere inutilmente calcoli già risolti.
+Se invece utilizzando la programmazione dinamica memorizziamo i valori già calcolati possiamo evitare di ripetere inutilmente calcoli già risolti.\\
+DP risulta quindi molto vantaggiosa quando il numero delle chiamate
+ricorsive distinte è polinomiale.
 
 \section{Weighted Interval Scheduling}
 \paragraph{Introduzione}Il problema dello scheduling di attività riguarda la gestione di un insime di attività caratterizzate da un tempo di inizio, un tempo di fine e un valore.
