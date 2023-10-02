@@ -1,0 +1,53 @@
+\chapter{Introduzione alle reti}
+\section{Cos'è Internet?}
+Due prospettive:
+\begin{itemize}
+    \item Visione degli ingranaggi (dadi e bulloni), delle componenti della rete.
+    \item Visione della rete come un'infrastruttura che fornisce servizi.
+\end{itemize}
+Nell'immagine che schematizza, sui bordi della rete troviamo un grandissimo numero di devices (cell, laptops, \dots) che eseguono \textit{applicazioni di rete} che richiedono uno scambio di dati e che la rete si occupa di collegare. Alcuni nodi di questa applicazione eseguono parte di un'applicazione e altri nodi interconnessi eseguono altre parti di applicazioni (sistemi distribuiti).
+
+\section{Da cosa è composta la rete?}
+\subsection{Visione nuts and bolts}
+\begin{description}
+    \item[hosts], sono dispositivi \textit{end system} ovvero terminali.
+    \item[packet switches] o \textit{commutatori di pacchetto}, che sono \textit{routers} e \textit{switches}, dispositivi che si occupano di trasferire pacchetti (unità) di informazione.\\
+    I pacchetti sono unità in cui l'informazione viene scomposta ed etichettata per essere trasferita da un dispositivo all'altro.
+    \item[Communication links] o \textit{collegamenti di comunicazione}, sono i canali che collegano i nodi della rete. Li disegnamo come righe che uniscono i vari nodi. possiamo crearli usando diversi mezzi trasmissivi, filo di rame, onde radio, fibra ottica, \dots Ognuno di questi link è definito da una \textbf{banda}, la quantità di informazione che il link può trasferire in un secondo.
+    \item[Networks], Internet è una rete di reti, ovvero una rete di dispositivi che sono collegati tra loro e che a loro volta sono reti di dispositivi collegati tra loro. Quindi tutta la rete è una connessione globale di reti locali (es. la rete dell'ufficio, la rete domestica\dots)
+\end{description}
+\begin{center}
+    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti1.jpg}
+\end{center}
+Sempre più dispositivi oggi giorno si sono evoluti fino ad adattarsi all'uso di Internet, come ad esempio le auto, i frigoriferi, le lavatrici\dots 
+\begin{center}
+    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti2.jpg}
+\end{center}
+Quindi anche Internet deve evolversi e adattarsi per poter gestire un numero sempre maggiore di dispositivi con esigenze sempre più diverse.
+
+\subsubsection{Internet come rete di reti}
+Abbiamo detto che Internet è viibile appunto come una rete di reti, un \textit{insieme interconnesso} di \textbf{ISPs} (Internet Service Providers), le organizzazioni che gestiscono la rete. A volte ISPs viene usato anche come sinonimo della rete vera e propria.\\
+Gli ISPs comunicano fra loro tramite l'uso di \textbf{protocolli}. I protocolli nella rete sono ovunque, controllano il modo in cui i messaggi vengono inviati e ricevuti tra i dispositivi. Alcuni esempi sono HTTP (Web), streaming video, Skype, TCP, IP, WiFi, 4G, Ethernet\dots\\
+Questi protocolli si basano su \textbf{standards}.\\
+Un lavoro fondamentale a riguardo è svolto da \textbf{enti di standardizzazione} (il più famoso è IETF, \textit{Internet Engineering Task Force}) che stilano documenti (RFC, \textit{Request for Comments}) che spiegano come i protocolli devono essere implementati e come i dispositivi che implementano questi protocolli devono comportarsi.\\
+Gli standard sono fondamentali per la comunicazione univoca tra i dispositivi, senza di essi non ci sarebbe interoperabilità tra i dispositivi.
+
+\subsection{Visione dei servizi}
+Internet può essere visto come un'\textbf{infrastruttura} che fornisce \textbf{servizi} alle applicazioni distribuite.\\
+\`E una vista importante perché la rete sottostante è fondamentale per quando dobbiamo per esempio programmare delle applicazioni o dei servizi: da questo pov è molto importante il concetto di socket, un'interfaccia che ci permette di interfacciarci alla rete senza necessariamente sapere come la rete sotto funziona.
+
+\section{Protocolli}
+\subsubsection{Protocolli umani}
+I protocolli umani sono le regole che seguono gli esseri umani quando comunicano tra loro.\\
+Esempio: incontro una persona, scambio di convenevoli, poi chiedo: "Che ore sono?" e in base alla risposta ho delle reazioni diverse.\\
+Altro esempio: "Ho una domanda" durante una lezione, così che per non interrompere il professore, lui possa finire il suo discorso e poi rispondere alla domanda.\\
+Altro esempio: un giro di tavolo per fare le presentazioni, seguo delle convenzioni di discorso.
+\subsubsection{Protocolli di rete}
+Emulano il funzionamento dei protocolli umani.\\
+Tutte le comunicazioni di rete sono gestite da protocolli.
+\definizione{I protocolli di rete definiscono le regole per i messaggi inviati in rete. In particolare definiscono il formato dei messaggi, l'ordine in cui vengono inviati e ricevuti tra le entità di rete (host, commutatori, \dots) e le azioni da intraprendere una volta che questi messaggi vengono inviati e ricevuti.}
+% \\I protocolli di rete definiscono le regole per i messaggi inviati in rete. In particolare definiscono il formato dei messaggi, l'ordine in cui vengono inviati e ricevuti tra le entità di rete (host, commutatori,\, \dots) e le azioni da intraprendere una volta che questi messaggi vengono inviati e ricevuti.
+
+\subsection{Cos'è un protocollo?}
+
+

@@ -40,7 +40,7 @@ Tali funzionalità permettono ai programmi di poter usare in maniera conveniente
 
 \subsubsection{Componenti di un sistema di elaborazione}
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_sistema_di_elaborazione1.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione1.jpg}
 \end{center}
 Utenti: persone, macchine, altri computer\dots\\
 Programmi applicativi: risolvono i problemi di calcolo degli utenti.\\
@@ -77,10 +77,10 @@ In generale però un S.O. comprende almeno:
 \end{description}
 Alcuni sistemi operativi forniscono anche dei programmi applicativi (editor, word processor, fogli di calcolo…), ma non li considereremo parti del S.O. stesso.
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_sistema_di_elaborazione2.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione2.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_sistema_di_elaborazione3.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione3.jpg}
 \end{center}
 
 \section{Servizi dei sistemi operativi}
@@ -113,7 +113,7 @@ Il kernel offre i propri servizi ai programmi come chiamate di sistema, ossia di
 I programmi però non utilizzano direttamente le chiamate di sistema, ma delle librerie di middleware dette Application Program Interface (API) implementate invocando le chiamate di sistema.\\
 Questo perché le chiamate di sistema dipendono dal linguaggio mentre le API sono più standardizzate (es. le POSIX, tipicamente in C). Spesso le API sono fortemente legate con le librerie standard del linguaggio di implementazione (es. libc se le API sono implementate in C), al punto che anche queste diventano una parte implicita dell'API.
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_chiamatedisistema_API1.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API1.jpg}
 \end{center}
 
 \subsubsection{Differenza tra chiamate di sistema ed API}
@@ -125,12 +125,12 @@ Le API offrono funzionalità più ad alto livello e più semplici da usare, le c
 
 \subsubsection{Esempio confronto API Win32 e POSIX}
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_chiamatedisistema_API_es1.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API_es1.jpg}
 \end{center}
 
 \subsubsection{Esempio API POSIX}
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_chiamatedisistema_API_es2.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API_es2.jpg}
 \end{center}
 
 \section{I programmi di sistema}
@@ -158,7 +158,7 @@ Due modi per implementare un comando:
 \end{description}
 Spesso riconosce un vero e proprio linguaggio di programmazione con variabili, condizionali, cicli\dots
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_InterfacciaUtente_InterpreteComandi.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterpreteComandi.jpg}
 \end{center}
 
 \subsubsection{Interfaccia utente: le interfacce grafiche}
@@ -166,7 +166,7 @@ L'interfaccia grafica (GUI) è di solito basata sulla metafora della scrivania, 
 Nate dalla ricerca presso lo Xerox PARC lab negli anni 70, popolarizzate dal computer Apple Macintosh negli anni 80.\\
 Su Linux le più popolari sono Gnome e KDE.
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
 \end{center}
 
 \subsubsection{Interfaccia utente: le interfacce touch-screen}
@@ -176,7 +176,7 @@ Uso dei gesti (gestures)\\
 Tastiere virtuali\\
 Comandi vocali
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
 \end{center}
 
 \subsubsection{L'implementazione dei programmi di sistema}
@@ -190,5 +190,5 @@ Consideriamo ad esempio il comando cp delle shell dei sistemi operativi Unix-lik
 \`E implementato come programma di sistema.\\
 Una possibile struttura del codice è riportata sulla destra (le invocazione delle API sono riportate in grassetto).
 \begin{center}
-    \includegraphics[width=35mm]{images/SO/SO_InterfacciaUtente_ProgrammiDiSistema.jpg}
+    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_ProgrammiDiSistema.jpg}
 \end{center}
