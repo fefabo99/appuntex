@@ -1,0 +1,141 @@
+\chapter{Operatori puntuali}
+Con gli argomenti di oggi cominciamo la vera e propria elaborazione delle immagini.\\
+Questo venerdì altre due ore di lezione. La settimana prossima di venerdì si comincia con Laboratorio, molto utile per capire la teoria e dà punti extra se si consegnano le consegne.
+
+\section{Preprocessing delle immagini}
+Entra un'immagine, esce un'immagine. Es.: un'immagine negativa, o una a cui aumentiamo il contrasto\dots\\
+Distinzione fra \textbf{restoration} (il mio dispositivo elettronico crea rumore, ha un'ottica che distorce l'immagine, io cerco di migliorare l'immagine) e \textbf{enhancement} (operazione di basso livello che come prodotto finale dà una migliore visione dell'immagine e che opera su scelte di metodi e/o parametri, spesso "trial and error").\\
+Noi vedremo una serie di metodi con 1+ parametri che definiamo (perché sappiamo come opera l'operatore sull'immagine).
+
+\subsection{Operatori sulle immagini}
+Per operare sulle immagini parliamo di \textbf{operatori}.
+\begin{description}
+    \item[o. puntuali] operano solamente su pixel 
+    \item[o. locali] opera su quello che chiamiamo "intorno", il valore di ogni pixel è correlato al valore di quelli circostanti\\
+    L'intorno del pixel è spesso chiamato finestra o filtro: $g(x, y) = T[f(x, y)]$\\
+    \item[o. ?] 
+\end{description}
+% slide divisa in 4, poi slide figura 3.1 sull'intorno
+
+\subsection{Elaborazioni puntuali}
+Il risultato di un'e.p. \textit{omogenea} dipende olo dal valore dei pixel ed è per tutti uguale.
+Es.: elenco sulla slide
+
+\subsection{E. locali}
+$T$ è un o. definito su un intorno di (x, y), roba che ha cambiato slide\\
+La trasformazione $T$ è definita solo nel punto (x, y), nella slide espressa graficamente. Cosa farà questa trasformazione?\\
+% Non ho capito nienteeeeeeee dei due grafici.
+$g(x, y) = T[f(x, y)] \rightarrow s = T(r)$ 
+Possiamo scrivere ciò per gli o.p.
+% slide fig. 3.2 
+Chiedi a Fabio. Nei valori intermedi maggiore informazione. Taglia le ombre, taglia le alte luci, stretcha i valori intermedi, ne dà il massimo possibile. Tipica delle macchine fotografiche. Ma abbiamo detto che la scala di grigio è relativa. Es.: quando definiamo le magliette dei vari tizi che seguono la lezione sono una in funzione dell'altra.\\
+Ha mostrato una slide con 4 diverse immagini con 4 diverse scale di grigio, e 4 diversi istogrammi.\\
+Mostra un'altra slide con 2 gruppi di 4 immagini con relativo istogramma di I/O. A noi appaiono diverse perché sono in funzione di ciò che c'è intorno. Per avere quello che appare, non devo necessariamente avere gli stessi valori.\\
+
+L'immagine dei due grafici ha un grafico a destra che crea immagini binarie, rende tutti i colori bianchi o neri, rendendo tutti i colori prima di m neri e quelli dopo m bianchi, quindi 2 canali.\\
+
+Grafico fig. 3.3: esempio di domande a barriera. Es.: quanto vale L-1? 1, ma perché? Il logaritmo ha dominio [0, 1], la potenza pure ci dice che vale 1. Questo ci dice che il grafico parla di una trasformazione tra 0 e 1. Ma quindi è un0'immagine digitale? Non c'è modo che immagini  digitali stiamo fra 0 e 1, hanno valori discreti (Fabio?).\\
+Quasi tutte le immagini digitali stanno su scale di grigio.\\
+$L - 1$ è la notazione di Gonzales\\
+Grafico colorato: soluzione.
+
+\subsection{Istogrammi}
+Strumento importante. Forniscono importanti informazioni sulle scale di grigio.\\
+Somma dei bin = dimensione dell'immagine.\\
+Se divido l'oistogramma per l'area dell'immagine (etensione della curva). Cosa rappresenterà ogni bin? La stima della probabilità di avere quel valore nella mia immagine.\\
+Due immagini possono avere lo stesso istogramma anche se hanno dimensioni diverse (proporzioni uguali), es. sono in scala.\\
+Per questo anche è utile la normalizzazione ttra [0, 1], ci riconduciamo sempre ad un caso unico.\\
+Slide successiva: 4 immagini geometriche, poi 5 immagini diverse con 3 canali (azzurro bianco e verde). Le 4 geometriche hanno tutte lo stesso istogramma, quelle 5 sotto pure, perché tengo conto solo dei colori e non della loro distribuzione.
+\descrizione{L'istogramma dà una descrizione parziale della distribuzione dei livelli di grigio (o di colori) in un'immagine.}
+Mostra slide con un'immagine geometrica e un istogramma. Corrisponde? Abbastanza, ho due picchi uno più accentuato per il colore di sfondo e del buco, uno più limitato per il quadrato. è sfrangiata perché c'è rumore.\\
+
+\subsection{Contrasto e luminosità locale}
+Riprende il concetto di integrale come valore dell'area sottesa dalla curva in esame.
+
+\subsubsection{Luminosità}
+Luminosità media di un'immagine: $$I_(av) = \frac{}{}$$
+Il numeratore mi dà la somma di tutti i livelli di grigio.\\
+L'integrale a denominatore è l'area dell'immagine complessiva.\\
+La frazione mi dà la media dei livelli di grigio.
+% slide delle banconote
+
+\subsubsection{Contrasto}
+Definibile come la differenza fra il valore massimo e minimo di un'immagine. 
+$$C = \frac{I_p - I_n}{I_n}$$
+Di solito si dice che un'immagine è ben contrastata se sfrutta l'intero range di possibili valori. Nella slide dove dice ciò ci sono tre banconote: quale è quella meglio contrastata? Quella al centro perché usa tutti i livelli di grigio.\\
+Nelle tre immagini di Einstein cerchiamo di capire come possa essere l'istogramma: nella prima avrà un range di valori decisamente più compatto delle altre due, avendo un range di scala di grigi più ridotto. Man mano che aumento il contrasto, avrò un istogramma più ampio.
+
+\subsubsection{Contrasto e luminosità sullo sfondo}
+Lo sfondo cambia tanto: influisce su Fabio? 
+
+\section{Operatori puntuali lineari} 
+Se facciamo una trasformazione, può capitare che alcune cose vadano fuori dal range. C'è un'op. detta di clipping, arrivi al valore massimo e poi ti fermi. Spesso il clipping non è reversibile. Es. ho un'immagine in scala di grigi, i grigi più chiari una volta raggiunto il massimo che è valore di bianco perfetto poi sono persi, perché si uniformano al bianco che c'era già e a riabbassare i livelli tutto il mio nuovo bianco torna grigino.
+% slide con clipping e banconote
+% slide con clipping e banconote e diagramma
+P è un valore moltiplicativo, nel secondo diagramma moltiplicandolo agli estremi dell'intervallo $[A, B]$ ottengo un nuovo intervallo che viene traslato verso destra. Per ottenere anche i valori a sinistra devo togliere a tutta $L$ i valori di $PA$.\\
+Slide con radiografia luminosa e nera, in quella nera si vedono meglio i dettagli. Per questo è utile.\\
+Slide con tre immagini, poco contrastate, scure \dots Si vede dall'istogramma. Quella molto scura e poco contrastata ha un istogramma tendente verso gli scuri quindi a sinistra. Quella al centro ha un istogramma 
+
+Slide fig.3.8: l'istogramma c è decisamente della terza immagine perché ha meno livelli di grigio, la 1 e la 2 immagine facciamo molta fatica a distinguerle.\\
+Slide fig.3.7: gli istogrammi corrispondono alle immagini, più contrasto più ampio l'istogramma.\\
+Slide fig.3.11: ho due immagini, una molto nitida e una compressa con JPEG e quindi corrotta/rovinata/con rumore: l'istogramma della prima sarà molto ristretto, il secondo è più ricco ma perché JPEG ha rovinato l'immagine.\\
+Due slide con immagini di una ragazza e relativo istogramma: l'immagine originale (1a immagine 1a slide) e quella a occhio indistinguibile avranno due istogrammi molto diversi, Fabio sa perché.\\
+
+\section{}
+\subsection{Es. di istogramma}
+Ho un'immagine (es. fig.3.24) decisamente sottoesposta. Come faccio a dirlo all'algoritmo che dovrebbe aggiustarla da solo?\\
+Tornano utili concetti di statistica. La deviazione standard ci aiuta a capire quanto è "sparsa" la distribuzione dei valori di luminosità e contrasto. Queste cose sono descritte da \textbf{features}. Algoritmo tipo: if "media < o > di" fai cose, elif "varianza < o > di qualcos'altro" fai altro.
+
+\subsection{Proprietà degli istogrammi}
+I valori degli istogrammi sono i valori dei pixel. Se ho un'immagine troppo scura, gli dico "porta i valori scuri a" etc.
+
+\subsection{Concetto di stretch}
+Fig.4.4\\
+Due slide, una gialla e rosa, una con formule.\\
+Operativamente, sposto il minimo ($P_(in) - G_(min)$), assegno il massimo, normalizzo i miei valori.\\
+Altra slide, fig.4.6: taglio le code perché tipicamente sono rumore. Sotto c'è un esempio di eq. di 1 grado, non è sapere a memoria ma almeno capirla. Dobbiamo sviluppare la capacità di vedere un'equazione e capire cosa fa.
+\definizione{Lo stretching è una trasformazione lineare che espande in modo uniforme la dinamica originale dell'immagine, producendo un effetto globale di miglioramento del contrasto.}
+
+\section{Operatori puntuali non lineari}
+\subsection{Logaritmico}
+Parliamo di scaling logaritmico: $$s =c\log(1 + r)$$
+Due slide, la seconda è fig.3.5.\\
+Prima di discretizzarla applico il logaritmo, così da poter 
+% slide con esempi di applicazione di logaritmo
+Il primo esempio migliora la leggibilità dell'immagine (es. si vedono meglio le trame dei tessuti). Nel secondo caso migliora la leggibilità dell'immagine ma aumenta anche la visibilità del rumore.\\
+Nell'esempio del ciclone invece si vede che il logaritmo non è una buona soluzione. Questo perché ho sbagliato la trasformazione.
+
+\subsection{Gamma}
+La gamma correction verrà usato molto di più.\\
+Fig.3.6: due slide, la seconda dice r>1 e r<1, scrive quello che ha detto a parole.\\
+Fig.3.8: la colonna vertebrale fratturata. La 1 è troppo scura, la 2 ancora un po' troppo scura, la 4 ha uno schiacciamento delle luci alte che fa perdere dettagli.\\
+Fig.3.9: immagine aerea.\\
+Slide con tizio e immagine di automobile: domanda di sbarramento. Che gamma abbiamo applicato?\\
+Sopra gli scuri vengono espansi e i chiari compressi --> gamma < 1.\\
+Sotto gli scuri vengono compressi e i chiari espansi --> gamma > 1.\\
+Slide con 2 tizi: per entrambi gli incarnati sono più scuri, si espandono gli scuri(?) e quindi gamma < 1.\\
+Due grafici con immagine più chiara e più scura. Noi stiamo incrementando gli operatori puntuali. Non ho capito la frase.
+\subsubsection{Gamma correction}
+C'è in moltissimi dispositivi, tipo nella nostra macchina fotografica viene applicata prima della visualizzazione.\\
+Ocio: per un corretto processing andrebbe tolta la gamma correction.\\
+Fg.3.7: immagine di una retina umana.\\
+I dispositivi classici hanno delle gamme (fig.4.20) diverse in base alle condizioni di visualizzazione.
+
+\section{Modifiche del contrasto}
+3 slides.\\
+Slide 3 grafici, sono in grado di trovare il valore di $K$? Sì.\\
+Servono tanti termini noti quante sono le equazioni.\\
+3 grafici, l'istogramma verrà modificato con una polarizzazione: scuri abbattuti, quindi schiacciati verso la sinistra, chiari ?, quindi schiacciati verso destra.\\
+Slide con 8 trasformazioni.
+
+\section{LUT - look-up table}
+Definizione slide con la tabella IN-OUT.\\
+Utile per es per definire la temperatura, su una scala di colori: associo ad ogni livello di grigio una tripletta di valori di colori. è lo stesso modo con cui vengono create le gif, tramite una look-up table.\\
+è facile cambaire i colori e creare animazioni: basta mostrare un colore, rendere tutto nero, l'istante successivo rifarlo senza scannerizzare di nuovo l'immagine.
+
+\section{Trasformazioni puntuali basate sull'istogramma}
+Definizione: slide
+
+
+
+
