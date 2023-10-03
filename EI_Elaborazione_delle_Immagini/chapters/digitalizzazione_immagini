@@ -2,8 +2,8 @@
 Slide delle fasi dei Digital Image Fundamentals, siamo nella prima, digital world.\\
 Immagini binarie, $x \in [0,\,1]$, appartiene ad una classe o all'altra.\\
 Abstract? Immagini scala di grigio, la trasformo in array. chiedo a fabio\\
-l(x,y)\in(a,b)\\
-la digitalizzazione di immagini a colori è più complessa, la rappresento con 3 valori, una per ogni canale.\\
+$l(x,y)\in(a,b)$
+\\la digitalizzazione di immagini a colori è più complessa, la rappresento con 3 valori, una per ogni canale.\\
 I canali non sono colori, sono visualizzati a livello di grigio (0-255) e in fase di visualizzazione esce il clore.
 
 Altri tipi di immagini, satellitari ad es., che sono a 7 bande. Perché 7? La visione umana è a 3 bande, quindi 3 canali.\\
