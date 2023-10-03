@@ -16,11 +16,11 @@ Nell'immagine che schematizza, sui bordi della rete troviamo un grandissimo nume
     \item[Networks], Internet è una rete di reti, ovvero una rete di dispositivi che sono collegati tra loro e che a loro volta sono reti di dispositivi collegati tra loro. Quindi tutta la rete è una connessione globale di reti locali (es. la rete dell'ufficio, la rete domestica\dots)
 \end{description}
 \begin{center}
-    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti1.jpg}
+    \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti1.jpg}
 \end{center}
 Sempre più dispositivi oggi giorno si sono evoluti fino ad adattarsi all'uso di Internet, come ad esempio le auto, i frigoriferi, le lavatrici\dots 
 \begin{center}
-    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti2.jpg}
+    \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti2.jpg}
 \end{center}
 Quindi anche Internet deve evolversi e adattarsi per poter gestire un numero sempre maggiore di dispositivi con esigenze sempre più diverse.
 
@@ -53,7 +53,7 @@ Tutte le comunicazioni di rete sono gestite da protocolli.
 
 \subsection{Cos'è un protocollo?}
 \begin{center}
-    \includegraphics[width=75mm]{images/aa2324/R_introduzioneallereti3.jpg}
+    \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti3.jpg}
 \end{center}
 
 \section{Da cosa è composta la rete?}
@@ -98,11 +98,9 @@ Sembra, almeno concettualmente, abbastanza banale come concetto. Ma la gerarchia
 \begin{center}
     \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti6.jpg}
 \end{center}
-Le funzionalità fondamentali dei nodi della rete di core sono principalmente due:
-\begin{itemize}
-    \item 
-\end{itemize}
-Per capirle meglio, dobbiamo prima vedere (sì, l'ho scritto prima di fare l'elenco puntato) come sono fatti i nodi della rete di core:
+
+\subsection{Network core}
+Come sono fatti i nodi della rete di core:
 \begin{center}
     \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti7.jpg}
 \end{center}
@@ -111,18 +109,90 @@ Per capirle meglio, dobbiamo prima vedere (sì, l'ho scritto prima di fare l'ele
 \end{center}
 \begin{description}
     \item[Forwarding table:] è una tabella che contiene le intestazioni dei vari pacchetti (dove c'è specificato l'indirizzo della destinazione e quale interfaccia ovvero l'uscita del link da cui il pacchetto deve uscire) da inviare verso una specifica interfaccia.\\
-    L'inoltro (forwarding) ha ovviamente valenza locale. Ogni singolo nodo consulatndo la propria tabella prende decisioni autonome riguardo l'inoltro.
-    \item[Swtinching:] commutazione, sinonimo di inoltro (forwarding). Le due terminologie hanno una valenza simile ma si riferiscono a due cose leggermente diverse: l'inoltro è l'operazione di ricevere un messaggio e inoltrarlo verso un altro nodo, mentre la commutazione è l'operazione per trasferire il pacchetto da un'interfaccia di ingresso ad una di uscita di un router. Il risultato è lo stesso, ma lo switching è più a livello interno del nodo ignorando ciò che sta all'esterno, l'inoltro invece tiene in considerazione che io prendo e inoltro da un nodo un pacchetto che sposto poi attraverso 1+ link ad un altro nodo.
+    L'inoltro (forwarding) ha ovviamente valenza locale. Ogni singolo nodo consultando la propria tabella prende decisioni autonome riguardo l'inoltro.
+    \item[Swtinching:] commutazione, sinonimo di inoltro (forwarding). Le due terminologie hanno una valenza simile ma si riferiscono a due cose leggermente diverse: l'inoltro è l'operazione di ricevere un messaggio e inoltrarlo verso un altro nodo, mentre la commutazione è l'operazione per trasferire il pacchetto da un'interfaccia di ingresso ad una di uscita di un router.\\
+    Il risultato è lo stesso, ma lo \textit{switching} è più a livello interno del nodo ignorando ciò che sta all'esterno, il \textit{forwarding} invece tiene in considerazione che io prendo e inoltro da un nodo un pacchetto che sposto poi attraverso 1+ link ad un altro nodo.
+    \item[Routering:] ogni singolo nodo prende decisioni localmente, ma io devo garantire che una volta che diversi nodi effettuano l'operazione di inoltro in serie il pacchetto arrivi da sorgente a destinazione senza intoppi. Parliamo di \textbf{routing}, instradamento, azione \textbf{globale} che ha l'obiettivo di trovare un percorso tra sorgente che invia il pacchetto a destinazione che lo riceve. In ognuno dei nodi avremo un \textbf{algoritmo di routing} che agisce in maniera distribuita; un algoritmo di routing comunica con un altro algoritmo di routing tramite protocolli di routing che permettono di popolare la \textbf{tabella di forwarding} in maniera corretta. 
 \end{description}
 
+\section{Modalità packet-switching}
+\subsection{Store-and-forward}
+La rete internet abbiamo detto essere a commutazione di pacchetto e opera secondo la modalità store-and-forward.
 
+\subsubsection{Cos'è lo store-and-forward?}
+\`E quella modalità per cui un pacchetto prima di poter essere inviato attraverso un link (ad esempio verso un router), deve essere prima inviato nella sua interezza dal nodo da cui arriva. Questo è dovuto al fatto che ogni pacchetto è dotato di un'intestazione che se persa mi fa perdere anche informazione su cosa sia quel pacchetto.\\
+Nell'immagine abbiamo una sorgente, un commutatore e una destinazione.
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching1.jpg}
+\end{center}
+Se per dire inviassi un bit al commutatore e lui lo spedisse verso la destinazione senza aspettare il resto del pacchetto dalla sorgente, se il bit si perdesse non saprei a chi quel bit appartenga.
 
+\subsubsection{Perché lo store-and-forward è importante?}
+La modalità store-and-forward è importante quindi perché semplifica notevolmente come le reti debbano essere costruite, prima di inviare un pacchetto devo riceverlo tutto, ricostruirlo, e analizzare l'intestazione per sapere cosa contiene e che è legata a quello specifico pacchetto.
 
-\subsection{Network core}
+\subsubsection{Problemi dello store-and-forward}
+\textit{Introduce dei ritardi}, ovviamente, dovendo aspettare che un pacchetto sia ricevuto per intero prima di poterlo inoltrare. Questo ritardo vale $2\frac{L}{R}$ secondi a trasmettere attraverso un link un pacchetto di $L$ bits ad una velocità $R$ di trasmissione. Questo perché impiega $\frac{L}{R}$ secondi per trasmettere il pacchetto al commutatore e altri $\frac{L}{R}$ secondi per trasmettere il pacchetto dal commutatore alla destinazione.\\
+Se invece non usassi questa modalità e ad esempio facessi passare un bit alla volta attraverso il commutatore, impiegherei meno tempo: agirebbe come se il commutatore non esistesse e i due link di velocità $R$ fossero direttamente collegati tra loro, come un unico link più lungo, quindi la velocità complessiva sarebbe comunque $R$ e il tempo di trasmissione \textbf{totale} sarebbe $\frac{L}{R}$ secondi. Ovviamente avrei meno ritardi ma altri problemi che vedremo in seguito.
 
+\subsection{Esempio di esercizio}
+Se come in figura avessi tre pacchetti alla sorgente in attesa di essere inviati (P1, P2 e P3), quanto tempo (in multipli di $\frac{L}{R}$) passerebbe fra l'invio dalla sorgente del primo bit di P1 alla ricezione della destinazione dell'ultimo bit di P3?\\
+La risposta è $4\frac{L}{R}$. Perché?
+\begin{enumerate}
+    \item P1 viene inviato al commutatore in $\frac{L}{R}$ secondi.
+    \item P1 viene inviato alla destinazione e P2 viene inviato al commutatore in $\frac{L}{R}$ secondi.
+    \item P2 viene inviato alla destinazione e P3 viene inviato al commutatore in $\frac{L}{R}$ secondi.
+    \item P3 viene inviato alla destinazione in $\frac{L}{R}$ secondi.
+\end{enumerate}
 
+\subsection{Queueing}
+Abbiamo parlato di possibili problemi rinscontrabili con lo store-and-forward. Uno dei principali svantaggi è che in una rete a commutazione di pacchetto si verifica quello che si chiama \textbf{accodamento di pacchetti} o \textbf{queueing}.
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching2.jpg}
+\end{center}
+Nella maggior parte dei casi quello che può verificarsi è che il rate a cui io posso trasmettere in uscita sul mio link è più basso rispetto a quello con cui ricevo i pacchetti. Nell'immagine ho un $R$ pari a $100\frac{Mb}{s}$ sui link in ingresso e un $R$ pari a $1.5\frac{Mb}{s}$ sui link in uscita, \textit{molto} più basso. Arriverò ad un punto in cui non riesco a smaltire i miei pacchetti che si accumulano sul router ad un ritmo sufficientemente sostenuto da tenere il passo del ritmo con cui li ricevo. Allora comninciano ad accumularsi in \textit{buffer}, in zone di memoria, e si crea una coda di pacchetti in attesa di essere trasmessi sul link in uscita.\\
+Queste zone di memoria del commutatore hanno però una capacità limitata (ovviamente) e quando il rate del link in uscita è troppo inferiore rispetto al rate in ingresso al commutatore e quindi si accumulano i pacchetti, rischio di andare in \textbf{\textit{buffer} overflow}: è rischioso perché quando lo raggiungo poi perdo i pacchetti che incuranti continuano ad arrivare, e che vengono scartati.\\
+Questo problema è chiamato \textbf{il problema della perdita nelle reti a commutazione di pacchetto}.\\
+Un altro problema è il \textbf{ritardo di accodamento}.
 
+\section{Alternativa alla modalità packet-switching: circuit-switching}
+Una rete a commutazione di circuito si basava su principi molto diversi da quelli visti finora.\\
+Al giorno d'oggi non è più usata, ma è importante conoscerla perché è stata la prima modalità di funzionamento delle reti di telecomunicazione. Un esempio è la vecchia rete telefonica (fissa di casa).\\
+Si hanno delle risorse dedicate esclusivamente alla chiamata o al circuito, quando si stabilisce una chiamata si stabilisce un circuito dedicato che rimane dedicato per tutta la durata della chiamata. Una certa quantità di banda viene riservata esclusivamente alla comunicazione: stabilendo un circuito end-to-end di risorse dedicate alla comunicazione.
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_circuitswitching1.jpg}
+\end{center}
+\begin{description}
+    \item[Vantaggi:] non ho i problemi tipo l'accodamento, non ho ritardi di accodamento, non ho perdita di pacchetti. Quindi migliori prestazioni.
+    \item[Svantaggi:] scarsa capacità, ho per esempio nell'immagine un numero massimo di 4 dispositivi collegabili. Quindi peggior utilizzo e scarsa condivisione delle risorse.
+\end{description}
 
+\section{Packet-switching vs circuit-switching}
+Boh non c'è tanto da scrivere, spesso diceva che non lo vediamo nel corso quindi salterei.
 
+\section{Struttura della rete: reti di reti}
+Abbiamo detto che gli \textit{hosts} sono connessi da \textit{links} e \textit{ISPs}.\\
+Come più volte abbiamo visto, la rete ha una struttura di tipo \textbf{gerarchico}: diversi provider forniscono connettività di tipi diversi. Ci sono nel mondo milioni di reti che fanno da punto di accesso a diversi clients/hosts, e devono essere connesse tra loro.\\
+\subsubsection{Prima ipotesi}
+Creare un punto di accesso verso tutte le altre reti di accesso. Non è affatto fattibile!! Non scala: il numero di collegamenti diretti che io dovrei avere fra le reti di accesso è dell'ordine di $O(n^2)$.
+\subsubsection{Seconda ipotesi}
+Creare un rete di un ISP che connette tutte le reti di accesso. Questo è quello che succede oggi giorno. Si interconnette a tutte le reti di accesso e grazie ad una rete di commutatori permette la commutazione fra tutte quelle reti di accesso.\\
+Si crea una rete in cui ogni rete di accesso paga l'ISP per poter avere l'accesso ed essere messo in comunicazione con tutte le altre.\\
+\subsubsection{Problemi}
+Una rete così fatta dovrebbe essere geometricamente estesissima, e questo non è fattibile. Si va quindi a creare una rete di reti di ISP, geometricamente più limitate ma anche numerose. Così una rete può scegliere da chi comprare l'accesso.\\
+Il problema che sorge ora è che se una rete di ISP non è in comunicazione con un'altra rete di ISP, come faccio a mettere in comunicazione due reti di accesso che sono collegate a due reti di ISP diverse?\\ 
+Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
+\begin{description}
+    \item[peering link:] link fra pari, tra un ISP di una rete di ISP e un altro di un'altra rete.\\
+    Vantaggioso ad entrambi.\\
+    Due tipi diversi:
+    \begin{description}
+        \item[regional ISP:] collegamento fra \textbf{una} ISP e diverse reti di accesso a cui fornisce accesso.
+        \item[Multi-homing:] collegamento fra \textbf{diverse} ISP e diverse reti di accesso a cui fornisce accesso, migliore perché nel caso cada la connessione con un ISP ci sono gli altri a mantenere attiva la connessione.         
+    \end{description}
+    \item[IXP:] internet exchange point, interconnessioni fra ISP di reti diverse. Punti di contatto fra diversi ISPs.\\
+    Il MIX è quello di Milano e il più importante d'Italia.
+    \item[Content provider network:] esempio Google, straordinariamente geograficamente estesa in modo da prendere quanti più ISPs possibili. Ha un vantaggio per tutti, comprese le reti di accesso, hanno tutti accessi privilegiati.
+\end{description}
+\begin
 
 
