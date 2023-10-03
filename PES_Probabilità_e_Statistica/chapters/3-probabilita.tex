@@ -1,19 +1,63 @@
 \chapter{Probabilità}
-Il calcolo delle probabilità è la teoria matematica che permette di descrivere e studiare \textbf{esperimenti aleatori}
-\paragraph{Esperimento aleatorio} $\to$ Fenomeno il cui esito non è prevedibile con certezza a priori
-\section{Introduzione}
-La descrizione matematica si articola in tre passi
+Il calcolo delle probabilità è una teoria della matematica che permette di descrivere e studiare \underline{Fenomeni Aleatori}.
+\\Un \textbf{Fenomeno Aleaotrio} (o casuale) é un fenomeno il cui esito \emph{non è prevedibile con certezza} a priori.
+\section{Assiomi della Probabilità}
+La probabilitá si basa sullo studio di \textbf{Esperimenti Aleatori}, ovvero esperimenti il cui risultto non è prevedibile con certezza.
+Per poter studiare gli eseprimenti aleatori bisogna poterli descrivere matematicamente. 
+La loro descrizione matematica si articola in tre passi:
 \begin{enumerate}
-    \item Spazio campionario (o spazio degli esiti)$\to$ Insieme $\Omega$ che contiene tutti i possibili esiti dell'esperimento \\ es. Tiro un dado a sei facce $\Omega = {1, 2, 3, 4, 5, 6}$
-    \item Eventi $\to$ sono i sottinsiemi dello spazio campionario $A \subseteq \Omega$ \\ es. Tiro un dado a sei facce: esce un numero pari $A = {2, 4, 6}$
-    \item Probabilità $\to$ Regola che assegna, in modo coerente, a ogni evento $A \subseteq \Omega$ un "grado di fiducia" $P(A)$, tra 0 e 1, che attribuiamo al verificarsi di A
-    O funzione $P: P(\Omega) \to [0, 1]$ che soddisfa opportune proprietà
+    \item \textbf{Spazio campionario} (o spazio degli esiti)
+    \\ $\to$ Insieme $\Omega$ che contiene tutti i possibili esiti dell'esperimento 
+    \\ \small{es. Tiro un dado a sei facce $\Omega = {1, 2, 3, 4, 5, 6}$}
+    \item \textbf{Eventi}
+    \\ $\to$ I sottinsiemi dello spazio campionario $A \subseteq \Omega$ che riassumono affermazioni sull'esito dell'esperimento aleatorio.
+    \\ \small{es. Tiro un dado a sei facce: esce un numero pari $A = {2, 4, 6}$}
+    \item \textbf{Probabilità}
+    \\ $\to$ Regola che assegna, in modo coerente, a ogni evento $A \subseteq \Omega$ un "\textbf{grado di fiducia}" $P(A)$, tra 0 e 1, che attribuiamo al verificarsi di A.
 \end{enumerate}
+Matematicamente la \textbf{Probabilità} é una funzione $P:\rho(\Omega) \to [0,1]$ che soddisfa opportune proprietá.
+In questo caso $\rho(\Omega)$ sono tutti i sottoinsiemi di $\Omega$.
+
+\subsection*{Operazioni insiemistiche e Logiche}
+Nella definizione degli eventi, che sono concetti logici tradotti in concetti insiemistici, ci sono dei parallelismi tra le operazioni logiche e quelle insiemistiche:
+\begin{itemize}
+    \item Unione $A\cup B$ $\longleftrightarrow$ Si verifica $A$ o $B$ o entrambi.
+    \item Intersezione $A \cap B$ $\longleftrightarrow$ Si verificano $A$ e $B$.
+    \item Complementare $A^c$ $\longleftrightarrow$ Non si verifica $A$.
+\end{itemize}
+Ci sono poi anche due interessanti proprietá dei complementari:
+\begin{itemize}
+    \item $(A^c)^c = A$ (doppia negazione)
+    \item Leggi di Demorgan: $(A \cup B)^c = A^c \cap B^c$ e $(A \cap B)^c = A^c \cup B^c$
+\end{itemize}
+
+\subsection{Interpretazioni di $P(A)$}
+Che cosa significa grado di fiducia? cosé $P(A)$?
+\\Esistono due diverse interpretazioni sul grado di fiducia, entrambe equamente valide:
+\paragraph{Interpretazione Soggettivista} In questa interpretazione $P(A)$ é il prezzo equo di una scommessa che paga 1 se si 
+verifica $A$ e 0 altrimenti.
+\paragraph{Intrepretazione Frequentista} In questa interpretazione invece $P(A)$ è la frazione asintotica di volte in cui si verifica $A$ ripetendo l'esperimento.
+
+\paragraph*{}Quale scelgo? Entrambe queste interpretazioni sono valide, quindi si puó scegliere quella che si vuole.
+Tutte e due queste interpretazioni peró devono soddisfare le due Proprietà di Base.
+
 \section{Proprietà di base} 
+Ogni interpretazione probabilistica deve rispettare queste due proprietà fondamentali:
 \begin{enumerate}
-    \item $P(\Omega) = 1$
-    \item Se A e B sono eventi disgiunti, cioè $A \cap B \neq \emptyset$, allora \\ $P (A \cup B) = P(A) + P(B)$
+    \item $P(\Omega) = 1$, ovvero la probabilitá dello spazio campionario deve essere 1 (massima).
+    \item Se A e B sono eventi disgiunti, cioè $A \cap B \neq \emptyset$, allora deve valere che $P (A \cup B) = P(A) + P(B)$
 \end{enumerate}
+Da queste proprietá si deriva la Definizione dell'approccio moderno alla probabilitá, definito da Kolmogorov nel 1933:
+\definizione{
+    Sia $\Omega$ un insieme (spazio campionario).
+    Si dice \textbf{Probabilità} qualsiasi funzione $P:\rho(\Omega) \to [0,1]$ che soddisfa:
+    \begin{enumerate}
+        \item $P(\Omega)= 1$
+        \item Se $A\cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)$.
+    \end{enumerate}
+    La coppia $(\Omega, P)$ é detta \textbf{Spazio di Probabilità}
+}
+
 \paragraph{La coppia $(\Omega, P)$ è detta \textbf{Spazio di Probabilità}}.
 \\ Fissiamo uno spazio di probabilità $(\Omega, P)$.
 Da queste proprietà si deducono molte altre proprietà
@@ -28,6 +72,8 @@ Da queste proprietà si deducono molte altre proprietà
 \begin{center}
     \includegraphics[width=120mm,scale=0.5]{analogia_prob_area.png}
 \end{center}
+
+
 
 \section{Calcolo combinatorio}
 Consideriamo uno spazio di probabilità uniforme $(\Omega, P)$
