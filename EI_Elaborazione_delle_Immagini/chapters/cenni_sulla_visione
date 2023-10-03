@@ -1,15 +1,14 @@
-% L1 - 26/09/2023
+% L1 - 26/09/2023 %Primo pacco di slides.
 \chapter{Cenni sulla visione}
-Primo pacco di slides.
-
-\section{Cenni sulla visione - una panoramica}
-\subsection{Formazione del segnale immagine}
+\section{Formazione del segnale immagine}
 \begin{center}
     \includegraphics[width=75mm]{images/1_cennivisione_confrontofravisioni.jpg}
 \end{center}
-Ci sono diverse tipologie di immagini, dato che possono derivare da praticamente tutti i tipi di radiazioni.\\
-La banda EM che il nostro sistema visivo è in grado di percepire è molto ridotta.\\
-Ci sono sempre nuovi sensori che permettono di rivelare altri tipi di radiazioni.\\
+Le immagini vengono generate da radiazioni percepite da un sensore, siccome esistono diversi tipi di radiazioni (e di sensori),
+esistono anche diverse tipologie di immagini.
+La banda Elettro Magnetica che il nostro sistema visivo è in grado di percepire è molto ridotta sullo spettro elettromagnetico.
+Questa banda che noi possiamo vedere é chiamato \textbf{Spettro di Luce Visibile}.
+\\Ci sono sempre nuovi sensori che permettono di rivelare altri tipi di radiazioni.\\
 Es.: immagini della Luna, o lastre a raggi X fatte in ospedale, o angiogrammi, o altre immagini mediche.\\
 Mentre diversi tipi di illuminazione sono: raggi gamma, raggi X, UV, luce visibile, infrarosso, onde radio\dots\\
 Una stessa scena acquisita con diversi rivelatori genera immagini anche molto diverse fra loro. Potremmo avere:
