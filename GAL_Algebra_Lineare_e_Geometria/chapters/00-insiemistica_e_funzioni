@@ -1,0 +1,52 @@
+\chapter*{Insiemistica e Funzioni}
+    In questo capitolo ripassiamo i concetti di insiemistica e funzioni e fissiamo le notazioni che verranno usate durante il corso.
+    %Argomenti trattati nella Prima Lezione
+    \section*{Insiemi}
+    Fissiamo le \textbf{Notazioni} che useremo nell'insiemistica.
+    \\Voglio considerare degli oggetti e distinguerli da altri oggetti.
+    In genere si utilizza la notazione classica disegnando un insieme, ma questo metodo è scomodo.
+    Quindi, per rappresentiamo un insieme usiamo le \textbf{Parentesi Graffe}
+    \begin{center}
+        I = \{ x, $\Delta$, 3, $\bigodot$ \}
+    \end{center}
+    Teniamo a mente due cose:
+    \begin{itemize}
+        \item L'ordine degli elementi \underline{non è sensibile}.
+        \item Se un valore viene ripetuto, allora questo \underline{non è un insieme}.
+    \end{itemize}
+    \subsubsection*{Sottoinsieme}
+    Un sottoinsieme è un insieme contenuto in un altro insieme e si indica con il simbolo $\subset$.
+    \\Considerando l'insieme I sopra avremo che:
+    \begin{center}
+        S $\subset$ I = \{$\Delta$,3\} è un sottoinsieme di I
+    \end{center}
+    \subsection*{Operazioni sugli insiemi}
+    Esistono diverse operazioni che ci permettono di ottenere degli insiemi partendo da altri insiemi.
+    \\In questo corso useremo le seguenti:
+    \begin{itemize}
+        \item \textbf{Unione} $A \cup B$ Contiene gli elementi contenuti sia in A che in B (Senza ripetizioni).
+        \begin{itemize}
+            \item \textbf{Unione Disgiunta} $A \sqcup U$ come l'unione, ma se ci sono degli elementi condivisi vengono entrambi rappresentati con indicato a pedice l'insieme di provenienza. 
+        \end{itemize}
+        \item \textbf{Intersezione}  $A \cap B$ Contiene gli elementi comuni tra A e B.
+        \item \textbf{Complemento} $B \backslash A$ (oppure $B-A$) è l'insieme contenente gli elementi di B che non sono presenti in A.
+        \item \textbf{Prodotto Cartesiano} $A \times B = \{(x,y) : x\in A, y \in B\} $
+        \\Ovvero l'insieme delle coppie di ogni alemento di A con ogni elemento di B. Nota che il prodotto cartesiano NON è commutativo.
+    \end{itemize}
+
+    \subsection*{Insiemi Numerici}
+    Esistono diversi insiemi numerici:
+    \begin{itemize}
+        \item Naturali $\N \subset \mathbb{Z} = \{0,1,2,...\}$
+        \item Interi $\mathbb{Z} = \{...,-2,-1,0,1,2,...\}$
+        \item Razionali $\mathbb{Q} = \{\frac{m}{n}: m,n \in \mathbb{Z}\}$
+        \item Reali $\R = \{Q,\sqrt{q}, \pi, e : q>0\in Q\}$
+        \item Complessi $\mathbb{C}$, che non faremo in questo corso
+    \end{itemize}
+    \subsubsection*{Spazi Multidimensionali}
+    Esistono spazi numerici multidimensionali, che sono semplicemente il prodotto cartesiano di più spazi:
+    \[ \R^2 = \R \times \R = \{ (x,y):x,y\in \R\}\]
+
+    \section*{Funzioni}
+    Una funzione definita su due insiemi A e B lega un elemento di A ad un elemento di B.
+ %Fine Lezione 1

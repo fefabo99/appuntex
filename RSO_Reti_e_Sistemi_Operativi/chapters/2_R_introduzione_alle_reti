@@ -171,12 +171,15 @@ Boh non c'è tanto da scrivere, spesso diceva che non lo vediamo nel corso quind
 
 \section{Struttura della rete: reti di reti}
 Abbiamo detto che gli \textit{hosts} sono connessi da \textit{links} e \textit{ISPs}.\\
-Come più volte abbiamo visto, la rete ha una struttura di tipo \textbf{gerarchico}: diversi provider forniscono connettività di tipi diversi. Ci sono nel mondo milioni di reti che fanno da punto di accesso a diversi clients/hosts, e devono essere connesse tra loro.\\
+Come più volte abbiamo visto, la rete ha una struttura di tipo \textbf{gerarchico}: diversi provider forniscono connettività di tipi diversi. Ci sono nel mondo milioni di reti che fanno da punto di accesso a diversi clients/hosts, e devono essere connesse tra loro.
+
 \subsubsection{Prima ipotesi}
 Creare un punto di accesso verso tutte le altre reti di accesso. Non è affatto fattibile!! Non scala: il numero di collegamenti diretti che io dovrei avere fra le reti di accesso è dell'ordine di $O(n^2)$.
+
 \subsubsection{Seconda ipotesi}
 Creare un rete di un ISP che connette tutte le reti di accesso. Questo è quello che succede oggi giorno. Si interconnette a tutte le reti di accesso e grazie ad una rete di commutatori permette la commutazione fra tutte quelle reti di accesso.\\
-Si crea una rete in cui ogni rete di accesso paga l'ISP per poter avere l'accesso ed essere messo in comunicazione con tutte le altre.\\
+Si crea una rete in cui ogni rete di accesso paga l'ISP per poter avere l'accesso ed essere messo in comunicazione con tutte le altre.
+
 \subsubsection{Problemi}
 Una rete così fatta dovrebbe essere geometricamente estesissima, e questo non è fattibile. Si va quindi a creare una rete di reti di ISP, geometricamente più limitate ma anche numerose. Così una rete può scegliere da chi comprare l'accesso.\\
 Il problema che sorge ora è che se una rete di ISP non è in comunicazione con un'altra rete di ISP, come faccio a mettere in comunicazione due reti di accesso che sono collegate a due reti di ISP diverse?\\ 
@@ -193,6 +196,3 @@ Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
     Il MIX è quello di Milano e il più importante d'Italia.
     \item[Content provider network:] esempio Google, straordinariamente geograficamente estesa in modo da prendere quanti più ISPs possibili. Ha un vantaggio per tutti, comprese le reti di accesso, hanno tutti accessi privilegiati.
 \end{description}
-\begin
-
-
