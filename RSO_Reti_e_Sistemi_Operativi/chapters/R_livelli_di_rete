@@ -1,0 +1,74 @@
+\chapter{Reti e livelli di rete}
+\section{Architettura a strati}
+N.B: livelli e strati sono sinonimi qua.\\
+Partiamo dal presupposto che le reti hanno una struttura complessa. Esiste una possibilità di studiare e organizzare questa struttura?\\
+Un modo è quello di suddividere la complessa struttura in strati, ognuno dei quali si occupa di servizi diversi.\\
+\subsubsection{Perché fare strati?}
+La stratificazione di un sistema permette di andare a definire un modello di riferimento e permette un'identificazione semplice delle relazioni dei vari pezzi del nostro sistema. La modellizzazione è vantaggiosa perché se vado a modificare l'implementzione di una componente, questo risulta essere trasparente a tutto il sistema.\\
+\subsection*{Architettura a strati dell'Internet}
+Anche nota come \textit{Layered Internet protocol stack}.
+\begin{center}
+    \includegraphics[width=35mm]{images/aa2324/R_architetturaastrati1.jpg}
+\end{center}
+\begin{description}
+    \item[applicativo:] supporta applicazioni di rete.\\
+    Es.: HTTP, SMTP, FTP.
+    \item[trasporto:] trasferisce i dati tra protocollo e protocollo.\\
+    Es.: TCP, UDP.
+    \item[rete:] instrada i pacchetti da sorgente a destinazione.\\
+    Es.: IP, routing protocols.
+    \item[link:] trasferisce i dati tra nodi adiacenti.\\
+    Es.: Ethernet, 802.11 (WiFi).
+    \item[fisico:] trasferisce i bit su un canale fisico.\\
+    \`E il livello che non vedremo.
+\end{description}
+
+\subsection{Servizi, stratificazione, incapsulamento}
+\subsubsection{Sorgente}
+I livelli \textbf{applicativi} si scambiano messaggi per implementare specifici servizi.\\
+Questi messaggi derivano dal livello di \textbf{trasporto}. Questi livelli di \textit{trasporto} \\
+L'intestazione è Header, bit organizzati in \textbf{campi}, mi sono persa
+L'incapsulamento, prende e aggiunge l'intestazione (unica cosa che guarderò) senza preoccuparmi di ciò che ci sta prima (payload).\\
+Il succo è che ad ogni livello aggiungi un header. Al livello di link ottengo un messaggio pieno di headers che a me non interessano  ma sono utili per il funzionamento del collegamento in rete e che prende il nome di overhead.\\
+Il messaggio non viene inviato finché non è stato completamente incapsulato. Deve attraversare tutto il percorso stratificato fino ad arrivare allo strato fisico e poi viene inviato.
+\subsubsection{Destinazione}
+Percorso inverso, partendo dal livello fisico e continuando fino ad arrivare al livello applicativo, si tolgono gli header e si ottiene il messaggio originale.\\
+\subsubsection{A livello di commutatori}
+Negli host ovviamente ci sono tutti e 5 gli strati, a livello di commutatori invece è diverso: ci sono solo i primi 2 (switch) o 3 strati (router), ovvero il livello fisico, quello di link e quello di rete.\\
+Il router toglie l'header del livello di link e inoltra il messaggio al prossimo router, incapsulandolo in un header diverso.\\ 
+Quindi in due punti diversi del percorso il messaggio è incapsulato in due header diversi.
+
+\section{Livello applicativo}
+\subsection{DNS: Domain Name System}
+Questo servizio permette di mappare un nome di dominio in un indirizzo IP.\\
+Ci serve:
+\begin{itemize}
+    \item host name
+    \item indirizzo IP\\
+    Tecnicamente associato all'interfaccia e non al server.
+\end{itemize}
+\subsubsection{Struttura gerarchica dei DNS}
+\begin{center}
+    \includegraphics[width=35mm]{images/aa2324/R_architetturaastrati4.jpg}
+\end{center}
+\subsubsection{root servers}
+\subsubsection{Top-level domain e DNS autoritativi}
+Due casi:
+\begin{itemize}
+    \item organizzazioni grandi gestiscono e mantengono in modo diretto i propri server autoritativi (es.: Bicocca)
+    \item organizzazioni piccole si appoggiano a provider di servizi DNS
+\end{itemize}
+\subsubsection{Local DNS name servers}
+host fanno dns query, vengono inoltrate a un local DNS server.
+\begin{itemize}
+    \item i DNS locali rispondono direttamente alle query che hanno già in cache
+    ma che ne so senti la registrazione
+\end{itemize}
+\subsubsection{Come funziona la risoluzione di DNS}
+\begin{description}
+    \item[iterativa:] quella che vedremo
+    \item[ricorsiva:] quella che non vedremo (no shit)
+\end{description}
+In quella iterativa il ruolo centrale ce l'ha il DNS locale che va a contattare gli altri della gerarchia e scopre quale server successivo da contattare per ottenere il vero indirizzo IP da cui ottenere l'informazione richiesta.
+In quella ricorsiva chi l'ha capito.\\
+Ma è meglio quella iterativa perché il DNS locale gestisce meglio.
