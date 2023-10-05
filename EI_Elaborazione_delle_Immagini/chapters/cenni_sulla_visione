@@ -1,0 +1,46 @@
+% L1 - 26/09/2023 %Primo pacco di slides.
+\chapter{Cenni sulla visione}
+\section{Formazione del segnale immagine}
+\begin{center}
+    \includegraphics[width=75mm]{images/1_cennivisione_confrontofravisioni.jpg}
+\end{center}
+Le immagini vengono generate da radiazioni percepite da un sensore, siccome esistono diversi tipi di radiazioni (e di sensori),
+esistono anche diverse tipologie di immagini.
+La banda Elettro Magnetica che il nostro sistema visivo è in grado di percepire è molto ridotta sullo spettro elettromagnetico.
+Questa banda che noi possiamo vedere é chiamato \textbf{Spettro di Luce Visibile}.
+\\Ci sono sempre nuovi sensori che permettono di rivelare altri tipi di radiazioni.\\
+Es.: immagini della Luna, o lastre a raggi X fatte in ospedale, o angiogrammi, o altre immagini mediche.\\
+Mentre diversi tipi di illuminazione sono: raggi gamma, raggi X, UV, luce visibile, infrarosso, onde radio\dots\\
+Una stessa scena acquisita con diversi rivelatori genera immagini anche molto diverse fra loro. Potremmo avere:
+\begin{itemize}
+    \item immagini di \textit{riflessione} (e.g. immagini radar, sonar, slide stampata\dots)
+    \item immagini di \textit{emissione} (e.g. termografie, questa slide a monitor\dots)
+    \item immagini di \textit{trasmissione} (e.g. raggi X, questa slide sul proiettore\dots)
+\end{itemize}
+
+Riprendo da qua con interazione fra radiazione e materia, slide 9.\\
+
+La lunghezza d'onda è proporzionale all'energia: lunghezze più basse (e pericolose) sono con energia più alta e viceversa. Ma non ha senso, ho capito male?\\
+Ha fatto vedere immagini di luna e mediche. Sono tutte grigie. Come mai?\\
+Ad ogni immagina è associato uno scalare che danno informazioni per la mappazione.\\
+Come mai un oggetto (es la felpa del compagno) è di un certo colore es blu? La luce è bianca, ma i range vengono quasi tutti assorbiti tranne il range che effettivamente vediamo.\\
+L'immagine è un array dove per ogni elemento c'è un'informazione. Es a livello di grigio o sul colore.\\
+\paragraph{Vector vs Raster}
+Che differenza c'è fra un'immagine vector e un'immagine Raster?\\
+La vector salva l'immagine in forme geometriche, es di un cerchio salva centro e raggio e ogni volta che la usi o sposti o copi viene ridisegnata, si salvano i vettori dei poligoni e il colore e vengono ridisegnate invece di memorizzare tutta l'immagine. Il vantaggio è la riutilizzabiità, nel senso che posso zoommare quanto voglio e l'immagine rimarrà nitida. La Raster invece è formata da pixel quindi ha una sua risoluzione e se vado ad ingrandirla diventa sgranata e illeggibile.
+\paragraph{I pixel}
+Il concetto di pixel è molto relativo: le immagini tipo da satellite avranno dei pixel giganteschi, mentre un'immagine piccina del pc o della mia fotocamera li avrà molto piccoli.\\
+Problema delle scale: una delle prime difficoltà che troviamo quindi è che in una stessa immagine trovo oggetti che sono su scale diverse. Ma non tratteremo questo aspetto: ci sono algoritmi in grado di stimare la distanza fra oggetti raffigurati ma se ne parla alla magistrale (mi sono persa il nome tecnico di questo studio). Il problema è che è la grandissima maggioranza delle applicazioni che troviamo.
+
+\subsection{Imaging}
+Fabio, qua mi manca un pezzettino.
+
+\subsection{Radiometria e grandezze radiometriche}
+Studio del trasferimento di energia, energia emessa da un certo oggetto, etc.\\
+Immagine.
+
+
+
+
+
+% L2 - 28/09/2023
