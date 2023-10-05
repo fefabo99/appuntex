@@ -60,16 +60,26 @@
     Definiamo ora il concetto di Funzione:
     \definizione{Dati due insiemi A e B, una funzione è una relazione che \textbf{associa} ogni elemento di A a uno e
     un solo elemento di B. L'insieme A viene chiamato \textbf{Dominio}, mentre B è il \textbf{Codominio}.}
-    \paragraph{Matematicamente} Sia $A$ il dominio di $f$, poichè essa sia una funzione deve valere:
-    \[ \forall x \in A,\, \exists \, ! f(x) \]
-    Ovvero, per ogni $x$ appartenente al dominio della funzione $f$ esiste \textbf{ed é unico} un valore di $f(x)$.
-
-    \paragraph*{Immagine}Sia $S \subset A$, allora con $f(S)$ indicheremo l'immagine di S tramite f.
-    \[ f(S)=\{b \in B: \text{ è associato ad un elemento di S}\} \]
-    \paragraph*{Controimmagine} Sia $R \subset B$, allora con $f^{-1}(R)$ indicheremo la controimmagine.
-    \[ f^{-1}(R)=\{a \in A: f(a) \in R \} \]
-    \paragraph*{Iniettività} f è iniettiva se $ a_1 \neq a_2 \in \text{ dom}f \implies f(a_1) \neq f(a_2)$
-    \paragraph*{Suriettività} f è suriettiva se $\forall b \in \text{ codom}f, \, \exists \, a \in dom f:f(a)=b$
-    \paragraph*{Biettiva} f è biettiva (o bigetta o biunivoca) se f è sia iniettiva che suriettiva.
+    \osservazione{Perchè $f$ sia una funzione deve valere:
+        \[ \forall x \in dom(f),\, \exists \, ! f(x) \]
+        Ovvero, per ogni $x$ appartenente al dominio della funzione $f$ esiste \textbf{ed é unico} un valore di $f(x)$.
+    }
+    \subsection*{Immagine e Controimmagine}
+    Una funzione $f:A\to B$ ha associata i seguenti insiemi:
+    \begin{itemize}
+        \item Sia $S \subset A$, allora con $f(S)$ indicheremo l'\textbf{Immagine} di $S$ tramite $f$.
+            \[ f(S)=\{b \in B: \text{ è associato ad un elemento di S}\} \]
+        \item Sia $R \subset B$, allora con $f^{-1}(R)$ indicheremo la \textbf{Controimmagine} di $R$ tramite $f$.
+        \[ f^{-1}(R)=\{a \in A: f(a) \in R \} \]
+    \end{itemize}
+    In parole povere, l'Immagine è l'insieme di tutti i valori che assume la funzione $f$ valutata in ogni elemento di $S$, mentre
+    la Controimmagine è l'insieme di tutti i valori del dominio che sono associati ai valori contenuti in $R$.
+    \subsection*{Iniettività e Suriettività}
+    Una funzione può godere delle seguenti proprietà:
+    \begin{itemize}
+        \item $f$ è detta \textbf{Iniettiva} se $ a_1 \neq a_2 \in \text{ dom}f \implies f(a_1) \neq f(a_2)$
+        \item $f$ è detta \textbf{Suriettiva} se $\forall b \in \text{ codom}f, \, \exists \, a \in dom f:f(a)=b$
+    \end{itemize}
+    $f$ è detta biettiva (o bigetta o biunivoca) se è sia iniettiva che suriettiva.
 %Lezione 2 - Arrivato a 32:32
 

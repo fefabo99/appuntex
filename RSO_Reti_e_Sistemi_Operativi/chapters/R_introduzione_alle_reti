@@ -154,7 +154,7 @@ Queste zone di memoria del commutatore hanno però una capacità limitata (ovvia
 Questo problema è chiamato \textbf{il problema della perdita nelle reti a commutazione di pacchetto}.\\
 Un altro problema è il \textbf{ritardo di accodamento}.
 
-\section{Alternativa alla modalità packet-switching: circuit-switching}
+\subsection{Alternativa alla modalità packet-switching: circuit-switching}
 Una rete a commutazione di circuito si basava su principi molto diversi da quelli visti finora.\\
 Al giorno d'oggi non è più usata, ma è importante conoscerla perché è stata la prima modalità di funzionamento delle reti di telecomunicazione. Un esempio è la vecchia rete telefonica (fissa di casa).\\
 Si hanno delle risorse dedicate esclusivamente alla chiamata o al circuito, quando si stabilisce una chiamata si stabilisce un circuito dedicato che rimane dedicato per tutta la durata della chiamata. Una certa quantità di banda viene riservata esclusivamente alla comunicazione: stabilendo un circuito end-to-end di risorse dedicate alla comunicazione.
@@ -169,7 +169,7 @@ Si hanno delle risorse dedicate esclusivamente alla chiamata o al circuito, quan
 \section{Packet-switching vs circuit-switching}
 Boh non c'è tanto da scrivere, spesso diceva che non lo vediamo nel corso quindi salterei.
 
-\section{Struttura della rete: reti di reti}
+\subsection{Struttura della rete: reti di reti}
 Abbiamo detto che gli \textit{hosts} sono connessi da \textit{links} e \textit{ISPs}.\\
 Come più volte abbiamo visto, la rete ha una struttura di tipo \textbf{gerarchico}: diversi provider forniscono connettività di tipi diversi. Ci sono nel mondo milioni di reti che fanno da punto di accesso a diversi clients/hosts, e devono essere connesse tra loro.
 
@@ -196,3 +196,77 @@ Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
     Il MIX è quello di Milano e il più importante d'Italia.
     \item[Content provider network:] esempio Google, straordinariamente geograficamente estesa in modo da prendere quanti più ISPs possibili. Ha un vantaggio per tutti, comprese le reti di accesso, hanno tutti accessi privilegiati.
 \end{description}
+
+\subsection{Ritardi introdotti dalla packet-switching}
+4 tipi diversi di ritardo:
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching3.jpg}
+\end{center}
+Il ritardo di queueing cambia da pacchetto a pacchetto.\\
+Uno che non abbiamo visto è il \textbf{ritardo di elaborazione} ho perso roba vedi la registrazione.\\
+Ogni volta che un pacchetto arriva al commutatore, il commutatore deve analizzare l'intestazione del pacchetto per capire se ci sono stati problemi di trasmissione. Ci sono tutti dei codici/meccanismi per controllare ed eventualmente correggere questi eventuali errori.\\
+Tutte queste operazioni creano il \textbf{ritardo di elaborazione}, questo tempo è dell'ordine di grandezza di $10^{-9}$ secondi.\\
+Un dato decisamente più importante (2-3 ordini di grandezza più grande) è il \textbf{ritardo di accodamento}.\\
+Slide.\\
+Poi abbiamo il \textbf{ritardo di propagamento} che dipende dal mezzo di trasmissione, lunghezza del cavo e velocità di propagazione.\\
+A sommare tutte queste componenti, ottengo il tempo complessivo che il pacchetto ci mette a passare da sorgente a destinazione.\\
+Una cosa fondamentale è la differenza fra \textit{ritardo di trasmissione} e \textit{ritardo di propagazione}: entrambi dipendono dal mezzo su cui il pacchetto viene trasferito, ma sono diversi. Il primo dipende dalla dimensione del pacchetto e il rate di trasmissione del commutatore; il secondo dalla lunghezza del mezzo propagativo (cavo, fibra ottica, whatever) e la sua capacità di propagazione, che è una velocità ma non la stessa dell'altro ritardo.
+\subsubsection{Es.}
+Immaginiamo di essere in tangenziale. Arrivo alla barriera e mi fermo al casello di boh Sesto, poi devo arrivare alla barriera di Legnano. Immaginiamo di avere un certo numero di macchine (i bit) che fanno parte di uno stesso pacchetto.\\
+Per semplicità un solo casello. La differenza fra r. di trasmissione e r. di propagazione è: mettiamo di avere un casellante che fa passare 4 macchine al minuto, che portano ad un ritardo di trasmissione $R_T$ (che ovviamente diminuisce all'aumentare della capacità del trasmittente). Se il casellante si sbriga, passano più macchine (più bit al minuto) e quindi il ritardo di trasmissione è più basso. Ovviamente c'è un limite fisico di velocità. Una volta che il casellante mi fa passare, io devo percorrere la tangenziale fino al casello successivo, che è un ritardo di propagazione $R_P$ che dipende dalla lunghezza della tangenziale e dalla velocità massima che posso raggiungere.
+
+\subsection{Ritardo \textit{end-to-end}}
+\`E il ritardo che intercorre per il processing fra sorgente e destinazione, introdotto da tutti i commutatori di pacchetto fra uno e l'altro e i ritardi introdotti dai sistemi periferici.\\
+Abbiamo detto che è la somma delle 4 sorgenti di ritardo: $d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$.
+
+\subsection{Di più sul ritardo di queueing}
+Il ritardo di queueing cambia da pacchetto a pacchetto.\\
+Nel caso più generico possibile dipende dal tasso di intensità di traffico. Come si calcola? Abbiamo un rate medio di arrivo dei bit ($\bar{a}$), le lunghezze dei pacchetti ($L$) e la velocità di trasmissione del mezzo ($R$).\\
+L'intensità di traffico è definita come $\frac{L \bullet \bar{a}}{R}$.\\
+Se l'intensità di traffico tende a 0, allora il ritardo di queueing tende ad essere molto piccolo.\\
+Se l'intensità di traffico tende a 1, allora il ritardo di queueing tende ad essere larghino.\\
+Se l'intensità di traffico è maggiore di 1, allora il ritardo di queueing tende a infinito ed è ingestibile.\\
+N.B.: stiamo parlando di valori medi!!!
+
+\subsection{Perdita di pacchetti}
+Più cause:
+\begin{itemize}
+    \item capacità del commutatore satura (buffer overflow) che porta alla perdita di pacchetti inviati dopo che la capacità finita è stata riempita.
+    \item problemi sul mezzo trasmissivo?
+\end{itemize}
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching4.jpg}
+\end{center}
+I pacchetti con errori di trasmissione vengono scartati. Potrebbe succedere che in qualche modo si è perso il pacchetto e decidere di ri-inviarlo ma non è scontato.
+
+\subsection{Throughput}
+velocità, rate (bits/time unit) a cui i bits sono inviati da sorgente a destinazione (a volte chiamato \textbf{\textit{end-to-end throughput}}) ed è:
+\begin{description}
+    \item[istantaneo:] rate ad un certo punto dato nel tempo
+    \item[medio:] rate in un periodo più esteso di tempo
+\end{description}
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching5.jpg}
+\end{center}
+Domande:
+\begin{description}
+    \item[$R_s < R_c$:] quale è il throughput medio?\\
+    $R_s$ perché il rate di trasmissione è più basso del rate di ricezione.
+    \item[$R_s > R_c$:] quale è il throughput medio?\\
+    $R_c$ perché il rate di trasmissione è più alto del rate di ricezione.
+\end{description}
+Parliamo di \textbf{textit{bottleneck link}}, link on end-end path that constrains end-end throughput.
+
+\subsubsection{Throughput: network scenario}
+Boh non ho sentito tanto sono un po' cotta cerca la registrazione.
+\begin{center}
+    \includegraphics[width=50mm]{images/aa2324/R_packetswitching6.jpg}
+\end{center}
+
+
+
+
+
+
+
+

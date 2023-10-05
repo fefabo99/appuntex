@@ -1,1 +1,50 @@
 \chapter{Spazi vettoriali}
+Gli spazi vettoriali sono degli insiemi con "sopra" delle struttre algebriche.
+
+\section{Definizione di Spazi Vettoriali}
+Sia $V$ un insieme e $K$ un "campo" (ad esempio $\R$).
+Allora:
+
+\definizione{
+    Diremo che $V$ è uno \textbf{Spazio Vettoriale} su $K$ se esistono
+    le operazioni di \textbf{Somma} ($+$) e di \textbf{Prodotto per uno scalare}($\cdot$) su $V$.
+}
+Nota che campo e spazio vettoriali non coincidono mai! se entrambi sono $\R$, allora sono copie diverse di esso.
+\subsection{Le operazioni $+$ e $\cdot$}
+Perchè un insieme sia uno spazio vettoriale deve essere dotato delle operazioni di Somma e Prodotto per uno scalare,
+ma queste due operazioni devono rispettivamente verificare alcune proprietà.
+
+\paragraph{Somma}
+La somma è una funzione così definita:
+\["+" : V \times V \to V \]
+\begin{center}
+    ovvero $(\underline{v_1}, \underline{v_2} ) \to "\underline{v_1} + \underline{v_2}\; \forall \underline{v_i} \in V"$.
+\end{center}
+    Essa deve godere delle seguenti proprietà:
+\begin{enumerate}
+    \item Nullo: $\exists \underline{0} \in V : \underline{0} + \underline{v} = v \; \forall \underline{v} \in V$
+    \item Opposto: $\forall \underline{v} \in V, \exists "-\underline{v}" : \underline{v} + (-\underline{v}) = \underline{0}$
+    \item Associatività: $(\underline{v_1} + \underline{v_2}) + \underline{v_3} = \underline{v_1} + (\underline{v_2} + \underline{v_3})$
+    \item Commutatività: $\underline{v_1} + \underline{v_2} = \underline{v_2} + \underline{v_1}$
+\end{enumerate}
+
+\paragraph{Prodotto per uno Scalare}
+Il Prodotto per uno Scalare è una funzione così definita:
+\["\cdot" : K \times V \to V \]
+\begin{center}
+    ovvero $(\underline{\alpha}, \underline{v} ) \to "\alpha\underline{v}\;"$.
+\end{center}
+Essa deve godere delle seguenti proprietà:
+\begin{enumerate}
+    \item $(\lambda_1 + \lambda_2) \cdot \underline{v} = \lambda_1\underline{v} + \lambda_2 \underline{v}$ con $\lambda_i \in K, \underline{v} \in V$
+    \item $\lambda \cdot (\underline{v_1} + \underline{v_1}) = \lambda\underline{v_1} + \lambda\underline{v_2}$ con $\lambda \in K, \underline{v_1} \in V$
+    \item $(\lambda_1 \cdot \lambda_2) \cdot \underline{v} = \lambda_1 \cdot (\lambda_2 \cdot \underline{v})$
+\end{enumerate}
+
+\osservazione{Si può dimostrare che:
+\begin{itemize}
+    \item $0 \cdot \underline{v} = \underline{0} \; \forall \underline{v} \in V$
+    \item $\lambda \cdot \underline{0} = \underline{0} \; \forall \lambda \in K$
+    \item $-1 \cdot \underline{v} = -\underline{v}$, ovvero l'opposto di $\underline{v} \in V,\; \forall \underline{v} \in V$.
+\end{itemize}
+}
