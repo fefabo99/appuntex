@@ -1,0 +1,53 @@
+\chapter{Operatori locali}
+Abbiamo visto enhancing puntuale. Ora vediamo enhancing locale.\\
+Da cosa deriva il rumore? Elettronica, intereferenze di persone/oggetti, ma da cos'altro potremmo avere rumore? Dall'illuminazione. Es.: neon, potrebbe filtrare cosa? Non ci accorgiamo, ma l'immagine cambia. Risolviamo mediando $n$ immagini. Slide 5.\\
+Slide 6. Ma è sempre necessario ridurre il rumore? Se un'immagine si vede già bene? E come faccio su un'immagine singola?\\
+Parliamo della Gioconda. Slide 7-8. Facciamo un esperimento. Mettiamo $n$ volte un pattern randomico di rumore, cosa ci aspettiamo? Tante immagini rumorose. Però pattern casuali diversi influenzano l'immagine in modo diverso. Per dire, se sta sulla guancia no ma se finisce ad esempio sulla bocca sì.\\
+Oppure nel caso di mammografia, se il rumore finisce su una zona non interessata dalle microcalcificazioni non ci interessa, ma in altre zone più mirate per la diagnosi non possono avere rumore.\\
+Slide 9, anche l'AI ha problemi ad analizzare immagini rumorose. Es. della farfalla monarca che l'AI fatica a riconoscere quando vi viene sovrapposta un pattern di rumore.
+\subsection{Operazioni locali}
+\subsubsection{Smoothing}
+Slide 10. Pixel: pelle o non pelle? Voglio che sia solo faccia: uso un face detector. Non voglio artefatti: sulla faccia voglio un filtro pesante, dove non sono sicura sia faccia uno leggero.\\
+\subsection{Tipi di rumore}
+Per noi è solo additivo, c'è il tipo ? che noi non vediamo.
+\subsection{Degrado dell'immagine}
+Slide 11-12.
+\section{Rumore}
+Slide 13-14. Vediamo un fantoccio (si chiama così in radiologia): diversi sistemi di acquisizione generano diversi tipi di rumore. Diversi tipi di rumore hanno diverse distribuzioni statistiche riconoscibili dall'istogramma.\\
+Ne trattiamo
+\subsection{R. gaussiano}
+Dipende da slide 15.
+\subsection{R. impulsivo}
+Nell'elettronica ad un certo punto il sensore va in saturazione e va a 0 (es. vecchi televisioni quando andavano a neve).
+\subsection{Dove nasce il rumore}
+\begin{description}
+    \item[rumore gaussiano]: roba slide
+    Perché sensibile alla temperatura? Perché temperature alte creano energia, che influenza e crea rumore.
+    \item[rumore impulsivo]: roba slide
+\end{description}
+\subsection{Stima del rumore}
+Come posso fare a stimare il rumore del mio dispositivo? Slide 18.\\
+Vado a mettere un target, lo acquisisco, ne costruisco l'istogramma e in base a come è vedo che tipo di rumore è.
+\subsection{Il modello gaussiano}
+Slide 19.
+\subsection{Quantificare il rumore di acquisizione}
+Slide 21-22
+\section{Metriche oggettive}
+\subsection{Quantificare la perdita di informazione/qualità}
+Slide 25
+\subsection{MSE}
+Slide 26
+\subsection{PSNR}
+Slide 26
+\subsection{confronto}
+Slide 27-28. Le due immagini hanno lo stesso MSE, ma la seconda ha un PSNR più ?.\\
+
+\section{Riduzione del rumore}
+\subsection{Filtraggio}
+Slide 29, ne parleremo venerdì.\\
+Parliamo anche di operatori e operazioni lineari e non lineari.\\
+Ricordiamo che le nostre immagini sono matrici $n \times n$, avrò $n \bullet n$ operazioni.\\
+\subsection{Filtri spaziali}
+Il filtraggio lineare su un'immagine f di dimensione $M \times N$ si fa con una maschera di dimensione $M \times N$.\\
+Domanda tipo barriera: questa maschera cosa fa? Le maschere devono sempre dare somma 1. Perché? se vado su zona omogenea l'applicazione del filtro non altera il valore dei pixel.\\
+L'immagine che ha rubato recentemente di cui parla nell'audio (la maschera che si sovrappone e pixel etc) è la slide 34.

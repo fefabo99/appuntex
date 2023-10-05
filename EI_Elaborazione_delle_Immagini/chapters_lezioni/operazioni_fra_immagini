@@ -1,0 +1,23 @@
+\chapter{Operazioni fra immagini}
+\section{Slicing}
+Definizione di bit-plane.\\
+Bit-plane slicing.\\
+
+Nell'elaborazione si parla di \texttt{\textbf{ROI}}, Region Of Interest.\\
+Domanda: come faccio ad elaborare solamente una certa porzione di immagine (es. solo il volto di una persona)?\\
+Un approccio plain sarebbe "if questa cosa prendi qui, else prendi là". Ma sulle immagini ovviamente non è efficientissimo.\\
+I bit-plane sono immagini binarie. Sfruttiamo gli operatori binari, \texttt{AND} e \texttt{OR}. Slide 6.\\
+Le slide 7 e 8 fanno un esempio di uso degli operatori binari per ottenere le ROI di nostro interesse.\\
+
+\section{Operazioni aritmetiche fra pixel}
+\subsection{Differenza}
+Slide 9, immagine all'istante $t$ \textbf{meno} immagine originale $=$ differenza, che se moltiplicata all'immagine all'istante $t$ ci dà un'immagine di ciò che si è mosso (in questo esempio pedoni e macchina) e basta.
+
+\section{Media di una sequenza}
+Non ho capito se fa parte della parte prima, comunque slide 13.\\
+All'inizio l'immagine mi risulta molto rumorosa (alto dx) poi diventa sempre più nitida finché vedo la galassia. Come mai? C'è ovviamente rumore, un segnale che si somma alle nostre immagini che ha media 0.\\
+Riduciamo questo rumore mediando le varie immagini (slide 15-16).\\
+Slide 14, recap di varianza e deviazione standard.\\
+$$(\sigma^2)_f$$ è la varianza del segnale perfetto e vale 0. Slide 17, mostra gli istogrammi. Slide 18, risultato finale.\\
+Slide 20, cloning e combinazione di immagini, si fa alla magistrale.
+

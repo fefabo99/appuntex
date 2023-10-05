@@ -126,15 +126,47 @@ I dispositivi classici hanno delle gamme (fig.4.20) diverse in base alle condizi
 Slide 3 grafici, sono in grado di trovare il valore di $K$? Sì.\\
 Servono tanti termini noti quante sono le equazioni.\\
 3 grafici, l'istogramma verrà modificato con una polarizzazione: scuri abbattuti, quindi schiacciati verso la sinistra, chiari ?, quindi schiacciati verso destra.\\
-Slide con 8 trasformazioni.
+Slide con 8 trasformazioni. Come faccio a provarle tutte con meno costo computazionale possibile? Risposta, LUT.
 
 \section{LUT - look-up table}
+Come faccio a trasformare un'immagine in scala di grigi in immagine a colori?\\
 Definizione slide con la tabella IN-OUT.\\
-Utile per es per definire la temperatura, su una scala di colori: associo ad ogni livello di grigio una tripletta di valori di colori. è lo stesso modo con cui vengono create le gif, tramite una look-up table.\\
-è facile cambaire i colori e creare animazioni: basta mostrare un colore, rendere tutto nero, l'istante successivo rifarlo senza scannerizzare di nuovo l'immagine.
+Utile per es per definire la temperatura, su una scala di colori: associo ad ogni livello di grigio una tripletta di valori di colori. \`E lo stesso modo con cui vengono create le gif, tramite una look-up table.\\
+\`E facile cambaire i colori e creare animazioni: basta mostrare un colore, rendere tutto nero, l'istante successivo rifarlo senza scannerizzare di nuovo l'immagine.\\
+Domanda in aula: Ma sarebbe meglio per ciascuno dei 256 valori di grigio vedere se è già stato calcolato e inserirlo altrimenti calcolarlo
 
 \section{Trasformazioni puntuali basate sull'istogramma}
 Definizione: slide
+
+% 05/10/2023
+\section{Operatori puntuali pt.2}
+Istogramma, strumento non perfetto ma utile per capire la distribuzione dei valori di un'immagine.\\
+Un esempio di operazione \textbf{globale} che abbiamo già visto? Risposta: equalizzazione dell'istogramma. Abbiamo visto l'i. cumulativo: calcola la probabilità di avere fino ad un dato valore in ogni punto dell'immagine (funzione monotona crescente). Es.: probabilità di avere un valore < 256? 1, ovunque.
+\subsection{Miglioramento locale}
+In quali casi un operatore funziona più di un altro? Nel caso dell'eq. dell'i., abbiamo visto che quando ci sono pochi colori e niente cose in mezzo, l'equalizzazione non funziona per niente bene (crea rumore, disturbo) slide dell'edificio sotto all'arco di pietra. In una situazione di questo tipo o metto a posto i chiari oppure metto a posto gli scuri. Capita nell'elaborazione delle immagini, mettere a posto solo le cose che mi interessano. Es.: lastra ai polmoni, mi interessano i polmoni, non l'osso della spalla.\\
+Come faccio a migliorare solo la parte che mi interessa? (slide Sagrada Familia)\\
+L'equalizzazione globale ovviamente non funziona (l'i. cumulativo ha una grossa gobba), se mi limito all'istogramma cumulativo di una sezione la situazione migliora.\\
+Ma se per es. nella slide della S.F. volessi migliorare anche il cielo? Parliamo dell'equalizzazione dell'istogramma locale.\\
+Due approcci: \textit{sliding window approach} e \textit{tiling approach}. Nel primo prendo un pixel e miglioro il suo valore. Nel secondo prendo un intorno e usando tutti i pixel dell'intorno miglioro il pixel di partenza e a lui sostituisco il valore.\\
+Il problema è che oltre ad avere un costo computazionale altissimo (intorni molto piccoli, per immagini con migliaia di pixel), se le finestre non si sovrappongono rischio che si creino artefatti.\\
+Ma questa idea di equalizzazione locale la posso applicare alla gamma correction? Potenzialmente sì (ci sono gamma correction adattavive, si vedono alla magistrale) ma il problema è trovare la gamma giusta. Serve un understanding dell'intorno. Come posso fare?\\
+Abbiamo detto che gamma<1 chiaro, gamma>1 scuro. e l'intorno è chiaro, devo scurire. Se l'intorno è scuro, devo schiarire. Se un po' e un po' non ho capito mi spiegherà poi Fabio. L'idea quindi sostanzialmente è quella di \textbf{calcolare la gamma in funzione dell'intorno}.\\
+Slide con filamento di tungsteno (fig.3.24). Si vede poco ma dietro ce n'è un secondo decisamente sotto esposto. L'immagine ha una parte ben contrastata e una male contrastata.\\
+Ma come faccio a capire se sono in una regione dell'immagine più scura o più chiara? Guardo l'intorno del pixel, se ha valori più verso lo 0 (scuro) o verso il 255 (chiaro)?\\
+Se prendo ad esempio una regione che è metà chiara e metà scura, qunidi sono su un bordo, come faccio a capire se devo schiarire o scurire? Con la varianza: la media sulla finestra condiserata ci dà informazioni su quanto è luminoso un intorno, la varianza su quanto è contrastata. Domanda in aula: come mai varianza e non deviazione? Risposta, è una scelta dell'algoritmo.\\
+Slide con i due filamenti, parla di local min ma non ho sentito.\\
+La varianza cosa evidenzia? Le variazioni elevate di colori, qunidi i bordi.\\
+Slide con equazione:
+\begin{itemize}
+    \item $E$ è la funzione
+    \item $m s_(x,y)$ è la media ($m$) dell'intorno ($s_(x,y)$)
+    \item $k$ è ??? (non ho capito, senti Fabio)
+    \item $\sigma$ è la deviazione dell'intorno, che deve avere una finestra di validità (non troppo scuro, non troppo chiaro)
+\end{itemize}
+Fig.3.25 contiene tre immagini, originale, media delle varianze, e ?\\
+Ma il risultato finale va bene? Mica tantissimo, i bordi sono molto blurry, frastagliati, anche se la parte sotto del filamento dietro si vede meglio (ma non benissimo). Però non era la sua domanda, la domanda era sull'algoritmo. Risposta: ci sono troppe costanti da stimare. Come possiamo migliorare? Potremmo fare un algoritmo per stimare i parametri. Come? Entra in gioco machine learning.\\
+Slide fig.3.27: immagine b, global equalization, c local equalization.\\
+Ma siamo sicuri che per calcolare la varianza ho un costo computazionale minore dell'istogramma di equalizzazione?
 
 
 

@@ -172,7 +172,7 @@ L'immagine di un processo è formata da:
 \end{itemize}
 \textit{Text} e \textit{data section} hanno dimensioni costanti per tutta la vita del processo.\\
 \textit{Stack} e \textit{heap} invece crescono/decrescono durante la vita del processo, smetteranno solo quando una delle due sezioni raggiungerà la fine della memoria allocata per il processo, ovvero collidono tra loro.
-
+%  0:06:40 su 1:20:44 seconda lezione 
 
 
 
