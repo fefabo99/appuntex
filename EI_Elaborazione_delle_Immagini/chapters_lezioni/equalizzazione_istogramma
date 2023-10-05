@@ -1,4 +1,4 @@
-\chpater{Equalizzazione dell'istogramma}
+\chapter{Equalizzazione dell'istogramma}
 Tecnica di image enhancement che permette di migliorare il contrasto in un'immagine.\\
 Sfrutta il concetto alla base del contrast stretching, ovvero che un'immagine con un range di intensità più ampio è più contrastata.\\
 Altri due punti dalla prima slide.

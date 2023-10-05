@@ -149,7 +149,29 @@ Ricordiamo che abbiamo detto che nelle API Posix non c'è la terminazione a casc
 
 \section{Implementazione dei processi}
 \subsection{Struttura di un processo}
+Un processo è composto da diverse parti:
+\begin{itemize}
+    \item Lo stato dei registri del processore che esegue il programma, incluso il program counter.
+    \item Lo stato della regione di memoria centrale usata dal programma, o \textbf{immagine} del processo.
+    \item Lo stato del processo stesso.
+    \item Le risorse del sistema operativo in uso al programma (files, semafori, regioni di memoria condivisa\dots).
+\end{itemize}
+\textit{Processi distinti} hanno \textit{immagini distinte}.\\
+Le risorse del sistema operativo invece possono essere condivise tra processi (a seconda del tipo di risorsa).
 
+\subsubsection{Immagine di un processo}
+\begin{center}
+    \includegraphics[width=90mm]{images/aa2324/SO_implementazioneprocessi1.jpg}
+\end{center}
+L'immagine di un processo è formata da:
+\begin{itemize}
+    \item Il codice del programma (\textbf{text section})
+    \item La \textbf{data section}, contenente le variabili globali
+    \item Lo \textbf{heap}, contenente la memoria allocata dinamicamente durante l'esecuzione
+    \item Lo stack delle chiamate, contenente parametri, variabili locali e indirizzo di ritorno
+\end{itemize}
+\textit{Text} e \textit{data section} hanno dimensioni costanti per tutta la vita del processo.\\
+\textit{Stack} e \textit{heap} invece crescono/decrescono durante la vita del processo, smetteranno solo quando una delle due sezioni raggiungerà la fine della memoria allocata per il processo, ovvero collidono tra loro.
 
 
 

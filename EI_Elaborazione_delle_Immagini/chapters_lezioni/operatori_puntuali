@@ -46,7 +46,7 @@ Se divido l'oistogramma per l'area dell'immagine (etensione della curva). Cosa r
 Due immagini possono avere lo stesso istogramma anche se hanno dimensioni diverse (proporzioni uguali), es. sono in scala.\\
 Per questo anche è utile la normalizzazione ttra [0, 1], ci riconduciamo sempre ad un caso unico.\\
 Slide successiva: 4 immagini geometriche, poi 5 immagini diverse con 3 canali (azzurro bianco e verde). Le 4 geometriche hanno tutte lo stesso istogramma, quelle 5 sotto pure, perché tengo conto solo dei colori e non della loro distribuzione.
-\descrizione{L'istogramma dà una descrizione parziale della distribuzione dei livelli di grigio (o di colori) in un'immagine.}
+\definizione{L'istogramma dà una descrizione parziale della distribuzione dei livelli di grigio (o di colori) in un'immagine.}
 Mostra slide con un'immagine geometrica e un istogramma. Corrisponde? Abbastanza, ho due picchi uno più accentuato per il colore di sfondo e del buco, uno più limitato per il quadrato. è sfrangiata perché c'è rumore.\\
 
 \subsection{Contrasto e luminosità locale}
