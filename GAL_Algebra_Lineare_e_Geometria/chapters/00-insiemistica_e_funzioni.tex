@@ -35,10 +35,12 @@
         \item \textbf{Prodotto Cartesiano} $A \times B = \{(x,y) : x\in A, y \in B\} $
         \\Ovvero l'insieme delle coppie di ogni alemento di A con ogni elemento di B. Nota che il prodotto cartesiano NON è commutativo.
     \end{itemize}
-    \paragraph*{Osservazione notazione} Scrivere $(x, y)$ è diverso che scrivere $\{x, y\}$,
-    perchè nel primo caso sto considerando la coppia di elementi $x, y$, mentre nel 
-    secondo caso sto considerando l'insieme contenente gli elementi $x, y$.\\
-    Quindi $(x, y) \neq (y, x)$, mentre $\{x, y\} = \{y, x\}$.
+
+    \osservazione{\underline{Scrivere $(x, y)$ è diverso che scrivere $\{x, y\}$}.
+    \\Nel primo caso sto considerando la \textbf{coppia di elementi $x$ e $y$}, mentre nel 
+    secondo caso sto considerando l'insieme contenente gli elementi $x$ e $y$.
+    \\Quindi $(x, y) \neq (y, x)$, mentre $\{x, y\} = \{y, x\}$.}
+
     \subsection*{Insiemi Numerici}
     Esistono diversi insiemi numerici:
     \begin{itemize}
@@ -51,15 +53,17 @@
     \subsubsection*{Spazi Multidimensionali}
     Esistono spazi numerici multidimensionali, che sono semplicemente il prodotto cartesiano di più spazi:
     \[ \R^2 = \R \times \R = \{ (x,y):x,y\in \R\}\]
-
-    \section*{Funzioni}
-    % Una funzione definita su due insiemi A e B lega un elemento di A ad un elemento di B.
- %Fine Lezione 1
- %Inizio Lezione 2
-    \definizione{Dati due insiemi A e B, una funzione è una relazione che associa ogni elemento di A a uno e
+    %Fine Lezione 1
+    \section*{Funzioni} 
+    %Inizio Lezione 2
+    \subsection*{Definizione di Funzione}
+    Definiamo ora il concetto di Funzione:
+    \definizione{Dati due insiemi A e B, una funzione è una relazione che \textbf{associa} ogni elemento di A a uno e
     un solo elemento di B. L'insieme A viene chiamato \textbf{Dominio}, mentre B è il \textbf{Codominio}.}
-    \paragraph*{Definizione in termini matematici} Poichè f sia una funzione deve valere:
-    \[ \forall x \in \text{ dom}(f),\, \exists \, ! f(x) \]
+    \paragraph{Matematicamente} Sia $A$ il dominio di $f$, poichè essa sia una funzione deve valere:
+    \[ \forall x \in A,\, \exists \, ! f(x) \]
+    Ovvero, per ogni $x$ appartenente al dominio della funzione $f$ esiste \textbf{ed é unico} un valore di $f(x)$.
+
     \paragraph*{Immagine}Sia $S \subset A$, allora con $f(S)$ indicheremo l'immagine di S tramite f.
     \[ f(S)=\{b \in B: \text{ è associato ad un elemento di S}\} \]
     \paragraph*{Controimmagine} Sia $R \subset B$, allora con $f^{-1}(R)$ indicheremo la controimmagine.
