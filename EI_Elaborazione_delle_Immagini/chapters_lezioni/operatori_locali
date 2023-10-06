@@ -1,3 +1,4 @@
+% 05/10/2023 L5
 \chapter{Operatori locali}
 Abbiamo visto enhancing puntuale. Ora vediamo enhancing locale.\\
 Da cosa deriva il rumore? Elettronica, intereferenze di persone/oggetti, ma da cos'altro potremmo avere rumore? Dall'illuminazione. Es.: neon, potrebbe filtrare cosa? Non ci accorgiamo, ma l'immagine cambia. Risolviamo mediando $n$ immagini. Slide 5.\\
@@ -48,6 +49,135 @@ Slide 29, ne parleremo venerdì.\\
 Parliamo anche di operatori e operazioni lineari e non lineari.\\
 Ricordiamo che le nostre immagini sono matrici $n \times n$, avrò $n \bullet n$ operazioni.\\
 \subsection{Filtri spaziali}
-Il filtraggio lineare su un'immagine f di dimensione $M \times N$ si fa con una maschera di dimensione $M \times N$.\\
-Domanda tipo barriera: questa maschera cosa fa? Le maschere devono sempre dare somma 1. Perché? se vado su zona omogenea l'applicazione del filtro non altera il valore dei pixel.\\
+Il filtraggio lineare su un'immagine $f$ di dimensione $M \times N$ si fa con una maschera di dimensione $M \times N$.\\
+Domanda tipo barriera: questa maschera cosa fa? Le maschere devono sempre dare somma 1. Perché? Se vado su zona omogenea l'applicazione del filtro non altera il valore dei pixel.\\
 L'immagine che ha rubato recentemente di cui parla nell'audio (la maschera che si sovrappone e pixel etc) è la slide 34.
+
+% 06/10/2023 L6
+
+\subsection{Image restoration}
+Il rumore può modificare il segnale dell'immagine (es. immagine mediche) e continua ad essere un problema anche quando uno pensa di avere un sistema di apprendimento molto sofisticato (es. reti neurali).\\
+\subsubsection{Degrado dell'immagine}
+Il rumore che tratteremo noi sarà esclusivamente \textbf{additivo}, quasi sempre si considera a somma 0. Non è una gran semplificazione, capita effettivamente abbastanza presto che si compensino e davvero sia a somma 0.\\
+Vedremo 2-3 tipi di rumore: slide 13-14.
+\begin{description}
+    \item[gaussiano:] 
+    \item[impulsivo:] indipendentemente dal valore che c'è sotto, il pixel assume solo valori estremi, o 0 o 255 (es. tipo: la neve che si vede sul televisore quando non c'è segnale)
+\end{description}
+Capire quale tipo di rumore è, ci aiuta a capire quali strumenti sia meglio usare per rimuoverlo.\\
+Questa parte si chiama \textbf{understanding}.
+\subsubsection{Degrado dell'immagine}
+Quando parliamo di un soggetto che analizziamo nella sua interezza, risenti inizio registrazione.\\
+Slide 11-12.\\
+Se abbiamo un'immagine non corrotta, se la sottraiamo all'immagine corrotta, otteniamo un'immagine che è solo rumore e che sarà o solo positivo o solo negativo.
+\subsubsection{Quantificare il rumore}
+\subsubsection{Rumore dovuto ad elaborazioni}
+Lo zero che si è alzato (lo scuro era negativo, il chiaro era l'artefatto positivo) è la slide 23; il grigio più o meno medio sono le regioni che meno hanno sofferto.
+Gli artefatti li abbiamo anche se sull'immagine compiamo traslazioni o altre operazioni. Es.: fotografiamo una targa e la raddrizziamo, l'immagine si degraderà sicuramente.
+\subsubsection{Metriche oggettive}
+MSE e PSNR sono le metriche più usate. Slide 28: le due zone sembreranno uguali ma hanno rumori (?) divresi.\\
+L'ultima volta siamo arrivati qui: slide 30.
+
+\section{Filtri spaziali}
+Lineare: l'operazione è scomponibile. Ad es. per lavorare su un'immagine intesa come matrice posso lavorare solo su alcune righe, maggiore semplificazione computazionale.\\
+Un filtro spaziale è formato da un intorno di pixel, e posso assumere che i pixel vicini più o meno appartengano all'oggetto, perlomeno posso almeno valutarlo insieme a questi pixel. Mi creano l'intorno.\\
+Da un pov operativo, l'equazione è quella di slide 32 che riporterò in un altro momento.\\
+Tenderemo ad usare maschere con valori interi e somma 1 e terremo fuori un fattore di normalizzazione.\\
+Reti neurali convulazionali (?): sono esattamente quello di cui stiamo parlando, prendono un intorno di pixel e fanno una convoluzione, applicano un filtro.\\
+Slide 33 ha spiegato l'eq mi sono persa. Slide 34 ottima rappresentazione visiva.\\
+Slide 35 e 36 parla di blurraggio, Fabio?\\
+Fa un esempio, ho 5 pixel con relativo valore: 81, 82, 83, 84, 85. 82 fa media fra 81 e 83. 84 fa media fra 83 e 85. Ma che succede se cerco di stimare 85? Non riesco. Diversi approcci:
+\begin{itemize}
+    \item si aggiungono pixel sui contorni a valore costante (es. un intorno nero)
+    \item si duplicano i pixel terminali (es. 85)
+    \item boh
+\end{itemize}
+\subsection{Correlazione e convulazione}
+Slide 38: parla di maschera simmetrica, non è una convoluzione ma una correlazione, però sono abbastanza vicini da essere scambiato (nelle reti neurali convoluzionali non è una vera convoluzione ma ).\\
+Correlazinoe: prendo la maschera la applico e filtro.
+convoluzione: la maschera viene prima riflessa poi applicata.
+Cosa vuol dire che una maschera viene riflessa? Slide 39.\\
+Slide 40: esempio di maschera riflessa. Ma ho sbagliato? Ci sono valori negativi. Può esserci una maschera riflessa con valori negativi? Sì. Può una maschera di filtraggio avere valori negativi? No.\\
+Domanda barriera: questa maschera è di smoothing (riduzione rumore) o estrae i bordi (vedremo più avanti)?\\
+La slide 41 è un esempio di maschera che estrae i bordi. Eempio di convulazione.\\
+La maschera può essere piena, vuota, fare cose\dots viene chiamata \textbf{kernel}. Slide 48.\\
+Se la maschera ha solo 1 al centro è un'identità.\\
+Se è di correlazione, un valore viene spostato. Se è di convoluzione, il valore viene portata dall'altra parte.\\
+Slide 49: non mi interessa se correlazione o convoluzione: esempio di filtro di blur.\\
+Non ci sto capendo un cazzo ma la slide 52 fa vedere con la media dell'intorno fa vedere come funziona quello sui bordi.\\
+Slide 55: blur sulle immagini della tipa.\\
+Slide 56: esempio di filtro di blurraggio sopra e illuminazione sotto, che mi crea effetto pellicola negativa.
+\subsection{Smoothing}
+Slide 57: definizione di smoothing da trascrivere. Slide 58 formula da trascrivere.\\
+Ma le maschere devono essere sempre di dimensione quadrata? No. Noi le considereremo comunque sempre dispari in modo che siano il più simmetriche possibili. Fa l'esempio della maschera a croce 5x5 in basso al centro nella slide 58, che è una maschera di smoothing che fa "quando ci può tornare più utile"? Risposta: quando ho un'immagine con molti bordi. Quella a destra invece è circolare.
+\subsection{Gaussiana}
+\subsubsection{Definizione}
+Slide 59.
+\subsubsection{Filtraggio}
+Sono numeri reali, la sapremmo discretizzare? Due passaggi: campionamento (Leggerlo in modo discreto) e la quantizzazione (255 livelli di grigio, riportare solo a quei valori). Tante volte il filtraggio viene definito tramite sigma (slide 60). ma sigma? è la deviazione standard del rumore identificato dall'altra parte, io cerco di tenermi dentro il rumore.\\
+data una cosa gaussiana, quale percentuale ho dentro intervallo di sigma? Es.: altezza delle persone $+-$ sigma. Avrò dentro tipo il $93\%$ delle persone.\\
+La maschera gaussiana discretizzata 3x3 con i suoi valori che nomina nella registrazione è quella di slide 60, a destra.\\
+Slide 61, a sinistra es di \\
+Domanda a barriera: per avere un filtro gaussiano, che numero devo avere prima della matrice di destra? 
+\subsubsection{Maschere di filtraggio}
+Slide 61
+\subsubsection{Smoothing gaussiano}
+Slide 62-72.\\
+Una cosa che dobbiamo saper fare è prendere un'immagine e capire che filtro è stato applicato: qua (slide 65) un filtro di smoothing. Slide 66: anche lì sembra lo stesso filtro ma non siamo riusciti a togliere il rumore impulsivo.\\
+Nella slide 67 uffa\\
+Slide 68. I filtri di smoothing sono usati per il blurring di immagini e la riduzione del rumore.\\
+Es. slide 68 vogliamo immagini di solo galassie grandi, come fo? Inizio a sfocare le cose piccole (immagine centrale). Poi creo un'immagine binaria (immagine a destra) prendendo solo oggetti con un certo valore. Riprendiamo il concetto di combinazione di immagini: se moltiplico la maschera binaria (img a destra) per l'immagine originale (img a sinistra) ottengo solo le galassie grandi.\\
+Un'altra cosa su cui potremmo ragionare è: come definiamo quel 15x15 (didascalia sotto slide 68)? Se noi vogliamo che il rumore venga eliminato deve essere che quando è nella maschera la stella sia più piccola del resto. Il resto mediato deve stare sotto una soglia. Perché il rumore venga effettivamente tolto, deve essere decisamente più piccolo del segnale.\\
+
+Slide 69: le due immagini hanno lo stesso istogramma? Sì. Se le medio? No.\\ L'immagine risulterà tutta grigia.\\
+Parla di un'immagine 500x500, slide 71. Se la mia immagine contiene un segnale (rumore o boh) che sia più piccolo della parte rimanente, questo va a scomparire. Se vado a prendere un segnale sempre più grande, un preciso puntino va a scomparire. Stessa cosa, i quadratini vanno ad arrotondarsi (e così anche i bordi della "a"). Siamo sempre nella slide 71. Cosa succede fra le ultime due immagini? Cambiano le linee: è un fenomeno di \textbf{aliasing}: praticamente quando prima era sul nero, ora è chiaro, quando prima era sul chiaro, ora è nero.
+
+\subsection{Smoothing: vantaggi e svantaggi}
+Slide 72. Trascrivila perché contiene tutto quello che ha detto a voce.\\
+Rumore impulsivo: abbiamo detto che è 
+
+\subsection{Filtro mediano}
+Slide 73. Se c'è rumore, l'ho ignorato. Se faccio la media\\
+Il mediano \textbf{non} introduce nuovi valori di grigio. Se prendo 0 e 127, il mediano sarà sempre 127 (elimino i pixel isolati). Il mediano \textit{non} è un \textbf{operatore lineare}.\\
+Anche qui la maschera può essere di qualsiasi dimensione e forma (solitamente un intorno quadrato o a croce), ma deve essere dispari.\\
+Il filtro mediano riduce molto di più sfocando meno i bordi con il rumore di tipo impulsivo (slide 76).\\
+Immagine a livelli di grigio ma fatta a raggi-x: slide 78. Come funziona bene il filtro mediano (img a dx): dove vediamo gli artefatti? Un po' di rumore gaussiano (in alto) si vede, ci sono ancora un po' di pallini. Perché? Io dico che tolgo gli estremi del mediano, se ne ho 5 (dim della maschera) e sono tutti rumori, il risultato è ancora rumore. Se il rumore è pari alla maschera più uno, (ovvero è maggiore) non viene eliminato.\\
+Come faccio a vedere cosa effettivamente è cambiato fra un mediano e l'altro se lo applico più volte? Slide 80.\\
+
+\subsection{Media vs mediano}
+Slide 82.Il mediano conserva di più gli edge. Slide 83, esempio simile.\\
+Slide 84: esempio di immagine originale, media e mediano, con rumore gaussiano.\\
+Slide 85: esempio di immagine originale, media e mediano, con rumore impulsivo.\\
+E se ho un'immagine con molto r. gaussiano e poco impulsivo? Applico filtro gaussiano.\\
+E se ho un'immagine sia con rumore gaussiano che rumore impulsivo: cosa applico? Sicuro il mediano: agisce bene su rumore impulsivo e un po' anche su quello gaussiano, ma come faccio a filtrare al meglio dovendoli eliminare entrambi? In sequenza, prima il mediano e poi?\\
+Parliamo di \textbf{filtri di rango}.\\
+Quando ha senso prendere il massimo? Quando ho un'immagine con rumore gaussiano e voglio eliminare il rumore impulsivo.\\
+Es. slide 88: ho rumore di tipo pepper, ma togliendolo (filtraggio min) si assottigliano i pin del circuito. come faccio a ristorarli? Applico il filtro di rango massimo.
+\subsection{Mid point e Alpha Trimmer mean filter}
+
+
+
+
+slide 
+
+
+\subsection{Filtri con maschera rotante}
+Slide 94. L'idea è che vado a prendere il pixel centrale.
+un filtraggio ottimo è quello che prende i pixel più vicini, per filtrare meglio prendere quello con varianza inferiore. Vado a cercare l'intorno più omogeneo possibile e medio solo con quello.\\
+Slide 95: il filtro con maschera rotante smussa le superfici ma crea degli edges.\\
+Ha fatto vedere esempi di uno stage, e poi ci sono delle slide di altri esempi di filtri che il libro riporta ma che secondo lui sono un po' datati.
+
+\section{Esercizio}
+Vuole una foto (es. piazza duomo) senza pedoni o piccioni. Risposta: tante foto e le medio. Per esempio facendone un video e prendendone frame diversi.
+
+\section{Next time}
+Accennato nella slide 116 del pacco di slide di oggi.\\
+Operatori locali derivati. Vedremo se un'immagine è sfocata come aumentarne la nitidezza: \textbf{sharpening}. Emuleremo quello che fa il nostro occhio con le bande di Mach.\\
+Poi inizieremo la parte delle trasformazioni geometriche.\\
+Fine parte grossa sulla elaborazione di base, poi inizieremo a parlare di colori.
+
+
+
+
+
+
