@@ -10,7 +10,7 @@ Allora:
     le operazioni di \textbf{Somma} ($+$) e di \textbf{Prodotto per uno scalare}($\cdot$) su $V$.
 }
 Nota che campo e spazio vettoriali non coincidono mai! se entrambi sono $\R$, allora sono copie diverse di esso.
-\subsection{Le operazioni $+$ e $\cdot$}
+\subsection{Le operazioni Somma e Prodotto}
 Perchè un insieme sia uno spazio vettoriale deve essere dotato delle operazioni di Somma e Prodotto per uno scalare,
 ma queste due operazioni devono rispettivamente verificare alcune proprietà.
 
@@ -48,3 +48,24 @@ Essa deve godere delle seguenti proprietà:
     \item $-1 \cdot \underline{v} = -\underline{v}$, ovvero l'opposto di $\underline{v} \in V,\; \forall \underline{v} \in V$.
 \end{itemize}
 }
+
+%@elia sarebbero da aggiungere gli esempi che non ho capito benissimo
+
+\section{I Sottospazi Vettoriali}
+Definiamo ora i sottospazi vettoriali:
+\definizione{
+    Sia $V$ uno spazio vettoriale su $K$ e $W\subset V$.
+    Diremo che $W$ è un sottospazio vettoriale ($W<V$) di $V$ se:
+    \begin{enumerate}
+        \item $\underline{w}_1 + \underline{w}_2 \in W, \; \forall \underline{w}_1,\underline{w}_2 \in W$
+        \item $\lambda \underline{w} \in W, \; \forall \underline{w} \in W$
+    \end{enumerate}
+}
+\osservazione{se $W<V$, ovvero $W$ è sottospazio di $V$ allora $\underline{0}_V \in W$}
+
+\paragraph{In parole povere} Se abbiamo uno spazio vettoriale $V$ e ne prendiamo un suo sottoinsieme $W$,
+quest'ultima sarà anch'esso uno spazio vettoriale (sottospazio di $V$ in questo caso) soltanto se queste due proprietà vengono rispettate:
+\begin{itemize}
+    \item Se prendiamo qualunque coppia di elementi $w_1$ e $w_2$ in $W$, anche la loro somma deve far parte di $W$.
+    \item se prendiamo un qualunque elemento $\underline{w}$ e un qualunque scalare $\lambda$, anche il loro prodotto deve far parte di $W$.
+\end{itemize}
