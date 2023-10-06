@@ -1,0 +1,79 @@
+\chapter{Operatori Puntuali}
+Tutte le tecniche di Image Processing che discuteremo in questo capitolo sono implementate nel 
+\textbf{Dominio Spaziale}, ovvero il piano contenente i pixel di un'immagine.
+Le tecniche del dominio spaziale operano direttamente su i pixel di un'immagine, a differenza del dominio
+delle Frequenze, nel quale le operazioni sono effettuate sulla trasformata di Fourier de un'immagine invece che sull'immagine stessa.
+
+\paragraph{Enhancement}
+Anche se i metodi di Spatial Filtering e Intensity Trasformation hanno moltissime applicazioni,
+noi ci concentreremo sull'\textbf{Enhancement} delle immagini.
+
+L'Enhancement è un operazione di Image Processing a basso livello possibile sia nel dominio spaziale che nel domino delle Frequenze
+ed è il processo di manipolazione di un immagine per far si che il risultato sia migliore dell'originale per una \textbf{specifica applicazione}.
+Diamo enfasi alla parola \emph{specifica}, dato che le tecniche di enhancement sono \textbf{problem oriented}.
+
+
+\section{Gli Operatori sulle Immagini}
+Nel miglioramento (enhancement) delle immagini si possono applicare diversi operatori:
+\begin{itemize}
+    \item \textbf{Operatori Puntuali}, il valore di ogni pixel dell'immagine di uscita è in funzione solo del corrispondente
+    pixel dell'immagine di ingresso.
+    \item \textbf{Operatori Locali}, il valore di ogni pixel dell'immagine di uscita è in funzione dei valori del pixel di ingresso corrispondente e \emph{di un suo intorno locale di pixel}.
+
+    \item \textbf{Operatori Globali}, i pixel dell'immagine di uscita dipendono dal valore di tutti i pixel dell'immagine di ingresso.
+\end{itemize}
+
+\subsection{Basi degli Operatori Locali}
+I processi nel dominio spaziale che affrontiamo si basano sull'espressione:
+\[g(x,y) = T[f(x,y)]\]
+dove:
+\begin{itemize}
+    \item $f(x,y)$ è l'immagine di input.
+    \item $g(x,y)$ è l'immagine di output.
+    \item $T$ è un operatore di $f$ definito su un \emph{intorno} del punto $(x,y)$.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=.7\textwidth]{images/3.1-local_operators.png}
+\end{center}
+Tipicamente l'intorno (neighborhood) è rettangolarem centrato su $(x_0,y_0)$ e molto più piccolo dell'immagine,
+però la sua forma e dimensione \emph{dipendono dall'applicazione}.
+Nota che $T$ può anche essere applicato su una sequenza di immagini, per esempio per effettuare una somma.
+
+\subsection{Gli operatori Puntuali}
+L'intorno più piccolo possibile è di dimensione $1\times1$, in questo caso $T$ considera solo il valore di 
+$(x,y)$, diventando di fatto un \textbf{Operatore Puntuale} o \emph{Intensitiy Transformation Function} (Manipolazioni della scala di grigio)
+di forma:
+\[s = T(r)\]
+in cui, per semplicità di notazione, usiamo $s$ e $r$ per denotare rispettivamente l'intensità di $g$ (output) e $f$ (input) di un qualunque punto $(x,y)$.
+
+\paragraph{Elaborazioni puntuali Omogenee}
+Il risultato di una elaborazione puntiale omoegenea dipende solo dal valore del pixel cui è applicata, per cui tali elaborazioni vengono anche dette manipolazioni della scala di grigio (o dei colori).
+\\Se invece il risultato dell'elaborazione dipende anche dalla posizione del pixel dell'immagine si paral di elaborazioni puntuali \textbf{non omogenee}.
+\\Alcune tipiche elaborazioni puntuali omogenee sono:
+\begin{itemize}
+    \item Aggiunta o sottrazione di una costante a tutti i pixel.
+    \item Inversione della scala di grigi (negativo).
+    \item Clipping.
+    \item Modifiche del contrasto (trasformazioni lineari e non della scala dei grigi).
+    \item Equalizzazione dell'istogramma.
+    \item Presentazione falso in colore.
+\end{itemize}
+
+\subsubsection{Contrast Stertching}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{images/3.2.a-contrast-stretching.png}
+\end{wrapfigure}
+Un esempio di elaborazione puntuale omogenea è quello del \emph{contrast stretching}.
+In questo caso $T(r)$ prende la forma come nell'immagine.
+\\Il risultato dell'applicazione della trasformazione ad ogni pixel in $f$ per generare il corrispondente pixel in $g$
+sarebbe quello di produrre una \textbf{immagine di contrasto maggiore} dell'originale,
+scurendo i livelli di intensità sotto a $k$ e schiarendo le intensità sopra a $k$.
+
+\subsubsection{Thresholding o Binarizzazione}
+\begin{wrapfigure}{l}{0.15\textwidth}
+    \centering
+    \includegraphics[width=.15\textwidth]{images/3.2.b-thresholding.png}
+\end{wrapfigure}
+In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) tutti i livelli sotto $k$ e a $1$ (bianco) tutti quelli sopra a $k$.
+%Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
