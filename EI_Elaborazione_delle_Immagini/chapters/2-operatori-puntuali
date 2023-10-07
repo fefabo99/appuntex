@@ -107,7 +107,7 @@ Se $\gamma = 1$ invece, la funzione risultante sarà quella identità.
 %Aggiungere immagini di repertorio
 
 
-\section{L'istogramma}
+\section{L'Istogramma}
 L'istogramma di un'immagine è un tipo di istogramma che rappresenta in modo grafico la \textbf{distribuzione
 tonale} (livelli di grigio) \textbf{di un'immagine digitale} ovvero traccia il numero di pixel per ogni valore tonale.
 
@@ -133,3 +133,7 @@ L'istogramma normalizzato rappresenta la \emph{frequenza di occupazione} dei liv
 \emph{stima della probabilità di avere il valore $k$ nell'immagine}.
 Gli istogrammi sono facili da computare e sono utilizzabili per rapide implementazioni hardware, rendendo 
 le tecniche basate sugli istogrammi uno strumento molto utlizzato per l'Image Processing in Real Time.
+
+%TODO aggiungere paragrafo sulla forma dell'istogramma pg 133-34
+
+\subsection{Equalizzazione dell'istogramma}
