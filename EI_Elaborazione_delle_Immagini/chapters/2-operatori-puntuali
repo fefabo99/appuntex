@@ -131,3 +131,5 @@ In genere lavoreremo con gli istogrammi normalizzati, che chiameremo semplicemen
 \paragraph{Cosa mi dice l'istogramma normalizzato?}
 L'istogramma normalizzato rappresenta la \emph{frequenza di occupazione} dei livelli ed è interpretata come 
 \emph{stima della probabilità di avere il valore $k$ nell'immagine}.
+Gli istogrammi sono facili da computare e sono utilizzabili per rapide implementazioni hardware, rendendo 
+le tecniche basate sugli istogrammi uno strumento molto utlizzato per l'Image Processing in Real Time.
