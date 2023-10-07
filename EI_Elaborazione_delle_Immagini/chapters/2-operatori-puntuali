@@ -74,3 +74,60 @@ scurendo i livelli di intensità sotto a $k$ e schiarendo le intensità sopra a 
 \end{wrapfigure}
 In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) tutti i livelli sotto $k$ e a $1$ (bianco) tutti quelli sopra a $k$.
 %Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
+
+\section{Some Basic Intensity Transformation Functions}
+Le funzioni di Intensitiy Transformation son o tra le più semplici tecniche di IP.
+In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, che chiamiamo rispettivamente $r$ ed $s$,
+sono messi in relazione tramite la funzione $T$ che mappa i valori $r$ su quelli $s$.
+
+\paragraph{Look Up Tables} Siccome stiamo parlando di grandezze digitali, i valori di una 
+Intensitiy Transformation Function sono generalmente mappati in una Look Up Table, che permette di associare
+con migliore efficienza i valori di input e output.
+
+
+\subsection{I Negativi}
+Il negativo di un immagine con livelli di intensità nel range $[0,L-1]$, con $L$ numero di livelli (256 per una immagine in 8bit),
+è ottenuto usando la \emph{Funzione di trasformazione Negativa}, che ha la forma:
+\[ s = L -1 -r \]
+Invertendo in valori di grigio di un'immagine digitale in questa maniera produce l'equivalente di un negativo fotografico.
+
+%\subsection{Trasformazioni Logaritmiche} %To do, non credo sia di vitale importanza
+
+\subsection{Trasformazioni Potenziali: Gamma Correction}
+La trasformazione potenza, anche detta \textbf{Gamma Correction}, è uno degli operatori puntuali più utilizzati.
+Questa trasformazione è nella forma:
+\[ s = cr^\gamma \]
+Dove $c$ e $\gamma$ sono costanti positive.
+le curve power-law con valori frazionari di $\gamma$ mappano un range ristretto
+di valori scuri in ingresso in una gamma più ampia di valori in uscita, facendo l'opposto per i valori piu chiari.
+
+\paragraph{In parole povere} Quando facciamo una Gamma Correction con un valore di $\gamma < 1$, quindi frazionario,
+stiamo "stretchando" gli scuri restringendo i chiari, viceversa se $\gamma > 1$.
+Se $\gamma = 1$ invece, la funzione risultante sarà quella identità.
+%Aggiungere immagini di repertorio
+
+
+\section{L'istogramma}
+L'istogramma di un'immagine è un tipo di istogramma che rappresenta in modo grafico la \textbf{distribuzione
+tonale} (livelli di grigio) \textbf{di un'immagine digitale} ovvero traccia il numero di pixel per ogni valore tonale.
+
+L'analisi dell'istogramma fornisce generalmente utili informazioni sulle proprietà dell'immagine legate alle frequenza dei livelli di grigio.
+L'informazione spaziale è persa, quindi da un istogramma non possiamo risalire alla posizione dei pixel nell'immagine.
+
+\paragraph{Definzione Matematica}
+Abbiamo $r_k$, per $k=0,1,...,L-1$ che denota le intensità di un'immagine $f(x,y)$ a $L$-livelli.
+L'istogramma \textbf{Non Normalizzato} di $f$ è definito come:
+\[  h(r_k) = n_k \text{ for } k=0,1,...,L-1 \]
+Dove $n_k$ è il numero di pixel in $f$ con intensità $r_k$, e la suddivisone delle scale di intensità sono chiamate Histogram Bins.
+
+\paragraph{Istogramma Normalizzato} 
+L'istogramma normalizzato di $f$ è definito come:
+\[ p(r_k) = \frac{h(r_k)}{MN} = \frac{n_k}{MN} \]
+Dove $M$ e $N$ sono rispettivamente il numero di righe e colonne di un'immagine.
+L'istogramma normalizzato è come l'istogramma, ma elimina la considerazione della dimensione dell'immagine poichè la 
+somma dei valori $p(r_k)$ per ogni valore di $k$ è sempre 1.
+In genere lavoreremo con gli istogrammi normalizzati, che chiameremo semplicemente istogrammi di immagine.
+
+\paragraph{Cosa mi dice l'istogramma normalizzato?}
+L'istogramma normalizzato rappresenta la \emph{frequenza di occupazione} dei livelli ed è interpretata come 
+\emph{stima della probabilità di avere il valore $k$ nell'immagine}.
