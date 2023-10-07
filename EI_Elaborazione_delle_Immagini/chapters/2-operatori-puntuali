@@ -1,8 +1,8 @@
 \chapter{Operatori Puntuali}
 Tutte le tecniche di Image Processing che discuteremo in questo capitolo sono implementate nel 
-\textbf{Dominio Spaziale}, ovvero il piano contenente i pixel di un'immagine.
-Le tecniche del dominio spaziale operano direttamente su i pixel di un'immagine, a differenza del dominio
-delle Frequenze, nel quale le operazioni sono effettuate sulla trasformata di Fourier de un'immagine invece che sull'immagine stessa.
+\textbf{Dominio Spaziale}, ovvero il piano contenente i \textbf{pixel} di un'immagine.
+Le tecniche che introdurremo operano direttamente su i pixel, a differenza dell'elaborazione nel dominio
+delle Frequenze, nel quale le operazioni sono effettuate sulla trasformata di Fourier di un'immagine invece che sull'immagine stessa.
 
 \paragraph{Enhancement}
 Anche se i metodi di Spatial Filtering e Intensity Trasformation hanno moltissime applicazioni,
@@ -26,16 +26,13 @@ Nel miglioramento (enhancement) delle immagini si possono applicare diversi oper
 \subsection{Basi degli Operatori Locali}
 I processi nel dominio spaziale che affrontiamo si basano sull'espressione:
 \[g(x,y) = T[f(x,y)]\]
-dove:
-\begin{itemize}
-    \item $f(x,y)$ è l'immagine di input.
-    \item $g(x,y)$ è l'immagine di output.
-    \item $T$ è un operatore di $f$ definito su un \emph{intorno} del punto $(x,y)$.
-\end{itemize}
+Dove $f(x,y)$ è l'immagine di input, $g(x,y)$ è l'immagine di output e
+$T$ è un operatore di $f$ definito su un \emph{intorno} del punto $(x,y)$.
+
 \begin{center}
     \includegraphics[width=.7\textwidth]{images/3.1-local_operators.png}
 \end{center}
-Tipicamente l'intorno (neighborhood) è rettangolarem centrato su $(x_0,y_0)$ e molto più piccolo dell'immagine,
+Tipicamente l'intorno (neighborhood) è rettangolare e centrato sul pixel $(x_0,y_0)$ ed è molto più piccolo dell'immagine,
 però la sua forma e dimensione \emph{dipendono dall'applicazione}.
 Nota che $T$ può anche essere applicato su una sequenza di immagini, per esempio per effettuare una somma.
 
