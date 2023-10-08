@@ -24,13 +24,11 @@ La macchina di Von Neumann esegue un programma alla volta, ma noi di solito su u
 Il s.o. crea un'ambiente in cui le applicazioni possono collaborare assieme. Se avessi più applicazioni che usano contemporaneamente lo stesso hardware (es. lo schermo)? Il s.o. si occupa di gestire le risorse hardware e di farle usare alle applicazioni. Il s.o. è il software \textit{intermediario} tra le applicazioni e l'hardware.\\
 Un'altra cosa che fa il s.o. è organizzare i nostri file in un sistema ordinato di file e cartelle (anche memorizzandoli su dispositivi secondari di memoria e storaging). Il s.o. si occupa di gestire i file e le cartelle, di crearli, cancellarli, rinominarli, spostarli\dots 
 
-\subsubsection{Cos'è un sistema opertativo?}
-È un insieme di programmi (software) che gestiscono gli elementi fisici di un computer (hardware).\\
-\vspace{5mm}
+\subsubsection{Cos'è un sistema operativo?}
+\definizione{È un insieme di programmi (software) che gestiscono gli elementi fisici di un computer (hardware).}
 Fornisce una piattaforma di sviluppo per le applicazioni, che permette loro di condividere ed astrarre le risorse hardware.\\
 Agisce da intermediario tra utenti e computer, permettendo agli utenti di controllare l'esecuzione dei programmi applicativi e l'assegnazione delle risorse hardware ad essi.\\
 Protegge le risorse degli utenti (e dei loro programmi) dagli altri utenti (e dai loro programmi) e da eventuali attori esterni.\\
-\vspace{5mm}
 Un s.o. in primo luogo è una piattaforma di sviluppo, ossia \textbf{un insieme di funzionalità software} che i programmi applicativi possono usare.\\
 Tali funzionalità permettono ai programmi di poter usare in maniera conveniente le risorse hardware, e di condividerle:
 \begin{itemize}
@@ -106,88 +104,103 @@ Quindi, in definitiva, il s.o. ha bisogno di esporre i suoi servizi esclusivamen
     \item[Logging:] mantiene traccia di quali programmi usano quali risorse, allo scopo di contabilizzarle, ovvero fare sì che un programma o un utente non usi troppe risorse sottraendole ad altri programmi o utenti.
 \end{description}
 
-\section{Chiamate di sistema e API}
-I programmi applicativi accedono a questi servizi che abbiamo appena elencato tramite chiamate di sistema o API.\\
-Un programma applicativo che vuole accedere ai servizi offerti dal kernel non chiama direttamente dal kernel ma passa da un Middleware.\\
-Il kernel offre i propri servizi ai programmi come chiamate di sistema, ossia di funzioni invocabili in un determinato linguaggio di programmazione (C, C++\dots).\\
-I programmi però non utilizzano direttamente le chiamate di sistema, ma delle librerie di middleware dette Application Program Interface (API) implementate invocando le chiamate di sistema.\\
-Questo perché le chiamate di sistema dipendono dal linguaggio mentre le API sono più standardizzate (es. le POSIX, tipicamente in C). Spesso le API sono fortemente legate con le librerie standard del linguaggio di implementazione (es. libc se le API sono implementate in C), al punto che anche queste diventano una parte implicita dell'API.
+\section{Chiamate di sistema ed API}
+\subsection{Cosa sono?}
+\begin{description}
+    \item[kernel:] programma sempre presente che è la parte centrale del s.o. e che permette di astrarre l'hardware e di fornire servizi ai programmi utente.
+    \item[Middleware:] fornisce le API, le chiamate di procedura che ci permettono di costruire i programmi.
+\end{description}
+Il kernel fornisce un insieme di servizi detti \textbf{chiamate di sistema}, funzioni invocabili in un determinato linguaggio di programmazione (ad es. C, C++\dots), anche se si tende a \textbf{non} invocare direttamente le chiamate di sistema. Ma si tende a frapporre uno strato (il \textit{middleware}) tra il kernel e i programmi applicativi, in modo che questi ultimi chiamino le \textbf{API}, funzioni pensate appositamente per permettere ai programmi applicativi di usare i servizi offerti dal kernel in modo migliore rispetto alle chiamate di sistema.\\
+Utili anche perché ogni linguaggio di programmazione ha una sua libreria, suoi oggetti\dots\\ 
+Per evitare commistioni (mescolanze, contaminazioni\dots), si vanno a creare due strati distinti, uno per la libreria del L.d.P. e quello delle API.
 \begin{center}
     \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API1.jpg}
 \end{center}
+Come visibile nell'immagine: 
+\begin{itemize}
+    \item Strato della libreria del L.d.P. può accedere alle chiamate di sistema.
+    \item Strato della libreria delle API può accedere alle chiamate di sistema.
+    \item Programmi applicativi possono accedere al middleware.
+    \item Programmi applicativi possono accedere alla libreria del L.d.P..
+    \item Programmi applicativi possono accedere alle API.
+\end{itemize}
+E basta.
 
-\subsubsection{Differenza tra chiamate di sistema ed API}
-Le API sono esposte dal middleware, le chiamate di sistema dal kernel.\\
-Le API usano le chiamate di sistema nella loro implementazione.\\
-Le API sono standardizzate (esempio: standard POSIX e Win32), le chiamate di sistema no (ogni kernel ha le sue).\\
-Le API sono stabili, le chiamate di sistema possono variare al variare della versione del s.o..\\
-Le API offrono funzionalità più ad alto livello e più semplici da usare, le chiamate di sistema offrono funzionalità più elementari e più complesse da usare.
-
-\subsubsection{Esempio confronto API Win32 e POSIX}
+\subsection{Differenze fra chiamate di sistema ed API}
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API_es1.jpg}
+    \begin{tabular}{|p{50mm}|p{50mm}|}
+        \hline
+        \textbf{API} & \textbf{Chiamate di sistema}\\
+        \hline
+        \hline
+        Esposte dal \textbf{middleware} & Esposte dal \textbf{kernel}\\
+        & \\
+        Usano le c.d.s. nella loro & \\
+        implementazione & \\
+        & \\
+        Sono standardizzate & Non sono standardizzate\\
+        (es. POSIX e Win32) & (ogni kernel ha le sue)\\
+        & \\
+        Sono stabili & Possono variare al variare della\\
+         & versione del s.o.\\
+        & \\
+        Funzionalità più ad \textbf{alto livello} & Funzionalità più \textbf{elementari}\\
+        e più semplici da usare & e più complesse da usare\\
+        \hline
+    \end{tabular}
 \end{center}
 
-\subsubsection{Esempio API POSIX}
-\begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API_es2.jpg}
-\end{center}
-
-\section{I programmi di sistema}
-La maggior parte degli utenti utilizza i servizi del s.o. attraverso i programmi di sistema.\\
-Questi permettono agli utenti di avere un ambiente più conveniente per l'esecuzione dei programmi, il loro sviluppo, e la gestione delle risorse del sistema.
-\subsection{Tipologie di programmi di sistema}
+\subsection{I programmi di sistema}
+I programmi di sistema sono programmi che usano le chiamate di sistema per offrire servizi di alto livello agli utenti. I più importanti:
 \begin{description}
-    \item[Interfaccia utente (UI):] permette agli utenti di interagire con il sistema stesso; può essere grafica (GUI) o a riga di comando (CLI); i sistemi mobili hanno un'interfaccia touch.
-    \item[Gestione file:] creazione, modifica, e cancellazione file e directory.
-    \item[Modifica dei file:] editor di testo, programmi per la manipolazione del contenuto dei file.
-    \item[Visualizzazione e modifica informazioni di stato:] data, ora, memoria disponibile, processi, utenti\dots fino informazioni complesse su prestazioni, accessi al sistema e debug. Alcuni sistemi implementano un \textbf{registry}, ossia un database delle informazioni di configurazione.
+    \item[Interfaccia utente (UI):] permette agli utenti di interagire con il sistema stesso; può essere grafica (GUI) o a riga di comando(CLI). I sistemi mobili hanno un'interfaccia touch.\\
+    \textbf{\textit{UI - l'interprete dei comandi:}}\\
+    Permette agli utenti di interagire con il sistema tramite \textbf{istruzioni}, comandi testuali.\\
+    In molti sistemi operativi è possibile configurare quale interprete dei comandi usare, in quel caso è detto \textbf{shell}.\\
+    Ci sono due modi per implementare un comando:\\
+    \textit{$\triangleright$\, Built-in:} l'interprete esegue direttamente il comando (tipico nell'interprete dei comandi di Windows).\\
+    \textit{$\triangleright$\, Come programma di sistema:} l'interprete manda in esecuzione il programma (tipico delle shell Unix e Unix-like).\\
+    Spesso riconosce un vero e proprio l.d.p. con variabili, condizionali, cicli\dots
+    \begin{center}
+        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterpreteComandi.jpg}
+    \end{center}
+    \textbf{\textit{UI - le interfacce grafiche:}}\\
+    L'interfaccia grafica (GUI) è di solito basata sulla metafora della scrivania, delle icone e delle cartelle (le directory).\\
+    Nate dalla ricerca presso lo Xerox PARC lab negli anni '70, sono state popolarizzate poi da Apple con il Macintosh  negli anni '80.\\
+    Su Linux le più popolari sono GNOME e KDE.
+    \begin{center}
+        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
+    \end{center}
+    \textbf{\textit{UI - le interfacce touch:}}\\
+    I dispositivi mobili richiedono interfacce di nuovo tipo.\\
+    Nessun dispositivo di puntamento (mouse)\\
+    Uso dei gesti (gestures)\\
+    Tastiere virtuali\\
+    Comandi vocali
+    \begin{center}
+        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
+    \end{center}    
+    \item[Gestione file:] creazione, modifica e cancellazione file e directory.\\
+    \item[Modifica dei file:] editor di testo, programmi per la manipolazione del contenuto dei file.\\
+    Il confine fra \textit{programmi di sistema} e \textit{programmi applicativi} è spesso labile.
+    \item[Visualizzazione e modifica informazioni di stato:] data, ora, memoria disponibile, processi, utenti\dots fino a informazioni complesse su prestazioni, accessi al sistema e debug. Alcuni sistemi implementano un registry, ovvero un database delle informazioni di configurazione.
     \item[Caricamento ed esecuzione dei programmi:] loader assoluti e rilocabili, linker, debugger.
     \item[Ambienti di supporto alla programmazione:] compilatori, assemblatori, debugger, interpreti per diversi linguaggi di programmazione.
     \item[Comunicazione:] forniscono i meccanismi per creare connessioni tra utenti, programmi e sistemi; permettono di inviare messaggi agli schermi di un altro utente, di navigare il web, di inviare messaggi di posta elettronica, di accedere remotamente ad un altro computer, di trasferire file\dots
-    \item[Servizi in background:] lanciati all'avvio, alcuni terminano, altri continuano l'esecuzione fino allo shutdown. Forniscono servizi quali verifica dello stato dei dischi, scheduling di jobs, logging\dots
+    \item[Servizi in background:] lanciati all'avvio, alcuni terminano, altri continuano l'esecuzione fino allo shutdown. Forniscono servizi quali verifica dello stato dei dischi, scheduling di jobs, logging\dots\\
+    I servizi in background sono ad esempio i cosiddetti \textit{demoni di sistema} nei sistemi Unix-like, sono programmi di sistema che di solito sono inattivi per la maggior parte del tempo ma attivati all'avvio del sistema e che rimangono in esecuzione fino allo spegnimento del sistema. Rimangono in attesa finché non si verifica un certo evento, compiono una certa operazione e si disattivano di nuovo in attesa del prossimo evento.\\
+    Utile per servizi temporali, ad esempio utilissimi per i backup, tipo quelli mensili.
 \end{description}
-
-\subsubsection{Interfaccia utente: l'interprete dei comandi}
-L'interprete dei comandi permette agli utenti di impartire in maniera testuale delle istruzioni al s.o..\\
-In molti sistemi operativi è possibile configurare quale interprete dei comandi usare, nel qual caso è detto \textbf{shell}.\\
-Due modi per implementare un comando:
-\begin{description}
-    \item[Built-in:] l'interprete esegue direttamente il comando (tipico nell'interprete di comandi di Windows)
-    \item[Come programma di sistema:] l'interprete manda in esecuzione il programma (tipico delle shell Unix e Unix-like)
-\end{description}
-Spesso riconosce un vero e proprio linguaggio di programmazione con variabili, condizionali, cicli\dots
-\begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterpreteComandi.jpg}
-\end{center}
-
-\subsubsection{Interfaccia utente: le interfacce grafiche}
-L'interfaccia grafica (GUI) è di solito basata sulla metafora della scrivania, delle icone e delle cartelle (corrispondenti alle directory).\\
-Nate dalla ricerca presso lo Xerox PARC lab negli anni 70, popolarizzate dal computer Apple Macintosh negli anni 80.\\
-Su Linux le più popolari sono Gnome e KDE.
-\begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
-\end{center}
-
-\subsubsection{Interfaccia utente: le interfacce touch-screen}
-I dispositivi mobili richiedono interfacce di nuovo tipo.\\
-Nessun dispositivo di puntamento (mouse)\\
-Uso dei gesti (gestures)\\
-Tastiere virtuali\\
-Comandi vocali
-\begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
-\end{center}
 
 \subsubsection{L'implementazione dei programmi di sistema}
 I programmi di sistema sono implementati utilizzando le API, esattamente come i programmi applicativi.\\
 Consideriamo ad esempio il comando cp delle shell dei sistemi operativi Unix-like:
 \begin{itemize}
-    \item cp in.txt out.txt
+    \item cp (copy a file) in.txt out.txt
     \item Copia il contenuto del file in.txt in un file out.txt
     \item Se il file out.txt esiste, il contenuto precedente viene cancellato, altrimenti out.txt viene creato    
 \end{itemize}
-\`E implementato come programma di sistema.\\
+\`E implementato come programma di sistema tramite API (tutte POSIX).\\
 Una possibile struttura del codice è riportata sulla destra (le invocazione delle API sono riportate in grassetto).
 \begin{center}
     \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_ProgrammiDiSistema.jpg}

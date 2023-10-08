@@ -2,9 +2,13 @@
 Vedremo sostanzialmente come i s.o. gestiscono \textbf{processi} e \textbf{thread} e cosa si intende con questi due termini.
 \section{Argomenti}
 \begin{itemize}
-    \item Concetto di processo, operazioni e impplementazione
-    \item Comunicazione interprocesso e comunicazione interprocesso in POSIX
-    \item Multithreading, API e implementazione
+    \item Concetto di processo
+    \item Operazioni sui processi
+    \item Le API POSIX per le operazioni sui processi
+    \item Comunicazione interprocesso
+    \item Le API POSIX per la comunicazione interprocesso
+    \item Multithreading
+    \item Le API POSIX per il multithreading
 \end{itemize}
 
 \section{Concetto di \textit{processo}}
@@ -93,7 +97,7 @@ Possibili politiche di creazione spazio di memoria/indirizzi:
 \begin{itemize}
     \item Il figlio è un duplicato del padre (stessa memoria e programma) \dots 
     \item \dots oppure no, e bisogna specificare quale programma deve eseguire il figlio\\
-    Questo succede per le API Posix e non per le ?
+    Questo succede per le API Posix e non per le Win32.
 \end{itemize}
 Possibili politiche di coordinazione padre/figli:
 \begin{itemize}
