@@ -23,7 +23,7 @@ Nel miglioramento (enhancement) delle immagini si possono applicare diversi oper
     \item \textbf{Operatori Globali}, i pixel dell'immagine di uscita dipendono dal valore di tutti i pixel dell'immagine di ingresso.
 \end{itemize}
 
-\subsection{Basi degli Operatori Locali}
+\subsection{Introduzione agli Operatori Locali}
 I processi nel dominio spaziale che affrontiamo si basano sull'espressione:
 \[g(x,y) = T[f(x,y)]\]
 Dove $f(x,y)$ è l'immagine di input, $g(x,y)$ è l'immagine di output e
@@ -137,3 +137,14 @@ le tecniche basate sugli istogrammi uno strumento molto utlizzato per l'Image Pr
 %TODO aggiungere paragrafo sulla forma dell'istogramma pg 133-34
 
 \subsection{Equalizzazione dell'istogramma}
+
+
+\section{Operatori Puntuali Lineari}
+Come abbiamo già detto un operatore puntuale calcola il valore di un pixel dell'immagine di uscita in funzione esclusivamente del valore
+del corrispondente dell'immagine di ingresso.
+
+Un operatore puntuale $h$ applicato all'immagine $f(n)$ è una funzione che è applicata identicamente ad ogni pixel creando una nuova immagine $g(n)$
+Se l'operatore puntuale in questione è della forma:
+\[ g(n) = P f(n) + L \]
+Dove $P$ è un fattore di scala moltiplicativo e L un fattore di offset,
+allora è chiamato \textbf{Operatore Puntuale Lineare}.
