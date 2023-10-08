@@ -2,19 +2,15 @@
 Vedremo sostanzialmente come i s.o. gestiscono \textbf{processi} e \textbf{thread} e cosa si intende con questi due termini.
 \section{Argomenti}
 \begin{itemize}
-    \item Concetto di processo
-    \item Operazioni sui processi
-    \item Le API POSIX per le operazioni sui processi
-    \item Comunicazione interprocesso
-    \item Le API POSIX per la comunicazione interprocesso
-    \item Multithreading
-    \item Le API POSIX per il multithreading
+    \item Concetto di processo, operazioni e API POSIX
+    \item Comunicazione interprocesso e le API POSIX
+    \item Multithreading e le API POSIX
 \end{itemize}
 
 \section{Concetto di \textit{processo}}
 \subsection{Cos'è un processo}
 Un s.o. ha come obiettivo il fatto di prendere un sistema di elaborazione e fare in modo che su di esso possano essere eseguiti più programmi in modo concorrente. Il loro numero può essere arbitrariamente elevato, di solito molto maggiore del numero di processori, di CPU del sistema. Il s.o. ci permette però di eseguire il n° di programmi che vogliamo indipendentemente dal n° di CPU che abbiamo. Come?\\
-Il s.o. realizza e mette a disposizione una macchina astratta, un'astrazione detta \textbf{processo}.\\
+\textit{Il s.o. realizza e mette a disposizione una macchina astratta, un'astrazione detta \textbf{processo}}.\\
 \definizione{Un \textbf{processo} è un'entità attiva astratta definita dal sistema operativo allo scopo di eseguire un programma.}
 All'interno del s.o. il processo è l'unità esecutiva del programma. Es.: su un pc da 4 CPU, 50 programmi in esecuzione vuole dire 50 processi.\\
 Supporremo \textbf{per ora} che l'esecuzione di un processo sia sequenziale e quindi non ci sia concorrenza.
@@ -40,7 +36,7 @@ Obiettivi del sistema operativo:
 Due tecniche adottate nei sistemi operativi sono la \textbf{multiprogrammazione} e il \textbf{multitasking} (o \textbf{time-sharing}, sono sinonimi):
 \begin{description}
     \item[Obiettivo della multiprogrammazione:] impedire che un programma che non è in condizione di proseguire l'esecuzione mantenga la CPU
-    \item[Obiettivo del multitasking:] far si che un programma interattivo reagisca agli input utente in un tempo accettabile (è una tecnica \textbf{non} rilevante per i sistemi puramente \textit{batch}, ma lo è principalmente per i programmi interattivi, che continuano a prendere dati dall'utente che li usa)
+    \item[Obiettivo del multitasking:] far sì che un programma interattivo reagisca agli input utente in un tempo accettabile (è una tecnica \textbf{non} rilevante per i sistemi puramente \textit{batch}, ma lo è principalmente per i programmi interattivi, che continuano a prendere dati dall'utente che li usa)
 \end{description}
 
 \subsubsection{Multiprogrammazione: l'implementazione}
@@ -67,8 +63,7 @@ Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno i
 
 \subsubsection{Multitasking: l'implementazione}
 \`E un'\textit{estensione della multiprogrammazione} per i \underline{sistemi interattivi}.\\
-La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire.\\
-In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
+La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire. In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
 Questo permette che i programmi batch, che effettuano poco I/O (e quindi vanno poco in attesa), non monopolizzino la CPU a discapito dei programmi interattivi.
 
 \section{Operazioni sui processi}
