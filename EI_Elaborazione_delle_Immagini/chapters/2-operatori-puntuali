@@ -145,5 +145,5 @@ del corrispondente dell'immagine di ingresso.
 Un operatore puntuale $h$ applicato all'immagine $f(n)$ è una funzione che è applicata identicamente ad ogni pixel creando una nuova immagine $g(n)$
 Se l'operatore puntuale in questione è della forma:
 \[ g(n) = P f(n) + L \]
-Dove $P$ è un fattore di scala moltiplicativo e L un fattore di offset,
+Dove $P$ è un fattore di scala moltiplicativo e $L$ un fattore di offset,
 allora è chiamato \textbf{Operatore Puntuale Lineare}.

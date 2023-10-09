@@ -160,9 +160,11 @@ Un processo è composto da diverse parti:
 Le risorse del sistema operativo invece possono essere condivise tra processi (a seconda del tipo di risorsa).
 
 \subsubsection{Immagine di un processo}
-\begin{center}
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
     \includegraphics[width=.3\textwidth]{images/aa2324/SO_implementazioneprocessi1.jpg}
-\end{center}
+\end{wrapfigure}
+
 L'immagine di un processo è formata da:
 \begin{itemize}
     \item Il codice del programma (\textbf{text section})
