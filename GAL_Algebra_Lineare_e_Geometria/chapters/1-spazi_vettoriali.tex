@@ -69,3 +69,50 @@ quest'ultima sarà anch'esso uno spazio vettoriale (sottospazio di $V$ in questo
     \item Se prendiamo qualunque coppia di elementi $w_1$ e $w_2$ in $W$, anche la loro somma deve far parte di $W$.
     \item se prendiamo un qualunque elemento $\underline{w}$ e un qualunque scalare $\lambda$, anche il loro prodotto deve far parte di $W$.
 \end{itemize}
+\osservazione{Lo spazio vettoriale piú semplice é quello che contiene solo l'elemento identitá ($\underline{0}$)}
+
+\subsection[Sottospazi di R2]{I sottospazi vettoriali di $\R^2$}
+Quali sono i sottospazi vettoriali di $\R^2$?
+\\Innanzitutto ricordiamo che per fare si che un certo $W<\R^2$ ogni elemento deve rispettare le due condizioni di somma tra vettori e prodotto per uno scalare.
+\\Detto ció, é dimostrabile che tutti i sottospazi vettoriali di $\R^2$ in ordine di grandezza sono:
+\begin{itemize}
+    \item $\{ \underline{0} \}$, ovvero l'insieme identitá.
+    \item Tutte le \textbf{Rette passanti per l'origine}.
+    \item ???
+    \item $\R^2$ stesso.
+\end{itemize}
+
+\subsection{Il piú piccolo Sottospazio Vettoriale}
+Dato $S\subset V$ con $V$ Spazio Vettoriale, esiste il piú piccolo sottospazio di $V$ contenente $S$?
+Si, ed é definito cosí:
+\definizione{
+    $<S> < V$ Indica il piú piccolo sottospazio di $V$ contenente $S$.
+    Si dimostra che:
+    \[ <S> = \{ \sum_{i=1}^{n} \lambda_i \cdot z_i : \lambda_i \in \R, z_i \in S, n\in\N\} \]
+}
+Si osserva che non esiste $\sum_{i=1}^{\infty} \lambda_i \cdot z_i$, poiché la somma deve essere tra un \textbf{numero finito} di vettori.
+
+\section{Combinazione Lineare}
+La somma utilizzata nell'ultima definizione non é a caso, ma si chiama Combinazione Lineare:
+\definizione{
+    $\sum_{i=1}^{n} \lambda_i \cdot z_i$ si chiama \textbf{Combinazione Lineare} di $\{z_i\}_{i=1,...,n}$
+}
+\subsection*{Dipendenza Lineare}
+Da qui possiamo andare a definire se i vettori di un insieme sono linearmente dipendenti o no:
+\definizione{
+    Sia $S\subset V$ con $V$ spazio Lineare.
+    \\ I vettori di $S$ sono detti \textbf{Linearmente dipendenti} se:
+    \begin{center}
+        $\exists \underline{w} \in S$ e $S_{\underline{w}} = \{z_1,...,z_n\}\subset S$ (con $\underline{w} \notin S_{\underline{w}}$)
+    \end{center}
+    tali che
+    \begin{center}
+        \underline{w} = $\sum_{i=1}^{n} \lambda_i \cdot z_i, \lambda_i \in K$
+    \end{center}
+    Altrimenti, i vettori si $S$ sono detti \textbf{Linearmente Indipendenti} 
+}
+Ovvero, si dice che i vettori di un insieme sono linearmente dipendenti se sono la combinazione lineare di altri elementi dell'insieme.
+\paragraph{Lemma}
+$S\subset V$ é un insieme di vettori linearmente indipendenti sse:
+\[ \sum_{i=1}^{n} \lambda_i \cdot z_i = \underline{0} \implies \lambda_i = 0 \forall i \]
+Ció deve valere $\forall n \in N$ e $\forall \{z_i\} \subset S$.
