@@ -1,3 +1,4 @@
+% 47:00 lezione 04/10/2023
 \chapter{Processi e Threads}
 Vedremo sostanzialmente come i s.o. gestiscono \textbf{processi} e \textbf{thread} e cosa si intende con questi due termini.
 \section{Argomenti}
@@ -13,7 +14,7 @@ Un s.o. ha come obiettivo il fatto di prendere un sistema di elaborazione e fare
 \textit{Il s.o. realizza e mette a disposizione una macchina astratta, un'astrazione detta \textbf{processo}}.\\
 \definizione{Un \textbf{processo} è un'entità attiva astratta definita dal sistema operativo allo scopo di eseguire un programma.}
 All'interno del s.o. il processo è l'unità esecutiva del programma. Es.: su un pc da 4 CPU, 50 programmi in esecuzione vuole dire 50 processi.\\
-Supporremo \textbf{per ora} che l'esecuzione di un processo sia sequenziale e quindi non ci sia concorrenza.
+Supporremo \textbf{per ora} che l'esecuzione di un processo sia \textbf{sequenziale} e quindi \textit{non ci sia concorrenza}.
 
 \subsection{Programmi e processi}
 Notare la differenza tra \textit{programma} e \textit{processo}!
@@ -21,7 +22,7 @@ Notare la differenza tra \textit{programma} e \textit{processo}!
     \item Un \underline{programma} è un'\underline{entità passiva} (un insieme di istruzioni, tipicamente contenuto in un file sorgente o eseguibile)
     \item Un \underline{processo} è un'\underline{entità attiva} (è un \textit{esecutore di un programma}, o un \textit{programma in esecuzione})
 \end{itemize}
-Uno stesso programma può dare origine a diversi processi:
+Uno \textit{stesso programma} può dare origine a \textit{diversi processi}:
 \begin{itemize}
     \item \underline{Diversi utenti} eseguono lo \underline{stesso programma}
     \item Uno \underline{stesso programma} viene eseguito \underline{più volte}, anche contemporaneamente, dallo \underline{stesso utente}
@@ -160,7 +161,7 @@ Le risorse del sistema operativo invece possono essere condivise tra processi (a
 
 \subsubsection{Immagine di un processo}
 \begin{center}
-    \includegraphics[width=90mm]{images/aa2324/SO_implementazioneprocessi1.jpg}
+    \includegraphics[width=.3\textwidth]{images/aa2324/SO_implementazioneprocessi1.jpg}
 \end{center}
 L'immagine di un processo è formata da:
 \begin{itemize}

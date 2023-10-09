@@ -43,7 +43,7 @@ di forma:
 \[s = T(r)\]
 in cui, per semplicità di notazione, usiamo $s$ e $r$ per denotare rispettivamente l'intensità di $g$ (output) e $f$ (input) di un qualunque punto $(x,y)$.
 
-\paragraph{Elaborazioni puntuali Omogenee}
+\paragraph{Elaborazioni Puntuali Omogenee}
 Il risultato di una elaborazione puntiale omoegenea dipende solo dal valore del pixel cui è applicata, per cui tali elaborazioni vengono anche dette manipolazioni della scala di grigio (o dei colori).
 \\Se invece il risultato dell'elaborazione dipende anche dalla posizione del pixel dell'immagine si paral di elaborazioni puntuali \textbf{non omogenee}.
 \\Alcune tipiche elaborazioni puntuali omogenee sono:
@@ -56,7 +56,7 @@ Il risultato di una elaborazione puntiale omoegenea dipende solo dal valore del 
     \item Presentazione falso in colore.
 \end{itemize}
 
-\subsubsection{Contrast Stertching}
+\subsubsection{Contrast Stretching}
 \begin{wrapfigure}{r}{0.3\textwidth}
     \centering
     \includegraphics[width=.3\textwidth]{images/3.2.a-contrast-stretching.png}
@@ -77,8 +77,7 @@ In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) 
 
 \section{Some Basic Intensity Transformation Functions}
 Le funzioni di Intensitiy Transformation son o tra le più semplici tecniche di IP.
-In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, che chiamiamo rispettivamente $r$ ed $s$,
-sono messi in relazione tramite la funzione $T$ che mappa i valori $r$ su quelli $s$.
+In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, che chiamiamo rispettivamente $r$ ed $s$, sono messi in relazione tramite la funzione $T$ che mappa i valori $r$ su quelli $s$.
 
 \paragraph{Look Up Tables} Siccome stiamo parlando di grandezze digitali, i valori di una 
 Intensitiy Transformation Function sono generalmente mappati in una Look Up Table, che permette di associare
@@ -86,7 +85,7 @@ con migliore efficienza i valori di input e output.
 
 
 \subsection{I Negativi}
-Il negativo di un immagine con livelli di intensità nel range $[0,L-1]$, con $L$ numero di livelli (256 per una immagine in 8bit),
+Il negativo di un'immagine con livelli di intensità nel range $[0,L-1]$, con $L$ numero di livelli (256 per una immagine in 8bit),
 è ottenuto usando la \emph{Funzione di trasformazione Negativa}, che ha la forma:
 \[ s = L -1 -r \]
 Invertendo in valori di grigio di un'immagine digitale in questa maniera produce l'equivalente di un negativo fotografico.
