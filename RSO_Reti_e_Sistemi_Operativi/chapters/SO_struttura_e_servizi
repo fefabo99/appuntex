@@ -38,7 +38,7 @@ Tali funzionalità permettono ai programmi di poter usare in maniera conveniente
 
 \subsubsection{Componenti di un sistema di elaborazione}
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione1.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/SO_sistema_di_elaborazione1.jpg}
 \end{center}
 Utenti: persone, macchine, altri computer\dots\\
 Programmi applicativi: risolvono i problemi di calcolo degli utenti.\\
@@ -75,10 +75,10 @@ In generale però un s.o. comprende almeno:
 \end{description}
 Alcuni sistemi operativi forniscono anche dei programmi applicativi (editor, word processor, fogli di calcolo…), ma non li considereremo parti del s.o. stesso.
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione2.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/SO_sistema_di_elaborazione2.jpg}
 \end{center}
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_sistema_di_elaborazione3.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/SO_sistema_di_elaborazione3.jpg}
 \end{center}
 
 \section{Servizi dei sistemi operativi}
@@ -114,7 +114,7 @@ Il kernel fornisce un insieme di servizi detti \textbf{chiamate di sistema}, fun
 Utili anche perché ogni linguaggio di programmazione ha una sua libreria, suoi oggetti\dots\\ 
 Per evitare commistioni (mescolanze, contaminazioni\dots), si vanno a creare due strati distinti, uno per la libreria del L.d.P. e quello delle API.
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_chiamatedisistema_API1.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/SO_chiamatedisistema_API1.jpg}
 \end{center}
 Come visibile nell'immagine: 
 \begin{itemize}
@@ -162,14 +162,14 @@ I programmi di sistema sono programmi che usano le chiamate di sistema per offri
     \textit{$\triangleright$\, Come programma di sistema:} l'interprete manda in esecuzione il programma (tipico delle shell Unix e Unix-like).\\
     Spesso riconosce un vero e proprio l.d.p. con variabili, condizionali, cicli\dots
     \begin{center}
-        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterpreteComandi.jpg}
+        \includegraphics[width=0.35\textwidth]{images/aa2324/SO_InterfacciaUtente_InterpreteComandi.jpg}
     \end{center}
     \textbf{\textit{UI - le interfacce grafiche:}}\\
     L'interfaccia grafica (GUI) è di solito basata sulla metafora della scrivania, delle icone e delle cartelle (le directory).\\
     Nate dalla ricerca presso lo Xerox PARC lab negli anni '70, sono state popolarizzate poi da Apple con il Macintosh  negli anni '80.\\
     Su Linux le più popolari sono GNOME e KDE.
     \begin{center}
-        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
+        \includegraphics[width=0.35\textwidth]{images/aa2324/SO_InterfacciaUtente_InterfacceGrafiche.jpg}
     \end{center}
     \textbf{\textit{UI - le interfacce touch:}}\\
     I dispositivi mobili richiedono interfacce di nuovo tipo.\\
@@ -178,7 +178,7 @@ I programmi di sistema sono programmi che usano le chiamate di sistema per offri
     Tastiere virtuali\\
     Comandi vocali
     \begin{center}
-        \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
+        \includegraphics[width=0.35\textwidth]{images/aa2324/SO_InterfacciaUtente_InterfacceTouchScreen.jpg}
     \end{center}    
     \item[Gestione file:] creazione, modifica e cancellazione file e directory.\\
     \item[Modifica dei file:] editor di testo, programmi per la manipolazione del contenuto dei file.\\
@@ -203,5 +203,5 @@ Consideriamo ad esempio il comando cp delle shell dei sistemi operativi Unix-lik
 \`E implementato come programma di sistema tramite API (tutte POSIX).\\
 Una possibile struttura del codice è riportata sulla destra (le invocazione delle API sono riportate in grassetto).
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/SO_InterfacciaUtente_ProgrammiDiSistema.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/SO_InterfacciaUtente_ProgrammiDiSistema.jpg}
 \end{center}

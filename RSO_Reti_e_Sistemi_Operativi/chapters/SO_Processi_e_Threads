@@ -28,44 +28,68 @@ Uno \textit{stesso programma} può dare origine a \textit{diversi processi}:
     \item Uno \underline{stesso programma} viene eseguito \underline{più volte}, anche contemporaneamente, dallo \underline{stesso utente}
 \end{itemize}
 
-\subsection{\textit{Multiprogrammazione} e \textit{multitasking}}
-Obiettivi del sistema operativo:
+% \subsection{\textit{Multiprogrammazione} e \textit{multitasking}}
+% Obiettivi del sistema operativo:
+% \begin{itemize}
+%     \item Mantenere impegnata la (o le) CPU il maggior tempo possibile nell'esecuzione dei programmi (se ci sono programmi da eseguire)
+%     \item Dare l'illusione che ogni processo abbia una CPU dedicata
+% \end{itemize}
+% Due tecniche adottate nei sistemi operativi sono la \textbf{multiprogrammazione} e il \textbf{multitasking} (o \textbf{time-sharing}, sono sinonimi):
+% \begin{description}
+%     \item[Obiettivo della multiprogrammazione:] impedire che un programma che non è in condizione di proseguire l'esecuzione mantenga la CPU
+%     \item[Obiettivo del multitasking:] far sì che un programma interattivo reagisca agli input utente in un tempo accettabile (è una tecnica \textbf{non} rilevante per i sistemi puramente \textit{batch}, ma lo è principalmente per i programmi interattivi, che continuano a prendere dati dall'utente che li usa)
+% \end{description}
+
+% \subsubsection{Multiprogrammazione: l'implementazione}
+% Il sistema operativo mantiene in memoria i processi da eseguire.\\
+% Quando una CPU non è impegnata ad eseguire un processo, il sistema operativo seleziona un processo non in esecuzione e gli assegna la CPU.\\
+% Quando un processo non può proseguire l'esecuzione (ad es. perché deve attendere il termine dell'input di dati che gli servono per proseguire), la sua CPU viene assegnata ad un altro processo non in esecuzione.\\
+% Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno impegnate nell'esecuzione di qualche processo per la maggior parte del tempo. Questo risolve il problema dell'efficienza: \textit{non tenere le CPU ferme}.
+
+% \subsubsection{Multiprogrammazione: la memoria}
+% La multiprogrammazione richiede che tutte le immagini di tutti i processi siano in memoria perché questi possano essere eseguibili.\\
+% Se i processi sono troppi non possono essere contenuti tutti in memoria: la tecnica dello \textbf{swapping} può essere usata per spostare le immagini dentro/fuori dalla memoria. 
+% \begin{wrapfigure}{r}{0.2\textwidth}
+%     \begin{center}
+%         \includegraphics[width=0.2\textwidth]{images/aa2324/SO_multiprogrammazione1.jpg}
+%     \end{center}
+% \end{wrapfigure}
+% \definizione{\textbf{Swapping} significa che il s.o. può togliere la memoria (anche detta \textit{immagine}) di un processo dalla memoria centrale e caricare l'immagine di un altro processo.}
+% La memoria virtuale è un'ulteriore tecnica che permette di eseguire un processo la cui immagine non è completamente in memoria.\\
+% Queste tecniche aumentano il numero di processi che possono essere eseguiti in multiprogrammazione, ossia il grado di multiprogrammazione.\\
+% Es.: se in un istante sto eseguendo 100 processi, il grado di multiprogrammazione è 100. Se in un altro istante sto eseguendo 50 processi, in quell'istante il grado di multiprogrammazione sarà 50.
+
+% \subsubsection{Multitasking: l'implementazione}
+% \`E un'\textit{estensione della multiprogrammazione} per i \underline{sistemi interattivi}.\\
+% La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire. In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
+% Questo permette che i programmi batch, che effettuano poco I/O (e quindi vanno poco in attesa), non monopolizzino la CPU a discapito dei programmi interattivi.
+
+\subsection{Struttura di un processo}
+Un processo è composto da diverse parti:
 \begin{itemize}
-    \item Mantenere impegnata la (o le) CPU il maggior tempo possibile nell'esecuzione dei programmi (se ci sono programmi da eseguire)
-    \item Dare l'illusione che ogni processo abbia una CPU dedicata
+    \item Lo stato dei registri del processore che esegue il programma, incluso il program counter.
+    \item Lo stato della regione di memoria centrale usata dal programma, o \textbf{immagine} del processo.
+    \item Lo stato del processo stesso.
+    \item Le risorse del sistema operativo in uso al programma (files, semafori, regioni di memoria condivisa\dots).
 \end{itemize}
-Due tecniche adottate nei sistemi operativi sono la \textbf{multiprogrammazione} e il \textbf{multitasking} (o \textbf{time-sharing}, sono sinonimi):
-\begin{description}
-    \item[Obiettivo della multiprogrammazione:] impedire che un programma che non è in condizione di proseguire l'esecuzione mantenga la CPU
-    \item[Obiettivo del multitasking:] far sì che un programma interattivo reagisca agli input utente in un tempo accettabile (è una tecnica \textbf{non} rilevante per i sistemi puramente \textit{batch}, ma lo è principalmente per i programmi interattivi, che continuano a prendere dati dall'utente che li usa)
-\end{description}
+\textit{Processi distinti} hanno \textit{immagini distinte} (\textit{isolamento dei processi}).\\
+Le risorse del sistema operativo invece possono essere condivise tra processi (a seconda del tipo di risorsa).
 
-\subsubsection{Multiprogrammazione: l'implementazione}
-Il sistema operativo mantiene in memoria i processi da eseguire.\\
-Quando una CPU non è impegnata ad eseguire un processo, il sistema operativo seleziona un processo non in esecuzione e gli assegna la CPU.\\
-Quando un processo non può proseguire l'esecuzione (ad es. perché deve attendere il termine dell'input di dati che gli servono per proseguire), la sua CPU viene assegnata ad un altro processo non in esecuzione.\\
-Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno impegnate nell'esecuzione di qualche processo per la maggior parte del tempo. Questo risolve il problema dell'efficienza: \textit{non tenere le CPU ferme}.
-
-\subsubsection{Multiprogrammazione: la memoria}
-\parbox{0.8\textwidth}{
-    La multiprogrammazione richiede che tutte le immagini di tutti i processi siano in memoria perché questi possano essere eseguibili.\\
-    Se i processi sono troppi non possono essere contenuti tutti in memoria: la tecnica dello \textbf{swapping} può essere usata per spostare le immagini dentro/fuori dalla memoria. 
-    \definizione{\textbf{Swapping} significa che il s.o. può togliere la memoria (anche detta \textit{immagine}) di un processo dalla memoria centrale e caricare l'immagine di un altro processo.}
-    La memoria virtuale è un'ulteriore tecnica che permette di eseguire un processo la cui immagine non è completamente in memoria.\\
-    Queste tecniche aumentano il numero di processi che possono essere eseguiti in multiprogrammazione, ossia il grado di multiprogrammazione.\\
-    Es.: se in un istante sto eseguendo 100 processi, il grado di multiprogrammazione è 100. Se in un altro istante sto eseguendo 50 processi, in quell'istante il grado di multiprogrammazione sarà 50.
-}
-\hfill
-\parbox{0.1\textwidth}{
-    \begin{center}
-        \includegraphics[width=25mm]{images/aa2324/SO_multiprogrammazione1.jpg}
-    \end{center}
-}
-
-\subsubsection{Multitasking: l'implementazione}
-\`E un'\textit{estensione della multiprogrammazione} per i \underline{sistemi interattivi}.\\
-La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire. In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
-Questo permette che i programmi batch, che effettuano poco I/O (e quindi vanno poco in attesa), non monopolizzino la CPU a discapito dei programmi interattivi.
+\subsubsection{Immagine di un processo}
+L'intervallo di indirizzi di memoria \textit{\texttt{min\dots max}} in cui è contenuta l'immagine di un processo è anche detto \textbf{spazio di indirizzamento} (\textit{address space}) del processo. Ovviamente ogni processo lavora nel proprio spazio di indirizzamento.
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \centering
+    \includegraphics[width=.25\textwidth]{images/aa2324/SO_implementazioneprocessi1.jpg}
+\end{wrapfigure}
+L'immagine di un processo è formata da:
+\begin{itemize}
+    \item Lo \textbf{stack} delle chiamate, contenente parametri, variabili locali e indirizzo di ritorno delle varie procedure che vengono invocate durante l'esecuzione del programma.
+    \item Lo \textbf{heap}, contenente la memoria allocata dinamicamente durante l'esecuzione.
+    \item La \textbf{data section}, contenente le variabili globali.
+    \item La (\textbf{text section}) contiene il codice macchina del programma.
+\end{itemize}
+\textit{Text} e \textit{data section} hanno dimensioni costanti per tutta la vita del processo.\\
+\textit{Stack} e \textit{heap} invece crescono/decrescono durante la vita del processo, smetteranno solo quando una delle due sezioni raggiungerà la fine della memoria allocata per il processo, ovvero collidono tra loro.
 
 \section{Operazioni sui processi}
 I sistemi operativi di solito forniscono delle chiamate di sistema con le quali un processo può creare/terminare/manipolare altri processi.\\
@@ -75,17 +99,18 @@ Vedremo ora le operazioni fondamentali per:
     \item Creare processi
     \item Terminare processi
 \end{itemize}
-\section{Creazione di processi}
+
+\subsection{Creazione di processi}
 Chi crea il primo processo? Il s.o., in fase di booth. Il fatto che un processo crei un altro processo dà origine ad una \textbf{gerarchia}. Di solito nei sistemi operativi i processi sono organizzati in maniera gerarchica.\\
 Un processo (padre ) può creare altri processi (figli). Questi a loro volta possono essere padri di altri processi figli, creando un albero di processi.\\
 Un albero di processi in Linux:
 \begin{center}
-    \includegraphics[width=40mm]{images/aa2324/SO_operazioniprocessi1.jpg}
+    \includegraphics[width=0.50\textwidth]{images/aa2324/SO_operazioniprocessi1.jpg}
 \end{center}
 La relazione padre/figlio è di norma importante per le politiche di condivisione risorse e di coordinazione tra processi.\\
 Possibili politiche di condivisione di risorse:
 \begin{itemize}
-    \item Padre e figlio condividono tutte le risorse \dots 
+    \item Padre e figlio condividono tutte le risorse (\textbf{non} l'immagine, abbiamo detto che ogni processo ha la propria immagine) \dots 
     \item \dots o un opportuno sottoinsieme \dots 
     \item \dots o nessuna
 \end{itemize}
@@ -101,10 +126,10 @@ Possibili politiche di coordinazione padre/figli:
     \item \dots oppure eseguono in maniera concorrente
 \end{itemize}
 
-\section{Terminazione di processi}
-I processi di regola richiedono esplicitamente la propria terminazione al sistema operativo.\\
+\subsection{Terminazione di processi}
+I processi di regola richiedono esplicitamente la propria terminazione al sistema operativo (ovvero invoca una API che di solito si chiama \texttt{exit}).\\
 Un processo padre può attendere o meno la terminazione di un figlio.\\
-Un processo padre può forzare la terminazione di un figlio. \`E sempre brutto terminare forzatamente un processo piuttosto che lasciarlo terminare spontaneamente, ma a volte si rende necessario. Possibili ragioni:
+Un processo padre può forzare la terminazione di un figlio. \`E sempre brutto terminare forzatamente un processo (facendolo quindi terminare in maniera asincrona, senza avere quindi il tempo di fare operazioni per uno shut-down ordinato) piuttosto che lasciarlo terminare spontaneamente, ma a volte si rende necessario. Possibili ragioni:
 \begin{itemize}
     \item Il figlio sta usando risorse in eccesso (tempo, memoria\dots).
     \item Le funzionalità del figlio non sono più richieste (ma è meglio terminarlo in maniera "ordinata" tramite IPC).
@@ -115,11 +140,12 @@ Riguardo all'ultimo punto, alcuni sistemi operativi non permettono ai processi f
     \item \textbf{Terminazione in cascata:} anche i nipoti, pronipoti\dots\, devono essere terminati (non c'è nelle API Posix).
     \item La terminazione viene iniziata dal sistema operativo.
 \end{itemize}
-\subsubsection{Es.: API Posix}
+
+\subsubsection{API Posix per operazioni sui processi:}
 \begin{description}
-    \item[\texttt{fork()}] crea un nuovo processo figlio; il figlio è un duplicato del padre ed esegue \underline{concorrentemente} ad esso, ritorna al padre un \underline{numero identificatore (PID) del processo figlio} e al figlio il PID 0.
-    \item[\texttt{exec()}] sostituisce il programma in esecuzione da un processo con un altro programma, che viene eseguito dall'inizio; viene \underline{tipicamente usata dopo una \texttt{fork()}} dal figlio per iniziare ad eseguire un programma diverso da quello del padre.
-    \item[\texttt{wait()}] viene chiamata dal \underline{padre} per attendere la fine dell'esecuzione di un figlio; ritorna:
+    \item[\texttt{fork()}] crea un nuovo processo figlio; il figlio è un duplicato del padre ed esegue \underline{concorrentemente} ad esso, ritorna al padre un \underline{numero identificatore (PID)} \underline{del processo figlio} e al figlio (che così capisce di essere il figlio) il PID 0.
+    \item[\texttt{exec()}] sostituisce il programma in esecuzione da un processo con un altro programma, che viene eseguito dall'inizio; viene \underline{tipicamente usata dopo una} \underline{\texttt{fork()}} dal figlio per iniziare ad eseguire un programma diverso da quello del padre.
+    \item[\texttt{wait()}] viene chiamata dal \underline{padre} per attendere la fine dell'esecuzione di un figlio (qualsiasi); ritorna:
     \begin{itemize}
         \item Il PID del figlio che è terminato.
         \item Il codice di ritorno del figlio (passato come parametro alla \texttt{exit()}).
@@ -136,48 +162,102 @@ Riguardo all'ultimo punto, alcuni sistemi operativi non permettono ai processi f
 \end{description}
 La sequenza \texttt{fork-exec} nelle API POSIX:
 \begin{center}
-    \includegraphics[width=90mm]{images/aa2324/SO_operazioniprocessi2.jpg}
+    \includegraphics[width=0.90\textwidth]{images/aa2324/SO_operazioniprocessi2.jpg}
 \end{center}
 
 \subsection{Processi \textit{zombie} e \textit{orfani}}
 Ricordiamo che abbiamo detto che nelle API Posix non c'è la terminazione a cascata.
 \begin{description}
-    \item[P. zombie:] Se un processo termina ma il suo padre non lo sta aspettando (non ha invocato \texttt{wait()}) il processo è detto essere \textbf{\textit{zombie}}.\\
-    Praticamente il processo ritorna un codice di errore ma non c'è nessuno a prendere e gestire il codice di errore. Il processo viene allora riallocato ma il codice rimane, quindi il processo non è effettivamente morto. Per questo \textit{zombie}.
+    \item[P. zombie:] Se un processo termina ma il suo padre non lo sta aspettando (non ha invocato \texttt{wait()}) il processo è detto essere \textbf{\textit{zombie}}. Praticamente il processo ritorna un codice di errore ma non c'è nessuno a prendere e gestire il codice di errore. Il processo viene allora riallocato ma il codice rimane, quindi il processo non è effettivamente morto. Per questo \textit{zombie}.
     \item[P. orfano:] Se un processo padre termina \underline{prima} di un suo figlio, il figlio è detto essere \textbf{\textit{orfano}} (non vi è terminazione a cascata).
 \end{description}
 
-\section{Implementazione dei processi}
-\subsection{Struttura di un processo}
-Un processo è composto da diverse parti:
+\section{Comunicazione interprocesso}
+N.B.: quello di cui abbiamo parlato finora non vuol dire "$1$ processo $= 1$ applicazione". Es. Chrome, con più tab, \textbf{non} è un processo solo, \textit{ogni} tab è un processo. Questo perché si è visto che la navigazione nei browser ha problemi di isolamento: es. metti che apro una tab con il sito di homebanking e una con un link che mi è stato mandato per posta (\textit{LOL}). Che succede? Un bordello.\\
+Allora si è pensato fosse meglio isolare ciò che succede in ogni tab, in modo che una pagina probabilmente compromessa non vada a disturbare le altre. Per fare ciò, si è pensato di applicare un processo distinto ad ogni tab del browser, in modo che ogni immagine a sé stante non possa andare a disturbare le altre.\\
+Utile però sarebbe far comunicare in modo disciplinato fra un processo e l'altro. Dunque, più processi possono essere indipendenti o cooperare.\\
+Un processo coopera con uno o più altri processi se il suo comportamento "influenza" o "è influenzato da" il comportamento di questi ultimi.\\
+Possibili motivi per avere più processi cooperanti:
 \begin{itemize}
-    \item Lo stato dei registri del processore che esegue il programma, incluso il program counter.
-    \item Lo stato della regione di memoria centrale usata dal programma, o \textbf{immagine} del processo.
-    \item Lo stato del processo stesso.
-    \item Le risorse del sistema operativo in uso al programma (files, semafori, regioni di memoria condivisa\dots).
+    \item Condivisione informazioni
+    \item Accelerazione computazioni
+    \item Modularità ed isolamento (come in Chrome)
 \end{itemize}
-\textit{Processi distinti} hanno \textit{immagini distinte}.\\
-Le risorse del sistema operativo invece possono essere condivise tra processi (a seconda del tipo di risorsa).
+% \begin{wrapfigure}{r}{0.3\textwidth}
+%     \begin{center}
+%         \includegraphics[width=0.3\textwidth]{images/aa2324/SO_IPC1.jpg}
+%     \end{center}
+% \end{wrapfigure}
+Per permettere ai processi di cooperare il sistema operativo deve mettere a disposizione delle altre API per la comunicazione interprocesso, noi vedremo alcune primitive di comunicazione interprocesso (IPC).\\
+Tra cui queste due categorie:
+\begin{description}
+    \item[Memoria condivisa (a sinistra):] vuol dire che in qualche modo le due immagini dei processi condividono una certa regione di memoria.
+    \item[Message passing (a destra):] vuol dire che in qualche modo all'interno della memoria del s.o. viene messa una qualche coda di messaggi e quindi un processo può inserire dei messaggi nella coda e l'altro processo può prelevare i messaggi dalla coda.
+\end{description}
+\begin{center}
+    \includegraphics[width=0.45\textwidth]{images/aa2324/SO_IPC1.jpg}
+\end{center}
 
-\subsubsection{Immagine di un processo}
-\begin{wrapfigure}{r}{0.25\textwidth}
-    \centering
-    \includegraphics[width=.3\textwidth]{images/aa2324/SO_implementazioneprocessi1.jpg}
-\end{wrapfigure}
+\subsection{IPC tramite memoria condivisa}
+Viene stabilita una zona di memoria condivisa tra i processi che intendono comunicare.\\
+Vedremo come si può implementare quando parleremo di gestione della memoria.\\
+\textit{La comunicazione è controllata dai \textbf{processi} che comunicano, \textbf{non} dal \textbf{s.o.}}.\\
+Un problema importante è permettere ai processi che comunicano tramite memoria condivisa di sincronizzarsi (un processo non deve leggere la memoria condivisa mentre l'altro la sta scrivendo).\\
+Allo scopo i sistemi operativi mettono a disposizione ulteriori primitive per la sincronizzazione.
 
-L'immagine di un processo è formata da:
+\subsection{IPC tramite message passing}
+Permettono ai processi \textit{sia} di comunicare \textit{che} di sincronizzarsi.\\
+I processi comunicano tra di loro senza condividere memoria, attraverso la mediazione del sistema operativo.\\
+Questo mette a disposizione:
 \begin{itemize}
-    \item Il codice del programma (\textbf{text section})
-    \item La \textbf{data section}, contenente le variabili globali
-    \item Lo \textbf{heap}, contenente la memoria allocata dinamicamente durante l'esecuzione
-    \item Lo stack delle chiamate, contenente parametri, variabili locali e indirizzo di ritorno
+    \item Un'operazione \texttt{send(message)} con la quale un processo può inviare un messaggio ad un altro processo.
+    \item Un'operazione \texttt{receive(message)} con la quale un processo può (mettersi in attesa fino a) ricevere un messaggio da un altro processo.
 \end{itemize}
-\textit{Text} e \textit{data section} hanno dimensioni costanti per tutta la vita del processo.\\
-\textit{Stack} e \textit{heap} invece crescono/decrescono durante la vita del processo, smetteranno solo quando una delle due sezioni raggiungerà la fine della memoria allocata per il processo, ovvero collidono tra loro.
-%  0:06:40 su 1:20:44 seconda lezione 
+Per comunicare due processi devono:
+\begin{itemize}
+    \item Stabilire un \textbf{link di comunicazione} tra di loro.
+    \item Scambiarsi messaggi usando \texttt{send} e \texttt{receive}.
+\end{itemize}
 
+\subsubsection{Pipe}
+Canali di comunicazione tra i processi (una forma di message passing).\\
+Varianti:
+\begin{itemize}
+    \item Unidirezionale o bidirezionale.
+    \item (se bidirezionale) Half-duplex o full-duplex.
+    \item Relazione tra i processi comunicanti (sono padre-figlio o no).
+    \item Usabili o meno in rete.
+\end{itemize}
+Pipe convenzionali:
+\begin{itemize}
+    \item Unidirezionali.
+    \item Non accessibili al di fuori del processo creatore\dots
+    \item \dots quindi di solito condivise con un processo figlio attraverso una \texttt{fork()}.
+    \item In Windows sono chiamate "\textit{pipe anonime}".
+\end{itemize}
+Pipe convenzionali:
+\begin{itemize}
+    \item Bidirezionali
+    \item Esistono anche dopo la terminazione del processo che le ha create.
+    \item Non richiedono una relazione padre-figlio tra i processi che le usano.
+\end{itemize}
+In Unix:
+\begin{itemize}
+    \item Half-duplex
+    \item Solo sulla stessa macchina
+    \item Solo dati byte-oriented
+\end{itemize}
+In Windows:
+\begin{itemize}
+    \item Full-duplex    
+    \item Anche tra macchine diverse
+    \item Anche dati message-oriented
+\end{itemize}
 
-
+\subsection{Notifiche con callback}
+In alcuni sistemi operativi (es. API POSIX e Win32) un processo può notificare un altro processo in maniera da causare l'esecuzione di un blocco di codice («callback»), similmente ad un interrupt.\\
+Nei sistemi Unix-like (POSIX, Linux) tale notifiche vengono dette segnali, ed interrompono in maniera asincrona la computazione del processo corrente causando un salto brusco alla callback di gestione, al termine della quale la computazione ritorna al punto di interruzione.\\
+Nelle API Win32 esiste un meccanismo simile, detto Asynchronous Procedure Call (APC), che però richiede che il ricevente si metta esplicitamente in uno stato di attesa, e che esponga un servizio che il mittente possa invocare.
 
 
 
