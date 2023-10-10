@@ -1,0 +1,84 @@
+
+\chapter{Sharpening e Operatori derivativi}
+% 10/10/2023 L7 3 ore in U24
+
+\section{Filtri di sharpening}
+% Operatori locali derivativi
+\subsection{Bande di Mach}
+Slide 3: L'intensità percepita non è in funzione solo dell'intensità luminosa. 
+\definizione{Le bande di Mach sono regioni ad alta intensità uniforme. Il bordo fra le due regioni però appare più scuro nelle regioni scure e più chiaro nelle regioni chiare.}
+Perché? Perché il nostro occhio è più sensibile ai bordi. Boh lo dice CoPilot.\\
+\subsection{Sharpening}
+Slide 5-6.\\
+Se prendo due volte la mia immagine e tolgo l'immagine sfocata, cosa ottengo? Sto sottraendo i dettagli. Ottengo l'immagine originale più nitida: ho preso i dettagli che rispetto al mio segnale possono essere sia verso l'alto che verso il basso (slide 7 a sx) e ci ho applicato il filtro (slide 7 al centro), ho ottenuto l'immagine più nitida (slide 7 a dx).\\
+Cos'ho concretamente fatto? Evidenziato i bordi (vero Fabio?). Slide 8-9.\\
+Questi operatori sono gli operatori di \textbf{sharp}, l'opposto di quello che abbiamo fatto finora, slide 10.\\
+\textbf{Lo sharpening va fatto \textit{dopo} aver tolto il rumore, che altrimenti verrebbe evidenziato}.\\
+Slide 12: recap di quanto visto finora.
+
+\subsection{Filtri derivativi}
+Slide 15: applicare le derivate alle immagini.\\
+Prima dicevamo di togliere il rumore impulsivo: in questo grafico sarebbe il "punto isolato", che come si può vedere ha un gran bel peso (negativo).
+Poiché i contorni delle immagini difitali sono generalmente rampe, si può concludere che la der prima produce edge piuttosto spessi, mentre la der seconda dà luogo a edge più sottili ma "doppi". Slide 16.\\
+Slide 17, copiare.\\
+
+\subsection{Operatore Laplaciano}
+Slide 18.
+\definizione{Somma delle der parziali seconde non miste rispetto alle coordinate.}
+N.B.: non c'è una direzione nella laplaciana. Da tenere ben presente.\\
+\subsubsection{Implementazione}
+Slide 19.\\
+Il laplaciano può essere usato per migliorare un'immagine: applichiamo lo sharpening.
+
+\subsection{Sharpening mediante laplaciano}
+Slide 20.\\
+Ma sapremmo fare questa operazione con una sola maschera? Se volessimo avere l'immagine identità? Applichiamo una maschera fatta tutti di 0 tranne che al centro che è 1.\\
+Per migliorare l'immagine, basta sottrarre l'immagine originale con il Laplaciano. Siccome è lineare, slide 21.
+
+Slide 22, maschera in basso a sinistra, possibile domanda di sbarramento: è una maschera di filtraggio? Non ho capito la rispostaaaa
+è un laplaciano, ma un operatore derivativo. Non avremo mai un filtraggio con dei meno.\\
+
+Slide 23: immagine della Luna con sfondo grigio pallinato.\\    
+Perché non ha lo sfondo nero ma grigio? Laplaciano scalato per poter essere visualizzato.\\
+In alto ho un laplaciano non scalato, in basso scalato.\\
+Perché lo devo scalare? Se da qualche parte sottraggo, da un'altra parte deve crescere. Ma quindi ho valori negativi che devo scalare perché possano essere visualizzabili. Quindi dove vedo nero era un valore negativo, dove è grigio era 0, e dove è bianco era ed è un valore positivo.\\
+Alla lavagna ha disegnato il grafico in basso della slide 13, con i numeri -3 0 2 alla prima riga e 0 3 5 alla seconda.\\
+Poi fa vedere il laplaciano delle immagini del pianeta, che figa io non ho nelle slide.\\
+Riparte dalla slide 26: ha scalato quindi il laplaciano è più visibile e riusciamo a vedere le strutture.\\
+Slide 28, immagine del tizio: fa vedere che succ se non togli \textbf{prima} il rumore prima di fare il laplaciano. è molto sensibile al rumore.\\
+Slide 29 e 30 della tizia: cosa otteniamo sottraendo il filtro gaussiano dal filtro mediano?\\
+
+\subsection{Unsharp masking: high-boost filtering}
+Slide 31. Si svolge in due passi: si sottrae ad un'imm una sua versione smooth e quindi si somma il risultato all'imm originale. Slide 32.\\
+Per fare tutto in uno, si fa cosa? Senti la registrazione.
+Se facciamo differenza che rimane? Rumore e dettagli. Ma di più \textit{i bordi} piuttosto del rumore.\\
+Ha fatto vedere un'immagine di un'altra presentazione di slides che mostra i vari passaggi. Ma era una presentazione della magistrale, not importante.\\
+Poi è andato a prendere una slide di una vecchia presentazione in cui aveva parlato di rumore e regione omogenea (non la trovo). Ma come facciamo presa una r.o. a capire dove andare a vedere se c'è rumore? Come faccio a prendere una zona che sia abbastanza omogenea da non avere rumore? Vedo dove non ci sono bordi. E come faccio a capire che non ci sono bordi? Se il laplaciano mi dà una risposta abbastanza bassa ed omogenea, posso assumere che non ci siano bordi.\\
+Abbiamo detto che prendiamo un laplaciano con fattore 1 (?), ma nessuno ha detto che dovesse essere davvero 1. A volte mi si formano delle regioni (slide 33 con Einstein). Meglio andare a \textbf{pesarlo}, slide 34 (con bimba).\\
+Ha parlato di lambda? slide 35 con il fattore di scala.\\
+Poi passa a parlare di un'immagine di scritte, slide 37, per parlare dell'aumento di nitidezza. è la fig.3.40, che usa una unsharp mask (img c) prima di combinarne la differenza con altri filtri e mask (img e).
+
+Sta facendo passare delle slide che non so dove ha preso con esempi dei processi di cui abbiamo parlato finora. Ha fatto vedere un esempio di blending di immagini, ottenuto usando una trasformazione di tipo piramidale. Noi nel nostro corso ne facciamo un uso di restauro dell'immagine.
+
+% fa pausa
+
+\section{Operatori Derivativi - gradiente}
+Slide 38.\\
+Nella realtà abbiamo una distribuzione derivativa (?).\\
+Nella slide 39 mostra in formule quanto visto finora. Possiamo usare il gradiente per esprimere quale pixel prendo in funzione di $x$ e $y$.\\
+Il gradiente è una matrice che boh senti la registrazione.\\
+\\
+Slide 44 con i fiori. Perché è grigia? La derivata lungo la x e la y possono avere valori positivi o negativi.\\
+Perché è nera? Il modulo va da val pos a val neg.\\
+Il modulo del gradiente è maggiore di 0, il modulo del laplaciano è maggiore di 0, ma i valori vanno da pos a neg.\\
+Dalla direzione vedo come è fatto il fiore, potrebbe questa cosa venire utile più avanti.\\
+Slide 42, fig 3.44, con delle maschere, ma perché sono 3x3? \textit{Perché usiamo anche quelli sugli spigoli e non solo quelli sulla croce}? Così facendo facciamo anche \textit{smoothing}.\\
+Il gradiente di un'immagine è un campo vettoriale (slide 45): copia e senti registrazione.\\
+Dove vado a stimare etc? Dove c'è basso gradiente. Basso gradiente = regione omogenea. Passaggio da una zona omogenea ad un'altra (ha fatto l'esempio del bordo di metallo dei tavolini alla superficie legnosa), il gradiente sarà \textit{alto}.
+
+\subsection{Sharpening mediante filtri derivativi}
+La slide 46 fa un esempio di controllo qualità di una lente per dire. Possiamo usare il gradiente per mettere in evidenza eventuali problemi facilitando il controllo qualità.\\
+Ha mostrato un esempio che aveva citato e che possiamo trovare sul libro (slide 47-48): body scanner di una persona, basso contrasto e alto rumore. Come facciamo a migliorare un'immagine con molto rumore e basso contrasto? Fig.3.46. Il laplaciano mette in evidenza organi e scheletro ma molto anche il rumore dello sfondo. cosa mette in evidenza un edge con sobel modulo? mette in evidenza gli edge, il passaggio fra osso e altro, quindi il bordo è abbastanza spesso. Cosa succede se lo blurro, se lo filtro con un filtro di media? Il rumore si attenuerà, ma gli edges si sfocheranno allargandosi. Ma così facendo andrà a prendere altri materiali. Se ora prendo il laplaciano e lo moltiplico per la mappa degli edge, il laplaciano andrà a lavorare solo dove l'edge-detector ha evidenziato bordi, lasciando stare i bordi.\\
+Quando parla dell'immagine a sinistra, sta facendo vedere le immagini degli scheletri, che sulle slide e sul libro sono etichettate con i vari passaggi: l'originale è a sinistra nella slide 48, originale con laplaciano a sinistra nella slide 49, \\
+% originale con sobel a sinistra nella slide 50, originale con sobel e laplaciano a sinistra nella slide 51.\\
+Libro pag 193 e 195.

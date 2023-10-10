@@ -79,6 +79,7 @@ MSE e PSNR sono le metriche più usate. Slide 28: le due zone sembreranno uguali
 L'ultima volta siamo arrivati qui: slide 30.
 
 \section{Filtri spaziali}
+N.B.: applichiamo filtraggio per migliorare il segnale.
 Lineare: l'operazione è scomponibile. Ad es. per lavorare su un'immagine intesa come matrice posso lavorare solo su alcune righe, maggiore semplificazione computazionale.\\
 Un filtro spaziale è formato da un intorno di pixel, e posso assumere che i pixel vicini più o meno appartengano all'oggetto, perlomeno posso almeno valutarlo insieme a questi pixel. Mi creano l'intorno.\\
 Da un pov operativo, l'equazione è quella di slide 32 che riporterò in un altro momento.\\
@@ -92,7 +93,12 @@ Fa un esempio, ho 5 pixel con relativo valore: 81, 82, 83, 84, 85. 82 fa media f
     \item si duplicano i pixel terminali (es. 85)
     \item boh
 \end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/filtri_spaziali1.jpg}
+\end{center}
+
 \subsection{Correlazione e convulazione}
+Sono legate.\\
 Slide 38: parla di maschera simmetrica, non è una convoluzione ma una correlazione, però sono abbastanza vicini da essere scambiato (nelle reti neurali convoluzionali non è una vera convoluzione ma ).\\
 Correlazinoe: prendo la maschera la applico e filtro.
 convoluzione: la maschera viene prima riflessa poi applicata.
@@ -107,7 +113,8 @@ Slide 49: non mi interessa se correlazione o convoluzione: esempio di filtro di 
 Non ci sto capendo un cazzo ma la slide 52 fa vedere con la media dell'intorno fa vedere come funziona quello sui bordi.\\
 Slide 55: blur sulle immagini della tipa.\\
 Slide 56: esempio di filtro di blurraggio sopra e illuminazione sotto, che mi crea effetto pellicola negativa.
-\subsection{Smoothing}
+
+\section{Smoothing}
 Slide 57: definizione di smoothing da trascrivere. Slide 58 formula da trascrivere.\\
 Ma le maschere devono essere sempre di dimensione quadrata? No. Noi le considereremo comunque sempre dispari in modo che siano il più simmetriche possibili. Fa l'esempio della maschera a croce 5x5 in basso al centro nella slide 58, che è una maschera di smoothing che fa "quando ci può tornare più utile"? Risposta: quando ho un'immagine con molti bordi. Quella a destra invece è circolare.
 \subsection{Gaussiana}
@@ -143,6 +150,7 @@ Anche qui la maschera può essere di qualsiasi dimensione e forma (solitamente u
 Il filtro mediano riduce molto di più sfocando meno i bordi con il rumore di tipo impulsivo (slide 76).\\
 Immagine a livelli di grigio ma fatta a raggi-x: slide 78. Come funziona bene il filtro mediano (img a dx): dove vediamo gli artefatti? Un po' di rumore gaussiano (in alto) si vede, ci sono ancora un po' di pallini. Perché? Io dico che tolgo gli estremi del mediano, se ne ho 5 (dim della maschera) e sono tutti rumori, il risultato è ancora rumore. Se il rumore è pari alla maschera più uno, (ovvero è maggiore) non viene eliminato.\\
 Come faccio a vedere cosa effettivamente è cambiato fra un mediano e l'altro se lo applico più volte? Slide 80.\\
+Un esempio è il filtro di rango, che è un filtro che
 
 \subsection{Media vs mediano}
 Slide 82.Il mediano conserva di più gli edge. Slide 83, esempio simile.\\
@@ -175,8 +183,6 @@ Accennato nella slide 116 del pacco di slide di oggi.\\
 Operatori locali derivati. Vedremo se un'immagine è sfocata come aumentarne la nitidezza: \textbf{sharpening}. Emuleremo quello che fa il nostro occhio con le bande di Mach.\\
 Poi inizieremo la parte delle trasformazioni geometriche.\\
 Fine parte grossa sulla elaborazione di base, poi inizieremo a parlare di colori.
-
-
 
 
 

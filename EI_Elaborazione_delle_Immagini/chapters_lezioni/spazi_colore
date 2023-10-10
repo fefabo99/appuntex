@@ -1,0 +1,16 @@
+\chapter{Spazi colore}
+Luce come distribuzione spettrale di energia, può partire da una sorgente e colpire un oggetto.\\
+Colore descrivibile a livello fisico come distribuzione spettrale di energia.\\
+Slide 3 con tre diverse definizioni. Ma a livello sensoriale non lo definiamo come ne parliamo qua, es. un grigio definito come (127, 127, 127).\\
+Noi parleremo del colore per parlare di modellizzazione.
+
+\section{Sintesi additiva e sottrattiva dei colori}
+Slide 5, che mostra come otteniamo bianco e nero. Noi \textbf{non} lavoreremo in \textit{sintesi sottrattiva}, la nominiamo e basta.
+\subsubsection{Sintesi additiva}
+Slide 6, come otteniamo i colori.\\
+Slide 9 (ma anche 14) con la ragazza, applica dei filtri rgb, ma in verità sono in scala di grigi, colorate solo per vedere bene noi. Ma perché alcuni canali (es. blu nella slide 9) non si vede bene la ragazza? \`E una questione di percezione.
+\subsubsection{Sintesi sottrattiva}
+Slide 7, come otteniamo i colori.\\
+Applichiamo il filtro ciano che fa passare da 400 a 600 al giallo che fa passare da 500 a 700, otterrò da 500 a 600.\\
+
+Di tutte queste cose parleremo la prossima volta.

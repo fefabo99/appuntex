@@ -1,0 +1,69 @@
+\chapter{Trasformazioni geometriche}
+% Come potremmo fare se volessimo costruire un sistema di riconoscimento di targhe?
+\definizione{}
+\subsection{Possibili problemi}
+Es. traslazione, slide 4. Potrei uscire dai bordi dell'immagine.\\
+Es. rotazione, slide 5. Potrei perdere parti di immagine.\\
+Es. traslazione fissa, slide 6. Potrei avere pixel overlappati o vuoti, ovvero alcune posizioni potrebbero non esistere.\\
+
+\section{Scaling delle immagini}
+Trovo la locazione e ci assegno oggetti.\\
+Slide 7.
+
+\section{Zooming delle immagini}
+Duplicazione di pixel per la ricostruzione dell'immagine.\\
+Slide 8.\\
+Mostra la slide della rosa, di quando abbiamo detto prendo un'immagine la faccio piccina e poi la ringrandisco, non ho più l'immagine originale.\\
+Slide 9.
+
+\section{Mapping diretto dei pixel}
+Ha letto la slide, Slide 10-11. Abbiamo lo stesso problema visto prima, ovvero che potremmo avere pixel vuoti o overlappati.\\
+Slide 12: problemi mapping diretto, immagine con "buchi" di pixel.\\
+Soluzione? In mathlab c'è un modo, ma ha dato la risposta una ragazza e non ho sentito.\\
+Noi invece senza mathlab come facciamo? Partiamo dall'immagine target.\\
+Slide 13-14.\\
+Però ocio, potrei avere lo stesso problema di prima, ovvero non una soluzione intera (?).\\
+
+\subsubsection{Nearest neighbour interpolation}
+Slide 15.\\
+Vado a prendere il più vicino, tecnica veloce ma produce immagini di qualità non elevata. Quando fa "andare qui, andare qui, o qui" ha disegnato 5 pixel alla lavagna, prima indica due a sinistra, poi due a detra e fa "allora ha senso fare media" e prende quello al centro.
+
+\subsection{Primo passo soluzione}
+Slide 14.
+
+\subsection{Secondo passo soluzione}
+Slide 15-16-17.
+
+\subsection{Possibili soluzioni diverse e pi sofisticate}
+Slide 18.\\
+Prima interpolo x poi interpolo y e medio (giusto?).
+Il libro lo fa impostando un sistema di equazioni, ma non è il modo più intuitivo.\\
+
+
+\subsection{Interpolazione con Mapping inverso dei pixel}
+è molto più sfumato.Di quanti punti ho bisogno per un'interpolazione lineare? Sulla linea 2, nel piano 4.\\
+Slide 18.
+
+\subsection{Tipi di interpolazione}
+Fa "l'ho aggiunta ieri sera" e infatti non c'è.
+
+\subsubsection{Es. di interpolazione}
+Einstein, slide 19.\\
+Quello sopra con enhancement è più facile da migliorare, quello sotto evidenzieremmo la squadrettatura.\\
+Slide 20, interpolazione crea nuovi livelli di grigio.\\
+Slide 21. Bilineare.?
+
+\section{Traslazioni geometriche}
+Abbiamo detto che noi non facciamo forward, ma reverse per non perdere pixel. Nella slide che non c'è, parla più formalmente di traslazione e scaling (noi usiamo la prima se no va a lucciole l'immagine).\\
+Poi persa una slide.\\
+Poi mostra translate e rotate e shear, che dovrebbe essere sghembatura in italiano.\\
+Slide 22 le trasformazioni prese dal libro.\\
+Metti che ho una targa storta da raddrizzare, ho i parametri da cui partire. Uso una shear e una translation. Ma come fare più velocemente? Sono combinabili in un'unica matrice più trasformazioni? Sì, sfruttando il concetto di \textbf{\textit{coordinate omogenee}}.\\
+Slide 23.\\
+Riscrivo ora la table di slide 22 in funzione di matrici, table 2.2 slide 24 e 25.\\
+Usando le c.o. posso esprimere qualsiasi trasformazione lineare come combinazione di più matrici in una. Slide 26.\\
+Slide 27 e 28 sono esempi di combinazioni di matrici su immagini.\\
+Slide 29 animazione di dissolvenza che non parte. Allora ha cercato il video di Black or White per la parte di morphing dei volti.\\
+Come farlo? Slide 29 e 30: applicabile anche ai visi se sono posizionati sufficientemente sovrapposti, ma devono coincidere alcuni punti fondamentali. Slide 31. Come trovarli e matcharli è una cosa un po' complicata ma fattibile, slide 32.\\
+Poi slide di esempi di metamorfosi volti fino allo "schettinizer" di slide 38.
+
