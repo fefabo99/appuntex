@@ -51,8 +51,7 @@
 \newcommand{\esempio}[1]{\begin{box_grigiochiaro} \textbf{Esempio: }#1\end{box_grigiochiaro}}
 \newcommand{\quickDefinizione}[1]{\paragraph{Quick Definizione} #1}
 \newcommand{\formula}[2]{\begin{box_formula} \begin{center} \textbf{#1}: #2 \end{center}  \end{box_formula}}
-
-\newcommand{\nb}[1]{\underline{\emph{\textbf{N.B.}}} \small{#1}}
+\newcommand{\nb}[1]{\begin{box_grigiochiaro_small}\underline{\emph{\textbf{N.B.}}} \small{#1}\end{box_grigiochiaro_small}}
 
 
 %Domande, Risposte ed Esercizi
@@ -109,6 +108,12 @@
     innertopmargin=14pt,
     innerbottommargin=14pt,
 ]{box_grigiochiaro}
+\newmdenv[
+    backgroundcolor=grigiochiaro,
+    linewidth=0pt,
+    innertopmargin=5pt,
+    innerbottommargin=5pt,
+]{box_grigiochiaro_small}
 \newmdenv[
     backgroundcolor=verde,
     linewidth=0pt,

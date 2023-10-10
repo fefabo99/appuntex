@@ -58,54 +58,94 @@ Da queste proprietá si deriva la Definizione dell'approccio moderno alla probab
     La coppia $(\Omega, P)$ é detta \textbf{Spazio di Probabilità}
 }
 
-\paragraph{La coppia $(\Omega, P)$ è detta \textbf{Spazio di Probabilità}}.
-\\ Fissiamo uno spazio di probabilità $(\Omega, P)$.
-Da queste proprietà si deducono molte altre proprietà
+\osservazione{Se $\Omega$ è più che numerabile (ad esempio $\R$ o $[0,\infty]$)
+Una probabilità può essere definita solo per una classe $A\subseteq P(\Omega)$ di elementi.
+}
+
+\paragraph{Proprietà di Base}
+Fissiamo uno spazio di probabilità $(\Omega, P)$ e consideriamo le proprietà 1 e 2 della definizione.
+Da queste proprietà si deducono le seguenti altre proprietà.
+\\Fissiamo la prpoposizione $P(\emptyset) = 0$:
 \begin{itemize}
-    \item $P(\emptyset) = 0$
-    \item \textbf{Regola del complementare} $\to P(A^c) = 1 - P(A)$ \\ Vale per ogni A
-    \item \textbf{Regola della addizione di probabilità} $\to P(A \cup B) = P(A) + P(B) - P(A \cap B)$ 
-    \\ Vale per ogni A, B (anche $A \cap B \neq \emptyset$)
-    \item Monotonia: se $A \subseteq B$ allora $P(A) <= P(B)$
+    \item \textbf{Regola del complementare} 
+    $$P(A^c) = 1 - P(A) \;\;\;\forall A$$
+    \item \textbf{Regola della addizione di probabilità} 
+    $$\to P(A \cup B) = P(A) + P(B) - P(A \cap B)  \;\;\;\forall A,B$$
+    \\ Vale anche $A \cap B \neq \emptyset$
+    \item \textbf{Monotonia}
+    \begin{center}
+        Se $A \subseteq B$ allora $P(A) <= P(B)$
+    \end{center}
 \end{itemize}
 \paragraph{Analogia} c'è un analogia tra probabilità e area
 \begin{center}
     \includegraphics[width=120mm,scale=0.5]{analogia_prob_area.png}
 \end{center}
 
+\paragraph*{Insiemi disgiunti Multipli}
+Dalla seconda proprietà (Se $A\cap B = \emptyset \implies P(A \cup B) = P(A) + P(B)$) segue che:
+\\Se $A_1,A_2,...,A_k$ sono insimi disgiunti, per cui $A_m \cap A_n = \emptyset, m\neq n$, allora varrà che:
+\[ P(A_1 \cup A_2 \cup ... \cup A_k)= P(A_1) + P(A_2) + ... + P(A_k)\]
+Per sviluppare la \textbf{Teoria Matematica} però è richiesto qualcosa in più.
+%Non la riporto per mancanza di tempo, pagina 1 appunti lezione 3
 
-
+\pagebreak
 \section{Calcolo combinatorio}
-Consideriamo uno spazio di probabilità uniforme $(\Omega, P)$
-\begin{itemize}
-    \item $P(A) = \frac{|A|}{|\Omega|}$ = $\frac{Casi favorevoli}{Casi Possibili}$
-    per ogni $A \subseteq \Omega$
-    \item $P({w}) = \frac{1}{\Omega} = \frac{1}{n}$ per ogni $w \in \Omega$
-\end{itemize}
-Questo è il modello appropriato per descrivere esperimenti aleatori i cui esiti
-siano tutti equiprobabili. Quando scegliamo casualmente una persona/oggetto in un 
-insieme finito senza ulteriori specifiche, si sottintende che la scelta è effettuata
-in modo uniforme.
+Introduciamo innanzitutto il concetto di Spazio di Probabilità uniforme:
+\paragraph{Spazio di Probabilità Uniforme}
+\definizione{
+    Indichiamo con $|A|$ la Cardinalità, ovvero il numero di elementi, dell'insieme $A$.
+    \\La \textbf{Probabilità Uniforme} su un insieme finito $\Omega$ è:
+    \[ P(A):= \frac{|A|}{|\Omega|}=\frac{\text{Casi Favorevoli}}{\text{Casi Possibili}} \text{ per ogni }A \subseteq \Omega\]
+    In particolare, per un singolo elemento varrà:
+    \[P({w}) = \frac{1}{\Omega} = \frac{1}{n} \text{ per ogni } \in \Omega\]
+    }
+La probabilità uniforme è l'unica che mi da \textbf{la stessa probabilità per ogni elemento}.
+\nb{La P.Uniforme non è l'unico tipo di probabilità esistente}
+Questo è il modello appropriato per descrivere esperimenti aleatori i cui esiti siano tutti \textbf{equiprobabili}.
+Quando scegliamo casualmente una persona/oggetto in un insieme finito senza ulteriori specifiche, si sottintende che la scelta è effettuata in modo uniforme.
 Affinchè la probabilità uniforme sia ben definita, lo spazio campionario $\Omega$
 deve essere finito (se così non fosse la probabilità uniforme su $\Omega$ non esiste)
-\\ In uno spazio di probabilità uniforme calcolare una probabilità significa contare gli 
-elementi di un insieme
-\begin{equation}
-    P(A) = \frac{|A|}{|\Omega|}
-\end{equation}
+\esempio{
+    \textbf{Almeno Uno} - Qual'è la probabilità di ottenere almeno un 6 lancaindo 2 dadi regolari a sei facce?
+    \paragraph{Impostazione del Problema}
+    \begin{itemize}
+        \item $\Omega = \{1,2,3,4,5,6\} \times \{1,2,3,4,5,6\} = \{(x,y) : 1\leq x,y \leq 6,x,y\in \N\}$
+        \item $P$ è una probabilità uniforme su $\Omega$ $\to P(A)= \frac{|A|}{|\Omega|}$.
+        \item $A$="Esce almeno un 6" = $\{w=(x,y) \in \Omega : x=6 \vee y=6\}$.
+    \end{itemize}
+    \paragraph{Rappresentazione Grafica}
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{images/almeno_uno.png}
+    \end{center}
+    \paragraph{Soluzioni}
+    Contando gli elementi abbiamo due possibili soluzioni:
+    \begin{enumerate}
+        \item $|A|=11\implies P(A) = \frac{|A|}{|\Omega|} = \frac{11}{36}$
+        \item $A^c= $"Non esce neanche un 6$ = \{1,2,3,4,5\} \times \{1,2,3,4,5\}$.
+        $|A^c|= 5 \times 5 = 25 $.
+        \\ $P(A^c) = \frac{|A^c|}{|\Omega|} = \frac{25}{36} \implies P(A) = 1 - P(A^c) = \frac{11}{36}$
+    \end{enumerate}
+ }
+
+\subsection*{Calcolo Combinatorio}
+Consideriamo uno spazio di Probabilità Uniforme, in cui$ P(A) = \frac{|A|}{|\Omega|}$.
+In questo tipo di spazio calcolare una probabilità significa \textbf{contare gli elementi di un insieme}.
+
 Dato che contare non è banale per insiemi grandi sono nate tecniche di conteggio,
 esse formano il \textbf{Calcolo Combinatorio}
-\paragraph{Principio Fondamentale} Consideriamo un esperimento costituito da due parti:
+
+\paragraph{Principio Fondamentale} 
+Consideriamo un esperimento costituito da due parti:
 \begin{enumerate}
-    \item n esiti possibili
-    \item m esiti possibili
+    \item Prima parte con $n$ esiti possibili.
+    \item Seconda parte con $m$ esiti possibili
 \end{enumerate}
-L'esperimento totale può avere $n*m$ esiti possibili.
-\paragraph{Esempio} Il lancio dei dadi. Se lancio 2 dadi a sei facce ho $\Omega$ 
-esiti possibili
-\begin{equation}
-    |\Omega| = 6*6 = 36
-\end{equation}
+L'esperimento totale può avere $n\cdot m$ esiti possibili.
+\\Abbiamo visto l'esempio del lancio di due dadi a sei facce, in cui  $|\Omega| = 6\cdot6 = 36$
+esiti possibili.
+\\Se lanciassi tre dadi $|\Omega| = 6\cdot6\cdot 6 = 216$ esiti possibili e così via.
+
 \subsection{Disposizioni con ripetizione}
 Sequenze ordinate di k elementi (anche ripetuti) scelti tra n possibili. Numero totale è:
 \begin{equation}
