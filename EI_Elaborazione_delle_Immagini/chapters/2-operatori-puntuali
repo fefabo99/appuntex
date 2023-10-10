@@ -97,8 +97,7 @@ La trasformazione potenza, anche detta \textbf{Gamma Correction}, è uno degli o
 Questa trasformazione è nella forma:
 \[ s = cr^\gamma \]
 Dove $c$ e $\gamma$ sono costanti positive.
-le curve power-law con valori frazionari di $\gamma$ mappano un range ristretto
-di valori scuri in ingresso in una gamma più ampia di valori in uscita, facendo l'opposto per i valori piu chiari.
+Le curve power-law con valori frazionari di $\gamma$ mappano un range ristretto di valori scuri in ingresso in una gamma più ampia di valori in uscita, facendo l'opposto per i valori piu chiari.
 
 \paragraph{In parole povere} Quando facciamo una Gamma Correction con un valore di $\gamma < 1$, quindi frazionario,
 stiamo "stretchando" gli scuri restringendo i chiari, viceversa se $\gamma > 1$.
