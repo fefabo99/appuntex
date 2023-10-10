@@ -68,16 +68,28 @@ sarebbe quello di produrre una \textbf{immagine di contrasto maggiore} dell'orig
 scurendo i livelli di intensità sotto a $k$ e schiarendo le intensità sopra a $k$.
 
 \subsubsection{Thresholding o Binarizzazione}
-\begin{wrapfigure}{l}{0.15\textwidth}
-    \centering
-    \includegraphics[width=.15\textwidth]{images/3.2.b-thresholding.png}
-\end{wrapfigure}
 In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) tutti i livelli sotto $k$ e a $1$ (bianco) tutti quelli sopra a $k$.
 %Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
+\begin{center}
+    \includegraphics[width=.15\textwidth]{images/3.2.b-thresholding.png}
+\end{center}
 
-\section{Some Basic Intensity Transformation Functions}
+\subsection*{Operatori Puntuali Lineari}
+Come abbiamo già detto un operatore puntuale calcola il valore di un pixel dell'immagine di uscita in funzione esclusivamente del valore
+del corrispondente dell'immagine di ingresso.
+
+Un operatore puntuale $h$ applicato all'immagine $f(n)$ è una funzione che è applicata identicamente ad ogni pixel creando una nuova immagine $g(n)$
+Se l'operatore puntuale in questione è della forma:
+\[ g(n) = P f(n) + L \]
+Dove $P$ è un fattore di scala moltiplicativo e $L$ un fattore di offset,
+allora è chiamato \textbf{Operatore Puntuale Lineare}.
+
+\section{Alcuni Operatori Puntuali di base}
 Le funzioni di Intensitiy Transformation sono tra le più semplici tecniche di IP.
 In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, che chiamiamo rispettivamente $r$ ed $s$, sono messi in relazione tramite la funzione $T$ che mappa i valori $r$ su quelli $s$.
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{images/3.3-basic-intensity-transformations.png}
+\end{center}
 
 \paragraph{Look Up Tables} Siccome stiamo parlando di grandezze digitali, i valori di una 
 Intensitiy Transformation Function sono generalmente mappati in una Look Up Table, che permette di associare
@@ -92,23 +104,40 @@ Invertendo in valori di grigio di un'immagine digitale in questa maniera produce
 
 %\subsection{Trasformazioni Logaritmiche} %To do, non credo sia di vitale importanza
 
-\subsection{Trasformazioni Potenziali: Gamma Correction}
+\subsection{Gamma Correction}
 La trasformazione potenza, anche detta \textbf{Gamma Correction}, è uno degli operatori puntuali più utilizzati.
 Questa trasformazione è nella forma:
 \[ s = cr^\gamma \]
 Dove $c$ e $\gamma$ sono costanti positive.
 Le curve power-law con valori frazionari di $\gamma$ mappano un range ristretto di valori scuri in ingresso in una gamma più ampia di valori in uscita, facendo l'opposto per i valori piu chiari.
-
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{images/3.6-gamma-curves.png}
+\end{center}
 \paragraph{In parole povere} Quando facciamo una Gamma Correction con un valore di $\gamma < 1$, quindi frazionario,
 stiamo "stretchando" gli scuri restringendo i chiari, viceversa se $\gamma > 1$.
 Se $\gamma = 1$ invece, la funzione risultante sarà quella identità.
-%Aggiungere immagini di repertorio
 
+\subsection{Look-Up Table}
+Diverse trasformazioni con diverse espressioni analitiche hanno dei costi computazionali variabili.
+
+Per una generica immagine $1024\times1024$, un operatore puntuale applicato alla sola intensità richiederebbe più di un milione di volte la sequenza:
+\begin{enumerate}
+    \item Conversione intero-float.
+    \item Calcolo dell'operatore.
+    \item Conversione float-intero
+\end{enumerate}
+Questa implementazione è tutt'altro che efficiente, quindi si ricorre spesso alle \textbf{Look Up Table (LUT)}.
+Una LUT è una tabella con tante entry quante sono i possibili valori di ingresso all'operazione.
+In questa tabella viene associato ad ogni valore possibile di ingresso ([0,255]) un valore a cui è stato già applicato l'operatore in questione che verrà messo nell'immagine di Output.
+
+\pagebreak
 
 \section{L'Istogramma}
 L'istogramma di un'immagine è un tipo di istogramma che rappresenta in modo grafico la \textbf{distribuzione
 tonale} (livelli di grigio) \textbf{di un'immagine digitale} ovvero traccia il numero di pixel per ogni valore tonale.
-
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/3.16-histogram.png}
+\end{center}
 L'analisi dell'istogramma fornisce generalmente utili informazioni sulle proprietà dell'immagine legate alle frequenza dei livelli di grigio.
 L'informazione spaziale è persa, quindi da un istogramma non possiamo risalire alla posizione dei pixel nell'immagine.
 
@@ -132,17 +161,32 @@ L'istogramma normalizzato rappresenta la \emph{frequenza di occupazione} dei liv
 Gli istogrammi sono facili da computare e sono utilizzabili per rapide implementazioni hardware, rendendo 
 le tecniche basate sugli istogrammi uno strumento molto utlizzato per l'Image Processing in Real Time.
 
-%TODO aggiungere paragrafo sulla forma dell'istogramma pg 133-34
-
 \subsection{Equalizzazione dell'istogramma}
+L'equalizzazione dell'istogramma è una tecnica di image enhancement che tende ad \textbf{aumentare il contrasto dell'immagine}
+mutando la forma dell'istogramma per bilanciare meglio i livelli, mantenendone però l'ordinamento.
+\\Questa tecnica sfrutta il concetto alla base del contrast stretching, ovvero utilizzare più livelli possibili per accentuare il contrasto.
+La sua comodità è il fatto che \textbf{non occorre specificare alcun parametro}, motivo che la rende una tecnica molto popolare, ma spesso abusata.
 
+\paragraph{Istogramma Cumulativo}
+Abbiamo già introdotto l'istogramma normalizzato $P(k)=\frac{H(k)}{N}$ che rappresenta la frequenza di occupazione dei livelli, ovvero la stima della probabilità di avere il valore $k$,
+Introduciamo ora l'istogramma cumulativo $A(k)$ così definito:
+\[ A(k)= \sum_{j\leq k} P(j)\]
+In cui la somma $\sum_{L} P(j) = 1$ con $N$ numero di livelli.
+\\Questo istogramma indica la percentuale di pixel con livello di grigio $\leq k$, ovvero la stima della probabilità di avere un valore minore o uguale a $k$.
 
-\section{Operatori Puntuali Lineari}
-Come abbiamo già detto un operatore puntuale calcola il valore di un pixel dell'immagine di uscita in funzione esclusivamente del valore
-del corrispondente dell'immagine di ingresso.
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/cumulative-histogram.jpg}
+\end{center}
 
-Un operatore puntuale $h$ applicato all'immagine $f(n)$ è una funzione che è applicata identicamente ad ogni pixel creando una nuova immagine $g(n)$
-Se l'operatore puntuale in questione è della forma:
-\[ g(n) = P f(n) + L \]
-Dove $P$ è un fattore di scala moltiplicativo e $L$ un fattore di offset,
-allora è chiamato \textbf{Operatore Puntuale Lineare}.
+\paragraph{Contrast stretching VS Equalizzazione}
+Il contrast strestching tende a stirare l'istogramma senza mutarne la forma, mentre l'equalizzazione tende a mutare la forma dell'istogramma in modo da
+ottenere una distribuzione il più possibile \textbf{a densità costante}.
+Cerchiamo quindi di definire un'istogramma che mantenga l'ordine dei livelli di grigio, utilizzando una trasformazione strettamente monotona,
+che sia \emph{il più piatto possibile} e sia definito sullo stesso range di valori, oltre che essere completamente automatica.
+
+\subsubsection{Il funzionamento dell'equalizzazione}
+Supponiamo inizialmente che:
+\begin{enumerate}
+    \item $r$ sia una variabile continua e normalizzata, ovvero $r\in [0,1]$;
+    %SLIDE 92, questa parte è abbastanza lunga e complicata
+\end{enumerate}
