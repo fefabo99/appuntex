@@ -161,11 +161,13 @@ L'istogramma normalizzato rappresenta la \emph{frequenza di occupazione} dei liv
 Gli istogrammi sono facili da computare e sono utilizzabili per rapide implementazioni hardware, rendendo 
 le tecniche basate sugli istogrammi uno strumento molto utlizzato per l'Image Processing in Real Time.
 
+\pagebreak
 \subsection{Equalizzazione dell'istogramma}
 L'equalizzazione dell'istogramma è una tecnica di image enhancement che tende ad \textbf{aumentare il contrasto dell'immagine}
 mutando la forma dell'istogramma per bilanciare meglio i livelli, mantenendone però l'ordinamento.
 \\Questa tecnica sfrutta il concetto alla base del contrast stretching, ovvero utilizzare più livelli possibili per accentuare il contrasto.
 La sua comodità è il fatto che \textbf{non occorre specificare alcun parametro}, motivo che la rende una tecnica molto popolare, ma spesso abusata.
+\\Per poter parlare di equalizzazione dell'istogramma dobbiamo prima introdurre l'istogramma Cumulativo.
 
 \paragraph{Istogramma Cumulativo}
 Abbiamo già introdotto l'istogramma normalizzato $P(k)=\frac{H(k)}{N}$ che rappresenta la frequenza di occupazione dei livelli, ovvero la stima della probabilità di avere il valore $k$,
@@ -184,9 +186,66 @@ ottenere una distribuzione il più possibile \textbf{a densità costante}.
 Cerchiamo quindi di definire un'istogramma che mantenga l'ordine dei livelli di grigio, utilizzando una trasformazione strettamente monotona,
 che sia \emph{il più piatto possibile} e sia definito sullo stesso range di valori, oltre che essere completamente automatica.
 
-\subsubsection{Il funzionamento dell'equalizzazione}
-Supponiamo inizialmente che:
+\subsubsection{Il funzionamento dell'equalizzazione} %Tradotto dal libro pagina 134 onwards
+Supponendo valori di intensità continui, denotiamo con la variabile $r$ le intensità di un immagine che deve essere processata,
+e assumiamo che $r$ sia nel range $[0,L-1]$\footnote{$r$ può anche essere normalizzato $r\in [0,1]$} con $r=0$ che rappresenta il colore nero e $r=L-1$ che rappresenta il colore bianco.
+\\Per $r$ che soddisfa queste condizioni, poniamo l'attenzione su trasformazioni (intensity mappings) della forma:
+\[ s = T(r) \; 0 \leq r \leq L-1\]
+Che produce un valore di intensità di output $s$ per ogni valore $r$ nell'immagine di input.
+\\Assumiamo che:
 \begin{enumerate}
-    \item $r$ sia una variabile continua e normalizzata, ovvero $r\in [0,1]$;
-    %SLIDE 92, questa parte è abbastanza lunga e complicata
+    \item $T(r)$ sia una funzione \textbf{Monotona Strettamente Crescente} nell'intervallo $[0,L-1]$
+    \item $0\leq T(r) \leq L-1$ per $0\leq r \leq L-1$, ovvero $T(r)$ deve essere sempre dentro l'intervallo.
 \end{enumerate}
+In alcune formulazioni che verranno discusse tra poco, useremo la trasformazione inversa:
+\[ r = T^{-1}(s) \; 0 \leq s \leq L-1\]
+Che esattamente il motivo per cui è richiesto che $T(r)$ sia Strettamente Monotona, come dimostrato nella seguente immagine.
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/3.16-monotonic-function.png}
+\end{center}
+Una funzione non strettamente monotona andrebbe bene quando stiamo mappando da $r$ a $s$, ma diventa problematica quando vogliamo recuperare i 
+valori di $r$ unicamente dai valori mappati.
+
+L'intensità di un immagine (quindi $r$ e $s$) possono essere viste come variabili random nell'intervallo $[0,L-1]$,
+ed è possibile caratterizzarle medianti i rispettivi PDF\footnote{Probability Density Function, ovvero l'istogramma}:
+\begin{center}
+    $p_r(r)$ e $p_s(s)$
+\end{center}
+Dalla teoria della probabilità sappiamo che se $p_r(r)$ e $T(r)$ sono \textbf{note} e $T^{-1}$ è continua e differenzibile nel range,
+allora il PDF della variabile mappata $s$ può essere ottenuto tramite:
+\begin{equation}\tag{3.10}\label{eq:3.10}
+     p_s(s)=p_r(r) \bigg | \frac{dr}{ds}\bigg|
+\end{equation}
+Difatti, dati gli intervalli $[r,r+dr]$ e $[s, s+ds]$, tutti i punti $[r,r+dr]$
+devono essere trasformati in punti di  $[s,s+ds]$.
+Ne segue che le aree, ovvero le probabilità, devono essere uguali.
+
+Una funzione trasformazione particolarmente importante in IP è:
+\begin{equation}\tag{3.11}\label{eq:3.11}
+    s = T(r) = (L-1) \int_{0}^{r} p_r(w) dw
+\end{equation}
+Dove $w$ è una \emph{dummy variable} di integrazion.
+L'integrale sulla destra è la \textbf{Funzione di Distribuzione Cumulativa} (CDF) di $r$.
+Siccome i PDF sono sempre positivi, e l'integrale di una funzione è l'area sottesa, ne segue che questa funzione soddisfa la condizione (1), questo è perchè 
+l'area sotto la funzione non può diminuire all'incrementare di $r$.
+Quando il limite superiore in questa equazione è $r=(L-1)$, l'integrale diventa 1, come deve per un PDF,
+rendendo il valore massimo di $s$ $(L-1)$, rispettando la seconda condizione.
+
+Derivando $s$ rispetto a $r$ si ottiene, per la regola di Liebniz\footnote{The derivative of a definite integral with respect to its upper limit is the integrand evaluated at the limit}:
+\[
+    \frac{ds}{dr} = \frac{dT(r)}{dr}\]
+    \[\to \frac{ds}{dr}= (L-1) \cdot \frac{d}{dr}[\int _{0}^{r} p_r(w) dw]\]
+    \[\to \frac{ds}{dr}= (L-1)\cdot p_r(r)
+\]
+Sostituendo questo risultato per $\frac{dr}{ds}$\footnote{$\frac{ds}{dr} = (L-1)\cdot p_r(r) \implies \frac{dr}{ds}= \frac{1}{(L-1)\cdot p_r(r)}$}
+ nell'equazione (3.10), e tenendo conto del fatto che tutti i valori di probabilità sono positivi\footnote{Permettendoci di rimuovere il valore assoluto}, da il risultato:
+\[ p_s(s)=p_r(r) \bigg | \frac{dr}{ds}\bigg| \]
+\[ \to p_s(s)=p_r(r) \bigg | \frac{1}{(L-1)\cdot p_r(r)}\bigg|\]
+\[ \to p_s(s) = \frac{1}{L-1} \; \; \; 0 \leq s \leq L-1 \]
+La densità di probabilità (PDF) della variabile trasformata è uniforme nel suo intervallo di efinizione, \emph{indipendentemente} dalla forma di $p_r(r)$
+Da questo ne deriva un incremento nella gamma dinamica dei pixel che può avere notevoli effetti sulla "apparenza" dei pixel.
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/3.18-uniform-pdf.png}
+\end{center}
+
+%Slide 97, pagina 137
