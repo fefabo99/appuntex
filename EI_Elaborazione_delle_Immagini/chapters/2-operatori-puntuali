@@ -45,7 +45,7 @@ in cui, per semplicità di notazione, usiamo $s$ e $r$ per denotare rispettivame
 
 \paragraph{Elaborazioni Puntuali Omogenee}
 Il risultato di una elaborazione puntiale omoegenea dipende solo dal valore del pixel cui è applicata, per cui tali elaborazioni vengono anche dette manipolazioni della scala di grigio (o dei colori).
-\\Se invece il risultato dell'elaborazione dipende anche dalla posizione del pixel dell'immagine si paral di elaborazioni puntuali \textbf{non omogenee}.
+\\Se invece il risultato dell'elaborazione dipende anche dalla posizione del pixel dell'immagine si parla di elaborazioni puntuali \textbf{non omogenee}.
 \\Alcune tipiche elaborazioni puntuali omogenee sono:
 \begin{itemize}
     \item Aggiunta o sottrazione di una costante a tutti i pixel.
@@ -76,7 +76,7 @@ In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) 
 %Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
 
 \section{Some Basic Intensity Transformation Functions}
-Le funzioni di Intensitiy Transformation son o tra le più semplici tecniche di IP.
+Le funzioni di Intensitiy Transformation sono tra le più semplici tecniche di IP.
 In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, che chiamiamo rispettivamente $r$ ed $s$, sono messi in relazione tramite la funzione $T$ che mappa i valori $r$ su quelli $s$.
 
 \paragraph{Look Up Tables} Siccome stiamo parlando di grandezze digitali, i valori di una 
