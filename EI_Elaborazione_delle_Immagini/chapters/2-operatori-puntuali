@@ -112,7 +112,7 @@ tonale} (livelli di grigio) \textbf{di un'immagine digitale} ovvero traccia il n
 L'analisi dell'istogramma fornisce generalmente utili informazioni sulle proprietà dell'immagine legate alle frequenza dei livelli di grigio.
 L'informazione spaziale è persa, quindi da un istogramma non possiamo risalire alla posizione dei pixel nell'immagine.
 
-\paragraph{Definzione Matematica}
+\paragraph{Definizione Matematica}
 Abbiamo $r_k$, per $k=0,1,...,L-1$ che denota le intensità di un'immagine $f(x,y)$ a $L$-livelli.
 L'istogramma \textbf{Non Normalizzato} di $f$ è definito come:
 \[  h(r_k) = n_k \text{ for } k=0,1,...,L-1 \]
