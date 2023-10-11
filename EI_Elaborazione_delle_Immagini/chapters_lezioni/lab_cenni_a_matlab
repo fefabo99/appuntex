@@ -1,0 +1,63 @@
+\chapter*{Introduzione a MatLab}
+\section*{Appunti video lezione 2020 da Moodle}
+\subsection{Ambienti di lavoro}
+\subsubsection{Command Window e Workspace}
+\begin{itemize}
+    \item \underline{Command Window}: finestra di comando, dove andiamo effettivamente a scrivere i comandi.
+    \item \underline{Workspace}: variabili in memoria, vediamo le variabili che abbiamo istanziato, mi dà un feedback immediato di quello che ho fatto.
+\end{itemize}
+
+\subsubsection{Variabili}
+\begin{verbatim}
+    >> pippo = 10
+    pippo =
+        10
+    >>
+\end{verbatim}
+Questo vuol dire che istanziare una variabile assegnandole anche un valore numerico, dopo che ho premuto invio mi viene creata in memoria la variabile che ho creato (lo vedo nel workspace che l'ho creata). Però scrivendo così mi viene anche stampato a schermo il comando che ha eseguito.\\
+Nel workspace vedo che ho una variabile chiamata pippo che ha valore 10, size 1x1 e class double.\\
+Questo vuol dire che ha dimensione 1x1, cioè che è una singola cella (MatLab lavora con dati che sono matrici). Inoltre, double è il valore base, di default, quasi tutto viene fatto in virgola mobile (ci possono essere forzature se necessario).\\
+Ci sono operazioni più complesse però di semplici assegnamenti, per cui potrebbe tornare utile evitare di stampare a schermo, perché non è assolutamente necessario vedere live l'output del comando che viene eseguito. Perciò:
+\begin{verbatim}
+    >> pluto = 10;
+    >>
+\end{verbatim}
+
+\subsection{Lista di comandi utili}
+\begin{description}
+    \item[>> clear:] pulisce il workspace, cancella tutte le variabili che ho istanziato.
+    \item[>> clc:] pulisce il command window, cancella tutti i commenti che ho scritto.
+    \item[freccia su tastiera:] va a riprendere l'\textit{history} dei miei comandi nella command window, che apre in una finestrella pop-up.
+\end{description}
+
+\subsection{Operazioni matematiche}
+\subsubsection{Addizione}
+\begin{verbatim}
+    >> a = 2;
+    >> b = 1;
+    >> c = a + b;
+\end{verbatim}
+\subsubsection{Sottrazione}
+\begin{verbatim}
+    >> a = 2;
+    >> b = 1;
+    >> c = a - b;
+\end{verbatim}
+\subsubsection{Prodotto}
+\begin{verbatim}
+    >> a = 2;
+    >> b = 1;
+    >> c = a * b;
+\end{verbatim}
+\subsubsection{Divisione}
+\begin{verbatim}
+    >> a = 2;
+    >> b = 1;
+    >> c = a / b;
+\end{verbatim}
+\subsubsection{Elevamento a potenza}
+\begin{verbatim}
+    >> a = 2;
+    >> a^3;
+\end{verbatim}
+% 17:50
