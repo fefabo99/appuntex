@@ -89,10 +89,9 @@ Dalla seconda proprietà (Se $A\cap B = \emptyset \implies P(A \cup B) = P(A) + 
 Per sviluppare la \textbf{Teoria Matematica} però è richiesto qualcosa in più.
 %Non la riporto per mancanza di tempo, pagina 1 appunti lezione 3
 
-\pagebreak
-\section{Calcolo combinatorio}
-Introduciamo innanzitutto il concetto di Spazio di Probabilità uniforme:
-\paragraph{Spazio di Probabilità Uniforme}
+
+\subsection{Spazio di Probabilità Uniforme}
+Introduciamo ora il concetto di Spazio di Probabilità uniforme:
 \definizione{
     Indichiamo con $|A|$ la Cardinalità, ovvero il numero di elementi, dell'insieme $A$.
     \\La \textbf{Probabilità Uniforme} su un insieme finito $\Omega$ è:
@@ -128,78 +127,120 @@ deve essere finito (se così non fosse la probabilità uniforme su $\Omega$ non 
     \end{enumerate}
  }
 
-\subsection*{Calcolo Combinatorio}
-Consideriamo uno spazio di Probabilità Uniforme, in cui$ P(A) = \frac{|A|}{|\Omega|}$.
+
+\pagebreak
+\section{Calcolo combinatorio}
+Consideriamo uno spazio di Probabilità Uniforme, in cui $P(A) = \frac{|A|}{|\Omega|}$.
 In questo tipo di spazio calcolare una probabilità significa \textbf{contare gli elementi di un insieme}.
 
 Dato che contare non è banale per insiemi grandi sono nate tecniche di conteggio,
 esse formano il \textbf{Calcolo Combinatorio}
-
-\paragraph{Principio Fondamentale} 
+\definizione{
+\textbf{Principio Fondamentale}:
 Consideriamo un esperimento costituito da due parti:
 \begin{enumerate}
-    \item Prima parte con $n$ esiti possibili.
-    \item Seconda parte con $m$ esiti possibili
+    \item Prima parte con $n$ esiti possibili $\{a_1,...,a_n\}$.
+    \item Seconda parte con $m$ esiti possibili  $\{b_1,...,b_m\}$.
 \end{enumerate}
-L'esperimento totale può avere $n\cdot m$ esiti possibili.
-\\Abbiamo visto l'esempio del lancio di due dadi a sei facce, in cui  $|\Omega| = 6\cdot6 = 36$
-esiti possibili.
-\\Se lanciassi tre dadi $|\Omega| = 6\cdot6\cdot 6 = 216$ esiti possibili e così via.
+L'esperimento totale può avere \textbf{$n\cdot m$ esiti possibili}.
+\[ \Omega = \{ (a_i,b_j) : 1\leq i \leq n, 1 \leq j \leq n\} \implies |\Omega|= n \cdot m \]
+}
+Abbiamo visto l'esempio del lancio di due dadi a sei facce, in cui:
+  \[ \Omega=\{(x,y): x,y \in \{1,2,3,4,5,6\}\} \implies |\Omega| = 6\cdot6 = 36 \]
+Se lanciassi tre dadi $|\Omega| = 6\cdot6\cdot 6 = 216$ esiti possibili e così via.
 
 \subsection{Disposizioni con ripetizione}
-Sequenze ordinate di k elementi (anche ripetuti) scelti tra n possibili. Numero totale è:
-\begin{equation}
-    n*n \dots n = n^k
-\end{equation}
-\paragraph{Esempio} Estrazione casuale di 3 persone, calcolare la probabilità che
-siano tutte nate in primavera.
-In questo caso lo spazio campionario sono i compleanni delle tre persone quindi
-\begin{equation}
-    \Omega = {(x_1, x_2, x_3): x_1, x_2, x_3 \text{ in Calendario}}
-\end{equation}
-Questa è una disposizione con ripetizione di 3 elementi estratti dal calendario
-\begin{equation}
-    |\Omega| = 365*365*365 = 365^3
-\end{equation}
-Probabilità uniforme $P(A) = \frac{|A|}{|\Omega|}$
-\\ In questo caso tutti i nati in primavera vengono considerati 
-nati A = tutti  nati in primavera = [20 marzo, 21 giugno) e in totale sono 92 giorni.
-\\ Si tratta anche qua di una disposizione ripetuta di 3 elementi.
-\begin{equation}
-    |A| = 92*92*92 = 92^3
-\end{equation}
-Per calcolare la probabilità è sufficiente dividere A per $\Omega$
-\begin{equation}
-    P(A) = \frac{|A|}{|\Omega|} = \frac{92^3}{365^3} = 0,016 = 1,6\%
-\end{equation}
-Se avessi estratto k persone sarebbe stato sufficiente sostituire l'esponente con k.
+Le disposizioni con ripetizione possono essere definite come segue:
+\definizione{
+    \textbf{Disposizioni con Ripetizione}:
+    Sequenze ordinate di $k$ elementi (anche ripetuti) scelti tra $n$ possibili.
+    Il numero totale è:
+    \begin{equation}
+        n*n \dots n = n^k
+    \end{equation}
+}
+
+\esempio{
+    Estraggo casualmente 3 persone: Qual'è la probabilità che siano tutte nate in primavera?
+    In questo caso lo \textbf{Spazio Campionario} sono i compleanni delle tre persone, quindi:
+    \[
+        \Omega = \{(x_1, x_2, x_3): x_1, x_2, x_3 \in \text{ Calendario}\}
+    \]
+    Questa è una disposizione con ripetizione di 3 elementi estratti dal calendario.
+    \[
+        |\Omega| = 365*365*365 = 365^3
+    \]
+    Abbiamo una \textbf{Probabilità Uniforme}: $P(A) = \frac{|A|}{|\Omega|}$
+    \\Troviamo $|A|$: Consideriamo tutte le persone nate tra il 20 marzo e il 21 giugno:
+    \begin{center}
+        A = "tutti nati in primavera" = [20 marzo, 21 giugno) $\to$ 92 giorni
+    \end{center}
+    Si tratta anche qua di una disposizione con ripetizione di 3 elementi.
+    \[
+        |A| = 92*92*92 = 92^3 (= 778.688)
+    \]
+    Per calcolare la probabilità è sufficiente dividere $A$ per $\Omega$
+    \[
+        P(A) = \frac{|A|}{|\Omega|} = \frac{92^3}{365^3} = 0,016 = 1,6\%
+    \]
+    Se avessi estratto k persone sarebbe stato sufficiente sostituire l'esponente con k.
+}
+
+\osservazione{
+    Esperimenti molto diversi, come lanciare 3 dadi o estrarre 3 persone e osservarne i compleanni,
+     ammettono la \textbf{Stessa descrizione matematica}:
+     \[
+        \Omega = \{(x_1, x_2, x_3): x_1, x_2, x_3 \in E\}
+    \]
+    \[
+        \Omega = \{\text {Disposizione con Ripetizione di tre elementi estratti da E}\}
+    \]
+    Con $E = \{1,2,3,4,5,6\}$ oppure $E = \text{ Calendario}$, in ogni caso avremo sempre che $|\Omega| = |E|^3$. 
+}
 
 \subsection{Disposizioni semplici}
-Sequenze ordinate di k elementi distinti scelti tra n possibili (con $k <= n$) 
-\textbf{senza ripetizione}
-\begin{equation}
-    n*(n-1)*(n-2)\dots(n-k+1) = \frac{n!}{(n-k)!}
-\end{equation}
-\'E preferibile utilizzare la prima formula su R dato che il fattoriale scala molto male,
+Ora chiediamoci: Quanti sono gli esiti del lancio di due dadi i cui numeri ottenuti sono \textbf{distinti}?
+\\Quante coppie $(x,y)$ con $x\neq y$, se $x,y \in \{1,2,3,4,5,6\}$?
+
+\definizione{
+    \textbf{Disposizioni Semplici}\footnote{Semplici si intende "Senza Ripetizione"}:
+    Sequenze ordinate di $k$ elementi distinti scelti tra $n$ possibili (con $k <= n$).
+    Sono in numero:
+    \begin{equation}
+        n*(n-1)*(n-2)\dots(n-k+1) = \frac{n!}{(n-k)!}
+    \end{equation}
+}
+\nb{E preferibile utilizzare la prima formula su R dato che il fattoriale scala molto male,
 su carta spesso si semplifica, ma su Computer si calcolerebbe tutto il fattoriale e spesso richiede 
-molto tempo.
-\\ Se $k = n$ si parla di \textbf{Permutazioni} di n oggetti. In numero sono:
+molto tempo.}
+Un caso speciale è se $k = n$: in questo caso si parla di \textbf{Permutazioni} di $n$ oggetti. 
+Sono in numero:
 \begin{equation}
     n! = n*(n-1)*(n-2)\dots 2 * 1
 \end{equation}
-\paragraph{Esempio}. Quanti sono i possibili ordini di arrivo di 3 squadre?
-Si tratta di una permutazione di 3 elementi.
-\paragraph{Esempio Paradosso dei compleanni}
+
+\esempio{
+Quanti sono i possibili ordini di arrivo di 3 squadre, $a$, $b$ e $c$?
+\\Si tratta di una \textbf{permutazione} di 3 elementi:
+\[ abc,acb,bac,bca,cab,cba \]
+E sono esattamente $3! = 3\cdot 2 \cdot 1$
+}
+%\esempio{Paradosso dei compleanni}
 
 \subsection{Combinazioni}
 In molti casi non siamo interessati all'ordine. 
 Per esempio, se dobbiamo scegliere un comitato di 2 persone non ci interessa l'ordine 
 dei candidati.
-Si parla in questo caso di combinazioni, esse si possono ottenere dalle disposizioni semplici
+Si parla in questo caso di \textbf{combinazioni}, esse si possono ottenere dalle disposizioni semplici
 "dimenticando" l'ordine degli elementi.
-\begin{equation}
-    {n \choose x} = \frac{n!}{k!(n-k)!}
-\end{equation}
+
+\definizione{
+    \textbf{Combinazioni}: Insiemi = Collezioni
+    \begin{equation}
+        {n \choose x} = \frac{n!}{k!(n-k)!}
+    \end{equation}
+}
+
 Insiemi = collezioni (non ordinate) di k elementi distinti scelti tra n possibili (con $k <= n$).
 \paragraph{Esempio}. Mano di carte a Poker, un giocatore riceve 5 carte estratte da un mazzo che
 ne contiene 52. Il numero di possibili mani è
