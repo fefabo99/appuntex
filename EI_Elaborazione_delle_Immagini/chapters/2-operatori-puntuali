@@ -247,5 +247,11 @@ Da questo ne deriva un incremento nella gamma dinamica dei pixel che può avere 
 \begin{center}
     \includegraphics[width=1\textwidth]{images/3.18-uniform-pdf.png}
 \end{center}
-
 %Slide 97, pagina 137
+
+%Pagina di spiegazione #DumbItDown per l'istogramma.
+\pagebreak
+\newpagecolor{azzurrochiaro}\afterpage{\restorepagecolor}
+\section{Dumb it Down: Histogram Equalization}
+
+\pagebreak
