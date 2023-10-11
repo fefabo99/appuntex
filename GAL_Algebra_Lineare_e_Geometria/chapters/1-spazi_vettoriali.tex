@@ -112,7 +112,17 @@ Da qui possiamo andare a definire se i vettori di un insieme sono linearmente di
     Altrimenti, i vettori si $S$ sono detti \textbf{Linearmente Indipendenti} 
 }
 Ovvero, si dice che i vettori di un insieme sono linearmente dipendenti se sono la combinazione lineare di altri elementi dell'insieme.
-\paragraph{Lemma}
+\subsubsection*{Lemma}
 $S\subset V$ é un insieme di vettori linearmente indipendenti sse:
 \[ \sum_{i=1}^{n} \lambda_i \cdot z_i = \underline{0} \implies \lambda_i = 0 \forall i \]
 Ció deve valere $\forall n \in N$ e $\forall \{z_i\} \subset S$.
+
+\paragraph{Dimostrazione del Lemma}
+$S\subset V$ è un insieme di vettori linearmente indipendenti.
+Voglio dimostrare che se $\{\underline{z}_i \}<S$ e $\sum_{i=1}^{n} \lambda_i \underline{z}_i = \underline{0}$ allora $\lambda_i=0 \forall 0$.
+\\Nego la tesi: Supponiamo che  $\sum_{i=1}^{n} \lambda_i \underline{z}_i = \underline{0}$ ma $\exists h : \lambda_h \neq 0$.
+Allora 
+\[\lambda_h z_h = -\sum_{j\neq h} \lambda_j \underline{z}_j \to ... \to z_h = -\sum_{j\neq h} \lambda_h^{-1} \lambda_j \underline{z}_j\]
+Ovvero al combinazione lineare di vettori $\subset S$ diversi da $z_h$, quindi gli $\{\underline{z}_i \}$ sono linearmente dipendenti e lo sono anche quelli di $S$.
+
+%Dimostrazione Inversa ed Esempi da aggiungere
