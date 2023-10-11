@@ -5,8 +5,8 @@ Le tecniche che introdurremo operano direttamente su i pixel, a differenza dell'
 delle Frequenze, nel quale le operazioni sono effettuate sulla trasformata di Fourier di un'immagine invece che sull'immagine stessa.
 
 \paragraph{Enhancement}
-Anche se i metodi di Spatial Filtering e Intensity Trasformation hanno moltissime applicazioni,
-noi ci concentreremo sull'\textbf{Enhancement} delle immagini.
+Anche se i metodi di Filtraggio Spaziale\footnote{Spacial Filtering o Operatori Locali } e Intensity Trasformation\footnote{Operatori Puntuali}
+hanno moltissime applicazioni, noi ci concentreremo sull'\textbf{Enhancement} delle immagini.
 
 L'Enhancement è un operazione di Image Processing a basso livello possibile sia nel dominio spaziale che nel domino delle Frequenze
 ed è il processo di manipolazione di un immagine per far si che il risultato sia migliore dell'originale per una \textbf{specifica applicazione}.
@@ -56,24 +56,6 @@ Il risultato di una elaborazione puntiale omoegenea dipende solo dal valore del 
     \item Presentazione falso in colore.
 \end{itemize}
 
-\subsubsection{Contrast Stretching}
-\begin{wrapfigure}{r}{0.3\textwidth}
-    \centering
-    \includegraphics[width=.3\textwidth]{images/3.2.a-contrast-stretching.png}
-\end{wrapfigure}
-Un esempio di elaborazione puntuale omogenea è quello del \emph{contrast stretching}.
-In questo caso $T(r)$ prende la forma come nell'immagine.
-\\Il risultato dell'applicazione della trasformazione ad ogni pixel in $f$ per generare il corrispondente pixel in $g$
-sarebbe quello di produrre una \textbf{immagine di contrasto maggiore} dell'originale,
-scurendo i livelli di intensità sotto a $k$ e schiarendo le intensità sopra a $k$.
-
-\subsubsection{Thresholding o Binarizzazione}
-In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) tutti i livelli sotto $k$ e a $1$ (bianco) tutti quelli sopra a $k$.
-%Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
-\begin{center}
-    \includegraphics[width=.15\textwidth]{images/3.2.b-thresholding.png}
-\end{center}
-
 \subsection*{Operatori Puntuali Lineari}
 Come abbiamo già detto un operatore puntuale calcola il valore di un pixel dell'immagine di uscita in funzione esclusivamente del valore
 del corrispondente dell'immagine di ingresso.
@@ -95,6 +77,23 @@ In queste funzioni i valori di un pixel viene prima e dopo la trasformazione, ch
 Intensitiy Transformation Function sono generalmente mappati in una Look Up Table, che permette di associare
 con migliore efficienza i valori di input e output.
 
+\subsection{Contrast Stretching}
+\begin{wrapfigure}{r}{0.3\textwidth}
+    \centering
+    \includegraphics[width=.3\textwidth]{images/3.2.a-contrast-stretching.png}
+\end{wrapfigure}
+Un esempio di elaborazione puntuale omogenea è quello del \emph{contrast stretching}.
+In questo caso $T(r)$ prende la forma come nell'immagine.
+\\Il risultato dell'applicazione della trasformazione ad ogni pixel in $f$ per generare il corrispondente pixel in $g$
+sarebbe quello di produrre una \textbf{immagine di contrasto maggiore} dell'originale,
+scurendo i livelli di intensità sotto a $k$ e schiarendo le intensità sopra a $k$.
+
+\subsection{Thresholding o Binarizzazione}
+In quest'altro esempio $T(r)$ produce un'immagine binaria, ponendo a $0$ (nero) tutti i livelli sotto $k$ e a $1$ (bianco) tutti quelli sopra a $k$.
+%Pagina 121 libro cartaceo, Slide 10 lezione operatori puntuali 1. 
+\begin{center}
+    \includegraphics[width=.15\textwidth]{images/3.2.b-thresholding.png}
+\end{center}
 
 \subsection{I Negativi}
 Il negativo di un'immagine con livelli di intensità nel range $[0,L-1]$, con $L$ numero di livelli (256 per una immagine in 8bit),
