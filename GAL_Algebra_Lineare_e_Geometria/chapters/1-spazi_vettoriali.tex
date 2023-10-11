@@ -126,3 +126,29 @@ Allora
 Ovvero al combinazione lineare di vettori $\subset S$ diversi da $z_h$, quindi gli $\{\underline{z}_i \}$ sono linearmente dipendenti e lo sono anche quelli di $S$.
 
 %Dimostrazione Inversa ed Esempi da aggiungere
+
+\section{Basi}
+Domanda: come comunico un sottospazio vettoriale?
+Sia $W<V$. Ci sono 2 modi:
+\begin{enumerate}
+    \item Siccome $W\subset V$, allora $W=\{...\}$.
+    \item Sfrutiamo il fatto che $W<V$ e quindi $<S>=W$ per qualche \underline{insieme} $S\subset V$,
+    cerchiamo di "ottimizzare" $S$, ovvero cerchiamo il piú piccolo $S$ che rispetti $<S>=W$.
+    \\Ció consiste nel determinare un S "minimale" tale che:
+    \begin{center}
+        $W = <S> =$ Spazio Vettoriale generato da S
+    \end{center}
+    La minimalitá é equivalente a:
+    \[ W\neq <S/\underline{v}>, \; \forall \underline{v} \in S \]
+\end{enumerate}
+
+\definizione{
+    Teorema/Definizione di Base: Tutte le seguenti affermazioni sono \textbf{equivalenti}:
+    \begin{enumerate}[(a)]
+        \item $S=\{\underline{v}_1,\underline{v}_2,...,\underline{v}_n\} \subset V$ é una Base di $V$.
+        \item $S$ è un sistema di generatori per V, cioé $V=<S>$ e i vettori di $S$ sono linearmente indipendenti.
+        \item $<S>=V$ e $\forall \underline{v} \in V, \exists ! \sum_{i=1}^{n} \lambda_i \underline{v}_i = \underline{v}$
+        \item $S$ è un insieme minimale di generatori di $V$.
+        \item $S$ è un insieme massimale di vettori linearmente dipendenti di $V$.
+    \end{enumerate}
+}
