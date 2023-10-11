@@ -1,0 +1,131 @@
+\chapter{File system: i servizi}
+\subsection{Argomenti}
+• File e operazioni su file
+• Directory: operazioni e struttura
+• Protezione
+• Volumi e montaggio
+• Le API POSIX per operazioni su file
+• Le API POSIX per operazioni su directory
+• Le API POSIX per la protezione
+
+\section{File e operazioni su file}
+\subsection{Il concetto di file e di file system}
+• Il file system è il modo attraverso il quale il sistema operativo
+memorizza in linea i dati e i programmi
+• Il file system è costituito da:
+• Un insieme di file
+• Una struttura delle directory, che organizza i file
+• Un file è una unità di memorizzazione logica, un insieme di
+informazioni correlate, registrate in memoria secondaria, alle quali è
+stato dato un nome
+• Un file a sua volta è costituito da una sequenza di record, righe, bit o
+byte, il cui significato è definito dal creatore del file
+
+\subsection{Attributi dei file}
+• Un file possiede un insieme di attributi:
+• Nome: è di solito l’unica informazione in forma umanamente leggibile
+• Identificatore: un’etichetta unica fornita dal file system per distinguere i file
+• Tipo: tipo di dati contenuti nel file (alcuni sistemi operativi non hanno questo
+attributo)
+• Locazione: dispositivo di memoria secondaria e posizione nel dispositivo dove
+l’informazione del file è memorizzata
+• Dimensione: in byte, parole, record…
+• Protezione: informazione di controllo accessi
+• Ora, data e utente che ha creato, letto o modificato per ultimo il file
+• Attributi estesi: checksum, codifica caratteri, applicazioni correlate…
+• Le informazioni sul file sono memorizzate nelle directory
+
+\subsection{Operazioni dei processi sui file}
+• Creazione: viene riservato spazio nel filesystem per i dati, e viene aggiunto
+un elemento nella directory
+• Apertura: effettuata prima dell’utilizzo di un file
+• Lettura: a partire dalla posizione determinata da un puntatore di lettura
+• Scrittura: a partire dalla posizione determinata da un puntatore di scrittura
+(di solito coincide con il puntatore di lettura)
+• Riposizionamento (seek): spostamento del puntatore all’interno del file
+• Chiusura: effettuata alla fine dell’utilizzo di un file
+• Cancellazione e troncamento: il troncamento cancella i dati ma non il file
+con i suoi attributi
+
+% lezione 11 ottobre termina qua
+
+\subsection{Lock dei file}
+• Uno stesso file può essere aperto contemporaneamente da più processi che
+operano in concorrenza
+• Alcuni sistemi operativi permettono di associare ai file (o a porzioni di esso) dei
+lock per coordinare i processi che operano sullo stesso file
+• Due tipi di lock: • Lock condiviso: detto anche lock di lettura; più processi possono acquisirlo, proibisce l’acquisizione di un lock esclusivo
+• Lock esclusivo: detto anche lock di scrittura; solo un processo alla volta può acquisirlo, proibisce l’acquisizione di un lock condiviso
+Altre possibilità:
+• Lock obbligatori (mandatory): il sistema operativo impedisce l’accesso al file ai processi che non detengono il lock
+• Lock consultivi (advisory): il sistema operativo offre il lock ma non regola l’accesso al file: sono i processi che devono evitare di accedere al file se non hanno il lock
+• I sistemi Windows adottano i lock obbligatori, i sistemi Unix-like i lock consultivi
+
+\subsection{Tipi di file}
+• Possibili tipi:
+• Dati (numerici, testo, binari)
+• Programmi
+• Il sistema operativo può essere più o meno consapevole del tipo di
+file, ma deve almeno riconoscere il tipo di file eseguibile
+• Possibili tecniche per riconoscere il tipo di file:
+• Schema del nome (nome . estensione)
+• Attributi nei file (ad esempio in macOS viene registrato il programma che ha
+creato il file)
+• «Magic number» all’inizio del file (ad esempio «shebang» magic cookie
+all’inizio degli script Unix)
+
+\subsection{Struttura dei file}
+Possibilità:
+• Nessuna struttura (ad esempio, nei sistemi Unix-like un file è una sequenza di
+byte)
+• Sequenza di record (righe di testo o record binari, a struttura e lunghezza fissa
+o variabile)
+• Strutture più complesse e standardizzate, soprattutto per file eseguibili
+(formato PE in Windows, a.out ed ELF nei sistemi Unix-like, Mach-O in macOS)
+Più il sistema operativo supporta direttamente diverse strutture di
+file, più diventa complesso
+• Inoltre se il sistema operativo è troppo «rigido» sulle possibili
+strutture, potrebbe non supportare nuovi tipi, o tipi ibridi
+
+\subsection{Metodi di accesso:}
+\subsubsection{Accesso sequenziale}
+• Il file è una sequenza di record a
+lunghezza fissa
+• Operazioni:
+• read_next() e write_next()
+leggono/scrivono il successivo
+record dalla posizione corrente
+• Operazione di riavvolgimento
+% wrap immagine 1
+
+\subsubsection{Accesso diretto}
+• Operazioni read(n) e write(n) per accedere direttamente all’n-esimo
+record
+• Alternativamente, operazioni read_next(), write_next() e position(n)
+
+\subsubsection{Accesso indicizzato}
+• In alcuni sistemi operativi, ad esempio quelli per mainframe IBM, i file
+possono essere sequenze di record ordinate secondo un determinato
+campo chiave del record
+• In tali sistemi l’accesso può essere basato sulla chiave, e il sistema
+operativo mantiene un indice per velocizzare l’accesso
+• Esempio: accesso ISAM nei sistemi IBM, file system Files-11 prodotto
+da Digital per il sistema operativo OpenVMS (offre tutti e tre i tipi di
+accesso su record a lunghezza fissa o variabile)
+
+\section{Directory: operazioni e struttura}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

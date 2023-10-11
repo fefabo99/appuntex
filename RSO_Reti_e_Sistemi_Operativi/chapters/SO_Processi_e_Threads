@@ -259,11 +259,190 @@ In alcuni sistemi operativi (es. API POSIX e Win32) un processo può notificare 
 Nei sistemi Unix-like (POSIX, Linux) tale notifiche vengono dette segnali, ed interrompono in maniera asincrona la computazione del processo corrente causando un salto brusco alla callback di gestione, al termine della quale la computazione ritorna al punto di interruzione.\\
 Nelle API Win32 esiste un meccanismo simile, detto Asynchronous Procedure Call (APC), che però richiede che il ricevente si metta esplicitamente in uno stato di attesa, e che esponga un servizio che il mittente possa invocare.
 
+\section{Le API POSIX per la comunicazione interprocesso}
+\subsection{Memoria condivisa in POSIX}
+• Un processo crea un segmento di memoria condivisa con la funzione
+shm_open:
+int shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+• Anche usato per aprire un segmento precedentemente creato
+• Quindi imposta la dimensione del segmento con la funzione ftruncate:
+ftruncate(shm_fd, 4096);
+• Infine la funzione mmap mappa la memoria condivisa nello spazio di
+memoria del processo:
+void *shm_ptr = mmap(0, 4096, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+• Da questo momento si può usare il puntatore shm_ptr ritornato da mmap
+per leggere/scrivere la memoria condivisa
 
+\subsection{Pipe anonime in POSIX}
+• Vengono create con la funzione pipe, che ritorna due descrittori, uno
+per il punto di lettura e uno per il punto di scrittura:
+int p_fd[2];
+int res = pipe(p_fd);
+• Le funzioni read e write permettono di leggere e scrivere:
+ssize_t n_wr = write(p_fd[1], "Hello, World!", 14);
+char buffer[256];
+ssize_t n_rd = read(p_fd[0], buffer, sizeof(buffer) - 1);
+P.S.: di solito si usa la pipe quindi la \texttt{fork()} per comunicare tra processi padre e figlio.
+• È possibile utilizzare la funzione fdopen per fare il wrapping di un punto della pipe in un file, ed utilizzare le funzioni C stdio con esso
 
+\subsection{Named pipes in POSIX}
+• Le named pipes vengono anche chiamate FIFO nei sistemi POSIX
+• Per creare una FIFO si utilizza l’API mkfifo:
+int res = mkfifo("/home/pietro/myfifo", 0640);
+• La FIFO si utilizza come un normale file:
+int fd = open("/home/pietro/myfifo", O_RDONLY);
+char buffer[256];
+ssize_t n_rd = read(fd, buffer, sizeof(buffer) - 1);
+• Al termine dell’utilizzo, ricordarsi di chiudere:
+close(fd);
+• Per eliminare la FIFO, usare l’API unlink:
+unlink("/home/pietro/myfifo");
 
+\subsection{Segnali POSIX}
+Per inviare un segnale ad un processo utilizzare l’API kill:
+int ok = kill(1000, SIGTERM); /* terminazione al processo 1000 */
+Per registrare una callback per un determinato segnale utilizzare l’API
+sigaction:
+struct sigaction act;
+sigemptyset(&act.sa_mask); /* non bloccare altri segnali */
+act.sa_flags = SA_SIGINFO; /* callback in act.sa_sigaction */
+act.sa_sigaction = sigterm_handler; /* la callback */
+int ok = sigaction(SIGTERM, &act, NULL);
 
+\section{Multithreading}
+Fino ad ora abbiamo assunto che un processo abbia un singolo flusso di esecuzione sequenziale (ossia, un singolo processore virtuale).\\
+Se supponiamo che un processo possa avere molti processori virtuali, più istruzioni possono eseguire concorrentemente, e quindi il processo può avere più percorsi (thread) di esecuzione concorrenti.
 
+\subsection{Processi single e multithreaded}
+\begin{wrapfigure}{l}{0.3\textwidth}
+    \begin{center}
+        \includegraphics[width=0.3\textwidth]{images/aa2324/SO_Multithreading1.jpg}
+    \end{center}
+\end{wrapfigure}
+I thread di uno stesso processo condividono la memoria globale (data), la memoria contenente il codice (code) e le risorse ottenute dal sistema operativo (ad esempio i file aperti).\\Ogni thread di uno stesso processo però deve avere un proprio stack, altrimenti le chiamate a subroutine di un thread interferirebbero con quelle di un altro thread concorrente.\\
+Qua non è messo ma anche lo heap è condiviso.\\
+\textbf{Tipica domanda dell'esame: come funziona}.
 
+\subsubsection{Librerie di thread}
+I thread si sfruttano tramite delle \textit{librerie di thread}.\\
+Sono le API fornite al programmatore per creare e gestire thread. Librerie più in uso:
+\begin{itemize}
+    \item POSIX pthreads
+    \item Windows threads
+\end{itemize}
 
+\section{Le API POSIX per il multithreading}
+POSIX pthreads
+• Non sono un’implementazione, ma una specifica (POSIX standard IEEE
+1003.1c)
+• Comune nei sistemi Unix e Unix-like (BSD, Linux, macOS)
 
+\subsection{Creare un nuovo thread}
+• All’inizio un processo viene creato con un singolo thread
+• Per creare un nuovo thread si utilizza l’API pthread_create, per attendere la
+fine dell’esecuzione di un thread si utilizza l’API pthread_join:
+void *thread_code(void *name) { … }
+…
+pthread_id tid1, tid2;
+int ok1 = pthread_create(&tid1, NULL, thread_code, "thread 1");
+int ok2 = pthread_create(&tid2, NULL, thread_code, "thread 2");
+…
+void *ret1, *ret2;
+ok1 = pthread_join(tid1, &ret1);
+ok2 = pthread_join(tid2, &ret2);
+…
+
+\subsection{Aspetti particolari nelle API per il multithreading}
+• Chiamate di sistema fork() ed exec()
+• Gestione dei segnali
+• Cancellazione dei thread
+• Dati locali dei thread
+
+\subsection{Chiamate di sistema fork() ed exec()}
+• Una fork() dovrebbe duplicare solo il thread chiamante o tutti i
+thread? Alcuni sistemi operativi Unix-like hanno due diverse fork()
+• exec() invocata da un thread che effetto ha sugli altri thread? Di
+solito termina tutti i thread del processo precedentemente in
+esecuzione
+
+\subsection{Gestione dei segnali}
+• Quando un processo è single-threaded, un segnale interrompe l’unico
+thread del processo
+• Quando vi sono più thread, quale thread riceve il segnale?
+• Possibili soluzioni:
+• Il thread a cui si applica il segnale (ad es. il segnale SIGSEGV viene inviato al
+thread che ha generato il segmentation fault)
+• Ogni thread del processo
+• Alcuni thread del processo
+• Un thread speciale del processo deputato esclusivamente alla ricezione dei
+segnali
+
+\subsection{Cancellazione dei thread}
+• L’operazione di cancellazione di un thread determina la terminazione
+prematura del thread
+• Può essere invocata da un altro thread
+• Due approcci (\textbf{tipicamente chiesta all'esame}):
+• Cancellazione asincrona: il thread che riceve la cancellazione viene terminato
+immediatamente
+• Cancellazione differita: un thread che supporta la cancellazione differita deve controllare periodicamente se esiste una richiesta di cancellazione pendente, e in tal
+caso terminare la propria esecuzione
+• Vantaggi:
+• Cancellazione differita: dal momento che un thread controlla il momento della
+propria cancellazione, può effettuare una terminazione ordinata
+• Cancellazione asincrona: nessuna necessità di controllare periodicamente se ci sono
+richieste di cancellazione pendenti
+
+\subsection{Cancellazione nei POSIX pthreads}
+• Si può attivare/disattivare la cancellazione, ed avere sia cancellazione
+differita (default) che asincrona
+• Se la cancellazione è inattiva, le richieste di cancellazione rimangono
+in attesa fino a quando (se) è attivata
+• In caso di cancellazione differita, questa avviene solo quando
+l’esecuzione del thread raggiunge un punto di cancellazione (di solito
+una chiamata di sistema bloccante)
+• Il thread può aggiungere un punto di cancellazione controllando
+l’esistenza di richieste di cancellazione con la funzione
+pthread_testcancel()
+
+\subsubsection{Esempio}
+void *thread_code(void *name) {
+ int oldtype, oldstate;
+ pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &oldtype);
+ pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
+ while (true) {
+ pthread_testcancel();
+ … /* fa qualcosa di non interrompibile ma di durata finita */
+ }
+}
+…
+pthread_id tid;
+int ok = pthread_create(&tid, NULL, thread_code, "thread 1");
+… /* dopo un po' */
+ok = pthread_cancel(tid);
+void *ret;
+ok = pthread_join(tid, &ret);
+
+\subsection{Dati locali dei thread}
+• In alcuni casi è utile assegnare ad un thread dei dati locali (thread
+local storage, TLS) non condivisi con gli altri thread dello stesso
+processo
+• La TLS è diversa dalle variabili locali (ad es. è visibile a tutte le
+funzioni)
+• Simile ai dati static del linguaggio C, ma unica per ciascun thread
+• Utile quando il programma non ha un controllo diretto sul momento
+di creazione dei thread (es. quando si usano i thread pools)
+
+\subsubsection{Nei POSIX pthreads}
+• In POSIX i dati locali dei thread si possono creare utilizzando le
+funzioni pthread_key_create(),
+pthread_getspecific() e pthread_setspecific()
+• pthread_key_create() crea un oggetto opaco di tipo
+pthread_key_t, che può essere usato da tutti i thread per
+identificare un dato locale
+• pthread_setspecific() permette di associare ad una
+pthread_key_t un valore di tipo void*
+,
+pthread_getspecific() di richiamarlo data la chiave
+• Ogni thread può associare ad una stessa chiave il proprio distinto
+valore locale (e successivamente richiamarlo)
+Di solito non chiesti all'esame.
