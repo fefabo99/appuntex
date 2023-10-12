@@ -1,16 +1,134 @@
 \chapter{Spazi colore}
 Luce come distribuzione spettrale di energia, può partire da una sorgente e colpire un oggetto.\\
 Colore descrivibile a livello fisico come distribuzione spettrale di energia.\\
-Slide 3 con tre diverse definizioni. Ma a livello sensoriale non lo definiamo come ne parliamo qua, es. un grigio definito come (127, 127, 127).\\
-Noi parleremo del colore per parlare di modellizzazione.
+Slide 3 con tre diverse definizioni. 
+\textbf{1. in termini fisici:}
+\definizione{}
+\textbf{1. in termini sensoriali:}
+\definizione{}
+\textbf{1. in termini psicologici:}
+\definizione{}
+Parliamo di colore come \textit{color sensation}.\\
+Ma a livello sensoriale non lo definiamo come ne parliamo in questo corso, es. un grigio definito come (127, 127, 127).\\
+Noi parleremo del colore per parlare di modellizzazione, per semplificare il processo di elaborazione.
+
+\subsubsection{Modelli del colore}
+Come descrivo il colore di un oggetto, la "ricetta" della composizione in base ai livelli dei colori. Slide 4 con i modelli del colore.\\
+Non la più idonea per compressione e altre operazioni, 
 
 \section{Sintesi additiva e sottrattiva dei colori}
-Slide 5, che mostra come otteniamo bianco e nero. Noi \textbf{non} lavoreremo in \textit{sintesi sottrattiva}, la nominiamo e basta.
-\subsubsection{Sintesi additiva}
-Slide 6, come otteniamo i colori.\\
-Slide 9 (ma anche 14) con la ragazza, applica dei filtri rgb, ma in verità sono in scala di grigi, colorate solo per vedere bene noi. Ma perché alcuni canali (es. blu nella slide 9) non si vede bene la ragazza? \`E una questione di percezione.
+Parliamo di sintesi additiva, consiste nella somma di onde luminose.\\
+Slide 5, che mostra come otteniamo bianco e nero. Noi \textbf{non} lavoreremo in processing in \textit{sintesi sottrattiva}, la nominiamo e basta. Ha fatto l'esempio della stampante.
 \subsubsection{Sintesi sottrattiva}
 Slide 7, come otteniamo i colori.\\
 Applichiamo il filtro ciano che fa passare da 400 a 600 al giallo che fa passare da 500 a 700, otterrò da 500 a 600.\\
+Perché la stampante ha anche il nero? 1. per fare le sfumature più scure. 2. perché con troppo inchiostro si bagna il foglio. Poiché il primale era la risposta del prof ma la tipa cafona l'ha interrotto.
+\subsubsection{Sintesi additiva}
+Slide 6, come otteniamo i colori; sfruttiamo le \textbf{onde quadre}.\\
+Slide 9 (ma anche 14) con la ragazza, applica dei filtri RGB, ma in verità sono in scala di grigi, colorate solo per vedere bene noi. Ma perché in alcuni canali vedo bene i dettagli (es. verde nella slide 9) e in altri (es. blu nella slide 9) non si vede bene la ragazza? \`E una questione di percezione. quando passa al nervo ottico, l'effetto RGB si combina in quello che si chiama \textbf{effetto colori opponenti} (per dire non vediamo mai rosso e verde insieme). Serve per ridurre l'informazione che io mando al cervello (formato JPEG).\\
+La risposta alla slide 9 è: il blu non migliora l'illuminanza dell'immagine, ci appare tutto un tutt'uno perché col blu noi non percepiamo i bordi, che ci sono ma non vediamo noi.
 
-Di tutte queste cose parleremo la prossima volta.
+\subsection{Sistemi colore opponenti}
+Slide 51-59.\\
+Abbiamo detto che sono alla base del formato JPEG, che si basa sul diocristosmettiladicambiareslideprimadiaverfinitodiparlare. Slide 53. YCbCr?\\
+Nella scomposizione vediamo cosa? Non lo so perché quando ho alzato lo sguardo aveva cambiato slide oidocrop.
+\subsubsection{Spazi colore opponenti YUV, YIQ, YCrCb}
+Cose.
+Perché utile per la compressione JPEG? Subsetting della crominanza? Credo? Perché campiono?\\
+\begin{description}
+    \item[Esempio di YIQ] 4 slide pesciolino (56-59), fino alla "Original, Y - blur, I - blur, Q - blur"
+\end{description}
+
+% L8 12 ottobre
+
+Ha fatto vedere immagini di hunters e gatherers, i secondi dovevano essere più sensibili ai colori per riconoscere i frutti.\\
+Poi ha fatto vedere un'immagine grigia "quanti conigli vedete?" e poi una colorata che mostrava un coniglio solo in mezzo all'erba alta. Torna alla slide 3 facendo un recap delle cose dette l'ultima volta.\\
+Riprendo qua appunti dopo Spazi colore opponenti.\\
+3 slide su contrast sensitivity "non era mia intenzione parlare del JPEG però abbiamo iniziato" cit.
+
+\section{Edge sharpening}
+Come l'immagine RGB viene modificata prima di avviare la codifica.\\
+Ha cambiato pacco di slide, mentre parla di crominanza e dice questi piani etc, si vedeva solo il suo desktop.\\
+
+Fa l'esempio del bicchierino di carta sotto al tavolo, fa "cambiando le condizioni di luce il colore si riconosce comunque. Ha senso parlare di RGB?" risposta no.\\
+Se sul piano di crominanza devo individuare quel verde, quante soglie devo mettere? 4, una a destra, una a sinistra, una in alto e una in basso. Nell'RGB? 6.\\
+Posso definire in modo diverso? Magari con due sole soglie (es. come si fa il green screen)?\\
+Ci sono modelli colore in cui è posibile definire il colore tramite tinta, saturazione, luminanza\dots\\
+Slide 10, noi vediamo tre canali.\\
+Slide 11-14 sulla sintesi sottrattiva, che è tutta teorica e noi non vediamo: utile per il processing e non per la riproduzione dei colori.
+
+\subsection{Trasformazioni fra spazi colore RGB e CMY}
+Slide 15.
+Fidec ha fatto 7 slide in un secondo.
+
+\subsubsection{Raw RGB}
+Slide 21.\\
+L'immagine del telefono non è l'originale, è \textbf{elaborata}, per essere pleasing.
+
+\subsubsection{Output referred RGB}
+Slide 22-24.\\
+RGB: \textit{standard} RGB.\\
+Io posso descrivere in termini oggettivi una percezione personale boh non lo so. Definizione di output referred.\\
+Slide 24: foto della famiglia, tre foto diverse a seconda del sistema.\\
+
+Anche i monitor hanno un loro modo di referenziare i colori. Slide 27.\\
+Gli spazi colore che usiamo sono dipendendi dal dipositivo.
+
+\subsection{Spazi colore dipendendi dal dipositivo}
+Slide 30.
+
+\section{Lo spazio RGB}
+Che useremo al lab. Rappresentato come un cubo, con origine in nero, sullo spigolo opposto il bianco, e sugli assi i colori primari puri (R, G, B).
+
+\subsection{Lo spazio RGB per l'elaborazione delle immagini}
+• E' molto comune descrivere i colori riferendosi allo spazio colore RGB (Red, Green, e Blue).
+• Lo spazio RGB è basato sul fatto che ogni colore possa essere
+• rappresentato da una “miscela” dei tre colori primari Red, Green, e Blue. 
+• I vari contributi sono assunti indipendenti l'uno dall'altro (e quindi rappresentanti da direzioni perpendicolari tra loro).
+• La retta che congiunge nero e bianco è la retta dei grigi.
+• lo spazio RGB può essere rappresentato graficamente tramite il cubo RGB
+
+\subsection{Descrizione del colore in termini psicologici (soggettivi)}
+\begin{description}
+    \item[Hue (tinta):] attributo della sensazione visiva secondo cui un'area osservata appare simile ad uno o a una combinazione secondo opportune proporzioni di due dei seguenti colori percepiti: rosso, giallo, verde, blu.
+    \item[Lightness (chiarezza):] attributo del colore secondo cui si giudica la brillanza di un'area rispetto ad un'area similarmente illuminata che appare bianca.
+    \item[Colorfulness:] pienezza della sensazione visiva secondo cui una area appare piu' o meno ricca della sua tinta. Spesso impropriamente chiamata \textbf{saturation} (saturazione).
+\end{description}
+\textit{Hue, Lightness, Colorfulness} sono grandezze psicologiche, non hanno associata nessuna metrica.
+
+Noi cercheremo di rappresentarlo con lo schema circolare di slide 36-38, la sfera di cubotti colorati. Non so se c'è sul libro.\\
+Ora prova a far andare un link ma non so cosa sia.\\
+L'ha trovato, \texttt{https://colourintelligence.co.uk/free-resources}.\\
+Ha cliccato su \texttt{demos}. Fa provare ad un tizio (\texttt{https://colourintelligence.co.uk/app/colour14}) il n° 14, a una il n° 5 (\texttt{/colour5}), poi n°1 (\texttt{/colour1}, quest'ultima parla di chroma che è la quantità di tinta, da più "desaturato" a più pieno).\\
+Come usare ste cose? Abbiamo uno spazio colore con delle coordinate e voglio fare tipo una persona in una foto più abbronzata. Come faccio?
+
+\section{Altri spazi colori oltre a RGB}
+\subsection{Spazi colori HSI}
+Come faccio partendo da RGB a definire un colore in termini di tinta, saturazione e intensità?\\
+Siamo alle slide 40-42.\\
+Prendo il mio cubo RGB e la diagonale da nero a bianco.\\
+L'asse dei grigi, saturazione e tinta li vedo nella slide 42.\\
+Come sono state trovate le equazioni delle slide 43 e credo 46, ce lo risparmia.\\
+Le ha spiegate però nella registrazione ma non sono riuscita a scrivere.\\
+"Cos'è, H, S o I?" lo dice della slide 45:
+\begin{itemize}
+    \item in basso a sinistra, saturation.
+    \item in basso a destra, value (bianco più luminoso, grigio medio, grigio scuro).
+    \item in alto, tinta: abbiamo un problema perché l'origine la dobbiamo scegliere noi.
+\end{itemize}
+
+\subsection{Spazi colori HSV}
+Slide 46.\\
+Il suo value è il max delle componenti RGB.\\
+
+\subsection{Spazi colori HLS}
+Slide 47.\\
+Doppio cono.
+
+\subsection{HSV e HLS a confronto}
+Slide 48.\\
+Cambia dove metto il bianco.
+
+Quando fa "la Lightness qua è meglio che qua" nella slide 49 indica prima l'immagine al centro nella fila sotto e a destra nella fila in alto.
+
+Il recap del RGB slide 60.

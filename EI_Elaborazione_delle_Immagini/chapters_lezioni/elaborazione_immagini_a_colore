@@ -1,0 +1,96 @@
+\chapter{Elaborazione immagini a colori}
+Chiarito che immagini a colori non sono necessariamente e solamente le immagini RGB,
+noi ci concentreremo in questa trattazione principalmente alle immagini RGB e HSI
+vedremo come le principali operazioni di image processing possono essere ad esse
+applicate.\\
+Due approcci:
+- si elabora ogni banda colore e poi combina il risultato. E’ l’approccio più seguito.
+- il colore e’ considerato come una grandezza vettoriale. Non sempre i due approcci sono equivalenti.
+
+\section{Operatori sulle immagini}
+Slide 6.\\
+- T e’ un operatore definito su un intorno di (x,y)
+- La forma e la dimensione dell’intorno dipende dall’applicazione, se Tconsidera solo il valore di (x,y) allora l’operatore e’ puntuale (intorno 1x1).
+- Per le immagini a livello di grigio scrivevamo s =T(r). - Per le immagini a colori scriveremo si=Ti(r1,r2, ..rn) i=1,...n
+
+\section{Editing delle componenti colori}
+Slide 7.\\
+\texttt{$g(Ci) =f(Ci) + L$}
+Le single componenti colore dello spazio colore scelto (ad esempio
+R,G, B) possono essere scalate, traslate, ….a tutti i pixel verrà
+applicate la stessa trasformazione, e I valori fuori dal range verranno
+troncati (clipping)
+Domandina a barriera: come ottengo immagine boh?
+
+\section{Editing delle componenti colori}
+Operativamente RGB -> HSI … la trasformazione scelta HSI-HSI’ Quindi HSI’ -> R’G’B
+
+\section{Scelta dello spazio colore}
+Slide 9-11.
+\subsubsection{Recap Ehnancement puntuale}
+Ehnancement puntuale recap. Se l'angolo $< 45°$ compressione, se $> 45°$ stretching, se boh.
+
+\subsubsection{Recap Gamma correction}
+Slide 16-18.\\
+La docente di cui parla e la gamma correction sulla sua foto (es. di gamma correction di immagine RGB) slide 19-25. Dalla slide 26 a quella 28 conversione rgb2YCbCr: gamma correction su Y, slide 28 confronta. Slide 29-30 gamma correction su saturazione S. Slide 31-32: Conversione rgb2HSV correzione gamma sul solo su HUE
+gamma = 0.4. NB: l'H non si tocca mai.
+
+\subsection{Modifiche del contrasto in immagini a colori}
+Operiamo su bande colore, trasformazioni su campi colore. Slide 13-15. In HSI (15) non è facile fare il negativo. Slide 35. Le fotocamere digitali fanno questo.
+
+\subsubsection{Ripasso modifiche istogramma}
+Slide 36. Ma ha senso l'equalizzazione dell'istogramma in RGB?
+Slide 37: sull'illuminanza può andarmi ebne ma lascia le stesse tinte che quando vado a ricombinare fa pasticci. \textbf{MAI equalizzare RGB}, se proprio equalizzi solo la luminanza.\\
+Però anche sulla lightness non dà risultati perfetti (slide 38).
+
+\subsection{Equalizzazione immagini a colori}
+L’equalizzazione delle tre immagini RGB modifica in modo indipendente, e su certe immagini imprevedibile, la proporzione dei colori primari dei pixel. Ed è quindi da usare con molta prudenza come strumento “general purpose” per il miglioramento della qualità delle immagini.
+L’applicazione delle tecnica di miglioramento del contrasto al solo canale di Intensità limita le distorsioni cromatiche. 
+
+\subsection{Miglioramento immagini a colori}
+Gli operatori possono essere combinati in sequenza fra loro. Slide 41.
+
+\section{Operatori locali}
+\subsubsection{Immagine originale RGB}
+43
+\subsubsection{Immagine originale HSI}
+44
+\subsubsection{Immagine originale RGB - affetta da rumore gaussiano}
+45
+\subsubsection{Immagine originale HSI - affetta da rumore gaussiano}
+46\\
+L'immagine era corrotta da rumore gaussiano. Perché' il rumore è poco visibile sull'Intensity e così visibile sulla Hue? L'intensità è data dalla media dei tre canali, ma anche la media del rumore (che è randomico). Per questo l'immagine sulla destra è più bella: la media dei valori randomici si annulla. H e S sono molto più sensibili a questa trasformazione.
+\subsubsection{Immagine originale RGB - affetta da rumore impulsivo}
+47
+\subsection{Operatori locali}
+48\\
+L'operatore locale è un operatore che agisce su un intorno di pixel.\\
+Noi abbiamo visto: 
+\begin{description}
+    \item[smoothing:] slide 49
+    \item[sharpening mediante laplaciano:] slide 50
+\end{description}
+
+\subsection{Smoothing RGB vs sola componente I di HSI}
+Slide 51-52.\\
+Perché la differenza è grigia? Non ho sentitoooo.
+
+\subsection{Filtraggio mediano}
+\subsubsection{Ripasso}
+- Il valore del pixel di uscita e’ dato dal valore mediano dei pixel dell’immagine di
+ingresso in un intorno desiderato
+- Il filtro mediano forza i pixel ad assumere un valore uguale a quello di uno dei pixel
+circostanti (nessuno valore nuovo è introdotto).
+- Elimina molto bene gli eventuali pixel isolati che solitamente corrispondono al rumore
+di tipo impulsivo. 
+
+\subsubsection{Su immagini a colori}
+1. Il filtraggio non lineare, ad esempio il filtro mediano spesso non è applicato alle immagini a colori perché oneroso.
+2. Se applicato alle singole bande ad immagini con pochi colori può creare colori spuri che prima non esistevano nell’immagine.
+3. Esistono versione del mediano a insiemi vettoriali che non generano colori nuovi.
+
+\subsubsection{Esercizio per la prossima volta}
+Capire l'equazione della slide 55 del filtro mediano vettoriale.\\
+Prossima volta la risposta.
+
+% va avanti martedì, poi porta esempi domande a barriera e inizieremo la seconda parte di riconoscimento oggetti che sarà oggetto di progetto 
