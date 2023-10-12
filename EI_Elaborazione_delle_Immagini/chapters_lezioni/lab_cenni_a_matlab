@@ -1,5 +1,5 @@
-\chapter*{Introduzione a MatLab}
-\section*{Appunti video lezione 2020 da Moodle}
+\chapter{Introduzione a MatLab}
+\section{Appunti video lezione 2020 da Moodle} % riga commentabile
 \subsection{Ambienti di lavoro}
 \subsubsection{Command Window e Workspace}
 \begin{itemize}
@@ -42,22 +42,57 @@ Ci sono operazioni più complesse però di semplici assegnamenti, per cui potreb
     >> a = 2;
     >> b = 1;
     >> c = a - b;
+    ans =
+        1
 \end{verbatim}
 \subsubsection{Prodotto}
 \begin{verbatim}
     >> a = 2;
     >> b = 1;
     >> c = a * b;
+    ans =
+        2
 \end{verbatim}
 \subsubsection{Divisione}
 \begin{verbatim}
     >> a = 2;
     >> b = 1;
     >> c = a / b;
+    ans =
+        2
 \end{verbatim}
 \subsubsection{Elevamento a potenza}
 \begin{verbatim}
     >> a = 2;
     >> a^3;
+    ans =
+        8
 \end{verbatim}
-% 17:50
+MatLab richiede che il valore di un'operazione venga associato ad una variabile. Se non la creo io, lo fa MatLab per me (qua la variabile "\texttt{ans}"). Visibile nel \textit{Workspace}.\\
+Questa variabile può essere riutilizzata.
+\begin{verbatim}
+    >> a + ans;
+    ans =
+        10
+\end{verbatim}
+Però ocio che ad ogni operazione verrà sovrascritta.
+\subsubsection{Altre operazioni}
+Si può operare in tanti modi con gli scalari su MatLab; per vedere le operazioni possibili, si deve consultare la documentazione.
+
+\subsection{La documentazione}
+\begin{enumerate}
+    \item Tasto "\textit{Help}" in "Resources"
+    \item In Command Window possiamo chiederlo direttamente a MatLab:
+    \begin{description}
+        \item[$\triangleright$:] comando "\texttt{help}", mi dà dei suggerimenti sull'ultima operazione eseguita.
+        \item[$\triangleright$:] comando "\texttt{help max}", (dove "\texttt{max}" è un esempio di operazione che dà in output il massimo numero in un array di numeri dati in input) mi dice quale è la sintassi con tutte le sue alternative dell'operazione richiesta.
+        \item[$\triangleright$:] comando "\texttt{lookfor max}", (dove "\texttt{max}" è un esempio di parte del nome di un'operazione che non ci ricordiamo nella sua interezza) mi dà una lista di possibili operazioni che potrebbero essere quella che stiamo cercando e che contengono il pezzo di nome che gli ho assegnato.
+        \item[$\triangleright$:] comando "\texttt{help}", mi dà dei suggerimenti sull'ultima operazione eseguita
+        \item[$\triangleright$:] comando "\texttt{help}", mi dà dei suggerimenti sull'ultima operazione eseguita
+        \item[$\triangleright$:] comando "\texttt{help}", mi dà dei suggerimenti sull'ultima operazione eseguita
+        \item[$\triangleright$:] comando "\texttt{help}", mi dà dei suggerimenti sull'ultima operazione eseguita
+    \end{description}
+\end{enumerate}
+
+\subsection{Gli array}
+\subsubsection{I vettori}
