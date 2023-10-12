@@ -33,19 +33,33 @@ La pila protocollare da livello fisico a livello di trasporto è gestita dal \te
 Per ricapitolare, il messaggio farà: \texttt{livello applicativo $\rightarrow$ socket $\rightarrow$ livello di trasporto $\rightarrow$ livello di rete $\rightarrow$ livello fisico $\rightarrow$ livello fisico $\rightarrow$ livello di rete $\rightarrow$ livello di trasporto $\rightarrow$ socket $\rightarrow$ livello applicativo}.
 
 \section{TCP e UDP}
+\subsection{TCP, Transmission Control Protocol}
+Si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. \`E affidabile \\
+Offre altri servizi: 
 \begin{description}
-    \item[TCP, Transmission Control Protocol:] si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. \`E affidabile \\
-    Offre altri servizi: 
-    \begin{description}
-        \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
-        \item[controllo di flusso:] non riguarda la rete ma il destinatario. Se il destinatario non è in grado di ricevere i segmenti, il mittente non li invia.
-        \item[è connection-oriented:] chiede che vengano istituite connessioni fra le parti prima di poter inviare i dati.
-    \`end{description}
-    \`E molto importante per le \textit{applicazioni elastiche}, che non sono in alcun modo tolleranti per quanto riguarda la perdita di dati ma molto più tolleranti per quanto riguarda i ritardi. TCP è perfetta.
-    \item[UDP, User Datagram Protocol:] non offre nessuno dei servizi di TCP. \`E un protocollo \textit{best-effort}.\\
-    Decisamente meno affidabile di TCP per quanto riguarda perdita di dati e ordine di invio e ricezione.\\
-    Meglio per le \textit{applicazioni interattive}, che sono tolleranti per quanto riguarda la perdita di dati ma non tolleranti per quanto riguarda i ritardi. UDP è perfetta.
+    \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
+    \item[controllo di flusso:] non riguarda la rete ma il destinatario. Se il destinatario non è in grado di ricevere i segmenti, il mittente non li invia.
+    \item[è connection-oriented:] chiede che vengano istituite connessioni fra le parti prima di poter inviare i dati.
 \end{description}
+\`E molto importante per le \textit{applicazioni elastiche}, che non sono in alcun modo tolleranti per quanto riguarda la perdita di dati ma molto più tolleranti per quanto riguarda i ritardi. TCP è perfetta.\\
+Nessuno di questi due protocolli garantisce:
+\begin{itemize}
+    \item un limite sui ritardi
+    \item garanzie sulla banda (es. non posso dire "ho almeno 10 Mbit di banda per questa connessione").
+\end{itemize}
+
+\subsection{UDP, User Datagram Protocol}
+Non offre nessuno dei servizi di TCP. \`E un protocollo \textit{best-effort}.\\
+Decisamente meno affidabile di TCP per quanto riguarda perdita di dati e ordine di invio e ricezione.\\
+Meglio per le \textit{applicazioni interattive}, che sono tolleranti per quanto riguarda la perdita di dati ma non tolleranti per quanto riguarda i ritardi. UDP è perfetta.\\
+Protocollo tipico: connectionless. Ogni segmento inoltre gestito in modo indipendente dagli altri. Non è così in TCP.\\
+Ha dei vantaggi:
+\begin{itemize}
+    \item non c'è necessità di stabilire una connessione (cosa che introduce ritardi)
+    \item è più semplice (no controllo stato sender/receiver)
+    \item header più piccolo
+    \item non c'è controllo di flusso e di congestione
+\end{itemize}
 Nessuno di questi due protocolli garantisce:
 \begin{itemize}
     \item un limite sui ritardi
@@ -60,7 +74,7 @@ Entrambi i protocolli hanno questi (?) servizi (?):
     Usa \textbf{indirizzi IP} (livello di \textit{rete}) e \textbf{numero di porte} (livello di \textit{trasporto}) per indirizzare i dati alle socket corrette.\\
     L'host riceve l'IP da cui arriva il messaggio.
     \begin{description}
-        \item[connectionless demultiplexing:] 
+        \item[connectionless demultiplexing:] UDP
         \begin{itemize}
             \item Quando creo la socket, devo assegnare un numero di porta \#.
             \item Quando creo il datagram da inviare tramite UDP socket, devo specificare l'intirizzo IP del ricevente e il suo numero di porta \#. Servono entrambe!! Questo perché:
@@ -70,10 +84,31 @@ Entrambi i protocolli hanno questi (?) servizi (?):
             \end{itemize}
             \item Quando arriva il datagram, il livello di trasporto estrae l'indirizzo IP e il numero di porta \# (li prende dall'header) e li usa per consegnare il datagram alla socket appropriata.
         \end{itemize} 
+        Sulle slide c'è un esempio molto chiaro: inserisci screen.
+        \item[connection-oriented demultiplexing:] TCP\\
+        Socket identificata da 4-tuple:
+        \begin{itemize}
+            \item source IP address.
+            \item source port number.
+            \item dest IP address.
+            \item dest port number.
+        \end{itemize} 
+        Sulle slide c'è un esempio molto chiaro: inserisci screen.\\
+        Socket strettamente associata alla coppia IP-porta: nell'esempio comunicando da C a B, avrò bisogno di due socket diverse. 
     \end{description}
 \end{description}
 
-\subsubsection{}
+\subsubsection{UDP segment header}
+Senti lezione per questo pezzetto. E metti screen.
+\begin{description}
+    \item[source port \#:] 16 bit?
+    \item[dest. port \#:] 16 bit?
+    \item[length:] in bytes, lunghezza totale del segmento (header + dati).\\
+    16 bit?
+    \item[checksum:] controllo degli errori, wth is he saying, complemento a 1?!\\
+    16 bit?
+\end{description}
+
 
 
 
