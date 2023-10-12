@@ -248,6 +248,27 @@ Da questo ne deriva un incremento nella gamma dinamica dei pixel che può avere 
 \end{center}
 %Slide 97, pagina 137
 
+\subsubsection{Equalizzazione nel caso Discreto}
+Consideriamo ora il caso in cui stiamo lavorando con valori discreti, ovvero in $\N$, che è esattamente 
+quello che succede in una immagine digitale.
+
+Interpretiamo i livelli di grigio come una variabile aleatoria discreta.
+Avremo che la probabilità di occorrenza dei livelli di grigio in una immagine digitale è approssimata dalla seguente formula:
+\[ p_r(r_k) = \frac{n_k}{MN} \]
+Dove $MN$ è il numero totale di pixel nell'immagine, e $n_k$ denota il numero di pixel che hanno intensità $r_k$.
+Come sappiamo $p_r(r_k)$ è l'istogramma normalizzato.
+La forma discreta della trasformazione in Eq 3.11, ovvero la funzione per l'equalizzazione dell'istogramma, diventa:
+\[
+    s_k = T(r_k)=(L-1)\sum_{j=0}^{k} p_r(r_j) \;\;\;\; k=0,1,2,...,L-1 
+\]
+Dove, come prima, $L$ è il numero di livelli di grigio possibili nell'immagine. 
+Quindi la trasformazione consiste nel trasformare ogni pixel di livello $r_k$ in un pixel di livello $s_k$, attraverso la $T(r_k)$ che si calcola direttamente dall'istogramma dell'immagine di input.
+
+\esempio{
+    %Pagina 138
+    Illustrazione delle meccaniche dell'equalizzazione dell'istogramma.
+}
+
 %Pagina di spiegazione #DumbItDown per l'istogramma.
 \pagebreak
 \newpagecolor{azzurrochiaro}\afterpage{\restorepagecolor}
