@@ -1,0 +1,59 @@
+\documentclass[12pt, a4paper, openany]{book}
+\usepackage{../generalStyle}
+
+\graphicspath{ {./images/} }
+
+\begin{document}
+
+\title{Cheatsheet Probabilità e Statistica}
+
+\author{
+	Fabio Ferrario\\
+	\small{\href{https://t.me/fefabo}{@fefabo}}
+}
+
+\date{2023/2024}
+
+\maketitle
+
+\tableofcontents
+
+\chapter{Statistica Descrittiva}
+\section{Indici di posizione}
+\paragraph*{Media Campionaria}
+\formula{Media Campionaria}{$\overline{x} = \frac{\sum \text{Val}_i \cdot F_i}{N}$}
+\paragraph*{Mediana Campionaria}
+Dati in ordine Crescente
+\formula{Mediana Campionaria}
+{
+    $m = 
+    \begin{cases}
+         x_{(\frac{N+1}{2})} & \text{Se N dispari}\\
+         \frac{x_{(\frac{N}{2})} + x_{(\frac{N+1}{2})}}{2}  & \text{Se N Pari}
+    \end{cases}$
+}
+\paragraph*{Moda}
+\formula{Moda}{Valore con $F_i$ maggiore}
+
+\paragraph*{Percentili}
+In generale il $k$-esimo percentile $t$ si calcola:
+\begin{itemize}
+    \item Scrivo $k = 100p \implies p=\frac{k}{100}$.
+    \item Ordino i dati in modo Crescente.
+    % \item Se:
+    % \begin{itemize}
+    %     \item $N\cdot p$ NON Intero $\to t= x_i$ con $i=\lceil N\cdot p \rceil $
+    %     \item $N\cdot p$ Intero $\to t= \frac{x_{(N\cdot p)} + x_{(N\cdot p +1)}}{2}$
+    % \end{itemize}
+\end{itemize}
+\formula{Percentile}
+{$t = 
+    \begin{cases}
+        x_i \text{ con } i=\lceil N\cdot p \rceil  & N\cdot p\text{ NON Intero}\\
+        \frac{x_{(N\cdot p)} + x_{(N\cdot p +1)}}{2}  & N\cdot p \text{Intero}
+    \end{cases}$
+}
+\subparagraph*{Quartili}
+I quartili sono: $q_1\to k=25$, $q_2\to k=50$, $q_3 \to k=75$
+
+\end{document}
