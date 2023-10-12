@@ -1,7 +1,6 @@
 \chapter{Strato di trasporto}
 \section{Servizi e protocolli di trasporto}
-Forniscono una comunicazione logica tra \textbf{processi applicativi} che risiedono su host diversi.\\
-
+Forniscono una comunicazione logica tra \textbf{processi applicativi} che risiedono su host diversi.
 \begin{description}
     \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (ovviamente non lo sono). Di fatto trasparente al livello superiore. Come il livello applicativo, si comporta come se senti registrazione.
     \item[Come si comporta:] spezzetta l'informazione in segmenti che trasporta poi a livello di rete.
@@ -34,7 +33,7 @@ Per ricapitolare, il messaggio farà: \texttt{livello applicativo $\rightarrow$ 
 
 \section{TCP e UDP}
 \subsection{TCP, Transmission Control Protocol}
-Si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. \`E affidabile \\
+Si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. Garantisce la consegna affidabile e la connessione affidabile fra mittente e destinatario.\\
 Offre altri servizi: 
 \begin{description}
     \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
@@ -47,6 +46,53 @@ Nessuno di questi due protocolli garantisce:
     \item un limite sui ritardi
     \item garanzie sulla banda (es. non posso dire "ho almeno 10 Mbit di banda per questa connessione").
 \end{itemize}
+
+\subsubsection{TCP, principi della trasmissione affidabile dei dati}
+Cosa ci serve? Un canale di comunicazione affidabile. Ma nella realtà affidabile non lo è mai. A livello di trasporto bisogna implementare una tecnologia per rendere affidabile la comunicazione.\\
+Servono servizi di feedback, il destinatario deve dirmi se gli sono arrivati i dati. Ho perso cose.
+
+\subsubsection{Reliable data transfer}
+Raffigurato c'è un diagramma da spiegare (inserisci qua screen).
+A sinistra ho l'asse dei tempi, a sinistra avrò \texttt{A} e a destra \texttt{B} e \texttt{A} comunica con \texttt{B}. Da \texttt{A} a \texttt{B} ho frecce che vanno in diagonale perché? Senti.
+\\
+Consideriamo un modello di rete ideale, ovvero:
+\begin{itemize}
+    \item non ci sono errori di bit
+    \item perdite di segmenti/pacchetti
+    \item ritardi di trasmissione dei segmenti/pacchetti
+\end{itemize}
+Così diventa superfluo il modello di reliable data transfer perché la rete è già ottimale e affidabile, nessun bisogno di meccanismi di feedback etc.\\
+Non è così ovviamente in verità, quindi bisogna implementare un reliable data transfer.\\
+Avendo errori, una cosa che posso fare è introdurre \textit{due messaggi}:
+\begin{description}
+    \item[positive acknowledgment:] \texttt{ACK} (messaggio di conferma positiva)
+    \item[negative acknowledgment] \texttt{NACK} (messaggio di conferma negativa)
+\end{description}
+\begin{verbatim}
+    IF ack,
+    THEN M_(i+1)
+    ELSE IF nack
+        THEN M_i
+        ELSE ?
+\end{verbatim}
+Non funziona, perché anche \texttt{ACK} e \texttt{NACK} possono essere soggetti ad errore.\\
+Se i miei segmenti \textit{fossero numerati}, riesco a capire se ho perso qualcosa e anche nel caso di duplicati. 
+\begin{verbatim}
+    IF ack
+    THEN M_(i+1)
+    ELSE M_i
+\end{verbatim}
+Se vado a numerare anche gli \textit{acknowledgments}, riesco anche ad evitare l'uso di \texttt{NACK}.\\
+Nel momento in cu ricevo un \texttt{$ACK_i$} per il segmento \texttt{M\_i}, so che tutti i segmenti precedenti sono stati ricevuti correttamente. Se ricevo un \texttt{$ACK_i$} per il segmento \texttt{M\_i}, ovvero mando l'\texttt{ack} del segmento precedente, posso capire che il segmento \texttt{M\_i} è stato perso.
+\begin{verbatim}
+    IF ack
+    THEN M_(i+1)
+    ELSE M_i
+\end{verbatim}
+Le reti però non introducono solo perdite di segmenti, ma anche ritardi.\\
+La perdita può capitare al messaggio che sto inviando o all'ack che sto ricevendo. Come gestisco situazioni in cui li perdo entrambi? Devo introdurre un \textit{timer}.\\
+Parliamo di protocolli \textbf{\textit{stop-and-wait}}.
+
 
 \subsection{UDP, User Datagram Protocol}
 Non offre nessuno dei servizi di TCP. \`E un protocollo \textit{best-effort}.\\
@@ -65,6 +111,17 @@ Nessuno di questi due protocolli garantisce:
     \item un limite sui ritardi
     \item garanzie sulla banda (es. non posso dire "ho almeno 10 Mbit di banda per questa connessione").
 \end{itemize}
+
+\subsubsection{UDP segment header}
+Senti lezione per questo pezzetto. E metti screen.
+\begin{description}
+    \item[source port \#:] 16 bit?
+    \item[dest. port \#:] 16 bit?
+    \item[length:] in bytes, lunghezza totale del segmento (header + dati).\\
+    16 bit?
+    \item[checksum:] controllo degli errori, wth is he saying, complemento a 1?!\\
+    16 bit?
+\end{description}
 
 \subsection{Multiplazione e demultiplazione}
 Entrambi i protocolli hanno questi (?) servizi (?):
@@ -98,16 +155,7 @@ Entrambi i protocolli hanno questi (?) servizi (?):
     \end{description}
 \end{description}
 
-\subsubsection{UDP segment header}
-Senti lezione per questo pezzetto. E metti screen.
-\begin{description}
-    \item[source port \#:] 16 bit?
-    \item[dest. port \#:] 16 bit?
-    \item[length:] in bytes, lunghezza totale del segmento (header + dati).\\
-    16 bit?
-    \item[checksum:] controllo degli errori, wth is he saying, complemento a 1?!\\
-    16 bit?
-\end{description}
+
 
 
 
