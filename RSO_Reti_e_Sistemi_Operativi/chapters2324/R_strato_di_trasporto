@@ -93,6 +93,8 @@ Le reti però non introducono solo perdite di segmenti, ma anche ritardi.\\
 La perdita può capitare al messaggio che sto inviando o all'ack che sto ricevendo. Come gestisco situazioni in cui li perdo entrambi? Devo introdurre un \textit{timer}.\\
 Parliamo di protocolli \textbf{\textit{stop-and-wait}}.
 
+Come settiamo questo timer? \`E una cosa complicata ma fondamentale. Se è troppo alto, se mando un time out spreco un sacco di tempo. Se è troppo breve, rischio di creare ritrasmissioni inutili, invece di usare il mio canale per comunicare normalmente lo riempio di messaggi inutili.  Nelle slide un esempio di ciò, timer troppo breve.
+
 
 \subsection{UDP, User Datagram Protocol}
 Non offre nessuno dei servizi di TCP. \`E un protocollo \textit{best-effort}.\\
