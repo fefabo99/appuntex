@@ -1,0 +1,79 @@
+\chapter{Strato di trasporto}
+\section{Servizi e protocolli di trasporto}
+Forniscono una comunicazione logica tra \textbf{processi applicativi} che risiedono su host diversi.\\
+
+\begin{description}
+    \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (ovviamente non lo sono). Di fatto trasparente al livello superiore. Come il livello applicativo, si comporta come se senti registrazione.
+    \item[Come si comporta:] spezzetta l'informazione in segmenti che trasporta poi a livello di rete.
+    \item[Due tipi che vedremo:] two major transport protocols available to Internet applications: 
+    \begin{description}
+        \item[TCP:] Transmission Control Protocol
+        \item[UDP:] User Datagram Protocol\\
+        Best-effort: I messaggi vengono inviati, se arrivano bene, se non arrivano va bene lo stesso.
+    \end{description}
+\end{description}
+
+\subsection{Differenze livello di trasporto e livello di rete}
+\begin{description}
+    \item[l. di rete:] comunicazione logica fra host
+    \item[l. di trasporto:] comunicazione logica fra processi
+\end{description}
+
+\subsection{Socket}
+Quando si parla di protocolli a livello di trasporto si deve introdurre il concetto di \textbf{\textit{socket}}. Quando un processo deve comunicare con un altro processo, deve avere un'interfaccia di comunicazione. Questa interfaccia è il socket.
+\definizione{Una socket è un'interfaccia verso cui vengono spinti e ricevuti i messaggi che devono essere ricevuti da/inviati a un processo.}
+Permette di mettere in comunicazione i processi eseguiti a livello applicativo e il livello di trasporto.\\
+N.B.: un processo può gestire più di una socket contemporaneamente.\\
+Avremo bisogno di
+\begin{itemize}
+    \item 1 socket per \textbf{sender}
+    \item 1 socket per \textbf{receiver}
+\end{itemize}
+La pila protocollare da livello fisico a livello di trasporto è gestita dal \textit{sistema operativo}. Lo sviluppatore può programmare quella parte di socket esposta verso il processo applicativo.\\
+Per ricapitolare, il messaggio farà: \texttt{livello applicativo $\rightarrow$ socket $\rightarrow$ livello di trasporto $\rightarrow$ livello di rete $\rightarrow$ livello fisico $\rightarrow$ livello fisico $\rightarrow$ livello di rete $\rightarrow$ livello di trasporto $\rightarrow$ socket $\rightarrow$ livello applicativo}.
+
+\section{TCP e UDP}
+\begin{description}
+    \item[TCP, Transmission Control Protocol:] si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. \`E affidabile \\
+    Offre altri servizi: 
+    \begin{description}
+        \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
+        \item[controllo di flusso:] non riguarda la rete ma il destinatario. Se il destinatario non è in grado di ricevere i segmenti, il mittente non li invia.
+        \item[è connection-oriented:] chiede che vengano istituite connessioni fra le parti prima di poter inviare i dati.
+    \`end{description}
+    \`E molto importante per le \textit{applicazioni elastiche}, che non sono in alcun modo tolleranti per quanto riguarda la perdita di dati ma molto più tolleranti per quanto riguarda i ritardi. TCP è perfetta.
+    \item[UDP, User Datagram Protocol:] non offre nessuno dei servizi di TCP. \`E un protocollo \textit{best-effort}.\\
+    Decisamente meno affidabile di TCP per quanto riguarda perdita di dati e ordine di invio e ricezione.\\
+    Meglio per le \textit{applicazioni interattive}, che sono tolleranti per quanto riguarda la perdita di dati ma non tolleranti per quanto riguarda i ritardi. UDP è perfetta.
+\end{description}
+Nessuno di questi due protocolli garantisce:
+\begin{itemize}
+    \item un limite sui ritardi
+    \item garanzie sulla banda (es. non posso dire "ho almeno 10 Mbit di banda per questa connessione").
+\end{itemize}
+
+\subsection{Multiplazione e demultiplazione}
+Entrambi i protocolli hanno questi (?) servizi (?):
+\begin{description}
+    \item[Multiplazione:] l'operazione di multiplexing permette di gestire l'invio di più flussi di dati contemporaneamente verso più socket diverse, andando a inserire valori specifici negli header di trasporto. Operazione fondamentale per la \textit{demultiplazione}.
+    \item[Demultiplazione:] comunicazione nella direzione opposta: nello stack protocollare vedo arrivare dati provenienti da processi (veramente socket) differenti. Il receiver ha il compito di andare a vedere (una volta tolti gli header) a quale protocollo mandare i dati.\\
+    Usa \textbf{indirizzi IP} (livello di \textit{rete}) e \textbf{numero di porte} (livello di \textit{trasporto}) per indirizzare i dati alle socket corrette.\\
+    L'host riceve l'IP da cui arriva il messaggio.
+    \begin{description}
+        \item[connectionless demultiplexing:] 
+        \begin{itemize}
+            \item Quando creo la socket, devo assegnare un numero di porta \#.
+            \item Quando creo il datagram da inviare tramite UDP socket, devo specificare l'intirizzo IP del ricevente e il suo numero di porta \#. Servono entrambe!! Questo perché:
+            \begin{itemize}
+                \item due host diversi possono avere lo stesso numero di porta \#.
+                \item un host può avere più socket aperte, ognuna con un numero di porta \# diverso.
+            \end{itemize}
+            \item Quando arriva il datagram, il livello di trasporto estrae l'indirizzo IP e il numero di porta \# (li prende dall'header) e li usa per consegnare il datagram alla socket appropriata.
+        \end{itemize} 
+    \end{description}
+\end{description}
+
+\subsubsection{}
+
+
+
