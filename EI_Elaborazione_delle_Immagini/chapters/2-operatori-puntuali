@@ -265,8 +265,21 @@ Dove, come prima, $L$ è il numero di livelli di grigio possibili nell'immagine.
 Quindi la trasformazione consiste nel trasformare ogni pixel di livello $r_k$ in un pixel di livello $s_k$, attraverso la $T(r_k)$ che si calcola direttamente dall'istogramma dell'immagine di input.
 
 \esempio{
-    %Pagina 138
+    %Pagina 138 (195 pdf)
     Illustrazione delle meccaniche dell'equalizzazione dell'istogramma.
+
+    Per capire come funziona l'equalizzazione dell'istogramma facciamo un esempio.
+    Immagina di avere un'immagine a 3bit, quindi $L=8$, di dimensione $64\times 64$ ($MN=4096$).
+    Questa immagine ha una Tabella di distribuzione delle intensità come qui sotto:
+    \begin{center}
+        \includegraphics[width=\textwidth]{images/table-3.1.jpg}
+    \end{center}
+    Notiamo che i valori di intensità sono nel range $[0, L-1] = [0,7]$.
+    Consideriamo il primo livello $r_0$, e il relativo valore di output $s_k$:
+    \[
+      s-0 = T(r_0) = 7 \sum_{j=0}^{0} p_r(r_j) = 7\cdot p_r(r_0) = 1.33  
+    \]
+    Si noti che l'istogramma $p_r$ è quello normalizzato, e che $\sum_{j=0}^{k} p_r(r_j)$ equivale al valore $k$-esimo dell'istogramma cumulativo.
 }
 
 %Pagina di spiegazione #DumbItDown per l'istogramma.
