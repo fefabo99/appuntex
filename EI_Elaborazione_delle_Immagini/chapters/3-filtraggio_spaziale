@@ -1,1 +1,46 @@
 \chapter{Filtraggio Spaziale}
+In questo capitolo discuteremo l'uso dei \textbf{Filtri Spaziali} nell'Image Processing.
+Il nome "filtro" è preso in prestito dal processing nel dominio delle frequenze, dove
+il giltraggio è il passaggio, modifica o bloccaggio di specifiche componenti di frequenze delle immagini,
+per esempio un filtro "passa basso" fa passare le basse frequenze risultando in uno smoothing delle immagini.
+
+\paragraph{Differenze con operatori locali} A differenza degli operatori locali, in cui il valore del pixel di uscita era calcolato
+solamente partendo dal valore del pixel di entrata, i filtri spaziali (anche chiamati operatori locali) modificano una immagine
+rimpiazzando il valore di ogni pixel in funzione del suo valore e di \textbf{quello dei suoi vicini}.
+\\Se l'operazione effettuata sui pixel è lineare, allora il filtro è chiamato \emph{filtro spaziole lineare}.
+
+\section{Meccaniche del Filtraggio Spaziale Lineare}
+Un filtro spaziale lineare effettua una \textbf{somma di prodotti} tra un'immagine $f$ e un \emph{kernel}\footnote{Filter kernel, anche detto Maschera, Template o Finestra.}  $w$.
+Il \textbf{Kernel} è un array la cui dimensione definisce la zona\footnote{Neighborhood} dell'operazione, e il cui coefficienti determinano la natura del filtro.
+
+L'immagine 3.34 illustra le meccaniche del filtraggio spaziale utilizzando una maschera $3\times 3$.
+In ogni punto $(x,y)$ nell'immagine il pixel risultante $g(x,y)$ dal filtro è la somma dei prodotti dei coefficienti del kernel e i pixel compresi nel kernel:
+\[
+  g(x,y) = w(-1,-1)f(x-1,y-1) + w(-1,0)f(x-1,y) + ... + w(0,0)f(x,y) + ... + w(1,1,)f(x+1)y(+1)  
+\]
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/3.34-filter-kernels.jpg}
+\end{center}
+Al variare delle coordinate $x$ e $y$, il centro del kernel si muove da pixel a pixel, generando l'immagine filtrata $g$.
+
+\paragraph{La forma del Filtro}
+Si osserva che il coefficiente centrale del kernel, $w(0,0)$, è allineato al pixel di coordinata $(x,y)$.
+Per un kernel di dimensione $m\times n$, assumiamo che $m=2a + 1$ e $n=2b+1$, dove
+$a$ e $b$ sono interi non negativi.
+Questo significa che i Kernel sono di dimensione dispari in entrambe le direzioni.
+
+In generale, il filtraggio spaziale di un'immagine di dimensione $M\times N$ e un kernel di dimensione $m\times n$ è dato dall'espressione:
+\[
+    g(x,y) = \sum_{s=-A}^{a} \sum_{t=-b}^{b} w(s,t)f(x+s,y+t)  
+\]
+Dove $x$ e $Y$ sono variati in modo che il centro (origine) del kernel visita ogni pixel in $f$ una volta.
+
+\osservazione{
+    Un Kernel può essere pari?
+    Si, è possibile lavorare con kernel di dimensioni pari, o dimensioni miste.
+    Però è molto più semplice lavorare con kernel dispari perchè l'indicizzazione è molto più facile e intuitiva.
+
+}
+
+\section{Correlazione e Convoluzione Spaziale}

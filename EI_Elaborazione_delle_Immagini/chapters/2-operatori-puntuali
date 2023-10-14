@@ -270,8 +270,8 @@ Quindi la trasformazione consiste nel trasformare ogni pixel di livello $r_k$ in
 }
 
 %Pagina di spiegazione #DumbItDown per l'istogramma.
-\pagebreak
-\newpagecolor{azzurrochiaro}\afterpage{\restorepagecolor}
-\section{Dumb it Down: Histogram Equalization}
+% \pagebreak
+% \newpagecolor{azzurrochiaro}\afterpage{\restorepagecolor}
+% \section{Dumb it Down: Histogram Equalization}
 
 \pagebreak
