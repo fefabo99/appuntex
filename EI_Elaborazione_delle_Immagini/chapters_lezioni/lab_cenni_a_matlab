@@ -101,136 +101,134 @@ Si può operare in tanti modi con gli scalari su MatLab; per vedere le operazion
 \end{enumerate}
 
 \subsection{Gli array}
-\subsubsection{Sintassi varie}
-I vettori sono rappresentati come concatenazione di valori, secondo la sintassi:
-\begin{verbatim}
-    >> v = [1,2,3,4,5,6];
-    >> v
+\subsubsection{Sintassi e operazioni sui vettori}
+\begin{description}
+    \item[Vettori riga:] i vettori sono rappresentati come concatenazione di valori, secondo la sintassi:
+    \begin{verbatim}
+        >> v = [1,2,3,4,5,6];
+        >> v
 
-    v =
+        v =
 
-        1   2     3     4     5     6
+            1   2     3     4     5     6
 
-    >>
-\end{verbatim}
-Nel workspace vedremo:
-\begin{center}
-    \begin{tabular}{|p{30mm}|p{30mm}|p{30mm}|p{30mm}|}
-        \hline
-        Name & Value & Size & Class\\
-        \hline
-        \texttt{v} & \texttt{[1,2,3,4,5,6]} & \texttt{1x6} & \texttt{double}\\
-        \hline
-    \end{tabular}
-\end{center}
-In questo caso è un \textbf{vettore riga}.\\
-Le \textit{parentesi quadre} si usano per \textbf{concatenare} i valori, le \textit{virgole} per separare i valori in un \textit{vettore riga}, i \textit{punti e virgola} per separare i valori in un \textit{vettore colonna}.\\
-Se invece volessimo un \textbf{vettore colonna}:
-\begin{verbatim}
-    >> w = [10;20;30;40];    
-    >> w 
+        >>
+    \end{verbatim}
+    Nel workspace vedremo:
+    \begin{center}
+        \begin{tabular}{|p{20mm}|p{30mm}|p{20mm}|p{20mm}|}
+            \hline
+            Name & Value & Size & Class\\
+            \hline
+            \texttt{v} & \texttt{[1,2,3,4,5,6]} & \texttt{1x6} & \texttt{double}\\
+            \hline
+        \end{tabular}
+    \end{center}
+    In questo caso è un \textbf{vettore riga}.\\
+    Le \textit{parentesi quadre} si usano per \textbf{concatenare} i valori, le \textit{virgole} per separare i valori in un \textit{vettore riga}, i \textit{punti e virgola} per separare i valori in un \textit{vettore colonna}.
+    \item[Vettori colonna:] se invece volessimo un \textbf{vettore colonna}:
+    \begin{verbatim}
+        >> w = [10;20;30;40];    
+        >> w 
 
-    w =
+        w =
 
-        10
-        20
-        30
-        40
+            10
+            20
+            30
+            40
 
-    >>
-\end{verbatim}
-Nel workspace vedremo
-\begin{center}
-    \begin{tabular}{|p{30mm}|p{30mm}|p{30mm}|p{30mm}|}
-        \hline
-        Name & Value & Size & Class\\
-        \hline
-        \texttt{w} & \texttt{[10;20;30;40]} & \texttt{4x1} & \texttt{double}\\
-        \hline
-    \end{tabular}
-\end{center}
-N.B.: sono \textit{\textbf{indicizzabili}}. Per indicizzare si usano le \textit{parentesi tonde} e, cosa importantissima, \textit{in MatLab \textbf{non esiste l'indice 0}, perciò si parte da 1 e non da 0}. Se si scrive lo 0 come indice, dà errore.\\
-Se volessimo ad esempio il terzo elemento del vettore \texttt{v}:
-\begin{verbatim}
-    >> v(3)
+        >>
+    \end{verbatim}
+    Nel workspace vedremo
+    \begin{center}
+        \begin{tabular}{|p{20mm}|p{30mm}|p{20mm}|p{20mm}|}
+            \hline
+            Name & Value & Size & Class\\
+            \hline
+            \texttt{w} & \texttt{[10;20;30;40]} & \texttt{4x1} & \texttt{double}\\
+            \hline
+        \end{tabular}
+    \end{center}
+    N.B.: sono \textit{\textbf{indicizzabili}}. Per indicizzare si usano le \textit{parentesi tonde} e, cosa importantissima, \textit{in MatLab \textbf{non esiste l'indice 0}, perciò si parte da 1 e non da 0}. Se si scrive lo 0 come indice, dà errore.\\
+    Se volessimo ad esempio il terzo elemento del vettore \texttt{v}:
+    \begin{verbatim}
+        >> v(3)
 
-    ans =
+        ans =
 
-        3
+            3
 
-    >>
-\end{verbatim}
-Questa indicizzazione la possiamo usare anche in assegnazione:
-\begin{verbatim}
-    >> v(3) = 100;
-    >> v
+        >>
+    \end{verbatim}
+    \item[Assegnare un valore:] questa indicizzazione la possiamo usare anche in assegnazione:
+    \begin{verbatim}
+        >> v(3) = 100;
+        >> v
 
-    v =
+        v =
 
-        1   2     100     4     5     6
+            1   2     100     4     5     6
 
-    >>
-\end{verbatim}
-Posso lavorare anche su \textit{serie di cellette} invece di una celletta singola:
-\begin{verbatim}
-    >> v = (1:3);
+        >>
+    \end{verbatim}
+    Posso lavorare anche su \textit{serie di cellette} invece di una celletta singola:
+    \begin{verbatim}
+        >> v = (1:3);
 
-    ans =
+        ans =
 
         1   2     100
 
-    >> v = (1:3);
+        >> v = (1:3);
 
-    ans =
+        ans =
 
-        4     5     6
+            4     5     6
 
-    >>
-\end{verbatim}
-Se volessi, senza sapere quanto è lungo un vettore (c'è un modo per saperlo, ma non lo vediamo ora), prendere tutti gli elementi da un certo indice fino alla fine, posso fare:
-\begin{verbatim}
-    >> v(4:end)
+        >>
+    \end{verbatim}
+    Se volessi, senza sapere quanto è lungo un vettore (c'è un modo per saperlo, ma non lo vediamo ora), prendere tutti gli elementi da un certo indice fino alla fine, posso fare:
+    \begin{verbatim}
+        >> v(4:end)
 
-    ans =
+        ans =
 
-        4     5     6
+            4     5     6
 
-    >>
-\end{verbatim}
-Scoprire la lunghezza di un vettore:
-\begin{verbatim}
-    >> size(v)
+        >>
+    \end{verbatim}
+    \item[Scoprire la lunghezza di un vettore:] con il comando:
+    \begin{verbatim}
+        >> size(v)
 
-    ans =
+        ans =
 
-        1   6
+            1   6
 
-    >>
-\end{verbatim}
-Ovvero una riga e 6 colonne. La convenzione (è sempre così) è prima righe e poi colonne, perciò 
-se volessi conoscere solo le righe:
-\begin{verbatim}
-    >> size(v,1)
+        >>
+    \end{verbatim}
+    Ovvero una riga e 6 colonne. La convenzione (è sempre così) è prima righe e poi colonne, perciò 
+    se volessi conoscere solo le righe:
+    \begin{verbatim}
+        >> size(v,1)
 
-    ans =
+        ans =
 
-        1
+            1
 
-    >>
-\end{verbatim}
-se volessi conoscere solo le colonne:
-\begin{verbatim}
-    >> size(v,2)
+        >>
+    \end{verbatim}
+    se volessi conoscere solo le colonne:
+    \begin{verbatim}
+        >> size(v,2)
 
-    ans =
+        ans =
 
-        6
+            6
 
-    >>
-\end{verbatim}
-
-\subsubsection{Operazioni sugli array}
-\begin{description}
+        >>
+    \end{verbatim}
     \item[Somma:] come sappiamo da GAL, se sommo due vettori devono avere la stessa dimensione, altrimenti non posso sommarli.
     \item[Prodotto matriciale:] come sappiamo da GAL, se moltiplico due vettori devono avere gli stessi indici interni, altrimenti non posso moltiplicarli. Es.: noi abbiamo \texttt{v 1x6} e \texttt{w 4x1}, non posso moltiplicarli perché $6 \neq 4$.\\
     Una cosa che potrei fare per ovviare il problema sarebbe selezionare un sotto vettore da \texttt{v} che abbia la stessa dimensione di \texttt{w}:
@@ -301,7 +299,6 @@ se volessi conoscere solo le colonne:
 
         >>
     \end{verbatim}
-    % \item[Media dei valori:] \texttt{mean(v)} mi ritorna il valore medio dei numeri del vettore. In questo caso:
     \item[Creare matrici di numeri random:] \texttt{randi(\textit{r, l, c})} mi ritorna un array di \texttt{\textit{l}} righe e \texttt{\textit{c}} colonne di numeri scelti randomicamente in un range ampio \texttt{\textit{r}}. 
     \begin{verbatim}
         >> v = randi(5,1,10)
@@ -318,6 +315,8 @@ se volessi conoscere solo le colonne:
 
         ans =
 
+            1x10 logical array
+
             0   1   0   0   1   1   0   0   0   1
 
         >>
@@ -328,6 +327,8 @@ se volessi conoscere solo le colonne:
         >> v>3
 
         ans =
+
+            1x10 logical array
 
             0   1   0   1   1   1   0   0   0   1
 
@@ -346,9 +347,9 @@ se volessi conoscere solo le colonne:
     Mi conta quanti sono gli 1 del vettore logico.\\
     Posso usare variabili di appoggio:
     \begin{verbatim}
-        >> x = (v>3)
+        >> x = v>3
 
-        ans =
+        x =
 
             0   1   0   1   1   1   0   0   0   1
 
@@ -370,8 +371,9 @@ se volessi conoscere solo le colonne:
 
         >>
     \end{verbatim}
-    Praticamente mi seleziona solo i valori che hanno 1 nel vettore logico.\\
+    Praticamente mi seleziona solo i valori di \texttt{v} che hanno 1 nel \textit{vettore logico} \texttt{x}.\\
     \textbf{Molto utile per creare le maschere!}
+    Posso indicizzare il mio vettore anche usando un altro vettore di numeri:
     \begin{verbatim}
         >> v([1,3,4,6])
 
@@ -381,10 +383,45 @@ se volessi conoscere solo le colonne:
 
         >>
     \end{verbatim}
-    Questo invece mi ritorna i valori che mi interessano, che ho chiesto esplicitamente.\\    
+    Questo invece mi ritorna i valori di \texttt{v} che mi interessano, che ho chiesto esplicitamente.\\    
     Posso selezionare solo i valori che hanno 1 nel vettore logico anche in un altro modo:
+    \begin{verbatim}
+        >> find(x==1)
+
+        ans =
+
+            2   4   5   6   10
+
+        >>
+    \end{verbatim}
+    Questo mi ritorna gli \textit{indici} delle cellette di \texttt{x} che mi soddisfano questa condizione.\\
+    Posso ovviamente poi usarlo per ottenere i corrispondenti valori di \texttt{v}.
+    \begin{verbatim}
+        >> v(find(x==1))
+
+        ans =
+
+            5   4   5   5   5
+
+        >>
+    \end{verbatim}
+    Notare che mi produce lo stesso risultato della sua variante precedente, \texttt{v(x)}. Queste due istruzioni sono equivalenti.
 \end{description}
 
+\subsection{Le matrici}
+Possiamo istanziare una matrice andando a memorizzare tutti i valori che vanno salvati nelle righe e nelle colonne. Per esempio, per riempire una \texttt{3x2} a mano:
+\begin{verbatim}
+    >> a=[1,2;3,4;5,6]
+
+    a =
+
+        1   2
+        3   4
+        5   6
+
+    >>
+\end{verbatim}
+Le operazioni sono pressoché le stesse che abbiamo visto per i vettori, solo che ora abbiamo due dimensioni e quindi due indici, uno per le righe e uno per le colonne.\\
 
 
 \section{Appunti Lab1 13 Ottobre 2023}
@@ -457,5 +494,4 @@ Dall'istogramma dell'immagine del cavallo vedo che è \textbf{ben contrastata}, 
 \`E un mapping non lineare, che mi permette di rimappare i valori di un'immagine.
 
 \subsection{Compiti a casa - 1}
-Sort of assignment, sono 4 e danno fino a 2 punti in più all'esame (quindi se ne consegno 2 è solo 1 punto in più).\\
-Per dire, il primo chiede di scrivere una funzione \texttt{\textbf{myhistogram}} che calcola l'istogramma di una immagine a livelli di grigio. Noi sappiamo che un istogramma cumulativo (uint8 tra 0 e 255 monocanale) è un vettore che va da 0 a 255 e mi conta le occorrenze di ogni valore.
+Sort of assignment, sono 4 e danno fino a 2 punti in più all'esame (quindi se ne consegno 2 è solo 1 punto in più). Per dire, il primo chiede di scrivere una funzione \texttt{\textbf{myhistogram}} che calcola l'istogramma di una immagine a livelli di grigio. Noi sappiamo che un istogramma cumulativo (uint8 tra 0 e 255 monocanale) è un vettore che va da 0 a 255 e mi conta le occorrenze di ogni valore.
