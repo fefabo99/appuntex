@@ -38,7 +38,7 @@ in questi casi puó essere conveniente suddividerli in classi e determinare la f
 In questo modo c'è una perdita d'informazioni (sui valori specifici),ma spesso non è un problema e così facendo possiamo
 calcolare le frequenze delle classi e avere un'idea migliore della distribuzione dei dati.
 
-\subsection{Dati Bivariati}
+\subsection*{Dati Bivariati}
 Quando per ciascun individuo vengono misurate due variabili ci troviamo un insieme di N dati a coppie detti \textbf{dati bivariati}.
 $$(x_1,y_1), (x_2,y_2), ..., (x_N, y_N)$$
 Queste coppie di dati sono \emph{inseparabili}.\\
@@ -57,7 +57,8 @@ Se facciamo un \emph{Diagramma di dispersione} (o scatterplot), possiamo evidenz
 Dopo aver rappresentato i dati vogliamo ora riassumerli mediante quantità numeriche, dette \textbf{Statistiche Campionarie}, al fine di sintetizzare le proprietà
 salienti dei dati.
 
-\subsection{Media Campionaria}
+\subsection{Media e Mediana}
+\subsubsection{Media Campionaria}
 La Media Campionaria $\overline{x}$ é una metrica utile per caratterizzare l'insieme di dati:
 \definizione{
     La Media Campionaria dei dati $x_i$ contenuti in un insieme di $N$ valori è:
@@ -84,7 +85,7 @@ $$ (y_i := a x_i + b)_{i=1,...,N} \text{ con } a,b \in \R $$
 $$ \overline{y} = a \overline{x} + b $$
 
 
-\subsection{Mediana Campionaria}
+\subsubsection{Mediana Campionaria}
 La Mediana é il valore centrale dell'insieme ordinato.
 \definizione{
     Dato un insieme \textbf{Ordinato} di $N$ dati, la Mediana $m$ é cosí definita:
@@ -105,7 +106,7 @@ le altre la mediana non cambierà (a differenza della media).
 
 \subsection*{Moda} La moda é un indice meno importante per la rappresentazione di un insieme e indica il dato con la frequenza assoluta Maggiore.
 
-\section{Percentili e quantili}
+\subsection{Percentili e quantili}
 Per analizzare la distribuzione dei dati è utile usare una generalizzazione della mediana chiamato \textbf{Percentile Campionario}.
 \definizione{
     Il K-Esimo Percentile Campionario di un insieme di dati é il valore $t$ per cui:
@@ -116,7 +117,7 @@ Per analizzare la distribuzione dei dati è utile usare una generalizzazione del
 }
 In pratica, il $k$-esimo percentile indica che il $k\%$ dei dati sará a sinistra dell'indice, il restante a destra.
 
-\subsection{Quantili}
+\subsubsection{Quantili}
 Eistono dei casi importanti (in quanto piú utilizzati) di percentili detti \textbf{Quantili}, questi casi più importanti sono per $k = 25$, $50$ e $75$.
 
 Definiamo $k = 100p$, quindi $p=\frac{k}{100} \in [0,1]$.
@@ -134,7 +135,7 @@ In questo grafico é anche possibile eliminare gli estremi \emph{Outliers}.
 \nb{Esistono diverse definizioni di quantile, R per esempio ne utilizza una diversa di default.}
 
 
-\subsection{Calcolo del k-esimo percentile}
+\subsubsection{Calcolo del k-esimo percentile}
 Avendo $N$ dati, per calcolare il $k$-esimo percentile $t$ con $p=\frac{k}{100}$:
 \begin{enumerate}
     \item Ordino l'insieme di dati $x_1 <= x_2 <= \dots <= x_n$
@@ -147,7 +148,7 @@ Avendo $N$ dati, per calcolare il $k$-esimo percentile $t$ con $p=\frac{k}{100}$
         \end{itemize}
 \end{enumerate}
 
-\section{Indici di Dispersione}
+\subsection[Varianza e Deviazione]{Indici di Dispersione: Varianza e Deviazione}
 Ora vogliamo descrivere la dispersione dei dati di un insieme (ovvero l'ampiezza dei dati).
 
 Fissiamo un insieme di dati e la sua media $\overline{x}$.
@@ -191,13 +192,13 @@ Se abbiamo una trasformazione lineare affine $(y_i = a \cdot x_i + b)$ sappiamo 
 \end{itemize}
 Notiamo che $b$ non appare in varianza e deviazione perché "trasla" la dispersione ma non la modifica.
 
-\subsection{Scarto Interquartile}
+\paragraph{Scarto Interquartile}
 La deviazione standard va a misurare la dispersione dei dati in base alla \emph{media}, 
 Definiamo quindi ora una dispersione per la \textbf{Mediana} come lo scarto Interquartile:
 \formula{Scarto Interquartile}{$\Delta = q_3 - q_1$}
 Notiamo che l'intervallo $[q_1,q_3]$ contiene almeno il 50\% dei dati.
 
-\section{Coefficiente di correlazione lineare}
+\section{Coefficiente di Correlazione Lineare}
 Se abbiamo dei dati bivariati possiamo, attraverso la deviazione standard, quantificarne la \textbf{Correlazione}.
 Posso misurare il grado e la 'direzione' di correlazione di una coppia di dati attraverso il coefficiente di correlazione lineare. 
 

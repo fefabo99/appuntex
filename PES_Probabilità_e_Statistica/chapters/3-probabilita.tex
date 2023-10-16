@@ -31,7 +31,7 @@ Ci sono poi anche due interessanti proprietá dei complementari:
     \item Leggi di Demorgan: $(A \cup B)^c = A^c \cap B^c$ e $(A \cap B)^c = A^c \cup B^c$
 \end{itemize}
 
-\subsection{Interpretazioni di $P(A)$}
+\subsection*{Interpretazioni di $P(A)$}
 Che cosa significa grado di fiducia? cosé $P(A)$?
 \\Esistono due diverse interpretazioni sul grado di fiducia, entrambe equamente valide:
 \paragraph{Interpretazione Soggettivista} In questa interpretazione $P(A)$ é il prezzo equo di una scommessa che paga 1 se si 
@@ -90,7 +90,7 @@ Per sviluppare la \textbf{Teoria Matematica} però è richiesto qualcosa in più
 %Non la riporto per mancanza di tempo, pagina 1 appunti lezione 3
 
 
-\subsection{Spazio di Probabilità Uniforme}
+\section{Spazio di Probabilità Uniforme}
 Introduciamo ora il concetto di Spazio di Probabilità uniforme:
 \definizione{
     Indichiamo con $|A|$ la Cardinalità, ovvero il numero di elementi, dell'insieme $A$.
@@ -249,40 +249,37 @@ ne contiene 52. Il numero di possibili mani è
 \end{equation} 
 
 \section{Probabilità Condizionata}
-Consideriamo un esperimento aleatorio, che descriviamo con uno spazio di probabilità $(\Omega, P)$.
-Consideriamo un evento $A \subseteq \Omega$, che ha un probabilità $P(A)$.
-Supponiamo di ricevere l'informazione che un altro evento B si è verificato.
-Come è ragionevole aggiornare la probabilità di A per tenere conto di questa informazione aggiuntiva?
-\\La soluzione è data dalla probabilità Condizionata.
-\begin{equation}
-    P(A|B) = \frac{P(A \cap B)}{P(B)}
-\end{equation}
-La precedente formula denota la probabilità condizionata di A dato B (o sapendo B).
-Sto quindi calcolando la probabilità di A.
+Consideriamo un \emph{esperimento aleatorio}, che descriviamo con uno spazio di probabilità $(\Omega, P)$.
+e un \emph{evento} $A \subseteq \Omega$, che ha un \emph{probabilità} $P(A)$.
+\\\\Supponiamo di ricevere l'informazione che un altro evento $B$ si è verificato, ovvero l'esito $\omega$ dell'esperimento è in $B$.
+\\\\Come è ragionevole \textbf{aggiornare la probabilità di A} per tenere conto di questa \textbf{informazione aggiuntiva}?
+La soluzione è data dal concetto di probabilità Condizionata.
+
+\definizione{
+    \textbf{Probabilità Condizionata} di $A$ dato $B$:
+    \[
+        P(A|B) = \frac{P(A \cap B)}{P(B)}
+    \]
+}
+Ovvero, la probabilità che l'evento $A$ si verifichi \textbf{sapendo che l'evento $B$ è verificato} si calcola tramite la Probabilità Condizionata.
+\paragraph*{Rappresentazione Grafica} Rappresentando graficamente questo concetto abbiamo:
 \begin{center}
     \includegraphics[width=120mm,scale=0.5]{prob_condizionata_area.png}    
 \end{center}
-Quando si verifica un evento lo spazio di probabilità si riduce (vedere esempio sui dadi)
-\subsection{Regola del prodotto}
-\begin{equation}
-    P(A \cap B) = P(A)*P(B|A)
-\end{equation}
-\subsection{Formula di Disintegrazione}
-\begin{equation}
-    P(A) = P(A \cap B) + P(A \cap B^c)
-\end{equation}
-\subsection{Formula delle probabilità totali}
-\begin{equation}
-    P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)
-\end{equation}
-Inoltre $P(*|B)$ + una probabilità, in particolare:
-\begin{equation}
-    P(A^c|B) = 1 - P(A|B)
-\end{equation}
-\subsection{Formula di Bayes}
-\begin{equation}
-    P(B|A) = \frac{P(A|B)P(B)}{P(A)}
-\end{equation}
+Ovvero quando si verifica un evento $B$ posso ridurre lo spazio di probabilità su di esso.
+
+\subsection{Proprietà della Probabilità Condizionata}
+Elenchiamo ora alcune probabilità importanti della Probabilità Condizionata:
+
+\formula{Regola del prodotto}{$P(A \cap B) = P(B)\cdot P(B|A)$}
+La probabiltà dell'intersezione di $A$ e $B$ è data dal prodotto tra $P(B)$ e $P(A|B)$, infatti:
+$P(B) \cdot \frac{P(A \cap B)}{P(B)} = P(A\cap B)$
+\formula{Formula di Disintegrazione}{$ P(A) = P(A \cap B) + P(A \cap B^c)$}
+\formula{Formula delle probabilità totali}{$P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)$}
+\formula {$P(\cdot|B)$ è una probabilità}{}
+In particolare vale che: $P(A^c|B) = 1 - P(A|B)$
+\formula{Formula di Bayes}{$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$}
+
 \paragraph{Esempio}. Per vedere la parte pratica andare a vedere l'esempio sui tamponi
 per rilveare la presenza di un virus. Super interessante e utile.
 \\Il file è \textbf{Appunti Lezione 3 - In fondo al PDF}
