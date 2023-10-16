@@ -1,5 +1,5 @@
 \chapter{Introduzione a MatLab}
-\section{Appunti video lezione 2020 da Moodle} % riga commentabile
+\section{Appunti video lezione 2020 da Moodle}
 \subsection{Ambienti di lavoro}
 \subsubsection{Command Window e Workspace}
 \begin{itemize}
@@ -385,7 +385,9 @@ se volessi conoscere solo le colonne:
     Posso selezionare solo i valori che hanno 1 nel vettore logico anche in un altro modo:
 \end{description}
 
-\section{Appunti lezione 13 Ottobre 2023} % riga commentabile
+
+
+\section{Appunti Lab1 13 Ottobre 2023}
 \subsection{Il negativo di un'immagine}
 Serve per rimappare un'immagine. Lo faccio sottraendo la prima immagine a 255 e asegnando il tutto ad una seconda immagine.
 \begin{verbatim}
@@ -393,7 +395,7 @@ Serve per rimappare un'immagine. Lo faccio sottraendo la prima immagine a 255 e 
     >> im2 = 255 - im1;
     >> imshow(img2);
 \end{verbatim}
-% subplot(n righe, n colonne, scelgo il quadrante)
+
 \subsection{Mostrare a schermo due immagini}
 Serve per rimappare un'immagine. Lo faccio sottraendo la prima immagine a 255 e asegnando il tutto ad una seconda immagine.
 \begin{verbatim}
@@ -407,15 +409,15 @@ Serve per rimappare un'immagine. Lo faccio sottraendo la prima immagine a 255 e 
     \item[figure;] : crea una finestra, quando ne serve più di una si aggiunge \texttt{(i)} con un indice a scelta.\\ 
     Se non passiamo niente in input, MatLab indicizza da solo, altrimenti glielo diciamo noi l'indice.\\
     Rendo attiva la finestra richiamandola con l'indice scelto.
-    \item[subplot(f, l ,r);] : \texttt{(replace, name, value)}, rende attiva la figure \texttt{f} e divide la finestra in riquadri e r dice in quale quadrante mettere l'immagine.
+    \item[subplot(r, c, q);] : \texttt{subplot(n° righe, n° colonne, n° quadrante)}, rende attiva la \texttt{figure} e divide la finestra in riquadri (puoi fare più righe $(r>1)$ e più colonne $(c>1)$) e \texttt{q} dice in quale quadrante (della riga scelta con \texttt{r}) mettere l'immagine.
 \end{description}
 Poi abbiamo creato \texttt{im3} come somma di \texttt{im1} e \texttt{im2}, cosa esce? Un'immagine tutta bianca, perché si sommano tutti i valori matematici e sarà tutto 255. Poi, per mostrarla a schermo, se faccio solo \texttt{imshow(im3)} andrà a sovrascrivere quella negativa, perché non ho specificato che serve una nuova figure e quindi usa l'ultima attiva. Serve \texttt{figure;} per averne una nuova.
 
 \subsection{Pulizia dello schermo}
 Ogni volta che eseguo lo script mi si aprono finestre di figure.
 \begin{description}
-    \item[\texttt{close all;}] : chiude in automatico tutte le finestre.
-    \item[\texttt{clear all;}] : cancella in automatico tutte le variabili.
+    \item[\texttt{close all;}]: chiude in automatico tutte le finestre.
+    \item[\texttt{clear all;}]: cancella in automatico tutte le variabili.
 \end{description}
 
 \subsection{Modificare size immagini}
@@ -429,13 +431,21 @@ Spoiler alert: alla fine abbiamo rimesso 0.25 perché la maschera aveva preso tr
 Abbiamo provato 0 ed è diventato troppo, ha mostrato un effetto quadrettato che mi mostra artefatti/rumore che è tipico della compressione JPEG.\\
 0.125 va più che bene, poi la usiamo per togliere un pezzetto di immagine da quella della Luna.\\
 \begin{description}
-    \item[\texttt{1-mask_clouds}] mi ritorna la maschera binaria invertita, ovvero dove c'è 1 mette 0 e viceversa.
-    \item[.*] moltiplicazione punto punto, dove nella maschera invertita ho 0, si azzera il pixel corrispondente nell'immagine. 
+    \item[$1-mask_clouds$] mi ritorna la maschera binaria invertita, ovvero dove c'è 1 mette 0 e viceversa.
+    \item[$.*$] moltiplicazione punto punto, dove nella maschera invertita ho 0, si azzera il pixel corrispondente nell'immagine. 
 \end{description}
 Se volessi una maschera più smooth? Così che si nasconda il passaggio tra nuvola e sfondo della nuvola? Applico un filtro di smooth sull'immagine delle nuvole. Non tolgo totalmente il rumore, ma lo riduco localmente.
 
 \subsubsection{Immagini double}
-Prima mi sono dimenticata di segnare che spesso serve avere le immagini in forma double, si fa tipo \texttt{moon = im2double(imread("Lab1\moon.jpg"));} usando quindi il comando \texttt{im2double();} che converte l'immagine da uint8 in double.
+Prima mi sono dimenticata di segnare che spesso serve avere le immagini in forma double, si fa tipo 
+\begin{verbatim}
+    moon = im2double(imread("Lab1\moon.jpg"));
+\end{verbatim} 
+usando quindi il comando 
+\begin{verbatim}
+    im2double();
+\end{verbatim} 
+che converte l'immagine da \textit{uint8} in \textit{double}.
 
 \subsection{Gli istogrammi}
 \texttt{imhist();} mi ritorna l'istogramma dell'immagine.\\
