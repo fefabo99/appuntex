@@ -1,0 +1,62 @@
+\chapter{Bilanciamento del bianco}
+Non c'è sul libro.
+\subsection{Distribuzione spettrale della luce solare}
+La distribuzione spettrale delle luce solare cambia con le condizioni climatiche.\\
+La distribuzione spettrale delle luce solare cambia con alle diverse latitudini, nelle diverse stagioni ed alle diverse ore del giorno.\\
+Esempio della bandiera inglese: il movimento minimo o nullo dell'occhio mi rende meno sensibile ai colori presenti sullo schermo. Stesso esempio dell'immagine della fattoria con componente prevalentemente blu a sinistra e verdino a destra, se mi rendo sovrasensibile a blu e giallo (slide successiva) la vedo bilanciata.\\
+Questa cosa non c'è nelle camere digitali.
+
+\subsection{Descrizione Sensoriale del colore}
+
+\subsubsection{Adattamento cromatico}
+È l'abilità del sistema visivo umano di compensare il colore dell'illuminazione
+preservando approssimativamente l'apparenza dell'oggetto.
+Le slide 13-16 hanno l'esempio del cuscino, prima giallo e poi verde e verde che per sintesi sottrattiva sembra ancora giallo con filtro ciano e invece è verde.\\
+Slide 17: La costanza del colore nella visione umana varia anche spazialmente!\\
+Slide 18: Perché noi si vedano simili i colori degli oggetti sotto diverse illuminazioni qualcosa deve avvenire nel nostro sistema visivo. I sistemi di acquisizione delle immagini non hanno la stessa abilità, ed i colori delle immagini acquisite devono essere ri-mappati per apparire correttamente sotto diversi illuminanti. Qui vediamo un esempio di una scena ripresa con due illuminanti diversi: meccanismo di adattamento cromatico da implementare nelle camere digitali.
+
+\subsubsection{Modello di Von Kries}
+Se sei esposto ad una dominante costante (es. mio bracciale con le borchie) perdi la sensibilità a quella dominante. Slide 19.\\
+Come?
+
+\subsubsection{Correzione delle dominanti colore \textit{con} riferimento}
+Scattare una foto di un oggetto neutro (bianco o grigio) e dedurre il peso di ogni canale (L,M,S - long, medium, short wavelenghts per noi RGB). Slide 20-21.\\
+Se si conosce la cromaticità dell'illuminanti sorgente e
+destinazione è possibile correggere i colori delle
+immagini acquisite usando come scaling factor il
+rapporto RGB del bianco desiderato (output) e quello
+dell'immagine acquisita (RGB in)
+
+\subsubsection{Correzione delle dominanti colore \textit{senza} riferimento}
+Due fasi: • stima dall'immagine dell'illuminante nella scena acquisita
+• Data l'illuminante target (solitamente 255, 255, 255) correzione dell'immagine mediante scaling factors
+Slide 22.
+
+\subsubsection{Stima dell'illuminante}
+La stima dell'illuminante è un problema mal posto: gli algoritmi di solito sfruttano alcune
+ipotesi sulle proprietà statistiche dell'illuminante atteso o delle riflettanze degli oggetti
+
+\section{Algoritmi di bilanciamento bianco}
+\subsection{Algoritmo di Gray Word}
+Slide 24-28.\\
+L'algoritmo di gray world assume che:
+\begin{itemize}
+    \item il colore medio di un immagine sia il colore dell'illuminante
+    \item il colore dell'illuminante di riferimento sia il neutro (grigio).
+\end{itemize}
+Pertanto i coefficienti KR, KG e KB del modello di Von Kries si ottengono imponendo che il valore medio, Ravg Gavg Bavg, di ciascuna delle singole componenti R G B corrisponda al valore GrayR, GrayG, GrayB di un grigio di riferimento. Segue l'equazione sulla slide 24.\\
+Quando dice "come facciamo ad implementarlo qui?" sta parlando dell'immagine della montagna della slide 27.
+
+\subsection{Algoritmo white point}
+Slide 29-31.\\
+Il valore massimo di ogni canale RMax, GMax, BMax dell’immagine di input viene
+fatto corrispondere ad il valore valore massimo dell’immagine di riferimento riferimento: WhiteR, WhiteG, WhiteB. Tipicamente questo algoritmo dovrebbe corrispondere a cercare il punto bianco
+nell’immagine (white point estimation).
+I coefficienti di guadagno sono dunque:
+Equazione slide 29.
+
+\subsection{Algoritmo white patch}
+Slide 32-33.
+
+\subsection{Valutazione algoritmi di bilanciamento bianco}
+Ci sono diversi algoritmi, segue non è un discorso facile, segue c'è tanto lavoro possibile.

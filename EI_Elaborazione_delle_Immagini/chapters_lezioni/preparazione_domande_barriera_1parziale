@@ -1,0 +1,28 @@
+\chapter{Preparazione I parziale}
+\section{Esempi di domande barriera}
+Non so dove le abbia prese (credo un file suo), ma ho riportato le risposte trovate e di alcune una mini spiegazione.
+\begin{enumerate}
+    \item 1. derivata prima
+    \item 2. gamma >1 perché schiarisce, ma 20 è too much
+    \item 3. media (mediano ricorda non è lineare, derivativi avrebbero peggiorato)
+    \item 4. derivata seconda
+    \item 5. saturazione S ("quantità di colore")
+    \\ intensità I (chiaro/scuro) e saturazione S ("quantità di colore") è un cosiddetto "caso dubbio" dove può essere presa buona la risposta se il ragionamento è sensato e giusto
+    \item 6. istogramma cumulativo (fosse stato equalizzato sarebbe stato un po' più uniforme e piatto)
+    \item 7. immagine del cerchio, quale filtro è stato applicato? Filtro derivativo del secondo ordine (Laplaciano).\\
+    Col filtro di media avrei visto il cerchio ancora più sfocato. Filtro mediano no. Filtro derivativo del primo ordine 
+    \item 8. quale è il canale del rosso nelle tre versioni grigie? La seconda, più l'immagine è chiara più il rosso è alto e dove ho il rosso lì è bianca. Può capitare anche "nessuno".
+    \item 9. quale grafico è? La terza, spiattella i neri (riga orizzontale) e poi weeeeh.
+    \item 10. la maschera permette di calcolare: valore del laplaciano. Però perché non il gradiente? Perché ha modulo e direzione, 2 maschere (non una sola!) con x e y (quadrati sotto radice). Il laplaciano non ha direzione, perciò è il valore.
+    \item 11. quale grafico? potrebbe essere il secondo perché schiarisco, ma guardando il cielo non mi sembra esserci tanto clipping, perciò potrebbe essere "nessuno".
+    \item 12. immagine originale + immagine negativa = totalmente bianca.
+    \item 13. immagine della tizia, quale operatore? Non gamma correction, da combinare con il laplaciano usiamo . La risposta è nessuno perché sono 
+    \item 14. applicato? media, ridotto il rumore.
+    \item 15. maschera con $\frac{1}{16}$ davanti. Gradiente e laplaciano no, non sono derivativi. Questa maschera fa smoothing sul pixel centrale, meno sui bordi.
+    \item 16. immagine a scacchi (filtro mediano non aggiunge valori, nell'istogramma ne vedo tanti nuovi, lo scarto; unsharp e s\&p li scarto). La risposta è g con media nulla?
+    \item 17. La maschera. Ha -1 nei 8 pixel intorno. Se al centro metto 9, che con i pixel intorno fa 1 (9-8), ottengo il laplaciano.
+    \item 18. Gamma correction, quale sbagliata? Che è puntuale? No, lo è. Che è reversibile? Discutibile. Che produce sempre valori positivi (alla fine sì, se siamo nel clipping). Risposta: che è lineare.
+    \item 19. immagine a scacchi, con due istogrammi: la risposta è la 1., algoritmo di segmentazione.
+    \item 20. Filtro mediano, quale corretta? Operatore locale, sì. Operatore lineare, no. Non può essere applicata a immagini binarie, no può (anzi molto conveniente). Operatore reversibile, no.
+    \item 21. Un'altra maschera con -1, risposta 5.
+<\end{enumerate}

@@ -1,0 +1,52 @@
+\chapter{Color coding}
+Su Moodle abbiamo a disposizione una luuunga lezione su questo argomento. Ora ne facciamo una versione ridotta.\\
+Boh non so che slides stia guardando, non sono quelle di Moodle.\\
+
+Il colore può aggiungere informazioni per una rappresentazione più ricca di un'immagine. Es. nella slide ci dice qualcosa su distribuzione varianza dei dati.
+\\
+\subsection{Sensory boh e boh}
+Cos'hanno in comune? Sono percepite parallelamente, non ho bisogno di training per percepirle.
+
+\subsection{Elements of visualization}
+Linee, aree e ?
+Fidec se va veloceee
+Slide 68. Efficacia colore: come anch eil livello di grigio, effetto di pop-out: esempio slides pallini colorati, il "grigio" a sinistra si ottiene come combinazione degli altri colori, il rosso a destra no.\\
+Il video che fa vedere si chiama "selection attentive test". Il secondo tipo "Whodunnit?" con dei cambiamenti difficili da notare: è difficile accorgersi di qualcosa a cui non stai prestando attenzione.
+
+\subsection{A model of perceptual processing}
+aaa
+
+\subsection{Color perception}
+aaa
+
+\subsection{Mesopic vision}
+Visione diurna/serale: distorsione dei colori percepiti.
+
+\subsection{Effetti spaziali}
+Come cambia la percezione dei colori in base ad (ad es.) cambiamento del background. Oppure sollecital guestal(wtf?)
+
+\subsection{Nominal color coding}
+Slide 65, meme boys vs girls.\\
+Colori difficili da comunicare, meglio attenersi a nomi più generici per il color coding, meglio nomi più espliciti. N.B.: anche l'ambiente (es. eschimesi) influenza il range di colori su cui si trovano nomi per le sfumature.
+\subsubsection{Norme}
+Slide 84.\\
+• Color perception is relative hence we should use just 6 to 10 colors for coding which should be distinct and memorable.•Syntactic
+• Color-coded objects should not be very small• Large areas: low saturation• Small areas: high saturation• Small regions should have luminance contrast • Adjacent regions should not differ only in the blue component. • Avoid highly-saturated highly-bright in spectrally extreme hues (e.g.,blue-red, yellow-purple)• The color of a patch affects its perceived area. • A method for reducing contrast effects is to place a thin white or black border around the color-coded object.• Semantic
+• Use cultural conventions, if possible
+
+\subsection{Quantitative color coding}
+Slide 85-98.\\
+Color can be also used in a quantitative fashion, i.e. to convey
+information about ordered data set. We can distinguish here among
+ordinal, interval and ratio color coding.
+– In Ordinal coding the data values are in some way ordered, i.e.,
+the data values can be put into a sequence, but no distance is
+defined between data values.
+– In interval (quantitative) coding data one can define a distance
+between two data values, but the zero point is arbitrary.
+– In Ratio coding a zero point is also defined.
+• The data -> the color scale can be Discrete/Continuous
+Trumbo’s principles seem important in generating and evaluating an ordinal color scale:
+– Principle I (Order). If the data are ordered, then the colors chosen to represent them should be perceived as preserving that order. – Principle II (Separation). Important differences in data values should be represented by colors clearly perceived as different.
+
+Quando fa "stesso dato?" slide 102

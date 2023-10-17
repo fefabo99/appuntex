@@ -1,0 +1,54 @@
+\chapter{Quantizzazione immagini a colori}
+\section{Quantizzazione}
+Processo attraverso il quale una funzione continua (segnale) è rappresentato mediante un insieme finito di valori. Se abbiamo a disposizione meno di 256 livelli (8 bit) spesso abbiamo degli artefatti.\\
+In questa lezione per quantizzazione intendiamo il processo di riduzione del numero di colori di una immagine a 24 bit in, al massimo, 256 colori.
+\subsection{Quantizzazione colore}
+Slide 3-6.\\
+Come la risoluzione spaziale anche la risoluzione cromatica è un compromesso costo prestazioni.\\
+Non sempre è necessario avere a disposizione tutti i colori delle immagini true-color (24 bit per pixel,8 per ogni canale), specie in applicazioni tipiche della grafica.
+\`E possibile risparmiare spazio di memorizzazione e ridurre il carico computazionale, riducendo il numero di colori.\\
+Per ridurre il numero di livelli di colore:
+\begin{itemize}
+    \item si usano meno bit per banda (es. 5-5-5 o 5-6-5 nel caso dell'hicolor a 15 e 16 bit rispettivamente)
+    \item si usa una \textit{look-up table} (mappa di colori, un po' la nostra "scatola delle matite"): si sceglie un numero finito di colori (es. 256) memorizzati su una tabella ed il valore del pixel è un puntatore a tale tabella che contiene terne RGB.\\
+    Slide 10.\\
+    Slide 11, look-up table combinata con array di puntatori.
+\end{itemize}
+L'elenco dei colori disponibili è chiamato \textbf{palette}.\\
+Ritorna l'\textbf{aliasing}, slide 7.
+
+\subsubsection{Tabelle colore}
+\begin{description}
+    \item[Safe RGB:] tabella che tutti i browser riproducono senza jittering. Di solito usate per interfacce. I colori sono limitati.
+\end{description}
+Ha fatto la slide quantizzazione spazio colore HVS. Ha aggiunto la slide 20 (con aggiunta in alto a destra nel vuoto della slide 19): la seconda (quindi la slide 19) potrebbe essere utile per riconoscere forme, ma per lo skin è meglio la terza (basso a sinistra).
+\subsection{Palette adattative}
+Quando puoi usare al max tot colori, ma sarebbe meglio poterli scegliere dall'immagine piuttosto che a caso dove rischio di sprecare tanti colori avendone molti meno per rappresentare l'immagine.\\
+Parliamo di palette adattative (slide 21).
+Si estraggono delle opportune statistiche
+dall’immagine
+• Si definiscono i colori della palette in base a questa statistiche
+• Si mappano i colori dell’immagine su i colori della palette
+•Si ridisegna l’immagine con i colori quantizzati
+
+\subsubsection{Median Cut Algotithm}
+Slide 22-24.\\
+Algoritmo Median Cut Algorithm (Paul Heckbert, 1980)
+\begin{itemize}
+    \item si calcola l’istogramma tridimensionale dei colori contenuti nell’immagine;
+    \item si trova il minimo parallelepipedo orientato come gli assi che contenga tutti i colori
+    \item si sceglie la direzione più lunga del box e si taglia nel punto che lascia (circa) lo stesso numero di elementi nelle due metà (taglio mediano)
+    \item si ripete il taglio del box con più elementi (o il più grande come volume) fino a quando non si sono ottenuti tanti box quanti i colori richiesti.
+\end{itemize}
+I colori rappresentativi saranno dati dalla media dei colori inclusi nel box. Si assegnano i colori della palette all'immagine.\\
+Solitamente la metrica è distanza euclidea nello spazio RGB, che sappiamo non essere percettivamente uniforme.\\
+Quanti colori mi servono per replicare nel modo più fedele possibile l'immagine mostrata? 256, slide 25. Perché ho preso tutti i colori dall'immagine.\\
+Palette adattativa: slide 26, divido in regioni.\\
+Si può cambiare l'algoritmo.
+\subsubsection{The Popularity Algorithm}
+Slide 27-28.
+\subsubsection{The Original Diversity Algorithm}
+Slide 29-30.\\
+Ha speedrunnato attraverso le slide sul dithering, che fa che non vediamo.\\
+Slide 41, valutazione dei risultati e fedeltà del segnale, usiamo la differenza che avevamo visto.\\
+Ha aperto adobe colours, la ruota colore. Dalle immagini somministrate, estrapola i colori e presenta la corrispettiva palette. Ce ne possono essere diverse a seconda di quale intento si vuole comunicare: ha fatto l'esempio di un piatto di carbonara, dove c'era una palette per i colori vivaci, una per quelli chiari, una per quelli scuri, una per quelli tenui, e una nessuna preferenza.

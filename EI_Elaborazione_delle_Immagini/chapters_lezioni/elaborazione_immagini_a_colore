@@ -77,20 +77,37 @@ Perché la differenza è grigia? Non ho sentitoooo.
 
 \subsection{Filtraggio mediano}
 \subsubsection{Ripasso}
-- Il valore del pixel di uscita e’ dato dal valore mediano dei pixel dell’immagine di
-ingresso in un intorno desiderato
-- Il filtro mediano forza i pixel ad assumere un valore uguale a quello di uno dei pixel
-circostanti (nessuno valore nuovo è introdotto).
-- Elimina molto bene gli eventuali pixel isolati che solitamente corrispondono al rumore
-di tipo impulsivo. 
+- Il valore del pixel di uscita è dato dal valore mediano dei pixel dell'immagine di ingresso in un intorno desiderato.\\
+- Il filtro mediano forza i pixel ad assumere un valore uguale a quello di uno dei pixel circostanti (nessuno valore nuovo è introdotto).\\
+- Elimina molto bene gli eventuali pixel isolati che solitamente corrispondono al rumore di tipo impulsivo. 
 
 \subsubsection{Su immagini a colori}
 1. Il filtraggio non lineare, ad esempio il filtro mediano spesso non è applicato alle immagini a colori perché oneroso.
-2. Se applicato alle singole bande ad immagini con pochi colori può creare colori spuri che prima non esistevano nell’immagine.
+2. Se applicato alle singole bande ad immagini con pochi colori può creare colori spuri che prima non esistevano nell'immagine (nella slide il giallino al centro).
 3. Esistono versione del mediano a insiemi vettoriali che non generano colori nuovi.
 
 \subsubsection{Esercizio per la prossima volta}
 Capire l'equazione della slide 55 del filtro mediano vettoriale.\\
-Prossima volta la risposta.
+Prossima volta la risposta.\\
 
-% va avanti martedì, poi porta esempi domande a barriera e inizieremo la seconda parte di riconoscimento oggetti che sarà oggetto di progetto 
+% 17/10/2023
+
+La risposta:
+\begin{description}
+    \item[\texttt{c}:] rappresenta le tuple di colore per ogni pixel, in un intorno \texttt{(1,...,n)}
+    \item[\texttt{|| ||}:] la norma
+    \item[$\sum \leq \sum$:] la media con i pixel dell'intorno? boh fabio?
+\end{description}
+
+\subsection{Edge detection}
+Boh non trovo la slide, ma c'erano i canali colore sommati.\\
+Qua iniziano delle slide che dice ci sono sul libro.\\
+N.B.: non sempre utile usare tutte le dimensioni dei colori.\\
+Slide sui volti e le pelli: come trovare le pelli?
+\textbf{Segmentazione tramite classificazione}:
+\begin{itemize}
+    \item serve un dataset adeguato
+    \item fase di descrizione (\textbf{feature}), ovvero quello che noi abbiamo fatto associando ad ogni pixel un colore.
+    \item \textbf{texture}: quanto "rugoso" l'intorno
+    \item \textbf{descrittori di forma}
+\end{itemize}
