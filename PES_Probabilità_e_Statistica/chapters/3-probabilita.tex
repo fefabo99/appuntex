@@ -248,6 +248,7 @@ ne contiene 52. Il numero di possibili mani è
     {52 \choose 5} = \frac{52!}{5!47!}
 \end{equation} 
 
+\pagebreak
 \section{Probabilità Condizionata}
 Consideriamo un \emph{esperimento aleatorio}, che descriviamo con uno spazio di probabilità $(\Omega, P)$.
 e un \emph{evento} $A \subseteq \Omega$, che ha un \emph{probabilità} $P(A)$.
@@ -269,20 +270,58 @@ Ovvero, la probabilità che l'evento $A$ si verifichi \textbf{sapendo che l'even
 Ovvero quando si verifica un evento $B$ posso ridurre lo spazio di probabilità su di esso.
 
 \subsection{Proprietà della Probabilità Condizionata}
-Elenchiamo ora alcune probabilità importanti della Probabilità Condizionata:
+Elenchiamo ora alcune proprietà importanti della Probabilità Condizionata:
+\begin{itemize}
+    \item La probabiltà dell'intersezione di $A$ e $B$ è data da:
+        \formula{Regola del prodotto}{$P(A \cap B) = P(B)\cdot P(B|A)$}
+        Infatti:
+        $P(B) \cdot \frac{P(A \cap B)}{P(B)} = P(A\cap B)$
+    
+    \item La probabilità di $A$ è data da:
+        \formula{Formula di Disintegrazione}{$ P(A) = P(A \cap B) + P(A \cap B^c)$}
+        \begin{center}
+            \includegraphics[width=.7\textwidth]{images/prob_condizionata_disintegrazione.png}
+        \end{center}
+    \item La probabilità totale, se $P(B)\neq 0, P(B)\neq 1$, è data da:
+        \formula{Formula delle probabilità totali}{$P(A) = P(A|B)\cdot P(B) + P(A|B^c)\cdot P(B^c)$}
+    \item La probabilità $P(\cdot |B)$ è una probabilità, perchè soddisfa gli assiomi 1 e 2.
+        \formula {$P(\cdot|B)$ è una probabilità}{}
+        In particolare vale che: $P(A^c|B) = 1 - P(A|B)$
+    \item Una proprietà fondamentale è la \textbf{Formula di Bayes}. Dati $P(A|B), P(A),P(B)$ la probabilità di $P(B|A)$ è:
+        \formula{Formula di Bayes}{$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$}
 
-\formula{Regola del prodotto}{$P(A \cap B) = P(B)\cdot P(B|A)$}
-La probabiltà dell'intersezione di $A$ e $B$ è data dal prodotto tra $P(B)$ e $P(A|B)$, infatti:
-$P(B) \cdot \frac{P(A \cap B)}{P(B)} = P(A\cap B)$
-\formula{Formula di Disintegrazione}{$ P(A) = P(A \cap B) + P(A \cap B^c)$}
-\formula{Formula delle probabilità totali}{$P(A) = P(A|B)P(B) + P(A|B^c)P(B^c)$}
-\formula {$P(\cdot|B)$ è una probabilità}{}
-In particolare vale che: $P(A^c|B) = 1 - P(A|B)$
-\formula{Formula di Bayes}{$ P(B|A) = \frac{P(A|B)P(B)}{P(A)}$}
+\end{itemize}
 
-\paragraph{Esempio}. Per vedere la parte pratica andare a vedere l'esempio sui tamponi
-per rilveare la presenza di un virus. Super interessante e utile.
-\\Il file è \textbf{Appunti Lezione 3 - In fondo al PDF}
+% \paragraph{Esempio}. Per vedere la parte pratica andare a vedere l'esempio sui tamponi
+% per rilveare la presenza di un virus. Super interessante e utile.
+% \\Il file è \textbf{Appunti Lezione 3 - In fondo al PDF}
+
+\esempio{
+    La classe $1^b$ è composta da 12 femmine e 4 maschi.
+    la classe $1^c$ è composta da 10 femmine e 10 maschi.
+    \\\\
+    Scelgo una classe \emph{a caso}\footnote{uniformemente}, quindi estraggo una persona \emph{a caso} dalla classe scelta.
+    \begin{enumerate}
+        \item Qual'è la probabilità di scegliere la $1^B$ ed estrarre una femmina? ($P(A\cap B)$)
+        \item Qual'è la probabilità di estrarre una femmina? $(P(A))$
+        \item Se estraggo una femmina, qual'è la probabilità che sia della $1^B$? ($P(B|A)$)
+    \end{enumerate}
+
+    \paragraph{Soluzione}
+    Chiamo: $A$="Estraggo una femmina", e $B$="Scelgo la classe $1^B$".
+    Dati del problema:
+    \begin{enumerate}
+        \item $P(B)$ è probabilità uniforme, quindi $P(B)=\frac{1}{2}\implies P(B^c) = 1-P(B) = \frac{1}{2}$
+        \item $P(A|B) = P($estraggo una femmina $|$ Ho scelto la $1^B ) = \frac{12}{16}$\footnote{12 femmine su 16 studenti nella $1^B$}$ = \frac{3}{4}$
+        \item $P(A|B^c) = P($estraggo una femmina $|$ Ho scelto la $1^C ) = \frac{10}{20}= \frac{1}{2}$
+    \end{enumerate}
+    \paragraph{Risposte} alle domande:
+    \begin{enumerate}
+        \item $P(A\cap B)= P(B) \cdot P(A|B) = \frac{3}{8} = 37.5\%$
+        \item $P(A) = P(A|B)\cdot P(B) + P(A|B^c)\cdot P(B^c) = 62.5\%$
+        \item $P(B|A) = \frac{P(A|B)P(B)}{P(A)} =  60\%$, ovvero "il 60\% delle femmine estratte provengono dalla $1^B$".
+    \end{enumerate}
+}
 
 \section{Indipendenza di eventi}
 Può capitare che, per un evento A, l'informazione che un altro evento B si è verificato
