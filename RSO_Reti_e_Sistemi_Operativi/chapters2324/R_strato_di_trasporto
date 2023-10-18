@@ -51,7 +51,7 @@ Nessuno di questi due protocolli garantisce:
 Cosa ci serve? Un canale di comunicazione affidabile. Ma nella realtà affidabile non lo è mai. A livello di trasporto bisogna implementare una tecnologia per rendere affidabile la comunicazione.\\
 Servono servizi di feedback, il destinatario deve dirmi se gli sono arrivati i dati. Ho perso cose.
 
-\subsubsection{Reliable data transfer}
+\subsection{Reliable data transfer}
 Raffigurato c'è un diagramma da spiegare (inserisci qua screen).
 A sinistra ho l'asse dei tempi, a sinistra avrò \texttt{A} e a destra \texttt{B} e \texttt{A} comunica con \texttt{B}. Da \texttt{A} a \texttt{B} ho frecce che vanno in diagonale perché? Senti.
 \\
@@ -93,7 +93,248 @@ Le reti però non introducono solo perdite di segmenti, ma anche ritardi.\\
 La perdita può capitare al messaggio che sto inviando o all'ack che sto ricevendo. Come gestisco situazioni in cui li perdo entrambi? Devo introdurre un \textit{timer}.\\
 Parliamo di protocolli \textbf{\textit{stop-and-wait}}.
 
-Come settiamo questo timer? \`E una cosa complicata ma fondamentale. Se è troppo alto, se mando un time out spreco un sacco di tempo. Se è troppo breve, rischio di creare ritrasmissioni inutili, invece di usare il mio canale per comunicare normalmente lo riempio di messaggi inutili.  Nelle slide un esempio di ciò, timer troppo breve.
+Come settiamo questo timer? \`E una cosa complicata ma fondamentale. Se è troppo alto, se mando un time out spreco un sacco di tempo. Se è troppo breve, rischio di creare ritrasmissioni inutili, invece di usare il mio canale per comunicare normalmente lo riempio di messaggi inutili. Nelle slide un esempio di ciò, timer troppo breve.
+
+\subsubsection{Misurare la performance}
+Transmitting a segment at a time and waiting
+for its ack before a further transmission (stopand-wait) significantly limits performance
+% Example: $𝑅𝑇𝑇 = 100 𝑚𝑠, 𝐿 = 1 𝑘𝑏𝑦𝑡𝑒, 𝑅 = 100 𝑀𝑏𝑖𝑡/𝑠 → 𝑈 = 0,008$.
+
+% 18/10/2023
+
+\subsubsection{Sliding windows protocols}
+Sliding window protocols can transit up to $W$
+segments while waiting the ack of the first
+one
+Ci sarebbe da rivedere l'inizio di sta lezione.\\
+Qua ho aumentando molto l'efficienza dei protocolli stop-and-wait. Se vado a dimensionare la finestra, posso avere un numero di segmenti che posso inviare prima di ricevere l'ack, quindi molta informazione utile.\\
+Perché la trasmissione sia continua (ed evitare gli spazi vuoti) il tempo di invio del primo segmento + il tempo di ricezione dell'ack del primo segmento deve essere minore del tempo di trasmissione di $W$ segmenti. Ovvero: $$w\bullet\frac{L}{R} \geq RTT + \frac{L}{R}$$ $$W \geq \frac{RTT \bullet R}{L} + 1$$
+\subsubsection{Go-back-N protocol}
+Cosa ritrasmetto in caso di errore?
+\begin{description}
+    \item[Go-back-N:] ritrasmetto tutti i segmenti a partire da quello che ha avuto problemi.\\
+    Ma come funziona il Go-back-N?\\
+    \begin{description}
+        \item[Lato ricevitore:] se ho problemi al segmento 2 (come da immagine), il segmento 3 lo scarto; poi dal segmento 4 mando ack negativi per dire che ho perso qualcosa prima e scarta i segmenti che riceve. Nell'immagine infatti vedo che dopo aver scartato il 5, inizia ad accettare il 2 quando viene ritrasmesso.
+        \item[Lato mittente:] quando riceve un ack negativo, ritrasmette tutti i segmenti a partire da quello che ha avuto problemi. Comunque riguarda la registrazione qua.
+    \end{description}
+    Non c'è bisogno di implementare un buffering al ricevitore.\\
+    Si dice che gli \textit{ack} sono \textit{cumulativi}. Nel momento in cui non ho un segmento mando un ack per l'ultimo segmento ricevuto e uno negativo per tutti i segmenti che non ho ricevuto.\\
+    Per come è fatto il protocollo, ho un solo timer, ogni volta che viene ricevuto correttamente un ack viene resettato e riportato a 0. Questo semplifica di molto l'implementazione.
+    \item[Selective repeat:] ritrasmetto solo il segmento che ha avuto problemi.\\
+    \includegraphics[width=0.3\textwidth]{./images/aa2324/R_selectiverepeat1.jpg}
+    Gli ack \textbf{non} sono cumulativi. Quando scade il timer, ritrasmetto solo il segmento che ha portato al timeout, ovvero alla scadenza di quel timer.
+    
+\end{description}
+
+\subsection{TCP protocol}
+\subsubsection{Overview}
+\begin{description}
+    \item[point-to-point:] un mittente, un destinatario
+    \item[affidabile, byte-stream in ordine:] garantisce che i dati arrivino correttamente e in ordine, non ci sono "message boundaries"
+    \item[full duplex data:] flow di dati in entrambe le direzioni nella stessa connessione (MSS: maximum segment size)
+    \item[\textit{acks} cumulativi:] 
+    \item[pipelining:] TCP congestion and flow control set window size
+    \item[connection-oriented:] handshaking (exchange of control messages) initializes sender, receiver state before data exchange
+    \item[flow controlled:] sender will not overwhelm receiver     
+\end{description}
+
+\subsubsection{TCP, struttura di un segmento}
+\includegraphics[0.3\textwidth]{./images/aa2324/R_TCP1.jpg.jpg}
+\begin{description}
+    \item[source port \#: + dest. port \#:] 16 bit + 16 bit
+    \item[sequence number:] 32 bit, numero di sequenza del primo byte di dati nel bytestream
+    \item[acknowledgment number:] 32 bit, numero di sequenza del prossimo byte di dati che il mittente si aspetta di ricevere\\
+    Sotto, non ho capito il nome, a sinistra del receive window. Noi non la vedremo, più opzioni con lunghezza variabile, dovrebbe contenere l'\textit{header length} di 4 bit, lunghezza dell'header in parole da 32 bit, poi RST, SYN, FIN che si occupando di connection management
+    \item[receive window:] flow control, \# bytes che il ricevente è disposto ad accettare
+    \item[checksum:] NOI NON VEDREMO, 16 bit, controllo degli errori
+    \item[urgent pointer:] NOI NON VEDREMO, 16 bit, se il flag URG è impostato, indica il byte successivo al byte urgente
+    \item[data:] NOI NON VEDREMO, 0 o più byte di dati
+\end{description}
+
+\subsubsection{TCP numeri di sequenza e ACKs}
+\begin{description}
+    \item[Sequence numbers:] byte stream "number" of first byte in segment's data
+    \item[Acknowledgements:] seq \# of next byte expected from other side, cumulative ACK
+    \item[Q:] how receiver handles out-oforder segments?
+    \item[A:] TCP spec doesn't say, - up to implementor
+\end{description}
+
+\subsubsection{TCP, round trip time e timeout}
+Q: how to set TCP timeout
+value?
+▪ longer than RTT, but RTT varies!
+▪ too short: premature timeout,
+unnecessary retransmissions
+▪ too long: slow reaction to
+segment loss
+Il senso di tutto ciò è che RTT non è fisso ma bisogna cercare di settare un timeout sufficiente a permettere al pacchetto di arrivare e al ricevente di rispondere.
+
+Q: how to estimate RTT?
+▪ SampleRTT:measured time
+from segment transmission until
+ACK receipt
+• ignore retransmissions
+▪ SampleRTT will vary, want
+estimated RTT “smoother”
+• average several recent measurements
+(EstimatedRTT),not just current
+SampleRTT (quindi una media degli ultimi RTT misurati)
+
+Come lo misuro?
+$$EstimatedRTT = (1-\alpha)*EstimatedRTT + \alpha*SampleRTT$$
+senti la lezione per capire l'equazione.\\
+Per il timeout, aggiungo un margine di sicurezza, tempo aggiuntivo per evitare la situazione in cui metto un timeout troppo breve e ritrasmetto inutilmente. $$TimeoutInterval = EstimatedRTT + 4*DevRTT$$
+Dove DevRTT è il mio margine di sicurezza (perché 4* non lo sa nessuno, neanche il prof, credo non lo dicano proprio le specifiche).\\
+L'intervallo varia anche in base al valore del RTT stimato.
+N.B.: quando apri una connessione e sei appena partito, non hai nessun RTT stimato, quindi di solito si dà il SampleRTT come valore all'EstimatedRTT.
+
+\subsubsection{TCP Sender (simplified)}
+\begin{description}
+    \item[data received from application]
+    \begin{description}
+        \item[create segment with seq #] seq # is byte-stream number of first data byte in segment
+        \item[start timer] 
+        \begin{itemize}
+            \item think of timer as for oldest unACKed segment
+            \item expiration interval: TimeoutInterval
+        \end{itemize}
+    \end{description} 
+    \item[timeout] 
+        \begin{itemize}
+            \item retransmit segment that caused timeout
+            \item restart timer
+        \end{itemize}
+    \item[ACK received:] if ACK acknowledges previously unACKed segments
+        \begin{itemize}
+            \item update what is known to be ACKed
+            \item start timer if there are still unACKed segments
+        \end{itemize}
+\end{description}
+
+\subsubsection{TCP: retransmission scenarios}
+Me lo sono persa
+
+\subsubsection{TCP: fast retransmit}
+Me lo sono persa
+\definizione{If sender receives 3 additional ACKs for same data ("triple duplicate ACKs"), resend unACKed segment with smallest seq \# (likely that unACKed segment lost, so don't wait for timeout).}
+Smallest seq \# perché può capitare una perdita multipla.\\
+importantissimo!!! Unico caso in cui non aspetto il timeout per ritrasmettere.
+
+\subsubsection{TCP controllo di flusso}
+Abbiamo detto che avviene nella parte del segmento TCP "receiver window", che si occupa di flow control (\# bytes che il ricevente è in grado di accettare).
+\definizione{Flow control: receiver controls sender, so sender won't overflow receiver's buffer by transmitting too much, too fast.}
+\begin{description}
+    \item[receive buffer:] fixed amount of buffer space, allocated for a TCP socket
+    \item[receiver advertises free buffer space by] including value of RcvWindow in segment
+    \item[sender limits unACKed data to] receiver's RcvWindow
+    TCP receiver “advertises” free buffer space in \textbf{rwnd} (receive window) field in TCP header (many operating systems autoadjust RcvBuffer)
+    ▪ sender limits amount of unACKed
+    (“in-flight”) data to received rwnd
+    ▪ guarantees receive buffer will not
+    overflow
+\end{description}
+
+\subsubsection{TCP connection management}
+before exchanging data, sender/receiver “handshake”:
+▪ agree to establish connection (each knowing the other willing to establish connection)
+▪ agree on connection parameters (e.g., starting seq #s)
+risorse (tipo variabili al centro dell'immagine) da allocare prima dell'handshake.
+% immagine
+
+\subsubsection{TCP 3-way handshake, per aprire una connessione}
+% immagine
+    
+\subsubsection{TCP chiudere una connessione}
+% immagine
+\begin{itemize}
+    \item client, server each close their side of connection
+        \begin{itemize}
+        \item send TCP segment with FINbit = 1 
+        \end{itemize}
+    \item respond to received FIN with ACK
+        \begin{itemize}
+        \item on receiving FIN, ACK can be combined with own FIN
+        \end{itemize}
+\end{itemize}
+    
+\subsubsection{TCP: controllo congestione}
+\definizione{Congestion: informally, "\textit{too many sources sending too much data too fast for network to handle}".}
+▪ manifestations:
+• long delays (queueing in router buffers)
+• packet loss (buffer overflow at routers)
+▪ different from flow control!
+NB: controllo di flusso esclusivo del ricevente, controllo di congestione è un problema di tutti i nodi della rete.
+When network gets closer to saturation of available resources, delay and
+loss percentage increase
+▪ If the transport layer retransmits messages, the average number of
+messages retransmissions increases too
+▪ While throughput (i.e., messages traversing the network) is close to 100\%
+of capacity, “goodput” experienced by the application decreases!
+% immagine
+Il goodput sono le informazioni che a me effettivamente interessano e droppa così nel grafico perché gran parte delle informazioni che io ricevo sono ritrasmissioni a me non utili.
+
+\subsubsection{Approaches towards congestion control}
+Non andremo a vederla più di tanto e comunque è vagamente fatto da quale parte del segmento TCP?\\
+End-to-end congestion control:
+▪ no explicit feedback from
+network
+▪ congestion inferred from
+observed loss, delay
+Approaches towards congestion control
+data data ACKs ACKs
+▪ approach taken by TCP
+
+Network-assisted congestion
+control:
+▪ routers provide direct feedback
+to sending/receiving hosts with
+flows passing through congested
+router
+▪ may indicate congestion level or
+explicitly set sending rate
+
+Usa un approccio \textit{Additive Increase Multiplicative Decrease}: senders can increase sending rate until packet loss (congestion) occurs, then decrease sending rate on loss event.
+\begin{description}
+    \item[\underline{A}dditive \underline{I}ncrease]
+    \item[\underline{M}ultiplicative \underline{D}ecrease] 
+\end{description}
+Parliamo di \textit{comportamento a dente di sega} di AIDM, vedi il grafico.
+% immagine
+
+TCP sending behavior:
+▪ roughly: send min{cwnd,rwnd}
+bytes, wait RTT for ACKS, then send
+more bytes
+▪ When cwnd < rwnd, congestion
+control is dominant w.r.t. flow
+control
+% questo sopra affiancato all'immagine dove le lineette verticali sono i bytes.
+TCP sender limits transmission: $LastByteSent - LastByteAcked < min{cwnd, rwnd}$
+▪ cwnd is dynamically adjusted in response to observed network
+congestion (implementing TCP congestion control)
+▪ rwnd is instead adjusted according to the received value by the receiver
+(implementing TCP flow control)
+Tre fasi:
+\begin{description}
+    \item[slow start:] quando inizia la connessione, il rate di invio viene aumentato in maniera esponenziale. Nome un po' infelice (per citare il prof) visto che è tutto tranne che slow.
+    \item[congestion avoindance:] 
+        \begin{description}
+            \item[Q:] when should the exponential increase switch to linear?
+            \item[A:] when cwnd gets to 1/2 of its value before last timeout
+            \item[Implementation:]
+            \begin{itemize}
+                \item variable \textbf{ssthresh}
+                \item on loss event, \textbf{ssthresh} is set to 1/2 of the value of \textbf{cwnd} just before loss event
+            \end{itemize} 
+        \end{description} 
+\end{description}
+TCP Reno: it adopts the Fast Recovery mechanism after three duplicates acks
+\begin{itemize}
+    \item set \texttt{cwnd} to \texttt{ssthresh + 3 MSS} (congestion avoidance)
+    \item same as TCP Tahoe when timeout is reached
+\end{itemize}
+% immagine
 
 
 \subsection{UDP, User Datagram Protocol}
