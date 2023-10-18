@@ -322,33 +322,49 @@ Elenchiamo ora alcune proprietà importanti della Probabilità Condizionata:
         \item $P(B|A) = \frac{P(A|B)P(B)}{P(A)} =  60\%$, ovvero "il 60\% delle femmine estratte provengono dalla $1^B$".
     \end{enumerate}
 }
-
+\pagebreak
 \section{Indipendenza di eventi}
-Può capitare che, per un evento A, l'informazione che un altro evento B si è verificato
-non ne cambi la probabilità.
-\begin{equation}
-    P(A|B) = P(A)
-\end{equation}
-che equivale
-\begin{equation}
-    P(A \cap B) = P(A)P(B)
-\end{equation}
-In questo caso gli eventi A e B si dicono \textbf{Indipendenti}
-\paragraph{Esempi}
-Lancio di due dadi, i risultati sono eventi indipendenti
-\\ Urna contenente 5 palline rosse e 3 palline verdi. Pesco in successione due palline, 
-senza reimmissione. La probabilità che la prima pallina sia rossa e che la seconda sia rossa
-sono \textbf{dipendenti}!
+Può capitare che, per un evento $A$, l'informazione che un altro evento $B$ si è verificato
+\textbf{non ne cambi la probabilità}.
+\definizione{
+    Se abbiamo due eventi $A$ e $B$, e la probabilità di $A$ dato $B$ è uguale a quella di $A$:
+    \[ P(A|B)=P(A)\]
+    Allora i due eventi si dicono \textbf{Indipendenti}
+}
 
-\subsection{Eventi indipendenti != Eventi disgiunti!}
+Dire che gli eventi $A$ e $B$ sono indipendenti equivale a dire che la probabilità della loro \textbf{intersezione} è uguale
+al prodotto delle loro probabilità:
+\formula{Intersezione di Eventi Indipendenti}{$P(A \cap B) = P(A)\cdot P(B)$}
+Perchè se :
+\[P(A|B) = \frac{P(A \cap B)}{P(B)} = P(A)\]
+allora implica che:
+\[ \frac{P(A \cap B)}{P(B)}= \frac{P(A) \cdot \cancel{P(B)}}{\cancel{P(B)}}\]
+\paragraph{Complementari}
+Se $A$ e $B$ sono indipendenti, allora lo sono anche $A$ e $B^c$, e dunque anche ($A^c$ e $B$) e ($A^c$ e $B^c$).
+\\Infatti, per la formula di disintegrazione $P(A) = P(A\cap B) + P(A\cap B^c)$ implica che:
 \begin{center}
-    \includegraphics[width=120mm, scale=0.5]{differenza_disgiunti_indipendenti.png}
-\end{center}
-Quindi due eventi indipendenti non possono essere disgiunti,
-tranne nel caso "banale" in cui uno dei due abbia probabilità
-nulla.
+    $\implies P(A\cap B^c) = P(A) - P(A\cap B) = P(A) - P(A) \cdot P(B)$
+    \\$= P(A) - (1-P(B)) = P(A) \cdot P(B^c)$
+\end{center} 
+% \paragraph{Esempi}
+% Lancio di due dadi, i risultati sono eventi indipendenti
+% \\ Urna contenente 5 palline rosse e 3 palline verdi. Pesco in successione due palline, 
+% senza reimmissione. La probabilità che la prima pallina sia rossa e che la seconda sia rossa
+% sono \textbf{dipendenti}!
 
-\paragraph*{Esempio} Una famiglia ha due figli/e descritti da 
+\paragraph{}
+
+\osservazione{
+    \begin{center}
+        Eventi indipendenti $\neq$ Eventi disgiunti!
+        \includegraphics[width=120mm, scale=0.5]{differenza_disgiunti_indipendenti.png}
+    \end{center}
+    Quindi due eventi indipendenti non possono essere disgiunti,
+    tranne nel caso "banale" in cui uno dei due abbia probabilità
+    nulla.
+}
+
+\esempio{ Una famiglia ha due figli/e descritti da 
 \\ $\Omega = \{MM, FF, FM, FF\}$ e $P=\text{Probabilità uniforme} = \frac{1}{4}$
 \\ Consideriamo gli eventi:
 \begin{itemize}
@@ -360,7 +376,7 @@ nulla.
     In questo caso A e B sono \textbf{indipendenti}, ma \textbf{NON disgiunti};
 \\ A e C sono \textbf{disgiunti}, ma \textbf{NON indipendenti}.
 \end{center}
-
+}
 \paragraph{Estensioni}
 Tre eventi A, B, C si dicono indipendenti se valgono
 \begin{center}
