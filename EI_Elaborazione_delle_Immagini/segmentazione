@@ -1,0 +1,51 @@
+\chapter{Segmentazione}
+\section{Leggi della gestalt}
+Slide 6-14.\\
+Le parti di un insieme percettivo vengono raccolte in unità conformi.
+\begin{itemize}
+    \item Leggi della vicinanza
+    \item Legge della somiglianza
+    \item Legge della chiusura
+    \item Legge della "curva buona"
+    \item Legge della "buona forma"
+    \item Legge dell'esperienza
+\end{itemize}
+Slide 8, mi sono persa che ha detto.\\
+Slide 9, mi sono persa che ha detto.\\
+Slide 10, esempio dei tasti dell'ascensore: facile che la gente sbagli. Anche la slide 11, ci aspettiamo un mondo chiuso, vediamo immagini chiuse anche dove non ci sono.\\
+Slide 12: dovrebbero essere dei 9. Nella slide 13 oscura la parte bianca e si vede un pochino meglio. Meaning? La percezione è bella complicata.\\
+Slide 14 bel grafico da inserire, processo di passaggio da immagine numerica a classificazione degli oggetti.
+\section{Segmentazione}
+La segmentazione delle immagini è uno dei passi più importanti dell'elaborazione di
+immagini ed è il processo indispensabile dell'analisi di immagini. 
+\definizione{La segmentazione consiste nel partizionare l'immagine in insieme di punti omogenei
+rispetto ad una data caratteristica pittorica. Lo scopo finale è di separare oggetti dallo
+sfondo e di distinguere oggetti tra loro in base a tali caratteristiche visuali.}
+Due i principali approcci:
+\begin{itemize}
+    \item segmentazione per contorni
+    \item segmentazione per regioni
+\end{itemize}
+Moltissime le tecniche (tenendo anche conto delle moltissime tipologie di immagini e dei diversi domini applicativi).\\
+Slide 16, grafico da inserire.\\
+Slide 17, barbapapà/blop. Esempio di \textbf{segmentazione per contorni}, operata su segmentazione di livelli di grigio. Se l'immagine contiene della tessitura o del rumore (sinistra e centro nella seconda riga) la segmentazione per contorni non funziona: aumentare e riconoscere gli edge aiuta tanto. Invece per l'immagine a destra della seconda riga a segmentazione per eddge non funziona. Come fare?\\
+Quando zoomma tanto sull'ultima immagine si vede perché: i bordi sono squadrettati. Potrei classificare guardando il suo istogramma (stiamo guardando l'immagine a sinistra della seconda riga con sfondo grigino e rumore): sullo sfondo liscio avrò un picco su un livello solo, dove c'è rumore sarà più spalmato. Una misura utile sarà la deviazione standard.\\
+Tornando all'immagine con i bordi frastagliati (a destra nella seconda riga). Si potrebbe usare un algoritmo di clustering, anche se ancora non li abbiamo visti, che riconosce e raggruppa i bordi molto squadrettati. Questo è un esempio di \textbf{segmentazione per regioni}.\\
+Per tipo trovare il baricentro delle due immagini a destra (sopra e sotto) devo fare \textbf{labeling di immagini sconnesse} (?).
+\subsection{Segmentazione per regioni}
+Slide 18, è un'immagine paletizzata (argomento scorsa lezione) a cui poi vengono aggiunti edges per ottenerne una versione a disegno.
+\definizione{\textbf{Regione} = oggetto o parte di un oggetto}
+Per individuare le regioni posso lavorare solo nel dominio delle caratteristiche (livello di grigio, colore, \dots) o nel dominio spaziale (coordinate spaziali + livello di grigio, colore,\dots) \\
+Potrebbe essere fondamentale, per una segmentazione sensata in relazione ad un certo problema, tenere conto anche della forma delle regioni che si devono ottenere.\\
+La scelta delle proprietà da utilizzare per la segmentazione è legata non solo al problema in esame, ma anche alla natura dei dati a disposizione: colore, intensità, tessitura e altre proprietà spaziali possono di norma essere utilizzate.\\
+Slide 20:
+\definizione{Data una immagine $I$ ed un predicato $P$ (criterio di omogeneità) segmentare una immagine significa trovare un partizione $S$ di $I$ in un insieme di regioni $R_1, \dots R_N$ tale che:}
+% seguono equazioni che sono da copiare qua dentro
+\subsection{Labeling delle componenti connesse}
+Come faccio a sapere che un pixel chiaro appartiene ad una moneta e non ad un'altra? Quante monete ci sono?\\
+Il labeling delle componenti connesse di un'immagine binaria è una operazione mediante cui le diverse regioni presenti nella scena vengono individuate ed a ciascuno di esse viene associata un'etichetta "simbolica" univoca. Il processo può essere generalizzato al caso in cui l'immagine non sia binaria.
+\subsubsection{Esempio: conteggio dei globuli rossi}
+Esempio di progetto di esame.\\
+• Come faccio a sapere se un pixel è di rumore?• Quanti regioni sono presenti nell’immagine? • Quante regioni sono, con ragionevole certezza, globuli rossi ?
+Slide 22-23.
+

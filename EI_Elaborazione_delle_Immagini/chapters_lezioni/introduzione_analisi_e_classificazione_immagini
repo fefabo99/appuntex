@@ -1,0 +1,95 @@
+\chapter{Introduzione all'analisi e classificazione di immagini}
+Legata a capire (più che a ricostruire una modellizzazione 3D) cosa c'è nel mondo. Una parte sarà \textit{pattern rekognition} (riconoscimento di pattern) e una parte sarà \textit{computer vision} (visione artificiale). Hanno a che fare con intelligenza artificiale e machine learning. Non tanto a che fare con le regole, ma tipo: prendo un'immagine e riconosce cosa c'è dentro e la classifica.\\
+Pattern rekognition che faremo noi implicano una situazione in cui abbiamo \textit{controllo} (ha fatto un esempio di un altro corso credo magistrale in cui c'è analisi e classificazione "in the wild", ovvero senza controllo).\\
+Slide 6, cosa vedi? Tre sfere: io come umano lo vedo, ma l'algoritmo vedrà un'immagine grigia con dei puntini neri. Questo perché non possiamo più limitarci all'uso di operatori locali.\\
+Slide 7-8 (sotto) fanno vedere secondo il libro a che punto stiamo.\\
+Quando parla di fuorisede sta alla slide 10 ma mi sono persa cosa ha detto prima.
+
+\section{Analisi}
+\subsection{Analisi di basso livello}
+Quello che abbiamo visto finora. Entra un'immagine, esce un'immagine.\\
+Slide 11.
+
+\subsection{Analisi di livello intermedio}
+Entra un'immagine, esce un'informazione. Immagine -> parametri. Esempio ecografia.\\
+Slide 12.
+
+\subsection{Analisi di alto livello}
+Alto livello in analogia alla visione umana.\\
+Entrano dei descrittori, esce una classificazione o interpretazione. Parametri -> simboli. Esempio neo.\\
+Slide 13.\\
+Quando parla delle reti che iniziano a dare problemi, dice che non stiamo più dietro alle reti neurali, perché danno quelle risposte? Servono spiegazioni su come ci sono arrivati, basandosi su attributi che hanno permesso la loro analisi. Questo approccio è simile a quello che useremo noi.
+
+\section{Introduzione all'elaborazione delle immagini}
+Slide 14-19.\\
+L'ultima volta noi abbiamo visto \textbf{Pre-processing (image enhancement):} modifica della distribuzione dei valori di grigio (slide 14-15).\\
+Ora vedremo la \textbf{segmentazione:} individuazione di regioni omogenee. Vedremo algoritmi di binarizzazione a tale scopo. Slide 16-17. Vedremo che nella binarizzazione ci sono due principali classi.\\
+Etichettamento (labeling) delle regioni connesse: rappresentazione e descrizione (slide 19) che lui farà in modo leggermente diverso dal libro.\\
+Parliamo di labeling delle regioni connesse quando ?.\\
+Parliamo di descrizione quando abbiamo . Uffa.\\
+Trovate le caratteristiche, posso usarle per distinguere un oggetto da un altro. Es. nella slide 19, riconoscere bulloni dai dadi. Se le features sono usate opportunamente, sulle basi di questi descrittori (forme, colori, etc) posso separare le classi, posso fare classificazione.\\
+Se tipo dicessi "l'oggetto quattro" credo, sarebbe un oggetto "unknown", un oggetto che non asomiglia a nulla di quelli che riconosciuto grazie ai miei descrittori. L'importante è che i miei \textit{unknown} siano ragionevolmente \textbf{isolati}.
+\subsection{Classificazione vs riconoscimento}
+Slide 20.
+\begin{description}
+    \item[Classificazione:] ho una base di dati (es.: database di carte, devo dire quale carta è) e vedo \textbf{quale} oggetto è.
+    \item[Riconoscimento:] questo oggetto è lui o non è lui. Es. riconoscimento facciale o dell'impronta. Portano ad esempio ad un falso positivo o falso negativo.
+\end{description}
+Scegliere quale è meglio dipende dalle esigenze del nostro progetto.\\
+Questo processo può essere fatto in maniera iterativa: es., è una faccia sì o no (Dennunzio style)? Se è una faccia, è mia o sua etc?\\
+\subsection{Clustering}
+Vuol dire \textbf{raggruppamento} (classificazione non supervisionata). Raggruppo in base a set-similarities, ovvero certe caratteristiche, ma senza avere un nome per le classi. Es.: nell'immagine di dadi e bulloni, potrei sulla base di uno lungo uno tondo uno forato\dots\\
+Slide 21. Esempio: ho un'immagine e voglio raggruppare gli oggetti. Slide 22, immagini storiche. Slide 23, immagine browser Berkley, esempio di segmentazione per regione, segmentazione di basso livello: fa l'equivalente di un clustering (classificazione non supervisionata) usando solo classificazione di proprietà dei pixel, in base ad es. alla posizione o al livello di grigio, che vengono poi raggruppati in regioni. Un altro esempio di segmentazione in regioni è slide 24, che presenta un'immagine binaria (qua parla di Optical Char Rekognition).\\
+Slide 25, altro esempio di segmentazione non utile. Slide 26? Buona segmentazione? Risposta dipende, da cosa volevo: se volevo riconoscere i volti, vedo esempio se trovo un ovale, una volta trovato se ci sono gli occhi\dots\\
+Noi vedremo \textbf{segmentazione a livelli di grigio} e \textbf{a colori} (slide 27).\\
+La "bacchetta magica di Photoshop" di cui ha parlato è la slide 28.\\
+Noi vedremo anche (libro ne tratta) \textbf{change detection sui video}. Come funziona? Es. lui che si sposta in video: ho due fotogrammi, in uno era prima nel secondo dopo; nel primo lascerà un buco e nel secondo deve riconoscere la sua presenza. Questo è un esempio di change detection che opera in modo dinamico.
+\section{Descrivere un'immagine}
+Slide 30-33.\\
+La scelta delle features per un processo di classificazione/riconoscimento \textbf{non deve prescindere dalla analisi o dal riconoscimento degli oggetti}, non ricordo il termine usato.\\
+\E più affascinante operare senza una base di dati. Cercare domini e applicazioni meno studiate.\\
+% Es. riconoscimento facciale: non ho una base di dati di tutte le facce del mondo, ma ho un'idea di come sono fatte le facce.\\ Me l'ha scritto Co-Pilot e non dico di no ma il prof non l'ha detto.
+Fa un inciso con una slide di un'altra presentazione, esempio impianto di riconoscimento di incendi in boh metropolitana. Parla del servizio di riconoscimento di Amazon (Amazon Rekognition), e fa l'esempio di riconoscimento di incendi ma purtroppo non è abbastanza affidabile, c'è ancora tanto lavoro da fare. Però utile per vedere un esempio di output di classificazione (immagine somministrata con un binario di treni di notte con un fuocherello, sputa fuori una lista di classi di oggetti tra cui non c'era fuoco).
+\subsection{Descrizione di un'immagine - cosa vedremo}
+Noi classificheremo tramite: \textbf{colore}, \textbf{texture}, \textbf{forma}.
+\subsection{Procedimento:}
+\subsubsection{Classificazione}
+Slide 34.\\
+\begin{itemize}
+    \item Classificazione (categorie note a priori)
+    \item Clustering (creazione di nuove categorie)
+\end{itemize}
+\subsubsection{Riconoscimento vs Classificazione}
+Slide 35.
+\subsubsection{Riconoscimento: pre-processing}
+Slide 36-37.\\
+Il pre-processing è ancora necessario!
+\subsubsection{Riconoscimento gerarchico}
+Slide 38.\\
+Es.: rimozione occhi rossi.
+\subsubsection{Classificazione delle immagini per annotazione}
+Slide 39: riconoscimento gerarchico then classificazione.\\
+Le immagini si possono classificare in tante classi, capita che la classe non abbia nulla a che fare con l'immagine e questo porta ad errore (es. immagine del gelato alla fragola censurato da piattaforme tipo Instagram).
+\subsubsection{Esempi di applicazione}
+Slide 40.
+\begin{itemize}
+    \item Ispezione
+    \item Controllo qualità
+    \item Sistemi anti-frode
+    \item Misure visuali
+\end{itemize}
+Slide 41.\\
+Slide 42: che differenze ci sono fra un gruppo di esempi o l'altro? Uno è non in the wild () e uno in the wild.\\
+Un esempio riconoscimento di immagini per valutare se vanno bene per un passaporto: potrebbe essere uno stage. Slide 43.\\
+Un altro esempio di applicazione reale è la slide con il prof. Mariani (slide 44) con riconoscimento facciale effettuato anche su volti che non ci sono davvero.
+\subsubsection{Esempi di progetto d'esame}
+Alla fine di questo modulo e quindi del corso che genere di progetti saprete fare? I progetti di esami passati sono un esempio delle competenze che acquisirete.\\
+Slide 45-59 (la slide 59, riconoscimento di scritte, si basa su un lavoro che ha fatto lui per Olivetti tipo 20 anni fa).
+\subsubsection{Conclusione dell'introduzione}
+• Le immagini e i video sono già ovunque, 3D nel futuro.
+• Moltissime e differenti le applicazioni:
+- militare, astronomia, geologia, geografia, medicina, automazione industriale, fotografia digitale, sicurezza, identificazione, monitoraggio ambientale, beni culturali, ... • Moltissimi gli algoritmi disponibili (nei sistemi o in letteratura)
+- come scegliere quali algoritmi applicare?
+- come scegliere i parametri degli algoritmi ?
+- come scegliere come combinare i singoli algoritmi per ottenere il risultato?- come valutarli i singoli algoritmi e la loro integrazione ? 
+
