@@ -128,8 +128,8 @@ Ovvero al combinazione lineare di vettori $\subset S$ diversi da $z_h$, quindi g
 %Dimostrazione Inversa ed Esempi da aggiungere
 
 \section{Basi}
-Domanda: come comunico un sottospazio vettoriale?
-Sia $W<V$. Ci sono 2 modi:
+Domanda: come "comunico" un sottospazio vettoriale?
+\\Sia $W<V$, abbiamo 2 modi per "comunicarlo":
 \begin{enumerate}
     \item Siccome $W\subset V$, allora $W=\{...\}$.
     \item Sfrutiamo il fatto che $W<V$ e quindi $<S>=W$ per qualche \underline{insieme} $S\subset V$,
@@ -167,3 +167,24 @@ Però posso semplicemente dimostrarne 5. %SPiegare
     Quindi $\lambda_i = x_i$
     \\$\implies$ Tale combinazione lineare é \textbf{unica}, qiundi (c) é verificata e $S$ é una Base.
 }
+
+%TODO: sistemare questa parte
+Uno dei teoremi più importanti per le basi è il teorema di \emph{estensione di una base}:
+\paragraph{Teorema 2:}
+Sia $I\{\underline{v}_1,...,\underline{v}_n\}$ insieme di vettori \textbf{Linearmente indipendenti} t.c. $I\subset V$,
+e $G\{\underline{w}_1,...,\underline{w}_n\}$ insieme di \textbf{generatori} di $V$,
+Allora $\exists G' \subset G : I \cup G'$ è una base di V.
+
+\paragraph{Teorema 3:} Con le notazioni del teorema due, avremo che $\#(I) \leq \#(G)$, ovvero il numero di elementi di $I$ è minore o uguale al numero di elementi di $G$.
+
+\paragraph{Corollario} del teorema 3:
+Se $\exists G$ insieme finito t.c: è un sistema di generatori di $V$-spazio vettoriale, allora ogni base di $V$ ha lo stesso numero di elementi.
+Ovvero fissato uno spazio, tutte le sue basi hanno lo stesso numero di elementi.
+
+\definizione{
+    La dimensione di uno spazio vettoriale $V$ che ammette un sistema di generatori finito è il numero di elementi di una base qualsiasi di $V$.
+}
+La dimensione comprende sia l'insieme che la struttura algebrica.
+
+\paragraph{Corollario} $dim(V)=n\implies$ $n$ vettori indipendenti sono anche generatori.
+Implica anche che $n$ generatori di $V$ sono linearmente indipendenti.
