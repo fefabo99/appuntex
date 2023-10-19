@@ -31,9 +31,9 @@ $a$ e $b$ sono interi non negativi.
 Questo significa che i Kernel sono di dimensione dispari in entrambe le direzioni.
 
 In generale, il filtraggio spaziale di un'immagine di dimensione $M\times N$ e un kernel di dimensione $m\times n$ è dato dall'espressione:
-\[
+\begin{equation}\tag{3.10}\label{eq:3.31}
     g(x,y) = \sum_{s=-A}^{a} \sum_{t=-b}^{b} w(s,t)f(x+s,y+t)  
-\]
+\end{equation}
 Dove $x$ e $Y$ sono variati in modo che il centro (origine) del kernel visita ogni pixel in $f$ una volta.
 
 \osservazione{
@@ -44,3 +44,59 @@ Dove $x$ e $Y$ sono variati in modo che il centro (origine) del kernel visita og
 }
 
 \section{Correlazione e Convoluzione Spaziale}
+La correlazione spaziale è illustrata graficamente nell'immagine in fig 3.34, ed è descritta matematicamente dall'equazione 3.31.
+La correlazione consiste in muovere il centro del kernel su una immagine e computando la somma dei prodotti ad ogni punto.
+Le meccaniche della Convoluzione sono le stesse, ma il kernel è ruotato di 180°.
+
+\osservazione{Poichè la convoluzione ha lo stesso kernel della correlazione ma ruotato di 180°, se i valori del kernel sono simmetrici sul centro
+allora convoluzione e correlazione daranno lo stesso risultato.
+}
+
+\section{Filtri di Smoothing} %pagina 164 libro
+I filtri di Smoothing, anche detti filtri di \textbf{Media}, sono filtri spaziali utilizzati per ridurre transizioni nette di intensità.
+Siccome il rumore \emph{random} generalmente consiste di transizione nette in intensità, un ovvio utilizzo dello smoothing è la \textbf{riduzione del rumore}.
+
+Un'altra applicazione dello smoothing è la riduzione dei falsi contorni che appaiono quando campioniamo un'immagine con un livello insufficiente di intensità.
+
+\paragraph{Filtraggio spaziale Lineare} %come discusso in precedenza (??)
+Il filtraggio spaziale lineare consiste nella convoluzione di un immagine con un kernel.
+Fare la convoluzione di un'immagine con un kernel di un filtro di smoothing risulta nel \emph{Blur} dell'immagine, con il livelo di sfocatura
+determinato della dimensione del kernel e dai valori dei suoi coefficienti.
+
+\subsection{Box Filter Kernels}
+Il filtro spaziale lineare più semplice è il \textbf{box kernel}, in cui i coefficienti hanno sempre lo stesso valore (tipicamente 1).
+Il nome "box kernel" derive dal fatto che il kernel sembra una scatola quando visualizzato in 3D.
+\begin{center}
+    \includegraphics[width=.5\textwidth]{images/box-filter-kernel.jpg}
+\end{center}
+Un box-filter di dimensione $m\times n$ è un array $m\times n$ con tutti $1$ come coefficienti, con una costante di normalizzazione davanti, il cui
+valore è $1$ diviso dalla somma dei valore dei coefficienti.
+
+\paragraph{Normalizzazione} Questa normalizzazione, che viene applicata a tutti i filtri di smoothing, ha due funzioni:
+\begin{enumerate}
+    \item Il valore medio di un area di intensità costante è di uguale intensità nell'immagine filtrata, come dovrebbe.
+    \item Normalizzare il kernel in questo modo previene l'introduzione di un Bias durante il filtraggio. ovvero,
+    la somma dei pixel nell'immagine originale e in quella filtrata è lo stesso.
+\end{enumerate}
+
+\subsection{Filtro Gaussiano}
+Essendo estremamente semplici, i box-filters sono ottimi per rapide sperimentazioni e spesso danno risultati visivamente accettabili.
+Hanno però le loro limitazioni, per esempio quando si vuole simulare la sfocatura di una lente il box filter è una approssimazione
+abbastanza povera delle sue caratteristiche. Inoltre, il box filtering favorisce il blurring lungo direzioni \textbf{perpendicolari}, quindi 
+dove ci sono immagini con tanti dettagli o forti componenti geometriche, la direzionalità dei box filters spesso produce risultati indesiderabili.
+\\In quest'ultimo tipo di applciazioni i kernel scelti sono quelli \textbf{Circolarmente Simmetrici}.
+
+\paragraph{Il Kernel Gaussiano}
+Il kernel del filtro gaussiano è calcolato usando la seguente equazione:
+\[ G(r) = Ke^{-\frac{r^2}{2\sigma^2}} \]
+in cui $G(r)$ è il coefficiente del elemento a distanza $r$ dal centro all'interno del Kernel, e $K$ e $\sigma$ sono delle costanti che vengono scelte in base all'intensità del filtraggio di cui abbiamo bisogno.
+\begin{center}
+    \includegraphics[width=1\textwidth]{images/3.41-gaussian-kernel.jpg}
+\end{center}
+
+\paragraph*{Distanza dal centro}
+Giusto per curiostà, questa è la tabella in cui sono riportate le varie distanze dal centro per i filtri quadrati.
+\\Nel calcolo dei coefficienti del filtro gaussiano usiamo, per ogni coefficiente, questa distanza per calcolare il valore del coefficiente.
+\begin{center}
+    \includegraphics[width=.5\textwidth]{images/3.40-distance-from-center.jpg}
+\end{center}
