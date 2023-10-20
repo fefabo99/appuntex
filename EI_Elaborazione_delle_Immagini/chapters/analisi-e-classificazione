@@ -1,0 +1,7 @@
+\chapter{Analisi e Classificazione delle Immagini}
+Il pattern recognition che affronteremo noi assume che le condizioni siano abbastanza controllate.
+
+
+Classificazione: ho una base di dati (per esempio carte di uno) e devo dire quale carta è.
+Riconoscimento e classificazione sono processi diversi: riconoscimento riconosce un oggetto specifico (tipo una persona specifica),
+nella classificazione riconosco una classe di oggetti.

@@ -100,3 +100,10 @@ Giusto per curiostà, questa è la tabella in cui sono riportate le varie distan
 \begin{center}
     \includegraphics[width=.5\textwidth]{images/3.40-distance-from-center.jpg}
 \end{center}
+
+\paragraph{Dimensione del Kernel}
+La dimensione del kernel gaussiano non deve essere arbitraria, perchè se abbiamo un kernel troppo grosso per il sigma che gli abbiamo assegnato
+sprechiamo energia computazionale. Un filtro molto grande e uno più piccolo con lo stesso sigma daranno lo stesso risultato.
+
+La dimensione del filtro $N$ e la $\sigma$ sono quindi legati da questa regola empirica:
+\[ N = 1 + 2 \cdot \lfloor2.5 \cdot \sigma \rfloor \]
