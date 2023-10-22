@@ -1,0 +1,71 @@
+\chapter{Laboratori Elaborazione delle Immagini 2023-34}
+\section{Lab1 13 Ottobre 2023}
+\subsection{Il negativo di un'immagine}
+Serve per rimappare un'immagine. Lo faccio sottraendo la prima immagine a 255 e asegnando il tutto ad una seconda immagine.
+\begin{verbatim}
+    >> im1 = imread('path\img.format');
+    >> im2 = 255 - im1;
+    >> imshow(img2);
+\end{verbatim}
+
+\subsection{Mostrare a schermo due immagini}
+\begin{verbatim}
+    >> figure(i);
+    >> subplot(1,2,1);
+    >> imshow(im1);
+    >> subplot(1,2,2);
+    >> imshow(im2);
+\end{verbatim}
+\begin{description}
+    \item[figure;] : crea una finestra, quando ne serve più di una si aggiunge \texttt{(i)} con un indice a scelta.\\ 
+    Se non passiamo niente in input, MatLab indicizza da solo, altrimenti glielo diciamo noi l'indice.\\
+    Rendo attiva la finestra richiamandola con l'indice scelto.
+    \item[subplot(r, c, q);] : \texttt{subplot(n° righe, n° colonne, n° quadrante)}, rende attiva la \texttt{figure} e divide la finestra in riquadri (puoi fare più righe $(r>1)$ e più colonne $(c>1)$) e \texttt{q} dice in quale quadrante (della riga scelta con \texttt{r}) mettere l'immagine.
+\end{description}
+Poi abbiamo creato \texttt{im3} come somma di \texttt{im1} e \texttt{im2}, cosa esce? Un'immagine tutta bianca, perché si sommano tutti i valori matematici e sarà tutto 255. Poi, per mostrarla a schermo, se faccio solo \texttt{imshow(im3)} andrà a sovrascrivere quella negativa, perché non ho specificato che serve una nuova figure e quindi usa l'ultima attiva. Serve \texttt{figure;} per averne una nuova.
+
+\subsection{Pulizia dello schermo}
+Ogni volta che eseguo lo script mi si aprono finestre di figure.
+\begin{description}
+    \item[\texttt{close all;}]: chiude in automatico tutte le finestre.
+    \item[\texttt{clear all;}]: cancella in automatico tutte le variabili.
+\end{description}
+
+\subsection{Modificare size immagini}
+\texttt{imresize(clouds, size(moon))}
+
+\subsection{Le maschere binarie}
+Mi individuano una zona di interesse (in questo caso "dove vivono le nuvole") da togliere poi all'immagine originale.\\
+Come? \texttt{treeshold} mi ritorna un vettore logico, che posso usare come maschera binaria. Per ora la soglia la troviamo a mano.\\
+Abbiamo provato T = 0.5, ma non bastava. Abbiamo abbassato a 0.25, che poteva andare per quanto riguarda la zona di interesse, ma abbiamo abbassato ancora a 0.125 che mi ha preso ancora un po' di pixel.\\
+Spoiler alert: alla fine abbiamo rimesso 0.25 perché la maschera aveva preso troppi pixel scuri e quando si zoommava sulla foto finale era tutta rovinata con bordi scuri etc.\\
+Abbiamo provato 0 ed è diventato troppo, ha mostrato un effetto quadrettato che mi mostra artefatti/rumore che è tipico della compressione JPEG.\\
+0.125 va più che bene, poi la usiamo per togliere un pezzetto di immagine da quella della Luna.\\
+\begin{description}
+    \item[$1-mask_clouds$] mi ritorna la maschera binaria invertita, ovvero dove c'è 1 mette 0 e viceversa.
+    \item[$.*$] moltiplicazione punto punto, dove nella maschera invertita ho 0, si azzera il pixel corrispondente nell'immagine. 
+\end{description}
+Se volessi una maschera più smooth? Così che si nasconda il passaggio tra nuvola e sfondo della nuvola? Applico un filtro di smooth sull'immagine delle nuvole. Non tolgo totalmente il rumore, ma lo riduco localmente.
+
+\subsubsection{Immagini double}
+Prima mi sono dimenticata di segnare che spesso serve avere le immagini in forma double, si fa tipo 
+\begin{verbatim}
+    moon = im2double(imread("Lab1\moon.jpg"));
+\end{verbatim} 
+usando quindi il comando 
+\begin{verbatim}
+    im2double();
+\end{verbatim} 
+che converte l'immagine da \textit{uint8} in \textit{double}.
+
+\subsection{Gli istogrammi}
+\texttt{imhist();} mi ritorna l'istogramma dell'immagine.\\
+Dall'istogramma dell'immagine del cavallo vedo che è \textbf{ben contrastata}, ovvero uso tutti i valori del range di valori dispobile.\\
+\texttt{histeq();} mi ritorna l'immagine equalizzata.
+
+\subsection{Gamma correction}
+\texttt{imadjust();} mi ritorna l'immagine con la gamma corretta.\\
+\`E un mapping non lineare, che mi permette di rimappare i valori di un'immagine.
+
+\subsection{Compiti a casa - 1}
+Sort of assignment, sono 4 e danno fino a 2 punti in più all'esame (quindi se ne consegno 2 è solo 1 punto in più). Per dire, il primo chiede di scrivere una funzione \texttt{\textbf{myhistogram}} che calcola l'istogramma di una immagine a livelli di grigio. Noi sappiamo che un istogramma cumulativo (uint8 tra 0 e 255 monocanale) è un vettore che va da 0 a 255 e mi conta le occorrenze di ogni valore.

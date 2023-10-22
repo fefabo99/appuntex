@@ -1,0 +1,61 @@
+\section{Lab2 20 Ottobre 2023}
+\subsection{Es1}
+Es.1, su immagine \texttt{contrast.jpg}.\\
+Punto \texttt{a1.}: "Caricate l'immagine 'contrast.jpg' in una variabile im e scalataela tra 0 e 1." vuol dire \texttt{imread} e portarla in double con \texttt{im2double}.\\
+Punto \texttt{b1.}: \texttt{crop} mi prende una sottomatrice della mia immagine, che va da $(x_1,x_2)$ a $(y_1,y_2)$, ovvero:\texttt{crop = img}$(x_1:x_2,y_1:y_2)$\\
+Punto \texttt{c1.}: soglia T per trovare i valori scuri.\\
+Ci applichiamo la statistica di \textbf{media}, bisogna saper capire quale statistica è meglio.\\
+Ma MatLab opera per colonne; posso linearizzarlo, facendo \texttt{crop(:)}, così facendo la media avrà un solo valore.\\
+$media +- k * deviazione standard$ mi dà un intorno al picco dell'istogramma.\\
+Abbiamo parzialmente automatizzato la soglia.\\
+Punto \texttt{d1.}: due maschere light e dark che contengono rispettivamente le regioni chiare e scure di im usando la tecnica delle maschere.
+
+\subsection{Es2}
+\subsubsection{Filtri lineari}
+Sono filtri spaziali che possono essere espressi con funzioni lineari. Maschera di convoluzione (?) che prende l'intorno di un pixel e fa la media pesata di tutti i pixel del vicinato. Abbiamo visto a lezione diversi filtri, i più diffusi quelli di smoothing che riducono il rumore (variazione pseudorandomica dell'immagine).
+\subsubsection{I comandi}
+\texttt{fspecial("filtro", valore)}: funzione che permette di generare diversi tipi di filtri.\\
+In un filtro di media voglio fare la media di \texttt{n} valori, se ne ho 25 peso i valori per $\frac{1}{25}$.\\
+\texttt{imfilter(input, filtro)}: applica un filtro ad un input.\\
+Più aumento il filtro (5 -> 11 -> 21) più l'immagine si sfoca ma si crea un bordo perché dove non esistono i pixel vengono messi a 0 (quindi la convoluzione sui bordi mi crea bordi neri).\\
+Ci sono diverse opzioni per evitare ciò: replica i valori, o pescali da in giro, o boh.\\
+Ora dobbiamo creare delle immagini che siano la differenza tra immagine originale e filtrata in valore assoluto. Ma sono array di valori, non usiamo imshow. Usiamo \texttt{imagesc} (image scaling) che tratta gli array come fossero immagini e al tempo stesso le tratta con colori fasulli in modo da vedere le differenze. Però spiattella le immagini, perciò aggiungo \texttt{axis image} che mi mantiene le proporzioni. \texttt{colorbar} mi aggiunge una scala di valori per capire quanto è grande la differenza e dove, in base ai colori fasulli che mi ha messo. E dove lo vedo? Dove ci sono alte frequenze, ovvero nei dettagli, che è dove opera il filtro di smoothing.\\
+\underline{Quindi questi valori evidenziati dalle immagini colorati mi dicono \textbf{dove ho perso informazione}}, cosa che fanno i filtri di smoothing (sono da tonare adeguatamente).\\
+Tutto dipende dalla forza del rumore: se è poco evidente posso limitare la forza del filtro di smoothing.
+
+\subsection{Es3}
+Copio e incollo l'es2 perché riciclo il codice in quanto cambio solo il filtro che uso.
+\subsubsection{Il filtro gaussiano}
+Due parametri: dimensione spaziale del filtro e la $\sigma$.\\
+La sigma calcola quanto sono dispersi i valori della gaussiana rispetto alla sua media.\\
+Essendo distribuzione di probabilità, la sua area?boh senti la registrazione.\\
+I pixel più vicini a quello da calcolare hanno più peso rispetto a quelli più lontani.\\
+Come faccio filtro spaziale su distribuzione gaussiana? Vado a campionarla.\\
+Ha aperto la F3, poi la F5, poi la F7. Nella 5 la sottomatrice centrale è praticamente quella del 3. Stessa cosa per F7. Va da sé che anche F9. Che è succ? MatLab ha preso una funzione gaussiana di valori discreti e ha campionato la gaussiana, trovato certi valori utili.\\
+Una volta trovata la forma della gaussiana (sigma) bisogna tonare la gaussiana: perciò non ha senso andare troppo oltre un certo valore (in questo caso 5 perché i pixel intorno sono praticamente a 0).\\
+Quando creo un filtro gaussiano a due parametri, la dimensione spaziale del filtro e la sigma, questi due parametri non sono indipendenti ma sono legati tra loro. Di solito, si la dimensione di un filtro Gaussiano si ricava dalla seguente formula che garantisce di avere tutti i valori utili del filtro: $$N = 1 + 2 \times [2.5 \times \sigma]$$\\
+\texttt{figure, surf(filtro)}: mi fa vedere la forma del filtro.\\
+Il filtro gaussiano è molto meglio del filtro di smooth per smoothare l'immagine perché è tonabile. A parità di dimensione, il gaussiano rovina meno l'immagine del filtro di smooth.
+
+\subsection{Es4}
+Parte dicendo "Create un filtro Gaussiano G di dimensione 21x21 con la Sigma adatta." questo lo faccio con la formula di prima $$N = 1 + 2 \times [2.5 \times \sigma]$$ assegnando 21 a $N$ e risolvendo per $\sigma$. Ottengo 4, il minimo sindacale.
+
+\subsection{Es5}
+Cosa succede con immagini (Lawrence1) dove c'è palesemente del rumore gaussiano? Rumore distribuito ed evidente ma che non ci dà tanto fastidio.\\
+La riduzione del rumore dipende sempre dal task finale: per dire va bene per ambito cinematografico (la pellicola crea naturalmente questo tipo di rumore quindi è perfetta) mentre per tipo boha ltri scopi mi dà fastidio e lo voglio togliere e avrebbe completamente senso.\\
+Lawrence2 invece salt\&pepper, ovvero rumore impulsivo.\\
+S\&P è un rumore che non può essere rimosso da un filtro normale, è randomico quindi non segue una legge di distribuzione (perciò i filtri lineari non sono utilizzabili). Il rumore gaussiano può essere rimosso da un filtro gaussiano (o di media, ma gaussiano meglio).
+
+\subsection{Es6}
+Facciamo noi, vediamo come l'uso di filtri spaziali semplici possono tornare utili per cose tricky.
+
+\subsection{Es7}
+Combinazione di filtri lineari = filtro lineare.\\
+La convoluzione è un filtro lineare.\\
+Riprendiamo es4 e out diventa $= glamour@(I + G)*0.5;$ combino op di convoluzione.
+
+\section{Gli assignment}
+nearest neighboor campiono le righe e le colonne e replico qualche valore, il problema è decidere quale.\\
+fare a mano il filtro di convoluzione. Anche abusando di cicli for. Nel caso filtro fuori dall'immagine, assumo valore 0 o scelgo un altro meccanismo (tipo scelgo solo una porzione di immagine su cui riesco a lavorare quinid output immagine più piccola).
+
+terzo, filtro non lineare. Non matrice di pesi ma algoritmo. Per ogni pixel e intorno dare in output il massimo fra i valori dell'intorno. Non lineare perché serve un algoritmo vero e proprio e non ci sono funzioni lineari.
