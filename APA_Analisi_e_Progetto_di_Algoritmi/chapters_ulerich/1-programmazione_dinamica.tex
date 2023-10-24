@@ -25,7 +25,7 @@ ma chi è Fibonacci di n? è Fibonacci di (1)+Fibonacci(2)+ ... + Fibonacci(n). 
 inizio a calcolare le soluzioni dal sottoproblema più piccolo a salire, così facendo possiamo risparmiare molto tempo,
 al costo però di un maggiore utilizzo di spazio, dato che ho un Array che deve memorizzare i valori. Si tratta 
 di un compromesso accettabile dato che senza usare Array il tempo di esecuzione sarebbe esponenziale.
-\subsection*{Passaggi}
+\subsection{Passaggi}
 A livello pratico dobbiamo:
 \begin{enumerate}
     \item Scomporre il problem in sottoproblemi di dimensione inferiore
@@ -34,4 +34,86 @@ A livello pratico dobbiamo:
     \item Memorizzare i risultati in una opportuna struttura dati
     \item Individuare il "luogo" che contiene la soluzione del problema (nel caso di Fibonacci l'ultima cella a destra)
 \end{enumerate}
+DP risulta vantaggiosa quando il numero di chiamate distine è polinomiale (il numero
+totale di chiamate è esponenziale).
+\section{Osservazioni sui problemi di ottimizzazione}
+Per ogni istanza del problema esiste un insieme di soluzioni posibili (feasible solutions),
+più soluzioni perchè le soluzioni ottime possono essere diverse.\\
+Esiste una funzione obiettivo che associa un valore ad ogni soluzione possibile e
+restituisce come OUTPUT una soluzione possibile (soluzione ottimale) per cui il valore restituito dalla funzione
+obiettivo è massimo/minimo (valore ottimo).
+
+\section{LCS - Longest Common Subsequence}
+Si tratta di un problema che ha come istanza due sequenze di valori e richiede di trovare la 
+più grande sottosequenza comune fra di esse. Si tratta di un problema di ottimizzazione, per questo
+usare DP è un'ottima idea.
+\subsection{Definizioni di base}
+\paragraph*{Sequenza} Successione di elementi topologicamente ordinati, presi da un insieme
+$\sum$.\\
+Per esempio $X=<2,4,10,5,9,11>$, più in generale:
+\begin{itemize}
+    \item $X=<x_1, x_2, ..., x_m> \rightarrow$ sequenza di $m=|X|$ elementi
+\end{itemize}
+\paragraph*{Prefisso di lunghezza i} Primi i elementi della sequenza:
+\begin{itemize}
+    \item $X=<x_1, x_2, ..., x_i> \rightarrow$ prefisso di lunghezza i di X
+\end{itemize}
+Dato $X=<2,4,10,5,9,11>$ per esempio $X_3=<2,4,10>$.
+\paragraph*{i-esimo elemento} Indichiamo con $X[i]$ l'i-esimo elemento $x_i$ della sequenza X.
+\paragraph*{Sottosequenza} Una qualsiasi successione di elementi (anche non consecutivi)
+di una sequenza che però rispettino l'ordine sulla sequenza.\\
+Per esempio data una sequenza $X=<2,4,10,5,9,11>$ 
+\begin{itemize}
+    \item $Z=<4,5,9>$ è una sottosequenza di X
+    \item $Z=<>=\epsilon$ è una sottosequenza di X
+    \item $<9, 5, 4>$ NON è una sottosequenza di X
+\end{itemize}
+\paragraph*{Definizione formale di sottosequenza}
+Data $X = <x_1, x_2, ..., x_m>$, una sequenza $Z=<z_1, z_2, ..., z_k>\, (k \leq m)$ è
+sottosequenza di X se esiste una successione di k indici interi $i_1 < i_2 < .. < i_k$ tali che
+$X[i_j] = z_j$ per j compreso tra 1 e k.
+\paragraph*{Esempio sottosequenza} Dato $X=<2,4,10,5,9,11>$, $Z=<4,5,9>$ è una sottosequenza di X.
+\paragraph*{Sottosequenza comune di X e Y} è una sottosequenza si di X che di Y.
+\[X = <1, 13, 5, 3, 1, 12, 8, 11, 6, 10, 10>\]
+\[Y = <1, 5, 5, 2, 3, 1, 12, 8, 8, 10>\]
+\[S = <5, 3, 1, 8, 10>\]\\
+S è sottosequenza comune di X e Y.
+\paragraph*{LCS} è la più lunga sottosequenza comune Z di X e Y.
+\paragraph*{Esempio di LCS}
+\[X = <2, 10, 5, 3, 1, 12, 8, 30, 11, 6, 10, 13>\]
+\[Y = <2, 5, 10, 2, 3, 1, 30, 12, 6, 8, 10>\]
+\[<2, 10, 3, 1, 12, 8, 10> \text{è LCS di X e Y}\]
+La LCS è una soluzione ottimale, mentre la sua lunghezza (7) è il valore ottimo.\\
+\subsection{Istanza del problema}
+P: date due sequenze $X = ⟨x_1, x_2, ..., x_n⟩ e Y = ⟨y_1, y_2, ... , y_n⟩$, trovare la più lunga
+sottosequenza comune Z di X e Y.\\
+Abbiamo capito che P è un problema di ottimizzazione di massimo, dove:
+\begin{itemize}
+    \item (m,n) $\rightarrow$ è la dimensione del problema (lunghezza stringhe)
+    \item Soluzioni possibili $\rightarrow$ tutte le sottosequenze comuni di X e Y
+    \item Funzione obiettivo $\rightarrow$ lunghezza
+    \item $|Z|$ è il valore ottimo del problema
+    \item Z è una soluzione ottimale
+\end{itemize}
+\section{Procedura LCS}
+Indichiamo con LCS(A,B) la LCS delle sequenze A e B e di conseguenza $|LCS(A,B)|$
+ la lunghezza della LCS di A e B.\\
+ Procediamo con le seguenti fasi:
+ \begin{enumerate}
+    \item Individuiamo i sottoproblemi
+    \item Troviamo le equazioni di ricorrenza
+    \item Applichiamo una strategia bottom-up con memorizzazione dei risultati
+ \end{enumerate}
+ \paragraph*{Nota Bene} Si deve individuare la sottostruttura ottima del problema. La strategia bottom-up trova
+ l'ottimo (lunghezza di LCS) e in seguito si deve ricostruire una soluzione ottimale (una delle LCS).
+ \subsection{Definizione dei sottoproblemi}
+ Sottoproblema di dimensione (i,j).
+ Trovare la LCS dei prefissi $X_i$ e $Y_j \rightarrow LCS(X_i, Y_j)$.
+ \[i \in \{0,1, ..., m\}\]
+ \[j \in \{0,1,...,n\}\]
+ Numero totale sottoproblemi: $(m+1)\times(n+1)$\\
+ Ricordiamo che $LCS(X_m,Y_n)$ è la soluzione del problema principale.
+ \subsection{Equazioni di ricorrenza}
+ \subsection*{Casi base}
+ Tutti i sottoproblemi di dimensione (i,j) tale per cui $i=0$ oppure $j=0$.
 
