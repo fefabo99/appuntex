@@ -116,4 +116,12 @@ Indichiamo con LCS(A,B) la LCS delle sequenze A e B e di conseguenza $|LCS(A,B)|
  \subsection{Equazioni di ricorrenza}
  \subsection*{Casi base}
  Tutti i sottoproblemi di dimensione (i,j) tale per cui $i=0$ oppure $j=0$.
-
+\begin{align*}
+    i= 0 \implies LCS(X_0, Y_j) = LCS(\epsilon, Y_j) = \epsilon \\
+    j = 0 \implies LCS(X_i, Y_0) = LCS(X_i, \epsilon) = \epsilon \\
+    i = 0,\, j=0 \implies LCS(X_0, Y_0) = LCS(\epsilon, \epsilon) = \epsilon
+\end{align*}
+\subsection*{Passo ricorsivo}
+Tutti i sottoproblemi di dimensione (i, j) tale per cui $i>0$ e $j>0$.\\
+Introduciamo la sottostruttura ottima del problema:
+%Arrivato a slide 35
