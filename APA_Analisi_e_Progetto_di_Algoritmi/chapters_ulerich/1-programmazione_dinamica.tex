@@ -1,0 +1,27 @@
+\chapter{Programmazione Dinamica - DP}
+La programmazione dinamica (DP - Dynamic Programming) è una tecnica che (come il Divide et Impera),
+risolve i problemi combinando le soluzioni dei sottoproblemi.\\
+Divide et Impera è ottimo quando i sottoproblemi da risolvere sono indipendenti,
+mentre DP è efficace quando i sottoproblemi non sono indipendenti e quindi hanno in comune
+dei sottosottoproblemi. La programmazione dinamica si applica tipicamente ai \textbf{problemi di ottimizzazione}.
+\section{Problemi di ottimizzazione}
+Sono problemi dove ci sono molte soluzioni possibile. Ogni soluzione ha un valore e e si vuole trovare una solzuione
+con il valore  ottimo. Ci possono essere più soluzioni che raggiungono il valore ottimo.
+\section{Il processo di sviluppo}
+Il processo di sviluppo è diviso in 4 fasi:
+\begin{itemize}
+    \item Caratterizzare la struttura di una soluzione ottima
+    \item Definire in modo ricorsivo il valore di una soluzione ottima
+    \item Calcolare il valore di una soluzione ottima, di solito con uno schema bottom-up (dal basso verso
+    l'alto, risulta spesso più efficiente rispetto a top-down)
+    \item Costruire una soluzione ottima dalle informazioni calcolate
+\end{itemize}
+\section{Esempio - Fibonacci}
+Classico esempio è l'esecuzione di Fibonacci. Utilizzando la ricorsione pura
+si effettuano più volte le stesse chiamate (perchè i sotto-numeri sono gli stessi). Se invece
+utilizziamo la DP, con un approccio Bottom-Up ci dobbiamo chiedere,
+ma chi è Fibonacci di n? è Fibonacci di (1)+Fibonacci(2)+ ... + Fibonacci(n). In pratica
+inizio a calcolare le soluzioni dal sottoproblema più piccolo a salire, così facendo possiamo risparmiare molto tempo,
+al costo però di un maggiore utilizzo di spazio, dato che ho un Array che deve memorizzare i valori. Si tratta 
+di un compromesso accettabile dato che senza usare Array il tempo di esecuzione sarebbe esponenziale.
+
