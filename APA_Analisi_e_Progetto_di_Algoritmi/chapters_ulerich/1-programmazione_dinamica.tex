@@ -3,7 +3,8 @@ La programmazione dinamica (DP - Dynamic Programming) è una tecnica che (come i
 risolve i problemi combinando le soluzioni dei sottoproblemi.\\
 Divide et Impera è ottimo quando i sottoproblemi da risolvere sono indipendenti,
 mentre DP è efficace quando i sottoproblemi non sono indipendenti e quindi hanno in comune
-dei sottosottoproblemi. La programmazione dinamica si applica tipicamente ai \textbf{problemi di ottimizzazione}.
+dei sottosottoproblemi e le tecniche di risoluzione top-down risultano quindi inefficienti (chiamate ripetute).
+La programmazione dinamica si applica tipicamente ai \textbf{problemi di ottimizzazione}.
 \section{Problemi di ottimizzazione}
 Sono problemi dove ci sono molte soluzioni possibile. Ogni soluzione ha un valore e e si vuole trovare una solzuione
 con il valore  ottimo. Ci possono essere più soluzioni che raggiungono il valore ottimo.
@@ -24,4 +25,13 @@ ma chi è Fibonacci di n? è Fibonacci di (1)+Fibonacci(2)+ ... + Fibonacci(n). 
 inizio a calcolare le soluzioni dal sottoproblema più piccolo a salire, così facendo possiamo risparmiare molto tempo,
 al costo però di un maggiore utilizzo di spazio, dato che ho un Array che deve memorizzare i valori. Si tratta 
 di un compromesso accettabile dato che senza usare Array il tempo di esecuzione sarebbe esponenziale.
+\subsection*{Passaggi}
+A livello pratico dobbiamo:
+\begin{enumerate}
+    \item Scomporre il problem in sottoproblemi di dimensione inferiore
+    \item Formulare la soluzione in maniera ricorsiva - Equazioni di Ricorrenza
+    \item Usare una strategia bottom-up (non top-down)
+    \item Memorizzare i risultati in una opportuna struttura dati
+    \item Individuare il "luogo" che contiene la soluzione del problema (nel caso di Fibonacci l'ultima cella a destra)
+\end{enumerate}
 
