@@ -1,0 +1,118 @@
+\chapter{Labeling}
+Pdf: etichettamento componenti connesse\\
+Parliamo di labeling delle regioni connesse quando boh vb
+Slide 21-22 come faccio a riconoscere gli oggetti?\\
+Slide 24, definizioni.
+Dato un pixel di coordinate (x, y), i quattro vicini (in orizzontale e verticale) hanno coordinate: (x+1,y), (x-1,y), (x,y+1), (x,y-1) - Essi costituiscono l'insieme N4
+(p) dei vicini (4 neighbors) di P- Dato un pixel di coordinate (x, y), i quattro vicini (in diagonale) hanno coordinate: (x+1,y+1), (x-1,y-1), (x-1,y+1), (x+1,y-1) - Essi costituiscono l'insieme ND(p) dei vicini (D neighbors) di PL'insieme degli 8-vicini di p è dato da N4(p)ND(p)
+\subsection{Relazioni fra pixel}
+\subsubsection{4- 8- connessione}
+Due pixel sono connessi se, oltre ad essere tra loro in relazione di adiacenza spaziale, i loro livelli di grigio soddisfano uno specifico criterio di similarità, per esempio sono uguali o hanno valore di grigio in un certo intervallo V (solitamente trattiamo immagini binarie, ma questa definizione è più generale)
+– 4-connettività: due pixel p e q con valori di grigio in V si dicono 4-connessi se q è nel set N4
+(p)
+– 8-connettività: due pixel p e q con valori di grigio in V si dicono 8 connessi se q è nel set N8
+(p)
+\subsubsection{\textit{m} connessione}
+Slide 27.\\
+Più in generale, \textit{m}-connettività: due pixel p e q con valori di grigio in V si dicono \textit{m}-connessi se q è nel set N4
+(p), oppure q è nel set ND
+(p), e risulta vuoto l'insieme dei pixel 4-vicini
+sia di p che di q: N4
+(p)  N4
+(q) = 
+Le distanze D8 e D4 fra due pixel sono indipendenti dalla connessione spaziale che esiste fra questi poiché coinvolge solamente le coordinate dei pixel.\\
+Adottando la \textit{m}-adiacenza, la distanza Dmfra due pixel è data dalla lunghezza del minimo percorso che le connette, quindi dipende non solo dalle coordinate dei pixel in oggetto, ma anche dal loro vicinato.
+Se devo scegliere, 4- connessione ha la precedenza sulla diagonale.\\
+i 5 p, sono tutti nella stessa regione? sì, perchè prendendoli a due a due riesco sempre a trovare un percorso.
+
+\subsubsection{Distanze}
+Slide 29-30.\\
+dati i pixel p, q e z, di coordinate (x,y), (s,t), e (v, w), D e’ una distanza se e solo se:
+Distanza Euclidea: formula.\\
+La distanza Euclidea è una misura semplice dal punto di vista intuitivo, ma dal punto di vista computazionale risulta onerosa a causa dell'operatore di radice e dei valori non interi.\\
+distanza city-block il numero minimo di passi in una griglia per raggiungere un pixel a partire da un altro. (x,y), e (s,t) sono le coordinate dei pixel considerati. Le distanze D4 e D8 sono misure convenienti rispetto alla distanza Euclidea per la lorosemplicità computazionale. - Distanza D8
+chiamata anche chess-boad (il numero dimosse del re a scacchi). Un aggregato di pixel che si trova entro una distanzar(ognipixel ≤r) e’ chiamato disco di raggio r. La forma geometrica di tale disco dipende dallametrica utilizzata per la misura della distanza.\\
+La D8 è quella che eravamo abituati a usare per il filtraggio e le maschere.
+
+\section{Componenti connesse}
+Dal concetto di connessione fra pixel è possibile definire:
+1) percorso fra due pixel P1
+e P2
+: sequenza di pixel, ognuno vicino del precedente che conduce da P1
+e P2
+2) Due pixel sono connessi se esiste un percorso che li collega valgono le seguenti
+proprietà:
+1. Riflessività: il pixel P è connesso a P. 2. Commutatività: se P è connesso a Q segue che Q è connesso a P. 3. Transitività: se P e’ connesso a Q e Q e’ connesso a R , consegue che anche P è connesso ad R. 
+definizione
+regione (o componente connessa): insieme di pixel per ogni coppia è connessa, ovvero esiste una percorso che li connette. 
+
+Slide 32:
+\begin{itemize}
+    \item in alto a sinistra: 1 4-connessa e 1 8-connessa
+    \item in alto a destra: 4 4-connesse 
+    \item in basso a sinistra: 1 4-connessa e 1 8-connessa
+    \item in basso a destra: 0 4-connesse per l'oggetto e 1 8-connesse per lo sfondo
+\end{itemize}
+
+Back-ground sfondo, fore-ground oggetto.\\
+La 4-connessione per l'oggetto
+Slide 33: Quante regioni di sfondo 4-connesse ci sono nelle due
+immagini? Quante regioni di sfondo 8-connesse ?
+Non sempre una curva chiusa divide l'immagine in due parti. Si verifica
+un'ambiguità di appartenenza di pixel
+• Soluzione per le immagini binarie: 8-vicinanza per gli oggetti, 4-vicinanza per lo
+sfondo (o viceversa).
+
+Slide 34 altre definizioni, servendosi del concetto di connessione fra pixel è possibile definire:
+\begin{enumerate}
+    \item percorso fra due pixel P1 e P2: sequenza di pixel, ognuno vicino del precedente che conduce da P1 e P2.
+    \item regione (o componente) connesse: insieme di pixel per ogni coppia dei quali esiste una sequenza (path) che li connette.
+    \item pixel di contorno una regione: pixel di una regione che hanno almeno un vicino che non appartiene alla regione.
+\end{enumerate}
+
+Slide 36: output?
+Tre regioni 8-connesse nell'immagine sopra. Nell'immagine sotto: è per righe, dal top al bottom, a verdino do etichetta 1, passo ai pixel successivi e finché restano verdino tengono etichetta 1. Quando trovo 0 è sfondo. Quando passo al blu, ho una nuova etichetta perché ho già usato 1 quindi diventa 2. Sfondo di nuovo 0. Poi passo all'arancione e diventa 3 etc.\\
+Nella slide 37 introduco una tabella delle equivalenze e torno ad avere tre regioni distinte.\\
+Slide 35: definizione.\\
+Permette di distinguere tra loro le componenti connessi attribuendo ai pixel di
+ciascuna una “etichetta” (label) univoca. Questo consente di eseguire
+successive operazioni trattando le componenti connesse in modo selettivo
+Si scandisce l’immagine e per ogni pixel da etichettare: – se è connesso con uno già etichettato, condivide l’etichetta – altrimenti, si crea una nuova etichetta
+Si definiscono delle classi di equivalenza
+Si effettua una seconda scansione, in cui ogni etichetta è sostituita da quella
+della sua classe di equivalenza.
+
+Slide 38. Con la tabella di equivalenza, vado ad uniformare i label 2 e 3 e i label 5 e 6, ma così facendo poi scalo e così diventano 4 regioni.\\
+Slide 39: la maschera ha quella forma perché sto passando per righe (quindi la prima riga sopra al pixel che sto analizzando è già stata analizzata).\\
+• Durante la prima scansione sono assegnate label temporanee a tutti i pixel
+etichettati come oggetto in funzione delle label dei vicini già visitati (secondo l’ordine di scansione prescelto).
+• Dopo la prima scansione, oggetti distinti sono stati certamente etichettati con label differenti, ma anche parti di uno stesso oggetto possono aver ricevuto label differenti. • La seconda scansione consente di assegnare una label definitiva univoca alle parti di uno stesso oggetto aventi label temporanee differenti.
+• Fra la prima e le seconda scansione è quindi necessario individuare le label
+temporanee equivalenti ed assegnare a ciascuna classe di equivalenza una label definitiva univoca.
+
+\subsection{Background e foreground}
+Slide 41.\\
+MatLab dà finti colori: sono \textbf{etichette simboliche}.\\
+• Supponiamo che una immagine contenga K regioni connesse, nessuna della
+quali tocchi il bordo. Sia RU
+unione delle regioni, il complemento di RU
+, indicato
+con (RU
+)c e’ detto background. • RU e’ chiamato foreground
+
+Slide 42: Due esempi di labeling delle componenti connesse (con visualizzazione delle etichette rispettivamente mediante scala di grigi e colori). 
+
+Domande:
+• Come faccio a sapere che un pixel chiaro appartiene ad una croce e non ad un'altra? 
+Labeling regioni connesse. Ognuna è univocamente assegnato ad una regione.
+
+• Quante croci ci sono ?
+Tante quante le etichette.
+
+• Quale è il pezzo più grande ? 
+
+
+• Quanti pezzi ci sono che hanno un solo buco?
+Ora abbiamo le feature di area e \# pixel del contorno. Il contorno già solo può bastare per dire che so quali sono più grandi.\\
+Abbiamo costruito uno spazio delle features. Trovare queste regole in modo automatico è la \textbf{classificazione}, noi diamo esempi e il programma trova le regole da solo. Questo è un po' anche quello che facciamo con la binarizzazione.\\
+Esempio slide 43: esempio di domanda dell'esame: separare i pacmen dallo sfondo, come faccio?

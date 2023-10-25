@@ -2,15 +2,20 @@
 \section{Servizi e protocolli di trasporto}
 Forniscono una comunicazione logica tra \textbf{processi applicativi} che risiedono su host diversi.
 \begin{description}
-    \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (ovviamente non lo sono). Di fatto trasparente al livello superiore. Come il livello applicativo, si comporta come se senti registrazione.
+    \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (in realtà non lo sono). Di fatto \textit{trasparente al livello superiore}. Come il livello applicativo, interpretato esplusivamente dagli host (utenti periferici), non dai dispositivi rete (switch, router, etc.).
     \item[Come si comporta:] spezzetta l'informazione in segmenti che trasporta poi a livello di rete.
-    \item[Due tipi che vedremo:] two major transport protocols available to Internet applications: 
+    \item[Due tipi che vedremo:] i due principali protocolli a livello di trasporto che sono disponibili per le applicazioni internet sono:
     \begin{description}
-        \item[TCP:] Transmission Control Protocol
+        \item[TCP:] Transmission Control Protocol\\
+        Funzionalità aggiuntiva: \textit{affidabilità}. I messaggi vengono inviati e se arrivano bene, se non arrivano vengono ritrasmessi.
         \item[UDP:] User Datagram Protocol\\
         Best-effort: I messaggi vengono inviati, se arrivano bene, se non arrivano va bene lo stesso.
     \end{description}
 \end{description}
+\subsubsection{Es. pratico:}
+\begin{center}
+    \includegraphics[width=0.75\textwidth]{./images/aa2324/R_livelloditrasportoEs1.jpg}
+\end{center}
 
 \subsection{Differenze livello di trasporto e livello di rete}
 \begin{description}
@@ -31,9 +36,9 @@ Avremo bisogno di
 La pila protocollare da livello fisico a livello di trasporto è gestita dal \textit{sistema operativo}. Lo sviluppatore può programmare quella parte di socket esposta verso il processo applicativo.\\
 Per ricapitolare, il messaggio farà: \texttt{livello applicativo $\rightarrow$ socket $\rightarrow$ livello di trasporto $\rightarrow$ livello di rete $\rightarrow$ livello fisico $\rightarrow$ livello fisico $\rightarrow$ livello di rete $\rightarrow$ livello di trasporto $\rightarrow$ socket $\rightarrow$ livello applicativo}.
 
-\section{TCP e UDP}
+\section{I due principali protolli Internet a livello di trasporto}
 \subsection{TCP, Transmission Control Protocol}
-Si assicura che tutti i segmenti di informazione vengano consegnati \textit{correttamente} e \textit{in ordine}. Garantisce la consegna affidabile e la connessione affidabile fra mittente e destinatario.\\
+Si assicura che tutti i \textit{segmenti} di informazione vengano consegnati \underline{\textit{correttamente} e \textit{in ordine}}. Garantisce la consegna affidabile e la connessione affidabile fra mittente e destinatario.\\
 Offre altri servizi: 
 \begin{description}
     \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
@@ -140,7 +145,7 @@ Cosa ritrasmetto in caso di errore?
 \end{description}
 
 \subsubsection{TCP, struttura di un segmento}
-\includegraphics[0.3\textwidth]{./images/aa2324/R_TCP1.jpg.jpg}
+\includegraphics[width=0.3\textwidth]{./images/aa2324/R_TCP1.jpg}
 \begin{description}
     \item[source port \#: + dest. port \#:] 16 bit + 16 bit
     \item[sequence number:] 32 bit, numero di sequenza del primo byte di dati nel bytestream
@@ -161,25 +166,28 @@ Cosa ritrasmetto in caso di errore?
 \end{description}
 
 \subsubsection{TCP, round trip time e timeout}
-Q: how to set TCP timeout
-value?
-▪ longer than RTT, but RTT varies!
-▪ too short: premature timeout,
-unnecessary retransmissions
-▪ too long: slow reaction to
-segment loss
+\begin{multicols}{2}
+    \blindtext\blindtext
+\end{multicols}
+\underline{\textit{Q:}} how to set TCP timeout value?
+\begin{itemize}
+    \item longer than RTT, but RTT varies!
+    \item too short: premature timeout, unnecessary retransmissions
+    \item too long: slow reaction to segment loss
+\end{itemize}
 Il senso di tutto ciò è che RTT non è fisso ma bisogna cercare di settare un timeout sufficiente a permettere al pacchetto di arrivare e al ricevente di rispondere.
 
-Q: how to estimate RTT?
-▪ SampleRTT:measured time
-from segment transmission until
-ACK receipt
-• ignore retransmissions
-▪ SampleRTT will vary, want
-estimated RTT “smoother”
-• average several recent measurements
-(EstimatedRTT),not just current
-SampleRTT (quindi una media degli ultimi RTT misurati)
+\underline{\textit{Q:}} how to estimate RTT?
+\begin{itemize}
+    \item SampleRTT:measured time from segment transmission until ACK receipt
+    \begin{itemize}
+        \item ignore retransmissions
+    \end{itemize}
+    \item SampleRTT will vary, want estimated RTT "smoother"
+    \begin{itemize}
+        \item average several recent measurements (EstimatedRTT),not just current SampleRTT (quindi una media degli ultimi RTT misurati)
+    \end{itemize}
+\end{itemize}
 
 Come lo misuro?
 $$EstimatedRTT = (1-\alpha)*EstimatedRTT + \alpha*SampleRTT$$
@@ -193,7 +201,7 @@ N.B.: quando apri una connessione e sei appena partito, non hai nessun RTT stima
 \begin{description}
     \item[data received from application]
     \begin{description}
-        \item[create segment with seq #] seq # is byte-stream number of first data byte in segment
+        \item[create segment with seq \#] seq \# is byte-stream number of first data byte in segment
         \item[start timer] 
         \begin{itemize}
             \item think of timer as for oldest unACKed segment
@@ -223,22 +231,37 @@ importantissimo!!! Unico caso in cui non aspetto il timeout per ritrasmettere.
 
 \subsubsection{TCP controllo di flusso}
 Abbiamo detto che avviene nella parte del segmento TCP "receiver window", che si occupa di flow control (\# bytes che il ricevente è in grado di accettare).
+\begin{center}
+    \includegraphics[width=0.25\textwidth]{images/aa2324/R_TCP6.jpg}
+\end{center}
 \definizione{Flow control: receiver controls sender, so sender won't overflow receiver's buffer by transmitting too much, too fast.}
+\begin{wrapfigure}{r}{0.2\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{images/aa2324/R_TCP7.jpg}
+    \end{center}
+\end{wrapfigure}
 \begin{description}
     \item[receive buffer:] fixed amount of buffer space, allocated for a TCP socket
     \item[receiver advertises free buffer space by] including value of RcvWindow in segment
     \item[sender limits unACKed data to] receiver's RcvWindow
-    TCP receiver “advertises” free buffer space in \textbf{rwnd} (receive window) field in TCP header (many operating systems autoadjust RcvBuffer)
-    ▪ sender limits amount of unACKed
-    (“in-flight”) data to received rwnd
-    ▪ guarantees receive buffer will not
-    overflow
 \end{description}
+\begin{wrapfigure}{r}{0.2\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{images/aa2324/R_TCP7.jpg}
+    \end{center}
+\end{wrapfigure}
+\begin{itemize}
+    \item TCP receiver "advertises" free buffer space in \textit{rwnd} (receive window) field in TCP header (many operating systems autoadjust RcvBuffer)
+    \item sender limits amount of unACKed ("in-flight") data to received \textit{rwnd}
+    \item guarantees receive buffer will not overflow
+\end{itemize}
 
 \subsubsection{TCP connection management}
-before exchanging data, sender/receiver “handshake”:
-▪ agree to establish connection (each knowing the other willing to establish connection)
-▪ agree on connection parameters (e.g., starting seq #s)
+before exchanging data, sender/receiver "handshake":
+\begin{itemize}
+    \item agree to establish connection (each knowing the other willing to establish connection)
+    \item agree on connection parameters (e.g., starting seq \#s) 
+\end{itemize}
 risorse (tipo variabili al centro dell'immagine) da allocare prima dell'handshake.
 % immagine
 
@@ -260,16 +283,16 @@ risorse (tipo variabili al centro dell'immagine) da allocare prima dell'handshak
     
 \subsubsection{TCP: controllo congestione}
 \definizione{Congestion: informally, "\textit{too many sources sending too much data too fast for network to handle}".}
-▪ manifestations:
+- manifestations:
 • long delays (queueing in router buffers)
 • packet loss (buffer overflow at routers)
-▪ different from flow control!
+- different from flow control!
 NB: controllo di flusso esclusivo del ricevente, controllo di congestione è un problema di tutti i nodi della rete.
 When network gets closer to saturation of available resources, delay and
 loss percentage increase
-▪ If the transport layer retransmits messages, the average number of
+- If the transport layer retransmits messages, the average number of
 messages retransmissions increases too
-▪ While throughput (i.e., messages traversing the network) is close to 100\%
+- While throughput (i.e., messages traversing the network) is close to 100\%
 of capacity, “goodput” experienced by the application decreases!
 % immagine
 Il goodput sono le informazioni che a me effettivamente interessano e droppa così nel grafico perché gran parte delle informazioni che io ricevo sono ritrasmissioni a me non utili.
@@ -277,44 +300,52 @@ Il goodput sono le informazioni che a me effettivamente interessano e droppa cos
 \subsubsection{Approaches towards congestion control}
 Non andremo a vederla più di tanto e comunque è vagamente fatto da quale parte del segmento TCP?\\
 End-to-end congestion control:
-▪ no explicit feedback from
+- no explicit feedback from
 network
-▪ congestion inferred from
+- congestion inferred from
 observed loss, delay
 Approaches towards congestion control
 data data ACKs ACKs
-▪ approach taken by TCP
+- approach taken by TCP
 
 Network-assisted congestion
 control:
-▪ routers provide direct feedback
+- routers provide direct feedback
 to sending/receiving hosts with
 flows passing through congested
 router
-▪ may indicate congestion level or
+- may indicate congestion level or
 explicitly set sending rate
 
 Usa un approccio \textit{Additive Increase Multiplicative Decrease}: senders can increase sending rate until packet loss (congestion) occurs, then decrease sending rate on loss event.
 \begin{description}
-    \item[\underline{A}dditive \underline{I}ncrease]
+    \item[\underline{A}dditive \underline{I}ncrease] 
+    \begin{itemize}
+        \item increase sending rate by 1
+        \item maximum segment size (MSS)
+        \item every RTT until loss detected
+    \end{itemize}
     \item[\underline{M}ultiplicative \underline{D}ecrease] 
+        \begin{itemize}
+            \item cut sending rate in half at each loss event
+        \end{itemize}
 \end{description}
 Parliamo di \textit{comportamento a dente di sega} di AIDM, vedi il grafico.
 % immagine
 
 TCP sending behavior:
-▪ roughly: send min{cwnd,rwnd}
-bytes, wait RTT for ACKS, then send
-more bytes
-▪ When cwnd < rwnd, congestion
-control is dominant w.r.t. flow
-control
+\begin{itemize}
+    \item roughly: send \texttt{min{cwnd,rwnd}} bytes, wait RTT for ACKS, then send more bytes
+    \begin{itemize}
+        \item When \texttt{cwnd < rwnd}, congestion control is dominant w.r.t. flow control
+    \end{itemize}
+\end{itemize}
 % questo sopra affiancato all'immagine dove le lineette verticali sono i bytes.
-TCP sender limits transmission: $LastByteSent - LastByteAcked < min{cwnd, rwnd}$
-▪ cwnd is dynamically adjusted in response to observed network
-congestion (implementing TCP congestion control)
-▪ rwnd is instead adjusted according to the received value by the receiver
-(implementing TCP flow control)
+\begin{itemize}
+    \item TCP sender limits transmission: $LastByteSent - LastByteAcked < min{cwnd, rwnd}$
+    \item \texttt{cwnd} is dynamically adjusted in response to observed network congestion (implementing TCP congestion control)
+    \item \texttt{rwnd} is instead adjusted according to the received value by the receiver (implementing TCP flow control)
+\end{itemize}
 Tre fasi:
 \begin{description}
     \item[slow start:] quando inizia la connessione, il rate di invio viene aumentato in maniera esponenziale. Nome un po' infelice (per citare il prof) visto che è tutto tranne che slow.

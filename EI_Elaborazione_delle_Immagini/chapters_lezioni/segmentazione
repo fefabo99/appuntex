@@ -1,0 +1,128 @@
+\chapter{Segmentazione delle immagini}
+PDF: binarizzazione delle immagini.\\
+Slide 3: ho un'immagine e voglio sapere quanti 0 e 1 ci sono. Dall'analisi dell'istogramma vedo due regioni, un picco per gli scuri (dove c'è l'oggetto) e un picco per i chiari (dove c'è lo sfondo).\\
+L'istogramma \texttt{a} della slide 4 presenta due modi dominanti, l'istogramma \texttt{} della slide 4 presenta 3 modi dominanti, questa verrà ripresa più avanti.\\
+Se si assume che - i pixel dell'immagine possano appartenere solo a due classi "finte" (sfondo, oggetti di interesse) - il livello di grigio dei pixel permetta di discriminare le due classi Allora e' possibile segmentare l'immagine mediante una soglia T Diversi valori di T determineranno un diverso assegnamento dei pixel dell'immagine alle due classi - Il risultato dipende fortemente dall'immagine (proprietà degli oggetti e condizioni di illuminazione)
+Sopra ad una certa soglia classe 1 e sotto classe 2, o viceversa.\\
+
+Il rumore influenza la segmentazione? Slide 7. Dipende dal rumore, slide 8: al centro poco rumore non cambia tanto l'istogramma, a destra con tanto rumore è inutilizzabile.\\
+Che faccio? Tolgo il rumore, con un filtro gaussiano. Se non funziona? Uso un altro algoritmo di segmentazione. Lavorare sul pixel non basta. Faccio un sottocampionamento. Oppure "finestrelle": mediamente chiaro, mediamente scuro. Non c'è una soluzione unica.\\
+
+Non ci sarà mai una soglia \textit{perfetta} per separare un oggetto dallo sfondo: di solito non basta mai un solo algoritmo. Parliamo di \textbf{sogliatura interattiva}.
+\subsubsection{Sogliatura interattiva}
+Slide 10.\\
+- Tecnica interattiva - Si noti come il risultato dipende fortemente dalle proprietà degli oggetti dalle condizioni di illuminazione. - Supponendo esista, è possibile determinare la soglia globale ottimale automaticamente e manualmente?\\
+Slide 11.\\
+L'immagine è intrinsecamente binaria ma a causa della forte variazione dell'illuminazione nella scena i valori di
+intensità non sono nettamente distinti nell'istogramma. Quindi questa immagine non è binarizzabile con una soglia globale. Comunque questa venga determinata: manualmente o automaticamente.
+\subsubsection{Sogliatura automatica}
+Analizzando l'istogramma è possibile determinare automaticamente la soglia per la binarizzazione. • Alcuni vantaggi associati all'impiego di un algoritmo di soglia automatica rispetto alla scelta manuale della soglia sono: – La scelta manuale della soglia richiedere tempo. – La scelta manuale è soggettiva. – La determinazione automatica permette di automatizzare il processo anche adattandosi a possibili variazioni dell'illuminazione. – Un possibile limite può essere il costo computazionale. – Un secondo, e forse più importante limite, è che non abbiamo una verifica del risultato.\\
+equazione\\
+Nella sua forma più generale si può esprimere così:\\
+equazione, questa volta la T è la binarizzazione, non il filtraggio o l'enhancement\\
+- Dove p(x,y) rappresenta una proprietà locale del pixel considerato. 
+- La soglia è detta globale se T dipende solo da f(x,y), (solo funzione)
+- la soglia è detta locale se dipende sia f(x,y) che da p(x,y) (funzione e intorno)
+- la soglia è detta dinamica se dipende da (x,y) (solo posizione)
+
+Il libro la slide 14 l'ha tolta perché la funzione presentata funziona un po' a fortuna.
+\textbf{Metodo del P-tile}
+- Si assume nota l'area o la percentuale dell'immagine occupata dagli oggetti e sceglie la soglia in base a tale valore. - Solitamente usato per segmentare pagine di testo (caratteri/sfondo) in applicazioni con documenti molto simili fra loro. 
+Slide 15\\
+Ha mostrato una slide del pdf degli operatori puntuali, la n° , sulla correzione puntuale dell'illuminazione.
+
+Il \textbf{raffinamento iterativo} del valore di soglia 1) Si seleziona una soglia T (eg. valore medio). 2) Si segmenta l'immagine in base a T. 3) Si calcola il valore medio delle due classi/regioni (m1, m2) 4) Si seleziona una nuova soglia T= (m1 + m2
+)/2
+5) Si ripetono i passi 2, 3, 4 fino a quando i valori medi si stabilizzano.\\
+
+Slide 17. Esempio dell'impronta difitale: come vengono riconosciute? Ci sono dei punti tipici, dette minuzie. Ciò che rende univoca l'impronta è la \textbf{disposizione} di queste minuzie (quando si parla di riconoscimento parziale, ci sono solo alcuni incroci tra queste minuzie). Ci si mette sempre tanto col confronto perché è sempre "manuale" nel senso che il programma che le confronta controlla ogni singolo collegamento.
+
+\subsubsection{Sogliatura ad isteresi}
+Slide 18.\\
+Si usa una soglia T1 per estrarre il nucleo dell'oggetto.\\
+La segmentazione viene raffinata tramite un'altra soglia T2>T1: 1) Si selezionano 2 soglie T1,T2 con T2>T1. 2) Si partiziona l'immagine in 3 classi (sotto la prima soglia sicuro class1, sopra la seconda sicuro classe 2, in mezzo guardo l'intorno): R1, contenente i pixel con livello di grigio =< T1. R2, contenente i pixel con T1< livello di grigio < T2. R3, contenente i pixel con livello di grigio >= T2. 3) Si visita ogni pixel (x,y) di R2 e se ha un vicino (w,z) in R1, allora si assegna (x,y) ad R1
+4) Si ripete (3) finche' non ci sono più pixel da riassegnare. 5) I pixel (x,y) rimasti in R2 vengono assegnati alla classe R3
+Un altro modo di classificare è vedere quale pixel ha più vicini, lo assegno a quella parte: metodo \textit{nearest neighbor} che vedremo.
+
+\subsubsection{Sogliatura automatica-Otsu (1979)}
+Idea di base: La scelta di un valore di soglia implica la suddivisione dei pixel dell'immagine in due gruppi. L'assunzione alla base dell'algoritmo e' che la soglia ottima sia quella che suddivide l'immagine nei due gruppi più possibile “omogenei” al loro interno. Il criterio di omogeneità può essere espresso mediante un parametro statistico, la varianza intra-gruppo σ
+2WL'algoritmo di binarizzazione si basa sulla ricerca del valore di soglia che minimizza la grandezza la varianza intra-gruppo σ2W di seguito definita
+Per ogni soglia t si definiscono due gruppi minori e maggiori di t di cui si puo' conoscere la varianza; lo scopo e' di rendere omogenei tali gruppi. Probabilità che un pixel appartenga ad uno dei due gruppi
+Tante equazioni
+
+A partire dalle relazioni precedenti è possibile definire la varianza intra-gruppo, in cui lo scarto quadratico di ciascun pixel è valutato rispetto al valor medio del gruppo cui appartiene.
+E' la varianza intra-gruppo,(within-group variance) tanto più è piccola tanto più i due gruppi sono raggruppati “vicino” ai valori medi
+la varianza intra-gruppo e' la somma da minimizzare, ossia bisogna valutare quale tra le possibili t minimizza la somma pesata delle varianze. La soglia migliore - quella che minimizza la varianza intra-gruppo - può essere cercata per tentativi (t = 1,...,L), ma e' piuttosto oneroso dal punto di vista computazionale: per ogni livello di grigio e' necessario calcolare μ1
+, μ2
+, σ2
+1
+, σ22e q1(q2= 1− q1). Si puo' ottimizzare la ricerca. 
+Slide 23 commentata: tramite la statistica come migliorare quelle equazioni e migliorare il tempo evitanddo la varianza (credo).
+Slide 24: esempio di applicazione dell'algoritmo di Otsu. In base alle condizioni di luce, l'algoritmo (senza parametri di addestramento) dà soglie diverse. Il problema sarà capire quando l'algoritmo funziona.
+
+\section{Pre-filtering dell'immagine}
+Slide 30. Vogliamo fare la binarizzazione dell'immagine. Meglio filtrare immagine o istogramma?\\
+In questo caso mi interessa che esca bene l'immagine quindi la risposta è l'immagine.\\
+Slide 35. In questo caso a destra l'istogramma presenta picchi dove vado a fitrare sugli edges.\\
+Sta speed-runnando.\\
+Cosa cambia fra slide 38 e 39 dove assegno una griglia all'immagine? Segmentata per regioni? Nella 39 dà problemi dove i quadranti prendono solo l'oggetto e non lo sfondo.\\
+Non ho la certezza che vengano prese in modo da avere metà oggetto e metà sfondo. Come faccio?
+
+\subsubsection{Sogliatura automatica - locale}
+• Una possibile soluzione al problema consiste nell'assegnare il valore di soglia determinato per il blocco esclusivamente al punto centrale del blocco, e ricavare poi la soglia per tutti gli altri pixel dell'immagine mediante un procedimento di interpolazione. • In questo caso la soglia viene ad essere una funzione del punto, T = T(x, y). • Spesso, per ottenere una funzione T = T(x, y) maggiormente regolare si adotta una suddivisione dell'immagine in blocchi parzialmente sovrapposti (“overlapped partitioning ”). • La funzione T = T(x, y) può essere ricavata a partire dai valori assegnati ai punti centrali di ogni blocco mediante interpolazione bilineare: equazioni
+
+\subsubsection{Sogliatura automatica - uso del gradiente}
+Come faccio a segmentare quell'immagine?
+Vedo (sui bordi dello sfondo dove non ci sono gli oggetti) che l'immagine ha un'illuminazione che va da destra a sinistra. Faccio cosa boh con Otsu e applico a tutta l'immagine? 
+
+
+Su oggetti molto piccoli Otsu lavora male. come faccio a essere sicuro che le classi siano più o meno uguali? Base di conoscenza, in modo da poter usare lo strumento a mia disposizione o il suo contrario. 
+
+Slide di 55-56 (ocr): esempio di sogliatura automatica locale. La 56 Soglia calcolata per ogni pixel soglia come il valore media relativo ad un intorno 7x7
+Il testo viene abbastanza bene, lo sfondo malissimo. Perché? La binarizzazione rispetto ad un
+intorno 7x7 dei pixel fallisce quando la finestra in esame comprende solamente pixel di sfondo. Ovvero quando non abbiamo due classi ma solamente una\dots
+
+Ma ci interessa? NO, la vediamo solo noi, non è finalizzata alla fruizione umana.
+
+• Posso avere una soglia distinta per ogni pixel dell'immagine il cui valore dipende delle caratteristiche dell'immagine in un blocco di dimensione opportuna centrato nel pixel. • Sussiste il problema della dimensione del blocco. Vengono scelti generalmente blocchi piccoli (5x5, 7x7, 9x9, \dots) al fine di limitare il carico computazionale dell'elaborazione. • Per limitare il carico computazionale, si adotta generalmente un metodo semplice per la determinazione automatica della soglia • L'uso di una soglia locale è particolarmente adeguato per immagini in cui c'è un'alta probabilità che in un blocco piccolo siano presenti sia pixel dell'oggetto sia pixel dello sfondo
+
+Slide 58. 
+L'algoritmo pu' lavorare per linee. Possibili diverse alternative Parametri (a,b, c,\dots) da trovare e Dimensione della finestra su cui calcolare le medie locali mxy e varianza locale ơxyo media globale immagini mG\\
+A sinistra, al centro Otsu non funziona bene (crea effetto cannocchiale) mentre Thresholding funziona decentemente.\\
+Sembra buono come algoritmo, ma ha un problema: dobbiamo trovare tutti i valori.\\
+Una possibile soluzione sarebbe stimarli.
+
+
+Nel caso tipo di skintone avremo bisogno di 6 soglie: rgb e chiedi a fabio.
+
+\chapter{Segmentazione delle immagini per regioni}
+Segmentazione definita come partizione S di I in un insieme di regioni R1, R2, \dots, Rn tali che:
+equazione
+Ovvero vero per una regione, vero per la sua adiacente, ma deve essere falso per la loro unione.
+\subsection{Algoritmo di accrescimento di regioni (region growing)} 
+Preso un pixel ("\textit{seed}"), se è simile agli 8 suoi vicini, vengono aggregati in una classe. Fino a quando certi criteri sono soddisfatti e sono i criteri di arresto.\\
+Capita di avere un pixel che possa rientrare in più regioni, come faccio a scegliere quale regione prendere?
+\subsubsection{Criteri di accrescimento di regioni}
+2
+\begin{itemize}
+    \item varianza
+    \item scostamento massimo
+\end{itemize}
+se l'illuminazione non è uniforme, la boh si sposta e io continuo a accrescere creando un effetto di trascinamento. Nelle immagini a colori basta considerare la crominanza per evitare questo effetto di trascinamento nel caso di illuminazione non uniforme.
+
+\subsection{Split and merge}
+L'intera immagine viene considerata come una singola regione e viene applicato un criterio di \textit{split} per suddividere l'immagine in regioni via via più piccole.\\
+Ad ogni livello di suddiviione, cerca la slide.
+Si va a creare un quadtree.\\
+Slide successiva: fase di merge.
+
+Cosa produce? Un'immagine squadrettata. Di certo non va bene per stimare i contorni più o meno precisi di un'immagine, ma va bene per stimare cose grandi tipo una chiazza di petrolio nell'oceano.
+
+\subsubsection{Osservazioni del split and merge}
+
+\subsubsection{Esempio di split and merge}
+
+Un altro esempio sarebbe quello della super nova, dove vogliamo stimare la zona di detriti gassosi intorno.
+
+Lo split and merge si può fare anche con i diagrammi di Vernoil? come si scrive?
+

@@ -26,6 +26,7 @@ L'ultima volta noi abbiamo visto \textbf{Pre-processing (image enhancement):} mo
 Ora vedremo la \textbf{segmentazione:} individuazione di regioni omogenee. Vedremo algoritmi di binarizzazione a tale scopo. Slide 16-17. Vedremo che nella binarizzazione ci sono due principali classi.\\
 Etichettamento (labeling) delle regioni connesse: rappresentazione e descrizione (slide 19) che lui farà in modo leggermente diverso dal libro.\\
 Parliamo di labeling delle regioni connesse quando ?.\\
+Slide 
 Parliamo di descrizione quando abbiamo . Uffa.\\
 Trovate le caratteristiche, posso usarle per distinguere un oggetto da un altro. Es. nella slide 19, riconoscere bulloni dai dadi. Se le features sono usate opportunamente, sulle basi di questi descrittori (forme, colori, etc) posso separare le classi, posso fare classificazione.\\
 Se tipo dicessi "l'oggetto quattro" credo, sarebbe un oggetto "unknown", un oggetto che non asomiglia a nulla di quelli che riconosciuto grazie ai miei descrittori. L'importante è che i miei \textit{unknown} siano ragionevolmente \textbf{isolati}.
