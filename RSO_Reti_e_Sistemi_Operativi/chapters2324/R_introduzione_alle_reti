@@ -198,17 +198,16 @@ Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
 \end{description}
 
 \subsection{Ritardi introdotti dalla packet-switching}
-4 tipi diversi di ritardo:
+\textbf{4} tipi diversi di ritardo:
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_packetswitching3.jpg}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/R_packetswitching3.jpg}
 \end{center}
-Il ritardo di queueing cambia da pacchetto a pacchetto.\\
-Uno che non abbiamo visto è il \textbf{ritardo di elaborazione} ho perso roba vedi la registrazione.\\
-Ogni volta che un pacchetto arriva al commutatore, il commutatore deve analizzare l'intestazione del pacchetto per capire se ci sono stati problemi di trasmissione. Ci sono tutti dei codici/meccanismi per controllare ed eventualmente correggere questi eventuali errori.\\
-Tutte queste operazioni creano il \textbf{ritardo di elaborazione}, questo tempo è dell'ordine di grandezza di $10^{-9}$ secondi.\\
-Un dato decisamente più importante (2-3 ordini di grandezza più grande) è il \textbf{ritardo di accodamento}.\\
-Slide.\\
-Poi abbiamo il \textbf{ritardo di propagamento} che dipende dal mezzo di trasmissione, lunghezza del cavo e velocità di propagazione.\\
+Il ritardo di queueing è l'unico che può variare notevolmente da pacchetto a pacchetto. Gli altri sono (all'incirca) costanti per pacchetti diversi.\\
+Uno che non abbiamo visto è il \textbf{ritardo di elaborazione al nodo}. Ritardo introdotto dal commutatore per effettuare alcune operazioni, tra cui la lettura della tabella di inoltro (\textit{look up} la \textit{table}) per recuperare le informazioni sul link di output.\\
+Ogni volta che un pacchetto arriva al commutatore, il commutatore deve analizzare l'intestazione del pacchetto per capire se ci sono stati problemi di trasmissione. Ci sono tutti dei codici/meccanismi per controllare ed eventualmente correggere questi eventuali errori (se non li correggo rischio di perdere il pacchetto, se li correggo lo posso salvare). Questo prende tempo, che diventa il \textbf{ritardo di elaborazione ($d_{proc}$)}, questo tempo è dell'ordine di grandezza di $10^{-9}$ secondi.\\
+Un altro dato decisamente più importante (2-3 ordini di grandezza più grande, $10^{-6} - 10^{-3}$ secondi) è il \textbf{ritardo di accodamento ($d_{queue}$)}. L'abbiamo già visto. \`E il tempo che un pacchetto aspetta sul mezzo di trasmissione di uscita (cavo) prima di essere trasmesso, dipende dal livello di congestione del router.\\
+Poi abbiamo il \textbf{ritardo di trasmissione ($d_{trans} = \nicefrac{L}{R}$)}, anche questo già visto, che dipende dalla lunghezza del pacchetto ($L, bits$) e velocità di trasmissione ($R, bps$).\\
+Poi abbiamo il \textbf{ritardo di propagazione ($d_{prop} = \nicefrac{d}{s}$)} tempo che un pacchetto impiega praticamente a fluire da un'estremità all'altra del pacchetto. Dipende dal mezzo di trasmissione, quindi lunghezza del cavo ($d$) e velocità di propagazione ($s$, circa pari alla velocità della luce, $\sim 2 \times 10^8 \frac{m}{sec}$).\\
 A sommare tutte queste componenti, ottengo il tempo complessivo che il pacchetto ci mette a passare da sorgente a destinazione.\\
 Una cosa fondamentale è la differenza fra \textit{ritardo di trasmissione} e \textit{ritardo di propagazione}: entrambi dipendono dal mezzo su cui il pacchetto viene trasferito, ma sono diversi. Il primo dipende dalla dimensione del pacchetto e il rate di trasmissione del commutatore; il secondo dalla lunghezza del mezzo propagativo (cavo, fibra ottica, whatever) e la sua capacità di propagazione, che è una velocità ma non la stessa dell'altro ritardo.
 \subsubsection{Es.}
@@ -217,12 +216,13 @@ Per semplicità un solo casello. La differenza fra r. di trasmissione e r. di pr
 
 \subsection{Ritardo \textit{end-to-end}}
 \`E il ritardo che intercorre per il processing fra sorgente e destinazione, introdotto da tutti i commutatori di pacchetto fra uno e l'altro e i ritardi introdotti dai sistemi periferici.\\
-Abbiamo detto che è la somma delle 4 sorgenti di ritardo: $d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$.
+Abbiamo detto che è la somma delle 4 sorgenti di ritardo: $d_{nodal} = d_{proc} + d_{queue} + d_{trans} + d_{prop}$.\\
+Quando parliamo di \textit{ping} però facciamo riferimento al tempo che ci mette un pacchetto a passare da sorgente a destinazione e di nuovo indietro da destinazione alla sorgente, prende il nome di ritardo \textit{round-trip-time}.
 
 \subsection{Di più sul ritardo di queueing}
 Il ritardo di queueing cambia da pacchetto a pacchetto.\\
-Nel caso più generico possibile dipende dal tasso di intensità di traffico. Come si calcola? Abbiamo un rate medio di arrivo dei bit ($\bar{a}$), le lunghezze dei pacchetti ($L$) e la velocità di trasmissione del mezzo ($R$).\\
-L'intensità di traffico è definita come $\frac{L \bullet \bar{a}}{R}$.\\
+Nel caso più generico possibile dipende dal tasso di \textbf{intensità di traffico}. Come si calcola? Con strumenti statistici. Abbiamo un rate medio di arrivo dei bit ($\bar{a}$), le lunghezze dei pacchetti ($L$) e la velocità di trasmissione del mezzo ($R$).\\
+L'intensità di traffico è definita come $\nicefrac{L \centerdot \bar{a}}{R}$.\\
 Se l'intensità di traffico tende a 0, allora il ritardo di queueing tende ad essere molto piccolo.\\
 Se l'intensità di traffico tende a 1, allora il ritardo di queueing tende ad essere larghino.\\
 Se l'intensità di traffico è maggiore di 1, allora il ritardo di queueing tende a infinito ed è ingestibile.\\
@@ -232,41 +232,37 @@ N.B.: stiamo parlando di valori medi!!!
 Più cause:
 \begin{itemize}
     \item capacità del commutatore satura (buffer overflow) che porta alla perdita di pacchetti inviati dopo che la capacità finita è stata riempita.
-    \item problemi sul mezzo trasmissivo?
+    \item problemi sul mezzo trasmissivo
 \end{itemize}
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_packetswitching4.jpg}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/R_packetswitching4.jpg}
 \end{center}
 I pacchetti con errori di trasmissione vengono scartati. Potrebbe succedere che in qualche modo si è perso il pacchetto e decidere di ri-inviarlo ma non è scontato.
 
 \subsection{Throughput}
-velocità, rate (bits/time unit) a cui i bits sono inviati da sorgente a destinazione (a volte chiamato \textbf{\textit{end-to-end throughput}}) ed è:
+Calcolato come una velocità, rate (bits/time unit) a cui i bits sono inviati da sorgente a destinazione (a volte chiamato \textbf{\textit{end-to-end throughput}}, anche se questi due termini sono abbastanza simili e quindi possono essere usati singolarmente) ed è:
 \begin{description}
     \item[istantaneo:] rate ad un certo punto dato nel tempo
     \item[medio:] rate in un periodo più esteso di tempo
 \end{description}
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_packetswitching5.jpg}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/R_packetswitching5.jpg}
 \end{center}
 Domande:
 \begin{description}
     \item[$R_s < R_c$:] quale è il throughput medio?\\
-    $R_s$ perché il rate di trasmissione è più basso del rate di ricezione.
+    $R_s$ perché il rate di trasmissione è più basso del rate di ricezione.\\
+    In questo caso non c'è accodamento sul commutatore.
     \item[$R_s > R_c$:] quale è il throughput medio?\\
-    $R_c$ perché il rate di trasmissione è più alto del rate di ricezione.
+    $R_c$ perché il rate di trasmissione è più alto del rate di ricezione.\\
+    In questo caso c'è accodamento sul commutatore.
 \end{description}
-Parliamo di \textbf{textit{bottleneck link}}, link on end-end path that constrains end-end throughput.
+Parliamo di \textbf{\textit{bottleneck link}}, che è quel link sul percorso tra sorgente e destinazione (ovvero il percorso end-to-end) che vincola il throughput end-end. Nel primo caso è $R_s$, nel secondo è $R_c$.
 
 \subsubsection{Throughput: network scenario}
-Boh non ho sentito tanto sono un po' cotta cerca la registrazione.
 \begin{center}
     \includegraphics[width=50mm]{images/aa2324/R_packetswitching6.jpg}
 \end{center}
-
-
-
-
-
-
-
-
+Mettiamo di avere una rete come nella situazione in immagine. Abbiamo un certo numero (qua 10) di server, sopra nell'immagine, che acquistano un accesso alla rete per mezzo di un provider di una rete di accesso e hanno quindi link con velocità $R_s$. Immaginiamo vogliano comunicare con i client (diciamo ancora 10) che si trovano in basso, e che hanno accesso alla rete per mezzo di altri link con dimensione $R_c$.\\
+Immaginiamo ora di modellare la rete di core come un link di dimensione $R$ (oppure, posso dire che nella rete di core ho un link di dimensione $R$ condiviso da tutte le connessioni in modo \textbf{fair}, ovvero equamente, quindi con rate $\nicefrac{R}{10}$). Il throughput sarà dato dal minimo fra questi, ovvero $min(R_c, R_s, \nicefrac{R}{10})$.\\
+Difficilmente $\nicefrac{R}{10}$ sarà il bottleneck link: è decisamente sottodimensionato rispetto agli altri, tipicamente il bottleneck link sarà $R_c$ o $R_s$.

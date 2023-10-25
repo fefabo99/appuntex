@@ -12,9 +12,10 @@ Forniscono una comunicazione logica tra \textbf{processi applicativi} che risied
         Best-effort: I messaggi vengono inviati, se arrivano bene, se non arrivano va bene lo stesso.
     \end{description}
 \end{description}
+
 \subsubsection{Es. pratico:}
 \begin{center}
-    \includegraphics[width=0.75\textwidth]{./images/aa2324/R_livelloditrasportoEs1.jpg}
+    \includegraphics[width=0.75\textwidth]{images/aa2324/R_livelloditrasportoEs1.jpg}
 \end{center}
 
 \subsection{Differenze livello di trasporto e livello di rete}

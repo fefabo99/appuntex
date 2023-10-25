@@ -2,22 +2,26 @@
 \section{Architettura a strati}
 N.B: livelli e strati sono sinonimi qua.\\
 Partiamo dal presupposto che le reti hanno una struttura complessa. Esiste una possibilità di studiare e organizzare questa struttura?\\
-Un modo è quello di suddividere la complessa struttura in strati, ognuno dei quali si occupa di servizi diversi.\\
+Un modo è quello di suddividere la complessa struttura in strati, ognuno dei quali si occupa di servizi diversi ed è in comunicazione solo con quelli immediatamente adiacenti.
+
 \subsubsection{Perché fare strati?}
-La stratificazione di un sistema permette di andare a definire un modello di riferimento e permette un'identificazione semplice delle relazioni dei vari pezzi del nostro sistema. La modellizzazione è vantaggiosa perché se vado a modificare l'implementzione di una componente, questo risulta essere trasparente a tutto il sistema.\\
-\subsection*{Architettura a strati dell'Internet}
-Anche nota come \textit{Layered Internet protocol stack}.
-\begin{center}
-    \includegraphics[width=35mm]{images/aa2324/R_architetturaastrati1.jpg}
-\end{center}
+La stratificazione di un sistema permette di andare a definire un modello di riferimento e permette un'identificazione semplice delle relazioni dei vari pezzi del nostro sistema. La modellizzazione è vantaggiosa perché se vado a modificare l'implementazione di una componente, questo risulta essere trasparente a tutto il sistema e non va ad impattare sull'implementazione degli altri.
+
+\subsection{Architettura a strati dell'Internet}
+\begin{wrapfigure}{R}{0.15\textwidth}
+    \begin{center}
+        \includegraphics[width=0.125\textwidth]{images/aa2324/R_architetturaastrati1.jpg}
+    \end{center}
+\end{wrapfigure}
+Anche nota come \textit{Layered Internet protocol stack}, si legge dall'alto verso il basso.
 \begin{description}
     \item[applicativo:] supporta applicazioni di rete.\\
     Es.: HTTP, SMTP, FTP.
-    \item[trasporto:] trasferisce i dati tra protocollo e protocollo.\\
+    \item[trasporto:] trasferisce i dati tra processi diversi eseguiti (di solito) su macchine diverse.\\
     Es.: TCP, UDP.
-    \item[rete:] instrada i pacchetti da sorgente a destinazione.\\
+    \item[rete:] instrada i datagrammi (pacchetti a livello di rete) da sorgente a destinazione.\\
     Es.: IP, routing protocols.
-    \item[link:] trasferisce i dati tra nodi adiacenti.\\
+    \item[link:] trasferisce i dati tra nodi, elementi di rete, adiacenti.\\
     Es.: Ethernet, 802.11 (WiFi).
     \item[fisico:] trasferisce i bit su un canale fisico.\\
     \`E il livello che non vedremo.
@@ -27,12 +31,15 @@ Anche nota come \textit{Layered Internet protocol stack}.
 \subsubsection{Sorgente}
 I livelli \textbf{applicativi} si scambiano messaggi per implementare specifici servizi.\\
 Questi messaggi derivano dal livello di \textbf{trasporto}. Questi livelli di \textit{trasporto} \\
-L'intestazione è Header, bit organizzati in \textbf{campi}, mi sono persa
+L'intestazione è Header, bit organizzati in \textbf{campi}, mi sono persa\\
+53:30\\
 L'incapsulamento, prende e aggiunge l'intestazione (unica cosa che guarderò) senza preoccuparmi di ciò che ci sta prima (payload).\\
 Il succo è che ad ogni livello aggiungi un header. Al livello di link ottengo un messaggio pieno di headers che a me non interessano  ma sono utili per il funzionamento del collegamento in rete e che prende il nome di overhead.\\
 Il messaggio non viene inviato finché non è stato completamente incapsulato. Deve attraversare tutto il percorso stratificato fino ad arrivare allo strato fisico e poi viene inviato.
+
 \subsubsection{Destinazione}
-Percorso inverso, partendo dal livello fisico e continuando fino ad arrivare al livello applicativo, si tolgono gli header e si ottiene il messaggio originale.\\
+Percorso inverso, partendo dal livello fisico e continuando fino ad arrivare al livello applicativo, si tolgono gli header e si ottiene il messaggio originale.
+
 \subsubsection{A livello di commutatori}
 Negli host ovviamente ci sono tutti e 5 gli strati, a livello di commutatori invece è diverso: ci sono solo i primi 2 (switch) o 3 strati (router), ovvero il livello fisico, quello di link e quello di rete.\\
 Il router toglie l'header del livello di link e inoltra il messaggio al prossimo router, incapsulandolo in un header diverso.\\ 
@@ -47,11 +54,14 @@ Ci serve:
     \item indirizzo IP\\
     Tecnicamente associato all'interfaccia e non al server.
 \end{itemize}
+
 \subsubsection{Struttura gerarchica dei DNS}
 \begin{center}
-    \includegraphics[width=35mm]{images/aa2324/R_architetturaastrati4.jpg}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/R_architetturaastrati4.jpg}
 \end{center}
+
 \subsubsection{root servers}
+
 \subsubsection{Top-level domain e DNS autoritativi}
 Due casi:
 \begin{itemize}
