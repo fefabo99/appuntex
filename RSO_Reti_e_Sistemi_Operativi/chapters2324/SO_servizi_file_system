@@ -10,122 +10,380 @@
 
 \section{File e operazioni su file}
 \subsection{Il concetto di file e di file system}
-• Il file system è il modo attraverso il quale il sistema operativo
-memorizza in linea i dati e i programmi
+• Il file system è il modo attraverso il quale il sistema operativo memorizza in linea i dati e i programmi
 • Il file system è costituito da:
 • Un insieme di file
 • Una struttura delle directory, che organizza i file
-• Un file è una unità di memorizzazione logica, un insieme di
-informazioni correlate, registrate in memoria secondaria, alle quali è
-stato dato un nome
-• Un file a sua volta è costituito da una sequenza di record, righe, bit o
-byte, il cui significato è definito dal creatore del file
+• Un file è una unità di memorizzazione logica, un insieme di informazioni correlate, registrate in memoria secondaria, alle quali è stato dato un nome
+• Un file a sua volta è costituito da una sequenza di record, righe, bit o byte, il cui significato è definito dal creatore del file
 
 \subsection{Attributi dei file}
-• Un file possiede un insieme di attributi:
-• Nome: è di solito l’unica informazione in forma umanamente leggibile
-• Identificatore: un’etichetta unica fornita dal file system per distinguere i file
-• Tipo: tipo di dati contenuti nel file (alcuni sistemi operativi non hanno questo
-attributo)
-• Locazione: dispositivo di memoria secondaria e posizione nel dispositivo dove
-l’informazione del file è memorizzata
-• Dimensione: in byte, parole, record…
-• Protezione: informazione di controllo accessi
-• Ora, data e utente che ha creato, letto o modificato per ultimo il file
-• Attributi estesi: checksum, codifica caratteri, applicazioni correlate…
-• Le informazioni sul file sono memorizzate nelle directory
+Un file possiede un insieme di attributi:
+\begin{description}
+\item[Nome:] è di solito l'unica informazione in forma umanamente leggibile
+\item[Identificatore:] un'etichetta unica fornita dal file system per distinguere i file
+\item[Tipo:] tipo di dati contenuti nel file (alcuni sistemi operativi non hanno questo attributo)
+\item[Locazione:] dispositivo di memoria secondaria e posizione nel dispositivo dove l'informazione del file è memorizzata
+\item[Dimensione:] in byte, parole, record\dots
+\item[Protezione:] informazione di controllo accessi
+\item[Ora, data e utente] che ha creato, letto o modificato per ultimo il file
+\item[Attributi estesi:] checksum, codifica caratteri, applicazioni correlate\dots
+\end{description}
+Le informazioni sul file sono memorizzate nelle directory
 
-\subsection{Operazioni dei processi sui file}
-• Creazione: viene riservato spazio nel filesystem per i dati, e viene aggiunto
-un elemento nella directory
-• Apertura: effettuata prima dell’utilizzo di un file
-• Lettura: a partire dalla posizione determinata da un puntatore di lettura
-• Scrittura: a partire dalla posizione determinata da un puntatore di scrittura
-(di solito coincide con il puntatore di lettura)
-• Riposizionamento (seek): spostamento del puntatore all’interno del file
-• Chiusura: effettuata alla fine dell’utilizzo di un file
-• Cancellazione e troncamento: il troncamento cancella i dati ma non il file
-con i suoi attributi
+% 26/10/2023
 
-% lezione 11 ottobre termina qua
+\subsection{Operazioni dei processi sui file}\begin{description}
+    \item[Creazione:] viene riservato spazio nel filesystem per i dati, e viene aggiunto un elemento nella directory
+    \item[Apertura:] effettuata prima dell'utilizzo di un file
+    \item[Lettura:] a partire dalla posizione determinata da un puntatore di lettura
+    \item[Scrittura:] a partire dalla posizione determinata da un puntatore di scrittura (di solito coincide con il puntatore di lettura)
+    \item[Riposizionamento (seek):] spostamento del puntatore all'interno del file
+    \item[Chiusura:] effettuata alla fine dell'utilizzo di un file
+    \item[Cancellazione e troncamento:] la cancellazione elimina proprio la voce corrispondente al file all'interno della directory (struttura dati all'interno del filesystem che mantiene l'informazione dell'elenco dei file presenti), mentre il troncamento cancella i dati ma non il file con i suoi attributi
+\end{description}
 
 \subsection{Lock dei file}
-• Uno stesso file può essere aperto contemporaneamente da più processi che
-operano in concorrenza
-• Alcuni sistemi operativi permettono di associare ai file (o a porzioni di esso) dei
-lock per coordinare i processi che operano sullo stesso file
-• Due tipi di lock: • Lock condiviso: detto anche lock di lettura; più processi possono acquisirlo, proibisce l’acquisizione di un lock esclusivo
-• Lock esclusivo: detto anche lock di scrittura; solo un processo alla volta può acquisirlo, proibisce l’acquisizione di un lock condiviso
+Cosa tipicamente chiesta all'esame.\\
+Uno stesso file può essere aperto contemporaneamente da più processi che operano in concorrenza. I lock servono a "bloccare" il file momentaneamente \\
+Alcuni sistemi operativi permettono di associare ai file (o a porzioni di esso) dei lock per coordinare i processi che operano sullo stesso file.\\
+Due tipi di lock: 
+\begin{description}
+    \item[Lock condiviso:] detto anche \textbf{lock di lettura}; \textbf{\textit{più processi possono acquisirlo}}, proibisce l'acquisizione di un lock esclusivo.
+    \item[Lock esclusivo:] detto anche \textbf{lock di scrittura}; \textbf{\textit{solo un processo alla volta può acquisirlo}}, proibisce l'acquisizione di un lock condiviso.
+\end{description}
+Sono delle primitive molto "primitive", bisogna usarle bene (no shit), è molto facile sbagliare perché sono decisamente di basso livello.\\
+Dead-lock: un altro processo vuole prendere due lock, A e B, un altro processo li vuole pure ma al contrario, B e A. Se il primo prende A, ha successo, il secondo prova B, ha successo. Se il s.o. blocca l'esecuzione di A, e il processo vuole prendere B, ma non riesce perché è già "occupato".\\
 Altre possibilità:
-• Lock obbligatori (mandatory): il sistema operativo impedisce l’accesso al file ai processi che non detengono il lock
-• Lock consultivi (advisory): il sistema operativo offre il lock ma non regola l’accesso al file: sono i processi che devono evitare di accedere al file se non hanno il lock
-• I sistemi Windows adottano i lock obbligatori, i sistemi Unix-like i lock consultivi
+\begin{description}
+    \item[Lock obbligatori (mandatory):] il sistema operativo impedisce l'accesso al file ai processi che non detengono il lock.\\
+    In questo modo impediscono situazioni di accesso concorrente.\\
+    Es.: se apriamo un file di Windows in lettura, e c'è un altro processo che l'ha giò aperto in scrittura, ho problemi.
+    \item[Lock consultivi (advisory):] il sistema operativo offre il lock ma non regola l'accesso al file: sono i processi che devono evitare di accedere al file se non hanno il lock.\\
+    Sono un po' come i semafori.
+    \item[] I sistemi Windows adottano i lock obbligatori, i sistemi Unix-like mettono a disposizione solo lock consultivi.
+\end{description}
 
 \subsection{Tipi di file}
-• Possibili tipi:
-• Dati (numerici, testo, binari)
-• Programmi
-• Il sistema operativo può essere più o meno consapevole del tipo di
-file, ma deve almeno riconoscere il tipo di file eseguibile
-• Possibili tecniche per riconoscere il tipo di file:
-• Schema del nome (nome . estensione)
-• Attributi nei file (ad esempio in macOS viene registrato il programma che ha
-creato il file)
-• «Magic number» all’inizio del file (ad esempio «shebang» magic cookie
-all’inizio degli script Unix)
+Ci sono tantissimi possibili tipi di file:
+\begin{itemize}
+    \item Dati (numerici, testo, binari)
+    \item Programmi
+\end{itemize}
+Il sistema operativo può essere più o meno consapevole del tipo di file, ma deve almeno riconoscere il tipo di file eseguibile, in particolare quale tipo per quale applicazione.\\
+Un tipo di file che necessariamente deve riconoscere (anche il kernel) è il tipo file eseguibile.\\
+Possibili tecniche per riconoscere il tipo di file:
+\begin{itemize}
+    \item Schema del nome (\texttt{nome . estensione})
+    \item Attributi nei file, visibile anche nella directory (ad esempio in macOS viene registrato il programma che ha creato il file)
+    \item "Magic number" all'inizio del file (ad esempio "shebang" magic cookie ("\texttt{#!}" e poi il nome del file eseguibile) all'inizio degli script Unix, che usano quel nome di file eseguibile come interprete di tutto quello che viene dopo)
+\end{itemize}
+Es. dell'ultima cosa: ad esempio
+\begin{verbatim}
+    ash! python
+    ... programma python ...
+\end{verbatim}
+Quando eseguo verrà interpretato il file python.
 
 \subsection{Struttura dei file}
 Possibilità:
-• Nessuna struttura (ad esempio, nei sistemi Unix-like un file è una sequenza di
-byte)
-• Sequenza di record (righe di testo o record binari, a struttura e lunghezza fissa
-o variabile)
-• Strutture più complesse e standardizzate, soprattutto per file eseguibili
-(formato PE in Windows, a.out ed ELF nei sistemi Unix-like, Mach-O in macOS)
-Più il sistema operativo supporta direttamente diverse strutture di
-file, più diventa complesso
-• Inoltre se il sistema operativo è troppo «rigido» sulle possibili
-strutture, potrebbe non supportare nuovi tipi, o tipi ibridi
+\begin{itemize}
+    \item Nessuna struttura (ad esempio, nei sistemi Unix-like un file è una sequenza di byte)
+    \item Sequenza di record (righe di testo o record binari, a struttura e lunghezza fissa o variabile)
+    \item Strutture più complesse e standardizzate, soprattutto per file eseguibili (formato PE in Windows, a.out ed ELF nei sistemi Unix-like, Mach-O in macOS)
+\end{itemize}
+Più il sistema operativo supporta direttamente diverse strutture di file, più diventa complesso e rigido, continuano a uscire nuovi formati di file. Se fosse direttamente il kernel o il filesystem a gestire direttamente i tipi di file, dovrei aggiornarli ogni singola volta. Invece essendo le applicazioni resposabili di ciò, è molto più semplice aggiornare o installare nuove applicazioni.
 
 \subsection{Metodi di accesso:}
 \subsubsection{Accesso sequenziale}
-• Il file è una sequenza di record a
-lunghezza fissa
-• Operazioni:
-• read_next() e write_next()
-leggono/scrivono il successivo
-record dalla posizione corrente
-• Operazione di riavvolgimento
+Tipo di scrittura rapida. C'è un puntatore al livello corrente e sostanzialmente 3 operazioni.\\
+Il file è una sequenza di record a lunghezza fissa. Le operazioni:
+\begin{itemize}
+    \item read_next() e write_next() leggono/scrivono il successivo record dalla posizione corrente
+    \item Operazione di riavvolgimento
+\end{itemize}
 % wrap immagine 1
 
 \subsubsection{Accesso diretto}
-• Operazioni read(n) e write(n) per accedere direttamente all’n-esimo
-record
-• Alternativamente, operazioni read_next(), write_next() e position(n)
+Operazioni read(n) e write(n) per accedere direttamente all'n-esimo record (offset).\\
+Alternativamente, operazioni read_next(), write_next() (esattamente come accesso sequenziale) e position(n) (invece di rewind). Questa è la scelta di POSIX.
 
 \subsubsection{Accesso indicizzato}
-• In alcuni sistemi operativi, ad esempio quelli per mainframe IBM, i file
-possono essere sequenze di record ordinate secondo un determinato
-campo chiave del record
-• In tali sistemi l’accesso può essere basato sulla chiave, e il sistema
-operativo mantiene un indice per velocizzare l’accesso
-• Esempio: accesso ISAM nei sistemi IBM, file system Files-11 prodotto
-da Digital per il sistema operativo OpenVMS (offre tutti e tre i tipi di
-accesso su record a lunghezza fissa o variabile)
+In alcuni sistemi operativi, ad esempio quelli per mainframe IBM (filesystem più complicati, non come sequenze di byte ma di record), c'è questa terza possibilità. I file possono essere \textbf{sequenze di record} ordinate secondo un determinato campo chiave del record.\\
+In tali sistemi l'accesso può essere basato sulla chiave, e il sistema operativo mantiene un indice per velocizzare l'accesso.\\
+Questo indice può diventare una chiave primaria (come in basi di dati, univoca, mi serve per identificare univocamente il singolo file) che mi servirà per individuare e categorizzare e aprire i file.\\
+Esempio: accesso ISAM nei sistemi IBM, file system Files-11 prodotto da Digital per il sistema operativo OpenVMS (offre tutti e tre i tipi di accesso su record a lunghezza fissa o variabile)
 
 \section{Directory: operazioni e struttura}
+\subsection{Cos'è una directory}
+Una directory è, in pratica, un elenco di file presenti nel file system.\\
+Più formalmente: è una tabella che permette di associare il nome di un file ai dati (e metadati) contenuti nel file stesso.\\
+Sia i file che le directory risiedono su disco: deve esservi almeno una directory nel file system (altrimenti non sarebbe possibile ritrovare i file!)\\
+\textbf{Il filesystem è un pezzo di software}.
+
+\subsection{Operazioni dei processi sulle directory}
+• Creazione di un file in una directory
+• Cancellazione di un file in una directory
+• Ridenominazione di un file o spostamento da una directory ad un’altra
+• Elenco dei file in una directory
+• Ricerca di un file: basata sul nome, o su uno schema di possibili nomi
+• Attraversamento del file system, ad esempio per backup
+
+\subsection{Struttura delle directory}
+Ricorda il concetto di \textbf{directory corrente}: così come il concetto di \textit{posizione corrente} di navigazione, così nelle API viene salvata la cartella corrente.
+\begin{description}
+    \item[Directory a un livello:] è un elenco di file, senza ulteriori directory.\\
+    Una sola directory per tutti i file.\\
+    \begin{description}
+        \item[Vantaggi:] semplicità
+        \item[Svantaggi:] 
+        \begin{itemize}
+            \item Difficoltà naming file quando sono molti
+            \item Difficoltà raggruppamento file di utenti diversi
+        \end{itemize}
+    \end{description}
+    % immagine
+
+    \item[Directory a due livelli:] è un elenco di file e di directory. Viene introdotto il concetto di \textbf{sottodirectory}.\\
+    La directory principale contiene delle sottodirectory, una per ogni utente.\\
+    La sottodirectory utente contiene i file dell’utente.\\
+    Utenti diversi possono dare lo stesso nome a file diversi.\\
+    Occorre quindi usare dei nomi di percorso (path name) per identificare un file univocamente:
+    \begin{itemize}
+        \item \texttt{/user2/data} (separatori Unix-like)
+        \item \texttt{\user2\data} (separatori Windows-like)
+        \item \texttt{>user2>data} (separatori MULTICS-like, un vecchissimo s.o.)
+    \end{itemize}
+    I file di sistema di solito sono posti in una o più directory speciali, e occorre che il sistema conosca un percorso di ricerca per trovarli.\\
+    % immagine
+
+    \item[Directory ad albero:] è un elenco di file e di directory, dove le directory possono contenere altre directory.\\
+    Non ha senso farne $2$ o $3$ o $n$, a sto punto ne fai $\infty$.\\
+    Ogni directory contiene ricorsivamente files e altre directory.\\
+    Permette agli utente di raggruppare i propri file.\\
+    Per semplificare l’accesso ad ogni programma è assegnata una directory corrente, dalla quale si possono specificare path relativi (Esempio: se la directory corrente è \texttt{/programs/mail}, un path relativo potrebbe essere \texttt{prt/first}).\\
+    Cancellazione directory:
+    \begin{itemize}
+        \item Con la directory cancello tutto il suo contenuto
+        \item Oppure permetto di cancellare una directory solo se è vuota
+        \item La seconda soluzione è più sicura
+    \end{itemize}
+
+    \item[Directory a grafo aciclico:] 
+    Permette l'aliasing (più di un nome per lo stesso file).\\
+    Cosa succede se cancello un file/directory con un alias? Es.: cancello \texttt{dict/link/count}, cosa succede a \texttt{spell/count}?
+    \begin{description}
+        \item[Hard links:] duplicazione voci di directory; viene introdotto un contatore ai riferimenti, quando è a zero viene cancellato il file.
+        \item[Link simbolici:] non una vera e propria directory, è un po' quello che succede quando su Windows fai "crea collegamento". Sono riferimenti simbolici ad un path assoluto, quando questo è cancellato restano dangling; non sono aggiunti al contatore dei riferimenti.
+    \end{description}
+    Problema attraversamento. Cosa succede nel caso di hard links? La risposta a noi (spoiler alert, non c'è una soluzione corretta).
+
+    \item[Directory a grafo generale:] non sembra ci siano filesystem che la implementino.\\
+    • Possibilità di hard link anche a
+directory a livelli superiori,
+persino che contengono
+ricorsivamente il link stesso
+• Per determinare se un file non è
+più referenziato un contatore al
+numero dei riferimenti non
+basta, occorre un autentico
+algoritmo di garbage collection
+• Attraversamento del file system
+ancora più complicato
+\end{description}
+
+\section{Protezione}
+\subsection{Protezione}
+Noi siamo abituati a computer personali, che usiamo solo noi. Ma nel caso di computer condivisi (che quindi condividono lo stesso filesystem), come faccio a proteggere i miei file?\\
+Le informazioni devono essere preservate dai danni fisici (affidabilità) e dagli accessi impropri (protezione). Un sistema multiutente permette un accesso controllato ai file di un certo utente da parte degli altri utenti.\\
+Operazioni controllabili:
+\begin{itemize}
+    \item Lettura
+    \item Scrittura
+    \item Esecuzione
+    \item Aggiunta (scrittura in coda ad un file)
+    \item Cancellazione
+    \item Elencazione (elenco contenuto directory)
+\end{itemize}
+
+\subsection{Liste di controllo degli accessi}
+Idea:
+\begin{itemize}
+    \item Ad ogni file/directory è associata una lista di controllo degli accessi (access control list, ACL).
+    \item L'ACL specifica gli utenti che possono accedere al file/directory, con i relativi permessi di accesso.
+    \item Il file system controlla l'ACL prima di ogni accesso al file.
+\end{itemize}
+Principale svantaggio: le ACL possono diventare tante e molto lunghe.\\
+Approccio usato nei sistemi Unix-like, ovvero raggruppare gli utenti in classi distinte (in modo da ridurre in maniera radicale la necessità di creare ACL):
+\begin{itemize}
+    \item Proprietario: l'utente che possiede il file/directory
+    \item Gruppo: il gruppo di utenti che condivide il file/directory
+    \item Pubblico: tutti gli altri utenti
+\end{itemize}
+
+La slide 2 da inserire.
+
+\section{Volumi e montaggio}
+Un sistema operativo deve permettere di aggiungere e rimuovere dinamicamente unità di memorizzazione dati.\\
+Un dispositivo di archiviazione può essere suddiviso in partizioni.\\
+Un \textbf{volume} è una zona di un dispositivo di archiviazione contenente un filesystem.\\
+Un volume di solito è contenuto in una partizione, su un solo dispositivo.\\
+Ma per alcuni filesystem particolari un volume si può estendere su più partizioni/dispositivi.
+% immagine
+
+\subsection{Montaggio e smontaggio}
+Il sistema operativo deve permettere di montare e smontare un volume all'interno dello spazio dei nomi del filesystem.\\
+Di solito per montare un volume occorre fornire al sistema operativo:
+\begin{itemize}
+    \item L'identificazione del dispositivo/partizione dove risiede il volume
+    \item Il punto di montaggio, ossia la locazione nella struttura di file e directory alla quale "agganciare" il filesystem contenuto nel volume (tipicamente una directory vuota).
+\end{itemize}
+Varianti:
+\begin{itemize}
+    \item Punto di montaggio: directory vuota oppure no.
+    \item Montaggio automatico o manuale.
+    \item Utilizzo identificatori (lettere) di unità anziché punti di montaggio.
+    \item Montaggio ripetuto di uno stesso volume permesso oppure no.
+\end{itemize}
+
+% inserisci slide con immagine di esempio
+
+Nell'esempio ho nel filesystem le due directory \texttt{a} e \texttt{b}, dove \texttt{a} contiene i file \texttt{c} e \texttt{d}. Se \textbf{monto} (una chiavetta USB) il volume con le directory \texttt{x} e \texttt{y} su \texttt{b}, a fianco di \texttt{c} e \texttt{d} in \texttt{a} avrò \texttt{x} e \texttt{y} in \texttt{b}. Quando \textbf{smonto} la chiavetta, tornerò ad avere la situazione iniziale. Ha fatto la prova in aula col suo Mac: su shell ha scritto
+\begin{verbatim}
+    > cd /
+\end{verbatim}
+che ritorna la directory più alta possibile, 
+\begin{verbatim}
+    > ls
+\end{verbatim}
+che elenca cosa ho dentro. Vedo una directory chiamata \texttt{Volumes} in cui vedo solo il nome del Mac, perché non ha montato niente. Se monta la chiavetta,
+\begin{verbatim}
+    > ls 
+    > ls Volumes
+\end{verbatim}
+compare il nome della chiavetta. Se la smonta,
+\begin{verbatim}
+    > ls 
+    > ls Volumes
+\end{verbatim}
+torna come prima, con solo il nome del Mac.
+
+% slide con a sinistra esempi di comandi e a destra i tipi, Esempio punti di montaggio per un sistema Solaris.
+
+\section{Le API POSIX per operazioni su file}
+Per creare un file foo.txt con diritti di lettura e scrittura per il proprietario, e di sola lettura per i membri del gruppo e gli altri:
+\begin{verbatim}
+    int fd = creat("foo.txt", S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+\end{verbatim}
+oppure
+\begin{verbatim}
+    int fd = open("foo.txt", O_WRONLY|O_CREAT|O_TRUNC,
+    S_IRUSR|S_IWUSR|S_IRGRP|S_IROTH);
+\end{verbatim}
+Per aprire un file \texttt{foo.txt} in sola lettura:
+\begin{verbatim}
+    int fd = open("foo.txt", O_RDONLY);
+\end{verbatim}
+Per leggere da un file:
+\begin{verbatim}
+    char buf[NBYTES];
+    int tot_read = read(fd, buf, NBYTES);
+\end{verbatim}
+Per scrivere su un file:
+\begin{verbatim}
+    char buf[] = "Hello";
+    int tot_written = write(fd, buf, 5);
+\end{verbatim}
+Per riposizionarsi all'interno di un file:
+\begin{verbatim}
+    off_t offset = lseek(fd, 10, SEEK_CUR); /* 10 bytes dopo la posizione corrente */
+\end{verbatim}
+Per chiudere un file:
+\begin{verbatim}
+    int ok = close(fd);
+\end{verbatim}
+Per cancellare il file foo.txt:
+\begin{verbatim}
+    int ok = unlink("foo.txt");
+\end{verbatim}
+Per troncare il file foo.txt alla lunghezza n:
+\begin{verbatim}
+    int ok = truncate("foo.txt", n);
+\end{verbatim}
+
+\subsection{I lock}
+Sono solo consultivi, non esclusivi.\\
+Il lock si può effettuare con l'operazione fcntl, che è un'API che permette di effettuare diversi tipi di operazioni sui file.\\
+Occorre specificare il tipo di lock utilizzando una struct flock.\\
+Esempio: impostare un lock in lettura (ossia condiviso) dalla posizione corrente + 10 byte fino alla fine del file con descrittore fd
+\begin{verbatim}
+    struct flock fl;
+    fl.l_type = F_RDLCK; /* read lock */
+    fl.l_whence = SEEK_CUR; /* dalla posizione corrente… */
+    fl.l_start = 10; /* ...più 10 byte */ fl.l_len = 0; /* fino alla fine del file */
+    int ok = fcntl(fd, F_SETLK, &fl); /* se non riesce a bloccare, fallisce */
+\end{verbatim}
+
+\section{Le API POSIX per operazioni su directory}
+Per creare una nuova directory, con diritti di lettura, scrittura e ricerca per il proprietario, e di sola lettura per i membri del gruppo e gli altri:
+\begin{verbatim}
+    mkdir("/home/pietro/newdir", S_IRWXU|S_IRGRP|S_IROTH);
+\end{verbatim}
+Per eliminare una directory (solo se vuota):
+\begin{verbatim}
+    rmdir("/home/pietro/newdir");
+\end{verbatim}
+Per visitare il contenuto di una directory:
+\begin{verbatim}
+    #include <dirent.h> 
+    ...
+    DIR *dir;
+    struct dirent *dp; 
+    ...
+    if ((dir = opendir(".")) == NULL) { 
+        perror("Cannot open ."); 
+        exit(1);
+    }
+    while ((dp = readdir(dir)) != NULL) {
+        ... 
+    }
+\end{verbatim}
+Per cambiare il nome, o spostare, un file o una directory si può usare l'API link, che aggiunge una voce di directory (hard link) per un file esistente, insieme all'API unlink, che cancella una voce di directory.\\
+Esempio: per spostare il file /foo/bar nella directory /home/pietro, e allo stesso tempo cambiare il suo nome in baz:
+\begin{verbatim}
+    int ok1 = link("/foo/bar", "/home/pietro/baz");
+    int ok2 = unlink("/foo/bar");
+\end{verbatim}
+Quando il link count di un file arriva a zero, il file viene cancellato.\\
+Per creare un link simbolico usare l'API symlink; i link simbolici non vengono aggiunti al link count
+\begin{verbatim}
+    int ok = symlink("/home/pietro/baz","/home/pietro/alias");
+\end{verbatim}
+
+\section{Le API POSIX per la protezione}
+In POSIX la protezione è basata sui bit lettura / scrittura / esecuzione per proprietario / gruppo / pubblico\\
+Per cambiare il proprietario e il gruppo di un file:
+\begin{verbatim}
+    uid_t owner = …
+    gid_t group = …
+    int ok = chown("/home/pietro/baz", owner, group);
+\end{verbatim}
+Per cambiare i diritti di lettura / scrittura / esecuzione (ad esempio, solo lettura per proprietario e gruppo):
+\begin{verbatim}
+    int ok = chmod("/home/pietro/baz", S_IRUSR|S_IRGRP);
+\end{verbatim}
 
 
+Parte sul kernel da mettere in un altro file.
+\subsection{Duplice modalità di funzionamento}
+Il kernel permette al s.o. di proteggere se stesso dai programmi in esecuzione.\\
+La CPU , impostando un opportuno \textbf{bit di modalità}, può funzionare in:
+\begin{description}
+    \item[modalità utente (user mode):] alcune funzionalità e zone di memoria sono proibite, ovvero non possono essere eseguite o accessibili da eventuali periferiche mappate in memoria.
+    \item[modalità di sistema (kernel mode):] 
+\end{description}
+Alcune istruzioni del 
 
-
-
-
-
-
-
-
-
-
-
-
-
+\subsection{Implementazione delle chiamate di sistema}
+Ci deve essere una qualche modalità di boh senti la registrazione, a circa 1 min dalla fine, quando inizia questa parte. la frase è tipo "per passare dalla modalità utente alla modalità di sistema".\\
+Si ferma qua, il resto nella seconda metà del semestre.
