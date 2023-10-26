@@ -2,38 +2,57 @@
 Vedremo ben poca roba, verrà approfondito meglio in altri corsi.
 
 \section{DNS: Domain Name System}
-Questo servizio permette di mappare un nome di dominio in un indirizzo IP.\\
-Ci serve:
+Funzione importante del protocollo internet, implementato a livello applicativo. La sua complessità per questo motivo è limitata ai bordi della rete (a livello applicativo sono coinvolti sono gli end-users, clients e servers, non commutatori).\\
+Così come le persone hanno degli identificatori (quali nome, cognome, carta d'identità, codice fiscale, passaporto etc.), anche in rete avviene la stessa cosa. In particolare ci serve:
 \begin{itemize}
-    \item host name
-    \item indirizzo IP\\
-    Tecnicamente associato all'interfaccia e non al server.
+    \item host name (es. "www.unimib.it")
+    \item indirizzo IP (indirizzo di 32 bit, tecnicamente associato all'interfaccia e non al server).
 \end{itemize}
+Quando scrivo e invio un host name, quello che concretamente faccio è generare una richiesta di DNS che mi porti a risolvere quell'host name. Questo è ciò che fa il DNS: permette di restituire sulla base dell'host name l'indirizzo IP su cui io posso reperire quello specifico contenuto a livello di interfaccia di rete del server.
 
-\subsection{Struttura gerarchica dei DNS}
+\subsection{Mapping tra indirizzi IP e host names}
+Per mezzo del \textbf{Domain Name System} (DNS) è possibile mappare gli indirizzi IP con gli host names.
+
+\subsection{Cos'è un DNS?}
+\`E un database distribuito implementato seguendo una gerarchia e utilizzando diversi server che prendono il nome di \textit{\textbf{DNS} (o \textbf{nameserver})}.\\
+Il servizio di traslazione degli indirizzi non è facilmente implementabile tramite un unico server (che per ogni singolo host name restituisce l'indirizzo IP associato), non sarebbe scalabile (in internet ho una quantità gigantesca di host names, una singola entità non potrebbe possibilmente risolverli tutti).\\
+Per questo è stata creata la gerarchia per distribuire questo carico su più nodi con diverse responsabilità.
+
+\subsection{Come funziona un DNS?}
+\subsubsection{Struttura gerarchica dei DNS}
 \begin{center}
     \includegraphics[width=0.35\textwidth]{images/aa2324/R_architetturaastrati4.jpg}
 \end{center}
+Abbiamo:
+\begin{description}
+    \item[root DNS servers:] sono al top della gerarchia, gestiti da ICANN (Internet Corporation for Assigned Names and Numbers).\\
+    Sono una funzione internet importantissima. Contengono tutte le informazioni relative ai top-level domain (TLD) servers o i DNS servers che possono essere contattati.
+    \item[top-level domain (TLD) DNS servers:] gestiscono i domini di primo livello (es. .com, .org, .net, .it, .fr, .uk, .de, \dots).\\
+    Due casi:
+    \begin{itemize}
+        \item organizzazioni grandi gestiscono e mantengono in modo diretto i propri server autoritativi (es.: Bicocca)
+        \item organizzazioni piccole si appoggiano a provider di servizi DNS
+    \end{itemize}
+    \item[authoritative DNS servers:] organizzazioni che gestiscono i propri DNS (es. Bicocca).\\
+    Sono quelli che vanno a fare il mapping vero e proprio.
+    \item[local DNS name servers:] ISP, università, aziende, home network che forniscono accesso a internet ai client.
+\end{description}
 
-\subsection{root servers}
-
-\subsection{Top-level domain e DNS autoritativi}
-Due casi:
+\subsubsection{Local DNS name servers}
+Quando gli host fanno query DNS, queste vengono inoltrate a un \textbf{local DNS server}.
 \begin{itemize}
-    \item organizzazioni grandi gestiscono e mantengono in modo diretto i propri server autoritativi (es.: Bicocca)
-    \item organizzazioni piccole si appoggiano a provider di servizi DNS
-\end{itemize}
-\subsection{Local DNS name servers}
-host fanno dns query, vengono inoltrate a un local DNS server.
-\begin{itemize}
-    \item i DNS locali rispondono direttamente alle query che hanno già in cache
+    \item i DNS locali, se la cache è vuota, creano l'associazione nome-indirizzo che viene storata e conservata per un limitato intervallo di tempo
+    \item altrimenti (se non trova riscontro) interrogano la gerarchia e rispondono direttamente alle query che hanno già in cache, magari non con valori aggiornati ma che comunque non si discostano tanto
     ma che ne so senti la registrazione
 \end{itemize}
-\subsection{Come funziona la risoluzione di DNS}
+\subsubsection{Come funziona la risoluzione di DNS}
 \begin{description}
-    \item[iterativa:] quella che vedremo
-    \item[ricorsiva:] quella che non vedremo (no shit)
+    \item[iterativa:] quella che vedremo\\
+    Il ruolo centrale ce l'ha il DNS locale che va a contattare gli altri della gerarchia e scopre quale server successivo da contattare per ottenere il vero indirizzo IP da cui ottenere l'informazione richiesta. Tutto trasparente per il server ma non per il requesting host.\\
+    Meglio quella iterativa perché il DNS locale gestisce meglio.
+    \item[ricorsiva:] quella che non vedremo (no shit, CoP)\\
+    Si richiede più carico ai DNS all'interno della gerarchia e si toglie un po' di carico a livello del DNS locale.\\
+    Non è l'ideale perché vado ad aggiungere complessità ai messaggi che devono essere scambiati fra questi nodi e vista la grande richiesta di scambio di messaggi sulla rete è un casino. 
 \end{description}
-In quella iterativa il ruolo centrale ce l'ha il DNS locale che va a contattare gli altri della gerarchia e scopre quale server successivo da contattare per ottenere il vero indirizzo IP da cui ottenere l'informazione richiesta.
-In quella ricorsiva chi l'ha capito.\\
-Ma è meglio quella iterativa perché il DNS locale gestisce meglio.
+
+
