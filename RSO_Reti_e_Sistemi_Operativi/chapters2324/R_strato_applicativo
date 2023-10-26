@@ -1,0 +1,39 @@
+\chapter{Livello applicativo}
+Vedremo ben poca roba, verrà approfondito meglio in altri corsi.
+
+\section{DNS: Domain Name System}
+Questo servizio permette di mappare un nome di dominio in un indirizzo IP.\\
+Ci serve:
+\begin{itemize}
+    \item host name
+    \item indirizzo IP\\
+    Tecnicamente associato all'interfaccia e non al server.
+\end{itemize}
+
+\subsection{Struttura gerarchica dei DNS}
+\begin{center}
+    \includegraphics[width=0.35\textwidth]{images/aa2324/R_architetturaastrati4.jpg}
+\end{center}
+
+\subsection{root servers}
+
+\subsection{Top-level domain e DNS autoritativi}
+Due casi:
+\begin{itemize}
+    \item organizzazioni grandi gestiscono e mantengono in modo diretto i propri server autoritativi (es.: Bicocca)
+    \item organizzazioni piccole si appoggiano a provider di servizi DNS
+\end{itemize}
+\subsection{Local DNS name servers}
+host fanno dns query, vengono inoltrate a un local DNS server.
+\begin{itemize}
+    \item i DNS locali rispondono direttamente alle query che hanno già in cache
+    ma che ne so senti la registrazione
+\end{itemize}
+\subsection{Come funziona la risoluzione di DNS}
+\begin{description}
+    \item[iterativa:] quella che vedremo
+    \item[ricorsiva:] quella che non vedremo (no shit)
+\end{description}
+In quella iterativa il ruolo centrale ce l'ha il DNS locale che va a contattare gli altri della gerarchia e scopre quale server successivo da contattare per ottenere il vero indirizzo IP da cui ottenere l'informazione richiesta.
+In quella ricorsiva chi l'ha capito.\\
+Ma è meglio quella iterativa perché il DNS locale gestisce meglio.
