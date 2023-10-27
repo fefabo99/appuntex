@@ -107,3 +107,6 @@ sprechiamo energia computazionale. Un filtro molto grande e uno più piccolo con
 
 La dimensione del filtro $N$ e la $\sigma$ sono quindi legati da questa regola empirica:
 \[ N = 1 + 2 \cdot \lfloor2.5 \cdot \sigma \rfloor \]
+
+
+%%TODO Filtro non lineare MEDIANO.

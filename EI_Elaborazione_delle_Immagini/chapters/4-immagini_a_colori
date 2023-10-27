@@ -1,0 +1,25 @@
+\chapter{Immagini a Colori}
+
+\section{Spazi Colore}
+
+\subsection{YCbCr}
+Lo spazio color YCbCr è uno spazio orientato alla \textbf{compressione e trasmissione}.
+Questo è uno spazio colore \textbf{Opponente}, ovvero invece che rappresentare "l'intensità" di un colore (come percepito dai filtri) rappresenta
+in un asse il confronto tra due colori opponenti.
+Lo spazio YCbCr ha le seguenti componenti:
+\begin{itemize}
+    \item Y = Intensità luminosa pura
+    \item Cb = Asse Blu - Giallo
+    \item Cr = Asse Rosso - Verde
+\end{itemize}
+Ignorando la Luma (Y), la rappresentazione dei colori è così composta:
+\begin{center}
+    \includegraphics[width=.25\textwidth]{images/YcbCr.png}
+\end{center}
+YCbCr è utile perchè possiamo processare la pura informazione colore indipendentemente dall'intensità (Luma).
+
+\nb{In MATLAB la funzione \texttt{imshow} visualizza solo immagini in scala di grigio o rgb, se gli diamo una immagine con uno spazio colore diverso
+cercherà di interpretare in 3 canali come R, G, e B.}
+
+\subsection{HSV}
+\nb{Al progetto non è il caso di usare HSV o YCbCr, ma sarebbe bene trovarne un altro}
