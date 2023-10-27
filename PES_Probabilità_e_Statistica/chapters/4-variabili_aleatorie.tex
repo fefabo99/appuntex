@@ -57,88 +57,129 @@ Ogni variabile aleatoria $X$ determina molti eventi, di cui possiamo calcolare l
 % \section{Notazione} Con $X_i$ indichiamo la Variabile Aleatoria $X_i: \Omega \rightarrow \mathbb{R}$
 % \\ con $x_i$ indichiamo l'osservazione relativa alla V.A $X$
 
+\pagebreak
 \section{Variabili Aleatorie Discrete}
-Una variabile aleatoria X (reale) si dice \textbf{discreta} se i valori che può
-assumere sono un insieme finito:
-\begin{equation}
-    X(\Omega) = {x_1, x_2, \dots, x_n} \subseteq  R
-\end{equation}
-Oppure un insieme infinito numerabile
-\begin{equation}
-    X(\Omega) = {x_1, X_2, \dots } = {x_i} i \in N \subseteq R
-\end{equation}
-Ad ogni variabile aleatoria discreta X possiamo associare
-\begin{center}
-    \textbf{Densità discreta} $P_x(x_i) = P(X = x_i)$
-\end{center}
-Definita anche come distribuzione di probabilità, è una funzione che assegna
-ad ogni valore possibile di X la probabilità dell'evento elementare $(X = x)$
-\subsection{Proprietà}
-\begin{center}
-    \includegraphics[width=120mm, scale=0.5]{prop_densità_discreta.png}
-\end{center}
-Concettualmente una v.a. (variabile aleatoria) X è rappresentata matematicamente da una
+\definizione{
+    Una variabile aleatoria $X$ (reale) si dice \textbf{discreta} se i valori che può
+    assumere sono un insieme finito:
+    \[
+        X(\Omega) = {x_1, x_2, \dots, x_n} \subseteq  \R
+    \]
+    Oppure un insieme infinito Numerabile\footnote{Di punti "separati".}:
+    \[
+        X(\Omega) = {x_1, X_2, \dots } = {x_i} _{i \in \N} \subseteq \R
+    \]
+}
+
+\subsection{Densità Discreta}
+E' concettualmente importante sapere che una Vvariabile Aleatoria $X$ è rappresentata matematicamente da una
 una funzione definita sullo spazio campionario $\Omega$ di un esperimento aleatorio.
-\begin{center}
-    $X:\Omega \to R$
-\end{center}
+\[
+    X:\Omega \to \R
+\]
 Allo stesso tempo possiamo pensare a X come a un numero che dipende dal caso.
 Se siamo interessati a una v.a. discreta X, spesso non è necessario scrivere lo
 spazio campionario $\Omega$ ed esprimere X come funzione, 
-ci basta conoscere la densità discreta.
+ci basta conoscere la \textbf{Densità Discreta}:
 
-\subsection{Valore medio di X}
-Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
-$x_1, x_2, \dots, x_n$. Si definisce
+\definizione{
+    Ad ogni variabile aleatoria discreta $X$ possiamo associare una \textbf{Densità discreta} così definita:
+    \[
+        p_x(x_i) := P(X = x_i)
+    \]
+}
+Anche detta distribuzione di probabilità, è una funzione che assegna
+ad ogni valore possibile di X la probabilità dell'evento $(X = x)$
+\subsubsection{Proprietà della densità discreta}
+Una densità discreta $p_x$ è una funzione da $\R \in [0,1]$ e gode delle seguenti proprietà:
+\begin{itemize}
+    \item $p_x(x) = P(X=x) = 0$ Se $x$ non è uno dei valori $x_i$ assunti da $X$.
+    \item $p_x(x_i) \geq 0 \forall i$ ($p_x(x_i)\in [0,1]$)
+    \item $\sum_{i\geq 1} p_x(x_i) = 1$, perchè gli eventi $\{X=x_i\}$ per $i\geq 1$ sono \textbf{Disgiunti}, ovvero una partizione di $\Omega$.
+\end{itemize}
+\esempio{
+    Riprendiamo l'esempio precedente in cui $X$ era il numero di \textbf{figli maschi} in una famiglia estratta a caso con due figli/e.
+    Ricordiamo che $X(\Omega) = \{0,1,2\}$.
+    
+    Sapendo le probabilità precedenti, quali sono le densità discrete $p_x(x)=P(X=x)$?
+    \[
+        \implies p_x(0)= \frac{1}{4}, \;\; p_x(1)= \frac{1}{2}, \;\; p_x(2)= \frac{1}{4}
+    \]
+}
 
-\begin{equation}
-    E[X]:= \sum_{i = 1}^{n} x_i (p_X)^{x_i} = \sum_{i = 1}^{n} x_i P(X= x_i)
-\end{equation}
-\paragraph{Valore Medio} è la somma dei valori assunti da X "pesati" con le rispettive probabilità.
+\subsection{Valore Medio}
+\definizione{
+    Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
+    $x_1, x_2, \dots, x_n$. 
+    Si definisce \textbf{Valore Medio} di $X$ $E[X]$:
+    
+    \[
+        E[X]:= \sum_{i = 1}^{n} x_i \cdot p_x(x_i) = \sum_{i = 1}^{n} x_i \cdot  P(X= x_i)
+    \]
+    Ovvero la somma dei valori assunti da $X$ "pesati" con le rispettive probabilità.
+}
+Il valore medio è anche detto valore atteso, media, espettativa o speranza matematica.
+Si indica come $E[X]$ dall'inglese \emph{Expected Value}.
 
-\paragraph*{Esempio figli}In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
-il valore medio, per esempio il valore medio della v.a. "X = numero di figli maschi"
-su una coppia con 2 figli è 1, perchè mediamente una coppia con 2 figli ha almeno 1 figlio maschio.
+\esempio{
+    Riprendendo sempre l'esempio del numero di \textbf{Figli Maschi}:
+    \[ X(\Omega) = \{0,1,2\} \text{ con } p_x(0)= p_x(2)=\frac{1}{4}, p_x(1) = \frac{1}{2} \]
+    Allora $E[X] = 0 \cdot p_x(0) +  1 \cdot p_x(1) + 2 \cdot p_x(2) = 1$ 
+    
+    In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
+    il valore medio, per esempio il valore medio del numero di figli maschi
+    su una coppia con 2 figli è 1, perchè mediamente una coppia con 2 figli ha almeno 1 figlio maschio.
 
-\paragraph*{Esempio dado} Sia "X = risultato del lancio di un dado regolare a 6 facce".
-$E[X] = 3.5$. 
-\\ Non è un valore assunto dalla v.a. dato che i numeri sul dado sono solo interi.
-\\ Si può notare dall'esempio precedente che il valore medio E[X] non è necessariamente
-uno dei valori $x_i$ assunti da X!
+} 
+\osservazione{
+    Si può notare che il valore medio E[X] non è necessariamente
+    uno dei valori $x_i$ assunti da X!
+}
+
 A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
 ci aspettiamo di osservare.
 \\ Ma allora qual è l'interpretazione del valore medio $E[X]$? A cosa serve?
-\\ Di seguito è riportata l'interpretazione frequentista di E che spiega a livello
-pratica cosa rappresenta.
-
-\subsubsection{Interpretazione frequentista di E[X]}
+Riportiamo l'interpretazione frequentista e quella geometrica di $E{X}$:
+\paragraph{Interpretazione frequentista del valore medio}
 Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
 e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
 ripetizioni dell'esperimento si ha con grande probabilità che:
-\begin{equation}
+\[
     \frac{X_1 + X_2 + \dots + X_n}{N} \backsimeq  E[X]
-\end{equation}
+\]
+Anche detta Legge dei Grandi Numeri.
 
-\subsection{Proprietà del valore medio}
-Per ogni variabile aleatoria (reale) X
-\begin{center}
-    $E[X + c] = E[X] + c$
-    \\$E[cX] = c E[X]$
-\end{center}
-Questo vale per ogni costante $c \in R$
-\\ Se X e Y sono due variabili aleatorie che dipendono entrambe dallo
+\paragraph{Interpretazione Geometrica}
+Il valore medio $E[X]$ rappresenta il "baricentro" dei valori $x_i$ assunti dalla variabile aleatoria $X$, pesati
+con le rispettive probabilità.
+
+\subsubsection{Proprietà del valore medio}
+Per ogni variabile aleatoria (reale) $X$ valgono le seguenti proprietà:
+\\Per ogni costante $c \in R$
+\begin{itemize}
+    \item $E[X + c] = E[X] + c$
+    \item $E[cX] = c E[X]$
+\end{itemize}
+Se $X$ e $Y$ sono due variabili aleatorie che dipendono entrambe dallo
 stesso esperimento aleatorio, allora:
-\begin{center}
-    $E[X+Y] = E[X] + E[Y]$
-\end{center}
-Si dice che il valore medio è un operatore lineare.
-\paragraph{Altre importanti proprietà} Se $X = c$ (costante) allora
-$E[X] = E[c] = c$
-\\ Un'altra proprietà importante: Se $X >= 0$ allora $E[X] >= 0$
-\paragraph{Formula di trasferimento} 
+\begin{itemize}
+    \item $E[X+Y] = E[X] + E[Y]$
+\end{itemize}
+Si dice che il valore medio è un\textbf{ operatore lineare}.
+\osservazione{
+    Se $Z = X + c$ (oppure $Z=cX$, o $Z = X + Y$) è una variabile aleatoria,
+    per calcolare il valore medio $E[Z]$ non c'è bisogno di determinare la densità discreta.
+}
 
+\paragraph{Altre importanti proprietà} 
+\begin{itemize}
+    \item Se $X = c$ (costante) allora $E[X] = E[c] = c$
+    \item Se $X >= 0$ allora $E[X] >= 0$
+\end{itemize}
+
+\paragraph{Formula di trasferimento} 
 \begin{equation}
-    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_x^{x_i}
+    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_x(x_i)
 = \sum_{i = 1}^{n}f(x_i)P(X = x_i)
 \end{equation}
 Valida per ogni funzione $f:R \to R$. In particolare
@@ -151,20 +192,31 @@ richiesto di calcolare una nuova media Y in funzione di X, in questo modo applic
 le proprietà non sarà necessario ricalcolare il tutto, ma partendo da Y e applicando
 le proprietà di possiamo ricondurre a X e avere già il risultato.
 
-\section{Varianza e Deviazione standard con valore medio}
-\paragraph{Varianza} $VAR[X] := E[(X-u)^2] >= 0$ con $u:=E[X]$
-\paragraph{Deviazione Standard} $SD[X] := \sqrt{VAR[X]}$
-\paragraph{Formula alternativa} $VAR[X] = E[X^2] - E[X]^2$
-\\ La deviazione standard ha la stessa "unità di misura" di X e fornisce 
+\subsection[Varianza e Deviazione Standard]{Varianza e Deviazione Standard per le Variabili Aleatorie}
+Definiamo ora Varianza e Deviazione Standard per le variabili aleatorie:
+\definizione{
+    Definiamo la Varianza $VAR[X]$ come:
+    \[
+            VAR[X] := E[(X-\mu)^2] >= 0
+    \]
+    con $\mu:=E[X]$.
+    \\\\E la Deviazione Standard $SD[X]$ come:
+    \[ SD[X] := \sqrt{VAR[X]} \]
+}
+Alternativamente, la deviazione standard può essere definita come:
+\[ VAR[X] = E[X^2] - E[X]^2 \]
+Questa è una formula più facile da calcolare.
+
+La deviazione standard ha la stessa "unità di misura" di X e fornisce 
 una misura della larghezza (o dispersione) dei valori $x_i$ assunti da X rispetto
 al valore medio E[X].
-Valore medio E[X] e varianza VAR[X] sono due numeri reali che riassumono
+\\Valore medio e varianza sono due numeri reali che riassumono
 le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
 Sono importanti anche perchè talvolta possono essere calcolati
 senza conoscere in dettaglio la densità descrita $p_x$, ma sfruttando le
 proprietà di valore medio e varianza.
 
-\subsection{Proprietà della varianza}
+\subsubsection{Proprietà della varianza}
 Per ogni variabile aleatoria (reale) X
 \begin{itemize}
     \item $VAR[X+c] = VAR[X]$
