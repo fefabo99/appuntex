@@ -85,25 +85,25 @@ ci basta conoscere la \textbf{Densità Discreta}:
 \definizione{
     Ad ogni variabile aleatoria discreta $X$ possiamo associare una \textbf{Densità discreta} così definita:
     \[
-        p_x(x_i) := P(X = x_i)
+        p_X(x_i) := P(X = x_i)
     \]
 }
 Anche detta distribuzione di probabilità, è una funzione che assegna
 ad ogni valore possibile di X la probabilità dell'evento $(X = x)$
 \subsubsection{Proprietà della densità discreta}
-Una densità discreta $p_x$ è una funzione da $\R \in [0,1]$ e gode delle seguenti proprietà:
+Una densità discreta $p_X$ è una funzione da $\R \in [0,1]$ e gode delle seguenti proprietà:
 \begin{itemize}
-    \item $p_x(x) = P(X=x) = 0$ Se $x$ non è uno dei valori $x_i$ assunti da $X$.
-    \item $p_x(x_i) \geq 0 \forall i$ ($p_x(x_i)\in [0,1]$)
-    \item $\sum_{i\geq 1} p_x(x_i) = 1$, perchè gli eventi $\{X=x_i\}$ per $i\geq 1$ sono \textbf{Disgiunti}, ovvero una partizione di $\Omega$.
+    \item $p_X(x) = P(X=x) = 0$ Se $x$ non è uno dei valori $x_i$ assunti da $X$.
+    \item $p_X(x_i) \geq 0 \forall i$ ($p_X(x_i)\in [0,1]$)
+    \item $\sum_{i\geq 1} p_X(x_i) = 1$, perchè gli eventi $\{X=x_i\}$ per $i\geq 1$ sono \textbf{Disgiunti}, ovvero una partizione di $\Omega$.
 \end{itemize}
 \esempio{
     Riprendiamo l'esempio precedente in cui $X$ era il numero di \textbf{figli maschi} in una famiglia estratta a caso con due figli/e.
     Ricordiamo che $X(\Omega) = \{0,1,2\}$.
     
-    Sapendo le probabilità precedenti, quali sono le densità discrete $p_x(x)=P(X=x)$?
+    Sapendo le probabilità precedenti, quali sono le densità discrete $p_X(x)=P(X=x)$?
     \[
-        \implies p_x(0)= \frac{1}{4}, \;\; p_x(1)= \frac{1}{2}, \;\; p_x(2)= \frac{1}{4}
+        \implies p_X(0)= \frac{1}{4}, \;\; p_X(1)= \frac{1}{2}, \;\; p_X(2)= \frac{1}{4}
     \]
 }
 
@@ -114,7 +114,7 @@ Una densità discreta $p_x$ è una funzione da $\R \in [0,1]$ e gode delle segue
     Si definisce \textbf{Valore Medio} di $X$ $E[X]$:
     
     \[
-        E[X]:= \sum_{i = 1}^{n} x_i \cdot p_x(x_i) = \sum_{i = 1}^{n} x_i \cdot  P(X= x_i)
+        E[X]:= \sum_{i = 1}^{n} x_i \cdot p_X(x_i) = \sum_{i = 1}^{n} x_i \cdot  P(X= x_i)
     \]
     Ovvero la somma dei valori assunti da $X$ "pesati" con le rispettive probabilità.
 }
@@ -123,8 +123,8 @@ Si indica come $E[X]$ dall'inglese \emph{Expected Value}.
 
 \esempio{
     Riprendendo sempre l'esempio del numero di \textbf{Figli Maschi}:
-    \[ X(\Omega) = \{0,1,2\} \text{ con } p_x(0)= p_x(2)=\frac{1}{4}, p_x(1) = \frac{1}{2} \]
-    Allora $E[X] = 0 \cdot p_x(0) +  1 \cdot p_x(1) + 2 \cdot p_x(2) = 1$ 
+    \[ X(\Omega) = \{0,1,2\} \text{ con } p_X(0)= p_X(2)=\frac{1}{4}, p_X(1) = \frac{1}{2} \]
+    Allora $E[X] = 0 \cdot p_X(0) +  1 \cdot p_X(1) + 2 \cdot p_X(2) = 1$ 
     
     In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
     il valore medio, per esempio il valore medio del numero di figli maschi
@@ -179,7 +179,7 @@ Si dice che il valore medio è un\textbf{ operatore lineare}.
 
 \paragraph{Formula di trasferimento} 
 \begin{equation}
-    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_x(x_i)
+    E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_X(x_i)
 = \sum_{i = 1}^{n}f(x_i)P(X = x_i)
 \end{equation}
 Valida per ogni funzione $f:R \to R$. In particolare
@@ -213,7 +213,7 @@ al valore medio E[X].
 \\Valore medio e varianza sono due numeri reali che riassumono
 le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
 Sono importanti anche perchè talvolta possono essere calcolati
-senza conoscere in dettaglio la densità descrita $p_x$, ma sfruttando le
+senza conoscere in dettaglio la densità descrita $p_X$, ma sfruttando le
 proprietà di valore medio e varianza.
 
 \subsubsection{Proprietà della varianza}
@@ -233,114 +233,183 @@ Per ogni costante reale $c \in R$
 utili nel caso ci viene richiesto di calcolare una varianza Y in funzione di X e già
 calcolata in precedenza.
 
-\subsection{Dipendenza e indipendenza variabili aleatorie}
-Siano X e Y due variabili aleatorie, che dipendono entrambe dallo 
-stesso esperimento aleatorio. Quanto valre $VAR[X+Y] = ?$
-\textbf{dipende da come solo legate X e Y!}
-\paragraph{Definizione indipendenza} Due v.a. discrete X e Y si dicono indipendenti
-se gli eventi {X = x} e {Y = y} sono indipendenti, ossia:
-\begin{equation*}
-    P(X=x, Y=y) = P(X = x)P(Y = y)
-\end{equation*}
-Per ogni scelta di x e y.
-\\ Intuitivamente conoscere il valore assunto da X non modifica la proabilità dei valori
-di Y e viceversa.
-\\ Molto spesso l'indipendenza è assunta in partenza.
+\subsection{Indipendenza di Variabili Aleatorie}
+Siano $X$ e $Y$ due variabili aleatorie, che dipendono entrambe dallo 
+stesso esperimento aleatorio. 
+\begin{center}
+    Quanto vale $VAR[X+Y]$?
+\end{center}
+La risposta dipende da \textbf{come solo legate $X$ e $Y$!}
 
-\paragraph{Teorema} Se X e Y sono v.a. indipendenti, allora:
-\begin{equation*}
-    VAR[X+Y] = VAR[X] + VAR[Y]
-\end{equation*}
+\definizione{
+    Due Variabili Aleatorie discrete $X$ e $Y$ si dicono \textbf{indipendenti}
+    se gli eventi $\{X = x\}$ e $\{Y = y\}$ sono indipendenti, ossia:
+    \[
+        P(X=x, Y=y) = P(X = x)P(Y = y)
+    \]
+    Per ogni scelta di $x$ e $y$ tra i valori assunti da $X$ e da $Y$.
+}
+Intuitivamente conoscere il valore assunto da $X$ non modifica la proabilità dei valori
+di $Y$ e viceversa.
 
-\section{Distribuzioni notevoli discrete}
-Consideriamo una variabile aleatoria X, definita nello spazio di probabilità
+Se $X$ e $Y$ sono costruite come funzioni esplicite su uno spazio campionario $\Omega$, 
+è possibile mostrare se sono indipendenti.
+\\ Molto spesso l'indipendenza è assunta in partenza, ad esempio quando $X$ e $Y$ "non si influenzano". 
+
+\paragraph{Additività della Varianza}
+Introduciamo ora un teorema molto importante: quello di additività della varianza.
+
+Se $X$ e $Y$ sono variabili aleatorie \textbf{indipendenti}, allora:
+\[
+    \var[X+Y] = \var[X] + \var[Y]
+\]
+Ne segue che la deviazione standard:
+\[
+    SD[X+Y] = \sqrt{SD[X]^2 + SD[Y]^2}  
+\]
+
+\osservazione{
+    La relazione di additività della varianza non è affatto scontata e nemmeno intuitiva.
+    Infatti la varianza non è lineare, ma la sua somma si comporta linearmente.
+}
+
+%%Copiata dagli appunti lezione 6 pagina 3 (con un OCR)
+% Se X e Y sono indipendenti e Varie Var Y oh allora
+% VARIX Y 28 SATAY RO
+% Se la distribuzionedeivalori di X ha larghezza sa 6
+% e lo stesso vale per Y la larghezza deivaloridi XYY
+% è solo E 6 1,416 non 20
+% Questa concentrazione deivalori di X Y è dovuta alla
+% indipendenza diXeY
+% Il fenomenodiventa ancora piùinteressante quando si sommano
+% v ai indipendenti ka ka Xn con N grande vedremo
+% la legge dei GRANDINUMERI epoi il teorema limite centrale
+
+\section{Distribuzioni Notevoli Discrete}
+Consideriamo una variabile aleatoria $X$, definita nello spazio di probabilità
 $(\Omega, P)$ di un certo esperimento aleatorio:
-\begin{equation*}
+\[
     X:\Omega \rightarrow \mathbb{R} 
-\end{equation*}
+\]
 Possiamo calcolare la probabilità $P(X \in A)$ per ogni $A \subseteq \mathbb{R}$
-(ad esempio per ogni intervallo A $A=(a,b)$).
-L'insieme di tali probabilità definisce la distriuzione (di probabilità) della v.a. X.
-Per v.a. discrete, la distribuzione di X è determinata dalla discreta $p_x$:
-\begin{equation*}
+(ad esempio per ogni intervallo $A=(a,b)$).
+L'insieme di tali probabilità definisce la \textbf{Distriuzione di Probabilità} della Variabile Aleatoria $X$.
+\begin{center}
+    \includegraphics[width=.6\textwidth]{images/funzioneDistribuzione.jpg}
+\end{center}
+
+Per Variabili Aleatorie discrete, la distribuzione di $X$ è determinata dalla densità discreta $p_X$:
+\[
     P(X \in A) = \sum_{x_i \in A} P(X=x_i) = \sum_{x_i \in A} p_X(x_i)  
-\end{equation*}
+\]
 Per tale ragione con abuso di notazione, per una v.a. discreta si può chiamare
 \textbf{distribuzione} la \textbf{densità discreta}.
 
-\section{Classificazione distribuzioni discrete più importanti}
-\subsection*{Bernoulli}
-Si chiama Bernoulli una v.a. X che può \textbf{assumere soltanto i valori 0 e 1} cioè
-\begin{equation*}
+Classifichiamo ora le distribuzioni discrete più importanti:
+
+\subsection{Bernoulli}
+Si chiama Bernoulli una Variabile Aleatoria $X$ che può \textbf{assumere soltanto i valori 0 e 1} cioè
+\[
     X(\Omega) = \{0,1\}
-\end{equation*}
-Dato che la somma di tutti i valori che può assumere è 1 si ottiene
-\begin{equation*}
-    p_x (x) = P(X=x) = 
+\]
+Sia $p:=P(X=1)$, dato che la somma di tutti i valori che può assumere è 1 si ottiene:
+\[
+    p_X (x) = P(X=x) = 
     \begin{cases}
-    p \text{ se } x=1\\
-    1-p \text{ se } x=0
+    p  & \text{ se } x=1\\
+    1-p  & \text{ se } x=0
     \end{cases} 
-    \text{ cioè }
+\]
+Ovvero:
+\[
     \begin{cases}
         P(X=1) = p\\
         P(X=0)= 1-p
     \end{cases}
-\end{equation*}
-Quindi X è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
-forma, per un $p \in [0,1]$.
+\]
+Quindi $X$ è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
+forma per un $p \in [0,1]$.
 \\ Scriveremo $X \sim \text{Be}(p)$.
 \paragraph*{Valore Medio} $E[X] = p$
 \paragraph*{Varianza} $\text{Var}[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
 
-\subsection*{Binomiale}
+A dispetto della loro semplicità, le variabili aleatorie di bernoulli sono importanti, perchè spesso
+vengono utilizzate per costruire variabili aleatorie più complesse.
+
+\subsection{Binomiale}
 Consideriamo un esperimento aleatorio costituito da "prove ripetute e indipendenti",
 dove ciascua prova può avere due soli esiti "successo" = 1, "insuccesso" = 0, con una
-probabilità di successo $p \in [0,1]$ fissata.
-\paragraph*{Esempi} \begin{itemize}
+probabilità di successo $p \in [0,1]$ fissata, la stessa per ogni prova.
+\esempio{
+\begin{itemize}
     \item Lancio ripetutamente una moneta o un dado
     \item Guardo se i figli/e di una coppia sono M o F
     \item estraggo persona da una popolazione molto ampia (successo = elettore del candidato A)
 \end{itemize}
+}
 Siano \begin{itemize}
-    \item $n \in \mathbb{N}$ numero totale di prove
-    \item $p \in [0,1]$ probabilità di successo in ciascuna prova
+    \item $n \in \mathbb{N}$ il numero totale di prove.
+    \item $p \in [0,1]$ la probabilità di successo in ciascuna prova.
 \end{itemize}
-Consideriamo quindi la v.a. X:= numero di successo che si verificano nelle n prove.
-\\ La distribuzione di X è detta binomiale di parametri n e p e indicata con $X \sim \text{Bin}(n,p)$
-\paragraph*{Osservazione} Per n=1 ritroviamo Bernoulli: $\text{Bin}(1,p) = \text{Be}(p)$
-\\ La distribuzione di X per costruzione è
-\begin{equation*}
+Consideriamo quindi la Variabile Aleatoria:
+\begin{center}
+    $X:=$ numero di "successi" che si verificano nelle $n$ prove.
+\end{center} 
+La distribuzione di $X$ è detta \textbf{binomiale} di parametri $n$ e $p$ e indicata con $X \sim \text{Bin}(n,p)$
+\osservazione{Per $n=1$ ritroviamo Bernoulli: $\text{Bin}(1,p) = \text{Be}(p)$}
+Calcoliamo la distribuzione di X. Per costruzione:
+\[
     X(\Omega) = \{0,1,2,\dots,n\}
-\end{equation*}
+\]
 Inoltre la densità discreta è data da:
 \begin{equation*}
-    p_x (k) = P(X=k) = \binom{n}{k}p^l (1-p)^{n-k} \text{ per } k = 0,1,\dots, n
+    p_X (k) = P(X=k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k} \;\;\text{ per } k = 0,1,\dots, n
 \end{equation*}
 Dove: \begin{itemize}
-    \item $\binom{n}{k} \rightarrow$ scelte di quali prove hanno successo $\rightarrow$ combinazioni
-    \item $p^k \rightarrow$ probabilità di k successi fissati
-    \item $(1-p)^{n-k} \rightarrow$ probabilità di (n-k) insuccessi fissati
+    \item $\binom{n}{k}$ sono le scelte di quali prove hanno successo,
+    ovvero la combinazione di $n$ prove in cui $k$ hanno successo.
+    \item $p^k$ è la probabilità di k successi fissati.
+    \item $(1-p)^{n-k}$ è la probabilità di $(n-k)$ \underline{in}successi fissati.
 \end{itemize}
-
-In definitiva, \textbf{una v.a. X è binomiale} di parametri n e p, $X \sim \text{Bin}(n,p)$,
+In definitiva, una variabile aleatoria $X$ è \textbf{binomiale} di parametri $n$ e $p$, $X \sim \text{Bin}(n,p)$,
 se ha questa densità discreta.
-\\
-\\ Se $X \sim \text{Bin}(n,p)$
+
 \paragraph*{Valore Medio} $E[X_i] = np$ 
 \paragraph*{Varianza} $Var[X_i]=np(1-p)$
 
-\subsection*{Poisson}
-Una v.a. \textbf{X si dice Poisson di parametro $\lambda \in (0, \infty)$}, e si
-scrive $X \sim \text{Pois}(\lambda)$, se $X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}$ :
-\begin{equation*}
-    p_X (k) = P(X=k) = e^{-k} \frac{\lambda^k}{k!} \text{ per } k = 0,1,2,\dots
-\end{equation*}
-Si può ottenere una v.a. di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
-di una v.a. binomiale $Y \sim \text{Bin}(n,p)$ quando
-\begin{equation*}
+\esempio{
+    Riprendendo l'esempio dei figli maschi, sia $X:=$ numero di figli maschi in una coppia con due figli:
+    \begin{center}
+        \includegraphics[width=.7\textwidth]{images/figli_maschi_binomiale.jpg}
+    \end{center}
+    Non è soprendente che $X\sim$Bin$(2,\frac{1}{2})$ perchè possiamo vedere $X$ come il numero
+    di "successi" in $n=2$ prover ripetute e indipendenti con probabilità di successo $p=\frac{1}{2}$.
+    Infatti
+    \[
+         X = X_1 + X_2 \;\; \text{dove} \;\; 
+        X_i = \begin{cases}
+            1 &\text{Se i-esimo figlio è M} \\
+            0 & \text{Altrimenti}
+        \end{cases}
+    \] 
+    E le variabili aleatorie $X_1$ e $X_2$ sono Be$(\frac{1}{2})$ indpendenti.
+}
+
+\subsection{Poisson}
+Una variabile aleatoria \textbf{X si dice Poisson di parametro $\lambda \in (0, \infty)$}, e si
+scrive 
+\begin{center}
+    $X \sim \text{Pois}(\lambda)$
+\end{center}
+Se $X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}$ la distribuzione di probabilità è:
+\[
+    p_X (k) = P(X=k) = e^{-\lambda} \cdot \frac{\lambda^k}{k!} \;\;\; \text{ per } k = 0,1,2,\dots
+\]
+Si può ottenere una variabile aleatoria di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
+di una variabile aleatoria binomiale $Y \sim \text{Bin}(n,p)$ quando
+\[
     n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
-\end{equation*}
+\]
 \paragraph*{Valore Medio e Varianza}
 Se $X \sim \text{Pois}(\lambda)$
 \begin{itemize}
@@ -362,7 +431,7 @@ quando si considera una grande quantità di prova la cui probabilità di accesso
 Una v.a. \textbf{X si dice geometrica di parametro $p \in (0,1]$} e si scrive 
 \textbf{$X \sim \text{Geo }p$}, se \textbf{$X(\Omega)=\mathbb{N} = {1,2,3,\dots}$} :
 \begin{equation*}
-    p_x (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
+    p_X (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
 \end{equation*}
 Si può ottenere una v.a. Geo(p) a partire da una successione infinita di prove ripetute
 e indipendenti, con probabilità di successo p, e considrando la v.a.
@@ -401,10 +470,10 @@ Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
 infinito numerabile di valori $X(\Omega) = {x_1, x_2, \dots}$, dove la distribuzione
 X è determinata dalla densità discreta:
 \begin{equation*}
-    P_x^{x_i} = P(X=x_i)
+    p_X^{x_i} = P(X=x_i)
 \end{equation*}
 \begin{equation}
-    P(X \in A) = \sum_{x_i \in A}P_x^{x_i}  
+    P(X \in A) = \sum_{x_i \in A}p_X^{x_i}  
 \end{equation}
 Consideriamo ora una classe "complementare" di v.a., dette \textbf{assolutamente continue}
 che assumono un insieme infinito più che numerabile di valore, come ad es. un intervallo
@@ -446,7 +515,7 @@ e b è uguale alla probabilità che X assuma un valore compreso tra a e b.
 \subsection*{Analogie tra v.a ass. continua e discreta}
 Ci sono analogie formali tra le 2: \begin{itemize}
     \item X ass. continua $P(X \in [s, t]) = \int_{s}^{t} f_x (x) \,dx$ \textbf{Integrale}
-    \item X discreta $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_x (x_i)$ \textbf{Somma}
+    \item X discreta $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_X (x_i)$ \textbf{Somma}
 \end{itemize}
 Ma anche importanti differenze!
 \\ Se X è assolutamente continua:
@@ -581,7 +650,7 @@ La funzione di ripartizione è utile soprattutto per v.a. assolutamente continue
 ci concentreremo nel seguito. Mostriamo comunque un esempio per una v.a. discreta.
 \paragraph*{Esempio Bernoulli} Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
 \begin{equation*}
-    X(\Omega) = {0, 1} \qquad p_x{0}=1-p, \qquad p_x(1) = p
+    X(\Omega) = {0, 1} \qquad p_X{0}=1-p, \qquad p_X(1) = p
 \end{equation*}
 Allora $F_x(x) = P(X \leq x)$ vale:
 \begin{equation*}
