@@ -181,6 +181,8 @@ Allora $\exists G' \subset G : I \cup G'$ è una base di V.
 Se $\exists G$ insieme finito t.c: è un sistema di generatori di $V$-spazio vettoriale, allora ogni base di $V$ ha lo stesso numero di elementi.
 Ovvero fissato uno spazio, tutte le sue basi hanno lo stesso numero di elementi.
 
+
+\subsection{Dimensione di Uno Spazio Vettoriale}
 \definizione{
     La dimensione di uno spazio vettoriale $V$ che ammette un sistema di generatori finito
      è il \textbf{numero di elementi di una base qualsiasi} di $V$.
@@ -195,4 +197,69 @@ $$dim(V)=n\implies
     n \text{ generatori di $V$ sono linearmente indipendenti.}
 \end{cases}
 $$
- 
+
+\section{Recap}
+\subsection{Sottospazi Vettoriali}
+Se $V$ è uno spazio vettoriale e $W\subseteq V$, allora $W$ è un sottospazio vettoriale di $V$ ($W<V$)
+se le seguenti 3 condizioni sono rispettate:
+\begin{enumerate}
+    \item $0_v\in W$ - Inclusione dell'origine.
+    \item $w_1 + w_2 \in W \forall w_1,w_2 \in W$ - Chiusura rispetto alla somma.
+    \item $\lambda w \in W \forall w\in W, \forall \lambda \in \R$ - Chiusura rispetto al prodotto.
+\end{enumerate}
+Se vogliamo dimostrare che $W$ non è un sottospazio vettoriale di $V$, allora basta dimostrare che una delle tre condizioni non è soddisfatta.
+
+\paragraph{Sottospazi di $\R^2$}
+Gli unici sototspazi non banali di $\R^2$, ovvero quelli diversi da $\{0,0\}$ e $\R^2$ stesso, sono
+soltanto le \textbf{rette passanti per l'origine}.
+Quindi tutti e soli i sottospazi di $\R^2$ sono:
+\begin{itemize}
+    \item Dimensione 0: $\{0,0\}$
+    \item Dimensione 1: Rette passanti per l'origine
+    \item Dimensione 2: $\R^2$
+\end{itemize}
+
+\paragraph{Sottospazi di $\R^3$}
+Estendendo questo ragionamento a $\R^3$ avremo invece queste possibilità:
+\begin{itemize}
+    \item Dimensione 0: $\{0,0,0\}$
+    \item Dimensione 1: Rette passanti per l'origine.
+    \item Dimensione 2: Piani passanti per l'origine.
+    \item Dimensione 3: $\R^3$
+\end{itemize}
+L'equazione cartesiana di un piano passante per l'origine ha questa forma:
+\[ ax + by +cz = 0 \;\;\; (a,b,c) \neq (0,0,0)\]
+L'equazione cartesiana di una retta passante per l'origine in $\R^3$ ha invece questa forma:
+\[ \begin{cases}
+    ax + by +cz = 0 \\
+    \alpha x + \beta y +\gamma z = 0
+\end{cases}
+\;\;\; (a,b,c) \neq (0,0,0), (\alpha,\beta,\gamma ) \neq (0,0,0), (a,b,c) \neq \lambda(\alpha,\beta,\gamma)
+\]
+
+\subsection{Basi}
+Ci sono diversi metodi per trovare una base di un (sotto) spazio vettoriale.
+Uno di essi prevede il passaggio dalla forma cartesiana alla forma parametrica, vediamolo con un esempio:
+ \esempio{
+    Abbiamo 
+    \[V = \{ (x,y,z)\in \R^3 | 2x + 3y +z = 0\}\]
+    $V$ è un sottospazio vettoriale di $\R^3$ ed è rappresentato in forma cartesiana.
+    Per passare alla forma parametrica dobbiamo appunto introdurre dei parametri,
+    Ce ne serviranno $n-m$, dove $n$ è la dimensione dello spazio e $m$ il numero di equazioni.
+    In questo caso abbiamo che $n=3$ e $m=1$, quindi ci servono 2 parametri, che chiameremo $t$ e $s$.
+    \\Impostiamo quindi:
+    \[
+     \begin{cases}
+         x=t \\ y=s z=-2t-3s
+     \end{cases}    
+     \to V = \{ (t,s,-3t-3s) | t,s \in \R\}
+    \]
+    Avendo ora la forma parametrica, posso trovare una base di $V$, scegliendo $t=1,s=0$ e $t=0,s=1$.
+    \[
+    t=1,s=0 \implies v_1 = (1,0,-2)  
+    \]
+    \[
+    t=0,s=1 \implies v_2 = (0,1,-3)  
+    \]
+    $\{v_1,v_2\}$ è una base di $V$.
+ }
