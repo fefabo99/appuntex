@@ -330,9 +330,13 @@ Ovvero:
 Quindi $X$ è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
 forma per un $p \in [0,1]$.
 \\ Scriveremo $X \sim \text{Be}(p)$.
-\paragraph*{Valore Medio} $E[X] = p$
-\paragraph*{Varianza} $\text{Var}[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
 
+\paragraph{Valore Medio e Varianza}
+Se $X \sim \text{Be}(p)$ è una variabile di Bernoulli, allora:
+\begin{itemize}
+    \item Valore Medio: $E[X] = p$
+    \item Varianza: $\var[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
+\end{itemize}
 A dispetto della loro semplicità, le variabili aleatorie di bernoulli sono importanti, perchè spesso
 vengono utilizzate per costruire variabili aleatorie più complesse.
 
@@ -396,29 +400,31 @@ se ha questa densità discreta.
 }
 
 \subsection{Poisson}
-Una variabile aleatoria \textbf{X si dice Poisson di parametro $\lambda \in (0, \infty)$}, e si
-scrive 
-\begin{center}
-    $X \sim \text{Pois}(\lambda)$
-\end{center}
-Se $X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}$ la distribuzione di probabilità è:
+Una variabile aleatoria $X$ si dice Poisson di parametro $\lambda \in (0, \infty)$, 
+e si scrive $X \sim \text{Pois}(\lambda)$,
+se :
+\[X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}\]
+E la sua densità discreta è:
 \[
     p_X (k) = P(X=k) = e^{-\lambda} \cdot \frac{\lambda^k}{k!} \;\;\; \text{ per } k = 0,1,2,\dots
 \]
-Si può ottenere una variabile aleatoria di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
-di una variabile aleatoria binomiale $Y \sim \text{Bin}(n,p)$ quando
-\[
-    n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
-\]
-\paragraph*{Valore Medio e Varianza}
-Se $X \sim \text{Pois}(\lambda)$
+\osservazione{
+    Si può ottenere una variabile aleatoria di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
+    di una variabile aleatoria binomiale $Y \sim \text{Bin}(n,p)$ quando
+    \[
+        n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
+    \]
+}
+
+\paragraph{Valore Medio e Varianza}
+Se $X \sim \text{Pois}(\lambda)$ è una variabile di Poisson, allora:
 \begin{itemize}
-    \item $E[X] = \lambda$
-    \item $\text{Var}[X] = \lambda$
+    \item Valore Medio: $E[X] = \lambda$
+    \item Varianza: $\var[X] = \lambda$
 \end{itemize}
 
-\paragraph*{Poisson in pratica ed Esempi}
-Le v.a. di Poisson sono approssimazoni per v.a. che contano il "numero di successi"
+\paragraph{Esempi}
+Le variabili aleatori di Poisson sono approssimazoni per variabili aleatorie che contano il "numero di successi"
 quando si considera una grande quantità di prova la cui probabilità di accesso è "piccola".
 \\ Qui di seguito alcuni esempi: 
 \begin{itemize}
@@ -427,41 +433,43 @@ quando si considera una grande quantità di prova la cui probabilità di accesso
     \item Numero di cliente in un ufficio postale in una mattinata
 \end{itemize}
 
-\subsection*{Geometrica}
-Una v.a. \textbf{X si dice geometrica di parametro $p \in (0,1]$} e si scrive 
-\textbf{$X \sim \text{Geo }p$}, se \textbf{$X(\Omega)=\mathbb{N} = {1,2,3,\dots}$} :
-\begin{equation*}
+\subsection{Geometrica}
+Una variabile aleatoria $X$ si dice geometrica di parametro $p \in (0,1]$, e si scrive 
+$X \sim \text{Geo }p$, se:
+\[X(\Omega)=\mathbb{N} = {1,2,3,\dots}\]
+E la sua densità discreta è:
+\[
     p_X (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
-\end{equation*}
-Si può ottenere una v.a. Geo(p) a partire da una successione infinita di prove ripetute
-e indipendenti, con probabilità di successo p, e considrando la v.a.
+\]
+Si può ottenere una variabile aleatoria Geo(p) a partire da una successione infinita di prove ripetute
+e indipendenti, con probabilità di successo $p$, e considerando la variabile aleatoria:
 \begin{center}
     T := istante del primo successo
 \end{center}
 Dove l'istante è il numero della prova.
 \\ Ad esempio, indicando con $X_i \sim \text{Be}(p)$ per $i=1,2,3,\dots$ la v.a. che vale 1
 se la i-esima prova ha successo, si ha
-\begin{equation*}
+\[
     P(T=1) = P(X_1 = 1) = p
-\end{equation*}
-\begin{equation*}
+\]
+\[
     P(T=2) = P(X_1 = 0, X_2 = 1) = P(X_1 = 0)P(X_2 = 1) = (1-p)p
-\end{equation*}
+\]
 e in generale
-\begin{equation*}
+\[
     P(T=k) = P(X_1=0, \dots, X_{k-1} = 0, X_k = 1) = (1-p)^{k-1}p
-\end{equation*}
+\]
 \paragraph*{Valore Medio e Varianza} se $X\sim \text{Geo}(p)$
 \begin{itemize}
-    \item $E[X] = \frac{1}{p}$
-    \item $\text{Var}[X] = \frac{1-p}{p^2}$
+    \item Valore Medio: $E[X] = \frac{1}{p}$
+    \item Varianza: $\var[X] = \frac{1-p}{p^2}$
 \end{itemize}
 \paragraph*{Note per gli esercizi}
-Quando ho un esercizio che riguarda l'estrazione di un elemento n volte, tramite una seria
+Quando ho un esercizio che riguarda l'estrazione di un elemento n volte, tramite una serie
 di prove ripetute e indipendenti, con probabilità di successo p, come lancio di dai o
 estrazioni di una pallina colorata con reimmissione allora si tratta di una v.a. con
 distribuzione geoemtrica.
-% VA Continue
+
 
 \section{Variabili aleatorie continue}
 Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
