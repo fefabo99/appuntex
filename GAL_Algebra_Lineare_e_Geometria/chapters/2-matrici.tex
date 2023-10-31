@@ -1,0 +1,94 @@
+\chapter{Matrici}
+In questo capitolo introdurremo le Matrici.
+Riporterò le spiegazioni del Prof. Borghesi, e occasionalmente quelle del libro perchè più semplici.
+
+\definizione{ %Definizione di matrice del borghesi
+	Una matrice $k\times n$, $k$-righe e $n$-colonne è un elemento di
+	$\R^n\times ... \times \R^n$ $k$ volte, oppure $\R^k\times ... \times \R^k$ $n$ volte
+	\[ \simeq \R^{k\cdot n}\]
+	In entrambi i casi le matrici sono elementi di uno spazio vettoriale.
+	\[
+		\begin{pmatrix}
+			a_{11} & a_{12} & ... & a_{1n} \\
+			a_{21} &                       \\
+			\vdots                         \\
+			a_{k1} & ...    & ... & a_{kn}
+		\end{pmatrix}
+	\]
+}
+\paragraph{Spazio Vettoriale}
+$M(k,n)$ Denota l'insieme delle matrici a coefficienti reali con $k$ righe e $n$ colonne:
+\begin{center}
+	$M(k,n)=\{$ Matrici reali $k\times n\}$
+\end{center}
+$M(k,n)$ è uno \textbf{spazio vettoriale} di \emph{dimensione} $n\cdot m$.
+L'elemento neutro è la matrice nulla e la base canonica è $\{E_{ij}\}_{i=1,...,k \;\; j=1,...,n}$:
+\[
+	E_{ij} =   \begin{pmatrix}
+		0     & \vdots     & 0     \\
+		\dots & 1          & \dots \\
+		0     & \vdots     & 0     \\
+		      & \uparrow j
+	\end{pmatrix}
+	\leftarrow i
+\]
+
+\esempio{ La base canonica di $M(2,2)$ è:
+	\[ \{
+		\begin{pmatrix} 1 & 0 \\ 0 & 0\end{pmatrix},
+		\begin{pmatrix} 0 & 1 \\ 0 & 0\end{pmatrix},
+		\begin{pmatrix} 0 & 0 \\ 1 & 0\end{pmatrix},
+		\begin{pmatrix} 0 & 0 \\ 0 & 1\end{pmatrix}
+		\}
+	\]
+}
+
+\subsection{Prodotto tra matrici}
+\definizione{
+	Siano $A \in M(n,m)$ e $B\in M(p,q)$.
+	\\Posso fare $A cdot B$ se e solo se $m=p$, e in tal caso $A\cdot B \in M(n,q)$
+}
+Ovvero, posso moltiplicare due matrici solo se la prima ha il numero di colonne uguale al numero di righe della seconda.
+Nel caso questo sia possibile, la matrice risultante avrà il numero di righe della prima e di colonne della seconda.
+\osservazione{
+	$A\cdot B$ può essere definito, mentre $B\cdot A$ no.
+	\\In $M(n,n)$ cioò potrebbe accadere, ma in generale:
+	\[ A\cdot B \neq B\cdot A \]
+}
+\definizione{
+	$A\cdot B = (c_{ij})$ dove $c_{ij} = \sum_{u=1}^n a_{iu} \cdot b_{uj}$
+}
+
+\esempio{
+	Siano $A=n \text{x} p, B=p \text{x} m$
+	allora $\exists A \cdot B$ e $\nexists B \cdot A$
+
+	\[A=\begin{pmatrix} 1 & 0 &  2 \\0 & 3 & -1\end{pmatrix}
+		,B= \begin{pmatrix} 4& 1 \\ -2 & 2 \\ 0 & 3 \end{pmatrix}
+		\to AB = \begin{pmatrix} 4 & 7 \\ -6 & 3\end{pmatrix}
+	\]
+
+	in cui $ab_{1,1} = (a_{1,1} \cdot b_{1,1}) + (a_{1,2} \cdot b_{2,1}) + (a_{1,3} \cdot b_{3,1})$
+}
+
+\section{Sistemi di Equazioni Lineari}
+\definizione{
+	Un'equazione lineare è un insieme di simboli:
+	\[ a_1 x_1,...,a_nx_n = b \]
+	Dove $b \in \R$ e $a_i\in\R$ sono valori fissati, e $x_i$ sono variabili.
+}
+Un sistema di Equazioni lineari quindi ha questa forma:
+\[
+	\begin{cases}
+		a_{1,1} x_1 + a_{1,2}x_2 ... a_{1,n} x_n \\
+		a_{2,1} x_1 + ...
+	\end{cases}
+\]
+
+Ad un sistema di equazioni lineari possiamo associare due matrici:
+\begin{itemize}
+    \item Matrice Incompleta: $A=(a_{ij})$
+    \item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
+\end{itemize}
+Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove 
+$x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}$
