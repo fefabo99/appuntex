@@ -1,0 +1,197 @@
+\chapter{Descrittori di tessitura (texture)}
+Ricorda: colore 3d, non sempre conviene portare in livelli di grigio. A volte non basta niente di tutto ciò: ci sono anche le \textit{\textbf{texture}}.
+\definizione{La tessitura, con il colore e la forma, è una delle caratteristiche di basso livello più utilizzate, sia a scopo di segmentazione, che di classificazione, che di retrieval visuale basato sul contenuto.}
+Mentre il \textit{colore} è una \textbf{feature puntuale}, la \textit{tessitura} può essere considerata una \textbf{feature locale}.\\
+Altre definizioni:
+\definizione{- Funzione dei livelli di grigio, consistente in una o più configurazioni-prototipo basilari, spazialmente giustapposte e ripetentisi senza notevoli variazioni.}
+\definizione{Struttura composta da un vasto numero di configurazioni prototipo simili che si ripetono mostrando un aspetto macroscopico armonico.}
+La sua prefe:
+\definizione{Struttura composta da un elevato numero numero di elementi più o meno simili, nessuno dei quali si presenta singolarmente percepibile.}
+\definizione{Fenomeno organizzato su base regionale.}
+Una delle difficoltà che si incontra nella analisi di tessiture è la dipendenza dalla dimensione delle finestra di osservazione usata. Per avere l'impressione di una tessitura bisogna che la finestra includa un certo numero di configurazioni elementari. Aumentandole dimensioni della finestra si ha quindi una maggiore stazionarietà. Ma anche una minore risoluzione dei confini fra regioni adiacenti di texture diversa ed un maggiore tempo di calcolo
+
+\subsection{Cosa possiamo fare con una texture?}
+Nell'ambito dell'analisi di texture possiamo distinguere tre categorie di problemi di
+crescente complessità:
+\begin{description}
+    \item[Riconoscimento di una texture:] constatare se una texture corrisponde o no ad un modello di riferimento.
+    \item[Classificazione della texture:] determinare a quale di N classi di prestabilite è da attribuirsi la texture in esame. 
+    \item[Segmentazione di texture:] determinare i confini fra regioni a tessitura differente, nel caso in cui né il numero né le caratteristiche delle tessiture siano note a priori.
+\end{description}
+La segmentazione è posta come più complicata perché non ha modelli.\\
+Per risolvere tali problemi bisogna definire dei descrittori di texture a partire dalla funzione dei livelli di grigio (ovvero dalla immagine).
+
+\section{Segmentazione di textures}
+Slide 9\\
+Quale metodo di segmentazione usereste
+per segmentare questa immagine ?
+La scelta dell'algoritmo di segmentazione metodo deve tenere conto: 
+- delle feature utilizzate;
+- dei parametri nel calcolo delle feature, ad esempio ampiezza della finestra;
+- Delle informazioni a priori che abbiamo, ad esempio sappiamo quante sono le classi ?
+
+Slide 10\\
+Il descrittore di texture può essere associato a un pixel (descrive quindi la texture dell'intorno del pixel stesso) o una regione
+• La tessitura di una regione (o intorno) è solitamente rappresentata utilizzando un vettore di numeri, che rappresentano i valori dei descrittori utilizzati, quindi
+mediante un punto in un opportuno spazio delle caratteristiche (spesso chiamato spazio delle feature).
+• La distanza tra due punti in questo spazio delle tessiture rende conto della
+dissimilarità tra le regioni corrispondenti, e può essere misurata utilizzando
+appropriate funzioni-distanza (per esempio, euclidea o city-block) .
+• Quanto più i descrittori sono significativi da un punto di vista percettivo, tanto più la distanza matematica tra due tessiture sarà rappresentativa della distanza
+percettiva.
+
+\section{Approcci}
+Tre gli approcci principali: - strutturale
+Scarso interesse pratico. Più usato per la sintesi - statistico
+prediligono gli aspetto tonali. Le statistiche vengono
+calcolate, nella maggior parte dei casi, sui livelli di grigio.
+Spesso ci si limita alle statistiche del second'ordine. - spettrale
+Si usano diverse trasformate. Wavelet molto usate. La texture dipende dalla scala
+
+\subsection{Considerazioni}
+Esistono innumerevoli set di descrittori di texture. Molti descrittori correlati tra loro. A seconda del problema, critico trovare i descrittori giusti e minimali, per ridurre il tempo di calcolo.
+Prestazioni dipendenti dal problema specifico.
+Molti lavori applicativi, basati ancora su vecchie metodologie e poca analisi teorica.
+
+\subsection{Approccio strutturale}
+Una tessitura che corrisponde ad un modello puramente strutturale consiste nella
+giustapposizioni di configurazioni elementari che rappresentano l'entità tessitura più
+piccola che si ripete regolarmente (textel).
+Una descrizione si compone quindi della descrizione delle - singole configurazioni elementari - configurazioni di livello intermedio (se esistono) - distribuzione spaziale delle
+configurazioni
+
+Quando le primitive di texture sono sufficientemente grandi da poter essere separate attraverso segmentazione è possibile descrivere la tessitura attraverso: 
+- analisi morfologica tesa a determinare la tipologia delle primitive (cerchi, quadrati, ecc.) dette texel 
+- descrizione della distribuzione spaziale delle primitive
+Una descrizione strutturale può anche essere vista come una serie di istruzioni che
+permettono di ricostruire esattamente la texture
+
+I colori sono spesso descritti con grandezze correlate alla variabili psicologiche tinta, saturazione e chiarezza (hue, saturation e lightness)
+Esiste un corrispettivo per la texture:
+- granularità: dimensione delle aree caratterizzate da variazioni di intensità luminosa
+- direzionalità: presenza di una direzione preferenziale lungo cui si dispongono le variazioni di intensità luminosa
+- ripetitività: presenza di configurazioni ricorrenti 
+- contrasto: visibilità della texture rispetto all'immagine
+Esistono metodi che danno grandezze correlate a queste variabili
+Noi non useremo tutti questi descrittori.
+
+\subsection{Texture-approccio statistico}
+Slide 24 con equazioni.\\
+Consente misure di tessitura basate sui momenti statistici dell'istogramma dei livelli di grigio dell'immagine o della regione. Sia z una variabile random discreta che rappresenta il livello di grigio, e sia p(zi) il suo istogramma, con i = 0, 1, …, L-1, essendo L i livelli di grigio possibili\\
+
+Il momento di ordine 2, cioè la varianza dei livelli di grigio, è indicativo del contrasto della regione, equazione\\
+La varianza può essere utilizzata per costruire descrittori di levigatezza relativa, come ad esempio: equazione\\Più diventa grande, più questo numero diventa piccolo, associato ad 1.\\
+Questo valore è la \textbf{levigatezza}, $R$.
+
+Il descrittore tende a zero nelle zone a basso contrasto (varianza piccola), mentre assume valori tendenti a 1 nelle zone ad alto contrasto (varianza elevata).\\
+Anche i momenti di ordine più elevato (ma in genere non oltre il 5° o il 6°), anch'essi correlati alla forma dell'istogramma, possono essere utilizzati per la costruzione di misure della tessitura, e quindi per la discriminazione tra regioni a tessitura diversa. Ad esempio il momento di ordine 3, da una misura della sghembatezza dell'istogramma
+
+Varianza come pecca ha: poco intuitiva, no upper bound
+
+Slide 28: diversi costruttori. La media già fra una scrematura, ma per variazioni di livello di luminosità la media si modifica.\\
+La varianza indipendente dall'intensità di luce.\\
+Si cercano le features che meglio discriminano le classi. Non troppe, se no il classificatore fa troppa fatica (perché molte derivano una dall'altra). Ci sono anche componenti statistiche per scegliere le features.
+
+Non è sempre vero che le textures possano essere individuate dai livelli di grigio. Devo usare anche le caratteristiche spaziali.\\
+
+Next time approccio statistico del libro + due metodi, le maschere di Laws e i LBP local binary pattern.
+
+% 02/11/2023 - L 13
+
+% Texture - piccolo recap
+
+Texture è bidimensionale, per l'analisi lo porto in istogramma, monodimensionale. da cui posso capire cose. L'istogramma è un vettore, perciò se tipo volessi fare un confronto tra due istogrammi, ho bisogno di un vettore tramite per capire i miei descrittori come differiscono (es. se l'immagine in mezzo è più simile a destra o sinistra).\\
+NB: se cambiano le condizioni di luce, cambia l'istogramma e tanto. Non sono indipendente.\\
+Se fossimo nelle immagini a colore potrei dire "non considero la luminanza" ma siamo nelle immagini a livello di grigio. Posso fare una normalizzazione (giusto?), dividendo per la media. Così lo rendo invariante alla luminosità media. Ergo, posso usare la varianza come descrittore.\\
+Per costruire descrittori di levigatezza relativa, come ad esempio: equazione\\
+Uso la varianza (che messa al denominatore va con $+ 1$ per evitare divisioni per 0).\\
+Il descrittore tende a zero nelle zone a basso contrasto (varianza piccola), mentre assume valori tendenti a 1 nelle zone ad alto contrasto (varianza elevata).\\
+Anche i momenti di ordine più elevato (ma in genere non oltre il 5° o il 6°), anch'essi correlati alla forma dell'istogramma, possono essere utilizzati per la costruzione di misure della tessitura, e quindi per la discriminazione tra regioni a tessitura diversa.Ad esempio il momento di ordine 3, da una misura della sghembatezza dell'istogramma.\\
+Altre misure di tessitura basate su istogramma, ma non direttamente legate ai momenti statistici, sono per esempio: equazione slide 27.\\
+$U$ può essere considerata una misura di uniformità (è massima quando i livelli di grigio sono uguali), mentre $e$ è una misura dell'entropia media della regione.\\
+Nella slide 28 alcuni esempi di strumenti statistici. Buona regola: \textbf{più la varianza è alta più quella feature discrimina}.\\
+La limitazione delle misure di tessitura basate sugli istogrammi è che non danno informazioni sulla posizione dei pixel rispetto agli altri pixel. Es. scacchiera su pavimento a quadri.\\
+Sono stati pertanto sviluppati approcci all'analisi di tessitura che consentono di tenere conto anche di questa informazione. Si introduce la \textbf{matrice di co-occorrenza}.\\
+Sia P un operatore di posizione, e sia A una matrice k x k il cui elemento aij è il numero di volte che punti con livello di grigio pari a zi si trovano nella posizione specificata da Prispetto a punti con livello di grigio zj (con 1 min ug i, j min ug K).\\
+K è il numero di livello di grigio dell'immagine.\\
+Es. di matrice di co-occorrenza in slide 31.\\
+La matrice di co-occorrenza risultante sarà più grande della matrice originale (immagine).\\
+Slide 32-24, esempi.\\
+Ma come faccio a scegliere le regole di displacement? Come mi conviene, posso anche creare $n$ matrici di co-occorrenza, una per regola usata per creare il displacement.\\
+$C_{ij}$ rappresenta una stima della probabilità congiunta che due punti che soddisfano il criterio P abbiano valori (zi, zj) La matrice C è chiamata matrice di co-occorrenza dei livelli di grigio Poiché C dipende da P, la presenza di determinati pattern di tessitura in una immagine può
+essere investigata definendo opportunamente P Più in generale, il problema può essere posto in questi termini: analizzare la matrice C
+calcolata per una certa regione, al fine di categorizzare la tessitura della regione stessa.
+A tal fine, è conveniente definire alcuni descrittori del contenuto di C.
+
+Magari prima è meglio quantizzare i livelli di grigio per non avere n matrici di concorrenza troppo grandi.\\
+Posso anche costruire nuovi descrittori sulle mie matrici di co-occorrenza.\\
+Slide 37: $n$ costruttori.\\
+Slide 39: la matrice di co-occorrenza ha un pattern?\\
+Slide 38: circuito.\\
+
+Questi descrittori \textit{caratterizzano} il contenuto di $C$, in quanto i loro valori sono indicativi del modo in cui si distribuiscono i valori degli elementi di $C$.
+Per esempio, il primo descrittore fornisce una indicazione della risposta a P più forte, mentre il secondo ha valori relativamente bassi quando gli elementi di $C$ hanno valori più elevati vicino alla diagonale principale (dove le differenze i - j sono più piccole), il quarto descrittore ha valori più elevati quando i $c_{ij}$ sono uguali, etc.
+I descrittori possono essere adoperati calcolando e memorizzando i loro valori per un set di differenti tessiture tipiche (database delle caratteristiche)
+Una tessitura incognita può a questo punto essere classificata in base alla distanza tra i descrittori che la caratterizzano e quelli memorizzati nel database delle caratteristiche.
+
+% Texture - approccio statistico - continuo
+
+\subsection{Texture - maschere energetiche}
+Il modulo del gradiente produce una nuova immagine in cui più è forte la texture più è forte il segnale. Slide 43.\\
+La texture trova solo le variazioni verticali e fa il modulo. Anche la der seconda trova dei pattern.\\
+Come li trovo tutti questi pattern? Con convoluzione e correlazione. Se vogliamo trovare determinati pattern, dobbiamo usare delle maschere (alcuni caratteristiche di tessitura quali lo stato grezzo, la finezza oppure l'orientazione possono esser stimate tramite tecniche di filtraggio lineare locale, od in altri termini, tramite opportune maschere).\\
+Si tratta di eseguire la convoluzione dell'immagine con una serie di filtri (banco) e di estrarre dalle immagini ottenute alcuni indicatori di sintesi (media, varianza, momenti, \dots).\\
+Un insieme di filtri molto utilizzati sono i filtri di Gabor (per i quali sono state trovate forti analogie con alcuni meccanismi del sistema visivo umano), che noi non facciamo ma sono un'ottima risposta di come funziona il riconoscimento di texture sulla corteccia cerebrale.\\
+Si definiscono un insieme di trasformazioni lineari dei valori di grigio locali (filtri) in modo tale che la statistica del primo ordine del pixel trasformato differisca in modo significativo a seconda del tipo di tessitura. Parliamo di maschere di Laws.\\
+A partire dalle configurazioni base (che possono avere diverse lunghezze) si possono creare diverse maschere bi-dimensionali che avranno una risposte diverse alle strutture presenti nell'immagine.\\
+A seconda di come combino avrò dei detector diversi: risponderanno alto quando il segnale avrà quella forma. Slide 49.\\
+Slide 50: come si opera.
+• Sottrarre l'intensità media del quartiere dal pixel
+• Prodotto di punti 16 maschere 5x5 con il vicinato
+• 9 caratteristiche definite come segue per ottenere l'invarianza di rotazione:
+Il singolo vettore di caratteristiche associato a ciascun pixel può essere elaborato da un classificatore o da un clustering per ottenere una classificazione del pixel. La distribuzione dei vettori di caratteristiche dei pixel (ad esempio, istogramma, media, varianza, \dots) che può essere elaborata da un classificatore o da un clustering per ottenere una classificazione dell'immagine/regione.
+Es. se un quadrante della mia immagine (slide 52) è nero, vuol dire che il mio detector lì non ha riconosciuto la forma del segnale. Viceversa, se è bianca vuol dire che il detector ha riconosciuto proprio quella texture.\\
+Le convolutional layers (lezione magistrale?) fanno quello che facciamo noi con quelle di Laws, sono risultate da maschere di convoluzione, solo che in quelle di Laws gliel'abbiamo detto noi(?!) mentre in queste apprendono dal sistema.\\
+Slide 56: esempio di Laws. Nell'immagine della tigre, posso capire i 9 valori delle machere e se faccio clustering e gli dico di classificare in 3 classi, ne avrò una per la tigre, una per l'acqua e una per la vegetazione in fondo. Però si creano regioni spurie: perchè si creano? quando metto le maschere a metà fra tigre e acqua, mi dà un valore intermedio.\\
+La mia texture non è scale invariant: infatti nell'immagine 3 della slide 56 i fiori più grandi davanti sono molto diradati e separati, mentre i più piccoli dietro sono compatti: si creano col clutering due classi diverse.
+
+\section{LBP - Local Binary Pattern}
+\subsection{Livelli di grigio}
+Il Local Binary Pattern è un operatore introdotto nel 1996 per l'analisi della tessitura delle immagini. Nella sua versione base, l'operatore assegna ai pixel di un'immagine in un intorno di dimensione 3 x 3 un valore binario 0 o 1.\\
+Il valore binario è assegnato confrontando il valore del pixel con quello del pixel centrale dell'intorno (se il pixel ha un valore superiore o uguale a quello del pixel centrale gli è assegnato il valore 1 0 in caso contrario)\\
+L’operatore LBP di base è stato esteso per gestire intorni di dimensione variabile di un
+pixel. In questo caso si usa il concetto di intorno circolare di un pixel e i punti campione
+sono individuati tramite interpolazione.
+L’operatore in questo caso è definito da due parametri • il numero di punti campione P
+• il raggio dell’intorno circolare R\\
+
+Prendiamo un pixel, il suo intorno 3x3: se il valore è più basso gli metto 0, altrimenti 1. Si genera un vettore che mi dà informazioni sulla texture.\\
+Se vado a vedere questi intorni: quando tutto è più alto o tutto è più basso: ho trovato un pixel isolato. Se è tutto scuro da un lato e tutto chiaro dall'altro, ho trovato un edge o corner. Slide 60.\\
+Un pattern è detto uniforme quando, considerato in modo circolare, contiene \textbf{al massimo due} transizioni 0 1 o 1 0. Sopra esempi di pattern uniformi: slide 61. Sotto, non uniformi, slide 61.\\
+Riesco a codificare il mio intorno in un solo numero? Sì, slide 62. Se prendo il mio intorno e lo moltiplico per i valori del'intorno, ottengo un cosa? che mi calcola un solo numero.\\
+Abbiamo quindi un solo numero intero per rappresentare la texture dell'intorno di un pixel. Questa descrizione è invariante a cambi locali del livello di grigio. Abbiamo quindi un solo numero intero per rappresentare la texture dell'intorno di un pixel. Questa descrizione è invariante a cambi locali del livello di grigio. Ma non alle rotazioni e ai cambi di scala.\\
+Prendo la slide 62 per capire meglio: ho la matrice a sinistra, la binarizzo (matrice sopra), la moltiplico ai pixel wise-like (matrice sotto) e ottengo la matrice a destra, di cui poi faccio la somma e ottengo così il numero singolo.\\
+Slide 64. L'invarianza alla rotazione può essere facilmente ottenuta se per ogni pixel, proviamo tutte le rotazioni ed associamo il valore più basso.\\
+Come facciamo a renderlo invariante per la rotazione? Se vado a vedere i miei LBP (che vedi nella slide 64) e li ruoto, vedo che sono tutti uguali (come? ruotandoli uno a uno, finché non trovo il codice più basso).\\
+\texttt{ROR} è la rotazione. Li ruoto tutti e ricalcolo, trovo tutti i LBP. Prendo il minimo e lo uso per mappare gli altri. Non ho capito come.\\
+Come descrivo il LBP di un singolo pixel? Con il suo LBP (il suo valore). Come faccio a decidere che due pixel sono uguali? Ceh, un pixel è descritto dal suo LBP, ma basta il LBP per descriverne la texture? Ricorda: non è il LBP a confrontarsi con un valore, ma con l'insieme dei pixel che lo circondano.\\
+Il nostro problema in soldoni è mettere insieme "cose che sono simili".\\
+Detto meglio: il LBP è un valore, ma non lo confronto con un altro valore, ma con un insieme di valori, ovvero l'intorno. Quindi, vado a creare l'istogramma dei LBP dell'intorno.
+Una regione sarà descritta dai LBP dei pixel della regione, ovvero ancora l'istogramma dei LBP dell'intorno dei pixel. Ma la texture dipende dalla scala. Per questa ragione a volte la si analizza a diverse scale e si combinano i risultati. Slide 65.\\
+Slide 70, ci torneremo.\\
+Non lo facciamo noi, ma si potrebbe fare un \textbf{split \& merge} dell'intorno: si potrebbe splittare in tasselli per unire quelli simili, dove il tassello non è omogeneo lo vado a splittare ulteriormente. Uso l'istogramma dei LBP come descrittore. Confronto l'istogramma opportunamente normalizzato della regione con l'istogramma del suo intorno opportunamente normalizzato e quello più vicino lo unisco.\\
+Un errore da evitare è considerare i LBP come scalari da binarizzare o boh: no, sono descrittori su cui non si possono applicare norme euclidee.
+
+\subsection{A colori}
+Si può applicare ai colori? Sì. Il sistema visivo umano usa colore e texture separatamente.\\
+Slide 67, Due approcci principali (e moltissime varianti):
+•colore + texture immagine monocromatizzata – Un pixel è descritto da valori R, G, B e ad esempio, codice LBP (un numero) o risposta filtri maschere di Laws (9 numeri), ecc. •texture RGB
+– Un pixel è descritto ad esempio codice LBP canale Rosso, LBP canale Verde, LBP canale Blu, o la risposta filtri maschere di Laws applicate ai canali R, G, e B (27 valori)
+\begin{description}
+    \item[Riconoscimento di una texture:] constatare se un una regione o pixel di texture corrisponde o no ad un modello di riferimento.\\
+    Perché ho evidenziato la parola pixel ?Torneremo a parlare di texture, e di colore, quando parleremo della descrizione delle regioni (che ora sappiamo sono composte dai pixel)
+    \item[Classificazione della texture:] determinare a quale di $N$ classi di prestabilite è da attribuirsi la regione o il pixel di texture in esame. 
+    \item[Segmentazione di texture:] determinare i confini fra regioni a tessitura differente, nel caso in cui né il numero né le caratteristiche delle tessiture siano note a priori.
+\end{description}
+
+

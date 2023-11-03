@@ -1,0 +1,94 @@
+\chapter{Lab4}
+\section{Binarizzazione e segmentazione e labeling}
+Le famose maschere, utile per la parte di preprocessing, per andare a trovare aree di interesse.\\
+Diverse tecniche di segmentazione, basate su regole (\textbf{soglie}) che possono essere basate su diverse caratteristiche.\\
+Sono simili, binarizzazione trova 2 regioni, la segmentazione ne trova diverse.\\
+Legate alle regioni, c'è anche il labeling delle regioni connesse. Nel caso di immagini binarie, etichetta tutte le diverse regioni disgiunte selezionate all'interno di un'immagine. Anche se la binarizzazione crea solo pixel o 0 o 1, il labeling considera zone di 1 disgiunte come regioni disgiunte.
+
+\section{Es1}
+Obiettivo trovare la regione della mano per operare e fare cose. L'immagine è a livelli di grigio quindi l'unica info che abbiamo è l'intensità luminosa.\\
+Suggerimento: guardare l'istogramma per vedere se è per caso bimodale. Lo è, abbiamo un picco abbastanza alto (presumibilmente lo sfondo) e uno più basso di valori non chiari ma meno scuri (Ragionevolmente la mano).\\
+Guardando l'istogramma, possiamo vedere che la soglia è intorno a 33, che normalizzo poi dividendo per 255.\\
+Non è perfetta, ci sono pixel qua e là bianchi nello sfondo. Posso migliorare con filtri mediani?\\
+La soglia calcolata da noi esce circa 0.13, ma se la calcolo in automatico con la funzione di MatLab \texttt{graythresh(hand);} ottengo 0.216 (circa livello 55 nell'istogramma).\\
+La regione c'è, lo sfondo è meglio, la mano è un po' più sporca: viene selezionata anche la zona d'ombra. Non è malissimo ma la nostra soglia è migliore. Anche questa comunque dovrebbe essere sistemabile con qualche ciclo di filtro mediano (ma non sappiamo quanti). Più avanti impareremo della morfologia per fare processing abbastanza bene da saper migliorare senza problemi.\\
+La funzione  usa un algoritmo chiamato di Otsu (lo puoi vedere sul pdf del Lab4): va a dividere l'istogramma in due zone, va a massimizzare la distanza e minimizzare la varianza, così che siano più distanti e addensati. L'ombra visibile nella mano è dovuta alla coda del secondo picco che sta sotto alla soglia di 55 che viene presa dentro per sbaglio.\\
+è un algoritmo molto usato ma appunto c'è il rischio di prendere anche zone che non vogliamo se l'istogramma non è ben bimodale.\\
+Se facessimo labeling, avremmo 2 regioni: la mano e lo spigolo dello sfondo che è abbastanza grande da dar fastidio ma abbastanza piccolo perché in fase di processing possa essere presa ed eliminata.
+
+\section{Es2}
+Immagine marker simil QRcode.\\
+Problema: l'illuminazione non è uniforme. La binarizzazione dovrebbe separare chiari e scuri. Possiamo trovare una soglia adeguata? Risposta forse no, ma proviamo.\\
+Se andiamo a vedere l'istogramma di markers, vediamo che chiamarlo bimodale è una gran forzatura, abbiamo due picchi e una valle in mezzo. Ragionevolmente la soglia che Otsu ha preso sarà sulle code dei picchi di pixel ma nella zona della valle. Vediamo che è stata presa a 149: di fatto più della metà dei valori di pixel è stata presa come zona di scuri da mettere a neri.\\
+In sintesi, Otsu ha fallito. Vediamo se facciamo meglio noi a mano.\\
+Troviamo una soglia noi, sicuro più bassa di 149. Proviamo 100.\\
+Non va bene, proviamo 55.\\
+Non va: non è bimodale questa immagine.\\
+In pratica, la binarizzazione funziona bene in situazioni di illuminazione adeguata, uniforme. La nostra immagine non va bene: non va bene una soglia globale. Dobbiamo trattare zone diverse in modo diverso.\\
+Proviamo l'algoritmo di sauvola. Nella cartella abbiamo un \texttt{file.m} che lo implementa. Però la funzione \texttt{imbinarize} usa diversi approcci, tra cui '\texttt{adaptive}'. Noi proviamo sauvola, che vuole in input l'immagine e un intorno. Cosa fa Sauvola? Quello che farebbe Otsu, ma pixel per pixel in base al suo intorno.\\
+Cosa è successo? Ha preso gli edge, perché l'intorno è molto piccolo. Ha provato a trovare una soglia per separare quel 9 (3x3) o 25 (5x5) valori di pixel.\\
+Quando l'intorno casca in una zona uniforme, non trova edge, e quindi non trova una soglia e quindi fa o tutto chiaro o tutto scuro (qua tutto chiaro). Quindi trova soglie adattative ma è importantissima la soglia. Deve essere pari alla più piccola zona che vogliamo segmentare (banalmente, qua un quadratino simil QRcode) perché se l'intorno è abbastanza grande, posso trovare i pixel che voglio analizzare senza cascare in zone uniformi.\\
+Proviamo una 5x5.\\
+Proviamo una 11x11.\\
+Proviamo una 21x21. I quadrotti cominciano ad annerirsi, ma non vanno bene ancora.\\
+Proviamo una 31x31. Il risultato è migliore di Otsu ma vediamo se possiamo migliorare.\\
+Proviamo una 41x41. Quelli di luce ci sono, ma quello con la chiazza di illuminazione davanti è ancora corrotto.\\
+Proviamo una 51x51. Quello con l'illuminazione è migliore ma ancora non va benissimo.\\
+Ho messo io 71 perché mi piace il numero.\\
+Perché non provo direttamente con una soglia alta? Proviamo 151x151. Finisco nel problema opposto.\\
+Se la soglia di Sauvola inizia a diventare troppo grande, tende a diventare una soglia globale.\\
+è molto efficiente, il problema è toonarlo bene.\\
+Vediamo cosa farebbe \texttt{imbinarize(immagine, metodo)}.\\
+Sicuro non usa Saurola, non è bruttissimo il risultato ma non è proprio ottimale se voglio esattamente le regioni. Se mi interessano solo i quadrotti, ha fatto un ottimo lavoro.\\
+Se vogliamo usare \texttt{imbinarize} nel progetto, va anche bene, ma dobbiamo spiegare bene l'algoritmo e cosa c'è dentro (ovvero, come possiamo vedere nella documentazione, che usa Otsu e un algoritmo Bradley-Roth), quindi (per tutte le funzioni non basilari che usiamo) gli algoritmi che usa, l'idea che c'è alla base\dots\\
+Se vogliamo usare Sauvola, troviamo il pdf doc/spiegazione nello zip.\\
+In generale, voglio leggere un articolo (es. quello che mi spiega Bradley-Roth)? Vado su Google Scholar e cerco l'articolo. Abbiamo accesso a tantissime banche dati in quanto universitari.
+
+\section{Es3}
+Immagine a colori. La portiamo a livelli di grigio, guardo l'istogramma e vedo che è inutilizzabile. Perfetto esempio di istogramma non bimodale, non ho picchi. Di sicuro non riesco a trovare la soglia. Questo perché l'im a livelli di grigio qua non va bene.\\
+Devo usare l'informazione colore, qua dicono YCbCr, ma perché? Dicono per la crominanza, perché i colori della mano sono uniformi e diversi da quelli dello sfondo.\\
+Perché non RGB? Perché non toglie l'informazione sulla intensità della luce dalla crominanza.\\
+Come faccio a capire cosa boh? Guardo l'istogramma dei due canali CB e CR.\\
+Quale uso? CR, perché ha un picco più alto.\\
+Ma attenzione, il valore neutro (assenza di cromaticità) sta nel mezzo.\\
+Boh mo si rimangia tutto e fa che non deve essere per forza bimodale l'istogramma per binarizzare. Occorre anche visualizzare le due immagini CB e CR.\\
+Prende la figure con solo CB e con un tool della figure (\texttt{Tools > Data Tips}) va a vedere il livello che mi interessa sull'immagine. In CB è 123.\\
+Non sempre tutto quello che sta sopra o sotto la soglia è quello che mi interessa, devo vedere la situazione.\\
+Con \texttt{subplot(1,3,3), imshow(CB<123);} va a visualizzare l'immagine con la soglia. Fa la stessa cosa con CR, \texttt{subplot(1,3,3), imshow(CB>133);}\\
+Prova a fare con \texttt{graythresh} ma la nostra è comunque migliore (può andare bene anche quella automatica ma ovviamente con migliorie da fare). Per inciso, graythresh trova la soglia più grande da assegnare allo sfondo. Per quello anche ad assegnare la soglia al contrario, la mano rimane comunque bianca. Ocio alle immagini con regioni più o meno equivalenti.\\
+Proviamo a vedere lo spazio colore LAB (l luminosità) che ha un unico problema ovvero che calcola valori negativi: è un problema per l'istogramma. Anche a dividere in canali, dobbiamo servirci di imagesc.\\
+\texttt{a} è sogliabile? No.\\
+\texttt{b} sembra un po' più complicato. \texttt{a} sembra più semplice.\\
+Scrive in Command Window:
+\begin{verbatim}
+    >> figure, imshow(a>5);
+    >> figure, imshow(a>3);
+    >> graythresh(a)
+
+    ans = 
+
+        0.5078
+    
+    >> figure, imshow(im2bw(a, 0.5078));
+\end{verbatim}
+L'immagine ha troppo rumore. La soglia automatica è troppo bassa (voglio le regioni di \texttt{a} a valori alti). Correggo un po' la soglia.
+\begin{verbatim}
+    >> figure, imshow(im2bw(a, graythresh(a)*1.10));
+    >> figure, imshow(im2bw(a, graythresh(a)*1.20));
+    >> figure, imshow(im2bw(a, graythresh(a)*1.50));
+    >> figure, imshow(im2bw(a, graythresh(a)*2.00)); % così si rompe, abbiamo dei limiti
+    >> figure, imshow(im2bw(a, graythresh(a)*1.90)); 
+\end{verbatim}
+Beh diciamo che qua non ha funzionato.\\
+Ora proviamo noi.
+
+\section{Es4}
+Voglio trovare tutte le regioni dei cartelli blu e verdi, non quelli bianchi o quelli rossi.\\
+Come sono fatti i cartelli verdi e blu? In quale canale immagine a livelli di grigio li trovo? Magari devo combinare info che arrivano da canali diversi. Magari no.\\
+Posso combinare (o \textbf{addizionare}) diverse immagini binarie partizionate per aree di interesse.\\
+Sicuro non va bene RGB perché ho provato e perdo informazione di quale cartello era bianco bianco e quale era blu e io ho fatto diventare bianco.\\
+Uno dice che usa YCbCr e LAB insieme. Ho provato a mettere tutto in una figure 3x3 e \textit{ATTENZIONE} \texttt{cb} va \textbf{benissimo} per i cartelli blu.\\
+Quindi, cb (e b sogliato per prendere valori bassi bassi) va bene per i cartelli blu, cr (e a sogliato per prendere valori bassi bassi) va bene per i cartelli verdi.\\
+In sintesi, RGB fa cagare. Lo tolgo.\\
+Lavora su cb e cr.
+

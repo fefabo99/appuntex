@@ -1,0 +1,55 @@
+\chapter{Riconoscimento immagini}
+Perché non usiamo tutta l'immagine per analizzarla? Approccio che prende il nome di \textbf{template matching}.\\
+Abbiamo già separato riconoscimento-verifica da classificazione perché i primi sono più facili, la seconda più complicata perché devo confrontarmi con $N$ classi. Slide 4.\\
+Un tipico caso di riconoscimento: impronte digitali (è lui o non è lui). Slide 5.\\
+Nell'ambito del template matching (trovare correlazioni fra le immagini) tratteremo solo la parte del template rigido, in rosso nella slide 6. Vedremo poi quella per contorni.\\
+Il termine rigid template matching è molto generico nell'ambito del Pattern recognition, ma normalmente fa riferimento allo “ricerca” di un template T all'interno di un'immagine I con l'obiettivo di determinare se I contiene l'oggetto (match) e in quale posizione T appare nell'immagine.\\ 
+Global template matching: tutto l'oggetto è ricercato nell'immagine.\\ 
+Local template matching se si cerca una caratteristica visuale, un particolare come un corner.\\
+Il template T è costituito da un oggetto rigido (normalmente una immagine in formato raster).\\
+T viene sovrapposto a I in tutte le possibili posizioni (rispetto agli assi X e Y), ma a seconda dell'applicazione, può essere anche necessario ruotarlo e scalarlo.\\
+Nel seguito denominiamo Ti le istanze di T ottenute dalle trasformazioni precedenti (spostamento in X e Y, rotazione, scala).\\
+Per ogni istanza Ti il grado di similarità viene solitamente calcolato minimizzando la distanza o massimizzando la correlazione con la porzione di immagine I “coperta” da Ti (che ha la stessa dimensione di Ti).\\
+Se l'oggetto è parzialmente occluso, o distorto avremo una matching errato.\\
+Se ci sono cambiamenti nella scena (illuminazione, ad esempio) il matching potrebbe essere compromesso.\\
+Template matching molto usato (slide 9)\\
+Guardiamo al problema della localizzazione di una data immagine di riferimento (template) R all'interno di un'immagine di dimensioni maggiori I, che chiamiamo \textbf{l'immagine di ricerca}. Il compito è quello di trovare quelle posizioni in cui il contenuto dell'immagine di riferimento R e la corrispondente sotto-immagine di I sono uguali o più simili.\\
+L'immagine di riferimento R viene spostata attraverso l'immagine di ricerca I da un offset (r, s)
+utilizzando le origini delle due immagini come punti di riferimento. Le dimensioni
+dell'immagine di ricerca (wI ×hI ) e dell'immagine di riferimento (wR ×hR
+) determinano la
+regione di ricerca massima per questo confronto.\\
+Sono state proposte diverse misure di distanza per le immagini di intensità bidimensionale, comprese le seguenti tre definizioni di base:\\
+Tre equazioni nella slide 12.\\
+Slide 13, Per trovare la migliore corrispondenza tra l'immagine di riferimento R e l'immagine di ricerca I, è sufficiente ridurre al minimo il quadrato di dE (che è sempre positivo), che può essere espanso a equazione.\\
+Il termine B in Eqn. (11.5) è la somma dei valori al quadrato dei pixel dell'immagine di riferimento R, un valore costante (indipendente da r, s) che può quindi essere ignorato. Se supponiamo che A(r,s) - l' "energia del segnale" - in Eqn. (11.5) sia costante in tutta l'immagine I, allora anche A(r, s) può essere ignorato e la posizione della massima
+Correlazione Trasversale – Cross Correlation - C(r, s) coincide con la migliore corrispondenza tra R e I massimizzando\\
+Con parole mie (cioè, sue): \textbf{minimizzare la distanza significa massimizzare la correlazione}.
+\subsection{Normalized Cross correleation}
+Sappiamo che quando vogliamo renderci imperturbati rispetto a variazioni, normalizziamo.\\
+L'ipotesi fatta sopra che A(r, s) sia costante non vale per la maggior parte delle immagini, e quindi il risultato della correlazione incrociata varia fortemente con i cambiamenti di intensità nell'immagine I. La \textbf{correlazione incrociata normalizzata (Normalized Cross correleation)} compensa questa dipendenza tenendo conto dell'energia nell'immagine di riferimento e nella sotto-immagine corrente: equazioni slide 15. $C_N(r, s)$ è sempre nell'intervallo $[0, 1]$, indipendentemente dai rimanenti contenuti in $I$ e $R$. Mi sto perdendo malissimo. Da inserire slide 17-20 che sono piene di equazioni e fanno vedere il costo computazionale.\\
+Viene presa l'immagine e normalizzata rispetto all'intorno/immagine media. Ho capito male la frase? Slide 21-22.\\
+Esercizio tipo esame: slide 23. Conosco dimensione di un carattere che so che non cambia. Voglio algoritmo che riconosca bounding box e che carattere è tramite template matching. Abbiamo il template D e lo sovrappongo all'immagine. Come faccio a sapere se D è presente? Non ho alcuna garanzia che lo sia. Se a priori so che c'è, la individuo tramite il picco che mi indica il segnale più alto. Se non lo so, devo mettere una soglia. Se è troppo bassa, falso positivo (es. riconosco la B come una D). Se troppo alta, falso negativo (ovvero c'è la D ma non la riconosco).\\
+A cosa do precedenza? Ai falsi negativi o ai falsi positivi? Dipende dall'applicazione (es. allarme bomba, meglio falso negativo e avere allarmi anche quando non c'è la bomba piuttosto di non essere avvertiti quando c'è).\\
+Se ottengo l'immagine sulla destra, già fatto scorrimento, ho la finetra con la misura data dal testo, come faccio a produrre un'immagine che abbia solo la D?\\
+Baricentro (prendo la mia immagine a sinistra, la soglio, tramite labeling delle componenti connesse e ottengo tipo tre regioni, ne faccio il baricentro, prendo il baricentro della mia finestra e li faccio coincidere).
+Template matching è molto utile quando siamo in situazioni di imaging super controllata (es. slide 24).\\
+Slide 25: caso vero.\\Per ogni pixel dell’immagine da ispezionare valuto la correzione fra il template la porzione di immagine a cui si sovrappone. Ottengo quindi una nuova immagine.\\
+Slide 27. Per indicare la posizione, sovrappongo la bounding box dell’oggetto cercato all’immagine, bentrata sul pixel a massima correlazione. Slide 27-30, template, immagine trovata e mappa di correlazione. Slide 31-32 immagine non trovata. 
+\subsection{Insiemi di addestramento e valutazione}
+Il problema è quindi come faccio a trovare il giusto valore di soglia? \textbf{Mi servono dati}. Slide 33:
+\begin{description}
+    \item[Si parte sempre da una Raccolta dei Dati] Dati che sono usati per training (per allenare il classificatore / riconoscitore) o di test (per testare il classificatore / riconoscitore)\\
+    Non basta che avere le immagini di training e test, le immagini devono essere annotate, label oggetto (gatto) e posizione (bounding box)
+    \item[E dalla definizione di una funzione oggettiva di errore.]     Quando posso dire che ho effettivamente trovato l'oggetto? 
+\end{description}
+\subsection{Funzione di valutazione}
+Slide 34, equazioni. Il coefficiente di Jaccard misura la similarità tra insiemi campionari, ed è definito come la dimensione dell'intersezione divisa per la dimensione dell'unione degli insiemi campionari: equazione.\\
+Sotto, tre esempi di riconoscimento.\\
+Intersection over union è la misura che possiamo usare per dire se abbiamo trovato o non abbiamo trovato.
+\subsection{Insiemi di addestramento e valutazione}
+Il riconoscimento (si/no) è un problema di classificazione binario, dove le due classi
+corrispondono a esempi Positivi (vera classe) e Negativi (classe resto del mondo).
+L'apprendimento di un riconoscitore/classificatore supervisionato è tipicamente
+effettuato a partire da un insieme di addestramento (training set)
+l'insieme di esempi utilizzati per valutare le prestazioni di un sistema prende il nome di test set Training set e test set sono disgiunti

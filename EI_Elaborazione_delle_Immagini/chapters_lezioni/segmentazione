@@ -95,6 +95,7 @@ Una possibile soluzione sarebbe stimarli.
 
 Nel caso tipo di skintone avremo bisogno di 6 soglie: rgb e chiedi a fabio.
 
+% 31/10/2023 ha ripreso da qua e poi è andato avanti
 \chapter{Segmentazione delle immagini per regioni}
 Segmentazione definita come partizione S di I in un insieme di regioni R1, R2, \dots, Rn tali che:
 equazione
@@ -102,8 +103,9 @@ Ovvero vero per una regione, vero per la sua adiacente, ma deve essere falso per
 \subsection{Algoritmo di accrescimento di regioni (region growing)} 
 Preso un pixel ("\textit{seed}"), se è simile agli 8 suoi vicini, vengono aggregati in una classe. Fino a quando certi criteri sono soddisfatti e sono i criteri di arresto.\\
 Capita di avere un pixel che possa rientrare in più regioni, come faccio a scegliere quale regione prendere?
+
 \subsubsection{Criteri di accrescimento di regioni}
-2
+Due:
 \begin{itemize}
     \item varianza
     \item scostamento massimo
@@ -112,17 +114,249 @@ se l'illuminazione non è uniforme, la boh si sposta e io continuo a accrescere 
 
 \subsection{Split and merge}
 L'intera immagine viene considerata come una singola regione e viene applicato un criterio di \textit{split} per suddividere l'immagine in regioni via via più piccole.\\
-Ad ogni livello di suddiviione, cerca la slide.
+Ad ogni livello di suddivisione, il predicato P viene verificato per tutte le parti divise (splittate): se esso risulta falso, la parte viene ulteriormente suddivisa, e così via.\\
+Si fondono le parti adiacenti con caratteristiche simili, per costruire regioni più grandi che continuano a soddisfare i criteri previsti dalla segmentazione.\\
+Rischiamo che come l'ha chiamato? sovrasegmentazione?\\
+Questo produce delle immagini non perfette, dai contorni squadrettati. In alcune applicazioni può essere utile, sicuro non ad es. in immagini mediche, ma fa l'es. dell'isola di plastica nell'oceano.\\
 Si va a creare un quadtree.\\
 Slide successiva: fase di merge.
 
 Cosa produce? Un'immagine squadrettata. Di certo non va bene per stimare i contorni più o meno precisi di un'immagine, ma va bene per stimare cose grandi tipo una chiazza di petrolio nell'oceano.
 
 \subsubsection{Osservazioni del split and merge}
+Osservazioni Il criterio di splitting può essere diverso dal criterio di merging. La forma delle regioni
+potrebbe essere anche diversa Problemi - Il merging non deve dipendere dall’ordine con cui
+valuto le similarità fra le regioni
+- I contorni possono risultare seghettati.
+- Aggiornamento delle descrizioni (è sempre necessario riconsiderare tutti i pixel ?)
+Vantaggi
+Per il merging si possono definire strategie complesse ed articolate che, ad esempio: - fondono regioni con caratteristiche simili; - eliminano edge non forti; - sfruttano proprietà topologiche delle regioni; - sfruttano informazioni sulla forma degli oggetti.
 
 \subsubsection{Esempio di split and merge}
+Un esempio sarebbe quello della super nova, dove vogliamo stimare la zona di detriti gassosi intorno. Slide 18.
+Se la varianza era superiore ad una certa soglia e la media all'interno di un certo intervallo, lo considero omogeneo ad un certo filtro. Altrimenti no.\\
+In immagini con regioni, posso valutare in modo diverso in regioni diverse: es. split dentro e merge sui bordi? Oppure scegliere le regioni in base a boh i bordi?
+Lo split and merge si può fare anche con i diagrammi di Voronoi: si buttano seed (?) a caso nell'immagine e si segmenta in base a quello.
 
-Un altro esempio sarebbe quello della super nova, dove vogliamo stimare la zona di detriti gassosi intorno.
+\subsection{Segmentazione per regioni}
+\subsubsection{Criterio di splitting}
+Arresto lo splitting quando il colore medio delle sotto-regioni non cambia. Equazione slide 24.\\
+Più alto è il valore di soglia (vicino ad 1), più stretto è il criterio di omogeneità.\\
+Ovvero, fermo lo splitting quando le sotto-regioni hanno le stesse caratteristiche della regione madre.
 
-Lo split and merge si può fare anche con i diagrammi di Vernoil? come si scrive?
+\subsubsection{Criterio di merging}
+Distanza di Fisher, tengo conto non solo della media ma anche della numerosità e della varianza delle regioni, equazione slide 25.\\
 
+\subsubsection{Raffinamento dei bordi}
+I pixel di frontiera vengono riassegnati mediante region growing (i pixel sul bordo vengono riassegnati).
+
+Slide 26: esempio.\\
+Cosa ci dice? Possiamo costruire l'algoritmo in base alle proprie esigenze. Quando lo facciamo? Quando i nostri strumenti non risolvono il nostro problema. Però bisogna \textbf{sempre} partire da una baseline.
+
+\subsection{Grafo delle adiacenze}
+Slide 27-32.\\
+Slide 27-28: non c'è sul libro ma su MatLab (slide 32) quindi ha aggiunto.\\
+Procedere in parallelo non aiuta, rischio sovrasegmentazione: separo cose che non vanno separate.\\
+Come funziona? Separo in regioni, a ciascuna associo un nodo. Se due regioni sono adiacenti, collego i nodi. Ad ogni nodo posso associare una descrizione della regione. Ad ogni link delle proprietà comuni alle regione. Come posso velocizzare? Associando i minimi locali.\\
+Per garantire che non si creino fusioni inconsistenti, assumendo che gli archi siano etichettati con la similarità:
+\begin{itemize}
+    \item si fondono solo due regioni alla volta, e si aggiorna il grafo delle adiacenze (connessioni, proprietà dei nodi, degli archi).
+    \item Il processo è iterato fino a che non è più possibile fondere regioni.
+\end{itemize}
+Tipi di feature associabili a:
+\begin{description}
+    \item[un nodo del grafo:] varianza della regione, intensità, varianza del gradiente, centroide, coordinate Max e Min di una regione, dimensione, lunghezza/altezza bounding box, perimetro, bimodalità dell'istogramma, uniformità, contrasto,...
+    \item[un arco grafo:] perimetro condiviso, forza del gradiente, similarità,... 
+\end{description}
+
+\subsection{Segmentazione per regioni}
+I metodi basati solo sulle proprietà locali dei pixel (e.g. colore) possono dare luogo segmentazioni rumorose od imprecise.\\
+I criteri di omogeneità usati nei metodi devono essere definiti e spesso i relativi parametri sono trovati euristicamente. Per ovviare a questi problemi 
+\begin{itemize}
+    \item diversi algoritmi possono essere combinati in sequenza 
+    \item la iniziale segmentazione per regione può essere impostata per ottenere una sovrasegmentazione può essere iterativamente raffinata, tenendo conto della similarità dei pixel e della loro vicinanza spaziale, allo scopo di eliminare i falsi contorni e le regioni spurie
+\end{itemize}
+
+\section{Segmentazione di immagini a colori mediante analisi di istogrammi}
+\subsection{Segmentazione delle singole bande RGB}
+Ogni banda colore RGB è considerata una immagine a livelli di grigio.\\
+Si usano le tecniche messe a punto per le immagini a livello di grigio.\\
+Il risultato finale è l'intersezione delle singole segmentazioni.
+\subsubsection{Problemi}
+•Si possono creare regioni spurie
+•RGB spazio non ottimale
+
+\subsection{Sogliatura automatica - modi}
+\begin{enumerate}
+    \item Si smussa l'istogramma.
+    \item Si determinano i picchi più elevati dell'istogramma Hche sono distanti tra loro per almeno una certa quantità.
+    \item Si usa il punto più basso tra fra i picchi come soglia.\\
+    \begin{itemize}
+        \item la distanza tra picco e valle è ignorata;
+        \item approccio generalizzabile al caso di n oggetti.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Smoothing dell'istogramma}
+Lo smoothing viene eseguito per mezzo di una convoluzione tra la sequenza originale h(i)
+e quella di smoothing S(k). L'istogramma smussato è ottenuto con la seguente formula: slide 37
+
+\subsubsection{Smoothing gaussiano dell'istogramma}
+Lo smoothing gaussiano dell'istogramma consente di “levigare” un istogramma applicando ad esso una convoluzione con una distribuzione gaussiana. Slide 38 per l'equazione. Si chiama scale space, filtraggio sempre maggiore del segnale.\\
+Slide 39 zero-crossing della derivata prima. Grazie a quest'ultima trovo valli e picchi.\\
+Se nell'intorno di uno zero il segno della derivata varia da negativo a positivo, allora tale punto identifica una valle, altrimenti un picco. 
+Slide 41 zero-crossing della derivata seconda. Se nell'intorno di uno zero della derivata seconda si ha una variazione di segno da positivo a negativo, essa individua una valle sinistra; viceversa, se si ha una variazione da segno negativo a positivo, si è localizzata una valle destra. Per ogni coppia di valli, sinistra e destra, si calcolano i valori dell'istogramma originale per i punti tra esse compresi e si sceglie come locazione del picco il punto per cui l'altezza dell'istogramma è massima. 
+
+\subsubsection{Scale space dell'istogramma}
+Inserisci slide 43 tutta equazioni.\\
+Smussando le valli e i picchi tendono a spostarsi un pochino.\\
+Di solito non si visualizza direttamente lo scale-space di un segnale; si rappresenta invece un'immagine binaria costituita dagli zero-crossing della derivata prima o della derivata seconda nello scale-space. Tale rappresentazioni sono dette "finger-print". Gli zero-crossing sono i punti in cui la derivata prima o seconda del segnale continuo si annullano.\\
+Esiste un’altra specifica motivazione per cui si utilizza il kernel gaussiano: la stabilità
+degli zero-crossing della derivata del segnale convoluto, cioè al decrescere di possono
+comparire nuovi zero-crossing nel “fingerprint” dello scale-space, senza che quelli già
+esistenti scompaiano.
+Solo la convoluzione con una distribuzione gaussiana soddisfa questa condizione. Slide 45.\\
+L'idea è scelgo un tau, e lo applico a tutti i livelli di smoothing e picchi si spostano un pochino. Scendendo trovo i valori soglia. Slide 46.\\ Modo per trovare i picchi e le soglie corrette.\\
+Recap: smusso, calcolo der I e der II (pixel prima, pixel dopo), trovo gli zeri e questi ultimi mi permettono di calcolare il picco.\\
+\textbf{Spiegone di ciò che è stato detto a voce:}\\
+Lo smoothing gaussiano produce due effetti:
+- una semplificazione qualitativa
+- ed una distorsione della funzione operata.
+Quest'ultimo è un inconveniente che può essere superato grazie ad una tecnica che prende il nome di "Coarse to Fine Tracking". Questa prevede che l'identificazione di un certo evento, picco o valle o cambio di concavità, avvenga con l'utilizzo di una scala grossolana (alto), mentre la localizzazione, che fissa la corretta posizione degli zero-crossing, è determinato dall'inseguimento ("tracking") del contorno di uno zero, a partire dai punti individuati alla scala “grezza”,
+fino ai corrispondenti che giacciono sul piano fissato da $\tau=1$.
+
+\section{Modelli del colore}
+Scopo di un modello del colore è di consentirne la rappresentazione con modalità
+standardizzate, che fanno normalmente riferimento ad un sistema di coordinate 3-D, o meglio ad un suo sotto-spazio, nel quale ogni colore è rappresentato da un puntoI modelli del colore più utilizzati in image processing sono orientati o all'hardware (RGB, CMY), alla trasmissione (YUV, YIQ) e compressione (YCbCr), ed alla elaborazione “intuitiva” (HSI, HSV, ...)
+Problema: troppi modelli, nomi spesso ambigui, differenti versioni dello stesso modello. 
+Caratteristiche in base alle quali scegliere il modello colore:
+1. Indipendenza dal dispositivo
+2. Uniformità percettiva (uguale distanza fra colori diversi nello stesso sistema colore percepita uguale (non succede nell'rgb))
+3. Linearità vs .Non- Linearità (gamma correction andrebbe tolta prima di applicare un filtro)
+4. Presenza di singolarità 
+5. Costo della trasformazione 
+6. Intuitività delle coordinate 
+7. Robustezza ai cambiamenti nelle condizioni di imaging (una piccola ombra può far danni)
+Slide 55-56.\\
+Slide 57. HSI si applica bene per la segmentazione. Ma \textbf{la tinta è ciclica}, come fo? Slide 58, la considero a modulo 360, prendo l'istogramma e lo ripeto. Si analizzano quindi ue cicli affiancati. Valuto le condizioni di imaging e valuto se considerare o no \textbf{anche} l'intensità (nel caso ci siano ombre fastidiose).\\
+Slide 61.\\
+
+\subsection{Analisi degli istogrammi colore}
+Slide 62.\\
+A volte i cluster si “nascondono” quanto sono proiettati su un determinato asse. Per questo spesso si usano molto più feature. Ad esempio per il colore alcuni autori ne hanno usate nove: R,G,B (), Y,I,Q (opponente), H,S,I (polare).
+
+\subsection{Analisi ricorsiva degli istogrammi}
+Slide 63-65.\\
+- si calcola l'istogramma
+- si seleziona i picchi più significativi
+- si creano delle immagini binarie corrispondenti ai picchi (se esistono più picchi più
+immagini che vengono messe stack)
+- si filtrano le immagini binarie per ridurre il rumore
+- si mettono le immagini nello stack per l'analisi ricorsiva
+- L'analisi dell'istogramma si arresta quando l'istogramma ha un solo picco.
+- - L'algoritmo si arresta quando lo stack è vuoto.
+Esistono possibile variazioni all'algoritmo base. 
+
+\section{Segmentazione di immagini mediante clustering}
+Segmentazione di immagini nello spazio delle caratteristiche (colore, texture,…) mediante clustering.
+
+Segmentazione nello spazio delle caratteristiche (non necessariamente solo colore)
+
+\subsection{Clustrering}
+Slide 68.
+\definizione{\textbf{Clustering}: partizionamento di un dato insieme di N oggetti in un certo numero M di gruppi, chiamati con il termine inglese cluster, in modo tale che la somiglianza sia massima fra oggetti dello stesso gruppo e sia minima fra oggetti di gruppi diversi.}
+Il problema del clustering ha molteplici applicazioni in diverse discipline (machine learning, data mining, data base, ...)\\
+Slide 69. Il partizionamento ottimo di un insieme di N oggetti in M cluster risulta essere un problema di tipo \textbf{\textit{NP-completo}}, cioè un problema la cui complessità è una funzione non polinomiale del numero di parametri (in questo caso del numero di oggetti da classificare).\\
+Esempio: la suddivisione di 20 oggetti in 4 cluster può essere effettuata in $4.52 * 10^10$ modi diversi (oltre 45 miliardi di possibili soluzioni al problema).\\
+Esempio: 20 oggetti in 4 cluster, l'esame di tutte le possibili soluzioni verrebbe compiuto in tempi inaccettabili: anche considerando possibile l'esame di una soluzione in tempi estremamente ridotti, ad esempio 100 msec, l'intera ricerca impiegherebbe più di 52 giorni!
+Ulteriore problema: non solo le classi del problema sono sconosciute, ma spesso nemmeno il loro numero è noto.\\
+Slide 70, La maggior parte delle soluzioni proposte possono essere ricondotte alle due famiglie:
+\begin{description}
+    \item[Clustering gerarchico:] attraverso operazioni spesso di tipo “bottom-up” organizza i dati in una sequenza innestata di gruppi che possono essere visualizzati come un dendogramma (albero)
+    \item[Clustering partizionale:] individua solitamente attraverso algoritmi euristici iterativi partizioni che minimizzano un dato criterio di clustering: ad esempio la somma dei quadrati degli errori.
+\end{description}
+
+\subsubsection{Clustering gerarchico}
+Slide 71-72.\\
+Gli algoritmi possono essere bottom-up (agglomerativi) o top-down (divisivi).
+Nel primo caso si parte cercando di aggregare singoli elementi e ad ogni passo (livello) si
+aggregano in cluster gli elementi o i sotto-cluster che sono tra loro più simili rispetto a
+una soglia (che dipende dal livello).
+Nel secondo (più complesso e quindi meno utilizzato) si parte con un singolo cluster e ad
+ogni livello si suddividono in sotto-cluster gli elementi più diversi.
+In entrambi i casi il risultato può essere rappresentato attraverso un dendogramma.
+I metodi gerarchici permettono di applicare criteri di somiglianza “ad-hoc” per controllare
+l’aggregazione e la divisione. Sono quindi da preferirsi quando non si dispone di uno
+spazio metrico delle feature\\
+Come faccio a trovare la distanza fra due clusters? Diversi metodi: slide 73.\\
+1. Collegamento Singolo (Single Linkage): 1. Calcola la distanza tra due cluster come la distanza minima tra i punti di un cluster
+e quelli dell'altro.
+2. Collegamento Completo (Complete Linkage): 1. Calcola la distanza tra due cluster come la distanza massima tra i punti di un
+cluster e quelli dell'altro.
+3. Collegamento Medio (Average Linkage): 1. Calcola la distanza tra due cluster come la media delle distanze tra tutti i punti dei due cluster. 4. Collegamento del Centroide (Centroid Linkage): 1. Calcola la distanza tra due cluster utilizzando i centroidi (misure centrali) dei cluster.
+
+\subsection{K-means Clustering}
+Inizializzo (inizializzazione random?), assegno ai centroidi i valori di tutti gli altri elementi sulla base del più vicino.\\
+Aggiorno le medie, itero, ma la media è sempre la stessa (quindi si ferma? no capito).\\
+A seconda dell'inizializzazione, posso avere diverse opzioni di clustering.\\
+Slide 74, ripasso per chi non l'ha già visto.\\
+La partizione iniziale può essere formata scegliendo a priori un insieme di punti-seme. Un insieme di K pattern che sono ben separati uno dall'altro può essere ottenuto considerando, ad esempio, il centroide di tutti i dati come primo punto-seme e selezionando successivamente punti-seme che sono almeno ad una certa distanza dai punti-seme appena scelti.\\
+\textbf{Molto spesso si usa una generazione random (scartando semi troppo “vicini”)}, questa è una miglioria dell'inizializzazione.\\
+Alcuni algoritmi sfruttano l'analisi degli istogrammi.\\
+Ma quale è il limite del K-means? Che trova clustering troppo ipersferici. Un altro dipende dall'inizializzazione.\\
+Come trovo il numero di cluster? O perlomeno essere sicuri che l'inizializzazione sia quella corretta?
+
+Esempio di stage: "sperimentazione di metriche di qualità del risultato del clustering mediante k-means".\\
+
+Consiglio: sempre sovrasegmentare, eventualmente unisco dopo. Es.: tre classi, uomo donna e un'altra, poi eventualmente la integro in una delle altre due (uhm...).
+
+\subsubsection{Isodata Clustering}
+Slide 79.\\
+Di solito usato per immagini satellitari.\\
+L'algoritmo ISODATA è un algoritmo di clustering sequenziale in cui viene implementato il K-means pass. Data la partizione iniziale, pe ogni punto P (rappresentato dal suo vettore delle feature) viene determinato il centroide più vicino.\\
+Se 
+la distanza è minore di una certa soglia T1, il punto P viene assegnato al cluster e la media del cluster viene aggiornata, 
+altrimenti
+P diventa il centroide di un nuovo cluster Se la distanza minima fra i centroidi di due cluster è minore di una data T2 soglia i cluster vengono fusi (si ridetermina la posizione dl nuovo centroide).
+Il problema del definire correttamente il numero di cluster si converte nel definire il valori per T1 e T2. Essendo sequenziale il risultato dipende grandemente dall'ordine con cui si analizzano i dati
+
+\subsubsection{Segmentazione di immagini mediante clustering}
+Slide 80 in poi, seguono esempi. La slide 88 è un esempio di segmentazione di immagini mediante clustering esteticamente uscita male ma utile al suo scopo: ovvero individuare i numeri delle maglie.
+
+Segmentazione di immagini
+Scelta delle feature dei pixel
+Si possono usare diverse caratteristiche del pixel o del suo intorno (anche congiuntamente).
+Ad esempio:
+- feature colore /intensità dei pixel
+- Caratteristiche di tessitura (texture)
+- Coordinate spaziali 
+- ...
+
+Slide 91: esempio di scelta delle feature.\\
+Es. di prob tipico di clustering: grosse superfici da essere costruite senza discontinuità, es pavimenti di marmi (vero progetto fatto anni fa).
+
+%  fine pausa
+ha cercato "bottiglie" su google immagini e ha preso una foto di 6 bottiglie di vetro colorate.\\
+domanda da seconda parte dell'esame. Q: se ho delle bottiglie separate su sfondo bianco, come faccio tipo a contarle? A: regioni connesse.\\
+\\
+Sapendo che \\
+- scegli spazio colore che vuoi
+- nessuna bottiglia tocca il bordo (ergo, i pixel di bordo sono solo dello sfondo)
+- le bottiglie occupano meno del 50\%
+- lo sfondo è omogeneo ma può variare (non conosco a priori)
+- non so a priori i colori delle bottiglie, solo che è uniforme e diverso dallo sfondo (non conosco a priori)
+Come faccio a segmentare le bottiglie?\\
+Sono state proposte diverse soluzioni, non ne ho sentita mezza.
+
+\`E andato a prendere la slide dell'uso del gradiente nella sogliatura automatica.
+Posso usare anche split e merge (può funzionare o no, ma almeno identifico quante regioni ci sono). E col clustering? So che le bottiglie sono 5, lo sfondo è uno perché non si separa ed è la più grande perché so che occupa più del 50\%. Come faccio a sapere quante sono grandi? Quante piccole? Faccio cluster sulle altre label. Per esercizi simili, il cluster sembra essere the right way.
+
+\section{valutazione degli algoritmi di segmentazione}
+Che errori posso avere? Sovrasegmentazione (recuperabile, con un region merging costruibile su misura in base a cosa mi serve), sottosegmentazione (sempre un problema), e boh.\\
+Slide 94: quanti tipi di valutazione? Una soggettiva (es, dimostro di averne provate diverse e che soggettivamente viene preferita una soluzione piuttosto di altre), una indiretta (non so se venuto bene o male ma se uso questo spazio colore /algoritmo / filtro rispetto ad un altro esce meglio).
+Spesso valutabilem con analisi visiva. Altrimenti faccio un "fantoccio", un patch di textures con cui vedo quanto 
+
+Come valutare il risultato di una segmentazione di basso livello in assenza di misure certe: sono stati suggeriti da Haralik e Shapiro i seguenti criteri euristici:
+Le regioni estratte devono essere:
+– uniformi ed omogenee. – senza buchi interni. – differenti dalle regioni adiacenti (secondo il criterio di uniformità).
+– con confini semplici e non seghettati.
