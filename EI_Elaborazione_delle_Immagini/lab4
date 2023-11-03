@@ -90,5 +90,58 @@ Sicuro non va bene RGB perché ho provato e perdo informazione di quale cartello
 Uno dice che usa YCbCr e LAB insieme. Ho provato a mettere tutto in una figure 3x3 e \textit{ATTENZIONE} \texttt{cb} va \textbf{benissimo} per i cartelli blu.\\
 Quindi, cb (e b sogliato per prendere valori bassi bassi) va bene per i cartelli blu, cr (e a sogliato per prendere valori bassi bassi) va bene per i cartelli verdi.\\
 In sintesi, RGB fa cagare. Lo tolgo.\\
-Lavora su cb e cr.
+Lavora su cb e cr.\\
+Per curiosità, ha provato lui al volo HSV. Spoiler alert, inutile. La saturazione potrebbe essere utile per separare regioni colorate da regioni neutre. L'immagine della mano a colori per esempio. A casa prova.
 
+\section{Es5}
+Mostra come fare labeling componenti connesse per analisi di immagini.\\
+Vogliamo trovare la regione della moneta da 50cent.\\
+Proviamo a lavorare in bw? Prova a trovare solo le regioni delle monete, l'immagine binaria che le individua. Lo sfondo è bello chiaro quindi presumo sia circa 255, provo con 250 e poi con 255 e va benissimo il massimo.
+\begin{verbatim}
+    % bw = im2bw(gray);
+    bw = gray < 255;
+    imshow(bw);
+\end{verbatim}
+\texttt{bwlabel} è la funzione che fa labeling. \texttt{bwlabel} prende in input un'immagine binaria e etichetta le regioni bianche. Mi dà un array di interi, con lo sfondo etichettato 0 e gli altri valori sono le nostre regioni connesse. Per visualizzare il risultato uso \texttt{imagesc}, che dà come zone colorate e varie regioni: ogni etichetta un colore. Ocio, MatLab fa cose sue e finisce a processare immagini e etichettare per colonne. Comunque, a noi non interessa l'ordine ma il valore. A noi interessa solo quella con etichetta 5. Come faccio a selezionarla? Faccio una maschera binaria che seleziona solo quella regione.\\
+Uno gli fa che uint8 funziona anche senza concatenare, quindi:
+\begin{verbatim}
+    %out = coins.*uint8(cat(3,mask,mask,mask));
+    %uno gli fa che uint8 funziona anche senza concatenare
+    out = coins.*uint8(mask);
+\end{verbatim}
+
+\section{Es6}
+Vogliamo trovare la regione della moneta più piccola.\\
+Fa maschera con soglia 240 e normalizza.
+\begin{verbatim}
+    mask = im2bw(coins,240/255);
+\end{verbatim}
+A me esce una maschera al contrario: devo mettere \texttt{not(...)} prima.
+\begin{verbatim}
+    mask = not(im2bw(coins,240/255));
+\end{verbatim}
+Nello scritto ci verrà chiesto di risolvere un problema di elaborazione: dobbiamo descrivere il procedimento passo passo. Ogni. Singolo. Passaggio.\\
+Voglio trovare le regioni:
+\begin{verbatim}
+    labels = bwlabel(mask);
+\end{verbatim}
+Devo capire quanti e quali etichette sono state messe dentro labels:
+\begin{verbatim}
+    nlabels = max(max(labels));
+\end{verbatim}
+Perché \texttt{max(max(labels));}? Perché lavora per colonne.
+\begin{verbatim}
+    for r = 1 : nlabels
+    area = sum(sum(labels == r))
+    end
+\end{verbatim}
+Mi dà l'area della r-esima regione. NB: anche sum lavora per colonne.\\
+Ha aperto la doc per far vedere quante features possiamo usare per descrivere proprietà delle regioni (regionprops). Ha provato a scriverlo nella Command Window e le impacchetta in un array. Il min di questo array è l'area minima fra le aree visualizzate, ma \texttt{[M,I]=min([a.Area])} mi dà il valore minimo e l'indice a cui sta. Ora lo scrive nel codice.
+\begin{verbatim}
+    % aree = [regionprops(labels,'Area')];
+    % [M,minlabel]=min(aree);
+\end{verbatim}
+QUeste due righe qua sopra sono equivalenti a tutto quello che abbiamo fatto noi, da dove ho messo quelle due righe in poi.
+
+\section{Esercizi aggiuntivi}
+Sono solo 2 ma molto tosti, per il secondo ci fa "per semplificare fate solo la 4 connessione".
