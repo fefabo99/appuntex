@@ -126,3 +126,36 @@ sono i seguenti:
 \paragraph*{Definizione di cammino} Sequenza $P=<v_{i_1},v_{i_2},..., v_{i_{k-1}},v_{i_k}>$
 tale che $v_{i_k}$ appartiene a V per $1\leq j \leq k$ e $(v_{i_j},v_{i_{j+1}})$ appartiene
 ad E per $1 \leq j < k$.
+\paragraph*{Lunghezza del cammino} $k-1$ (numero di archi)
+\paragraph*{Ciclo} Cammino in cui $v_{i_1}$ coincide con $v_{i_k}$
+\paragraph*{Cammino semplice} Cammino in cui ogni vertice è presente una volta sola (cioè non
+contiene cicli)
+\paragraph*{Predecessore di $v_{i_k}$ in P} Vertice di $v_{i_{k-1}}$
+\subsection{Grafo orientato pesato}
+\paragraph*{Grafo} $G = (V,E,W)$
+\begin{itemize}
+    \item $V = \{v_1,v_2,v_3,...,v_n\}$ insieme di vertici
+    \item $E= \{e_1,e_2,e_3,...,e_m\}$ insieme di archi
+    \item $W:E \rightarrow R$ tale che $W(v_i,v_j) = w_{ij}$ è il peso dell'arco
+    $(v_i,v_j)$
+\end{itemize}
+\paragraph*{Peso di un cammino} Si tratta della somma dei pesi di tutti gli
+archi, formalmente: $P=<v_{i_1},v_{i_2},...,v_{i_k}> \rightarrow \sum^{k-1}_{j=1}w(v_{i_j},v_{i_{j+1}})$
+\subsection{Esempio grafo orientato pesato}
+\begin{center}
+    \begin{tikzpicture}
+        \node[shape=circle,draw=black] (1) at (0,0) {1};
+        \node[shape=circle,draw=black] (2) at (2,0) {2};
+        \node[shape=circle,draw=black] (3) at (4,-2) {3};
+        \node[shape=circle,draw=black] (4) at (2,-2) {4};
+        \node[shape=circle,draw=black] (5) at (0,-2) {5};
+    
+        \path [->] (1) edge node[midway, above] {3} (2);
+        \path [->] (2) edge node[midway, right] {2} (3);
+        \path [->] (3) edge node[midway, below] {1} (4);
+        \path [->] (4) edge node[midway, below] {4} (5);
+        \path [->] (5) edge node[midway, left] {5} (1);
+        \path [->] (5) edge node[midway, right] {10} (2);
+        
+    \end{tikzpicture}
+\end{center}
