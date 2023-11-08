@@ -91,4 +91,37 @@ Ad un sistema di equazioni lineari possiamo associare due matrici:
     \item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
 \end{itemize}
 Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove 
-$x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}$
+\[x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\]
+
+In un sistema di Equazioni lineari $A\underline{x} = \underline{b}$ la soluzione $\underline{c}$ è tale che $A\underline{c}=\underline{b}$.
+
+\paragraph{Proposizione 1:} Se $A$ è \textbf{invertibile}, il sistema ha una \textbf{unica soluzione}.
+Dato $A\underline{x}=\underline{b}$, tale soluzione è:
+\[A^{-1} A \underline{x} = A^{-1} \underline{b} \implies \underline{x} = A^{-1}\underline{b}\]
+Nota che $A^{-1} A = Id_n$. Se $\underline{b}=0$, diremo che il sistema è omogeneo.
+
+\subsection{Teorema di Rouche-Capelli}
+Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni lineari.
+\\Questo teorema è diviso in due parti:
+
+\begin{enumerate}
+	\item Il sistema $A\underline{x}=\underline{b}$ ha soluzione \emph{sse}:
+	\begin{center}
+		rg($A$) = rg($A|\underline{b}$)
+	\end{center}
+	Ovvero se il rango della matrice Incompleta $A$ è uguale a quello della matrice Completa $A|\underline{b}$.
+	\item Nel caso in cui ci sia soluzione, l'insieme $V$ di tutte le soluzioni è scrivibile come:
+	\[ underline{c} + W = \{ \underline{c} + \underline{w} : \underline{w} \in W\} \]
+	Dove $\underline{c}$ è una soluzione qualsiasi del sistema, e $W= \{$ soluzione di $A\underline{x} = \underline{0} \}$.
+	$W$ è un sottospazio vettoriale di $\R^n$.
+\end{enumerate}
+
+\section{Rango di Matrici}
+Il rango è la "misrura di quante informazioni contiene una matrice"
+\definizione{
+	\begin{center}
+		rg($A$)= dim $<$Vettori colonna di A $>$
+	\end{center}
+	O, equivalentemente, il rango è il massimo numero di vettori colonna linearmente indipendenti di A.
+}
+La stessa cosa è equivalente per i vettori riga.
