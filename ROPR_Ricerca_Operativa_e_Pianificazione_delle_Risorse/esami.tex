@@ -50,7 +50,7 @@ ottimale.}
 
 \affermazionetrue
 {Se le variabili di base soddisfano i vincoli di non negativitá, la soluzione di base é una soluzione ammissibile di base.}
-{Prporietá numero (5) delle soluzioni di base.}
+{Proprietà numero (5) delle soluzioni di base.}
 
 \affermazionetrue
 {Un problema di PL può ammettere infinite soluzioni ottime}
@@ -62,16 +62,19 @@ ottimale.}
 \affermazionetrue
 {Dato un problema di PL, due soluzioni di base ammissibili vengono dette adiacenti se condividono tutte le variabili non di base eccetto una}
 
-\affermazione
+\affermazionetrue
 {Se un problema ha piú di una soluzione di base ottimale, almeno una delle variabili non di base ha un coefficiente nullo nella riga (0)}
 
-\affermazione
-{In ogni problema di programmazione lineare con $m$ variabili di decisione, ogni vertice è la soluzione simultanea
-di un sistema di $m$ equazioni, ognuna rappresentante la frontiera di uno degli $m$ vincoli}
-{}
+\affermazionetrue
+{In ogni problema di programmazione lineare con $n$ variabili di decisione, ogni vertice è la soluzione simultanea
+di un sistema di $m$ equazioni, ognuna rappresentante la frontiera di uno degli $m$ vincoli. Le $m$ equazioni al 
+contorno del vincolo che producono (definiscono) una soluzione vertice ammissibile, sono le sue equazioni di 
+definizione, dove l'eliminazione di una di esse produce una linea, il cui segmento ammissibile è un bordo della 
+regione ammissibile.}
 
-\affermazione
-{Se un problema di PL ammette più di una soluzione di base ottimale, allora incrementre il valore di una \textbf{qualsiasi variabile non di base} non cambia il valore della funzione obiettivo}
+\affermazionetrue
+{Se un problema di PL non ha variabili uscenti dalla base, allora è presente una regione ammissibile illimintata. Incrementare quindi
+ una variabile entrante in base non cambierà il valore di $Z$. La variabile può essere incrementata in modo illimitato.}
 
 
 \affermazionefalse
@@ -104,7 +107,7 @@ all'intersezione di $n$ frontiere di altrettanti vincoli, }
 
 
 \subsection{Dualità}
-\nb{Dualitá debole vale sempre, dualita forte solo se cé soluzione ottima per il duale}
+\nb{Dualitá debole vale sempre, dualita forte solo se c'è soluzione ottima per il duale}
 
 \paragraph{Si consideri un problema primale in forma di massimo. Se il duale é inammissibile, allora}:
 
