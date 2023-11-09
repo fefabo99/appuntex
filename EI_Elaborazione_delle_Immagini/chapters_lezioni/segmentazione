@@ -258,18 +258,16 @@ immagini che vengono messe stack)
 Esistono possibile variazioni all'algoritmo base. 
 
 \section{Segmentazione di immagini mediante clustering}
-Segmentazione di immagini nello spazio delle caratteristiche (colore, texture,…) mediante clustering.
+Segmentazione di immagini nello spazio delle caratteristiche (colore, texture,…) mediante clustering (non necessariamente solo colore).
 
-Segmentazione nello spazio delle caratteristiche (non necessariamente solo colore)
-
-\subsection{Clustrering}
+\section{Clustering}
 Slide 68.
-\definizione{\textbf{Clustering}: partizionamento di un dato insieme di N oggetti in un certo numero M di gruppi, chiamati con il termine inglese cluster, in modo tale che la somiglianza sia massima fra oggetti dello stesso gruppo e sia minima fra oggetti di gruppi diversi.}
+\definizione{\textbf{Clustering}: partizionamento di un dato insieme di $N$ oggetti in un certo numero $M$ di gruppi, chiamati con il termine inglese \textit{cluster}, in modo tale che la somiglianza sia massima fra oggetti dello stesso gruppo e sia minima fra oggetti di gruppi diversi.}
 Il problema del clustering ha molteplici applicazioni in diverse discipline (machine learning, data mining, data base, ...)\\
-Slide 69. Il partizionamento ottimo di un insieme di N oggetti in M cluster risulta essere un problema di tipo \textbf{\textit{NP-completo}}, cioè un problema la cui complessità è una funzione non polinomiale del numero di parametri (in questo caso del numero di oggetti da classificare).\\
+Slide 69. Il partizionamento ottimo di un insieme di $N$ oggetti in $M$ cluster risulta essere un problema di tipo \textbf{\textit{NP-completo}}, cioè un problema la cui complessità è una funzione non polinomiale del numero di parametri (in questo caso del numero di oggetti da classificare).\\
 Esempio: la suddivisione di 20 oggetti in 4 cluster può essere effettuata in $4.52 * 10^10$ modi diversi (oltre 45 miliardi di possibili soluzioni al problema).\\
-Esempio: 20 oggetti in 4 cluster, l'esame di tutte le possibili soluzioni verrebbe compiuto in tempi inaccettabili: anche considerando possibile l'esame di una soluzione in tempi estremamente ridotti, ad esempio 100 msec, l'intera ricerca impiegherebbe più di 52 giorni!
-Ulteriore problema: non solo le classi del problema sono sconosciute, ma spesso nemmeno il loro numero è noto.\\
+Esempio: 20 oggetti in 4 cluster, l'esame di tutte le possibili soluzioni verrebbe compiuto in tempi inaccettabili: anche considerando possibile l'esame di una soluzione in tempi estremamente ridotti, ad esempio 100 msec, l'intera ricerca impiegherebbe più di 52 giorni!\\
+\textbf{Ulteriore problema}: non solo le classi del problema sono sconosciute, ma spesso nemmeno il loro numero è noto.\\
 Slide 70, La maggior parte delle soluzioni proposte possono essere ricondotte alle due famiglie:
 \begin{description}
     \item[Clustering gerarchico:] attraverso operazioni spesso di tipo “bottom-up” organizza i dati in una sequenza innestata di gruppi che possono essere visualizzati come un dendogramma (albero)
@@ -351,10 +349,10 @@ Sono state proposte diverse soluzioni, non ne ho sentita mezza.
 \`E andato a prendere la slide dell'uso del gradiente nella sogliatura automatica.
 Posso usare anche split e merge (può funzionare o no, ma almeno identifico quante regioni ci sono). E col clustering? So che le bottiglie sono 5, lo sfondo è uno perché non si separa ed è la più grande perché so che occupa più del 50\%. Come faccio a sapere quante sono grandi? Quante piccole? Faccio cluster sulle altre label. Per esercizi simili, il cluster sembra essere the right way.
 
-\section{valutazione degli algoritmi di segmentazione}
+\section{Valutazione degli algoritmi di segmentazione}
 Che errori posso avere? Sovrasegmentazione (recuperabile, con un region merging costruibile su misura in base a cosa mi serve), sottosegmentazione (sempre un problema), e boh.\\
-Slide 94: quanti tipi di valutazione? Una soggettiva (es, dimostro di averne provate diverse e che soggettivamente viene preferita una soluzione piuttosto di altre), una indiretta (non so se venuto bene o male ma se uso questo spazio colore /algoritmo / filtro rispetto ad un altro esce meglio).
-Spesso valutabilem con analisi visiva. Altrimenti faccio un "fantoccio", un patch di textures con cui vedo quanto 
+Slide 94: quanti tipi di valutazione? Una soggettiva (es, dimostro di averne provate diverse e che soggettivamente viene preferita una soluzione piuttosto di altre), una indiretta (non so se venuto bene o male ma se uso questo spazio colore / algoritmo / filtro rispetto ad un altro esce meglio).
+Spesso valutabile con analisi visiva. Altrimenti faccio un "fantoccio", un patch di textures con cui vedo quanto 
 
 Come valutare il risultato di una segmentazione di basso livello in assenza di misure certe: sono stati suggeriti da Haralik e Shapiro i seguenti criteri euristici:
 Le regioni estratte devono essere:

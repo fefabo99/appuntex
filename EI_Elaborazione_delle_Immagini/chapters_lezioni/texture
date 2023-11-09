@@ -194,4 +194,7 @@ Slide 67, Due approcci principali (e moltissime varianti):
     \item[Segmentazione di texture:] determinare i confini fra regioni a tessitura differente, nel caso in cui né il numero né le caratteristiche delle tessiture siano note a priori.
 \end{description}
 
+% 07/11/2023 - L13
+
+Clustering - classificazione non controllata.
 

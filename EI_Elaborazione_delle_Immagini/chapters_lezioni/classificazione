@@ -1,0 +1,221 @@
+\chapter{Introduzione alla classificazione}
+% 07/11/2023 - L13
+Gli strumenti che usiamo (tipo i descrittori) devono essere adattabili a quello che stiamo analizzando (così come i classificatori).
+\section{Classificazione}
+Scopo: definire un sistema che mi riconosca automaticamente un evento od oggetto.\\
+Cosa vuol dire "automaticamente"? Preso un oggetto, lo descrivo, applico regole. Queste regole non sono da settare a mano ma vanno apprese da un insieme di dati.\\
+Dominio: problema. --> Applicazione --> Input: pattern --> Output: classe.\\
+! ogggetti simili producono segnali simili !
+Noi non vediamo un det oggetto o l'altro ma dei descrittori che ci permettono di distinguerli.\\
+Classe: insieme di oggetti simili.\\
+Pattern: qualcosa (descrizione?) segnali dell'oggetto.\\
+
+
+
+
+\subsubsection{Cosa vuol dire fare una classificazione?}
+Specificare \textbf{uno spazio di interpretazione} (lo spazio delle classi, cosa voglio classificare?)\\
+dare una descrizione appropriata degli oggetti, fisici o concettuali, in termini di caratteristiche (features), appartenenti a 
+
+
+\subsubsection{Ma in pratica?}
+\begin{itemize}
+    \item \textbf{Comprendere} il problema
+    \item \textbf{Raccogliere} una casistica significativa ed analizzarne le caratteristiche
+    \item \textbf{Studiare} la letteratura per vedere come sono stati affrontati problemi simili
+\end{itemize}
+Quali \textbf{features} e quali \textbf{metodi} usare?
+\begin{itemize}
+    \item \textbf{Sperimentare} il problema
+    \item \textbf{Valutare} oggettivamente i risultati
+    \item \textbf{Documentare} gli esperimenti fatti
+    \item \textbf{Raffinare/iterare} il processo 
+\end{itemize}
+
+\subsection{Comprendere lo scopo della classificazione}
+Il concetto di classe dipende dalla semantica dell'applicazione.\\
+Parliamo di:
+\begin{description}
+    \item[Classificazione controllata:] definita dall'utente
+    \item[Classificazione non controllata:] appresa "in automatico" a partire da un dataset
+\end{description}
+Ma cosa vuol dire comprendere i dati? Non possiamo prescindere da boh non ho capito.
+Bisogna comprendere anche la variabilità degli oggetti all'interno di una classe:
+\begin{description}
+    \item[variabilità inter-classe:] 
+    \item[variabilità intra-classe:] 
+\end{description}
+
+\section{Features}
+Espressioni numeriche delle proprietà di un segnale; l'insieme delle f. è chiamato feature vector. Slide sulle features.
+
+\subsection{Selezione delle features}
+Quattro criteri:
+\begin{description}
+    \item[discriminazione:] parametri che mi permettono di discriminare gli oggetti.
+    \item[affidabilità:] valori simili per classi uguali.
+    \item[indipendenza:] features scorrelate fra loro (se troppo correlate meglio fonderle insieme che usarle separatamente), una varia ma l'altra no.  
+    \item[dimensione:] le dimensioni delle features influenzano la complessità del classificatore. 
+\end{description}
+Usare features che \textbf{ben discriminano} tra classi permette di:
+\begin{itemize}
+    \item ridurre il n° di esempi del training set
+    \item aumenta la qualità della funzione di riconoscimento
+\end{itemize}
+Nella slide fa due esempi di classificatori, uno di "buone features" (classificatore lineare) e uno di "cattive features" (classificatore non lineare).\\
+Il secondo è un (support vector machine)
+
+Per il primo, ne ho (infiniti) tanti validi, ma quale prendo? quello che tiene i dati il più separato possibile: questo nel SVM si chiama \textbf{margine}.\\
+Poter scegliere le features mi permette di scegliere il miglior classificatore. Boh è la slide dopo.
+
+Alcuni metodi "semplici" (mi fido):
+\begin{itemize}
+    \item calcolo delle medie
+    \item calcolo delle varianze
+    \item calcolo correlazione di x e y (elementi matrice di covarianza) nella classe j\\
+    Se sono dipendenti vale 0, altrimenti no. 
+\end{itemize}
+Se le medie sono più separate della somma delle varianze, tenderò da avere due picchi separati.
+
+\subsection{Caratteristiche delle features vs classificazioni}
+Introduciamo il concetto di features invarianti:        \\
+Più le features saranno invarianti, più la classificazione sarà "triviale" (semplice).\\
+Meno le features saranno invarianti, più la classificazione sarà più complessa.\\
+Uno dei maggiori dilemmi è trovare il giusto compromesso tra la complessità della classificazione e la robustezza delle features. Boh vedi come la scrive nella slide.
+
+In sostanza diepende un'altra volta dalla semantica dell'applicazione.
+
+\subsection{Normalizzazione delle features}
+Spesso le features hanno scale diverse, quindi bisogna normalizzarle.\\
+\subsubsection{Z-standard}
+\subsubsection{Normalizzazione (min-max scaling)}
+\subsubsection{Es.: ridimensionamento min-max}
+
+\section{Principali approcci della Pattern Recognition}
+\subsection{Matching / Riconoscimento vs Classificazione}
+
+\subsection{4 principali approcci del PR}
+\begin{description}
+    \item[Template Matching:] 
+    \item[Approccio Statistico:] 
+    \item[Approccio Strutturale (sintattico):] 
+    \item[ :]
+\end{description}
+
+\subsubsection{Es.1 di classificazione:}
+C'è una tabella dove alla riga 0 di intestazione abbiamo esempi di features.\\
+Gli alberi di decisione, che non faremo, sono classificatori a regole ("strokes" n° di segmenti). Queste sono le famose regole che apprendiamo dai dati. Tende a fare over-fitting ossia vede quello che vede e fa (?) bohhh.
+\subsubsection{Es.2 di classificazione:}
+I pesci. La features della posizione della bocca è un esempio di f. di secondo livello: prima di trovare la dim della bocca devo trovare il pesce, poi la testa, poi la bocca, etc\dots Non è immediata.\\
+La lunghezza invece è un esempio di f. non discriminante: abbiamo davanti l'istogramma e 
+
+Bisogna minimizzare l'errore di classificazione (i falsi positivi e i falsi negativi): ovvero quanti salmoni presi come spigole e viceversa. Dobbiamo minimizzare l'errore (impossibile portare a 0, non lo dire mai).\\
+La chiarezza (intesa come luminanza) invece è migliore.\\
+Ma se non basta? uso più caratteristiche: creo quello noto come \textbf{spazio delle features}.\\
+L'importante è non prendere features rumorose (?).\\
+Ocio a non tendere a over-fitting (sovra-modellazione del data-set). è più facile che accada in data-set più piccoli.\\
+Quando viene dato un data-set, una parte verrà usata per il training e una per la validation. Ma se ho parti troppo piccole, dovrò fare la cross-training-validation (es. 5 parti, ne uso 4 per training e una per validation, poi ruoto e faccio 4 nuove parti per training e una per validation).
+
+\subsection{Errori di classificazione}
+Il costo non è associato alla classificazione erronea, ma alla decisione che viene presa in base a quella classificazione.
+
+\subsection{Training Set e Test Set}
+\subsubsection{Insieme di Campioni di Training}
+Insieme di campioni per i quali la classe d'appartenenza è nota. Questi campioni sono
+usati per trovare la frontiera di decisione ottima, cioè per progettare (addestrare) il
+classificatore;
+\subsubsection{Problema di Generalizzazione}
+Lo scopo del classificatore è essere capace di riconoscere ogni campione incognito
+(classe d'appartenenza non nota) con il margine di errore più piccolo possibile.
+Quindi, bisogna stare attenti al fatto che il classificatore non sia troppo adattato ai
+campioni di training (problema dell'overfitting).
+\subsubsection{Insieme di Campioni di Test}
+Insieme di campioni per i quali la classe d'appartenenza è nota è che non sono stati nel
+training . Tale insieme è usato per valutare le performance del classificatore
+
+\subsection{Classificatore a Minima Distanza}
+Slide 42.\\
+Un classificatore banale che abbiamo già usato per la segmentazione ed il clustering è il classificatore a minima distanza. In un classificatore a minima distanza ciascuna classe ha una media associata (vettore delle features mi) . Assegno a un vettore x la classe j tale che Dj= ||x-mj|| sia minimo (distanza euclidea). Funziona solo se tutte le feature sono discriminanti e nello stesso modo! -> necessità di normalizzare. Si devono stimare le medie (training) e definire una funzione distanza. La partizione dello spazio dei parametri che rappresenta le classi è un diagramma di Voronoi. I punti di ogni insieme sono i punti più vicini al centroide di quel gruppo, e le rette che li congiungono, uniscono i punti equidistanti.\\
+Slide 44: algoritmo.\\
+In questo metodo, si suppone:
+\begin{itemize}
+    \item che i campioni abbiano poco variabilità attorno ad un pattern tipico e rappresentativo della classe;
+    \item oppure che tutte le classi abbiano lo stesso andamento statistico (stessa matrice di covarianza);
+\end{itemize}
+Ciascuna classe verrà modellata nello spazio delle feature tramite il suo vettore medio (statistica di 1° ordine) che giocherà il ruolo del prototipo della classe. Non tiene conto della variabilità statistica delle classi.\\
+La classificazione di una data osservazione (campione sconosciuto) verrà fatta sulla base della minima distanza tra l'osservazione ed i prototipi delle classi. Semplice, onere computazionale basso.\\
+Un classificatore basato sulla minima distanza è caratterizzato da frontiere di decisione lineari.\\
+Nella slide 43 dove ho l'esempio, ho assunto che ci siano quelle tre classi e nessun'altra, se arrivasse un oggetto che non ci rientra, non saprei classificarlo.
+
+\subsection{Classificatore a parallelepipedo}
+Come faccio? Creo un parallelepipedo che le contenga, con un fattore di ingrandimento multiplo della varianza (slide 47). Per non lasciare fuori roba, posso ingrandire i parallelepipedi fino a che non si toccano.\\
+Slide 48: procedimento.\\
+Slide 49. Al contrario del metodo della minima distanza, il metodo del parallelepipedo (“Box Classifier”) tiene conto, anche se in modo molto primitivo, della statistica di secondo ordine delle classi. • Questo metodo modella ciascuna classe nello spazio delle feature con una densità
+di probabilità uniforme contenuta in un rettangolo multidimensionale:
+- centrato nel suo baricentro;
+- di dimensioni espresse in funzione delle deviazioni standard della classe lungo
+ciascuna direzione delle feature;
+• In pratica, i rettangoli multidimensionali possono essere visti come le regioni di decisione associate alle classi. • Una data osservazione verrà assegnata ad una classe se appartiene alla sua regione di decisione. Semplice, onere computazionale basso.
+
+\subsection{Classificatore Nearest Neighbour (NN)}
+Questo non ha cosa?
+Data una metrica d(.) nello spazio multidimensionale (es. distanza euclidea) ilclassificatore nearest-neighbor (letteralmente “il più vicino tra i vicini”), assegna unpattern x alla stessa classe dell'elemento $x'$ ad esso più vicino nel training set.
+•La regola NN produce una tassellazione di Voronoi: Ogni elementoxi del TSdetermina un tassello, all'intero del quale i pattern saranno assegnati alla stessaclasse di xi. \\
+Basta che un solo elemento del training set non sia molto “affidabile” (outlier)affinché tutti i pattern nelle sue vicinanze siano etichettati non correttamente.\\
+Un modo generalmente più robusto, che può essere visto come estensione della regola NN (in questo caso detta 1-NN) è il cosiddetto classificatore k-nearest-neighbor (k-NN). Mi migliora la robustezza contro gli outlier (boh cit co-pilot, mi fido).\\
+\subsubsection{k-nearest-neighbor (k-NN)}
+Slide 51. La regola k-NN determina i k elementi più vicini al pattern
+x da classificare; ogni pattern tra i k vicini “vota” per la
+classe cui esso stesso appartiene; il pattern x viene
+assegnato alla classe che ha ottenuto il maggior numero di voti. Nell'esempio, Il classificatore 5-NN assegna x alla classe “nera”, in quanto quest'ultima ha ricevuto 3 voti su 5.
+k dispari per cercare di evitare “pareggi”.
+Per questo metodo, è quindi necessario memorizzare tutti I campioni di training.
+Per la scelta del valore del parametro k, non esiste un metodo teorico per stimarlo.
+Questo valore dipende molto da come sono distribuite e sovrapposte le classi nello
+spazio delle feature.
+
+
+Se diventa troppo esteso (il dataset?) conviene usare una struttura dati.
+Slide 52. \textit{Il comportamento di un classificatore è strettamente legato alla metrica} (funzione distanza) \textit{adottata}.\\
+La distanza euclidea, che rappresenta il caso L2 nella definizione di metriche di Minkowski, è sicuramente la metrica più spesso utilizzata.\\
+Nella pratica, prima di adottare semplicemente la distanza euclidea è bene valutare lo spazio di variazione delle componenti (o feature) e la presenza di eventuali forti correlazioni tra le stesse.\\
+Supponiamo ad esempio di voler classificare le persone sulla base dell'altezza e della lunghezza del piede. Ogni pattern $x$ (bidimensionale) risulta costituito da due feature ($x_1 =$ altezza, $x_2 =$ lunghezza del piede).\\
+
+Slide 54.\\
+Volendo è anche possibile esplicitare pesi pi diversi per le diverse feature. I pesipi, i=1..d (anch'essi derivati dal Training Set) possono essere sceltiproporzionalmente al potere discriminante delle feature calcolabile ad esempiocome rapporto: Per variabilità-intraclasse ci si riferisce alla variabilità della feature i-esimanell'ambito di ciascuna classe, e può essere calcolata come media degli scartiquadratici dei valori di xi all'interno di ciascuna classe. Per variabilità-interclasse ci si riferisce alla variabilità della feature i-esima per classidiverse. Può essere calcolata come scarto quadratico (slide 55) dei valori di xi di un egual numero di campioni presi da ciascuna classe.\\
+Slide 56, equazioni. \underline{\textbf{RECAP}}: Per evitare i problemi legati a diversi spazi di variazioni delle feature, ogni feature i-esima è normalizzata per il relativo spazio di variazione vi. Volendo è anche possibile esplicitare pesi pi diversi per le diverse feature\\
+\textbf{Perché NN?}\\
+è semplice, non ha bisogno di addestramento; è applicabile a qualsiasi tipo di
+distribuzione statistica, ha accuratezza elevata (se k è sufficientemente grande). Ma, ha
+un onere computazionale legato alla fase di classificazione è elevato se in numero di
+campioni è elevato: spesso si ricorre a tecniche di partizione dello spazio (ad esempio il
+Kd-tree) per accelerare la ricerca dei k punti vicini.\\
+Le frontiere di decisione prodotte dal k-NN sono di tipo lineare a tratti.
+
+\subsubsection{Classificazione NN con rigetto}
+Ci possono essere casi in cui il costo di un errore è così elevato che è conveniente astenersi dal fornire una risposta piuttosto che rischiare un errore. In questi casi, alle decisioni possibili si aggiunge la \textbf{“decisione di non decidere”, detta \underline{anche rigetto}}. Le condizioni per le quali viene sospesa la decisione vanno sotto il nome di regola di rigetto (reject rule).\\
+c'è un procedimento che mi sono persa.
+
+\subsection{Multi-classificatori}
+Si può fare features e algoritmi per estrarle diversi. Slide 67.\\
+Diversi classificatori possono essere utilizzati (normalmente in parallelo, ma talvolta anche in cascata o in modo gerarchico) per eseguire la classificazione dei pattern; le decisioni dei singoli classificatori sono fuse ad un qualche livello della catena di classificazione.\\
+La combinazione è \textbf{efficace} solo nel caso in cui i singoli classificatori siano in qualche modo \textbf{indipendenti tra loro}, ovvero non commettano tutti lo stesso tipo di errori.\\
+L'indipendenza (o diversità) è normalmente ottenuta cercando di:
+\begin{itemize}
+    \item Utilizzare feature diverse (e.g. colore e texture)
+    \item Utilizzare algoritmi diversi per l'estrazione delle feature (e.g. RGB, HSI, ….)
+    \item Utilizzare diversi algoritmi di classificazione
+    \item Addestrare lo stesso algoritmo di classificazione su training set diversi (bagging)
+    \item Insistere nell'addestramento di alcuni classificatori con i pattern più frequentemente erroneamente classificati (boosting)
+\end{itemize}
+La combinazione può essere eseguita a livello di decisione o a livello di confidenza.
+
+\subsubsection{Fusione a livello di decisione}
+Ogni singolo classificatore fornisce in output la propria decisione che consiste della classe cui ha assegnato il pattern e opzionalmente del livello di affidabilità della classificazione eseguita (ovvero di quanto il classificatore si sente sicuro della decisione presa).
+Le decisioni possono essere tra loro combinate in diversi modi. Uno dei più noti e semplici metodi di fusione è la cosiddetta majority vote rule; ogni classificatore vota per una classe, il pattern viene assegnato alla classe maggiormente votata.
+
+
+
+
+
+

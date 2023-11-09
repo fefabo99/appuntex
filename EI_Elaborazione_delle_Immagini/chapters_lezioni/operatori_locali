@@ -47,7 +47,8 @@ Slide 27-28. Le due immagini hanno lo stesso MSE, ma la seconda ha un PSNR più 
 \subsection{Filtraggio}
 Slide 29, ne parleremo venerdì.\\
 Parliamo anche di operatori e operazioni lineari e non lineari.\\
-Ricordiamo che le nostre immagini sono matrici $n \times n$, avrò $n \bullet n$ operazioni.\\
+Ricordiamo che le nostre immagini sono matrici $n \times n$, avrò $n \bullet n$ operazioni.
+
 \subsection{Filtri spaziali}
 Il filtraggio lineare su un'immagine $f$ di dimensione $M \times N$ si fa con una maschera di dimensione $M \times N$.\\
 Domanda tipo barriera: questa maschera cosa fa? Le maschere devono sempre dare somma 1. Perché? Se vado su zona omogenea l'applicazione del filtro non altera il valore dei pixel.\\
@@ -56,7 +57,8 @@ L'immagine che ha rubato recentemente di cui parla nell'audio (la maschera che s
 % 06/10/2023 L6
 
 \subsection{Image restoration}
-Il rumore può modificare il segnale dell'immagine (es. immagine mediche) e continua ad essere un problema anche quando uno pensa di avere un sistema di apprendimento molto sofisticato (es. reti neurali).\\
+Il rumore può modificare il segnale dell'immagine (es. immagine mediche) e continua ad essere un problema anche quando uno pensa di avere un sistema di apprendimento molto sofisticato (es. reti neurali).
+
 \subsubsection{Degrado dell'immagine}
 Il rumore che tratteremo noi sarà esclusivamente \textbf{additivo}, quasi sempre si considera a somma 0. Non è una gran semplificazione, capita effettivamente abbastanza presto che si compensino e davvero sia a somma 0.\\
 Vedremo 2-3 tipi di rumore: slide 13-14.
@@ -64,16 +66,19 @@ Vedremo 2-3 tipi di rumore: slide 13-14.
     \item[gaussiano:] 
     \item[impulsivo:] indipendentemente dal valore che c'è sotto, il pixel assume solo valori estremi, o 0 o 255 (es. tipo: la neve che si vede sul televisore quando non c'è segnale)
 \end{description}
-Capire quale tipo di rumore è, ci aiuta a capire quali strumenti sia meglio usare per rimuoverlo.\\
-Questa parte si chiama \textbf{understanding}.
+Capire quale tipo di rumore è, ci aiuta a capire quali strumenti sia meglio usare per rimuoverlo. Questa parte si chiama \textbf{understanding}.
+
 \subsubsection{Degrado dell'immagine}
 Quando parliamo di un soggetto che analizziamo nella sua interezza, risenti inizio registrazione.\\
 Slide 11-12.\\
 Se abbiamo un'immagine non corrotta, se la sottraiamo all'immagine corrotta, otteniamo un'immagine che è solo rumore e che sarà o solo positivo o solo negativo.
+
 \subsubsection{Quantificare il rumore}
+
 \subsubsection{Rumore dovuto ad elaborazioni}
-Lo zero che si è alzato (lo scuro era negativo, il chiaro era l'artefatto positivo) è la slide 23; il grigio più o meno medio sono le regioni che meno hanno sofferto.
+Lo zero che si è alzato (lo scuro era negativo, il chiaro era l'artefatto positivo) è la slide 23; il grigio più o meno medio sono le regioni che meno hanno sofferto.\\
 Gli artefatti li abbiamo anche se sull'immagine compiamo traslazioni o altre operazioni. Es.: fotografiamo una targa e la raddrizziamo, l'immagine si degraderà sicuramente.
+
 \subsubsection{Metriche oggettive}
 MSE e PSNR sono le metriche più usate. Slide 28: le due zone sembreranno uguali ma hanno rumori (?) divresi.\\
 L'ultima volta siamo arrivati qui: slide 30.
@@ -97,15 +102,15 @@ Fa un esempio, ho 5 pixel con relativo valore: 81, 82, 83, 84, 85. 82 fa media f
     \includegraphics[width=0.5\textwidth]{images/filtri_spaziali1.jpg}
 \end{center}
 
-\subsection{Correlazione e convulazione}
+\subsection{Correlazione e convoluzione}
 Sono legate.\\
 Slide 38: parla di maschera simmetrica, non è una convoluzione ma una correlazione, però sono abbastanza vicini da essere scambiato (nelle reti neurali convoluzionali non è una vera convoluzione ma ).\\
-Correlazinoe: prendo la maschera la applico e filtro.
-convoluzione: la maschera viene prima riflessa poi applicata.
+Correlazione: prendo la maschera la applico e filtro.\\
+convoluzione: la maschera viene prima riflessa poi applicata.\\
 Cosa vuol dire che una maschera viene riflessa? Slide 39.\\
 Slide 40: esempio di maschera riflessa. Ma ho sbagliato? Ci sono valori negativi. Può esserci una maschera riflessa con valori negativi? Sì. Può una maschera di filtraggio avere valori negativi? No.\\
 Domanda barriera: questa maschera è di smoothing (riduzione rumore) o estrae i bordi (vedremo più avanti)?\\
-La slide 41 è un esempio di maschera che estrae i bordi. Eempio di convulazione.\\
+La slide 41 è un esempio di maschera che estrae i bordi. Esempio di convoluzione.\\
 La maschera può essere piena, vuota, fare cose\dots viene chiamata \textbf{kernel}. Slide 48.\\
 Se la maschera ha solo 1 al centro è un'identità.\\
 Se è di correlazione, un valore viene spostato. Se è di convoluzione, il valore viene portata dall'altra parte.\\

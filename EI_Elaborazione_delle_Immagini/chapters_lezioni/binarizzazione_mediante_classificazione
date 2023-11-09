@@ -1,0 +1,25 @@
+\chapter{Binarizzazione mediante classificazione}
+% 07/11/2023 - L14 slide "clasificazione immagini ed oggetti"
+Slide 72, W è la distanza su cosa dell'istogramma colore.\\
+Slide 73. I colori di interesse possono essere racchiusi da cubi (ipercubo) di larghezza W e centrati a (a1, a2, ..., an) • I colori di interesse possono essere racchiusi da sfere (iperspere) di raggio R0 e centrati a (a1, a2, ..., an)\\
+Come posso definire il centroide (colore atteso) e il suo intorno?\\
+Il colore atteso $\mu$, viene tipicamente stimato a partire da una (o più) immagini di training. Interpretando quindi il colore di un pixel dell'oggetto come una variabile aleatoria a tre dimensioni, il colore atteso è ottenuto stimandone il valor medio a partire dai training sample disponibili.\\
+Come vedere se zona è uniforme? Guardo la varianza, oppure gradiente (il modulo deve essere basso).\\
+Slide .\\
+Denotando quindi il colore di un pixel come: I (p) la segmentazione di un’immagine può essere ottenuta calcolando per ogni pixel la distanza (e.g. euclidea) rispetto al colore atteso (μ) dell’oggetto di interesse e marcando come sfondo i pixel per i quali tale distanza è inferiore ad una soglia (intorno): equazione.\\
+Come posso definire T, la soglia, ovvero l’intorno?\\
+Slide .\\
+Data un'immagine a colori RGB I = (IR
+, IG, IB) con una
+sotto-regione Rk
+, possiamo calcolare la media locale
+e la varianza per ogni canale di colore come equazione \\
+La varianza complessiva $\sigma^2_k$ può essere definita in modi diversi, ad esempio, come la somma delle varianze nei singoli canali di colore, cioè equazione.\\
+Slide .\\
+In alternativa si potrebbe definire la varianza di colore combinata come la norma della
+matrice di covarianza del colore 3x3 per la sotto-regione $R_k$, cioè equazione.\\
+Il metodo descritto funziona per la classe B che è compatta limitata ad una solo porzione dello spazio RGB e quasi sferica. Avrei potuto usare questo metodo per caratterizzare la classe F nello spazio RGB?\\
+Non sempre è utile usare lo spazio colore RGB. Non sempre è utile usare tutte le dimensioni di una spazio colore.\\
+Slide 82-91: esempi di applicazione pratica, ovvero vado a vedere cosa ha fatto il mondo, in particolare qua per individuare la skin. Avrò diversi falsi positivi e falsi negativi, come vedere quale dà risultati migliori? Guardo gli errori di classificazione.\\
+A volte per valutare un classificatore binario, si usano \textbf{\textit{recall}} e \textbf{\textit{precision}}.\\
+Continua in "valutazione quantitativa".

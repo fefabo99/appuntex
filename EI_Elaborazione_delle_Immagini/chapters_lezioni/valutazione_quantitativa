@@ -1,0 +1,60 @@
+\chapter{Valutazione quantitativa}
+% 07/11/2023 - L14 slide "clasificazione immagini ed oggetti"
+\section{Valutazione quantitativa}
+Slide 93.\\
+\textbf{Non si può fare senza dati!}\\
+La valutazione quantitativa fornisce risultati numerici, dal confronto tra il risultati della classificazione fornita ed un sottoinsieme della realtà che prende il nome di INSIEME DI VERIFICA (test set).\\
+Le questioni principali da affrontare prima di intraprendere una valutazione quantitativa sono: 
+\begin{itemize}
+    \item la scelta dell'insieme di verifica; 
+    \item la dimensione dell'insieme di verifica.
+\end{itemize}
+Training e test set non dovrebbe sovrapporsi, neanche parzialmente, con l'insieme di addestramento, altrimenti si falsano le accuratezze in senso ottimistico.\\
+La dimensione del campione utilizzato deve essere sufficientemente grande da risultare statisticamente rappresentativo
+• Spesso si effettua un unico campionamento per poi distribuire i campioni tra i due
+
+Slide 94. 
+\begin{description}
+    \item[true positive (TP):] n° di pixel correttamente assegnati alla classe di skin;
+    \item[false positive (FP):] n° di pixel non-skin assegnati in maniera errata alla classe skin.
+    \item[false negative (FN):] n° di pixel skin assegnati in maniera errata alla classe non-skin.
+\end{description}
+
+\subsection{Come si valuta una classificazione binaria}
+$$Recall=TP/(TP+FN)$$
+$$Precision= TP/(TP+FP)$$
+In genere al crescere dalla precisione diminuisce la recall e viceversa.\\
+Se al sistema è concesso di rigettare pattern ovvero di non-classificarli o riconoscerli in caso di elevata incertezza, e necessario misurare le prestazioni (errori di classificazione) in funzione della percentuale di reiezione concessa.
+
+\subsection{Combinazione dei classificatori}
+Slide 96.\\
+Slide 97. Esempi.\\
+
+\subsection{Come si valuta un classificatore a \textit{n} classi}
+Slide 101. 102 esempio di matrice di confusione. Gli elementi fuori dalla diagonale sono errori di classificazione.
+\begin{itemize}
+    \item L'accuratezza totale dà una misura complessiva di quanto la classificazione è stata ben fatta, ma non distingue tra gli errori commessi nelle diverse classi, che sono trattate tutte allo stesso modo.
+    \item A volte però si è specificamente interessati ad una classe in particolare, perciò sarebbe opportuno definire indici di accuratezza legati ad una specifica classe.
+    \item Ad esempio, il destinatario della mappa di classificazione potrebbe essere interessato a sapere quanto si può fidare del fatto che un pixel assegnato alla classe vegetazione sia effettivamente appartenente a quella classe.
+\end{itemize}
+\subsubsection{Matrice di confusione}
+L'accuratezza per l'utente è definita come il rapporto tra il numero di pixel correttamente classificati nella classe considerata ed il numero di pixel assegnati in totale a quella classe.\\
+Analogamente si può definire l'accuratezza per il produttore (o del produttore) che misura quanto dell'insieme di verifica pertinente ad una determinata classe è stato effettivamente assegnato a quella classe.
+\subsection{Accuratezze totale}
+• L'accuratezza per l'utente è definita come il rapporto tra il numero di pixel
+correttamente classificati nella classe considerata ed il numero di pixel assegnati in totale a quella classe.
+• Analogamente si può definire l'accuratezza per il produttore (o del produttore) che misura quanto dell'insieme di verifica pertinente ad una determinata classe è stato effettivamente assegnato a quella classe.
+• Il fatto che i pixel classificati correttamente si trovino tutti e soli sulla diagonale principale suggerisce un modo per valutare la bontà della classificazione.
+• Si può infatti definire la così detta accuratezza totale (overall accuracy) come il rapporto fra il numero totale di pixel correttamente classificati (Σ dei contenuti degli elementi sulla diagonale principale o traccia della matrice) ed il numero totale di pixel considerati nell'insieme di verifica.
+
+\section{Progetto di applicazioni di classificazione}
+Slide 108-118.
+
+\section{Esempio}
+Slide 119 - 131.\\
+Come faccio a vedere quali aree sono forate? (avranno colore sfondo nei fori)\\
+Quando abbiamo aree vicino allo sfondo (sia dentro che fuori l'area considerata) con il grafo delle adiacenze vedo quali pixel hanno nell'intorno pixel dello sfondo, quindi sono sul contorno, quindi sono o sul bordo dell'area o forati.\\
+NB: non abbiamo agito su training set, o test set... solo sulle features. Manca anche una valutazione oggettiva.\\
+
+% next time: 21/11/2023 - L15 vedremo come vedere se una forma è "più o meno quadrata", "più o meno tonda" \dots
+% Es.: le strisce pedonali, se ho i baricentri delle singole striscette, dove sarà l'attraversamento pedonale? Sulla linea che li unisce.
