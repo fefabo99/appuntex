@@ -159,3 +159,52 @@ archi, formalmente: $P=<v_{i_1},v_{i_2},...,v_{i_k}> \rightarrow \sum^{k-1}_{j=1
         
     \end{tikzpicture}
 \end{center}
+\section{Il problema dei cammini minimi}
+\paragraph*{Input} Grafo $G=(V,E,W)$ (senza cappi) orientato e pesato
+\paragraph*{Output} Per ogni coppia di vertici i e j, trovare il cammino di peso minimo (cammino minimo)
+che parte da i e finisce in j.\\
+Si tratta di un problema di ottimizzazione di minimo, dove
+\begin{itemize}
+    \item (n) $\rightarrow$ dimensione del problema
+    \item Soluzioni possibili per una coppia di vertici i e j sono tutti i cammini da i a j
+    \item Funzione obiettivo è il peso del cammino
+    \item Peso del cammino minimo da i a j è il valore ottimi (per i e j)
+    \item Un cammino minimo tra i vertici i e j è la soluzione ottimale
+\end{itemize}
+\subsection{L'input}
+\paragraph*{Funzione peso W} $W:E \rightarrow R^+$ tale che $W(i,j) = w_{ij} =$ peso dell'arco $(i,j)$.
+\paragraph*{Funzione peso W - Versione estesa} $W:V \times V \rightarrow R^+$ tale che $W(i,j) = w_{ij}$ con:
+\begin{itemize}
+    \item $w_{ij} = 0$ se $i=j$
+    \item $w_{ij} =$ peso dell'arco $(i,j)$, se $(i,j) \in E$
+    \item $w_{ij} = \infty$, se $i \neq j$ e $(i,j) \notin E$ 
+\end{itemize}
+Matrice $W=[w_{ij}]$ di n righe e n colonne.
+\subsection{L'output Matrici D e $\Pi$}
+\begin{itemize}
+    \item Matrice $D = [d_{ij}]$ di n righe e n colonne, dove $ [d_{ij}]$ è il peso del
+    cammino minimo da i e j
+    \item Matrice $\Pi = [\pi_{ij}]$ di n righe e n colonne, dove $\pi_{ij}$ è il predecessore di j
+    nel cammino minimo da i a j
+\end{itemize}
+\paragraph*{Matrice D}
+\begin{itemize}
+    \item $d_{ij} = 0$ se $i = j$
+    \item $d_{ij} = $ peso del cammino minimo, se esiste un cammino da i a j
+    \item $d_{ij} = \infty$ se non esiste un cammino da i a j
+\end{itemize}
+\paragraph*{Matrice $\Pi$}
+\begin{itemize}
+    \item $\pi_{ij} = NIL$, se $i = j$
+    \item $\pi_{ij} = u$ appartenente al cammino minimo da i a j, tale che $(u,j) \in E$, se
+    esiste un cammino da i a j
+    \item $\pi_{ij} = NIL$, se non esisto un cammino da i a j
+\end{itemize}
+Dopo aver riempito entrambe le matrici mi rendo conto che:\\
+\textbf{La riga i d $\Pi$ fornisce l'albero dei predecessori relativo al vertice i}.
+\paragraph{Albero dei predecessori del vertice i (riga i di $\Pi$)}
+\begin{itemize}
+    \item $\{ j \in V | \pi_{ij} \notin NIL\} \cup \{i\} \rightarrow$ insieme dei vertici
+    \item ${(\pi_{ij}, j) | \pi{ij} \notin NIL}$
+\end{itemize}
+%Arrivato a slide 74 presentazione Floyd-Warshall
