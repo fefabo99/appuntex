@@ -207,4 +207,57 @@ Dopo aver riempito entrambe le matrici mi rendo conto che:\\
     \item $\{ j \in V | \pi_{ij} \notin NIL\} \cup \{i\} \rightarrow$ insieme dei vertici
     \item ${(\pi_{ij}, j) | \pi{ij} \notin NIL}$
 \end{itemize}
-%Arrivato a slide 74 presentazione Floyd-Warshall
+\section{Sosttostruttura ottima (primo tentativo)}
+Consideriamo come $P_{ij}$ il \textbf{Cammino minimo da i a j} e p è il predecessore di j.\\
+Sicuramente $P_{ij} = P_{ip} + <j>$, con $P_{ip}$ cammino minimo da i a p.
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{chapters_ulerich/img/floyd_warshall_tent_sottostruttura.png}
+\end{center}
+Con $P_{ip}$ cammino minimo da i a p. Come potrei trovare $P_{ij}$?
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{chapters_ulerich/img/floyd_warshall_tent_sottostruttura_2.png}
+\end{center}
+\begin{enumerate}
+    \item Considero tutti i vertici p' tali che $(p',j) \in E$
+    \item Per ogni vertice p' determino il cammino dato da: $P_{ip} + <j>$
+    \item Seleziono il cammino di peso minimo
+\end{enumerate}
+\paragraph*{Attenzione!} Non è sicuro che quando si calcola $P_{ij}$ si abbiano già a disposizione
+i cammini $P_{ip'}$.
+Si deve parametrizzare rispetto alla lunghezza I del cammino:
+\begin{enumerate}
+    \item Prima calcolo tutti i cammini minimi a lunghezza $0 \rightarrow P^0_{ij}$\\
+    $P^0_{ij} = <i>$ se $i = j$, altrimenti $P^0_{ij} = \infty$
+    \item Poi calcolo tutti i cammini minimi a lunghezza 1 $\rightarrow P^1_{ij}$\\
+    $P^1_{ij} = <i,j>$ se $i \neq j$ e $(i,j) \in E$, altrimenti $P^1_{ij} = \infty$
+    \item Poi calcolo tutti i cammini minimi a lunghezza 2 $\rightarrow P^2_{ij}$
+    \item Poi calcolo tutti i cammini minimi a lunghezza 3 $\rightarrow P^3_{ij}$
+    \item ...
+    \item Ci si ferma per $l = |E| = m$ (l è lunghezza)
+    \item Per ogni coppia i e j scelgo tra i cammini $P^0_{ij}, P^1_{ij}, \dots, P^m_{ij}$,
+    quello di peso minimo
+\end{enumerate}
+\paragraph*{Friendly Reminder} $<i,j>$ Significa perorso con i vertici i e j.
+\paragraph*{Domande} Come calcolo $P^l_{ij}$ con $l \geq 2$?\\
+E qual è il tempo nel caso peggiore dell'algoritmo DP che sfrutta questa struttura ottima?\\
+\subsection{Diamo un ordine ai vertici del grafo}
+1 viene prima di 2 che viene prima di 3 etc. che viene prima dell'ultimo vertice n.\\
+Parametriziamo rispetto ai vertici intermedi del cammino:
+\begin{itemize}
+    \item Trovo $P^0_{ij} \rightarrow$ cammino minimo senza vertici intermedi
+    \item Trovo $P^1_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1\}$
+    \item Trovo $P^2_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2\}$
+    \item Trovo $P^3_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,3\}$
+    \item Trovo $P^n_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,\dots,n\}$
+\end{itemize}
+\subsection*{Analizziamo nel dettaglio i cammini minimi intermedi}
+$P^0_{ij} \rightarrow$ cammino minimo senza vertici intermedi.
+\begin{align*}
+  &P^0_{ij} = <i> \quad \text{se} \, i=j \\
+  &P^0_{ij} = <i,j> \quad \text{se} \, i \neq j \text{ e } (i,j) \in E \\
+  &P^0_{ij} = NIL \quad \text{se} \, i \neq j \text{ e } (i,j) \notin E
+\end{align*}
+Per $k > 0$, $P^k_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,\dots,k\}$.\\
+Per $k = n$, $P^n_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,\dots,n\}$.\\
+%Arrivato a slide 88
+
