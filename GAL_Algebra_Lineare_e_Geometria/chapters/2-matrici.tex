@@ -116,6 +116,25 @@ Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni line
 	      $W$ è un sottospazio vettoriale di $\R^n$.
 \end{enumerate}
 
+%Sezione nella lezione 8, fatta dopo il rango.
+\subsubsection{Il teorema di R-C in pratica}
+Ritornando ai sistemi di equazioni lineari e al teorema di Rouche Capelli.
+Supponiamo di:
+\begin{enumerate}
+	\item Stabilire se $A\underline{x} =\underline{b}$ ammette soluzioni.
+	\item Eventualmente trovare queste soluzioni.
+\end{enumerate}
+
+Prendendo il punto 1, il teorema mi dice che devo fare delle valutazioni sui ranghi di $A$ e di $A|b$, ovvero 
+$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
+\osservazione{ Se il rango di $A$ e di $A|b$ è uguale, significa che $\underline{b}$ è combinazione lineare delle colonne di $A$ e di conseguenza il sistema è risovibile.}
+Dobbiamo usare quindi le Trasformazioni Elementari per stabilire se $\underline{b}$ è combinazione lineare delle colonne di $A$.
+Opero quindi sulle righe di $A|b$ per per ridurla a scala.
+
+Perchè opero direttamente su $A|b$? Perchè sia $S(A|b)$ una riduzione a scala di $A|b$ avendo operato sulle righe.
+Abbiamo che $S(A|b) = (S(A) | S(b))$, con $S= T_h \circ T_{h-1} \circ ... \circ T_1$, e $S(b)$ è combinazione lineare di $S(A)$ sse 
+$b$ è combinazione lineare delle colonne di $A$. 
+
 \section{Rango di Matrici}
 Il rango è la "misura di quante informazioni contiene una matrice"
 \definizione{
@@ -180,6 +199,8 @@ Le trasformazioni elementari sono tre, e possono essere effettuate sia su righe 
 \end{enumerate}
 
 \paragraph{Corollario}: Sia $T$ una traformazione elementare, allora $rg(T(A)) = rg(A)$.
+\paragraph{Proposizione}: $T(B) = T(Id) \cdot B$
+
 
 \esempio{
 	vogliamo trovare il rango della matrice:
@@ -221,3 +242,20 @@ Le trasformazioni elementari sono tre, e possono essere effettuate sia su righe 
 	\end{enumerate}
 	Avendo ridotto la matrice a scala, possiamo contare le righe non nulle e trovare che il rango di questa matrice è 3.
 }
+\osservazione{
+	Siccome nell'esempio precedente abbiamo operato sulle righe, i rapporti di linearità sulle colonne vengono mantenuti.
+	\\Più precisamente, siano $A_i$ le colonne di una matrice $A$. Allora:
+
+	\[
+		\sum_{i=1}^{n} \lambda_i A_i = \underline{0} \longleftrightarrow \sum_{i=1}^{n} \lambda_i T(A_i) = \underline{0}
+	\]
+	Dove $T(A)$ è la trasformata di A per T \underline{sulle righe}.
+}
+
+\subsection{Matrici a Scala}
+Le matrici a scala sono un tipo di matrice molto utile perchè è facile trovarne il rango.
+
+\definizione{Una matrice $A$ è \textbf{a scala} se il numero di zeri a sinistra della $i-$esima riga $\underline{r_i}$ è strettamente maggiore al numero di zeri di $r_{i-1}$.}
+Sia $B$ una matrice qualunque, allora $\exists T_1,T_2,...,T_h$\footnote{Una serie di trasformazioni} tali che
+$T_h(T_{h-1}(...(T(B))))$ è a scala. Ovvero, da qualunque matrice è possibile eseguire delle trasformazioni in modo da trasformarla in una matrice a scala.
+
