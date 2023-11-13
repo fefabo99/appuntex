@@ -218,3 +218,53 @@ $|X|=n$.\\
 \paragraph*{Complessità in tempo nel caso peggiore?} Esponenziale, perchè continua a creare dei
 rami per testare la stringa diminunedo di 1 prima a sinistra e poi a destra. Quindi non è una
 buona idea in questo caso applicare questa strategia.
+
+\subsection{Riassumendo - Per calcolare l'ottimo}
+\begin{enumerate}
+    \item Definizione dei sottoproblemi
+    \item Equazioni di ricorrenza
+    \begin{itemize}
+        \item Casi base
+        \item Passo ricorsivo (sottostruttura ottima)
+    \end{itemize}
+    \item Definizione dei coefficienti/variabili (valori ottimi dei sottoproblemi)
+    \item Individuazione del coefficiente ottimo (valore ottimo dle problema principale)
+    \item Equazioni di ricorrenza in termini dei coefficienti
+    \item Calcolo dei coefficienti seguendo una strategia bottom-up
+    \item Determinazione del valore ottimo
+\end{enumerate}
+\subsection{Dimostrazione matematica per assurdo della sottostruttura ottima}
+Attualmente non ho molta sbatti di trascriverla, quindi rimanderò a domani o dopo questa
+infausta operazione.
+%AGGIUNGERE DIMOSTRAZIONI SLIDE 15-41 (LCS - Equazioni di Ricorrenza)
+\subsection{Risoluzione Bottom-Up}
+\begin{itemize}
+    \item Si calcolano i coefficienti $c_{i,j}$ per dimensione $(i,j)$ crescente
+    a partire dai casi base $(0,j)$ e $(i,0)$
+    \item Si memorizza $c_{i,j}$ ogni volta che si risolve il sottoproblema $(i,j)$
+    \item Quando si arriva a calcolare $c_{m,n}$ si ha il valore ottimo
+\end{itemize}
+\paragraph*{Algoritmo DP (bottom-up)}
+\begin{enumerate}
+    \item Si costruisce una matrice C di m+1 righe e n+1 colonne
+    \item Si indicizzano le righe e le colonne a partire da 0
+    \item Si riempie C in modo tale che $C[i,j] = c_{i,j}$
+    \item Valore ottimo si trova in $C[m,n] = c_{m,n}$
+\end{enumerate}
+\subsubsection*{Matrice}
+Matrice temporanea da completare
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $a_{11}$ & $a_{12}$ & $a_{13}$ & $a_{14}$ & $a_{15}$ & $a_{16}$ \\
+    \hline
+    $a_{21}$ & $a_{22}$ & $a_{23}$ & $a_{24}$ & $a_{25}$ & $a_{26}$ \\
+    \hline
+    $a_{31}$ & $a_{32}$ & $a_{33}$ & $a_{34}$ & $a_{35}$ & $a_{36}$ \\
+    \hline
+    $a_{41}$ & $a_{42}$ & $a_{43}$ & $a_{44}$ & $a_{45}$ & $a_{46}$ \\
+    \hline
+    $a_{51}$ & $a_{52}$ & $a_{53}$ & $a_{54}$ & $a_{55}$ & $a_{56}$ \\
+    \hline
+    $a_{61}$ & $a_{62}$ & $a_{63}$ & $a_{64}$ & $a_{65}$ & $a_{66}$ \\
+    \hline
+\end{tabular}
