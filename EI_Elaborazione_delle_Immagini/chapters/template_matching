@@ -1,0 +1,28 @@
+\chapter{Template Matching} %Lezione del 7 novembre
+La classificazion ha lo scopo di riconoscere automaticamente un oggetto o un evento.
+La classificazione automatica non ha parametri scritti a mano ma tratte automaticamente dai dati.
+00000000000000000000 00000000000000000000 00000000000000000000
+00000000111000000000 00000111111000000000 00000111111111100000
+00000011000110000000 00000110000110000000 00001100000000000000
+00000110000011000000 00000110000011000000 00001100000000000000
+00000110000011000000 00000110000010000000 00001100000000000000
+00000111111111000000 00000111111110000000 00001100000000000000
+00000110000011000000 00000110000011000000 00001100000000000000
+00000110000011000000 00000110000011000000 00001100000000000000
+00000110000011000000 00000111111110000000 00000111111111100000
+00000000000000000000 00000000000000000000 00000000000000000000
+
+
+\paragraph{Feature}
+Le features sono delle espressioni numeriche delle proprietà di un segnale.
+L'insieme di feature usate da un sistema PR\footnote{Pattern Recognition} è chiamato feature vector.
+Il numero di feature impiegate è la dimensione del vettore
+Criteri di selezione delle feature:
+\begin{itemize}
+    \item Discriminazione: Valori differenti per differenti classi
+    \item Affidabilità: Valori simili per classi uguali
+    \item Indipendenza: Feature scorrelate tra loro (se correlate meglio fonderle insieme)
+    \item Dimensione: Poche feature limitano la complessità del classificatore.
+\end{itemize}
+
+\textbf{Support vector machine}

@@ -87,10 +87,10 @@ Un sistema di Equazioni lineari quindi ha questa forma:
 
 Ad un sistema di equazioni lineari possiamo associare due matrici:
 \begin{itemize}
-    \item Matrice Incompleta: $A=(a_{ij})$
-    \item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
+	\item Matrice Incompleta: $A=(a_{ij})$
+	\item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
 \end{itemize}
-Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove 
+Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove
 \[x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\]
 
 In un sistema di Equazioni lineari $A\underline{x} = \underline{b}$ la soluzione $\underline{c}$ è tale che $A\underline{c}=\underline{b}$.
@@ -106,18 +106,18 @@ Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni line
 
 \begin{enumerate}
 	\item Il sistema $A\underline{x}=\underline{b}$ ha soluzione \emph{sse}:
-	\begin{center}
-		rg($A$) = rg($A|\underline{b}$)
-	\end{center}
-	Ovvero se il rango della matrice Incompleta $A$ è uguale a quello della matrice Completa $A|\underline{b}$.
+	      \begin{center}
+		      rg($A$) = rg($A|\underline{b}$)
+	      \end{center}
+	      Ovvero se il rango della matrice Incompleta $A$ è uguale a quello della matrice Completa $A|\underline{b}$.
 	\item Nel caso in cui ci sia soluzione, l'insieme $V$ di tutte le soluzioni è scrivibile come:
-	\[ underline{c} + W = \{ \underline{c} + \underline{w} : \underline{w} \in W\} \]
-	Dove $\underline{c}$ è una soluzione qualsiasi del sistema, e $W= \{$ soluzione di $A\underline{x} = \underline{0} \}$.
-	$W$ è un sottospazio vettoriale di $\R^n$.
+	      \[ underline{c} + W = \{ \underline{c} + \underline{w} : \underline{w} \in W\} \]
+	      Dove $\underline{c}$ è una soluzione qualsiasi del sistema, e $W= \{$ soluzione di $A\underline{x} = \underline{0} \}$.
+	      $W$ è un sottospazio vettoriale di $\R^n$.
 \end{enumerate}
 
 \section{Rango di Matrici}
-Il rango è la "misrura di quante informazioni contiene una matrice"
+Il rango è la "misura di quante informazioni contiene una matrice"
 \definizione{
 	\begin{center}
 		rg($A$)= dim $<$Vettori colonna di A $>$
@@ -125,3 +125,99 @@ Il rango è la "misrura di quante informazioni contiene una matrice"
 	O, equivalentemente, il rango è il massimo numero di vettori colonna linearmente indipendenti di A.
 }
 La stessa cosa è equivalente per i vettori riga.
+\osservazione{Dalla definizione si può osservare che vale sempre $0 \leq rg(A) \leq min\{$ Numero di righe di A, Numero di colonne di A$\}$}
+
+\subsubsection*{Ranghi di matrici elementari}
+Riportiamo qui alcuni ranghi di matrici elementari, utili per calcolare il rango di altre matrici.
+\paragraph{Matrice Nulla}
+\[ rg
+	\begin{pmatrix}
+		0      & ... & 0      \\
+		\vdots & 0   & \vdots \\
+		0      & ... & 0
+	\end{pmatrix}
+	= 0
+\]
+Il rango di una matrice che ha tutti $0$ come scalari è sempre $0$.
+Si può osservare che se una matrice ha almeno uno scalare $\neq 0$, allora avrà almeno rango $1$.
+
+\paragraph{Matrice Identità}
+\[ rg
+	\begin{pmatrix}
+		1 & 0 & 0 \\
+		0 & 1 & 0 \\
+		0 & 0 & 1
+	\end{pmatrix}
+	= \text{Numero di Righe/Colonne}
+\]
+Il rango di una matrice identità (che è per forza quadrata) è uguale al numero di righe o colonne della matrice.
+
+\paragraph{Matrice Diagonale}
+\[ rg
+	\begin{pmatrix}
+		a_{11} & 0      & 0      \\
+		0      & a_{22} & 0      \\
+		0      & 0      & a_{nn}
+	\end{pmatrix}
+	= \text{Numero di } a_{ii}\neq 0
+\]
+Il rango di una matrice diagonale è il numero di elementi sulla diagonale diversi da 0
+
+\paragraph{Matrice a Scala}
+Il rango di una matrice a scala è il numero di righe della matrice diverse da 0.
+\\Il rango delle matrici a scala è molto importante perchè viene utilizzato spesso per trovare il rango di matrici più complesse.
+
+\section{Trasformazioni Elementari}
+Le trasformazioni elementari sono operazioni sulle matrici, che possono essere applicate su righe e/o colonne che \textbf{lasciano invariato il rango di una matrice}.
+Sono infatti spesso utilizzate per semplificare una matrice in modo da trovarne il rango più facilmente.
+
+\paragraph{Le tre trasformazioni elementari}
+Le trasformazioni elementari sono tre, e possono essere effettuate sia su righe che su colonne. Noi riporteremo le operazioni sulle righe, ma sono uguali anche per le colonne.
+\begin{enumerate}
+	\item Scambiare due righe.
+	\item Moltiplicare una riga per $\lambda \neq 0  \in R$
+	\item Rimpiazzare una riga $r_i$ della matrice con $r_i + \lambda r_j$, $\lambda \in R$ e $r_j$ un'altra riga della matrice.
+\end{enumerate}
+
+\paragraph{Corollario}: Sia $T$ una traformazione elementare, allora $rg(T(A)) = rg(A)$.
+
+\esempio{
+	vogliamo trovare il rango della matrice:
+	\[ rg
+		\begin{pmatrix}
+			1  & -1 & 0 & 2 \\
+			2  & 1  & 1 & 1 \\
+			-1 & 2  & 1 & 3
+		\end{pmatrix}
+	\]
+	Utilizzo le trasformazioni elementari per ridurre questa matrice a Scala, ovvero devo annullare il primo elemento di $r_2$ e i primi due elementi di $r_3$,
+	sostituendo una riga $r_i con r_i + \lambda r_j$:
+
+	\begin{enumerate}
+		\item $r_2 := r_2 - 2r_1$
+		      \[
+			      \begin{pmatrix}
+				      1  & -1 & 0 & 2  \\
+				      0  & 3  & 1 & -3 \\
+				      -1 & 2  & 1 & 3
+			      \end{pmatrix}
+		      \]
+		\item $r_3 := r_3 +r_1$
+		      \[
+			      \begin{pmatrix}
+				      1 & -1 & 0 & 2  \\
+				      0 & 3  & 1 & -3 \\
+				      0 & 1  & 1 & 5
+			      \end{pmatrix}
+		      \]
+		\item $r_3 := r_3 - \frac{1}{3}r_2$
+		      \[
+			      \begin{pmatrix}
+				      1 & -1 & 0            & 2  \\
+				      0 & 3  & 1            & -3 \\
+				      0 & 0  & \frac{2}{3} & 6
+			      \end{pmatrix}
+		      \]
+	\end{enumerate}
+	Avendo ridotto la matrice a scala, possiamo contare le righe non nulle e trovare che il rango di questa matrice è 3.
+}
