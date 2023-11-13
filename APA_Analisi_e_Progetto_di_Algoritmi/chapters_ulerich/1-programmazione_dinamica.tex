@@ -124,4 +124,97 @@ Indichiamo con LCS(A,B) la LCS delle sequenze A e B e di conseguenza $|LCS(A,B)|
 \subsection*{Passo ricorsivo}
 Tutti i sottoproblemi di dimensione (i, j) tale per cui $i>0$ e $j>0$.\\
 Introduciamo la sottostruttura ottima del problema:
-%Arrivato a slide 35
+\paragraph*{Esempio di sottostruttura ottima}
+\begin{align*}
+    &X= <(3, 5, 4, 3, 10, 12, 8, 30)> \quad m=8\\
+    &Y = <(3, 2, 4, 10, 2, 8, 30, 13, 30)> \quad n=9
+\end{align*}
+LCS(X,Y) $\rightarrow Z = <z_1, z_2, \dots, z_{k-1}, z_k> = <3,4,10,8,30>$.\\
+Sicuramente $z_k=30$. Come mi comporto per $k-1$? $z_1, z_2, ..., z_{k-1}> \rightarrow LCS(?,?)?$.\\
+Avrò sicuramente che sarà la LCS di $(k-1)+30$, quindi:
+\[LCS(X,Y)=LCS(X_7, Y_8) + <30>\]
+\subsection{Sottostruttura ottima}
+Date:
+\begin{itemize}
+    \item $X=<x_1, x_2, \dots, x_{m-1}, x_m>$
+    \item $Y=<y_1, y2_, \dots, y_{n-1}, y_n>$ 
+    \item $LCS(X, Y) = <z_1, z_2, \dots, z_{k-1}, z_k>$
+\end{itemize}
+La sottostruttura ottima sarà data da:\\
+$x_m = y_n \implies \, LCS(X,Y) = LCS(X_{m-1},Y_{n-1})+<x_m>$
+\begin{enumerate}
+    \item $z_k = x_m = y_n$
+    \item $<z_1, z_2, \dots, z_{k-1}> = LCS(X_{m-1}, Y_{n-1})$
+\end{enumerate}
+$x_m \neq y_n \implies = max\{LCS(X_{m-1}, Y_n), LCS(X_m, Y_{n-1})\}$
+\begin{enumerate}
+    \item $z_k \neq x_m \implies LCS(X,Y)=LCS(X_{m-1},Y_n)$
+    \item $z_k \neq y_n \implies LCS(X,Y)=LCS(X_m, Y_{n-1})$
+\end{enumerate}
+\subsection{Equazioni di ricorrenza}
+\paragraph*{i=0 $\vee$ j = 0 (CASI BASE)}
+\begin{align*}
+    LCS(X_i, Y_j) = \epsilon
+\end{align*}
+\paragraph*{$i > 0 \wedge j>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    &x_i = y_j \implies LCS(X_i, Y_j) = LCS(X_{i-1}, Y_{j-1}) + <x_i>\\
+    &x_i \neq y_j \implies LCS(X_i, Y_j) = max\{LCS(X_{i-1}, Y_j), LCS(X_i, Y_{j-1})\}
+\end{align*}
+\subsection*{Applichiamo la funzione "lunghezza" alle equazioni}
+La funzione lunghezza è definita come segue:
+\[c_{i,j} = |LCS(X_i, Y_j)|\]
+\paragraph*{i=0 $\vee$ j = 0 (CASI BASE)}
+\begin{align*}
+    |CS(X_i, Y_j)| = |\epsilon| = 0
+\end{align*}
+\paragraph*{$i > 0 \wedge j>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    &x_i = y_j \implies |LCS(X_i, Y_j)| = |LCS(X_{i-1}, Y_{j-1})| + |<x_i>|\\
+    &x_i \neq y_j \implies |LCS(X_i, Y_j)| = max\{|LCS(X_{i-1}, Y_j)|, |LCS(X_i, Y_{j-1})|\}
+\end{align*}
+\subsection*{Calcoliamo la lunghezza di ciò che è noto}
+\paragraph*{i=0 $\vee$ j = 0 (CASI BASE)}
+\begin{align*}
+    c_{i,j} = 0
+\end{align*}
+Dato che ho i=0 e j=0.
+\paragraph*{$i > 0 \wedge j>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    &x_i = y_j \implies c_{i,j} = c_{i-1,j-1} + 1
+    &x_i \neq y_j \implies c_{i,j} = max\{c_{i-1,j}, c_{i,j-1}\}
+\end{align*}
+Dato che $<x_i>$ è un singolo carattere, quindi ha lunghezza 1. Le sostituzioni
+delle funzioni LCS sono la semplice sostituzione della definizione di funzione lunghezza
+sopra riportata.
+\paragraph*{Quanti coefficienti/variabili $c_{i,j}$?} (m+1)(n+1) coefficienti/variabili.
+\paragraph*{$c_{m,n}$} $=|LCS(X_m, Y_n)| = |LCS(X,Y)|$, 
+\textbf{è il valore ottimo del problema principale}.
+\subsection*{Soluzione del problema}
+\begin{itemize}
+    \item Calcolo del valore ottimo (top-down oppure bottom-up?)
+    \item Ricostruzione di una soluzione ottimale
+\end{itemize}
+Perchè io tramite la procedura effettuo il riempimento della matrice, devo capire quindi dove
+si trova il valore (in questo caso abbiamo visto in $c_{m,n}$) e devo ricostruire la
+sottosequenza dato che la matrice contiene lunghezze, non stringhe.
+\paragraph*{Proviamo con una strategia top-down}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    int ottimo-ricorsivo(i,j)
+        if i = 0 || j = 0 then
+            return 0
+        else
+            if *@$x_i = y_j$@* then
+                *@$c_{i,j}$@* = ottimo-ricorsivo(i-1,j-1)+1
+                return *@$c_{i,j}$@*
+            else
+                *@$c_{i-1,j}$@* = ottimo-ricorsivo(i-1,j)
+                *@$c_{i,j-1}$@* = ottimo-ricorsivo(i,j-1)
+                return max{*@$c_{i-1,j},c_{i,j-1}$@*}
+\end{lstlisting}
+Valore ottimo $\rightarrow$ ottimo-ricorsivo(m,n).
+\paragraph*{Complessità in tempo nel caso migliore?} $\Omega(n)$ nel caso migliore in cui $X=Y$ e
+$|X|=n$.\\
+\paragraph*{Complessità in tempo nel caso peggiore?} Esponenziale, perchè continua a creare dei
+rami per testare la stringa diminunedo di 1 prima a sinistra e poi a destra. Quindi non è una
+buona idea in questo caso applicare questa strategia.
