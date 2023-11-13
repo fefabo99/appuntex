@@ -259,5 +259,164 @@ $P^0_{ij} \rightarrow$ cammino minimo senza vertici intermedi.
 \end{align*}
 Per $k > 0$, $P^k_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,\dots,k\}$.\\
 Per $k = n$, $P^n_{ij} \rightarrow$ cammino minimo con vertici intermedi $\in \{1,2,\dots,n\}$.\\
-%Arrivato a slide 88
-
+Quindi $P^n_{ij} \rightarrow$ cammino minimo $P_{ik}$.\\
+\paragraph*{Sottoproblema di dimensione k} Per ogni coppia (i,j), trovare il cammino minimo
+$P^k_{ij}$ dal vertice i al vertice j che ha vertici intermedi $\in \{1,2,\dots,k\}$ se $k>0$,
+oppure non ha vertici intermedi se $k=0$.\\
+\begin{align*}
+    &k \in \{0,1,\dots,n\}\\
+    &i \in \{1,\dots,n\}\\
+    &j \in \{1,\dots,n\}
+\end{align*}
+\textbf{Numero di sottoproblemi} $n\times n \times (n+1)$.\\
+$k = n \rightarrow P^n_{ij} = P_{ij}$.
+\subsection{Equazioni di ricorrenza}
+\paragraph*{Casi base} Sottoproblema di dimensione (0)
+\begin{align*}
+    &P^0_{ij} = <i> \quad \text{se } i = j\\
+    &P^0_{ij} = <i, j> \quad \text{se } i \neq j \text{ e } (i,j) \in E\\
+    &P^0_{ij} = NIL \quad \text{se } i \neq j \text{ e } (i,j) \notin E
+\end{align*}
+\paragraph*{Passo ricorsivo} Tutti i sottoproblemi di dimensione (k) tale che $k > 0$
+\begin{align*}
+    P^k_{ij} = ?
+\end{align*}
+Ricerchiamo la sottostruttura ottima.\\
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{chapters_ulerich/img/floyd_warshall_tent_sottostruttura_3.png}
+\end{center}
+\textbf{Data una soluzione ottimale $P_{ij}=P^n_{ij}$ si possono verificare due casi:}
+\begin{enumerate}
+    \item Il vertice n NON è uno dei vertici intermedi
+    \item Il vertice n è uno dei vertici intermedi
+\end{enumerate}
+\subsection*{Caso 1 - Il vertice n NON è uno dei vertici intermedi}
+\begin{itemize}
+    \item $P^n_{ij}$ coincide con $P^{n-1}_{ij}$
+    \item Predecessore di j in $P^n_{ij}$ coincide con predecesore di j in $P^{n-1}_{ij}$
+\end{itemize}
+\subsection*{Caso 2 - Il vertice n è uno dei vertici intermedi}
+\begin{align*}
+    P^n_{ij} = P_1 + P_2
+\end{align*}
+\begin{center}
+    \includegraphics[width=70mm, scale=0.5]{chapters_ulerich/img/floyd_warshall_tent_sottostruttura_4.png}
+\end{center}
+\begin{align*}
+    P_1 = P^{n-1}_{in} \rightarrow P^n_{ij} = P_1 + P_2 = P^{n-1}_{in} + P_2
+\end{align*}
+Mentre per quanto riguarda $P_2$ avrò che
+\begin{align*}
+    P_2 = P^{n-1}_{nj}
+\end{align*}
+Quindi sostituendo $P_2$ all'interno dell'equazione avrò che:
+\begin{align*}
+    P_2 = P^{n-1}_{nj} \rightarrow P^n_{ij} = P_1 + P_2 = P^{n-1}_{in} + P^{n-1}_{nj}
+\end{align*}
+Abbiamo quindi che il predecessore di j in $P^n_{ij}$ coincide con il predecessore di j in $P^{n-1}_{nj}$.\\
+\subsection*{Passo ricorsivo per $P^n_{ij}$}
+La soluzione ottimale $P^n_{ij} = P_{ij}$ è data da:
+\[ P^n_{ij} = min_p\{P^{n-1}_{ij}, P^{n-1}_{in} + P^{n-1}_{nj}\} \]
+$i = n$ oppure $j = n \rightarrow \, P^n_{ij} = P^{n-1}_{ij}$.
+\subsection*{Passo ricorsivo per $P^k_{ij}$}
+La soluzione ottimale $P^k_{ij} (k>0)$ è data da:
+\begin{align*}
+    P^k_{ij} = min_p{P^{k-1}_{ij}, P^{k-1}{ik} + P^{k-1}_{kj}}
+\end{align*}
+$i=k$ oppure $j=k \rightarrow \, P^k_{ij} = P^{k-1}_{ij}$.
+\subsection{Equazioni di ricorrenza}
+Riassumendo abbiamo le sequenti equazioni di ricorrenza:
+\paragraph*{k=0 (CASI BASE)}
+\begin{align*}
+    &P^0_{ij} = <i> \quad \text{se } i = j\\
+    &P^0_{ij} = <i, j> \quad \text{se } i \neq j \text{ e } (i,j) \in E\\
+    &P^0_{ij} = NIL \quad \text{se } i \neq j \text{ e } (i,j) \notin E
+\end{align*}
+\paragraph*{$k>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    P^k_{ij} = min_p{P^{k-1}_{ij}, P^{k-1}{ik} + P^{k-1}_{kj}}
+\end{align*}
+\subsection*{Definizione dei coefficienti}
+\textbf{Coefficienti $d^k_{ij}$ dei sottoproblemi}.\\
+$d^k_{ij} \rightarrow$ peso del cammino $P^k_{ij}$
+\begin{align*}
+    &k \in \{0,1,\dots,n\}\\
+    &i \in \{1, \dots, n\}\\
+    &j \in \{1,...,n\}
+\end{align*}
+Quindi abbiamo \textbf{Numero di coefficienti} uguale a $n \times n \times (n+1)$.\\
+$k=n \rightarrow d^n_{ij}$ è il preso $d_{ij}$ di $P_{ij}$.\\
+Ricordiamo che la funzione obiettivo è trovare il peso del cammino, definiamo quindi i
+coefficienti nella seguente maniera:
+\paragraph*{k=0 (CASI BASE)}
+\begin{align*}
+    &d^0_{ij} = 0 \quad \text{se } i = j\\
+    &d^0_{ij} = w_{ij} \quad \text{se } i \neq j \text{ e } (i,j) \in E\\
+    &d^0_{ij} = \infty \quad \text{se } i \neq j \text{ e } (i,j) \notin E
+\end{align*}
+\paragraph*{$k>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    d^k_{ij} = min_p{d^{k-1}_{ij}, d^{k-1}{ik} + d^{k-1}_{kj}}
+\end{align*}
+\subsection*{Predecessori $\pi^k_{ij}$}
+$\pi^k_{ij} \rightarrow$ predecessore del vertice j in $P^k_{ij}$
+\begin{align*}
+    &k \in \{0,1,\dots,n\}\\
+    &i \in \{1, \dots, n\}\\
+    &j \in \{1,...,n\}
+\end{align*}
+\textbf{Numero di predecessori}:: $n \times n \times (n+1)$.\\
+$\pi^n_{ij} \rightarrow $ predecessore $\pi_{ij}$ di j in $P_{ij}$.\\
+Aggiungiamo alle equazioni di ricorrenza anche i predecessori.
+\paragraph*{k=0 (CASI BASE)}
+\begin{align*}
+    &d^0_{ij} = 0 \quad \pi^0_{ij} = NIL \quad \text{se } i = j\\
+    &d^0_{ij} = w_{ij} \quad \pi^0_{ij} = i \quad \text{se } i \neq j \text{ e } (i,j) \in E\\
+    &d^0_{ij} = \infty \quad \pi^0_{ij}= NIL \quad \text{se } i \neq j \text{ e } (i,j) \notin E
+\end{align*}
+\paragraph*{$k>0$ (PASSO RICORSIVO)}
+\begin{align*}
+    &d^k_{ij} = min_p{d^{k-1}_{ij}, d^{k-1}{ik} + d^{k-1}_{kj}}\\
+    &\pi^k_{ij} = \pi^{k-1}_{ij} \text{ se } d^k_{ij} = d^{k-1}_{ij} \text{ altrimenti } 
+    \pi^k_{ij} = \pi^{k-1}_{kj}
+\end{align*}
+\section{Algoritmo bottom-up}
+Per ogni valore di k da 0 a n, vengono calcolate due matrici $(n\times n)$:
+\begin{align*}
+    &D^k=[d^k_{ij}]\\
+    &\Pi^k=[\pi^k_{ij}]
+\end{align*}
+Il numero totale di matrici è $2(n+1)$.
+\paragraph*{Caso Base} Ho che:
+\begin{align*}
+    &D^0=[d^0_{ij}] = W \text{ matrice dei pesi input}\\
+    &\Pi^0=[\pi^0_{ij}]
+\end{align*}
+\paragraph*{Passo Ricorsivo} In questo caso ho:
+\begin{align*}
+    &D^k=[d^k_{ij}] \text{ e } \Pi^k=[\pi^k_{ij}]\\
+    &\text{ Sono calcolate usando le matrici } D^{k-1} = [d^{k-1}_{ij}] \text{ e }
+    \Pi^{k-1} = [\pi^{k-1}_{ij}]
+\end{align*}
+Avrò quindi che le matrici $D^n = [d^n_{ij}]$ e $\Pi^n = [\pi^n_{ij}]$ sono le matrici di
+output!
+\subsection{Algoritmo bottom-up - Codice}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    Procedura calcola_valori_ottimi_FW(V,E,W)
+      *@$D^0$@* = W
+      *@$\Pi^0$@* = (n x n) matrix of NIL values
+      for i = 1 to n do
+        for j = 1 to n do
+         if i != j and *@ $w_{ij}$ != $\infty$@* then
+            *@ $\Pi^0$@* [i,j] = i
+      for k = 1 to n do
+        for i = 1 to n do
+            for j = 1 to n do
+                *@$D^k[i,j] = D^{k-1}[i,j]$@*
+                *@$\Pi^k[i,j] = \Pi^{k-1}[i,j]$@*
+                if i != k and j != k then
+                    if *@$D^k[i,j]>D^{k-1}[i,k] + D^{k-1}[k,j]$@* then
+                        *@$D^k[i,j] = D^{k-1}[i,k]+ D^{k-1}[k,j]$@*
+                        *@$\Pi^k[i,j] = \Pi^{k-1}[k,j]$@*
+    \end{lstlisting}
+\paragraph*{Tempo} $\Theta(n^3)$.
