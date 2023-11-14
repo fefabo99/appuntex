@@ -252,19 +252,75 @@ infausta operazione.
     \item Valore ottimo si trova in $C[m,n] = c_{m,n}$
 \end{enumerate}
 \subsubsection*{Matrice}
-Matrice temporanea da completare
-\begin{tabular}{|c|c|c|c|c|c|}
-    \hline
-    $a_{11}$ & $a_{12}$ & $a_{13}$ & $a_{14}$ & $a_{15}$ & $a_{16}$ \\
-    \hline
-    $a_{21}$ & $a_{22}$ & $a_{23}$ & $a_{24}$ & $a_{25}$ & $a_{26}$ \\
-    \hline
-    $a_{31}$ & $a_{32}$ & $a_{33}$ & $a_{34}$ & $a_{35}$ & $a_{36}$ \\
-    \hline
-    $a_{41}$ & $a_{42}$ & $a_{43}$ & $a_{44}$ & $a_{45}$ & $a_{46}$ \\
-    \hline
-    $a_{51}$ & $a_{52}$ & $a_{53}$ & $a_{54}$ & $a_{55}$ & $a_{56}$ \\
-    \hline
-    $a_{61}$ & $a_{62}$ & $a_{63}$ & $a_{64}$ & $a_{65}$ & $a_{66}$ \\
-    \hline
-\end{tabular}
+\begin{center}
+    \includegraphics[width=70mm,scale=0.5]{chapters_ulerich/img/LCS_matrix.png}
+\end{center}
+Notiamo subito che la prima riga e prima colonna vengono inizializzate a 0, dato che
+la LCS tra una qualsiasi sequenza e una nulla è 0.
+\subsection*{Codice riempimento matrice}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+int ottimo_DP(X,Y)
+    for i from 0 to m do
+        C[i,0] = 0
+    for j from 0 to n do
+        C[0,j] = 0
+    for i from 1 to m do
+        for j from 1 to n do
+            if *@$x_i = y_j$@* then
+            C[i,j] = C[i-1,j-1] + 1
+        else
+            C[i,j] = max(C[i-1,j],C[i,j-1])
+    return C[m,n]
+\end{lstlisting}
+\paragraph*{Complessità in tempo} $\Theta (mn)$
+\paragraph*{Esempio di matrice riempita}
+\begin{center}
+    \includegraphics[width=90mm, scale=0.5]{chapters_ulerich/img/LCS_matrix_riempita.png}
+\end{center}
+\subsection{Ricostruzione della soluzione ottimale}
+Ora che abbiamo la matrice dei coefficienti abbiamo la LCS, o meglio il valore della
+LCS (quanto è lunga la più lunga sottosequenza di caratteri in comune fra le 2 sequenze), ma
+non abbiamo la stringa! \'E necessario ricostruire tramite la matrice la mia soluzione ottimale.
+\paragraph*{La procedura} Partiamo dall'ultima cella in basso a destra (cella del valore ottimo),
+che nell'esempio riporta il valore di 4:\\
+Dobbiamo scegliere fra 3 possibili celle dove spostarci:
+\begin{itemize}
+    \item La cella sinistra - Se contiene il valore maggiore fra i 3
+    \item La cella in alto - Se contiene il valore maggiore fra i 3
+    \item La cella diagonale - Se le celle hanno lo stesso valore decrementato di 1 rispetto a
+    quello della cella di partenza
+\end{itemize}
+Quando mi muovo in diagonale salvo il carattere di riferimento della colonna (o riga, tanto saranno uguali) e proseguo
+con la procedura.\\
+La procedura consiste nel calcolare la LCS guardando i coefficienti della matrice.\\
+\paragraph*{Inizio ricostruzione} Partendo da 4 mi chiedo: Quale è la $LCS(X_6, Y_8)$? Guardo i coefficienti della matrice, quale valore fra 4, 4 scelgo? Qua non posso andare in diagonale perchè 
+non ho un decremento del coefficiente di 1, posso andare solo a sinistra o in alto. Scelgo per esempio
+di andare a sinistra. Non essendoci stato un decremento del coefficiente (infatti non ho valori uguali sugli indici della
+matrice), non ho un carattere appartenente alla soluzione ottima, quindi avrò $LCS(X_6, Y_8) = LCS(X_6, Y_7)$,
+quindi mi sposto e cerco la $LCS(X_6, X_7)$.
+\begin{center}
+    \includegraphics[width=90mm,scale=0.5]{chapters_ulerich/img/LCS_matrix_ricostruzione_sol_ottima.png}
+\end{center}
+Nel caso in cui la cella di partenza e le altre 3 fossero uguali si può scegliere di andare
+o in alto o a sinistra, si ottiene comunque la stessa soluzione, nel caso in cui si ottengono spostamenti
+diagonali differenti significa che si avrà un'altra soluzione ottima.\\
+Proseguo e noto che anche qua ho due coefficienti uguali, scelgo di andare in alto, 
+$LCS(X_6, X_7) = LCS(X_5, Y_7)$.
+\paragraph*{Osservazione} Se fossi andato a sinistra al passaggio successivo avrei avuto un passaggio a una 
+diagonale che non percorrerò andando in alto, questa è un'altra soluzione ottima.\\
+Ora mi trovo a calcolare $LCS(X_5, X_7)$. Qua ho tutti e 3 i valori uguali decrementati di 1, 
+posso effettuare uno spostamento diagonale! Si tratta di un carattere della soluzione ottima quindi avrò che:
+\begin{align*}
+    &c_{5,7} = c_{4,6} + 1\\
+    &LCS(X_5,Y_7) = LCS(X_4, Y_6) + <x_5>\\
+    &LCS(X_6,Y_8) = LCS(X_5,Y_7)\\
+    &LCS(X_6,Y_8) = LCS(X_4,Y_6) + <x_5>\\
+    &LCS(X_6,Y_8) = LCS(X_4,Y_6) + <1>
+\end{align*}
+Dove 1 è l'ultimo carattere della LCS.\\
+Proseguo a ritrovo fino a quando arriverò in cima alla matrice e avrò il caso base $LCS(X_0, Y_0) = \epsilon$.\\
+Ora ho la sottosequenza ottima!\\
+\subsection{Algoritmo ricorsivo ricostruzione soluzione ottima}
+\paragraph*{Input} Matrice C e indici i e j di una cella di C.
+\paragraph*{Output} Una soluzione ottimale per i prefissi $X_i$ e $Y_j$.
+
