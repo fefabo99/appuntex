@@ -1,0 +1,90 @@
+\chapter{Lab5}
+Oggi usiamo funzioni. Il file dove viene salvata la funzione matlab deve avere lo stesso nome della funzione.
+\section{Es1}
+La prima funzione che vediamo calcola descrittori locali. Data cioè un'img in input dato un intorno quadrato di pixel, applica un vettore di features (un descrittore) ad ogni tassello. Possono essere sovrapposti, tstep mi dice di quanto spostarmi.\\
+Posso avere un n° di tasselli inferiore al n° di pixel dell'immagine, o fare un step 1 e calcolare per ogni intorno di pixel. L'importante è che la funzione ritorni un array di valori riga.\\
+L'iea è: prendo la mia img, usando quetsa f posso calcolare un qualcosa nell'intorno di pixel (se step è 1, è esattamente il singolo pixel, altrimenti anche un intorno di uno separato).\\
+Lo script "\texttt{compute_local_descriptors.m}" già pronto calcola la dimensione del tassello ed estende l'immagine in modo da avere una cornice di pixel replicati per non cascare fuori da qualcosa che non esiste.\\
+Fatto il crop dell'immagine, calcolo i descrittori locali.\\
+\textbf{\texttt{struct}} mi permette di impacchettare più dati in un valore solo: nello script vediamo le righe 32-34: \begin{verbatim}
+  out.descriptors = descriptors;
+  out.nt_rows = nt_rows;
+  out.nt_cols = nt_cols;
+\end{verbatim}
+che mi danno i field descrittori, n° di righe e n° di colonne della struct \texttt{out}.\\
+Ora, dobbiamo scrivere noi una funzione \texttt{compute_average_color} in un nuovo script che mi ritorna il colore medio di un intorno di pixel.\\
+La funzione \texttt{mean} calcola la media di un array, ma mi ritorna un solo valore e noi vogliamo un vettore.\\
+Visto che matlab lavora su vettori colonne, se facessimo un array con una colonna per R, una per G e una per B riusciamo a far calcolare la media di tutto l'array in una sola istruzione. Questo usando la funzione \texttt{reshape} che prende in input l'immagine, l'area (righe*colonne) e ch che è il numero di canali.\\
+\texttt{reshape} è un jolly utile per speed up algoritmi molto lenti.\\
+Ci siamo dimenticati un breve controllo all'inizio per evitare di perdere info all'immagine:
+NB. togli la riga 20 con fprintf.\\
+Ora, nuovo script.\\
+\begin{verbatim}
+    out = compute_local_descriptors(im,5,5,@compute_average_color);
+\end{verbatim}
+Praticamente da im prendiamo un tassello di dim 5x5 e uno step di 5 così che siano adiacenti (uno di fianco all'altro, coprono una sola volta tutta l'immagine), per passare una funzione ad un'altra funzione uso la chiocciola.\\
+Per accedere ad un campo interno alla variabile, usiamo la dot notation.\\
+Vediamo che facendo 5 dim tasselli adiacenti avremo 60 righe e 90 colonne. Perché non è più partizionato? Non ho capito sta parte.\\
+
+labels etichetta dati con stesso clustering. kmeans fa clustering, prende in input dati messo per riga e n° di cluster.\\
+Mi suggerisce 5: 4 caramelle colorate + sfondo. Otteniamo un vettore di double (che in verità sono numeri interi) 5400x1.\\
+img_labels scala l'immagine in base ai cluster in modo che siano confrontabili.\\
+imresize(img_labels): devo replicare i valori non generarne di nuovi. Metodo nearest perché non voglio interpolare nulla.
+\begin{verbatim}
+    img_labels = imresize(img_labels,[rows,cols],"nearest");
+\end{verbatim}
+Ora andiamo a vedere immagine di partenza e immagine etichette per vedere che è successo. Non usiamo imshow ma imagesc perché vogliamo vedere le etichette.\\
+kmeans ha una visualizzazione randomica: ogni volta che lo runno cambia su qualcosa. C'è un modo per renderlo deterministico, ma di suo è stocastico, quindi randomico. Sostanzialmente però prende i dati e li divide in 5 gruppi. Notiamo che abbiamo un po' di problemi sui bordi, perché prob i tasselli sui bordi cascano un po' da una parte un po' dall'altra a seconda di dove si è spostata la media. Diventa ancora più evidente con un intorno 9x9 dei tasselli, con step 9 ovviamente per mantenerli adiacenti.\\
+Nulla ci vieta di andare a fare cluster del singolo pixel, ma è quasi autolesionismo (quasi-cit Gigi). Che succ se provo? "Sbarello in senso opposto": ho troppa informazione puntuale per fare un clustering.\\
+Ricapitolando: \begin{description}
+    \item[tassello, intorno troppo grande:] prendo troppe schifezze (come con il filtro mediano)
+    \item[tassello, intorno troppo piccolo:] non ho abbastanza info per fare un clustering, informazione troppo puntuale (l'unico che si salva è lo sfondo)
+\end{description}
+Quindi processare localmente l'immagine è utile ma bisogna trovare un compromesso sulla dimensione della regione. Se l'unico descrittore è la media, forse conviene cambiare spazio colore. Proviamo con questo setup a usare YCbCr.\\
+Abbiamo fatto un po' di prove e vediamo sempre la stessa cosa: processare pixel-based quindi un intorno = 1, otteniamo un risultato \textbf{molto rumoroso}. con un intorno > 1 vediamo un'analisi statistica della distribuzione di colore su ampie aree, ovvero l'intorno del pixel.\\
+Se davvero proprio voglio un'informazione puntuale, devo creare tanti tasselli quanti sono i pixel ma di opportune dimensioni. Perciò in questo caso non 1x1 ma 5x5, uno per pixel, con uno step = 1 sperando che tutti i pixel d'intorno siano simili.\\
+è mooolto lento, otteniamo una tassellatura più densa e piena di informazione. Ha ancora messo insieme rosso e arancione.\\
+Recap: clustering tecnica automatica che raggruppa info simili fra loro in modo molto agnostico.\\
+Dobbiamo sapere (almeno per il kmeans) a priori il numero di regioni che vogliamo ottenere. Ci sono algoritmi che lo trovano in modo automatico.
+
+\section{Es2}
+Stessa cosa, ma dobbiamo provare noi con la mela. Ancora una volta suggerisce di usare il valore medio di rgb.\\
+Qua la luce dà problemi, crea un riflesso sulla mela e viene considerata come regione a parte. Stessa nota di prima: forse conviene cambiare spazio colore. Proviamo ancora con YCbCr.\\
+Ma ancora non basta!! Manca qualche informazione: es. la \textbf{\texttt{TEXTURE}}. Magari la rugosità dell'arancia e della pera che sono diverse da quella della mela, aiuta.
+
+\section{Es3}
+Proviamo a segmentare per texture. Spoiler alert solo la luminosità dà problemi. Sta clusterizzando valori interi (immagine b\&w, ho i livelli di grigio): fa schifo. Più o meno clusterizza ma non bene. Fa casino perché il pattern è più piccolo del tassello. O contrario.
+Passiamo da 5x5 --> 7x7 --> 11x11 con step 11 --> 11x11 con step 5.\\
+Ricordiamolo, tutto questo solo con intensità luminosa.\\
+Proviamo ad aggiungere classi. sto cercando di raggruppare per regioni omogenee, ma metti che ho zone di schifezze, posso sbatterle in una regione sola? Si chiama "classe di rigetto".\\
+Cvd, solo il colore non basta. Serve un descrittore di texture, che \textbf{non} si può calcolare sul singolo pixel ma serve l'intorno, essendo legata a pattern ovvero variazioni di valori. Il descrittore più semplice è la deviazione standard (mi dà info su come sono distribuiti i valori dei pixel in un intorno, in una regione; se la regione è omogenea, deviazione molto bassa, se è eterogenea, deviazione alta).\\
+Creo la funzione \texttt{compute_standard_deviation} che è uguale a \texttt{compute_average_color} che ha di diverso solamente std invece di mean. Ci assicuriamo nello script che l'input sia di double.\\
+Ancora nada, proviamo a cambiare i descrittori. Cosa usiamo? \textit{l'entropia}. Faccio funzione.\\
+Ancora non basta. Soluzione suggerita in aula: uso più descrittori insieme. Che è quello che dovremo fare noi pure nel progetto. Non è univocamente descritto da nessuno dei descrittori provati ma insieme si aiutano, bisogna trovare la combinazione giusta fra i descrittori.\\
+Come fare ciò? First of all stare \textbf{molto} attenti alla scala.\\
+La doc dice che \begin{verbatim}
+    Entropy is a statistical measure of randomness that can be used to characterize the texture of the input image.
+    Entropy is defined as -sum(p.*log2(p)), where p contains the normalized histogram counts returned from imhist.
+\end{verbatim}
+
+\section{Es4}
+\subsection{LBP}
+Local Binary Pattern.\\
+Non ho fatto in tempo a scrivere. Siamo a circa 1h e 45m di lezione.\\
+NB: è un istogramma.\\
+Ha raggruppato in 59 bin 59 codici sparsi in giro. Sono 11x11 valori, in 59 bin sono circa 3 valori per bin: abbiamo un istogramma molto molto sparso. Ingrandiamo il tassello: 11x11 --> 31x31 con step 2.\\
+Ma ocio: se allargo troppo il tassello, rischio di inglobare regioni diverse.\\
+Domanda legit: ma allora non esiste una soluzione ottima? Risposta: meme di Bugs Bunny, "no". Non è come in matematica "1+1=2", ma "1+1 potrebbe fare 2".\\
+Se l'ob di sto es è trovare dove vivono le texture perché ne devo processare una parte, il nostro risultato potrebbe andare benino rimaneggiandola un po', magari aggiungendo all'LBP l'informazione di intensità luminosa.\\
+Però vale per questo lavoro: non ho garanzia che futuri lavori mai visti riesca a processarle adeguatamente.\\
+In elaborazione, se voglio creare algoritmi particolarmente robusti ed efficienti, devo avere una gran buona conoscenza del dominio. Se non so bene che dati mi arrivano, non riesco a lavorare bene. Vanno sempre chiesti i dati. Se il campione di dati è sufficientemente ampio, posso provare a cercare una soluzione che si spera vada bene in tutti i casi a priori, se mi arrivano un po' alla volta ogni volta sono punto e a capo.\\
+Il problema del nostro algoritmo nel caso specifico è che l'algoritmo è "scemo" ovvero non supervisionato. Se già comincio a dirgli "questi dati sono una regione, quelli sono un'altra" etc inizia ad essere più guidato e supervisionato (classificazione supervisionata argomento next time). Clustering esempio di classificazione non supervisionata (senza etichette).
+
+\section{Es5}
+Ancora bisogna combinare i descrittori, ma in alcune regioni ho lo stesso colore quindi ocio come li combini.\\
+Es. 5-6 da fare a casa da soli.\\
+Es.7 secondo lui è divertente. Bah. L'idea è trovare le differenze con la segmentazione, quindi in modo automatico.\\
+NB: l'immagine comprende tutte e 4 le vignette, ma quella a sinistra sinistra è quella da tenere e processare le altre tre.\\
+Suggerimento in aula: template_matching. Gli serve il template.\\
+Un altro: binarizzo l'immagine e con labeling di componenti connesse supponendo di avere sempre i bordi trovo tutte le regioni nere in modo da avere la dimensione della vignetta. Ma cosa uso per trovare gli estremi della vignetta? Come sono i tratti del disegno? Connessi (buona parte di loro almeno): una volta fatto il labeling, cerco la regione più grande. Ipotizzando che il numero di pixel neri che riesco a connettere nel bordo sia più grande di tutte le regioni interne, la regione più grande è quella di bordo con tutta la parte interna connessa in teoria (perderò dettagli ma amen). NB: anche il testo fa parte, va processato. Trovo le 4 componenti connesse d'area maggiore (le 4 vignette), ne trovo gli estremi e ritaglio e trovo l'immagine completa in livelli di grigio di cui posso fare la differenza (ordinando per la x).\\
+Un altro modo è: binarizzo, calcolo il n° di pixel neri in ogni riga e ogni colonna. Dove trovo buchi uso per tagliare verticalmente l'immagine, taglio e trovo vignetta per vignetta.

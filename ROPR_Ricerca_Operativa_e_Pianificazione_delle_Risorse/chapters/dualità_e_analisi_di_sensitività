@@ -120,12 +120,12 @@ Se ho una soluzione del primale, controllo che sia ottima e trovo la corrisponde
 \paragraph{I vincoli attivi} Un vincolo è attivo per una soluzione se applicando i valori delle variabili esso risulta \emph{rispettato all'uguaglianza}.
 \\Per esempio, se ho una soluzione $(3,0,2)$, i vincoli:
 \begin{itemize}
-    \item $x_1 + 2x_2 +3x_3 \leq 9$ è attivo: $9 \leq 9$
-    \item $x_1 + 2x_2 +x_3 \leq 7 $ NON è attivo: $ 7 \leq 9$
+    \item $x_1 + 2x_2 + 3x_3 \leq 9$ è attivo: $9 \leq 9$
+    \item $x_1 + 2x_2 + x_3 \leq 7 $ NON è attivo: $ 5 \leq 7$
 \end{itemize}
 
 \subsection{Teorema della dualità}
-Un ultima proprietá che riassume le relazioni primale-duale in tutti i casi possibili:
+Un'ultima proprietá che riassume le relazioni primale-duale in tutti i casi possibili:
 \begin{enumerate}
     \item Se il Primale \textbf{ha soluzioni ammissibili} e \textbf{funzione obiettivo Limitata}, quindi ha soluzione ottimale, allora vale anche per il Duale, per cui le proprietá di dualitá Debole e Forte sono applicabili
     \item Se il Primale \textbf{ha soluzioni ammissibili} e \textbf{funzione obiettivo Illimitata}, quindi non ha ottimo, allora  il \textbf{Duale non ha soluzioni ammissibili}.
@@ -150,8 +150,7 @@ Un ultima proprietá che riassume le relazioni primale-duale in tutti i casi pos
 
 
 \section{Analisi di Sensitivitá}
-É importante condurre una analisi di sensitività per investiagre l'effetto sulal soluzione ottimale
-dal fornita dal metodo del simplesso quando i parametri del modello assumono valori differenti da quelli attuali:
+É importante condurre una analisi di sensitività per investigare l'effetto sulla soluzione ottimale fornita dal metodo del simplesso quando i parametri del modello assumono valori differenti da quelli attuali:
 \begin{itemize}
     \item Per alcuni parametri, la variazione in valore non influenza la soluzione ottimale
     \item Per altri parametri la variazione in valore porta ad una nuova soluzione ottimale.
