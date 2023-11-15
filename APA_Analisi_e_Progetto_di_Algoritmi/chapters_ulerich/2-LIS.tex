@@ -1,4 +1,75 @@
 \chapter{LIS - Longest Increasing Subsequence}
-Una Incresing Sequence (IS) è definita nel seguente modo:
+Una Increasing Sequence (IS) è definita nel seguente modo:
 \[ Z = <z_1, z_2, \dots, z_k> \]
 Tale che $z_i < z_{i+1}$ per ogni indice i da 1 a k-1.
+\paragraph*{Esempi}
+\begin{align*}
+    &<2,4,7,13,21> \rightarrow \text{ è una sequenza crescente}\\
+    &<2> \rightarrow \text{ sequenza crescente}\\
+    &<2,4,13,13,21> \rightarrow \text{ NON è una sequenza crescente}\\
+    &<10,10,10> \rightarrow \text{ NON è una sequenza crescente}
+\end{align*}
+LIS di $X = <x_1, x_2, \dots, x_m>$ più lunga sottosequenza di X che sia
+crescente. $Z = LIS(X)$.
+\section{Esempio di LIS di X}  
+    \[X= <14, 2, 4, 2, 7, 0, 13, 21, 11>\]
+    \[LIS(X) = <2,4,7,13,21>\]
+LIS è la più  lunga sottosequenza di X che sia crescente.
+\subsection{Altro esempio}
+\[X = <5, 4, 3, 2, 1>\]
+\[LIS(X)=<5> \text{ or } <4> \text{ or } <3> \text{ or } <2> \text{ or } <1>\] 
+\[X=<10, 10, 10, 10>\]
+\[LIS(X) = 10 \]
+\section{Definizione formale e identificazione tipologia problema}
+\paragraph*{P:} Data una sequenza $X = <x_1, x_2, \dots, x_m>$ trovare la più lunga
+sottosequenza crescente $Z=LIS(X)$.\\
+\textbf{P è un problema di ottimizzazone di massimo, dove}:
+\begin{itemize}
+    \item (m) \ra dimensione del problema
+    \item Soluzioni possibilie $\rightarrow$ tutte le sottosequenze crescenti di X
+    \item Funzione obiettivo \ra lunghezza
+    \item $|Z|$ è il valore ottimo del problema
+    \item Z è una soluzione ottimale
+\end{itemize}
+\section{Soluzione}
+\begin{enumerate}
+    \item Calcolo dell'ottimo (lunghezza di Z)
+    \item Ricostruzione di una soluzione ottimale
+\end{enumerate}
+\subsection{Definizione dei sottoproblemi - Primo tentativo}
+\textbf{Sottoproblema di dimensione (i)}\\
+Trovare la LIS del prefisso $X_i \rt LIS(X_i)$.\\
+\textbf{Numero di sottoproblemi}: m+1.
+Mentre per $i=m$ abbiamo il problema principale.
+\subsection{Casi Base}
+Sottoproblema di dimensione 0.\\
+\[ i=0 \implies LIS(X_0) = <> \]
+\subsection{Passo ricorsivo?}
+\ra Tutti i sottoproblemi di dimensione (i) tale per cui $i > 0$.\\
+\textbf{Qual è la sottostruttura ottima del problema?}\\
+Proviamo la seguente sottostruttura:
+\[LIS(X_m) = max\{LIS(X_{m-1}), LIS(X_{m-1})+<x_m>\}\]
+\[X = <x_1, x_2, \dots, x_{m-1},x_m>\]
+$LIS(X_m) = LIS(X_{m-1})+<x_m>$?
+\begin{itemize}
+    \item \textcolor{green}{Sì}, se $LIS(X_{m-1})$ finisce con un elmento $< x_m>$
+    \item \textcolor{red}{No}, se $LIS(X_{m-1})$ finisce con un elemento $\geq x_m$
+\end{itemize}
+\subsection{Test sottostruttura - Primo tentativo}
+Verifichiamo se la sottostruttura definita poco fa ci permette di trovare le LIS in
+una stringa.
+\paragraph*{Esempio} 
+$ X = <14, 2, 4, 2, 7, 14, 15, 0, 13> \quad m=9$\\
+$LIS(X_m) = LIS(X_{m-1})+<x_m>$? $x_m = 13$\\
+$LIS(X_9) = LIS(X_8) + <13>$? $X=<14, 2, 4, 2, 7, 14, 15, 0, 13>$ \\
+$LIS(X_9) = LIS(X_8) + <13> ?$\\
+\textbf{NO!} Perchè risulta uguale a $<2, 4, 7, 14, 15> + <13> = <2, 4, 7, 14, 15, 13>$ e $15>13$, questo
+significa che la sottostruttura non mi permette di avere una LIS.\\
+Questo significa indica che mi manca dell'informazione, è necessario definire un problema
+ausiliario che ci permette di creare una sottostruttura che trovi una LIS valida.
+\section{Problema Ausiliario}
+Si tratta di un sottoproblema di dimensione (i) che ha lo scopo di trovare la $LIS_v$ del
+prefisso $X_i \rt LIS_v(X_i)$, $i \in \{1,2,\dots,m\}$.\\
+Numero di sottoproblemi: m.\\
+$LIS_V(X_m)$ \ra è la soluzione ottimale del problema ausiliario.
+
