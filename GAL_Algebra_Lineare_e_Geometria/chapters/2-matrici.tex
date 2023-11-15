@@ -71,70 +71,6 @@ Nel caso questo sia possibile, la matrice risultante avrà il numero di righe de
 	in cui $ab_{1,1} = (a_{1,1} \cdot b_{1,1}) + (a_{1,2} \cdot b_{2,1}) + (a_{1,3} \cdot b_{3,1})$
 }
 
-\section{Sistemi di Equazioni Lineari}
-\definizione{
-	Un'equazione lineare è un insieme di simboli:
-	\[ a_1 x_1,...,a_nx_n = b \]
-	Dove $b \in \R$ e $a_i\in\R$ sono valori fissati, e $x_i$ sono variabili.
-}
-Un sistema di Equazioni lineari quindi ha questa forma:
-\[
-	\begin{cases}
-		a_{1,1} x_1 + a_{1,2}x_2 ... a_{1,n} x_n \\
-		a_{2,1} x_1 + ...
-	\end{cases}
-\]
-
-Ad un sistema di equazioni lineari possiamo associare due matrici:
-\begin{itemize}
-	\item Matrice Incompleta: $A=(a_{ij})$
-	\item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
-\end{itemize}
-Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove
-\[x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\]
-
-In un sistema di Equazioni lineari $A\underline{x} = \underline{b}$ la soluzione $\underline{c}$ è tale che $A\underline{c}=\underline{b}$.
-
-\paragraph{Proposizione 1:} Se $A$ è \textbf{invertibile}, il sistema ha una \textbf{unica soluzione}.
-Dato $A\underline{x}=\underline{b}$, tale soluzione è:
-\[A^{-1} A \underline{x} = A^{-1} \underline{b} \implies \underline{x} = A^{-1}\underline{b}\]
-Nota che $A^{-1} A = Id_n$. Se $\underline{b}=0$, diremo che il sistema è omogeneo.
-
-\subsection{Teorema di Rouche-Capelli}
-Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni lineari.
-\\Questo teorema è diviso in due parti:
-
-\begin{enumerate}
-	\item Il sistema $A\underline{x}=\underline{b}$ ha soluzione \emph{sse}:
-	      \begin{center}
-		      rg($A$) = rg($A|\underline{b}$)
-	      \end{center}
-	      Ovvero se il rango della matrice Incompleta $A$ è uguale a quello della matrice Completa $A|\underline{b}$.
-	\item Nel caso in cui ci sia soluzione, l'insieme $V$ di tutte le soluzioni è scrivibile come:
-	      \[ underline{c} + W = \{ \underline{c} + \underline{w} : \underline{w} \in W\} \]
-	      Dove $\underline{c}$ è una soluzione qualsiasi del sistema, e $W= \{$ soluzione di $A\underline{x} = \underline{0} \}$.
-	      $W$ è un sottospazio vettoriale di $\R^n$.
-\end{enumerate}
-
-%Sezione nella lezione 8, fatta dopo il rango.
-\subsubsection{Il teorema di R-C in pratica}
-Ritornando ai sistemi di equazioni lineari e al teorema di Rouche Capelli.
-Supponiamo di:
-\begin{enumerate}
-	\item Stabilire se $A\underline{x} =\underline{b}$ ammette soluzioni.
-	\item Eventualmente trovare queste soluzioni.
-\end{enumerate}
-
-Prendendo il punto 1, il teorema mi dice che devo fare delle valutazioni sui ranghi di $A$ e di $A|b$, ovvero 
-$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
-\osservazione{ Se il rango di $A$ e di $A|b$ è uguale, significa che $\underline{b}$ è combinazione lineare delle colonne di $A$ e di conseguenza il sistema è risovibile.}
-Dobbiamo usare quindi le Trasformazioni Elementari per stabilire se $\underline{b}$ è combinazione lineare delle colonne di $A$.
-Opero quindi sulle righe di $A|b$ per per ridurla a scala.
-
-Perchè opero direttamente su $A|b$? Perchè sia $S(A|b)$ una riduzione a scala di $A|b$ avendo operato sulle righe.
-Abbiamo che $S(A|b) = (S(A) | S(b))$, con $S= T_h \circ T_{h-1} \circ ... \circ T_1$, e $S(b)$ è combinazione lineare di $S(A)$ sse 
-$b$ è combinazione lineare delle colonne di $A$. 
-
 \section{Rango di Matrici}
 Il rango è la "misura di quante informazioni contiene una matrice"
 \definizione{
@@ -259,3 +195,69 @@ Le matrici a scala sono un tipo di matrice molto utile perchè è facile trovarn
 Sia $B$ una matrice qualunque, allora $\exists T_1,T_2,...,T_h$\footnote{Una serie di trasformazioni} tali che
 $T_h(T_{h-1}(...(T(B))))$ è a scala. Ovvero, da qualunque matrice è possibile eseguire delle trasformazioni in modo da trasformarla in una matrice a scala.
 
+\section{Sistemi di Equazioni Lineari}
+\definizione{
+	Un'equazione lineare è un insieme di simboli:
+	\[ a_1 x_1,...,a_nx_n = b \]
+	Dove $b \in \R$ e $a_i\in\R$ sono valori fissati, e $x_i$ sono variabili.
+}
+Un sistema di Equazioni lineari quindi ha questa forma:
+\[
+	\begin{cases}
+		a_{1,1} x_1 + a_{1,2}x_2 ... a_{1,n} x_n \\
+		a_{2,1} x_1 + ...
+	\end{cases}
+\]
+
+Ad un sistema di equazioni lineari possiamo associare due matrici:
+\begin{itemize}
+	\item Matrice Incompleta: $A=(a_{ij})$
+	\item Matrice Completa: $A|\underline{b}$, ovvero $A$ con aggiunta la colonna $\underline{b}$
+\end{itemize}
+Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} = \underline{b}$, dove
+\[x=\begin{pmatrix}x_1\\\vdots\\x_n\end{pmatrix}\]
+In un sistema di equazioni lineari $A\underline{x} = \underline{b}$ la soluzione $\underline{c}$ è tale che $A\underline{c}=\underline{b}$.
+
+\proposizione{
+Se $A$ è \textbf{invertibile}, il sistema ha una \textbf{unica soluzione}.
+\\Dato $A\underline{x}=\underline{b}$, tale soluzione è:
+\[A^{-1} A \underline{x} = A^{-1} \underline{b} \implies \underline{x} = A^{-1}\underline{b}\]
+}
+Nota che $A^{-1} A = Id_n$. Se $\underline{b}=0$, diremo che il sistema è omogeneo.
+
+\subsection{Teorema di Rouche-Capelli}
+Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni lineari.
+\\Questo teorema è diviso in due parti:
+
+\begin{enumerate}
+	\item Il sistema $A\underline{x}=\underline{b}$ ha soluzione \emph{sse}:
+	      \begin{center}
+		      rg($A$) = rg($A|\underline{b}$)
+	      \end{center}
+	      Ovvero se il rango della matrice Incompleta $A$ è uguale a quello della matrice Completa $A|\underline{b}$.
+	\item Nel caso in cui ci sia soluzione, l'insieme $V$ di tutte le soluzioni è scrivibile come:
+	      \[ \underline{c} + W = \{ \underline{c} + \underline{w} : \underline{w} \in W\} \]
+	      Dove $\underline{c}$ è una soluzione qualsiasi del sistema, e $W= \{$ soluzione di $A\underline{x} = \underline{0} \}$.
+	      $W$ è un sottospazio vettoriale di $\R^n$.
+\end{enumerate}
+
+%Sezione nella lezione 8, fatta dopo il rango.
+\subsubsection{Il teorema di R-C in pratica}
+Ritornando ai sistemi di equazioni lineari e al teorema di Rouche Capelli.
+Supponiamo di:
+\begin{enumerate}
+	\item Stabilire se $A\underline{x} =\underline{b}$ ammette soluzioni.
+	\item Eventualmente trovare queste soluzioni.
+\end{enumerate}
+
+Prendendo il punto 1, il teorema mi dice che devo fare delle valutazioni sui ranghi di $A$ e di $A|b$, ovvero 
+$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
+\osservazione{ Se il rango di $A$ e di $A|b$ è uguale, significa che $\underline{b}$ è combinazione lineare delle colonne di $A$ e di conseguenza il sistema è risovibile.}
+Dobbiamo usare quindi le Trasformazioni Elementari per stabilire se $\underline{b}$ è combinazione lineare delle colonne di $A$.
+Opero quindi sulle righe di $A|b$ per per ridurla a scala.
+
+Perchè opero direttamente su $A|b$? Perchè sia $S(A|b)$ una riduzione a scala di $A|b$ avendo operato sulle righe.
+Abbiamo che $S(A|b) = (S(A) | S(b))$, con $S= T_h \circ T_{h-1} \circ ... \circ T_1$, e $S(b)$ è combinazione lineare di $S(A)$ sse 
+$b$ è combinazione lineare delle colonne di $A$. 
+
+\esempio{Esempio della lezione 9.}
