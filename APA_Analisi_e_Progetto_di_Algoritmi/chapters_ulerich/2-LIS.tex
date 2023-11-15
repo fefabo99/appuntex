@@ -71,5 +71,98 @@ ausiliario che ci permette di creare una sottostruttura che trovi una LIS valida
 Si tratta di un sottoproblema di dimensione (i) che ha lo scopo di trovare la $LIS_v$ del
 prefisso $X_i \rt LIS_v(X_i)$, $i \in \{1,2,\dots,m\}$.\\
 Numero di sottoproblemi: m.\\
-$LIS_V(X_m)$ \ra è la soluzione ottimale del problema ausiliario.
+$LIS_V(X_m)$ \ra è la soluzione ottimale del problema ausiliario.\\
+$LIS(X) \rt max\{LIS_V{X_i} \text{ t.c. } 1 \leq i \leq m\}$\\
+Sostanzialmente cerco la LIS partendo dalla stringa base di 1 carattere, mano a mano
+incremento di 1 e ricalcolo la LIS, fino ad arrivare a calcolare la LIS di tutta la stringa.
+\paragraph*{Esempio}
+\begin{align*}
+    &X = <14, 2, 4, 2, 7, 14, 15, 0, 13>\\
+    &LISV(X1) = <14>\\
+    &LISV(X3) = <2, 4>\\
+    &LISV(X2) = <2>\\
+    &LISV(X5) = <2, 4, 7>\\
+    &LISV(X6) = <2, 4, 7, 14>\\
+    &LISV(X7) = <2, 4, 7, 14, 15> \quad \text{LIS(X)}\\
+    &LISV(X8) = <0>\\
+    &LISV(X9) = <2, 4, 7, 13>\\
+    &LISV(X4) = <2>
+\end{align*}
+\subsection{Casi Base}
+\ra Sottoproblema di dimensione (1).
+\[i = 1 \implies LIS_V(X_1) = <x_1>\]
+\subsection{Passo Ricorsivo}
+\ra Tutti i sottoproblemi di dimensione (i) tale per cui $i >1$.\\
+Qual è la sottostruttura ottima del problema Ausiliario?\\
+\paragraph*{Esempio sottostruttura ottima}
+\[X = <14, 2, 4, 2, 7, 14, 15, 0, 13, 21, 8> m = 11\]
+\begin{align*}
+    &LIS_V(X_{11}) \rt Z=<z_1, z_2, \dots, z_{k-1}, z_k> = <2,4,7,8>\\
+    &z_k = x_{11} = 8\\
+    &<z_1,z_2,\dots, z_{k-1}> \rt \text{ sottosequenza di }X_{10} \text{ per cui } z_{k-1}=x_5 = 7, \quad z_{k-1}<z_k\\
+\end{align*}
+Ottengo quindi che $<z_1,z_2,\dots, z_{k-1}> = LIS_V(X_5) + z_k = <2,4,7,8>$\\
+\[LIS_V(X_5) = max\{LIS_V(X_h) \text{ t.c } 1 \leq h \leq 11, x_h < x_11\}\]
+\[LISV(X_11) = max\{LIS_V(X_h) \text{ t.c. } 1 \leq h < 11, x_h < x_11\} + <x_11>\]
+\subsection{Definizione sottostruttura ottima}
+Data la sequenza $X=<x_1, x_2, \dots, x_m>$ e $LIS_V(X_m) = <z_1, z_2,\dots, x_{k-1}, z_k> = Z_{k-1} + <z_k>$:
+\begin{align*}
+    &z_k = x_m\\
+    &Z_{k-1}=max\{LIS_V(X_h) \text{ t.c. } 1 \leq < m, x_h < x_m\}\\
+    &\text{ con max}\{\emptyset \} = <>
+\end{align*}
+\subsection{Passo ricorsivo (Problema Ausiliario - PA)}
+Data la sequenza $X = <x_1, x_2, \dots, x_m>$:
+\begin{align*}
+    &LIS_V(X_m) = max\{LIS_V(X_h) \text{ t.c } 1 \leq h < m, x_h < x_m\}+ <x_m>\\ 
+    &\text{ con max}\{\emptyset\}=<> \text{ che implica } LIS_V(X_m) = <x_m>
+\end{align*}
+Dato il prefisso $X_i = <x_1, x_2, \dots, x_i>:$
+\begin{align*}
+    &LIS_V(X_i) = max\{LIS_V(X_h) \text{ t.c } 1 \leq h < i, x_h < x_i\}+ <x_i>\\ 
+    &\text{ con max}\{\emptyset\}=<> \text{ che implica } LIS_V(X_i) = <x_i>
+\end{align*}
+\subsection{Equazioni di ricorrenza - PA}
+\paragraph*{i=1 (Caso Base)}
+$LIS_V(X_1) = <x_1>$
+\paragraph*{$i>1$ (Passo Ricorsivo)}
+\begin{align*}
+    &LIS_V(X_i) = max\{LIS_V(X_h) \text{ t.c. } 1 \leq h < i, \, x_h < x_j\} + <x_i>\\
+    &\text{ con max}\{\emptyset\} = <> \, \text{ che implica } LIS_V(X_i)=<x_i>
+\end{align*}
+\subsection*{Definizione dei coefficienti - PA}
+Coefficiente $c_i$ del sottoproblema (i):
+\begin{align*}
+    &c_i = |LIS_V(X_i)|\\
+    &i \in \{1,2,\dots,m\}
+\end{align*}
+Numero di coefficienti: m.\\
+$c_m = |LIS_V(X_m)| \rt$ valore ottimo di PA.
+\subsection{Sostituzione coefficienti nelle equazioni di ricorrenza}
+\paragraph*{i=1 (Caso Base)} $c_i = 1$
+\paragraph*{$i>1$ (Passo Ricorsivo)}
+\begin{align*}
+    &c_i = max\{c_h \text{ t.c. } 1 \leq h < i, \, x_h < x_i\} + 1\\
+    &\text{ con max}\{\emptyset\}=0 \text{ che implica } c_i = 1
+\end{align*}
+\subsection{Calcolo dell'ottimo (PA)}
+\begin{itemize}
+    \item Si calcolano i coefficienti $c_i$ per dimensione (i) crescente a partire dal
+    caso base per $i=1$
+    \item Si memorizza $c_i$ ogni volta che si risolve il sottoproblema (i)
+    \item Quando si arriva a calcolare $c_m$ si ha il valore ottimo del problema ausiliario \ra
+     $|LIS_V(X)|$
+    \item Il valore ottimo del problema principale è dato da $max\{c_i \text{ t.c. }
+     1 \leq i \leq m\} \rt |LIS(X)$
+\end{itemize}
+\subsection{Algoritmo DP (Bottom-up)}
+\begin{itemize}
+    \item Costruzione del vettore $C[1\dots m]$
+    \item Riempimento di C in modo tale che $C[i]=c_i$
+    \item Valore ottimo \ra massimo in C
+\end{itemize}
+
+
+
+
 
