@@ -102,9 +102,8 @@ Parliamo di protocolli \textbf{\textit{stop-and-wait}}.
 Come settiamo questo timer? \`E una cosa complicata ma fondamentale. Se è troppo alto, se mando un time out spreco un sacco di tempo. Se è troppo breve, rischio di creare ritrasmissioni inutili, invece di usare il mio canale per comunicare normalmente lo riempio di messaggi inutili. Nelle slide un esempio di ciò, timer troppo breve.
 
 \subsubsection{Misurare la performance}
-Transmitting a segment at a time and waiting
-for its ack before a further transmission (stopand-wait) significantly limits performance
-% Example: $𝑅𝑇𝑇 = 100 𝑚𝑠, 𝐿 = 1 𝑘𝑏𝑦𝑡𝑒, 𝑅 = 100 𝑀𝑏𝑖𝑡/𝑠 → 𝑈 = 0,008$.
+Transmitting a segment at a time and waiting for its ack before a further transmission (stopand-wait) significantly limits performance.\\
+Example: $RTT = 100 ms, L = 1 kbyte, R = 100 Mbit/s \rightarrow U = 0,008$.
 
 % 18/10/2023
 

@@ -5,15 +5,18 @@ Due prospettive:
     \item Visione degli ingranaggi (dadi e bulloni), delle componenti della rete.
     \item Visione della rete come un'infrastruttura che fornisce servizi.
 \end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/R_introduzioneallereti1.jpg}
+\end{center}
 Nell'immagine che schematizza, sui bordi della rete troviamo un grandissimo numero di devices (cell, laptops, \dots) che eseguono \textit{applicazioni di rete} che richiedono uno scambio di dati e che la rete si occupa di collegare. Alcuni nodi di questa applicazione eseguono parte di un'applicazione e altri nodi interconnessi eseguono altre parti di applicazioni (sistemi distribuiti).
 
 \subsection{Visione nuts and bolts}
 \begin{description}
-    \item[hosts], sono dispositivi \textit{end system} ovvero terminali.
-    \item[packet switches] o \textit{commutatori di pacchetto}, che sono \textit{routers} e \textit{switches}, dispositivi che si occupano di trasferire pacchetti (unità) di informazione.\\
+    \item[hosts:] dispositivi \textit{end system} ovvero terminali.
+    \item[packet switches] o \textit{commutatori di pacchetto}\textbf{:} sono \textit{routers} e \textit{switches}, dispositivi che si occupano di trasferire pacchetti (unità) di informazione.\\
     I pacchetti sono unità in cui l'informazione viene scomposta ed etichettata per essere trasferita da un dispositivo all'altro.
-    \item[Communication links] o \textit{collegamenti di comunicazione}, sono i canali che collegano i nodi della rete. Li disegnamo come righe che uniscono i vari nodi. possiamo crearli usando diversi mezzi trasmissivi, filo di rame, onde radio, fibra ottica, \dots Ognuno di questi link è definito da una \textbf{banda}, la quantità di informazione che il link può trasferire in un secondo.
-    \item[Networks], Internet è una rete di reti, ovvero una rete di dispositivi che sono collegati tra loro e che a loro volta sono reti di dispositivi collegati tra loro. Quindi tutta la rete è una connessione globale di reti locali (es. la rete dell'ufficio, la rete domestica\dots)
+    \item[Communication links] o \textit{collegamenti di comunicazione}\textbf{:} sono i canali che collegano i nodi della rete. Li disegnamo come righe che uniscono i vari nodi. Possiamo crearli usando diversi mezzi trasmissivi, filo di rame, onde radio, fibra ottica\dots Ognuno di questi link è definito da una \textbf{banda}, la quantità di informazione che il link può trasferire in un secondo.
+    \item[Networks:] Internet è una rete di reti, ovvero una rete di dispositivi che sono collegati tra loro e che a loro volta sono reti di dispositivi collegati tra loro. Quindi tutta la rete è una connessione globale di reti locali (es. la rete dell'ufficio, la rete domestica\dots)
 \end{description}
 \begin{center}
     \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti1.jpg}
@@ -36,30 +39,40 @@ Internet può essere visto come un'\textbf{infrastruttura} che fornisce \textbf{
 \`E una vista importante perché la rete sottostante è fondamentale per quando dobbiamo per esempio programmare delle applicazioni o dei servizi: da questo pov è molto importante il concetto di socket, un'interfaccia che ci permette di interfacciarci alla rete senza necessariamente sapere come la rete sotto funziona.
 
 \section{Protocolli}
-\parbox{0.5\textwidth}{
-\textbf{Protocolli umani}\\
-I protocolli umani sono le regole che seguono gli esseri umani quando comunicano tra loro.\\
-Esempio: incontro una persona, scambio di convenevoli, poi chiedo: "Che ore sono?" e in base alla risposta ho delle reazioni diverse.\\
-Altro esempio: "Ho una domanda" durante una lezione, così che per non interrompere il professore, lui possa finire il suo discorso e poi rispondere alla domanda.\\
-Altro esempio: un giro di tavolo per fare le presentazioni, seguo delle convenzioni di discorso.}
-\hfill
-\parbox{0.4\textwidth}{
-\textbf{Protocolli di rete}\\
-Emulano il funzionamento dei protocolli umani.\\
-Tutte le comunicazioni di rete sono gestite da protocolli.
-}
-\definizione{I protocolli di rete definiscono le regole per i messaggi inviati in rete. In particolare definiscono il formato dei messaggi, l'ordine in cui vengono inviati e ricevuti tra le entità di rete (host, commutatori, \dots) e le azioni da intraprendere una volta che questi messaggi vengono inviati e ricevuti.}
-
-
 \subsection{Cos'è un protocollo?}
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti3.jpg}
+    \quad \textbf{\underline{Protocolli umani} \quad \underline{Protocolli di rete}}
+\end{center}
+\parbox{0.5\textwidth}{
+% \textbf{Protocolli umani}\\
+I protocolli umani sono le regole che seguono gli esseri umani quando comunicano tra loro.\\
+Es.: incontro una persona, scambio di convenevoli, poi chiedo: "Che ore sono?" e in base alla risposta ho delle reazioni diverse.\\
+Altro es.: "Ho una domanda" durante una lezione, così che per non interrompere il professore, lui possa finire il suo discorso e poi rispondere alla domanda.\\
+Altro es.: un giro di tavolo per fare le presentazioni, seguo delle convenzioni di discorso.}
+\hfill
+\parbox{0.4\textwidth}{
+% \textbf{Protocolli di rete}\\
+Emulano il funzionamento dei protocolli umani.\\
+Tutte le comunicazioni di rete sono gestite da protocolli.\\
+\\ 
+\\ 
+\\ 
+\\ 
+\\ 
+\\ 
+\\ 
+\\ 
+\\ 
+}
+\definizione{I \underline{protocolli di rete} definiscono le regole per i messaggi inviati in rete. In particolare definiscono il \textit{formato dei messaggi}, \textit{l'ordine} in cui vengono \textit{inviati} e \textit{ricevuti} tra le entità di rete (host, commutatori, \dots) e le \textit{azioni da intraprendere} una volta che questi messaggi vengono inviati e ricevuti.}
+\begin{center}
+    \includegraphics[width=0.625\textwidth]{images/aa2324/R_introduzioneallereti3.jpg}
 \end{center}
 
 \section{Da cosa è composta la rete?}
 Andiamo più nel dettaglio.
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_introduzioneallereti4.jpg}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/R_introduzioneallereti4.jpg}
 \end{center}
 \subsubsection{Network edge}
 Primo segmento della struttura generale della rete. Ci troviamo sui bordi della rete (quindi c'è un po' una diatriba sul fatto che appartengano o meno alla rete, in ogni caso sono molto importanti), dove si trovano gli \textbf{hosts} (client, server). Sono intesi in senso un po' lato, ovvero:
@@ -109,9 +122,9 @@ Come sono fatti i nodi della rete di core:
 \end{center}
 \begin{description}
     \item[Forwarding table:] è una tabella che contiene le intestazioni dei vari pacchetti (dove c'è specificato l'indirizzo della destinazione e quale interfaccia ovvero l'uscita del link da cui il pacchetto deve uscire) da inviare verso una specifica interfaccia.\\
-    L'inoltro (forwarding) ha ovviamente valenza locale. Ogni singolo nodo consultando la propria tabella prende decisioni autonome riguardo l'inoltro.
-    \item[Swtinching:] commutazione, sinonimo di inoltro (forwarding). Le due terminologie hanno una valenza simile ma si riferiscono a due cose leggermente diverse: l'inoltro è l'operazione di ricevere un messaggio e inoltrarlo verso un altro nodo, mentre la commutazione è l'operazione per trasferire il pacchetto da un'interfaccia di ingresso ad una di uscita di un router.\\
-    Il risultato è lo stesso, ma lo \textit{switching} è più a livello interno del nodo ignorando ciò che sta all'esterno, il \textit{forwarding} invece tiene in considerazione che io prendo e inoltro da un nodo un pacchetto che sposto poi attraverso 1+ link ad un altro nodo.
+    L'\textbf{inoltro} (forwarding) ha ovviamente valenza locale. Ogni singolo nodo consultando la propria tabella prende decisioni autonome riguardo l'inoltro.
+    \item[Switching:] \textbf{commutazione}, sinonimo di inoltro (forwarding). Le due terminologie hanno una valenza simile ma si riferiscono a due cose leggermente diverse: l'\textit{inoltro} è l'operazione di \underline{ricevere un messaggio e inoltrarlo} verso un altro nodo, mentre la \textit{commutazione} è l'operazione per \underline{trasferire il} \underline{pacchetto} da un'interfaccia di ingresso ad una di uscita di un router.\\
+    Il risultato è lo stesso, ma lo \textit{switching} è più \underline{a livello interno del nodo} ignorando ciò che sta all'esterno, il \textit{forwarding} invece tiene in considerazione che io prendo e inoltro \underline{da un nodo} un pacchetto che sposto poi attraverso 1+ link \underline{ad un altro nodo}.
     \item[Routering:] ogni singolo nodo prende decisioni localmente, ma io devo garantire che una volta che diversi nodi effettuano l'operazione di inoltro in serie il pacchetto arrivi da sorgente a destinazione senza intoppi. Parliamo di \textbf{routing}, instradamento, azione \textbf{globale} che ha l'obiettivo di trovare un percorso tra sorgente che invia il pacchetto a destinazione che lo riceve. In ognuno dei nodi avremo un \textbf{algoritmo di routing} che agisce in maniera distribuita; un algoritmo di routing comunica con un altro algoritmo di routing tramite protocolli di routing che permettono di popolare la \textbf{tabella di forwarding} in maniera corretta. 
 \end{description}
 
@@ -125,7 +138,7 @@ Nell'immagine abbiamo una sorgente, un commutatore e una destinazione.
 \begin{center}
     \includegraphics[width=50mm]{images/aa2324/R_packetswitching1.jpg}
 \end{center}
-Se per dire inviassi un bit al commutatore e lui lo spedisse verso la destinazione senza aspettare il resto del pacchetto dalla sorgente, se il bit si perdesse non saprei a chi quel bit appartenga.
+Se per dire inviassi un bit al commutatore e lui lo spedisse verso la destinazione senza aspettare il resto del pacchetto dalla sorgente, se il bit si perdesse non saprei a chi quel bit appartiene.
 
 \subsubsection{Perché lo store-and-forward è importante?}
 La modalità store-and-forward è importante quindi perché semplifica notevolmente come le reti debbano essere costruite, prima di inviare un pacchetto devo riceverlo tutto, ricostruirlo, e analizzare l'intestazione per sapere cosa contiene e che è legata a quello specifico pacchetto.
@@ -135,6 +148,9 @@ La modalità store-and-forward è importante quindi perché semplifica notevolme
 Se invece non usassi questa modalità e ad esempio facessi passare un bit alla volta attraverso il commutatore, impiegherei meno tempo: agirebbe come se il commutatore non esistesse e i due link di velocità $R$ fossero direttamente collegati tra loro, come un unico link più lungo, quindi la velocità complessiva sarebbe comunque $R$ e il tempo di trasmissione \textbf{totale} sarebbe $\frac{L}{R}$ secondi. Ovviamente avrei meno ritardi ma altri problemi che vedremo in seguito.
 
 \subsection{Esempio di esercizio}
+\begin{center}
+    \includegraphics[width=0.50\textwidth]{images/aa2324/R_packetswitching1.jpg}
+\end{center}
 Se come in figura avessi tre pacchetti alla sorgente in attesa di essere inviati (P1, P2 e P3), quanto tempo (in multipli di $\frac{L}{R}$) passerebbe fra l'invio dalla sorgente del primo bit di P1 alla ricezione della destinazione dell'ultimo bit di P3?\\
 La risposta è $4\frac{L}{R}$. Perché?
 \begin{enumerate}
@@ -145,11 +161,11 @@ La risposta è $4\frac{L}{R}$. Perché?
 \end{enumerate}
 
 \subsection{Queueing}
-Abbiamo parlato di possibili problemi rinscontrabili con lo store-and-forward. Uno dei principali svantaggi è che in una rete a commutazione di pacchetto si verifica quello che si chiama \textbf{accodamento di pacchetti} o \textbf{queueing}.
+Abbiamo parlato di possibili problemi riscontrabili con lo store-and-forward. Uno dei principali svantaggi è che in una rete a commutazione di pacchetto si verifica quello che si chiama \textbf{accodamento di pacchetti} o \textbf{queueing}.
 \begin{center}
-    \includegraphics[width=50mm]{images/aa2324/R_packetswitching2.jpg}
+    \includegraphics[width=0.50\textwidth]{images/aa2324/R_packetswitching2.jpg}
 \end{center}
-Nella maggior parte dei casi quello che può verificarsi è che il rate a cui io posso trasmettere in uscita sul mio link è più basso rispetto a quello con cui ricevo i pacchetti. Nell'immagine ho un $R$ pari a $100\frac{Mb}{s}$ sui link in ingresso e un $R$ pari a $1.5\frac{Mb}{s}$ sui link in uscita, \textit{molto} più basso. Arriverò ad un punto in cui non riesco a smaltire i miei pacchetti che si accumulano sul router ad un ritmo sufficientemente sostenuto da tenere il passo del ritmo con cui li ricevo. Allora comninciano ad accumularsi in \textit{buffer}, in zone di memoria, e si crea una coda di pacchetti in attesa di essere trasmessi sul link in uscita.\\
+Nella maggior parte dei casi quello che può verificarsi è che il rate a cui io posso trasmettere in uscita sul mio link è più basso rispetto a quello con cui ricevo i pacchetti. Nell'immagine ho un $R$ pari a $100\nicefrac{Mb}{s}$ sui link in ingresso e un $R$ pari a $1.5\nicefrac{Mb}{s}$ sui link in uscita, \textit{molto} più basso. Arriverò ad un punto in cui non riesco a smaltire i miei pacchetti che si accumulano sul router ad un ritmo sufficientemente sostenuto da tenere il passo del ritmo con cui li ricevo. Allora comninciano ad accumularsi in \textit{buffer}, in zone di memoria, e si crea una coda di pacchetti in attesa di essere trasmessi sul link in uscita.\\
 Queste zone di memoria del commutatore hanno però una capacità limitata (ovviamente) e quando il rate del link in uscita è troppo inferiore rispetto al rate in ingresso al commutatore e quindi si accumulano i pacchetti, rischio di andare in \textbf{\textit{buffer} overflow}: è rischioso perché quando lo raggiungo poi perdo i pacchetti che incuranti continuano ad arrivare, e che vengono scartati.\\
 Questo problema è chiamato \textbf{il problema della perdita nelle reti a commutazione di pacchetto}.\\
 Un altro problema è il \textbf{ritardo di accodamento}.
@@ -166,10 +182,10 @@ Si hanno delle risorse dedicate esclusivamente alla chiamata o al circuito, quan
     \item[Svantaggi:] scarsa capacità, ho per esempio nell'immagine un numero massimo di 4 dispositivi collegabili. Quindi peggior utilizzo e scarsa condivisione delle risorse.
 \end{description}
 
-\section{Packet-switching vs circuit-switching}
+\subsection{Packet-switching vs circuit-switching}
 Boh non c'è tanto da scrivere, spesso diceva che non lo vediamo nel corso quindi salterei.
 
-\subsection{Struttura della rete: reti di reti}
+\section{Struttura della rete: reti di reti}
 Abbiamo detto che gli \textit{hosts} sono connessi da \textit{links} e \textit{ISPs}.\\
 Come più volte abbiamo visto, la rete ha una struttura di tipo \textbf{gerarchico}: diversi provider forniscono connettività di tipi diversi. Ci sono nel mondo milioni di reti che fanno da punto di accesso a diversi clients/hosts, e devono essere connesse tra loro.
 
@@ -180,7 +196,7 @@ Creare un punto di accesso verso tutte le altre reti di accesso. Non è affatto 
 Creare un rete di un ISP che connette tutte le reti di accesso. Questo è quello che succede oggi giorno. Si interconnette a tutte le reti di accesso e grazie ad una rete di commutatori permette la commutazione fra tutte quelle reti di accesso.\\
 Si crea una rete in cui ogni rete di accesso paga l'ISP per poter avere l'accesso ed essere messo in comunicazione con tutte le altre.
 
-\subsubsection{Problemi}
+\subsection{Problemi e soluzioni}
 Una rete così fatta dovrebbe essere geometricamente estesissima, e questo non è fattibile. Si va quindi a creare una rete di reti di ISP, geometricamente più limitate ma anche numerose. Così una rete può scegliere da chi comprare l'accesso.\\
 Il problema che sorge ora è che se una rete di ISP non è in comunicazione con un'altra rete di ISP, come faccio a mettere in comunicazione due reti di accesso che sono collegate a due reti di ISP diverse?\\ 
 Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
@@ -202,13 +218,34 @@ Si vanno a creare allora dei link che le mettano in comunicazione, collegamenti:
 \begin{center}
     \includegraphics[width=0.5\textwidth]{images/aa2324/R_packetswitching3.jpg}
 \end{center}
-Il ritardo di queueing è l'unico che può variare notevolmente da pacchetto a pacchetto. Gli altri sono (all'incirca) costanti per pacchetti diversi.\\
-Uno che non abbiamo visto è il \textbf{ritardo di elaborazione al nodo}. Ritardo introdotto dal commutatore per effettuare alcune operazioni, tra cui la lettura della tabella di inoltro (\textit{look up} la \textit{table}) per recuperare le informazioni sul link di output.\\
-Ogni volta che un pacchetto arriva al commutatore, il commutatore deve analizzare l'intestazione del pacchetto per capire se ci sono stati problemi di trasmissione. Ci sono tutti dei codici/meccanismi per controllare ed eventualmente correggere questi eventuali errori (se non li correggo rischio di perdere il pacchetto, se li correggo lo posso salvare). Questo prende tempo, che diventa il \textbf{ritardo di elaborazione ($d_{proc}$)}, questo tempo è dell'ordine di grandezza di $10^{-9}$ secondi.\\
-Un altro dato decisamente più importante (2-3 ordini di grandezza più grande, $10^{-6} - 10^{-3}$ secondi) è il \textbf{ritardo di accodamento ($d_{queue}$)}. L'abbiamo già visto. \`E il tempo che un pacchetto aspetta sul mezzo di trasmissione di uscita (cavo) prima di essere trasmesso, dipende dal livello di congestione del router.\\
-Poi abbiamo il \textbf{ritardo di trasmissione ($d_{trans} = \nicefrac{L}{R}$)}, anche questo già visto, che dipende dalla lunghezza del pacchetto ($L, bits$) e velocità di trasmissione ($R, bps$).\\
-Poi abbiamo il \textbf{ritardo di propagazione ($d_{prop} = \nicefrac{d}{s}$)} tempo che un pacchetto impiega praticamente a fluire da un'estremità all'altra del pacchetto. Dipende dal mezzo di trasmissione, quindi lunghezza del cavo ($d$) e velocità di propagazione ($s$, circa pari alla velocità della luce, $\sim 2 \times 10^8 \frac{m}{sec}$).\\
-A sommare tutte queste componenti, ottengo il tempo complessivo che il pacchetto ci mette a passare da sorgente a destinazione.\\
+Il ritardo di queueing è l'unico che può variare notevolmente da pacchetto a pacchetto. Gli altri sono (all'incirca) costanti per pacchetti diversi. Uno che non abbiamo visto è il \textbf{ritardo di elaborazione al nodo}. Ritardo introdotto dal commutatore per effettuare alcune operazioni, tra cui la lettura della tabella di inoltro (\textit{look up} la \textit{table}) per recuperare le informazioni sul link di output. Ogni volta che un pacchetto arriva al commutatore, il commutatore deve analizzare l'intestazione del pacchetto per capire se ci sono stati problemi di trasmissione. Ci sono tutti dei codici/meccanismi per controllare ed eventualmente correggere questi eventuali errori (se non li correggo rischio di perdere il pacchetto, se li correggo lo posso salvare). Questo prende tempo, che diventa il \textbf{ritardo di elaborazione ($d_{proc}$)}, questo tempo è dell'ordine di grandezza di $10^{-9}$ secondi. Un altro dato decisamente più importante (2-3 ordini di grandezza più grande, $10^{-6} - 10^{-3}$ secondi) è il \textbf{ritardo di accodamento ($d_{queue}$)}. L'abbiamo già visto. \`E il tempo che un pacchetto aspetta sul mezzo di trasmissione di uscita (cavo) prima di essere trasmesso, dipende dal livello di congestione del router. Poi abbiamo il \textbf{ritardo di trasmissione ($d_{trans} = \nicefrac{L}{R}$)}, anche questo già visto, che dipende dalla lunghezza del pacchetto ($L, bits$) e velocità di trasmissione ($R, bps$). Poi abbiamo il \textbf{ritardo di propagazione ($d_{prop} = \nicefrac{d}{s}$)} tempo che un pacchetto impiega praticamente a fluire da un'estremità all'altra del pacchetto. Dipende dal mezzo di trasmissione, quindi lunghezza del cavo ($d$) e velocità di propagazione ($s$, circa pari alla velocità della luce, $\sim 2 \times 10^8 \frac{m}{sec}$).\\
+A sommare tutte queste componenti, ottengo il tempo complessivo che il pacchetto ci mette a passare da sorgente a destinazione.
+\subsubsection{Recap:}
+\begin{center}
+    \begin{tabular}{ |c|c|c| } 
+        \hline
+        Nome del ritardo & Sigla & Tempo \\
+        \hline
+        \hline
+        R. di elaborazione & $d_{proc}$ & $10^{-9}$ sec \\ [0.75ex] 
+        R. di accodamento & $d_{queue}$ & $10^{-6} - 10^{-3}$ sec \\ [0.75ex] 
+        R. di trasmissione & $d_{trans}$ & $\nicefrac{L}{R}$ \\ [0.75ex] 
+        R. di propagazione & $d_{prop}$ & $\nicefrac{d}{s}$ \\ [0.75ex] 
+        \hline
+    \end{tabular}
+\end{center}
+Dove:
+\begin{center}
+    \begin{tabular}{ |l l l| } 
+        \hline
+        $\mathbf{L}$: & lunghezza del pacchetto & [$bit$]\\ [0.75ex]
+        $\mathbf{R}$: & velocità di trasmissione & [$\nicefrac{bit}{sec}$]\\ [0.75ex]
+        $\mathbf{d}$: & lunghezza del mezzo & [$m$]\\ [0.75ex]
+        $\mathbf{s}$: & velocità di propagazione & [$\nicefrac{m}{sec}$] = $\sim 2 \times 10^8 \nicefrac{m}{sec}$\\ [0.75ex]
+        \hline
+    \end{tabular}
+\end{center}
+
 Una cosa fondamentale è la differenza fra \textit{ritardo di trasmissione} e \textit{ritardo di propagazione}: entrambi dipendono dal mezzo su cui il pacchetto viene trasferito, ma sono diversi. Il primo dipende dalla dimensione del pacchetto e il rate di trasmissione del commutatore; il secondo dalla lunghezza del mezzo propagativo (cavo, fibra ottica, whatever) e la sua capacità di propagazione, che è una velocità ma non la stessa dell'altro ritardo.
 \subsubsection{Es.}
 Immaginiamo di essere in tangenziale. Arrivo alla barriera e mi fermo al casello di boh Sesto, poi devo arrivare alla barriera di Legnano. Immaginiamo di avere un certo numero di macchine (i bit) che fanno parte di uno stesso pacchetto.\\
