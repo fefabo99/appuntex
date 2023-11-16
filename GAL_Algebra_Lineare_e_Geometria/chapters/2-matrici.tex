@@ -170,8 +170,8 @@ Le trasformazioni elementari sono tre, e possono essere effettuate sia su righe 
 		\item $r_3 := r_3 - \frac{1}{3}r_2$
 		      \[
 			      \begin{pmatrix}
-				      1 & -1 & 0            & 2  \\
-				      0 & 3  & 1            & -3 \\
+				      1 & -1 & 0           & 2  \\
+				      0 & 3  & 1           & -3 \\
 				      0 & 0  & \frac{2}{3} & 6
 			      \end{pmatrix}
 		      \]
@@ -219,9 +219,9 @@ Possiamo quindi riscrivere il sitema in forma matriciale $A \cdot \underline{x} 
 In un sistema di equazioni lineari $A\underline{x} = \underline{b}$ la soluzione $\underline{c}$ è tale che $A\underline{c}=\underline{b}$.
 
 \proposizione{
-Se $A$ è \textbf{invertibile}, il sistema ha una \textbf{unica soluzione}.
-\\Dato $A\underline{x}=\underline{b}$, tale soluzione è:
-\[A^{-1} A \underline{x} = A^{-1} \underline{b} \implies \underline{x} = A^{-1}\underline{b}\]
+	Se $A$ è \textbf{invertibile}, il sistema ha una \textbf{unica soluzione}.
+	\\Dato $A\underline{x}=\underline{b}$, tale soluzione è:
+	\[A^{-1} A \underline{x} = A^{-1} \underline{b} \implies \underline{x} = A^{-1}\underline{b}\]
 }
 Nota che $A^{-1} A = Id_n$. Se $\underline{b}=0$, diremo che il sistema è omogeneo.
 
@@ -242,22 +242,89 @@ Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni line
 \end{enumerate}
 
 %Sezione nella lezione 8, fatta dopo il rango.
-\subsubsection{Il teorema di R-C in pratica}
-Ritornando ai sistemi di equazioni lineari e al teorema di Rouche Capelli.
-Supponiamo di:
-\begin{enumerate}
-	\item Stabilire se $A\underline{x} =\underline{b}$ ammette soluzioni.
-	\item Eventualmente trovare queste soluzioni.
-\end{enumerate}
+\paragraph{Soluzione di Sistemi Lineari}
+Il teorema di Rouche Capelli ci permette quindi di stabilire se
+il sistema $A\underline{x} =\underline{b}$ ammette soluzioni
+facendo delle valutazioni sui ranghi di $A$ e di $A|b$:
+\begin{center}
+	$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
+\end{center}
 
-Prendendo il punto 1, il teorema mi dice che devo fare delle valutazioni sui ranghi di $A$ e di $A|b$, ovvero 
-$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
 \osservazione{ Se il rango di $A$ e di $A|b$ è uguale, significa che $\underline{b}$ è combinazione lineare delle colonne di $A$ e di conseguenza il sistema è risovibile.}
+
+\paragraph{Negli Esercizi}
 Dobbiamo usare quindi le Trasformazioni Elementari per stabilire se $\underline{b}$ è combinazione lineare delle colonne di $A$.
 Opero quindi sulle righe di $A|b$ per per ridurla a scala.
 
 Perchè opero direttamente su $A|b$? Perchè sia $S(A|b)$ una riduzione a scala di $A|b$ avendo operato sulle righe.
-Abbiamo che $S(A|b) = (S(A) | S(b))$, con $S= T_h \circ T_{h-1} \circ ... \circ T_1$, e $S(b)$ è combinazione lineare di $S(A)$ sse 
-$b$ è combinazione lineare delle colonne di $A$. 
+Abbiamo che $S(A|b) = (S(A) | S(b))$, con $S= T_h \circ T_{h-1} \circ ... \circ T_1$, e $S(b)$ è combinazione lineare di $S(A)$ sse
+$b$ è combinazione lineare delle colonne di $A$.
 
-\esempio{Esempio della lezione 9.}
+
+\esempio{
+	Prendiamo il sistema lineare:
+	\[
+		\begin{cases}
+			x-z+w=1 \\
+			y+z-w=0 \\
+			x-y+w = -1
+		\end{cases}
+	\]
+	Vogliamo stabilire se esistono edlle soluzioni ed eventualmente trovarle.
+	\begin{enumerate}
+		\item Stabilisco se esistono delle soluzioni usando il teorema di Rouche-Capelli, verificando se: $rg(A) = rg(A|b)$.
+		      costruisco quindi la matrice completa e la riduco a scala:
+		      \[
+			      A|b =
+			      \begin{pmatrix}
+				      1 & 0  & -1 & 1  & 1  \\
+				      0 & 1  & 1  & -1 & 0  \\
+				      1 & -1 & 0  & 1  & -1
+			      \end{pmatrix}
+		      \]
+		      \[
+			      r_3 := r_3 - r_1 \to
+			      \begin{pmatrix}
+				      1 & 0  & -1 & 1  & 1  \\
+				      0 & 1  & 1  & -1 & 0  \\
+				      0 & -1 & 1  & 0  & -2
+			      \end{pmatrix}
+		      \]
+		      \[
+			      r_3 := r_3 + r_2 \to
+			      \begin{pmatrix}
+				      1 & 0 & -1 & 1  & 1  \\
+				      0 & 1 & 1  & -1 & 0  \\
+				      0 & 0 & 2  & -1 & -2
+			      \end{pmatrix}
+		      \]
+		      Ora che la matrice $A|b$ è a scala conto le righe non nulle (sia di $A$ che di $A|b$)
+		      e trovo il rango di entrambe:
+		      \[ rg(A|b) = rg(A) = 3 \]
+		      Di conseguenza \textbf{Il sitema ha soluzione}.
+		\item Ora devo trovare la soluzione del sistema.
+		      Avendo operato solo sulel righe so che la soluzione della matrice trasformata a scala è la stessa della matrice originale, opero quindi su quella in modo da semplificare i conti.
+		      \[
+			      \begin{cases}
+				      x-z+w=1 \\
+				      y+z-w=0 \\
+				      2z-w = -2
+			      \end{cases}
+			      \to
+			      \begin{cases}
+				      x=1-y \\
+				      z=y-2 \\
+				      w = 2y-2
+			      \end{cases}
+		      \]
+		      Siccome il sistema ha 3 equazioni in 4 variabili, allora ha infinite soluzioni che variano con $y$.
+		      La solzione $S$ del sistema può essere scritta in 3 modi diversi:
+		      \begin{itemize}
+			      \item $S=\{(x,y,z,w)\in \R^4 : x=1-y,z=y-2,w=2y-2, y\in \R \}$ Forma Standard.
+			      \item $S=\{(1-y,y,y-2,2y-2):y\in\R\}$ Forma Parametrica.
+			      \item $S=\{(1,0,-2-2)+<-1,1,1,2>\}$ Forma dal teorema $\underline{c} + W$.
+		      \end{itemize}
+	\end{enumerate}
+}
+
+\section{Determinante}
