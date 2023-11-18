@@ -161,8 +161,45 @@ $c_m = |LIS_V(X_m)| \rt$ valore ottimo di PA.
     \item Riempimento di C in modo tale che $C[i]=c_i$
     \item Valore ottimo \ra massimo in C
 \end{itemize}
+%Slide 133 - Non ho molto capito la matrice ausiiaria
+\subsection{Algoritmo DP (bottom-up)}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    int calcolo_ottimo_LIS(X)
+        C[1] = 1
+        H[1] = 0
+        valore_ottimo = C[1]
+        for i from 2 to m do
+            max = 0
+            H[i] = 0
+            for h from 1 to i-1 d
+                if *@$x_h < x_i$@* and C[h] > max then
+                    max = C[h]
+                    H[i] = h
+            C[i] = 1 + max
+            if C[i] > valore_ottimo then
+                valore_ottimo = C[i]
+        return valore_ottimo
+\end{lstlisting}
+\subsection{Ricostruzione soluzione ottimale}
+Mi basta leggere la matrice ausiliaria a partire dal valore massimo e vedere quando non ho 0 scrivere quello che ho in
+corrispondenza della matrice.
+\begin{center}
+    \includegraphics[width=70mm,scale=0.5]{chapters_ulerich/img/LIS_ricostruzione_sol_ott.png}
+\end{center}
+\subsection{Algoritmo di Ricostruzione - Ricorsivo}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    Procedura ricostruisci_LIS_V(H, i)
+        if H[i] != 0 then
+            ricostruisci_LIS_V(H, H[i])
+        print *@$x_i$@*
+\end{lstlisting}
+Chiamando la procedura per $i_{max}$ (posizione della cella
+di C che contiene il valore massimo) si ottiene la
+stampa di una soluzione ottimale di LIS(X).\\
+Il caso peggiore sarà quando ho una stringa crescente, il tempo sarà di $O(m)$.\\
+Il caso migliore invece è quando la stringa è decrescente, si ferma subito alla prima cella.
+Avrò infatti $T$ costante.
 
-
-
+        
 
 
