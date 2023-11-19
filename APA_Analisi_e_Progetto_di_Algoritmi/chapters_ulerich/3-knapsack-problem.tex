@@ -167,9 +167,57 @@ $c < w_i \implies S_{i,c} = S_{i-1,C}$\\
 \begin{mdframed}[backgroundcolor=yellow]
     $d_{i,c} \rt$ valore totale di $S_{i,c}$
 \end{mdframed}
+\subsection{Sostituzione coefficienti}
 Sostituendo quindi $d_{i,c}$ a $S_{i,c}$ otteniamo:
 \textbf{$i=0 \vee c=0$ (CASI BASE)}\\
 $d_{i,c} = \emptyset$
 \textbf{$i>0 \wedge c>0$ (PASSO RICORSIVO)}\\
 $c \geq w_i \implies d_{i,c} = max_V\{d_{i-1,C-w_i} \cup \{i\},\,d_{i-1,C}\}$\\
 $c < w_i \implies d_{i,c} = d_{i-1,C}$\\
+\subsection{Calcolo dell'ottimo}
+\begin{itemize}
+    \item Si calcolano i coefficienti $d_{i,c}$ per dimensione $(i,c)$ crescente
+    a partire dai casi base per $i=0$ e $c=0$
+    \item Si memorizza $d_{i,c}$ ogni volta che si calcola l'ottimo per il sottoproblema $(i,c)$
+    \item Quando si arriva a calcolare $d_{n,C}$ si ha il valore ottimo del problema $(n,C)$ 
+\end{itemize}
+\section{Algoritmo DP (bottom-up)}
+\begin{enumerate}
+    \item Costruzione di una matrice $D[0\dots n, 0\dots C]$
+    \item Riempimento di D in modo tale che $D[i,c] = d_{i,c}$
+    \item Valore ottimo \ra $D[n,C]$
+\end{enumerate}
+Avrò quindi la seguente matrice:
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_matrix.png}
+\end{center}
+Dove sulle righe avrò il numero di oggetto con associato relativo valore $v_i$ e peso $w_i$.\\
+Sulle colonne avrò capacità da 0 a C, che rappresenteranno i vari sottoproblemi, gli zaini più
+piccoli.\\
+Ricordiamo che abbiamo i seguenti oggetti:
+\begin{enumerate}
+    \item $v_1 = 1,\, w_1 = 7$
+    \item $v_2 = 1,\, w_2 = 4$
+    \item $v_3 = 1,\, w_3 = 5$
+    \item $v_4 = 1,\, w_4 = 1$
+    \item $v_5 = 1,\, w_5 = 1$
+\end{enumerate}
+Capacità $C=10$.
+\subsection{Riempimento matrice}
+Prima di tutto riempio la prima riga e colonna con 0 dato che rappresentano l'oggetto 0 e il
+sottoproblema con $C=0$, sono i casi base.\\
+Prendo il primo oggetto:
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_matrix_filling_v1.png}
+\end{center}
+Notiamo che riempiamo di 0 la riga fino a quando non abbiamo $w_1 = c_i = 7$.\\
+Qua controllo quale sia il massimo tra $d_{i-1,c-w_i} + v_i$ e $d_{i-1,c}$, cioè controllo se mi
+conviene riempire lo zaino inserendo l'oggetto che sto considerando sommato con il valore dell'oggetto
+precedente (considerando $c-w_i$, quindi un peso che non superi la capacità), oppure mi conviene riempire lo
+zaino con la riga precedente perchè ha valore maggiore rispetto all'aggiunta del mio oggetto.\\
+Proseguo così fino a riempire tutta la matrice, il valore ottimo sarà in fondo alla matrice a destra (come per LCS).
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_matrix_filled.png}
+\end{center}
+%Arrivato a slide 154, ripassa riempimento matrice e poi scrivi codice
+
