@@ -1,0 +1,250 @@
+\chapter{Descrizione regioni e contorni}
+Se dovessimo farlo ora, che strumenti abbiamo? Per dire, un'immagine segmentata, binarizzata per qualche motivo, applicato una maschera. Abbiamo una regione di cui vogliamo valutare le caratteristiche interne. Come? Col colore. Con la varianza. Con un istogramma (magari rgb, magari opportunamente campionizzato). Per la texture abbiamo visto descrittori scalari tipo la , poi gli LBP (codici che ci danno un'indicazione sulla forma dell'intorno dei pixel), poi le matrici di Haralick.\\
+Ora torniamo a ragionare su come si descrive un'immagine (slide 4), per poter dire cosa c'è dentro, o misurare grandezze di oggetti all'interno, o individuare se c'è un certo oggetto. Es. dei bottoni: per descriverli uso descrittori tipo forma, colore, o altri più topologici per esempio numero di buchi.\\
+Avevamo parlato di riconoscimento vs classificazione (slide 5), matching e riconoscimento (slide 6):
+\begin{enumerate}
+    \item rappresentazione/descrizione del modello (può essere anche l'immagine stessa del modello)
+    \item identificazione di possibili candidati (ROI) nell'immagine (e.g. mediante segmentazione o sliding windows)
+    \item rappresentazione/descrizione dei candidati nell'immagine
+    \item confronto delle rappresentazioni / descrizioni dei modelli e dei candidati 
+    \item decisione
+\end{enumerate}
+
+\section{Rappresentazione e descrizione}
+Slide 7-23.\\
+\subsection{Tre possibili approcci}
+Slide 8.
+\begin{itemize}
+    \item contorni
+    \item regioni
+    \begin{itemize}
+        \item binarie vs non binarie 
+        \item relazioni fra regioni
+    \end{itemize}
+    \item proprietà topologiche della regione
+\end{itemize}
+
+Slide 9.\\
+Distinguo in:
+\begin{description}
+    \item[Oggetto (concreto)] un oggetto è qualcosa che può essere visto o toccato 
+    \item[Astrazione]
+    \item[Rappresentazione]  
+\end{description}
+
+Slide
+Nella realtà rappresentazione ma soprattutto decrizione devono essere:
+\begin{description}
+    \item[sufficiente] (per il raggiungimento dello scopo) : non sovra descrivere, solo le cose strettamente sufficiente. Dipende dall'applicazione: senza dati non andiamo da nessuna parte. Deve essere concordato subito, il dataset, a priori prima di cominciare il progetto e non cambiare fino alla fine. Deve essere il minimo necessario al raggiungimento dello scopo ma non di più perché il tempo è limitato.
+    \item[non ambiguo]: due oggetti distinti non possono avere la medesima rappresentazione 
+    \item[unico]: ogni oggetto distinto ha una univoca rappresentazione (dipende dall'applicazione)
+    \item[invariante] per rotazione, traslazione e scala (1 cent e 50 cent si distinguono per dimensione, ma se giro l'orologio la cui ora identifico dalla posizione delle lancette è un problema)
+    \item[generativa]: è possibile ricostruire l'oggetto a partire dalla sua
+    rappresentazione 
+    \item[stabile] rispetto al rumore o a piccole perturbazioni (dipende dall'applicazione)
+    \item stabile rispetto al rumore o a grandi perturbazioni
+    \begin{itemize}
+        \item Nella pratica non sempre la differenza fra pixel omologhi è significativa.
+        \item è spesso necessario trasformare/elaborare l'immagine per avere descrizioni più robuste al rumore o possibili perturbazioni.
+    \end{itemize}
+    Nella slide 16 si vede che il template matching non funziona se non strettamente controllato.
+\end{description}
+Slide 20: le features che uso per analizzare un'immagine di un volto devono per forza essere features che un umano userebbe? Non necessariamente:
+\begin{description}
+    \item[Pixel-based] 
+    \item[Feature-based] 
+    \item[Model-based] riconosco le parti poi riconosco l'insieme
+\end{description}
+Ha fatto vedere un esempio di face description using LBP che secondo me era utilissimo ma ovviamente era in un'altra presentazione.\\
+Slide 21: Supponiamo fatto il labeling delle componenti connesse. Ogni componente connessa è una regione. Come possiamo distinguere automaticamente i chicchi di riso dai bulloni?\\
+Sappiamo fare binarizzazione. Sappiamo fare labeling delle componenti connesse. Sappiamo calcolare il baricentro (media delle x e delle y). Come facciamo? I tre possibili approcci di cui abbiamo parlato prima.
+
+Per confrontare le descrizioni degli oggetti ho bisogno di definire una distanza. Una distanza deve soddisfare le seguenti proprietà (slide 23):
+\begin{description}
+    \item[self similarity]
+    \item[minimality]
+    \item[]  
+\end{description}
+Slide 24: come faccio a trovare il contorno di questo oggetto? Diciamo un'immagine binarizzata. Se un pixel ha il colore dell'oggetto, farà parte dell'oggetto. Se ha il colore dello sfondo, sarà dello sfondo. E il bordo? Se nel suo intorno ha vicini, quindi pixel dello sfondo e pixel dell'oggetto, allora è del bordo.\\
+Filtro di rango: prendono pixel di intorno li ordinano poi prendono o il mediano o  non ho sentito.\\
+Tornando alla slide 24: come faccio a capire se di un contorno o dell'altro? Labeling componenti connesse. Come capire quale dei due oggetti più grande? Conto i pixel dell'oggetto.
+\subsection{Estrazione del contorno}
+Ci sono altri metodi per estrarre il contorno? Sì, ci sono algoritmi "di inseguimento" che seguono il contorno fino a trovare un pixel già visitato. Ci sono tuttavia una miriade di casi particolari. Non li vedremo. Il succo è che non sono così semplici come sembrano. Uno di questi algoritmi è descritto nel nostro libro.\\
+Sorge una domanda: si può fare contemporaneamente labeling e contorno? Sì, why not.\\
+Biscotti col buco: come faccio a dire che il buco è un buco? Cerco i contorni, se ne trovo due diversi sono due regioni diverse quindi c'è il buco.
+\subsection{Chain Code}
+Se il contorno ha 100 pixel, di quanti numeri ho bisogno per memorizzarlo? 100 x e 100 y. Posso avere meno informazioni? Serve una codifica delle mie informazioni.\\
+Il chian code (o Codice di Freeman) descrive esattamente oggetti binari. Il contorno è considerato come un percorso 4- o 8-connesso.\\
+Dato un punto di inizio (x,y), si codifica la sequenza ordinata dei singoli passi di cui consiste il contorno. I passi sono ordinati come in figura.\\
+Forte compressione dei dati. Generativo. Non invariante.\\
+\textbf{Molto sensibile al rumore}. Come faccio a ridurre la sensibilità al rumore? Si effettua un ricomponimento.
+\begin{itemize}
+    \item come facciamo ad eliminare la dipendenza dal punto di inizio?
+    \item ed a renderlo invariante per rotazione?
+\end{itemize}
+NN, nearest neighbour.\\
+Esempio tipico di domandina dello scritto: non tanto l'equazione di tizio caio, ma il procedimento.\\
+Slide 30: ho due chain code con due punti di inizio diversi. Come faccio a dire che sono la stessa cosa? Es. modulo 8 (slide 31), ruoto i due codici finché non viene il codice minimo (rappresentazione invariante dal punto di partenza) e vedo quanti punti variano. Come faccio a renderlo invariante per rotazione? Slide 32. Quello che rimane invariante è la differenza dei chain code, che è ciò che codifico perché è invariante per la rotazione.\\
+Slide 33: lo shape no. è il chain code col numero più basso.
+
+\section{Approssimazione poligonale}
+Slide 35-43.\\
+Gli algoritmi per l'approssimazione poligonale possono essere classificati in:
+\begin{itemize}
+    \item algoritmi di accrescimento
+    \item algoritmi di scomposizione
+    \item algoritmi misti
+\end{itemize}
+\textbf{Algoritmo di accrescimento: esempio} (slide 40).
+\begin{enumerate}
+    \item identificazione di un punto di inizio e specifica dell'errore massimo H
+    \item Accrescimento del tratto considerato sino che questi è contenuto in una finestra di altezza H
+    \item approssimazione del tratto considerato con un segmento
+    \item Iterazione dei passi 2. e 3.
+\end{enumerate}
+
+\textbf{Algoritmo di scomposizione: esempio} (slide 41).
+\begin{enumerate}
+    \item dividere la curva in tratti compresi fra i vertici più “pronunciati”
+    \item Identificare i tratti che non soddisfano il criterio scelto. E.g massimo errore maggiore
+    di una data soglia
+    \item Dividere i tratti che non soddisfano il criterio usando il punto più lontano dalla retta approssimante
+    \item Per ogni tratto, iterare i punti 2. e 3.
+    \item approssimazione dei tratti risultanti con segmenti
+\end{enumerate}
+Slide 42: come faccio? Trovo il punto più lontano dal p. di partenza. Trovo il nuovo punto più lontano dal punto più lontano. Trovo un'approssimazione di circonferenza.\\
+
+Slide 44. Qui vediamo come curva continua. Come faccio a vedere se quadrato o cerchio usando il contorno? Posibilità 1, mappo la distanza dei pixel dal centroide (mappo i 2d in 1d): nel cerchio la distanza sarà perennemente $A$, il raggio, nel quadrato sarà variabile (vedi grafico a destra slide 44) in un intervallo fra $[A, \sqrt{2}A]$.
+\begin{itemize}
+    \item Riduce la dimensione dei dati. I dati sono o vanno quantizzati. \`E invariante per traslazione
+    \item Per ottenere l'invarianza per rotazione si sceglie il punto di origine nel punto più lontano dal centroide
+    \item Diverse strategie per ottenere l'invarianza per scala: l'idea è di normalizzarei valori nel range [0,1]
+\end{itemize}
+Quando non funziona? Quando il centroide non è nell'oggetto (es non è una forma convessa).
+
+\subsubsection{Provo io.}
+Slide 48. Come faccio a confrontare le signature e ad affermare che l'oggetto rappresentato è una circonferenza? In 6-7 righe. \`E come se dettassimo l'algoritmo ad un collega che lo deve implementare.\\
+Consegna detta meglio: Supponendo di avere due elementi in database, data una forma ignota (a titolo d'esempio ) come faccio a dire se la forma ignota è un cerchio (a sinistra) o un quadrato (a destra)? Ovvero se la sua classe è più simile al primo o al secondo esempio?
+\begin{enumerate}
+    \item identifico un punto di partenza
+    \item identifico i punti più "pronunciati" e ne misuro la distanza dal punto di partenza
+    \item per pari valori di angolo, vedo la distanza da A se segue la direzione della signature del quadrato
+    \item 
+\end{enumerate}
+Sol
+\begin{enumerate}
+    \item estraggo le signature 
+    \item per fare ciò prendo il punto di partenza più lontano dal centro
+    \item ho le signature, che però sulle x hanno 8 valori (bisogna decidere uno spazio di campionamento, che posso dire "prendo quello che già ho" per dire, ma dando idea di averci ragionato)
+    \item ottengo due vettori (oggetti ignoti, lunghezza boh)
+    \item ottengo due vettori (oggetti noti, lunghezza 76)
+    \item confronto i due vettori (distanza euclidea) nb devono essere 
+    \item assegno i valori al database\\
+    Per dire so che sono molto boh
+\end{enumerate}
+
+\section{Proiezioni}
+Un modo per passare da 2D a 1D è vedere le proiezioni sulle x e sulle y della forma. Slide 59.\\
+Un utile descrittore di tipo globale è fornito dalle proiezioni, che forniscono la distribuzione
+dei pixel della regione secondo alcune direzioni. La proiezione verticale è definita come il numero di pixel appartenenti alla regione in ogni colonna. La proiezione orizzontale è definita come il numero di pixel appartenenti alla regione in ogni riga.
+E’ possibile definire anche proiezioni diagonali, che contano il numero di pixel appartenenti
+alla regione sulle diagonali. Per il confronto cosa uso?\\
+Slide 60: le proiezioni orizzontali e verticali sono poi trattate come Istogrammi (eventualmente normalizzato).\\
+Slide 61-62.\\
+Es raddrizzare il foglio. Posso fare la proiezione, portarla in un istogramma, trovare le valli e segmentare le varie righe. Analizzare e classificare la proiezione quindi. Ma come faccio a capire se è dritto o storto sto benedetto foglio? Dobbiamo per forza scrivere una regola o possiamo fare che i dati la imparino? Usiamo la signature, se è al di sotto di una certa soglia la classifico se no no. Posso anche separare i caratteri evitando la labeling delle componenti connesse facendo la proiezione.\\
+Oltre ad essere impiegate come descrittori globali, le proiezioni possono essere usate per separare regioni differenti. La presenza di un intervallo a valore nullo identifica, infatti, un gap tra regioni distinte. In una tecnica nota come signature parsingle proiezioni verticali vengono usate per separare regioni orizzontali distinte (es. Righe di un testo); successivamente, si considerano, su ogni regione, le proiezioni orizzontali per separare regioni verticali distinte (es. caratteri su una riga di testo). Alternando queste due fasi in maniera ricorsiva è possibile identificare singoli oggetti distribuiti orizzontalmente e verticalmente in una regione ampia, come caratteri e disegni in una pagina di testo.
+
+\section{Descrizione di regioni}
+\subsection{Perimetro}
+Silde 64-66.\\
+•Il perimetro è definito come la lunghezza della curva che congiunge i punti appartenenti al contorno interno dell'oggetto.
+•Un punto appartiene al contorno interno dell'oggetto se appartiene all'oggetto e almeno uno dei suoi vicini appartiene allo sfondo.
+•Esistono quindi due possibili definizioni del contorno interno basate sulle due possibili definizioni di connessione
+Nel calcolo del perimetro, per evitare l'inseguimento del contorno, è possibile assegnare ai pixel un peso dipendente dalla configurazione dei vicini:
+
+\subsection{Compattezza}
+La Compattezza, detta anche “Form Factor”, è definita in base all'area ed il perimetro dell'oggetto.
+
+Tornando ai biscotti col buco: come faccio a dire che il buco è un buco? Guardo la compattezza, perimetro su area. Quindi estraggo il perimetro (dire come) e l'area (dire come) e faccio il rapporto.\\
+
+\subsection{Rettangolarità}
+Praticamente il rettangolo che contiene l'oggetto. Non sempre ci interessa che sia perfettamente aderente (dipende da come è posizionato l'oggetto). L'importante è che sia il minimo possibile (slide 69).\\
+Come? Diciamo che ho l'oggetto, diciamo che ho il diametro. Come faccio a trovare il rettangolo? Faccio i segmenti ortogonali al diametro e vedo la minima distanza quale è. Uso segmenti ortogonali.
+eh vabbuo mi sono persa un sacco di slide.
+
+
+Descrittori invarianti rispetto a traslazione-rotazione-scala, i j coordinate baricentro.
+invarianti per scala: rendo invarianti per l'area.
+
+I momenti di Hu sono 7 numeri. Non richiedono che le componenti siano connesse (esempio bottiglietta d'acqua, li posso usare anche se il tappo è staccato).\\
+Sono invarianti per traslazione, rotazione e scala.\\
+
+Dato un problema, trovare il/i descrittore/i migliore/i anche combinati.\\
+Ellisse d'inerzia.\\
+Spread (S) rappresenta il momento d’inerzia della regione intorno al suo centroide, ed è invariante per rotazione e per traslazione.
+Ellisse con assi  I valori di  sono invarianti per traslazione e rotazionein quanto dipendono dalla distribuzione spaziale della forma, ma non dalla sua posizione relativa agli assi dell’immagine
+
+Migliore rettangolarità: trovo asse maggiore con inerzia, asse minore con ?, pieno/vuoto mi dà un'idea della regolarità del bordo.\\
+Un'altra proprietà topologica è concavità convessità. Sfruttiamo la definizione matematica di convessità (presi due punti qualsiasi della forma, il segmento che li congiunge è sempre interamente contenuto; oppure tutti gli angoli interni sono $< 180°$). Slide 91-92.\\
+Minimo insieme convesso, slide 93.\\
+- Convex hull (H): minimo insieme concesso che contiene l’oggetto S
+- (H meno S) è a volte ricorsivamente analizzato per generare una rappresentazione di S
+- H può essere usato per segmentare il contorno. Se questi non è abbastanza regolare si
+può smussare preventivamente.
+- Molti algoritmi per generare il Convex hull 
+
+Nella slide 93 vedo un'immagine di una specie di bastoncino/cellulina/cromosoma. So che ha parti concave e parti convesse, ma voglio sapere quanto concave quanto convesse. Introduco albero delle concavità (slide 94).
+
+\section{Trasformata distanza}
+Slide 95-96.\\
+• La trasformata distanza di F rispetto a F* è una replica di F in cui i pixel sono etichettati
+con il valore della loro distanza da F*, calcolata secondo una data metrica.
+• Un massimo locale è un pixel di F che nella trasformata distanza di F è caratterizzato da
+una distanza p da F* maggiore o uguale della distanza da F* dei suoi vicini ni • La trasformata distanza è una funzione da una immagine binaria ad una a livelli di grigio
+• Nella immagine prodotta i pixel di sfondo rimangono a 0, i pixel della figura vengono etichettati con la loro distanza dallo sfondo
+• La distanza dipende dal tipo di connessione che si assume per la figura (4/8 connessione)
+•Per quanto la distanza sia intrinsecamente una informazione globale, essa può essere calcolata attraverso la propagazione di un'informazione locale di distanza.
+•Esistono in letteratura algoritmi sequenziali ed algoritmi paralleli per il calcolo della DT. Nel caso dei primi, definito un ordine di scansione, la trasformata in p è calcolata in funzione della trasformata nei vicini già scanditi e del valore non trasformato di p. Nel caso degli algoritmi paralleli tutti i punti possono essere aggiornati simultaneamente.•Trasformata Distanza Inversa (RDT) La trasformata distanza inversa consente di costruire a partire da un pixel etichettato con il valore di distanza d il “cerchio” di “diametro” 2d-1 contenente tutti i pixel aventi distanza da p minore di d.
+
+Massimi della trasformata distanza è una codifica generativa (invertibile). Slide 97. Ho un oggetto. Se in termini di grigio vado ad indicare la distanza dallo sfondo ottengo DT. Se vado a prendere i massimi riesco a mappare l'oggetto. Se parto da qui e rimetto i massimi in bianco e lo sfondo in nero ottengo l'oggetto di partenza.
+
+\section{MAT (Medial Axis Transform)}
+Slide 102-103.\\
+La MAT è definita come segue: - Un punto p dell'oggetto appartiene all'asse mediano (“scheletro”) se, detta d la distanza minima fra p ed il contorno della figura, esistono almeno due punti del contorno situati a distanza d da p. - La MAT è definita nei punti appartenenti all'asse mediano ed il suo valore è dato dalla distanza minima del punto dal contorno.
+• Gli algoritmi più diffusi si basano sulla valutazione della distanza fra i punti interni ed il contorno della figura o lo sfondo.
+• La definizione della MAT dipende ovviamente dal tipo di distanza utilizzata
+L'asse mediano può anche essere definito come il luogo dei centri dei cerchi (almeno) bi-tangenti al contorno interamente contenuti nella figura. I valori dei raggi di tali cerchi sono i valori della MAT. A partire dalla MAT è possibile ricostruire esattamente la forma dell'oggetto: la figura originaria è ottenibile come l'unione dei cerchi bi-tangenti centrati nei punti dell'asse mediano aventi raggio pari al valore della MAT. La MAT è quindi uno schema di rappresentazione generativo, ovvero che consente di compattare i dati senza alcuna perdita di informazione.
+Slide 104.\\
+A partire dalla MAT è possibile derivare dei descrittori di forma. Ad esempio, forme qualitativamente diverse possono essere distinte sulla base del numero di giunzioni (“branch points”) dello asse mediano. O identificare anomalie sul contorno. Es.: quella al centro ha un difetto sul bordo. Come confronto? Prendo l'area.\\
+Slide 105. Invece se voglio distinguere quello sano (alto sx) da sporgenza (alto centro) e da dentellatura mancante (basso sinistra). Come faccio? Come faccio a capire quanti vicini ha un pixel? Prendo tutti i pixel dell'asse e li classifico come ?, segmenti, incroci in base al numero di segmenti vicini.
+
+\section{Scheletrizzazione}
+In numerose applicazioni si ha a che fare con immagini che contengono linee, oggetti sottili, oggetti di forma allungata . . . . In questi casi la forma dell'oggetto è rappresentabile efficacemente mediante una “linea sottile” localizzata approssimativamente in corrispondenza dell'asse mediano. Si pensi, a titolo di esempio, alle applicazioni di OCR.
+
+"Rosicchiare i contorni" fino ad avere un'approssimazione.
+
+\subsection{proprietà generali:}
+- lo scheletro devo consistere di linee di spessore unitario
+- le proprietà topologiche dell'oggetto devono rimanere immutate
+- lo scheletro deve coincidere il più possibile con la linea mediana
+- deve essere poco sensibile al rumore e deve essere stabile
+Gli algoritmi di thinning (o scheletrizzazione) operano iterativamente cancellando i punti di bordo della regione, a condizione che tale cancellazione:
+•non rimuova punti terminali dello scheletro
+•non interrompa la connessione della regione
+•non causi erosione eccessiva della regione 
+
+\subsection{Come opera}
+Si settano ad 1 i pixel dell’oggetto e si settano a zero i pixel dello sfondo
+\begin{itemize}
+    \item I pixel di contorno (hanno valore 1) ed hanno almeno un pixel dell’intorno che ha il valore 0. 
+\end{itemize}
+\textbf{Algoritmo di thinning iterativo in due step (descritti nelle slide seguenti):}
+\begin{enumerate}
+    \item applicare STEP 1 ai pixel di contorno
+    \item cancellare i pixel che soddisfano la condizione
+    \item applicare STEP 2 ai pixel di contorno
+    \item cancellare i pixel che soddisfano la condizione
+    \item Iterare finché nessuno pixel può più essere cancellato
+\end{enumerate}
+Boh vabbeh ha fatto una speedrunnata e mi sono persa assai.\\
+Abbiamo visto della slide 118 "countor-based structural" tutti, "countor-based global" alcuni, "region-based global" alcuni, "region-based structural" tutti.

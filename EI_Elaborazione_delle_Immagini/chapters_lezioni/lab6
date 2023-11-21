@@ -1,15 +1,35 @@
-\chapter{Lab6}
+\section{Lab6}
 Il lab di oggi (sto recuperando in remoto dal video 2021/22) sarà sulla \textbf{classificazione}.
 
 \subsection{Classificazione}
 La classificazione è un processo che permette di creare dei modelli matematici in grado di etichettare con un'etichetta semantica dei dati. Questo viene fatto in modo \textbf{supervisionato}. La volta scorsa abbiamo visto il \textit{clustering}, processo tramite cui trovare zone uniformi di texture (processo di classificazione \textit{non supervisionata}, ovvero ci diceva "etichetta 1, etichetta 2, etc" senza dirci nulla sulla zona considerata). Con la classificazione supervisionata vedremo "etichetta cane", "etichetta pelle" etc.
 
-\subsection{Algoritmi di classificazione}
+\subsubsection{Algoritmi di classificazione}
 Ne vedremo diversi, ma tutti hanno bisogno di una cosa: un \textbf{dataset} per dare loro esempi tramite i quali etichetteranno i dati che gli diamo in input.\\
 Partiremo con un'etichettatura semantica delle immagini del nostro dataset. Come? Con tutto quello che abbiamo visto finora, tutti quegli esercizi che ci ritornavano una maschera come risultato (es. tutti i cartelli blu, tutti i cartelli verdi, etc). Useremo tutto per automatizzare quei procedimenti di cui sopra tramite un procedimento di classificazione.\\
 Non siamo noi a dare le soglie ma questi algoritmi le trovano in automatico basandosi sul dataset.
 
-\subsubsection{L'obiettivo di oggi}
-L'obiettivo di oggi è quello di classificare le regioni di pelle e non di pelle (utile per gli algoritmi di face-detection). Cominceremo valutando i classificatori (le immagini del dataset) usando le maschere sotto riportate (immagini di groundtruth) che qualcuno precedentemente è stato a creare. Queste groundtruth le confronteremo con l'output dei nostri classificatori.
+\subsection{L'obiettivo di oggi}
+L'obiettivo di oggi è quello di classificare le regioni di pelle e non di pelle (utile per gli algoritmi di face-detection). Cominceremo valutando i classificatori (le immagini del dataset) usando le maschere sotto riportate nel pdf (immagini di groundtruth della classificazione) che qualcuno precedentemente è stato a creare. Queste groundtruth le confronteremo con l'output dei nostri classificatori. N.B.: \textbf{non} le possiamo usare per costruire i classificatori, solo per valutarli.\\
+Il problema allora diventa: se non posso ricorrere a queste immagini per costruire i classificatori, devo usare dei dati esterni. Vado a recuperare i dati di training (che servono per addestrare i classificatori). Noi siamo lavorando su un pixel (una terzina di valori RGB) che corrispondono a pixel di pelle, quindi dobbiamo istruirlo a riconoscere pelle.\\
+Ma non basta: a volte i classificatori devono esaurire il dominio: abbiamo bisogno di esempi di pixel di pelle ma anche di esempi di pixel di non pelle.\\
+\textbf{N.B.: test} $\not =$ \textbf{training!!}
 
-\section{Es1}
+\subsection{Es1}
+Il primo classificatore che andremo a scrivere è semplice e si chiama \textbf{classificatore a regole}.\\
+Comportamento: va a calcolare sui dati di training delle statistiche (es. media e deviazione standard) e poi va a vedere se un pixel appartiene ad una certa classe se i valori rgb (canale per canale) vanno a cascare in un range attorno alle statistiche trovate. Praticamente stiamo andando a fare delle gaussiane.\\
+Le stesse regole con dati di partenza diversi sono usabili con altri spazi colore.\\
+Inizio con l'esercizio vero e proprio su MatLab.\\
+Usiamo \texttt{reshape} con immagine, tot righe (\# dei pixel dell'immagine) e 3 colonne (canali RGB).\\
+Abbiamo la nostra immagine \texttt{image} e quella di confronto \texttt{skin} e andiamo a vedere se le tre condizioni rappresentate dalle disequazioni sono verificate. Se il risultato è sì, il pixel cade all'interno dell'intervallo, ovvero è un pixel di pelle. Se il risultato è no, il pixel non è nell'intervallo e quindi non è di pelle.\\
+Possiamo dedurre quindi che otterremo delle maschere binarie (una per ogni disequazione) che andremo poi a combinare con un \texttt{AND}.\\
+Ciascuna maschera binaria avrà forma:
+\begin{verbatim}
+    mask_r = image(:,:,1) >= m(1) - k*s(1) & image(:,:,1) <= m(1) + k*s(1);
+\end{verbatim}
+Dove \texttt{m(1)} è la media del canale rosso e \texttt{s(1)} è la deviazione standard del canale rosso. Cambiando indice avrò gli stessi valori per gli altri canali colore (altre colonne). Combinandole con l'\texttt{and}: 
+\begin{verbatim}
+    predicted = mask_r & mask_g & mask_b;
+\end{verbatim}
+Mi dirà quali pixel di ogni canale sono di pelle.\\
+

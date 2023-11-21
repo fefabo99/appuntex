@@ -162,7 +162,8 @@ Questo non ha cosa?
 Data una metrica d(.) nello spazio multidimensionale (es. distanza euclidea) ilclassificatore nearest-neighbor (letteralmente “il più vicino tra i vicini”), assegna unpattern x alla stessa classe dell'elemento $x'$ ad esso più vicino nel training set.
 •La regola NN produce una tassellazione di Voronoi: Ogni elementoxi del TSdetermina un tassello, all'intero del quale i pattern saranno assegnati alla stessaclasse di xi. \\
 Basta che un solo elemento del training set non sia molto “affidabile” (outlier)affinché tutti i pattern nelle sue vicinanze siano etichettati non correttamente.\\
-Un modo generalmente più robusto, che può essere visto come estensione della regola NN (in questo caso detta 1-NN) è il cosiddetto classificatore k-nearest-neighbor (k-NN). Mi migliora la robustezza contro gli outlier (boh cit co-pilot, mi fido).\\
+Un modo generalmente più robusto, che può essere visto come estensione della regola NN (in questo caso detta 1-NN) è il cosiddetto classificatore k-nearest-neighbor (k-NN). Mi migliora la robustezza contro gli outlier (boh cit co-pilot, mi fido).
+
 \subsubsection{k-nearest-neighbor (k-NN)}
 Slide 51. La regola k-NN determina i k elementi più vicini al pattern
 x da classificare; ogni pattern tra i k vicini “vota” per la
