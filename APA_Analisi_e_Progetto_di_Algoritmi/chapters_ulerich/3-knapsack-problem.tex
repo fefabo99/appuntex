@@ -210,7 +210,8 @@ Prendo il primo oggetto:
 \begin{center}
     \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_matrix_filling_v1.png}
 \end{center}
-Notiamo che riempiamo di 0 la riga fino a quando non abbiamo $w_1 = c_i = 7$.\\
+Notiamo che riempiamo di 0 la riga fino a quando non abbiamo $w_1 = c_i = 7$, perchè è inutile
+provare a inserire un oggetto di peso 7 in sottoproblemi di capacità inferiore a 7.\\
 Qua controllo quale sia il massimo tra $d_{i-1,c-w_i} + v_i$ e $d_{i-1,c}$, cioè controllo se mi
 conviene riempire lo zaino inserendo l'oggetto che sto considerando sommato con il valore dell'oggetto
 precedente (considerando $c-w_i$, quindi un peso che non superi la capacità), oppure mi conviene riempire lo
@@ -219,5 +220,75 @@ Proseguo così fino a riempire tutta la matrice, il valore ottimo sarà in fondo
 \begin{center}
     \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_matrix_filled.png}
 \end{center}
-%Arrivato a slide 154, ripassa riempimento matrice e poi scrivi codice
-
+\section{Algoritmo DP - Codice}
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    int calcolo_ottimo_zaino(n, C, V, W)
+        for i from 0 to n do
+            D[i,0] = 0
+        for c from 0 to C do
+            D[0,c] = 0
+        for i from 1 to n
+            for c from 1 to C
+                D[i,c] = D[i-1,c]
+            if c *@$\geq w_i$@* and D[i-1,c-*@$w_i$@*] + *@$v_i$@* > D[i,c] then
+                D[i,c] = D[i-1,c-*@$w_i$@*] + *@$v_i$@*
+        return D[n,C] 
+\end{lstlisting}
+\paragraph*{Tempo e Spazio} $\Theta(nC)$.
+\subsection{Ricostruzione Soluzione Ottimale}
+Come al solito devo ragionare in modalità black box, facendo finta di avere già la soluzione
+dei sottoproblemi.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{chapters_ulerich/img/knapsack_ricostruzione_sol_ottima.png}
+\end{center}
+Ricordiamo che abbiamo i seguenti oggetti:
+\begin{enumerate}
+    \item $v_1 = 1,\, w_1 = 7$
+    \item $v_2 = 1,\, w_2 = 4$
+    \item $v_3 = 1,\, w_3 = 5$
+    \item $v_4 = 1,\, w_4 = 1$
+    \item $v_5 = 1,\, w_5 = 1$
+\end{enumerate}
+Capacità $C=10$.
+Parto dalla cella in basso a destra della matrice, quella contenente il valore ottimo e mi
+chiedo: Qual è la soluzione ottimale di $S_{5,10}$?\\
+Utilizzo la stessa equazione di prima, ma a ritroso:
+\[ c \geq w_i \implies d_{i,c} = max\{d_{i-1,c- w_i} + v_i, d_{i-1},c\}\]
+Controllo il coefficiente maggiore tra la cella superiore $[i-1,c]$ e $[i-1,c-w_i]$ per
+controllare se in questa casella è stato incrementato il valore perchè è stato aggiunto
+l'oggetto allo zaino. Sostituendo il massimo trovato a $S_{5,10}$ se (come in questo caso)
+ho che il massimo è $d_{i-1,c-w_i}+v_i$, ottengo che:
+\[ S_{5,10}=S_{4,9} + \{5\} \]
+Procedo e analizzo $S_{4,9}$, trovo che i valori sono uguali, scelgo di prendere $d_{i-1,c-w_i}$
+e quindi di aggiungere $\{4\}$ alla mia soluzione. Quindi $S_{4,9}=S_{3,9}+\{4\}$
+\[S_{5,10} = S_{3,8} +\{4\} + \{5\}\]
+Proseguo e analizzo $S_{3,8}$. Qua notiamo che dato che ho peso 5 facendo $[i-1,c]=1$ e $[i-1,c-w_i]=0$, 
+il massimo sarà nella casella soprastante, per questo avrò che $S_{3,8}=S_{2,8}$, sostituendo ottengo:
+\[S_{5,10} = S_{2,8} +\{4\} + \{5\}\]
+Prosego e analizzo $S_{2,8}$. In questo caso abbiamo che i due valori sono pari, scegliendone uno dei
+due avrò due soluzioni ottime diverse. In questo caso scegliamo $d_{i-1,c-w_i}+v_i = 0+1$ e ottengo quindi:
+$S_{2,8} = S_{1,4} + \{2\}$
+\[ S_{5,10} = S_{1,4} +\{2\}+\{4\} + \{5\}\]
+Ora mi trovo ad analizzare $S_{1,4}$. In questo caso ho che $c=4$ e $w_i=7$ quindi $c<w_i \implies 
+d_{i,c} = d_{i-1,c} = S_{0,4}$. Quindi non vengono aggiunti valori.
+\[ S_{5,10} = S_{0,4} +\{2\}+\{4\} + \{5\}\]
+Infine analizzo $S_{0,4}$, avendo $i=0$, mi ritrovo in un caso base, quindi $S_{0,4}=\emptyset$.
+\[ S_{5,10} = \{2\}+\{4\} + \{5\}\]
+E ottengo così la soluzione ottimale!
+\subsection{Ricostruzione Soluzione Ottimale - Codice}
+\paragraph*{Input} Avrò la matrice D e le coordinate (i,c) di una cella.
+\paragraph*{Output} Stampa una Soluzione Ottimale $S_{i,c}$.
+\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+    Procedura ricostruisci_zaino(D,i,c)
+        if i > 0 and c > 0
+            if c *@$ \geq w_i$@*
+                if D[i,c] == D[i-1, c]
+                    ricostruisci_zaino(D,i-1,c)
+                else
+                    ricostruisci_zaino(D,i-1,c-*@$w_i$@*)
+                    print i
+            else
+                ricostruisci_zaino(D,i-1,c)
+\end{lstlisting}
+Chiamando la procedura per $i = n$ e $c = C$ si ottiene la
+stampa di una soluzione ottimale.
