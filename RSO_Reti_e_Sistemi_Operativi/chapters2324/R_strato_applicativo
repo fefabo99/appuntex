@@ -21,10 +21,10 @@ Per questo è stata creata la gerarchia per distribuire questo carico su più no
 \subsection{Come funziona un DNS?}
 \subsubsection{Struttura gerarchica dei DNS}
 \begin{center}
-    \includegraphics[width=0.35\textwidth]{images/aa2324/R_architetturaastrati4.jpg}
+    \includegraphics[width=0.75\textwidth]{images/aa2324/R_architetturaastrati4.jpg}
 \end{center}
 Abbiamo:
-\begin{description}
+\begin{description}[noitemsep,topsep=0pt]
     \item[root DNS servers:] sono al top della gerarchia, gestiti da ICANN (Internet Corporation for Assigned Names and Numbers).\\
     Sono una funzione internet importantissima. Contengono tutte le informazioni relative ai top-level domain (TLD) servers o i DNS servers che possono essere contattati.
     \item[top-level domain (TLD) DNS servers:] gestiscono i domini di primo livello (es. .com, .org, .net, .it, .fr, .uk, .de, \dots).\\
@@ -35,7 +35,7 @@ Abbiamo:
     \end{itemize}
     \item[authoritative DNS servers:] organizzazioni che gestiscono i propri DNS (es. Bicocca).\\
     Sono quelli che vanno a fare il mapping vero e proprio.
-    \item[local DNS name servers:] ISP, università, aziende, home network che forniscono accesso a internet ai client.
+    \item[local DNS name servers:] ISP, università, aziende, home network che forniscono accesso Internet ai client.
 \end{description}
 
 \subsubsection{Local DNS name servers}

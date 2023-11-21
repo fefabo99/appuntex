@@ -2,7 +2,7 @@
 \section{Servizi e protocolli di trasporto}
 Forniscono una comunicazione logica tra \textbf{processi applicativi} che risiedono su host diversi.
 \begin{description}
-    \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (in realtà non lo sono). Di fatto \textit{trasparente al livello superiore}. Come il livello applicativo, interpretato esplusivamente dagli host (utenti periferici), non dai dispositivi rete (switch, router, etc.).
+    \item[Cos'è una comunicazione logica?] Fa sì che i processi che stanno comunicando lo facciano, si scambino cioè dati, come se fossero sullo stesso host (in realtà non lo sono). Di fatto \textit{trasparente al livello superiore}. Come il livello applicativo, interpretato esclusivamente dagli host (utenti periferici), non dai dispositivi rete (switch, router, etc.).
     \item[Come si comporta:] spezzetta l'informazione in segmenti che trasporta poi a livello di rete.
     \item[Due tipi che vedremo:] i due principali protocolli a livello di trasporto che sono disponibili per le applicazioni internet sono:
     \begin{description}
@@ -15,7 +15,7 @@ Forniscono una comunicazione logica tra \textbf{processi applicativi} che risied
 
 \subsubsection{Es. pratico:}
 \begin{center}
-    \includegraphics[width=0.75\textwidth]{images/aa2324/R_livelloditrasportoEs1.jpg}
+    \includegraphics[width=0.425\textwidth]{images/aa2324/R_livelloditrasportoEs1.jpg}
 \end{center}
 
 \subsection{Differenze livello di trasporto e livello di rete}

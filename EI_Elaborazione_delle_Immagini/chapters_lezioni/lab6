@@ -1,0 +1,15 @@
+\chapter{Lab6}
+Il lab di oggi (sto recuperando in remoto dal video 2021/22) sarà sulla \textbf{classificazione}.
+
+\subsection{Classificazione}
+La classificazione è un processo che permette di creare dei modelli matematici in grado di etichettare con un'etichetta semantica dei dati. Questo viene fatto in modo \textbf{supervisionato}. La volta scorsa abbiamo visto il \textit{clustering}, processo tramite cui trovare zone uniformi di texture (processo di classificazione \textit{non supervisionata}, ovvero ci diceva "etichetta 1, etichetta 2, etc" senza dirci nulla sulla zona considerata). Con la classificazione supervisionata vedremo "etichetta cane", "etichetta pelle" etc.
+
+\subsection{Algoritmi di classificazione}
+Ne vedremo diversi, ma tutti hanno bisogno di una cosa: un \textbf{dataset} per dare loro esempi tramite i quali etichetteranno i dati che gli diamo in input.\\
+Partiremo con un'etichettatura semantica delle immagini del nostro dataset. Come? Con tutto quello che abbiamo visto finora, tutti quegli esercizi che ci ritornavano una maschera come risultato (es. tutti i cartelli blu, tutti i cartelli verdi, etc). Useremo tutto per automatizzare quei procedimenti di cui sopra tramite un procedimento di classificazione.\\
+Non siamo noi a dare le soglie ma questi algoritmi le trovano in automatico basandosi sul dataset.
+
+\subsubsection{L'obiettivo di oggi}
+L'obiettivo di oggi è quello di classificare le regioni di pelle e non di pelle (utile per gli algoritmi di face-detection). Cominceremo valutando i classificatori (le immagini del dataset) usando le maschere sotto riportate (immagini di groundtruth) che qualcuno precedentemente è stato a creare. Queste groundtruth le confronteremo con l'output dei nostri classificatori.
+
+\section{Es1}

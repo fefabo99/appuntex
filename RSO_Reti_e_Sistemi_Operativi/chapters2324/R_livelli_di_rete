@@ -36,9 +36,9 @@ Questi messaggi vengono trasportati sfruttando i servizi offerti dai livelli di 
 Per implementare i servizi del livello di trasporto si fa in questo modo: 
 \begin{itemize}
     \item Prendo i bit del mio messaggio ($M$) e ci attacco un'intestazione chiamata \textbf{\textit{Header}} ($H_t$), insieme di bit organizzati in \textbf{campi}.
-    \item Il messaggio ($M$) prende il nome di \textbf{\textit{payload}}.
-    \item Il messaggio così ottenuto ($H_t + M$), che prende il nome di \textbf{\textit{segmento}}, viene passato al \textit{livello di rete} che è immediatamente sotto.
-    \item Lo strato di rete (\textit{network}) prende il \textit{payload} e ci aggiunge un \textbf{suo header}, il messaggio diventa così $H_n + H_t + M$, prende il nome di \textbf{\textit{datagram}} e viene passato al livello di link.
+    \item Il messaggio ($M$) prende il nome di \textbf{\textit{payload}} (strato applicativo).
+    \item Il messaggio così ottenuto ($H_t + M$), che prende il nome di \textbf{\textit{segmento}} (strato di trasporto), viene passato al \textit{livello di rete} che è immediatamente sotto.
+    \item Lo strato di rete (\textit{network}) prende il \textit{segmento} e ci aggiunge un \textbf{suo header}, il messaggio diventa così $H_n + H_t + M$, prende il nome di \textbf{\textit{datagram}} e viene passato al livello di link.
     \item Lo strato di link prende il \textit{datagramma} e ci aggiunge un \textbf{suo header}, il messaggio diventa così $H_l + H_n + H_t + M$, prende il nome di \textit{\textbf{frame} (trama)} e viene passato al livello fisico.
 \end{itemize}
 Così si crea la separazione fra i livelli, ogni livello vede i pochi bit passati dal livello precedente.\\
@@ -55,7 +55,7 @@ Percorso inverso, partendo dal livello fisico e continuando fino ad arrivare al 
 \end{itemize}
 
 \subsubsection{A livello di commutatori}
-Negli \textit{end-host} (sistemi periferici) ovviamente ci sono \textbf{tutti e 5} gli strati, a livello di commutatori invece è diverso: \underline{ci sono solo i primi 2 (switch) o 3 strati (router)}, ovvero il \textit{livello fisico}, quello \textit{di link} e quello \textit{di rete}.\\
+Negli \textit{end-host} (sistemi periferici) ovviamente ci sono \textbf{tutti e 5} gli strati, a livello di commutatori invece è diverso: \underline{ci sono solo i primi 2} (switch) \underline{o 3 strati} (router), ovvero il \textit{livello fisico}, quello \textit{di link} e quello \textit{di rete}.\\
 I router sono dotati di \textit{commutatori di livello 3}.\\
 \textbf{Es. semplice:}
 \begin{center}
@@ -68,4 +68,4 @@ In questo caso:
     \item Il livello \textit{di rete} prende il messaggio ($H_n + H_t + M$) e lo incapsula con un header diverso (che noi chiamiamo $H_n'$).
     \item Il \textit{datagramma} così ottenuto ($H_n' + H_n + H_t + M$) viene incapsulato in una nuova \textit{trama} e inviato al destinatario.
 \end{itemize}
-Quindi \underline{in due punti diversi del percorso il messaggio potrebbe essere incapsulato in due header diversi}, perché magari vengono usati due protocolli internet diversi.
+Quindi \underline{in due punti diversi del percorso} lo stesso messaggio potrebbe essere incapsulato \underline{in due header diversi}, e questo succede perché magari in quei due punti del percorso vengono usati \underline{due protocolli internet diversi}.
