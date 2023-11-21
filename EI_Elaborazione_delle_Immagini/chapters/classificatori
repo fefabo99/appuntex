@@ -1,0 +1,7 @@
+Classificatore 1: Classify_rule
+Questo è il classificatore più semplice.
+In questo caso per il classificatore vogliamo testare se ogni valore di skin rientra in una gaussiana.
+
+In pratica noi decidiamo una regola, e la applichiamo ad ogni pixel dell'immagine per verificare se viene rispettata.
+
+Per calcolare media e varianza conviene usare reshape
