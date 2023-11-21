@@ -676,7 +676,7 @@ Si nota che il momento secondo $E[X^2]$ si calcola:
 \[
 	E[X^2]= \int_{-\infty}^{+\infty} x^2 \cdot f_x(x) \,dx
 \]
-\paragraph{Proprietà} Tutte le proprietà di Valore Medio e Varianza valide per le 
+\paragraph{Proprietà} Tutte le proprietà di Valore Medio e Varianza valide per le
 Variabili Aleatorie Discrete continuano a valere.
 In particolare:
 \begin{itemize}
@@ -685,61 +685,74 @@ In particolare:
 	\item Se $X$ e $Y$ sono indipendenti: $\var[X+Y] = \var[X] +\var[Y]$
 \end{itemize}
 
+\pagebreak
+
 \section{Funzione di Ripartizione}
 Le funzioni di ripartizione ci permettono di capire di che tipo di variabile aleatoria
 stiamo parlando.
-\begin{equation*}
-	F_x (x) = P(X \leq x)
-\end{equation*}
-A livello probabilistico è la probabilità che X sia minore o uguale a x.
+\[
+	\text{Funzione di Ripartizione: } F_X (x) = P(X \leq x)
+\]
+A livello probabilistico, $F_X(x)$ è \textbf{la probabilità che $X$ sia minore o uguale a $x$}.
+\\Perchè studiare la funzione di ripartizione?
 \begin{itemize}
-	\item $F_x$ è ben definita per ogni v.a. $X: \Omega \rightarrow \mathbb{R}$, sia che la v.a.
-	      sia discreta, ass. continua, o nè l'una nè l'altra.
-	\item $F_x$ determina la distribuzione della v.a.
-	\item $F_x$ è legata alla densità discreta/densità di X
-	      \begin{equation*}
+	\item $F_x$ \textbf{è ben definita per ogni variabile aleatoria} $X: \Omega \rightarrow \mathbb{R}$,
+	      \\sia che questa sia discreta, assolutamente continua, o nè l'una nè l'altra.
+	\item $F_x$\textbf{ determina la distribuzione della variabile aleatoria}.
+	      \\Ad esempio: $P(X\in(s,t]) = F_X(t) - F_X(s)$.
+	\item $F_x$ è \textbf{legata alla densità discreta/densità} di $X$:
+	      \[
 		      F_X(x) =
 		      \begin{cases}
-			      \sum_{x_i \in (- \infty, x]} p_X (x_i) \quad \text{se X è discreta} \\
+			      \sum_{x_i} p_X (x_i) \quad \text{se X è discreta} \\
 			      \int_{-\infty}^{x} f_x(t)\,dt \quad \text{se X è assolut. continua}
 		      \end{cases}
-	      \end{equation*}
+	      \]
+	      con $x_i \in (- \infty, x]$
 \end{itemize}
-La funzione di ripartizione è utile soprattutto per v.a. assolutamente continue, su cui
-ci concentreremo nel seguito. Mostriamo comunque un esempio per una v.a. discreta.
-\paragraph*{Esempio Bernoulli} Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
-\begin{equation*}
-	X(\Omega) = {0, 1} \qquad p_X{0}=1-p, \qquad p_X(1) = p
-\end{equation*}
-Allora $F_x(x) = P(X \leq x)$ vale:
-\begin{equation*}
-	F_X(x) =
-	\begin{cases}
-		0 \quad \text{se} \quad x < 0          \\
-		1-p \quad \text{se} \quad 0 \leq x < 1 \\
-		1 \quad se \quad x \leq 1
-	\end{cases}
-\end{equation*}
+La funzione di ripartizione è utile soprattutto per variabili assolutamente continue, su cui
+ci concentreremo nel seguito.
+\esempio{ \textbf{Bernoulli}:
+	Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
+	\[
+		X(\Omega) = {0, 1} \qquad p_X{0}=1-p, \qquad p_X(1) = p
+	\]
+	Allora $F_x(x) = P(X \leq x)$ vale:
+	\[
+		F_X(x) =
+		\begin{cases}
+			0 \quad \text{se} \quad x < 0          \\
+			1-p \quad \text{se} \quad 0 \leq x < 1 \\
+			1 \quad se \quad x \leq 1
+		\end{cases}
+	\]
+}
+\teorema{
+	\textbf{di ripartzione di V.A. Discrete}
+	\begin{itemize}
+		\item X è v.a. discreta $\Leftrightarrow$ $F_x$ è costante a tratti.
+		\item Valori assunti{$x_i$} $\Leftrightarrow$ Punti di discontinuità  di $F_x$
+		\item Densità discreta $\Leftrightarrow$ Ampiezze dei salti
+	\end{itemize}
+	\begin{equation*}
+		p_X (x_i) = F_X(x_i) - F_X(X_{\bar{i}})
+	\end{equation*}
+	\begin{equation*}
+		F_X(x_{\bar{i}}) = \lim_{t \to x_{\bar{i}} F_X(t)}
+	\end{equation*}
+}
 
-\subsection*{Teorema di ripartzione di V.A. Discrete}
-\begin{itemize}
-	\item X è v.a. discreta $\Leftrightarrow$ $F_x$ è costante a tratti.
-	\item Valori assunti{$x_i$} $\Leftrightarrow$ Punti di discontinuità  di $F_x$
-	\item Densità discreta $\Leftrightarrow$ Ampiezze dei salti
-\end{itemize}
-\begin{equation*}
-	p_X (x_i) = F_X(x_i) - F_X(X_{\bar{i}})
-\end{equation*}
-\begin{equation*}
-	F_X(x_{\bar{i}}) = \lim_{t \to x_{\bar{i}} F_X(t)}
-\end{equation*}
-\subsection*{Funzione di ripartizione di V.A. Assolut. Continue}
-X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
-è derivabile a tratti.
+\teorema{
+	\textbf{di ripartizione di V.A Assol. Continue}
+	X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
+	è derivabile a tratti.
+	
+	\begin{equation}
+		\text{Densità} \qquad f_X(x) = (F_X)'(x)
+	\end{equation}
+}
 
-\begin{equation}
-	\text{Densità} \qquad f_X(x) = (F_X)'(x)
-\end{equation}
+%Da completare da lezione 7
 
 \section{Variabili aleatorie Normali}
 L'ultima classe che vedremo e la più importante, è quella delle variabili aleatorie
