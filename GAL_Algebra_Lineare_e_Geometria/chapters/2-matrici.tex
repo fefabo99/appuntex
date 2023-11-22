@@ -328,3 +328,27 @@ $b$ è combinazione lineare delle colonne di $A$.
 }
 
 \section{Determinante}
+Il Determinante é un oggetto matematico definito solo per matrici quadrate.
+Come oggetto, esso é una funzione:
+\[
+	det_n : \{\text{ \small{Matrici quadrate di ordine $n$} }	\} \to \R
+\]
+Il determinante é legato al rango ma contiene "meno informazioni".
+
+Come dicitura utilizzeremo anche il rango per i vettori colonna di una matrice $n\times n$:
+\[ (c_1,c_2, ... ,c_n) \to det_n(c_1,c_2,...,c_n)\]
+In alcuni casi il determinante puó dirci se il rango é massimo, quindi se tutte le righe/colonne sono linearmente indipendenti.
+
+\subsection{Proprietá caratterizzanti del Determinante}
+Per definire il determinante useremo le 4 proprietá che lo caratterizzano come una funzione unica:
+\begin{enumerate}
+	\item $det(c_1,...,\underline{a}+ \underline{b},...,c_n) = det(c_1,...,\underline{a},...,c_n) + det(c_1,...,\underline{b},...,c_n)$
+	\item $det(c_1,...,\lambda \underline{c},...,c_n) = \lambda \cdot det(c_1,...,\underline{c},...,c_n)$
+	\item $det(c_1,...,\underline{c}, underline{c},...,c_n) = 0$ \\
+	Ovvero se due vettori colonna sono uguali il determinante é 0, anche se non sono adiacenti.
+	\item $det(\underline{e}_1, \underline{e}_2,...,\underline{e}_n) = 1$, dove $\{e_j\}$ é la base canonica di $\R^n$.
+
+\end{enumerate}
+Le proprietá 1 e 2 sono dette di Multilinearitá, mentre la 3 é detta di Alternanza.
+
+\teorema{Esiste un'unica funzione che soddisfi le proprietá da 1 a 4, ed essa é il determinante.}
