@@ -1,0 +1,223 @@
+% 22 novembre 2023, assassinio di JFK e prima lezione post parziale
+\chapter{Interfaccia e struttura del kernel}
+\subsection*{Argomenti}
+\begin{itemize}
+    \item Implementazione di chiamate di sistema ed API
+    \item Struttura del kernel
+    \item Politiche e meccanismi
+\end{itemize}
+
+\section{Implementazione di chiamate di sistema ed API}
+\subsection{Implementazione API attraverso chiamata di sistema}
+\begin{center}
+    \includegraphics[width=0.875\textwidth]{../images/aa2324/SO_implementazionechiamatedisistema1.jpg}
+\end{center}
+
+\subsection{Duplice modalità di funzionamento}
+\begin{itemize}
+    \item Permette al sistema operativo di proteggere se stesso dai programmi in esecuzione
+    \item La CPU può funzionare in modalità utente (user mode) o in modalità di sistema (kernel mode) impostando un opportuno bit di modalità
+    \item Alcune istruzioni del processore sono privilegiate, ossia eseguibili solo in modalità di sistema: in particolare, in user mode la CPU non può accedere alla memoria del kernel
+\end{itemize}
+
+\subsection{Implementazione delle chiamate di sistema}
+\begin{itemize}
+    \item Una chiamata di sistema non è semplice da implementare come una normale chiamata di funzione, perché occorre effettuare una transizione da modalità utente a modalità di sistema
+    \item Prima vengono preparati i parametri necessari:
+    \begin{itemize}
+        \item Un numero che identifica quale chiamata di sistema va effettuata\dots 
+        \item \dots più tutti i parametri necessari alla specifica chiamata di sistema
+        \item (Vedremo nella slide successiva come vengono effettivamente passati questi dati)
+    \end{itemize}
+    \item Quindi viene invocata un'opportuna istruzione macchina che genera un'eccezione software; essa fa passare la CPU in modalità di sistema e trasferisce il controllo ad una subroutine ad un determinato indirizzo di memoria
+    \item La subroutine (\textbf{system call interface}) legge il numero identificativo della chiamata di sistema, effettua un lookup da una tabella interna dell'indirizzo della routine che effettivamente implementa la chiamata di sistema, e salta a tale indirizzo
+    \item La routine invocata legge i parametri ed esegue la funzionalità richiesta
+    \item Al ritorno il processore passa di nuovo in modalità utente
+\end{itemize}
+\begin{center}
+    \includegraphics[width=1\textwidth]{../images/aa2324/SO_implementazionechiamatedisistema2.jpg}
+\end{center}
+
+\subsection{Passaggio dei parametri alle chiamate di sistema}
+\begin{itemize}
+    \item Dal momento che l'invocazione delle chiamate di sistema passa per un'eccezione software, il passaggio di parametri è più complesso rispetto a quello di una normale chiamata di procedura
+    \item Metodo più semplice: passare i parametri nei registri del processore
+    \begin{itemize}
+        \item \underline{Vantaggio}: rapido
+        \item \underline{Svantaggio}: utile solo per pochi parametri i cui tipi di dati hanno dimensione limitata
+    \end{itemize}
+    \item Altro metodo: passo in uno dei registri un indirizzo di memoria ad un blocco nel quale sono memorizzati i parametri
+    \begin{itemize}
+        \item Usato da Linux in combinazione con il primo metodo
+    \end{itemize}
+    \item Altro metodo: faccio push dei parametri sullo stack
+    \begin{itemize}
+        \item \underline{Vantaggi}: flessibile; simile ad una normale chiamata di procedura
+        \item \underline{Svantaggi}: lento e macchinoso
+    \end{itemize}
+\end{itemize}
+
+\subsection{La necessità del doppio stack}
+Notare che ogni thread ha di solito due stack:
+\begin{itemize}
+    \item quello che viene utilizzato dal programma in modalità utente
+    \item ed uno distinto che viene utilizzato quando il thread passa in modalità di sistema
+\end{itemize}
+Una chiamata di sistema, come prima cosa, imposta lo stack del thread corrente allo stack di sistema, e al termine della chiamata di sistema ripristina lo stack a quello utente.\\
+Per quale motivo? Per sicurezza: dal momento che il processo potrebbe modificare a suo piacimento il registro stack pointer (che non è privilegiato) non è possibile fidarsi che questo punti ad uno stack «sano»: pertanto in modalità di sistema occorre usare uno stack sicuramente corretto.
+
+\subsection{Uso delle librerie dinamiche per le API}
+Si vuole far sì che, anche se il sistema operativo viene aggiornato, non vi sia bisogno di ricompilare/linkare le applicazioni qualora siano cambiate le chiamate di sistema, o l'implementazione delle API, purché l'interfaccia delle API resti la stessa.\\
+Un vantaggio si ha realizzando le API e le librerie standard del linguaggio come librerie dinamiche.\\
+Infatti se queste sono modificate (nell'implementazione, non nell'interfaccia), non occorre ricompilare tutti gli eseguibili per aggiornarli alla nuova versione delle librerie.
+
+\subsection{Application binary interface (ABI)}
+Occorre però un'ulteriore accortezza: oltre all'API non deve cambiare l'\textbf{application binary interface (ABI)}.\\
+L'ABI è l'insieme delle convenzioni attraverso le quali il codice binario dell'applicazione si interfaccia con il codice binario della libreria dinamica delle API:
+\begin{itemize}
+    \item Come si chiama internamente alla libreria la funzione da invocare (name mangling)?
+    \item In che ordine i parametri vengono messi sullo stack delle chiamate?
+    \item Come sono strutturati i tipi di dati? C'è padding? Qual è l'endianess?
+\end{itemize}
+
+\subsection{La scarsa portabilità degli eseguibili binari}
+Come facciamo ad avere applicazioni portabili su diversi sistemi di elaborazione?\\
+Tre possibili approcci:
+\begin{itemize}
+    \item Scrivere l'applicazione in un linguaggio con un interprete portabile (es. Python, Ruby): l'eseguibile in tal caso è il sorgente
+    \item Scrivere l'applicazione in un linguaggio con un ambiente runtime portabile (es. Java, .NET): l'eseguibile in tal caso è il bytecode
+    \item Scrivere l'applicazione utilizzando un linguaggio con un compilatore portabile ed API standardizzate: l'eseguibile è il file binario compilato e linkato.
+\end{itemize}
+Nei primi due casi l'eseguibile è normalmente uno solo per tutte le architetture.\\
+Nel terzo caso invece occorre, di norma, generare un eseguibile distinto a variazioni anche minime del sistema di elaborazione (spesso anche solo al variare della versione del sistema operativo).\\
+Come mai?
+\begin{itemize}
+    \item Una prima banale ragione può essere la differenza nell'architettura hardware: ad esempio, un file binario prodotto per CPU ARM non può essere interpretato da un sistema di elaborazione con CPU x86-64, dal momento che le istruzioni macchina delle due CPU differiscono
+    \item A parità di architettura hardware sistemi diversi possono supportare API diverse: ad esempio, Windows supporta le API Win32 e Win64 e non le API POSIX, supportate da Linux e macOS
+    \item A parità di architettura e API sistemi diversi possono supportare diversi formati per i file binari: ad esempio, Linux riconosce il formato ELF, mentre macOS riconosce il formato MachO
+    \item A parità di architettura, formato ed API può esservi differenza nelle chiamate di sistema che le implementano (se la libreria delle API è collegata staticamente)
+    \item A parità di architettura, formato ed API, anche se la libreria delle API è collegata dinamicamente (o le chiamate di sistema sono le stesse), può esservi una differenza nell'ABI
+    \item Solo quando tutti questi fattori sono identici un file binario è portabile da un sistema di elaborazione ad un altro
+\end{itemize}
+
+\section{Struttura del kernel}
+\subsection{Sottosistemi del kernel}
+Basati sulle categorie dei servizi offerti dal kernel stesso (e quindi sulle categorie delle chiamate di sistema). I principali sono:
+\begin{itemize}
+    \item Gestione dei processi e dei thread
+    \item Comunicazione tra processi e sincronizzazione
+    \item Gestione della memoria
+    \item Gestione dell'I/O
+    \item File system
+\end{itemize}
+
+\subsection{Organizzazione del kernel}
+Il kernel di un sistema operativo general-purpose è un programma
+\begin{itemize}
+    \item Di dimensioni elevate e complesso
+    \item Che deve operare molto rapidamente per non sottrarre tempo di elaborazione ai programmi applicativi
+    \item Un cui malfunzionamento può provocare il crash dell'intero sistema di elaborazione
+\end{itemize}
+Si pone quindi il problema di come progettarlo in maniera da garantire rapidità e correttezza nonostante dimensioni e complessità. Alcune possibilità:
+\begin{description}
+    \item[Struttura monolitica] quella che tipicamente intendiamo quando parliamo di kernel
+    \begin{itemize}
+        \item Il sistema operativo Unix originale aveva una struttura monolitica, dove il kernel è \underline{un singolo file binario statico}
+        \item Il kernel forniva un elevato numero di funzionalità:
+        \begin{itemize}
+            \item Scheduling CPU
+            \item File system
+            \item Gestione della memoria, swapping, memoria virtuale
+            \item Device drivers
+            \item …
+        \end{itemize}
+        \item \underline{Vantaggi}: elevate prestazioni
+        \item \underline{Svantaggi}:
+        \begin{itemize}
+            \item Complessità
+            \item Fragilità ai bug (crash di un singolo driver può causare crash dell'intero sistema)
+            \item Necessità di ricompilare il kernel (e riavviare il sistema) se bisogna aggiornare/aggiungere una funzionalità, ad esempio il driver per una nuova periferica
+        \end{itemize}
+    \end{itemize}
+    \item[Struttura a strati]
+    \begin{itemize}
+        \item Negli approcci stratificati il sistema operativo è diviso in un insieme di livelli, o strati
+        \item Lo strato più basso interagisce con l'hardware, lo strato \texttt{n-esimo} interagisce solo con lo strato \texttt{(n-1)-esimo}
+        \item L'approccio offre due vantaggi:
+        \begin{itemize}
+            \item Ogni strato può essere progettato e implementato indipendentemente dagli altri
+            \item È possibile verificare la correttezza di uno strato indipendentemente da quella degli altri
+            \item Ogni strato nasconde le funzionalità degli strati sottostanti e presenta allo strato soprastante una macchina dalle caratteristiche più astratte
+        \end{itemize}
+        \item In realtà pochi sistemi operativi usano questo approccio in maniera pura:
+        \begin{itemize}
+            \item È difficile definire esattamente quali funzionalità deve avere uno strato
+            \item Ogni strato introduce un overhead che peggiora le prestazioni
+        \end{itemize}
+        \item È comunque conveniente strutturare alcune parti del sistema operativo a strati (es. file system o stack di rete)
+    \end{itemize}
+    \item[Struttura a microkernel]
+    \begin{itemize}
+        \item Il principale problema dei kernel monolitici è la loro complessità, e di conseguenza fragilità e inaffidabilità
+        \item La struttura a microkernel sposta quanti più servizi possibile fuori dal kernel in programmi di sistema, mantenendo nel kernel l'insieme minimo di servizi indispensabili per implementare gli altri
+        \item Il kernel è definito microkernel dal momento che ha dimensioni molto ridotte
+        \item L'approccio è stato proposto negli anni 80 con il sistema operativo Mach
+        \item Un microkernel offre pochi servizi, di solito lo scheduling dei processi, (una parte della) gestione della memoria e la comunicazione tra processi
+        \item Gli altri servizi (es. filesystem e device drivers) vengono implementati a livello utente 
+        \item Per chiedere un servizio, un programma comunica con il programma di sistema che lo implementa attraverso le primitive di comunicazione offerte dal microkernel
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.5\textwidth]{../images/aa2324/SO_strutturadelkernel1.jpg}
+    \end{center}
+    \begin{itemize}
+        \item Vantaggi:
+        \begin{itemize}
+            \item Facilità di estensione del sistema operativo: posso aggiungere un nuovo servizio senza dover modificare il kernel
+            \item Maggiore affidabilità: se un servizio va in crash non manda in crash il kernel; un kernel piccolo può essere reso più affidabile con meno sforzo
+        \end{itemize}
+        \item Svantaggi:
+        \begin{itemize}
+            \item Overhead: una tipica richiesta di servizio deve transitare dal processo richiedente al microkernel, al processo di sistema destinatario, e viceversa, con molti passaggi tra user e kernel mode, comunicazioni, cambi di contesto\dots
+        \end{itemize} 
+        \item I sistemi a microkernel puri vengono usati nelle applicazioni che richiedono elevata affidabilità (QNX neutrino, L4se) 
+        \item Altri sistemi inizialmente a microkernel si sono evoluti in sistemi ibridi (Windows NT, Darwin - kernel di macOS e iOS)
+    \end{itemize}
+    \item[Struttura a moduli]
+    \begin{itemize}
+        \item Il kernel è strutturato in componenti dinamicamente caricabili (moduli), che parlano tra di loro attraverso interfacce
+        \item Quando il kernel ha bisogno di offrire un certo servizio, carica dinamicamente il modulo che lo implementa; quando il servizio non è più necessario, il kernel può scaricare il modulo
+        \item Questo approccio ha alcune caratteristiche di quelli a strati e a microkernel, ma i moduli eseguono in modalità kernel, e quindi con minore overhead (ma anche con minore isolamento tra di loro)
+    \end{itemize}
+    \item[Struttura ibrida]
+    \begin{itemize}
+        \item In pratica pochi sistemi operativi adottano una struttura "pura": quasi tutti combinano i diversi approcci allo scopo di ottenere sistemi indirizzati alle prestazioni, sicurezza, usabilità\dots
+        \item Esempio: Linux e Solaris sono monolitici per avere prestazioni elevate, ma supportano anche i moduli del kernel per poter caricare e scaricare dinamicamente funzionalità
+        \item Altro esempio: Windows inizialmente aveva una struttura a microkernel, successivamente diversi servizi sono stati riportati nel kernel per migliorare le prestazioni. Ora è essenzialmente monolitico, pur conservando alcune caratteristiche della precedente architettura a microkernel. Inoltre supporta i moduli del kernel
+    \end{itemize}
+\end{description}
+
+\section{Politiche e meccanismi}
+\begin{itemize}
+    \item Quando discutiamo come è realizzato il kernel è importante distinguere tra politiche e meccanismi
+    \item Una \textit{politica} dice \underline{quando una certa operazione viene effettuata}; ad esempio: sotto che condizioni il kernel decide che è il momento di sospendere l'esecuzione di un programma per far riprendere l'esecuzione di un altro?
+    \item Un \textit{meccanismo} spiega \underline{come una certa operazione è effettuata}; ad esempio: come fa il kernel a sospendere l'esecuzione di un programma in maniera che successivamente possa riprendere? Come fa a ripristinare l'esecuzione di un programma precedentemente sospeso?
+    \item Le politiche impattano profondamente sulle caratteristiche percepite del sistema di elaborazione, i meccanismi no (se sono sufficientemente rapidi)
+    \item I meccanismi sono più stabili delle politiche, che spesso cambiano in funzione delle caratteristiche percepite che vogliamo che il sistema di elaborazione abbia
+    \item Avere politiche configurabili è utile per combattere la maledizione della generalità
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
