@@ -1,0 +1,217 @@
+\chapter{Strato di rete}
+\section{Strato di rete: servizi e protocolli}
+Obiettivo: prendere i segmenti dal livello di trasporto, incapsularli con un proprio header e inviarli al destinatario.\\
+Ogni internet device (hosts, routers) ha i propri protocolli.\\ 
+Interpretato da tutti i dispositivi che fanno parte della rete (il livello di trasporto era solo per gli end system).\\
+A livello di routers deve:
+\begin{itemize}
+    \item esaminare gli header in tutti i datagrammi ip che passano
+    \item spostare i datagrammi da porta di ingresso a porta di uscita appropriata per trasferire il datagramma lungo il percorso
+\end{itemize}
+
+\subsection{Funzioni}
+\begin{description}
+    \item[Forwarding]: spostare i pacchetti da ingresso a uscita appropriata
+    \item[Routing]: determinare il percorso seguito dai pacchetti da sorgente a destinazione
+\end{description}
+
+\subsection{Data plane, control plane}
+\begin{description}
+    \item[Data plane]: determina come i pacchetti vengono inoltrati (forwarding)
+    \begin{itemize}
+        \item local, per-router function
+        \item determines how datagram arriving on router input port is forwarded to router output port
+    \end{itemize}
+    \item[Control plane]: determina come i pacchetti vengono instradati (routing)
+    \begin{itemize}
+        \item network-wide logic, a livello di rete complessiva
+        \item i routers devono comunicare fra loro in modo che il pacchetto segua un percorso end-to-end system
+        \item due approcci principali:
+        \begin{description}
+            \item[traditional routing algorithms]: implementati nei routers, in tutti i routers deve essere implementata una parte relativa al piano di controllo per creare un instradamento più sensato per il pacchetto.  La stragrande maggioranza delle reti adotta questo approccio.
+            \item[software-defined networking]: il piano di controllo è separato dal piano di dati, il piano di controllo non è presente nei routers ma in un controller esterno che comunica con i routers. Non la vedremo in questo corso.
+        \end{description}
+    \end{itemize}
+\end{description}
+
+\subsubsection{Per-router control plane}
+Individual routing algorithm components in each and every router interact in the control plane.\\
+C'è una separazione tra il piano di controllo e il piano di dati.\\
+A livello di piano di controllo c'è l'algoritmo di routing che agisce in modo distribuito su tutti i routers.\\
+A livello di piano di dati c'è la local forwarding table che agisce in modo locale su ogni router.
+
+\subsubsection{Software-Defined Networking (SDN) control plane}
+Remote controller computes, installs forwarding tables in routers.\\
+Praticamente un remote controller che agisce a livello globale, che comunica singolarmente con tutti i routers.
+
+\subsection{Network service model}
+Quale servizio viene offerto a livello di rete?\\
+Abbiamo un tipo di servizio "best-effort", faccio del mio meglio ma se fallisco fa niente.\\
+No guarantees on:
+\begin{enumerate}
+    \item successful datagram delivery to destination
+    \item timing or order of delivery
+    \item bandwidth available to end-end flow
+\end{enumerate}
+
+\subsubsection{Overview dell'architettura dei routers}
+Abbiamo un certo \# di porte (o interfacce, sono sinonimi) in input e una serie di porte in output (suddivisione logica, i ruoli sono scambiabili, ma vedremo meglio), separati da un box chiamato high-speed switching fabric (rete hardware molto performante), che ha il compito di commutare le porte di input in porte di output. Contiene una vera e propria rete implementata in hardware.\\
+Perché in hardware? Qua si apre una digressione sulla grande differenza fra piano dati e piano di controllo. Il nostro obiettivo è operare il più velocemente possibile e per fare ciò mi servono implementazioni hardware, che hanno tempi dell'ordine dei nanosecondi. Il routing processor che opera a livello di piano di controllo è a livello di software, quindi ha tempi dell'ordine dei millisecondi.\\
+Immagine.\\
+L'importante di questa high-speed switching fabric è che \textbf{non sia bloccante}, ovvero che non ci siano situazioni in cui un pacchetto non può essere inoltrato perché la rete è occupata.\\
+\textit{\underline{Le \textbf{porte di input} sono formate da}}:
+\begin{description}
+    \item[$\bullet$ strato fisico]: riceve stream di bit
+    \item[$\bullet$ strato di collegamento]: prende i bit e li raggruppa in frame
+    \item[$\bullet$ decentralized switching]: 
+    \begin{itemize}
+        \item using header field values, lookup output port using forwarding table in input port memory (“match plus action”)
+        \begin{itemize}
+            \item destination-based forwarding: forward based only on destination IP address (traditional)
+        \end{itemize}
+        \item \underline{goal}: complete input port processing at 'line speed'
+        \item \underline{input port queuing}: if datagrams arrive faster than forwarding rate into switch fabric
+    \end{itemize} 
+\end{description}
+
+Se abbiamo un \# di porte di input pari a $N$, e un \# di porte di output pari a $N$, che ricevono i datagrammi con un rate $R$, se l'high-speed switching fabric ha un rate pari a $N \cdot R$ (idealmente) allora non ci sono problemi, altrimenti va ridimensionata la switching fabric in modo che le porte non diventino bottle-neck.\\ 
+Un problema grave che porta ad aumentare il tempo che un datagramma accodato ad una rete di accesso è: \textbf{Head-of-the-Line (HOL) blocking}.\\
+
+If switch fabric slower than input ports combined --> queueing may occur at input queues (queueing delay and loss due to input buffer overflow!).\\
+Head-of-the-Line (HOL) blocking: queued datagram at front of queue prevents others in queue from moving forward.
+Manca un'immagine.
+
+\textit{\underline{Le \textbf{porte di output} sono formate da}}:
+\begin{description}
+    \item[$\bullet$ Buffering] required when datagrams arrive from fabric faster than link transmission rate. Drop policy: which datagrams to drop if no free buffers?
+    \begin{itemize}
+        \item Questo porta ad una perdita di datagrammi.
+    \end{itemize}
+    \item[$\bullet$ Scheduling] discipline chooses among queued datagrams for transmission
+    \begin{itemize}
+        \item Priority scheduling - who gets best performance
+    \end{itemize}
+\end{description}
+
+\subsection{Intestazione protocollo IP}
+Slide 16.\\
+\begin{description}
+    \item[$\bullet$ Version]: 4 bit, indica la versione del protocollo IP.
+    \item[$\bullet$ Header length]: 4 bit, indica la lunghezza dell'header in parole da 32 bit.
+    \item[$\bullet$ Type of service]: 8 bit, indica il tipo di servizio richiesto.\\
+    Non li vedremo, vengono usati per identificare datagrammi con priorità differente.
+    \item[$\bullet$ Total length]: 16 bit, indica la lunghezza totale del datagramma in byte.
+    \item[$\bullet$ 16-bit identifier]: 16 bit, identifica il datagramma.
+    \item[$\bullet$ Flags]: 3 bit. 
+    \item[$\bullet$ Fragment offset]: 13 bit.\\
+    I due sopra si occupano di frammentare il messaggio: fino a poco tempo fa la frammentazione poteva essere fatta anche a livello di rete, ora a livello di trasporto. Non si usa più quindi il libro non lo tratta.
+    \item[$\bullet$ Time to live]: 8 bit, indica il numero di router che il datagramma può attraversare prima di essere scartato. Viene decrementato di uno ad ogni router.\\
+    Molto importante perché evita che i datagrammi vadano in loop infinito nel caso in cui non arrivino a destinazione.
+    \item[$\bullet$ Upper layer]: 8 bit, indica il protocollo di livello superiore a cui il datagramma deve essere indirizzato una volta incapsulato.
+    \item[$\bullet$ Header checksum]: checksum effettuato solo sull'header (a livello di trasporto, effettuato sull'intero segmento).
+    \item[$\bullet$ Source IP address]: 32 bit, indirizzo IP del mittente.
+    \item[$\bullet$ Destination IP address]: 32 bit, indirizzo IP del destinatario. 
+    \item[$\bullet$ Options (if any)]: 0 o più opzioni, non usate di frequente. Record route taken.
+    \item[$\bullet$ Payload data]: variable length, typically a TCP or UDP segment.
+\end{description}
+
+\section{Indirizzamento IP}
+\subsection{Introduzione}
+\begin{description}
+    \item[$\bullet$ IP address]: 32-bit identifier associated with each host or router \textbf{interface}.
+    \item[$\bullet$ interface]: connection between host/router and physical link 
+    \begin{itemize}
+        \item routers typically have multiple interfaces
+        \begin{itemize}
+            \item port and interface are synonyms in our context
+        \end{itemize}
+        \item \textit{host} typically has one or two interfaces (e.g., wired Ethernet, wireless 802.11)
+    \end{itemize}
+\end{description}
+
+\subsubsection{Dotted-decimal IP notation}
+223.1.1.1 = 11011111 00000001 00000001 00000001 da mettere in tabella
+
+\subsubsection{Connessione di interfacce}
+Q: how are interfaces actually connected?\\
+A: we'll partially learn about that in chapter 6. For now: don't need to worry about how one interface is connected to another (with no router in between).
+
+\subsection{Subnets}
+\begin{description}
+    \item[$\bullet$ What's a subnet]?
+    \begin{itemize}
+        \item device interfaces that can physically reach each other without passing through a router
+    \end{itemize}
+    \item[$\bullet$ IP addresses have structure]:
+    \begin{description}
+        \item[$\bullet$ subnet part]: devices in same subnet have common high order bits\\
+        Anche chiamato \textbf{prefisso/prefix}.
+        \item[$\bullet$ host part]: remaining low order bits
+    \end{description}
+    \item[$\bullet$ Recipe for defining subnets]:
+    \begin{itemize}
+        \item detach each interface from its host or router, creating "islands" of isolated networks 
+        \item each isolated network is called a subnet
+        \item  what are the /24 subnet addresses?\\
+        Servono a dire quanti bit sono dedicati alla parte di subnet (da sinistra) e quanti alla parte di host.\\
+        A questo proposito parliamo di CIDR.
+    \end{itemize}
+    \item[$\bullet$ IP addressing: Classless (CIDR)]- CIDR:  \textbf{\underline{C}}lassless \textbf{\underline{I}}nter\textbf{\underline{D}}omain \textbf{\underline{R}}outing.
+    \begin{itemize}
+        \item subnet portion of address of arbitrary length
+        \item address format: \textbf{\texttt{a.b.c.d\slash x}}, where $x$ is \# bits in subnet portion of address                
+    \end{itemize}
+\end{description}
+
+Ho perso: IP addressing: Classful, Special IP addresses, Destination-based forwarding
+Dei due esempi sotto (slide 24, destination-based forwarding), il primo matcha con l'interfaccia 0, il secondo con l'interfaccia 1, ma ancje con la 2. Come si fa? Si segue la regola \textbf{\textit{longest prefix match}}: vince quella che ha un maggior numero di bit che matchano (when looking for forwarding table entry for given
+destination address, use longest address prefix that matches destination address). In questo caso l'interfaccia 1. Questo è importante perché succede mooolto spesso.
+
+\subsection{IP addresses: how to get one?}
+Sorgono due importanti domande:
+\begin{description}
+    \item[1.Q:] How does a host get IP address within its network (host part of address)?
+    \item[2.Q:] How does a network get IP address for itself (network part of address)?
+\end{description}
+How does a host get IP address?
+\begin{itemize}
+    \item Statically specified in config file of the OS (e.g., \slash etc\slash rc.config in UNIX)
+    \item DHCP: Dynamic Host Configuration Protocol: dynamically get address from as server ("plug-and-play")
+    \begin{description}
+        \item[goal:] host dynamically obtains IP address from network server when it "joins" the network
+        \begin{itemize}
+            \item can renew its lease on address in use
+            \item allows reuse of addresses (only hold address while connected/on)
+        \end{itemize}
+        \item[DHCP overview]:
+        \begin{itemize}
+            \item host broadcasts \textbf{DHCP discover} msg [optional]
+            \item DHCP server responds with \textbf{DHCP offer} msg [optional]
+            \item host requests IP address: \textbf{DHCP request} msg
+            \item DHCP server sends address: \textbf{DHCP ack} msg
+        \end{itemize}
+    \end{description}
+    DHCP can return more than just allocated IP address on subnet:
+    \begin{itemize}
+        \item name and IP address of the local DNS server
+        \item subnet mask (indicating network versus host portion of address)
+    \end{itemize}
+\end{itemize}
+\begin{description}
+    \item[Q:] how does network get subnet part of IP address?
+    \item[A:] gets allocated portion of its provider ISP's address space
+% immagine
+    \item[Hierarchical addressing: route aggregation:] hierarchical addressing allows efficient advertisement of routing information (route aggregation) % immagine
+    ISP1 chiede tutti i pacchetti che cominciano per 200.23.16.0/20, ISP2 chiede tutti i pacchetti che cominciano per 199.31.0.0/16 etc.\\
+    A sua volta può spedire i pacchetti verso gli indirizzamenti corretti con una subnet mask di \slash 23.\\
+    E se l'organizzazione 1 si spostasse da ISP1 a ISP2?\\
+    Organization 1 moves from ISP 1 to ISP 2. ISP 2 now advertises a more specific route to Organization 1.
+    \item[Q:] how does an ISP get block of addresses?
+    \item[A:] ICANN: Internet Corporation for Assigned Names and Numbers (\texttt{http://www.icann.org/})
+    \item[Q:] are there enough 32-bit IP addresses? 
+    \begin{itemize}
+        \item ICANN allocated last chunk of IPv4 addresses in 2011
+        \item NAT (next) helps IPv4 address space exhaustion
+        \item IPv6 has 128-bit address space 
+    \end{itemize}
+\end{description}
