@@ -54,7 +54,7 @@ Combinazione di filtri lineari = filtro lineare.\\
 La convoluzione è un filtro lineare.\\
 Riprendiamo es4 e out diventa $= glamour@(I + G)*0.5;$ combino op di convoluzione.
 
-\section{Gli assignment}
+\subsection{Gli assignment}
 nearest neighboor campiono le righe e le colonne e replico qualche valore, il problema è decidere quale.\\
 fare a mano il filtro di convoluzione. Anche abusando di cicli for. Nel caso filtro fuori dall'immagine, assumo valore 0 o scelgo un altro meccanismo (tipo scelgo solo una porzione di immagine su cui riesco a lavorare quinid output immagine più piccola).
 

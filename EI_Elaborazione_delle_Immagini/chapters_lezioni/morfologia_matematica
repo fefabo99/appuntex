@@ -1,0 +1,210 @@
+% 23/11/2023
+
+\chapter{Morfologia Matematica}
+Abbiamo l'output della segmentazione, su cui vogliamo operare. Possiamo fare tantissime cose.\\
+Useremo principalmente per pulire le segmentazioni.\\
+Elementi strutturanti: vanno a modificare l'immagine.
+
+\section{Morfologia Binaria}
+La Morfologia Binaria è un sistema di operatori algebrici che permette: 
+- di eliminare distorsioni di forma negli oggetti presenti in un'immagine binaria, tipicamente dovute a rumore di acquisizione
+- caratterizzare morfologicamente gli oggetti, permettendo di scomporre oggetti di forma complessa in un insieme di forme più semplici
+Gli operatori di morfologia si applicano sui pixel di una immagine normalmente
+binaria impiegando un elemento strutturante Gli elementi strutturanti (structuring elements) sono immagini tipicamente di
+dimensioni ridotte - che parametrizzano le operazioni
+
+\subsection{Morfologia binaria: elemento strutturante}
+I pixel bianchi in alcuni casi hanno un valore, ad esempio
+zero. Nella maggior parte delle operazioni base sono da
+intendersi come «do not care» ovvero da non considerare. Indicati con X nella nuova versione del libro di Gonzalez\\
+L'elemento strutturante solitamente è un disco, ma può essere di qualsiasi forma, anche composto da più regioni, ed il suo punto di riferimento può non coincidere con il baricentro (slide 9).\\
+Non necessariamente nel centro dell'elemento strutturante, il punto di applicazione può essere ovunque. Può anche non appartenere all'elemento strutturante (terza immagine nella fila in basso a sinistra nella slide 8).\\
+Un elemento strutturante non può non essere collegato.
+
+\subsection{Dilation e Erosion}
+Slide 4.\\
+Operazioni fondamentali: DILATIONe EROSIONDette anche somma e sottrazione di Minkowski. Operatori più complessi - apertura (opening), Chiusura(closing), ....- sono costruiti come combinazione dei precedenti.
+
+\subsubsection{Dilation}
+Slide 10.\\
+La dilation è l'insieme dei punti di riferimento p, per cui Bped A hanno almeno un punto in comune
+Intuitivamente: Immagine disegnata dal centrodell'elemento strutturante B quando viene ruotato all'ESTERNO del bordo dell'altro oggetto A. A è l'immagine, B viene detto elemento strutturante; la dilatazione “espande” A nel modo definito da B. Aumentando le dimensioni di B si ottiene un oggetto sempre più grande con contorni sempre più smooth, che assomiglia sempre più alla forma di B piuttosto che di A.\\
+Generalmente gli elementi strutturanti usati per la dilatazione contengono
+l'origine e sono simmetrici rispetto ad essa. L'effetto della trasformazione è allora
+quello di espandere, dilatare isotropicamente le regioni dell'immagine binaria che
+corrispondono agli oggetti \\
+Un esempio di dilation è per dire un pennellino che si posa su un pixel del bordo facendolo ingrossare. Oppure nella slide 12, le lettere rotte a sinistra sono fatte da segmenti spezzettati che con la dilation vengono ricongiunti.\\
+Slide 13.\\
+Slide 14. Se il quadrato verde in alto a sinistra è l'elemento strutturante, ottengo quello che vedo sotto.\\
+La slide 15 è un po' l'esempio di penna stilografica con punta flex che se premi si sdoppia e scrive doppio: se il mio elemento strutturante fosse fatto come B, quello che ottengo con ${(-1,0), (1,0)}$ è uno sdoppiamento delle righe.\\
+Es. slide 19: trovare la bounding box che contiene la firma di un pittore su un quadro. Ho un database di firme. Ale dice faccio dilatazione così che le regioni separate delle singole lettere o parole si uniscano, poi trovo una regione più o meno rettangolare (che dovrebbe essere la firma) usando la rettangolarità o la centricità (rapporto degli assi dell'ellisse di inerzia). Ora che ho la maschera (se la moltiplico per l'immagine originale ottengo la firma), come classifico la singola firma? Come capisco se è Monet, Picasso, Van Gogh? Lavoro sulla regione con i momenti di inerzia (Hu) che chiedono un'immagine in input e trovano descrittori invarianti rispetto a traslazione, rotazione, scala, ecc.\\
+Un altro modo per trovare la firma potrebbe essere la texture. Ci sono tante risposte diverse e non c'è necessariamente una sola risposta giusta. Posso usare i momenti di Hu, la texture, o entrambe insieme (spesso dovremo usare più descrittori/features diverse insieme, magari da normalizzare perché non sempre confrontabili, o fare le distanze e poi normalizzare le distanze: l'importante è che operino sugli stessi range di valori).
+
+\subsubsection{Dilation: proprietà}
+Alcune proprietà della dilatazione: 
+\begin{itemize}
+    \item La dilatazione è commutativa: 
+    \item La dilatazione è associativa 
+    \item la dilatazione è una trasformazione estensiva (l'insieme originario è contenuto nell'insieme dilatato) 
+    \item La dilatazione è una trasformazione crescente 
+\end{itemize}
+Una proprietà si dice \textbf{estensiva} se il suo valore dipende dalle dimensioni del corpo a cui ci si riferisce.\\
+Le cose seguenti vanno nell'elenco puntato:
+L'associatività della dilatazione (“chain rule”) consente di decomporre l'elemento strutturante in elementi di taglia inferiore ed eseguire l'operazione più velocemente mediante una successione di dilatazioni per gli elementi risultanti dalla decomposizione.
+• L'elemento strutturante di gran lunga più usato è il quadrato. L'implementazione della dilatazione per un quadrato 3x3 consiste semplicemente nell'aggiungere all'oggetto tutti i punti di sfondo che hanno almeno un vicino (nel senso della 8-connettività ) appartenente all'oggetto. In pratica, i contorni dell'oggetto vengono espansi di un pixel in tutte le direzioni.
+• Sfruttando la proprietà associativa, si implementa tipicamente solo l'elemento base 3x3. Gli operatori di taglia maggiore vengono implementati mediante successioni di dilatazioni per l'elemento base: con n dilatazioni per l'elemento base si ottiene un risultato equivalente alla dilatazione per un quadrato (2n + 1) x (2n + 1).
+
+\subsubsection{Filling by dilation}
+Slide 23.\\
+Riempimento dei contorni estratti IB mediante un edge detector, conoscendo almeno un pixel interno $X_0$.\\
+Sia $B$ l'elemento strutturante: matrice da scrivere\\
+Iteriamo la relazione da scrivere\\
+Quando il calcolo della relazione converge trascrivi
+
+\subsubsection{Erosion}
+Slide 26.\\
+L'erosion è l'insieme dei punti di riferimento p, per cui $B_p$ è interamente contenuto in AIntuitivamente: Immagine disegnata \textbf{dal centro} dell'elemento strutturante B quando viene ruotato all'INTERNO del bordo dell'altro oggetto A.\\
+L'erosione “riduce” l'immagine in funzione di B.\\
+Aumentando le dimensioni di B si ottiene un oggetto sempre più piccolo (fino a scomparire) con contorni sempre più smooth.
+
+Slide 27, es. di domanda a barriera.\\
+
+Generalmente gli elementi strutturanti usati per l'erosione contengono l'origine e sono simmetrici rispetto ad essa. L'effetto della trasformazione è allora quello di contrarre, rimpicciolire isotropicamente le regioni dell'immagine binaria che corrispondono agli oggetti.\\
+Se faccio differenza fra immagine erosion e immagine originale ottengo i contorni.\\
+Potrei usarla per trovare i "buchi" in un'immagine. Faccio erosion e poi differenza con l'immagine originale.\\
+Slide boh ne ho perse un po' (ho ascoltato ma non scritto).\\
+Slide 35: domanda tipica, quante monete ci sono? Erosion fino ad avere regioni distinte.\\
+Slide 36: erosion + dilation. L’applicazione di erosione e dilatazione in sequenza non ricostituisce la forma
+originale (solo in alcuni casi). Solo alcuni oggetti possono quindi essere dilatati od erosi in modo reversibile. L’effetto di \textbf{setacciamento selettivo} rispetto alla grandezza dipende solo dalla forma e dimensione dell’elemento strutturante.\\
+
+\subsubsection{Erosion: proprietà}
+Alcune proprietà della erosione: • La erosione NON e’ commutativa: • La erosione e’ associativa quando l’elemento
+strutturante e’ decomponibile in termini di dilatazioni. • la erosione è una trasformazione anti-estensiva
+(l’insieme eroso è contenuto nell’insieme originario) • La erosione è una trasformazione decrescente
+
+• L’associatività’ della erosione (“chain rule”) consente di decomporre l’elemento
+strutturante in elementi di taglia inferiore ed eseguire l’operazione più velocemente mediante una successione di erosioni per gli elementi risultanti dalla decomposizione.• L’elemento strutturante di gran lunga più usato e’ il quadrato. L’implementazione della dilatazione per un quadrato 3x3 consiste semplicemente nell’eliminare dall’oggetto tutti i punti di sfondo che hanno almeno un vicino (nel senso della 8-connettivita’ )
+appartenente all’oggetto. In pratica, i contorni dell’oggetto vengono contratti di un pixel in tutte le direzioni. • Sfruttando la proprietà associativa, si implementa tipicamente solo l’elemento base 3x3. Gli operatori di taglia maggiore vengono implementati mediante successioni di erosioni per l’elemento base: con n erosioni per l’elemento base si ottiene un risultato equivalente alla erosione per un quadrato (2n + 1) x (2n + 1).
+Va nell'elenco
+
+\subsection{Dilation e Erosion: recap}
+Slide 40.\\
+Ocio alla 41: può tornare utile al progetto usare un el. strutturante lineare.
+
+\subsection{Opening e Closing}
+\subsubsection{Opening}
+Slide 43.\\
+• OPENING (apertura): L’ apertura di A con B è la successione di una erosione (erosion) con B ed di una espansione (dilation) con B
+• Serve per correggere l’immagine, eliminare piccole regioni, separando tra loro
+oggetti vicini uniti da piccoli difetti morfologici.
+OPENING (apertura)
+Una sequenza di aperture ha lo stesso effetto di una singola apertura
+Da sistemare con l'ausilio di equazioni.
+
+Slide 46. Interessante come applicazione di opening con diverse aperture.\\
+Slide 47. Scrivi equazione. OPENING (apertura): L’ apertura di A con B è la successione di una erosione
+(erosion) con B ed di una espansione
+(dilation) con B 
+Come faccio a contare quanti pallini e quanti bastoncini ci sono? I pallini sono più spessi e più circolari dei bastoncini.
+
+\subsubsection{Closing}
+Slide 51.\\
+CLOSING (chiusura) La chiusura di A con B è la successione di una dall’espansione
+(dilation) con B, seguita dalla erosione (erosion) con B
+• Serve per correggere l’immagine, chiudendo piccoli buchi, ed unendo tra loro parti di
+oggetto vicine separate da piccoli difetti morfologici.
+• Apertura e chiusura godono delle proprietà di idempotenza (applicate più volte non
+cambiano il risultato finale)
+Slide 53. La corona sparisce perché più piccola dell'el. strutturante.\\
+Se vogliamo rimuovere i fori piccoli possiamo eseguire un’operazione di closing con un
+elemento strutturante circolare di diametro maggiore di quello dei fori piccoli e minore
+di quello dei fori grandi.
+Si noti che l’operazione di closing rimuove anche il contorno circolare interno. Perché?\\
+Slide 54. Interessante come applicazione di closing con diverse chiusure.
+
+\subsubsection{Proprietà opening e closing}
+Opening e closing non sono commutative
+• La trasformazione di opening è antiestensiva, quella di closing è estensiva 
+• Opening e closing sono trasformazioni crescenti
+
+\subsubsection{Opening e closing: recap}
+Slide 60 perfetta, trascrivi.
+
+\section{Proprietà degli oepratori morfologici}
+Slide 62.\\
+Indichiamo con $A^((r))$ una sequenza di \textit{r dilazioni}, e con $A^((-r))$ un sequenza di \textit{r erosioni} con cerchio unitario. 
+Regolando r, che corrisponde al variare le dimensioni dell’elemento strutturante, si possono estrarre o eliminare diverse caratteristiche facendo dei “filtraggi”.\\
+Poi un po' di esempi, tra cui un algoritmo di Thinning che non commenteremo ma trovabile sul libro.
+Slide 78: Osserviamo che, se si considera come elemento strutturante il cerchio unitario,
+l’erosione e’ l’insieme dei punti dell’oggetto i cui 8-vicini sono tutti elementi dell’oggetto. La dilation è quindi l’insieme dei punti del piano che o sono elementi dell’oggetto o hanno fra i loro 8-vicini almeno un elemento dell’oggetto. 
+
+\section{Estrazione del contorno}
+•È possibile ottenere un’immagine contenente solo i pixel appartenenti al contorno di F sottraendo il risultato dell’erosione all’immagine stessa• L’elemento strutturante determina lo spessore del contorno
+
+\section{Trasformata hit-and-miss}
+Operatore morfologico potente che lo Schettini fa "io non riesco mai a usare". Che succede in pratica se andiamo a operare su oggetto e sfondo contemporaneamente?\\
+Slide 71-72.  Operatore morfologico impiegato per individuare “features” in immagini binarie.
+• Negli operatori morfologici precedentemente studiati (opening, closing) i punti
+dell'elemento strutturante che determinano l'azione svolta dall'operatore sono in realtà
+solo quelli a “1”, mentre quelli a “0” possono essere visti come condizioni di indifferenza.
+Viceversa, l'azione svolta dalla trasformata hit-and-miss dipende sia dai punti a “1” sia dai
+punti a “0” dell'elemento strutturante. • Dato un elemento strutturante B contenente sia punti appartenenti all'oggetto (“1”) sia punti appartenenti allo sfondo (“0”), il risultato della trasformata hit-and-miss `e “1” solo nei punti in cui vi è un match perfetto fra B e l'immagine elaborata.
+
+La trasformata hit-and-miss può essere espressa come: EQUAZIONI DA RIPORTARE.
+Trasformata hit-and-missB1
+e B0
+sono rispettivamente l'insieme dei punti a “1” e l'insieme dei punti a “0” dell'elemento strutturante B. Ad esempio, considerando l'elemento strutturante B in grado di individuare i punti isolati (4-connettività):
+
+Remind: L'erosion è l'insieme dei punti di riferimento p, per cui Bp è interamente contenuto in A
+A fine slide 72, B1 opera sull'1 di B e B2 opera sugli 0 di B.
+
+Praticamente è un template matching che opera contemporaneamente su foreground e background.\\
+
+\section{Morfologia Matematica: recap}
+Teoria per l’elaborazione di immagini derivata dall’insiemistica. Rimuove particolari irrilevanti e mantiene le informazioni
+importanti delle forme.
+L’elemento strutturante parametrizza parametrizza le
+operazioni.
+Operazioni base: espansione, erosione, apertura, chiusura.
+Possibili operatori piu’ complessi: hit-or-miss. Labelling
+componenti connesse, scheletrizzazioni, minimo insieme convesso, .... 
+Può essere essere estesa a immagini a livello di grigio.
+
+\subsection{M. m. per immagini a livelli di grigio}
+Slide 85 piena di equazioni:
+La morfologia su immagini a livelli di grigio è difficile da trattare da un punto di vista
+formale; gli operatori che si estendono con più facilità sono la dilatazione e la erosione
+degli 8-vicini, usando rispettivamente Max livello di grigio dei vicini per la DILATION
+E Min livello di grigio dei vicini Per la EROSION
+Gli operatori morfologici per le immagini a livelli di grigio hanno le stesse proprietà dei
+corrispondenti operatori per le immagini binarie
+
+\subsubsection{Opening and closing}
+• L'opening elimina i dettagli chiari;
+• il closing elimina i dettagli scuri;
+• Le operazione di opening e closing si possono alternare per fare un filtraggio morfologico, anche incrementando le dimensioni dell'elemento strutturante
+
+L’opening elimina il picco, il closing riempie la valle. In entrambi i casi le altre parti del profilo rimangono inalterate.
+Manca equazione
+
+\subsection{Hat transform}
+Slide 103-109.\\
+La Trasformata Top-Hat è definito come il residuo dell'opening:
+• L'opening elimina i picchi della funzione più piccoli dell'elemento strutturante,
+• la differenza fra la funzione originaria e l'opening è una funzione in cui sono presenti solo
+tali picchi.
+La trasformata Top-Hat consente quindi di evidenziare e/o individuare i picchi della funzione
+di dimensione inferiore all'elemento strutturante. Nel caso delle immagini l'operatore viene
+impiegato per evidenziare e/o individuare dettagli chiari, piccoli rispetto all'elemento strutturante.
+
+Adattativo per quello che c'è intorno. Potrebbe essere utile per il progetto.
+
+Slide 109, quante macchine ci sono? Opening e top-hat trasformata, poi thresholding e trovo i puntini dei fari.
+
+\textbf{RICORDA}: quando usi un operatore morfologico, devi sempre sapere a grandi linee cosa fa, la logica. Perché dobbiamo saper dire come mai l'abbiamo scelto. Nella presentazione dovrò avere una slide di spiegazione\\
+
+
+
+
+
+<

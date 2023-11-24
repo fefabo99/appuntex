@@ -1,5 +1,5 @@
 % 47:00 lezione 04/10/2023
-\chapter{Processi e Threads}
+\chapter{Processi e Threads: i servizi}
 Vedremo sostanzialmente come i s.o. gestiscono \textbf{processi} e \textbf{thread} e cosa si intende con questi due termini.
 \section{Argomenti}
 \begin{itemize}
@@ -27,42 +27,6 @@ Uno \textit{stesso programma} può dare origine a \textit{diversi processi}:
     \item \underline{Diversi utenti} eseguono lo \underline{stesso programma}
     \item Uno \underline{stesso programma} viene eseguito \underline{più volte}, anche contemporaneamente, dallo \underline{stesso utente}
 \end{itemize}
-
-% \subsection{\textit{Multiprogrammazione} e \textit{multitasking}}
-% Obiettivi del sistema operativo:
-% \begin{itemize}
-%     \item Mantenere impegnata la (o le) CPU il maggior tempo possibile nell'esecuzione dei programmi (se ci sono programmi da eseguire)
-%     \item Dare l'illusione che ogni processo abbia una CPU dedicata
-% \end{itemize}
-% Due tecniche adottate nei sistemi operativi sono la \textbf{multiprogrammazione} e il \textbf{multitasking} (o \textbf{time-sharing}, sono sinonimi):
-% \begin{description}
-%     \item[Obiettivo della multiprogrammazione:] impedire che un programma che non è in condizione di proseguire l'esecuzione mantenga la CPU
-%     \item[Obiettivo del multitasking:] far sì che un programma interattivo reagisca agli input utente in un tempo accettabile (è una tecnica \textbf{non} rilevante per i sistemi puramente \textit{batch}, ma lo è principalmente per i programmi interattivi, che continuano a prendere dati dall'utente che li usa)
-% \end{description}
-
-% \subsubsection{Multiprogrammazione: l'implementazione}
-% Il sistema operativo mantiene in memoria i processi da eseguire.\\
-% Quando una CPU non è impegnata ad eseguire un processo, il sistema operativo seleziona un processo non in esecuzione e gli assegna la CPU.\\
-% Quando un processo non può proseguire l'esecuzione (ad es. perché deve attendere il termine dell'input di dati che gli servono per proseguire), la sua CPU viene assegnata ad un altro processo non in esecuzione.\\
-% Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno impegnate nell'esecuzione di qualche processo per la maggior parte del tempo. Questo risolve il problema dell'efficienza: \textit{non tenere le CPU ferme}.
-
-% \subsubsection{Multiprogrammazione: la memoria}
-% La multiprogrammazione richiede che tutte le immagini di tutti i processi siano in memoria perché questi possano essere eseguibili.\\
-% Se i processi sono troppi non possono essere contenuti tutti in memoria: la tecnica dello \textbf{swapping} può essere usata per spostare le immagini dentro/fuori dalla memoria. 
-% \begin{wrapfigure}{r}{0.2\textwidth}
-%     \begin{center}
-%         \includegraphics[width=0.2\textwidth]{images/aa2324/SO_multiprogrammazione1.jpg}
-%     \end{center}
-% \end{wrapfigure}
-% \definizione{\textbf{Swapping} significa che il s.o. può togliere la memoria (anche detta \textit{immagine}) di un processo dalla memoria centrale e caricare l'immagine di un altro processo.}
-% La memoria virtuale è un'ulteriore tecnica che permette di eseguire un processo la cui immagine non è completamente in memoria.\\
-% Queste tecniche aumentano il numero di processi che possono essere eseguiti in multiprogrammazione, ossia il grado di multiprogrammazione.\\
-% Es.: se in un istante sto eseguendo 100 processi, il grado di multiprogrammazione è 100. Se in un altro istante sto eseguendo 50 processi, in quell'istante il grado di multiprogrammazione sarà 50.
-
-% \subsubsection{Multitasking: l'implementazione}
-% \`E un'\textit{estensione della multiprogrammazione} per i \underline{sistemi interattivi}.\\
-% La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire. In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
-% Questo permette che i programmi batch, che effettuano poco I/O (e quindi vanno poco in attesa), non monopolizzino la CPU a discapito dei programmi interattivi.
 
 \subsection{Struttura di un processo}
 Un processo è composto da diverse parti:
@@ -261,53 +225,78 @@ Nelle API Win32 esiste un meccanismo simile, detto Asynchronous Procedure Call (
 
 \section{Le API POSIX per la comunicazione interprocesso}
 \subsection{Memoria condivisa in POSIX}
-• Un processo crea un segmento di memoria condivisa con la funzione
-shm_open:
-int shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
-• Anche usato per aprire un segmento precedentemente creato
-• Quindi imposta la dimensione del segmento con la funzione ftruncate:
-ftruncate(shm_fd, 4096);
-• Infine la funzione mmap mappa la memoria condivisa nello spazio di
-memoria del processo:
-void *shm_ptr = mmap(0, 4096, PROT_WRITE, MAP_SHARED, shm_fd, 0);
-• Da questo momento si può usare il puntatore shm_ptr ritornato da mmap
-per leggere/scrivere la memoria condivisa
+\begin{itemize}
+    \item Un processo crea un segmento di memoria condivisa con la funzione \texttt{shm\_open}:
+    \begin{verbatim}
+        int shm_fd = shm_open(name, O_CREAT | O_RDWR, 0666);
+    \end{verbatim}
+    \item Anche usato per aprire un segmento precedentemente creato
+    \item Quindi imposta la dimensione del segmento con la funzione ftruncate:
+    \begin{verbatim}
+        ftruncate(shm_fd, 4096);
+    \end{verbatim}
+    \item Infine la funzione mmap mappa la memoria condivisa nello spazio di memoria del processo:
+    \begin{verbatim}
+        void *shm_ptr = mmap(0, 4096, PROT_WRITE, MAP_SHARED, shm_fd, 0);
+    \end{verbatim}
+    \item Da questo momento si può usare il puntatore \texttt{shm\_ptr} ritornato da \texttt{mmap} per leggere/scrivere la memoria condivisa
+\end{itemize}
 
 \subsection{Pipe anonime in POSIX}
-• Vengono create con la funzione pipe, che ritorna due descrittori, uno
-per il punto di lettura e uno per il punto di scrittura:
-int p_fd[2];
-int res = pipe(p_fd);
-• Le funzioni read e write permettono di leggere e scrivere:
-ssize_t n_wr = write(p_fd[1], "Hello, World!", 14);
-char buffer[256];
-ssize_t n_rd = read(p_fd[0], buffer, sizeof(buffer) - 1);
-P.S.: di solito si usa la pipe quindi la \texttt{fork()} per comunicare tra processi padre e figlio.
-• È possibile utilizzare la funzione fdopen per fare il wrapping di un punto della pipe in un file, ed utilizzare le funzioni C stdio con esso
+\begin{itemize}
+    \item Vengono create con la funzione pipe, che ritorna due descrittori, uno per il punto di lettura e uno per il punto di scrittura:
+    \begin{verbatim}
+        int p_fd[2];
+        int res = pipe(p_fd);
+    \end{verbatim}
+    \item Le funzioni read e write permettono di leggere e scrivere:
+    \begin{verbatim}
+        ssize_t n_wr = write(p_fd[1], "Hello, World!", 14);
+        char buffer[256];
+        ssize_t n_rd = read(p_fd[0], buffer, sizeof(buffer) - 1);
+    \end{verbatim}
+    P.S.: di solito si usa la pipe quindi la \texttt{fork()} per comunicare tra processi padre e figlio.
+    \item È possibile utilizzare la funzione \texttt{fdopen} per fare il wrapping di un punto della pipe in un file, ed utilizzare le funzioni C stdio con esso
+\end{itemize}
 
 \subsection{Named pipes in POSIX}
-• Le named pipes vengono anche chiamate FIFO nei sistemi POSIX
-• Per creare una FIFO si utilizza l’API mkfifo:
-int res = mkfifo("/home/pietro/myfifo", 0640);
-• La FIFO si utilizza come un normale file:
-int fd = open("/home/pietro/myfifo", O_RDONLY);
-char buffer[256];
-ssize_t n_rd = read(fd, buffer, sizeof(buffer) - 1);
-• Al termine dell’utilizzo, ricordarsi di chiudere:
-close(fd);
-• Per eliminare la FIFO, usare l’API unlink:
-unlink("/home/pietro/myfifo");
+\begin{itemize}
+    \item Le named pipes vengono anche chiamate FIFO nei sistemi POSIX
+    \item Per creare una FIFO si utilizza l'API \texttt{mkfifo}:
+    \begin{verbatim}
+        int res = mkfifo("/home/pietro/myfifo", 0640);
+    \end{verbatim}
+    \item La FIFO si utilizza come un normale file:
+    \begin{verbatim}
+        int fd = open("/home/pietro/myfifo", O_RDONLY);
+        char buffer[256];
+        ssize_t n_rd = read(fd, buffer, sizeof(buffer) - 1);
+    \end{verbatim}
+    \item Al termine dell'utilizzo, ricordarsi di chiudere:
+    \begin{verbatim}
+        close(fd);
+    \end{verbatim}
+    \item Per eliminare la FIFO, usare l'API unlink:
+    \begin{verbatim}
+        unlink("/home/pietro/myfifo");
+    \end{verbatim}
+\end{itemize}
 
 \subsection{Segnali POSIX}
-Per inviare un segnale ad un processo utilizzare l’API kill:
-int ok = kill(1000, SIGTERM); /* terminazione al processo 1000 */
-Per registrare una callback per un determinato segnale utilizzare l’API
-sigaction:
-struct sigaction act;
-sigemptyset(&act.sa_mask); /* non bloccare altri segnali */
-act.sa_flags = SA_SIGINFO; /* callback in act.sa_sigaction */
-act.sa_sigaction = sigterm_handler; /* la callback */
-int ok = sigaction(SIGTERM, &act, NULL);
+\begin{itemize}
+    \item Per inviare un segnale ad un processo utilizzare l'API kill:
+    \begin{verbatim}
+        int ok = kill(1000, SIGTERM); /* terminazione al processo 1000 */
+    \end{verbatim}
+    \item Per registrare una callback per un determinato segnale utilizzare l'API sigaction:
+    \begin{verbatim}
+        struct sigaction act;
+        sigemptyset(&act.sa_mask); /* non bloccare altri segnali */
+        act.sa_flags = SA_SIGINFO; /* callback in act.sa_sigaction */
+        act.sa_sigaction = sigterm_handler; /* la callback */
+        int ok = sigaction(SIGTERM, &act, NULL);
+    \end{verbatim}
+\end{itemize}
 
 \section{Multithreading}
 Fino ad ora abbiamo assunto che un processo abbia un singolo flusso di esecuzione sequenziale (ossia, un singolo processore virtuale).\\
@@ -319,7 +308,8 @@ Se supponiamo che un processo possa avere molti processori virtuali, più istruz
         \includegraphics[width=0.3\textwidth]{images/aa2324/SO_Multithreading1.jpg}
     \end{center}
 \end{wrapfigure}
-I thread di uno stesso processo condividono la memoria globale (data), la memoria contenente il codice (code) e le risorse ottenute dal sistema operativo (ad esempio i file aperti).\\Ogni thread di uno stesso processo però deve avere un proprio stack, altrimenti le chiamate a subroutine di un thread interferirebbero con quelle di un altro thread concorrente.\\
+I thread di uno stesso processo condividono la memoria globale (data), la memoria contenente il codice (code) e le risorse ottenute dal sistema operativo (ad esempio i file aperti).\\
+Ogni thread di uno stesso processo però deve avere un proprio stack, altrimenti le chiamate a subroutine di un thread interferirebbero con quelle di un altro thread concorrente.\\
 Qua non è messo ma anche lo heap è condiviso.\\
 \textbf{Tipica domanda dell'esame: come funziona}.
 
@@ -332,117 +322,110 @@ Sono le API fornite al programmatore per creare e gestire thread. Librerie più 
 \end{itemize}
 
 \section{Le API POSIX per il multithreading}
-POSIX pthreads
-• Non sono un’implementazione, ma una specifica (POSIX standard IEEE
-1003.1c)
-• Comune nei sistemi Unix e Unix-like (BSD, Linux, macOS)
+\subsection{POSIX pthreads}
+Non sono un'implementazione, ma una specifica (POSIX standard IEEE 1003.1c).\\
+Comune nei sistemi Unix e Unix-like (BSD, Linux, macOS).
 
 \subsection{Creare un nuovo thread}
-• All’inizio un processo viene creato con un singolo thread
-• Per creare un nuovo thread si utilizza l’API pthread_create, per attendere la
-fine dell’esecuzione di un thread si utilizza l’API pthread_join:
-void *thread_code(void *name) { … }
-…
-pthread_id tid1, tid2;
-int ok1 = pthread_create(&tid1, NULL, thread_code, "thread 1");
-int ok2 = pthread_create(&tid2, NULL, thread_code, "thread 2");
-…
-void *ret1, *ret2;
-ok1 = pthread_join(tid1, &ret1);
-ok2 = pthread_join(tid2, &ret2);
-…
+\begin{itemize}
+    \item All'inizio un processo viene creato con un singolo thread
+    \item Per creare un nuovo thread si utilizza l'API \texttt{pthread\_create}, per attendere la fine dell'esecuzione di un thread si utilizza l'API \texttt{pthread\_join}:
+    \begin{verbatim}
+        void *thread_code(void *name) { … }
+        …
+        pthread_id tid1, tid2;
+        int ok1 = pthread_create(&tid1, NULL, thread_code, "thread 1");
+        int ok2 = pthread_create(&tid2, NULL, thread_code, "thread 2");
+        …
+        void *ret1, *ret2;
+        ok1 = pthread_join(tid1, &ret1);
+        ok2 = pthread_join(tid2, &ret2);
+        …
+    \end{verbatim}
+\end{itemize}
 
 \subsection{Aspetti particolari nelle API per il multithreading}
-• Chiamate di sistema fork() ed exec()
-• Gestione dei segnali
-• Cancellazione dei thread
-• Dati locali dei thread
+\begin{itemize}
+    \item Chiamate di sistema fork() ed exec()
+    \item Gestione dei segnali
+    \item Cancellazione dei thread
+    \item Dati locali dei thread
+\end{itemize}
 
-\subsection{Chiamate di sistema fork() ed exec()}
-• Una fork() dovrebbe duplicare solo il thread chiamante o tutti i
-thread? Alcuni sistemi operativi Unix-like hanno due diverse fork()
-• exec() invocata da un thread che effetto ha sugli altri thread? Di
-solito termina tutti i thread del processo precedentemente in
-esecuzione
+\subsection{Chiamate di sistema \texttt{fork()} ed \texttt{exec()}}
+Una \texttt{fork()} dovrebbe duplicare solo il thread chiamante o tutti i thread? Alcuni sistemi operativi Unix-like hanno due diverse \texttt{fork()}.\\
+\texttt{exec()} invocata da un thread che effetto ha sugli altri thread? Di solito termina tutti i thread del processo precedentemente in esecuzione.
 
 \subsection{Gestione dei segnali}
-• Quando un processo è single-threaded, un segnale interrompe l’unico
-thread del processo
-• Quando vi sono più thread, quale thread riceve il segnale?
-• Possibili soluzioni:
-• Il thread a cui si applica il segnale (ad es. il segnale SIGSEGV viene inviato al
-thread che ha generato il segmentation fault)
-• Ogni thread del processo
-• Alcuni thread del processo
-• Un thread speciale del processo deputato esclusivamente alla ricezione dei
-segnali
+\begin{itemize}
+    \item Quando un processo è single-threaded, un segnale interrompe l'unico thread del processo
+    \item Quando vi sono più thread, quale thread riceve il segnale?
+    \item Possibili soluzioni:
+    \begin{itemize}
+        \item Il thread a cui si applica il segnale (ad es. il segnale SIGSEGV viene inviato al thread che ha generato il segmentation fault)
+        \item Ogni thread del processo
+        \item Alcuni thread del processo
+        \item Un thread speciale del processo deputato esclusivamente alla ricezione dei segnali
+    \end{itemize}
+\end{itemize}
 
 \subsection{Cancellazione dei thread}
-• L’operazione di cancellazione di un thread determina la terminazione
-prematura del thread
-• Può essere invocata da un altro thread
-• Due approcci (\textbf{tipicamente chiesta all'esame}):
-• Cancellazione asincrona: il thread che riceve la cancellazione viene terminato
-immediatamente
-• Cancellazione differita: un thread che supporta la cancellazione differita deve controllare periodicamente se esiste una richiesta di cancellazione pendente, e in tal
-caso terminare la propria esecuzione
-• Vantaggi:
-• Cancellazione differita: dal momento che un thread controlla il momento della
-propria cancellazione, può effettuare una terminazione ordinata
-• Cancellazione asincrona: nessuna necessità di controllare periodicamente se ci sono
-richieste di cancellazione pendenti
+\begin{itemize}
+    \item L'operazione di cancellazione di un thread determina la terminazione prematura del thread
+    \item Può essere invocata da un altro thread
+    \item Due approcci (\textbf{tipicamente chiesta all'esame}):
+    \begin{description}
+        \item[Cancellazione asincrona]: il thread che riceve la cancellazione viene terminato immediatamente
+        \item[Cancellazione differita]: un thread che supporta la cancellazione differita deve controllare periodicamente se esiste una richiesta di cancellazione pendente, e in tal caso terminare la propria esecuzione
+    \end{description}
+    \item Vantaggi:
+    \begin{description}
+        \item[Cancellazione differita]: dal momento che un thread controlla il momento della propria cancellazione, può effettuare una terminazione ordinata
+        \item[Cancellazione asincrona]: nessuna necessità di controllare periodicamente se ci sono richieste di cancellazione pendenti
+    \end{description}
+\end{itemize}
 
 \subsection{Cancellazione nei POSIX pthreads}
-• Si può attivare/disattivare la cancellazione, ed avere sia cancellazione
-differita (default) che asincrona
-• Se la cancellazione è inattiva, le richieste di cancellazione rimangono
-in attesa fino a quando (se) è attivata
-• In caso di cancellazione differita, questa avviene solo quando
-l’esecuzione del thread raggiunge un punto di cancellazione (di solito
-una chiamata di sistema bloccante)
-• Il thread può aggiungere un punto di cancellazione controllando
-l’esistenza di richieste di cancellazione con la funzione
-pthread_testcancel()
+\begin{itemize}
+    \item Si può attivare/disattivare la cancellazione, ed avere sia cancellazione differita (default) che asincrona
+    \item Se la cancellazione è inattiva, le richieste di cancellazione rimangono in attesa fino a quando (se) è attivata
+    \item In caso di cancellazione differita, questa avviene solo quando l'esecuzione del thread raggiunge un punto di cancellazione (di solito una chiamata di sistema bloccante)
+    \item Il thread può aggiungere un punto di cancellazione controllando l'esistenza di richieste di cancellazione con la funzione \texttt{pthread\_testcancel()}
+\end{itemize}
 
 \subsubsection{Esempio}
-void *thread_code(void *name) {
- int oldtype, oldstate;
- pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &oldtype);
- pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
- while (true) {
- pthread_testcancel();
- … /* fa qualcosa di non interrompibile ma di durata finita */
- }
-}
-…
-pthread_id tid;
-int ok = pthread_create(&tid, NULL, thread_code, "thread 1");
-… /* dopo un po' */
-ok = pthread_cancel(tid);
-void *ret;
-ok = pthread_join(tid, &ret);
+\begin{verbatim}
+    void *thread_code(void *name) {
+        int oldtype, oldstate;
+        pthread_setcanceltype(PTHREAD_CANCEL_DEFERRED, &oldtype);
+        pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, &oldstate);
+        while (true) {
+            pthread_testcancel();
+            … /* fa qualcosa di non interrompibile ma di durata finita */
+        }
+    }
+    …
+    pthread_id tid;
+    int ok = pthread_create(&tid, NULL, thread_code, "thread 1");
+    … /* dopo un po' */
+    ok = pthread_cancel(tid);
+    void *ret;
+    ok = pthread_join(tid, &ret);
+\end{verbatim}
 
 \subsection{Dati locali dei thread}
-• In alcuni casi è utile assegnare ad un thread dei dati locali (thread
-local storage, TLS) non condivisi con gli altri thread dello stesso
-processo
-• La TLS è diversa dalle variabili locali (ad es. è visibile a tutte le
-funzioni)
-• Simile ai dati static del linguaggio C, ma unica per ciascun thread
-• Utile quando il programma non ha un controllo diretto sul momento
-di creazione dei thread (es. quando si usano i thread pools)
+\begin{itemize}
+    \item In alcuni casi è utile assegnare ad un thread dei dati locali (thread local storage, TLS) non condivisi con gli altri thread dello stesso processo
+    \item La TLS è diversa dalle variabili locali (ad es. è visibile a tutte le funzioni)
+    \item Simile ai dati \texttt{static} del linguaggio C, ma unica per ciascun thread
+    \item Utile quando il programma non ha un controllo diretto sul momento di creazione dei thread (es. quando si usano i thread pools)
+\end{itemize}
 
 \subsubsection{Nei POSIX pthreads}
-• In POSIX i dati locali dei thread si possono creare utilizzando le
-funzioni pthread_key_create(),
-pthread_getspecific() e pthread_setspecific()
-• pthread_key_create() crea un oggetto opaco di tipo
-pthread_key_t, che può essere usato da tutti i thread per
-identificare un dato locale
-• pthread_setspecific() permette di associare ad una
-pthread_key_t un valore di tipo void*
-,
-pthread_getspecific() di richiamarlo data la chiave
-• Ogni thread può associare ad una stessa chiave il proprio distinto
-valore locale (e successivamente richiamarlo)
-Di solito non chiesti all'esame.
+\begin{itemize}
+    \item In POSIX i dati locali dei thread si possono creare utilizzando le funzioni \texttt{pthread\_key\_create()}, \texttt{pthread\_getspecific()} e \texttt{pthread\_setspecific()}
+    \item \texttt{pthread\_key\_create()} crea un oggetto opaco di tipo \texttt{pthread\_key\_t}, che può essere usato da tutti i thread per identificare un dato locale
+    \item \texttt{pthread\_setspecific()} permette di associare ad una \texttt{pthread\_key\_t} un valore di tipo \texttt{void*}, \texttt{pthread\_getspecific()} di richiamarlo data la chiave 
+    \item Ogni thread può associare ad una stessa chiave il proprio distinto valore locale (e successivamente richiamarlo)\\
+    Di solito non chiesti all'esame.
+\end{itemize}

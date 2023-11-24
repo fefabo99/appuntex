@@ -1,0 +1,14 @@
+% 23/11/2023
+
+\chapter{Descrizione di regioni ed immagini}
+\section{Per forma}
+\subsection{Matching / Riconoscimento}
+Ha parlato di anomaly detection, ma mi sono persa. boh vb
+spero riprenda
+
+
+lui fa quella per contorni la uso meno se non per anomalia, per fare la cosa della slide 10 (yuk) guardo le simmetrie: "sopra va bene sotto?" 
+
+quando c'è una semantica sembra essere meglio con i contorni.
+
+NB abbiamo aprlanto tanto di media deviazione standard e skewness (quanto è speculare un istogramma, studia la distribuzione del colore).

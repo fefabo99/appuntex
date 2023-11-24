@@ -1,0 +1,125 @@
+\chapter{Processi e thread: la struttura}
+\subsection*{Argomenti}
+\begin{itemize}
+    \item Multiprogrammazione e multitasking
+    \item Implementazione dei processi
+    \item Implementazione del multithreading
+    \item Criteri di valutazione algoritmi di scheduling
+    \item Principali algoritmi di scheduling
+    \item Code multilivello con retroazione
+\end{itemize}
+
+\section{Multiprogrammazione e multitasking}
+\subsection{Multiprogrammazione e multitasking}
+Due obiettivi dei sistemi operativi:
+\begin{description}
+    \item[Efficienza]: mantenere impegnata la (o le) CPU il maggior tempo possibile nell'esecuzione dei programmi (se ci sono programmi da eseguire) 
+    \item[Reattività]: dare l'illusione che ogni processo progredisca continuamente nella propria esecuzione, come se avesse una CPU dedicata; questo è particolarmente importante per i programmi interattivi, che devono reagire in tempi accettabili quando ricevono un input utente
+\end{description}
+Le due tecniche adottate nei sistemi operativi per ottenere questi due obiettivi sono la \textbf{multiprogrammazione} e il \textbf{multitasking} (o \textbf{time-sharing})
+\begin{itemize}
+    \item \textbf{\underline{Obiettivo della multiprogrammazione}}: impedire che un programma che non è in
+    condizione di proseguire l'esecuzione mantenga la CPU
+    \item \textbf{\underline{Obiettivo del multitasking}}: far sì che un programma interattivo possa reagire agli input utente in un tempo accettabile
+    \item Notare che la multiprogrammazione non è una tecnica rilevante per i sistemi puramente batch
+\end{itemize}
+
+\subsection{Burst CPU e burst I/O}
+L'obiettivo della multiprogrammazione è massimizzare l'utilizzo della CPU.\\
+Gli algoritmi di scheduling sfruttano il fatto che di norma l'esecuzione di un processo è una sequenza di:
+\begin{description}
+    \item[$\bullet$ Burst della CPU:] sequenza di operazioni di CPU
+    \item[$\bullet$ Burst dell'I/O:] attesa completamento operazione di I/O
+\end{description}
+
+\subsection{Distribuzione delle durate dei burst della CPU}
+\begin{wrapfigure}{r}{0.425\textwidth}
+    \begin{center}
+        \includegraphics[width=0.425\textwidth]{images/aa2324/SO_processithreadstruttura2.jpg}
+    \end{center}
+\end{wrapfigure}
+
+Programma con prevalenza di I/O (\textbf{I/O bound}):
+\begin{itemize}
+    \item Elevato numero di burst CPU brevi
+    \item Ridotto numero di burst CPU lunghi
+    \item Tipico dei programmi interattivi
+\end{itemize}
+Programma con prevalenza di CPU (\textbf{CPU bound}):
+\begin{itemize}
+    \item Elevato numero di burst CPU lunghi
+    \item Ridotto numero di burst CPU brevi
+    \item Tipico dei programmi batch
+\end{itemize}
+In entrambi i casi la curva della distribuzione ha la forma riportata accanto, ma:
+\begin{itemize}
+    \item I/O bound: il massimo sta più a sinistra
+    \item CPU bound: il massimo sta più a destra
+\end{itemize}
+
+\subsection{Multiprogrammazione: l'implementazione}
+Il sistema operativo mantiene in memoria i processi da eseguire.\\
+Quando una CPU non è impegnata ad eseguire un processo, il sistema operativo seleziona un processo non in esecuzione e gli assegna la CPU.\\
+Quando un processo non può proseguire l'esecuzione (ad es. perché deve attendere il termine dell'input di dati che gli servono per proseguire), la sua CPU viene assegnata ad un altro processo non in esecuzione.\\
+Come risultato, se i programmi da eseguire sono più delle CPU, queste saranno impegnate nell'esecuzione di qualche processo per la maggior parte del tempo. Questo risolve il problema dell'efficienza: \textit{non tenere le CPU ferme}.
+
+\subsection{Multitasking: l'implementazione}
+\`E un'\textit{estensione della multiprogrammazione} per i \underline{sistemi interattivi}.\\
+La CPU viene "sottratta" \underline{periodicamente} al programma in esecuzione ed assegnata ad un altro programma. Quindi non più solo quando il programma non è più in grado di proseguire ma anche ogni tot, così tutti i programmi hanno la possibilità di progredire. In questo modo tutti i programmi progrediscono in maniera continuativa nella propria esecuzione, anziché solo nei momenti in cui il programma che detiene la CPU si mette in attesa.\\
+Questo fa sì che i programmi batch, che hanno burst CPU lunghi e pochi burst I/O (effettuano poco I/O (e quindi vanno poco in attesa)), non monopolizzino la CPU a discapito dei programmi interattivi.
+
+\subsection{Multiprogrammazione: la memoria}
+La multiprogrammazione richiede che tutte le immagini di tutti i processi siano in memoria perché questi possano essere eseguibili.\\
+Se i processi sono troppi non possono essere contenuti tutti in memoria: la tecnica dello \textbf{swapping} può essere usata per spostare le immagini dentro/fuori dalla memoria. 
+\begin{wrapfigure}{r}{0.2\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{images/aa2324/SO_multiprogrammazione1.jpg}
+    \end{center}
+\end{wrapfigure}
+\definizione{\textbf{Swapping} significa che il s.o. può togliere la memoria (anche detta \textit{immagine}) di un processo dalla memoria centrale e caricare l'immagine di un altro processo.}
+La \textbf{memoria virtuale} è un'ulteriore tecnica che permette, se l'immagine di un processo è troppo grande, di eseguire un processo la cui immagine non è completamente in memoria.\\
+Queste tecniche aumentano il numero di processi che possono essere eseguiti in multiprogrammazione, ossia il grado di multiprogrammazione.\\
+Es.: se in un istante sto eseguendo 100 processi, il grado di multiprogrammazione è 100. Se in un altro istante sto eseguendo 50 processi, in quell'istante il grado di multiprogrammazione sarà 50.
+
+\section{Implementazione dei processi}
+\subsection{Process Control Block (PCB)}
+\begin{wrapfigure}{r}{0.2\textwidth}
+    \begin{center}
+        \includegraphics[width=0.2\textwidth]{images/aa2324/SO_processithreadstruttura3.jpg}
+    \end{center}
+\end{wrapfigure}
+Detto anche task control block.\\
+È la struttura dati del kernel che contiene tutte le informazioni relative ad un processo:
+\begin{itemize}
+    \item Process state: ready, running\dots
+    \item Process number (o PID): identifica il processo
+    \item Program counter: contenuto del registro "istruzione successiva"
+    \item Registers: contenuto dei registri del processore
+    \item Informazioni relative alla gestione della memoria: memoria allocata al processo
+    \item Informazioni sull'I/O: dispositivi assegnati al processo, elenco file aperti\dots
+    \item Informazioni di scheduling: priorità, puntatori a code di scheduling\dots
+    \item Informazioni di accounting: CPU utilizzata, tempo trascorso\dots
+\end{itemize}
+
+\subsection{Stati di un processo}
+Durante l'esecuzione, un processo cambia più volte stato.\\
+Gli stati possibili di un processo sono:
+\begin{itemize}
+    \item \underline{Nuovo (\textbf{new})}: il processo è creato, ma non ancora ammesso all'esecuzione
+    \item \underline{Pronto (\textbf{ready})}: il processo può essere eseguito (è in attesa che gli sia assegnata una CPU)
+    \item \underline{In esecuzione (\textbf{running})}: le sue istruzioni vengono eseguite da qualche CPU
+    \item \underline{In attesa (\textbf{waiting})}: il processo non può essere eseguito perché è in attesa che si verifichi qualche evento (ad es. il completamento di un'operazione di I/O)
+    \item \underline{Terminato (\textbf{terminated})}: il processo ha terminato l'esecuzione
+\end{itemize}
+
+\subsection{Diagramma di transizione di stato dei processi}
+\begin{center}
+    \includegraphics[width=0.625\textwidth]{images/aa2324/SO_processithreadstruttura4.jpg}
+\end{center}
+
+
+
+
+
+
+

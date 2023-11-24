@@ -1,18 +1,13 @@
-chapter{Lab3}
-\section{Filtro mediano}
-\subsection{Es.1}
-Per ogni pixel da processare, prende l-intorno lo analizza e valuta il filtro da applicare.\\
-Non lineare.\\
-Perfetto per rimuovere rumore s\&p. Non genera nuovi valori nell'immagine ma rigenera quelli già presenti.\\
+\section{Lab3}
+\subsection{Es.1 - Filtro mediano}
+Per ogni pixel da processare, prende l-intorno lo analizza e valuta il filtro da applicare.\\ Non lineare.\\ Perfetto per rimuovere rumore s\&p. Non genera nuovi valori nell'immagine ma rigenera quelli già presenti.\\
 Rimane un pixel di rumore, come mai? Ale ha detto la risposta ma non mi ricordo.\\
 Il f.m. è un buon filtro, ma attenzione: a seconda della dimensione aumento o diminuisco la probabilità di beccare un filtro di rumore.\\
 Con 5x5 invece di 3x3 sparisce il pixel bianco.\\
 Ad aumentare il filtro spariscono i pixel residui di rumore ma si perdono dettagli dell'immagine.\\
 Filtro troppo alti me la rendono "cartoonizzata", mantiene i bordi ma sfoca le singole regioni.
 
-\section{Immagini a colori}
-\subsection{Spazio RGB}
-\subsubsection{Es.2}
+\subsection{Es.2 - Immagini a colori, spazio RGB}
 Non sono array \textbf{bidimensionali} ma \textbf{tridimensionali}.\\
 Un canale colore è la risposta di un filtro che seleziona una certa regione della lunghezza d'onda del visibile (ovvero quanto il dispositivo di acquisizione è stato sensibile nell'acquisizione delle lunghezze elettromagnetiche). Queste risposte sono convertite in numeri.\\
 Es.: rosso, quanto è presente l'onda elettromagnetica della regione che corrisponde al rosso? Si comporta (\textit{\textbf{in ogni singolo canale}}) come il livello di grigio, perché mi calcola l'intensità del colore di quel canale (banalmente, noi lo traduciamo con "quanto colore c'è").\\
@@ -33,11 +28,11 @@ Ricorda:
     \item[grigio:] presenza di informazione colore di tutti e tre i canali ma in quantità equa.
 \end{description}
 
-\subsection{Spazio HSV}
+\subsubsection{Spazio HSV}
 Ma non basta RGB? Dipende dall'utilizzo che ne facciamo. Danno informazioni che da RGB non posso avere. Ce ne sono decine di spazi colori, noi a teoria ne abbiamo visti alcuni.\\
 HSV codifica dello spazio colore che dà informazioni su tinta, saturazione e valore.
 
-\subsubsection{Es.3}
+\subsection{Es.3}
 YCbCr\\
 Y canale informazione luminanza, ovvero la quantità di luce che c'è in un punto, quanto è forte quel pixel in quella posizione.\\
 Cb dice quanto è blu il colore.\\
@@ -47,17 +42,14 @@ Cb e Cr dicono contemporaneamente quanto è blu vs quanto verde c'è. Parlano di
 Blu verso giallognolo, rosso verso verde.\\
 Si possono processare le immagini indipendentemente dall'intensità della luce.
 Nell'equazione (prodotto matrice per vettore) il primo vettore, a sinistra del $+$, è l'offset. Ho tutto traslato in un range positivo (lo 0, l'assenza di colore, è pura Y e Cr e Cb a 128, perché da una parte andiamo sul blu e dall'altra sul giallo).\\
-\\
-HSV\\
-Trasformazione non lineare di RGB.\\
+\\ HSV\\ Trasformazione non lineare di RGB.\\
 H (angolo, codificata come cerchio) - tinta - percezione del colore.\\
 S (valore lineare) - saturazione - quanto è "pieno".\\
 V (valore lineare) - value - intensità luminosa.\\
 
 Big big nope: non fare istogramma per H. Il valore a 0 e a 360 sono uguali (siamo in un cerchio), bisognerebbe fare un istogramma circolare \texttt{(?!)}.
 
-\subsection{Rumore nelle immagini a colore}
-\subsubsection{Es.4}
+\subsection{Es.4 - Rumore nelle immagini a colore}
 Spacchetto nei tre canali poi ricostruisco l'immagine con i canali filtrati tramite il comando:
 \begin{verbatim}
     R2 = imfilter(R,GF);
@@ -71,15 +63,15 @@ Posso fare direttamente
 \end{verbatim}
 Perché le immagini a colori vengono filtrate per canale in automatico.
 
-\subsubsection{Es.5}
+\subsection{Es.5}
 Rumore spike, sono valori molto netti. Rumore s\&p colorato.\\
 Applichiamo filtro mediano (quello che si usa nel caso di s\&p). Problema: per matlab è bidimensionale il filtro mediano. Dobbiamo spacchettare nei canali.\\
 Plot-twist: esiste \texttt{medfilt3} che fa il filtro mediano in 3 dimensioni.
 
-\subsubsection{Es.6}
+\subsection{Es.6}
 Non ho scritto niente.
 
-\subsubsection{Es.7}
+\subsection{Es.7}
 Filtri di edge, lineari, nella convoluzione otteniamo sia val pos che neg perché approssimano le derivate.\\
 A noi interessa di più l'effetto finale.\\
 Esiste la funzione \texttt{edge} che applica un filtro di gradiente e una sogliatura e mi ritorna un'immagine binaria con i bordi.\\
