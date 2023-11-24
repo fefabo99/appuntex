@@ -1,0 +1,16 @@
+Cosa si potrebbe usare per riconoscere e descrivere?
+
+Sulla texture avevamo visto dei descrittori scalari (entropia etc).
+
+SLIDE 7 Le proprietà esterne sono quelle di SHAPE.
+
+Estrazione del contorno slide 24:
+
+Esercizio slide 48
+Date le forme estraggo le signature:
+per estrarre le signature prendo il punto di partenza più lontano (invariante alle rotazioni).
+Ma ogni quanti gradi prendo la signaature? decido un campionamento.
+
+Ora ho due vettori (uno dell'oggetto e uno del template), li confronto e assegno quale è più vicino (distanza euclidea (?)).
+
+Filtrare poteva essere un'idea.
