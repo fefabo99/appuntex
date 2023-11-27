@@ -1,0 +1,47 @@
+\chapter{Analisi e Classificazione delle Immagini}
+Il pattern recognition che affronteremo noi assume che le condizioni siano abbastanza controllate.
+
+
+Classificazione: ho una base di dati (per esempio carte di uno) e devo dire quale carta è.
+Riconoscimento e classificazione sono processi diversi: riconoscimento riconosce un oggetto specifico (tipo una persona specifica),
+nella classificazione riconosco una classe di oggetti.
+
+Il riconoscimento di forme e oggetti nelle immagini non si può basarae su elementi puntuali, locali o globali, ma deve
+basarsi su come questi attributi locali si combinano tra loro e vengono interpretati dall'essere umano.
+\\L'analisi delle immagini può essere fatta a diversi livelli: Basso, medio e alto.
+\paragraph{Analisi di Basso Livello}
+Nell'analisi di Basso livello abbiamo in ingresso le immagini,
+e in uscita avremo un insieme di matrici, ognuna delle quali descrive un particolare attributo rilevato sulla scena.
+
+Dal punto di vista computazionale:
+\begin{itemize}
+    \item è spesso indipendente dal tipo di applicazione finale.
+    \item Si basa su modellis statistici legati a proprietà locali.
+    \item è spesso legata al processo di riduzione dei disturbi e le distorsioni del processo di acquisizione e trasmissione.
+    \item In genere prepara per un'elaborazione successiva 
+\end{itemize}
+Questo tipo di analisi è una trasformazione del tipo:
+\begin{center}
+    Immagine $\to$ Immagine 
+\end{center}
+
+\paragraph{Analisi di Livello Intermedio}
+La descrizione per pixel della scena è troppo complessa per essere utile in applicazioni pratiche.
+Per ottenre una descrizione significativa il primo passo è la \textbf{Segmentazione}, in cui associamo dei descrittori ad ogni segmento.
+\\Questo tipo di analisi è una trasformazione del tipo:
+\begin{center}
+    Immagine $\to$ Parametri
+\end{center}
+Otteniamo quindi delle informazioni quantificabili dall'immagine attraverso la segmentazione.
+
+\paragraph{Analisi di Alto Livello}
+Questo tipo di analisi viene definita di alto livello in analogia alla visione umana e spesso impiega tecniche
+di intelligenza artificiale.
+\\La trasformazione in questo caso è di tipo:
+\begin{center}
+    Parametri $\to$ Simboli
+\end{center}
+Ha quindi in ingresso dei descrittori e in uscita una \textbf{Classificazione} o interpretazione.
+
+\subsection{Segmentazione}
+La segmentazione è quindi l'individuazione di regioni omogenee. Ci sono moltissimi approcci per segmentare un'immagine.
