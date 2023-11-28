@@ -31,5 +31,27 @@ Dove \texttt{m(1)} è la media del canale rosso e \texttt{s(1)} è la deviazione
 \begin{verbatim}
     predicted = mask_r & mask_g & mask_b;
 \end{verbatim}
-Mi dirà quali pixel di ogni canale sono di pelle.\\
-
+Mi dirà quali pixel di ogni canale sono di pelle secondo il nostro classificatore. Avrà le stesse dimensioni dell'immagine di test.\\
+Vediamo i risultati con la funzione già data nello zip:
+\begin{verbatim}
+    show_result(image,predicted);
+\end{verbatim}
+Esce fuori che il classificatore è "un po' razzista" cit prof, questo perché il dataset di training è sbilanciato (ci sono più pixel di pelle chiara/caucasica che di pelle di altre etnie). Proviamo a "giocare" col $k$. Se lo mettiamo $= 3$, prende troppo bg come se fosse pelle. $k = 2$ ancora troppo razzista. Diciamo che ha senso usarlo se i nostri dati seguono una distribuzione gaussiana.\\
+Abbiamo bisogno di un modo per quantificare oggettivamente "quanto è buono" il nostro classificatore.\\
+La funzione \texttt{confmat} fa proprio questo: prende in ingresso una groundtruth e le nostre predizioni e ci dice quanti pixel sono stati classificati correttamente e quanti no.\\
+Per l'immagine \texttt{test1.jpg} la groundtruth è \texttt{test1-gt.png} che carichiamo con \texttt{imread} nella variabile \texttt{gt}. Per renderlo valori logici, aggiungo un $> 0$ così che tutti i valori $> 0$ siano valori di pelle.\\
+\begin{verbatim}
+    cm = confmat(gt, predicted)
+\end{verbatim}
+Questa struttura dati (senza ; così che venga stampata direttamente nella console) contiene un po' di cose:
+\begin{center}
+    \begin{tabular}{ |r c l| } 
+     \hline
+     cm\_raw: & [2x2 double] & cell3 \\ 
+     cm: & [2x2 double] & matrice di confusione \\ 
+     labels: & [2x1 logical] & cell9 \\ 
+     accuracy: & 0.8340 & accuratezza del classificatore\\
+     \hline
+    \end{tabular}
+\end{center}
+e va a confrontare punto punto i pixel che ci sono in gt e quelli che ci sono in predicted. La percentuale dei pixel correttamente predetti è l'\texttt{accuracy}.\\

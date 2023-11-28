@@ -1,0 +1,61 @@
+\section{Lab7}
+Il lab di oggi sarà su problemi di classificazione, come creare classificatori per classificare l'intera immagine nelle categorie previste.
+
+\subsection{Es.1}
+Immagine a livelli di grigio.\\
+Sono dati due file di testo: images.list e labels.list. Questi file contengono la lista delle immagini del dataset e, per ognuna, la rispettiva etichetta (di tipo stringa) della classe.\\
+Per poter classificare queste immagini è necessario un pre-processing per creare i set di descrittori di feature da usare per il training e per testare il classificatore creato.\\
+Abbiamo uno script già scritto dal prof:
+\begin{itemize}
+    \item \texttt{[images,labels]=readlists()} assegna alle due variabili una lista di immagini e una lista di etichette
+    \item \texttt{images(1)} mi ritorna la celletta 1 
+    \item \texttt{images{1}} mi ritorna il contenuto della celletta 1 
+\end{itemize}
+
+Comincio con l'es1. Salvo le due variabili come ho fatto nella Command Window. Poi conta le immagini della lista. Poi crea array vuoti per i descrittori e in un ciclo for cosa fa?
+
+
+\texttt{save('data.mat','ghist','glcm','images','labels','lbp')} salva su disco le variabili che ho creato.
+
+\subsection{Es.2}
+Carico le variabili che ho salvato.\\
+\texttt{cvpartition} è una funzione di MatLab per partizionare classi. Si basa sulle etichette per partizionare le classi.\\
+Partizioniamo le etichette in due insiemi: quello di training e quello di test. Usando l'opzione 'Holdout' e il valore 0.2, la funzione seleziona l'80\% delle immagini come training set. Il restante 20\% è selezionato come test set. Il risultato della funzione cvpartition memorizzatelo nella struttura cv. La struttura di output contiene due metodi: \texttt{cv.training(n)} e \texttt{cv.test(n)}. I metodi ritornano gli n-esimi array colonna di booleani che indicano quali elementi appartengono al training set e quali al test set rispettivamente per la partizione dei dati n-esima (nel nostro caso ne abbiamo solo una).\\
+\begin{verbatim}
+    train.images = images(cv.training(1));
+    train.labels = labels(cv.training(1));
+    train.lbp = lbp(cv.training(1),:); % prendo la i-esima riga e tutte le colonne
+    train.ghist = ghist(cv.training(1),:); % prendo la i-esima riga e tutte le colonne
+    train.glcm = glcm(cv.training(1),:); % prendo la i-esima riga e tutte le colonne
+
+    test.images = images(cv.test(1));
+    test.labels = labels(cv.test(1));
+    test.lbp = lbp(cv.test(1),:);
+    test.ghist = ghist(cv.test(1),:);
+    test.glcm = glcm(cv.test(1),:);
+\end{verbatim}
+
+\subsection{Es.3}
+Script di classificazione.\\
+Creiamo un albero di classificazione: \texttt{view(c,'mode', 'graph')} per visualizzare il tree.\\
+\texttt{show\_confmat(cm\_train.cm\_raw,cm\_train.labels);} mi mostra la matrice di confusione.\\
+\begin{verbatim}
+    predicted\_train = predict(c,train.ghist);
+    cm\_train = confmat(train.labels, predicted\_train);
+    % show\_confmat(cm\_train.cm\_raw,cm\_train.labels);
+
+    predicted\_test = predict(c,test.ghist);
+    cm\_test = confmat(test.labels, predicted\_test);
+    % show\_confmat(cm\_test.cm\_raw,cm\_test.labels);
+\end{verbatim}
+Da scommentare la matrice di confusione da visualizzare.\\
+Ha concatenato i 3 descrittori.
+
+\subsection{Es.4}
+Ora il classificatore baysiano e il classificatore knn, nello stesso script.\\
+Mi danno entrambi accuracy del 100\% sia per il training che per il test.\\
+Per knn dobbiamo però cambiare la k, aggiungendo "\texttt{'NumNeighbors',5}", perché con k=1 è ovvio (cit. Gigi) che esca se stesso e quindi 100\%.\\
+
+Per far fare in automatico a MatLab, faccio "App > Classification Learner" e si aprirà una finestra in cui scelgo come input la mia table T e darà una Cross Validation field.
+
+Nota, guarda il video 21-22 per sta parte perché non funziona.
