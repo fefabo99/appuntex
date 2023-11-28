@@ -1,0 +1,266 @@
+\chapter*{Seminario}
+\section{Deep Learning}
+Base di conoscenza da cui comincia ad imparare e un dataset di training.\\
+Diversi tipi di algoritmi:
+\begin{itemize}
+    \item supervisionati\\
+    Composti da:
+    \begin{itemize}
+        \item training set (input x)
+        \item contengono groundtruth, valore atteso (output y)
+    \end{itemize}
+    Si occupano di 
+    \begin{itemize}
+        \item \textbf{task:}
+        \begin{itemize}
+            \item regressione (quanti anni ha l'uomo in foto)
+            \item classificazione (data l'immagine di un gatto, dire che è un gatto)
+        \end{itemize}
+    \end{itemize}
+    \item non supervisionati
+\end{itemize}
+Ha fatto vedere un esempio in cui vogliamo trovare il minimo di una funzione (parte prima da $f(x) = x^2$ per poi passare ad una funzione più complessa), tramite il metodo del Gradient Descent.\\
+Poi fa vedere come possiamo sfruttare questa idea per i nostri problemi (più generici): parliamo di forward propagation e back propagation.\\
+Il metodo del gradiente nel primo esempio: $$x_n = x_{n-1} - l_r \bullet \frac{dy}{dx}$$ dove $l_r$ è il learning rate e in sostanza il nostro groundtruth.
+
+\section{Model fitting}
+Noi abbiamo l'insieme di dati casuali a cui associamo etichette pesate, troviamo un modello predittivo che si adatta ai dati.\\
+La \textbf{loss} quantifica la distanza dei miei dati dal modello predittivo.\\
+quando i pesi sono casuali l'errore sarà molto alto e comincerà ad attenuarsi quando i pesi saranno più vicini al valore atteso.\\
+L'inizializzazione dei pesi è fondamentale!
+
+\subsection{Learning rate}
+Se è troppo alto, non saremo mai in grado di trovare i valori ottimali del modello: il gradiente avrà un peso troppo alto (ce ne accorgiamo se la \textit{loss} ha un grafico di crescita crescente).\\
+In sostanza, \textbf{monitorare sempre l'andamento della loss}.\\
+Se è troppo basso, il modello sarà molto lento a convergere. Non esagerare in nessuno dei due sensi.\\
+In sostanza 2.0, se il grafico della loss è descrescente, allora stiamo facendo le cose giuste. Ma se è troppo lineare, sarà molto lento. Se tipo esponenziale, non male. Meglio ancora se ha un andamento tipo radice.
+
+\subsection{Overfitting e underfitting}
+\begin{description}
+    \item[Overfitting]: il modello è troppo complesso e si adatta troppo ai dati di training, ma non è in grado di generalizzare.
+    \item[Underfitting]: il modello è troppo semplice e non è in grado di adattarsi ai dati di training.
+\end{description}
+
+\section{Reti neurali}
+Come gran parte degli algoritmi di machine learning, le reti neurali sono composte da neuroni artificiali. Ispirati dal modello umano.\\
+A noi interessano le DCN (deep convolutional network), che vanno da input a output senza cicli.
+
+\subsection{Neurone artificiale}
+
+Modello lineare che in output dà la combinazione lineare dei suoi input.\\
+Andiamo ad addestrare la rete sui pesi che sono appresi, seguiti da una funzione di attivazione. Questa ci permette di rendere il sistema non lineare, in quanto la combinazione lineare di input è lineare. Chiamate "gating functions" o "activation functions". La più usata è la ReLU.
+
+\subsubsection{ReLU}
+Rectified Linear Unit.\\
+Fa passare tutti i valori positivi, quelli negativi no e li fa passare come 0.\\
+Funzione non derivabile nel punto 0. che fare? Si assegna arbitrariamente la der sinistra o destra al punto $x=0$.
+
+\subsection{Architetture a confronto}
+Perchè queste funzioni di attivazione sono importanti? Perchè sono non lineari e quindi ci permettono di modellare funzioni non lineari.\\
+Senza ReLU: input, hidden layer, output.\\
+Con la ReLU: input, hidden layer, ReLU, hidden layer, output.\\
+Intervallando il nostro sistema con delle ReLU, riesco a combinare porzioni lineari del problema in una struttura non lineare.
+
+\subsection{Loss}
+Funzioni che guidano il processo di addestramento.
+\begin{itemize}
+    \item dipendono dal task
+    \item guidano il training process
+    \item devono essere \textbf{continue} e \textbf{avere un solo min/max}
+    \item due esempi di Loss:
+    \begin{itemize}
+        \item \textbf{MSE}: mean squared error
+        \item \textbf{Cross Entropy}: per problemi di classificazione
+    \end{itemize}
+\end{itemize}
+
+Esempio:
+\begin{center}
+    \begin{tabular}{ c|c|c|c } 
+        Input & Linear Layer 1 & ReLU Layer & Linear Layer 2\\
+        \hline
+        $x_1$ & ... & ... & ...\\
+        \hline
+        $x_2$ & ... & ... & ...\\        
+    \end{tabular}
+\end{center}
+
+Ha passato un esercizio cartaceo da fare: prima forward propagation, poi attraverso diversi passaggi arrivare a 
+
+\section{}
+Cosa succede se il dataset è troppo grande?\\ 
+Il problema è da scomporre in sottoproblemi: istruisco la rete un batch alla volta e a ciascuno applico il Gradient Descent. Parliamo di SGD (Stochastic Gradient Descent). NB: il batch non deve avere una dimensione troppo ridotta.\\
+Quando parlo di "epoche" in training parlo del numero di volte in cui ho visto il mio dataset. 
+Ci sono diversi tipi di ottimizzatori: l'ottimizzatore che si usa di più è l'ADAM.
+
+\section{Tipi di dati e rappresentazione}
+Senza dati non possiamo fare niente. Due tipi di dataset:
+\begin{itemize}
+    \item Benchmarks dello stato dell'arte: dataset creati da ricercatori, tipicamente non replicabili nella vita reale di tutti i giorni
+    \item Custom Benchmarks: dataset creati da noi un dato alla volta, costosi da creare e potenzialmente difficili da confrontare (soprattutto con quelli dello stato dell'arte)
+\end{itemize}
+
+\subsection{Tipi di dati}
+\begin{itemize}
+    \item adimensionali: scalari\\
+    Gli do etichette e mi aspetto che la rete mi dia in output un valore
+    \item monodimensionali: l'input è un segnale
+    \begin{itemize}
+        \item time dependent
+        \item time independent
+    \end{itemize}
+    \item bidimensionali-tridimensionali: immagini
+    \item quadridimensionali: sequenze di immagini, video
+\end{itemize}
+
+\subsubsection{Processamento dei dati}
+\begin{itemize}
+    \item cleaning: rimozione di dati sporchi
+    \item encoding: trasformazione dei dati in un formato adatto all'input della rete
+    \item boh
+    \item boh
+\end{itemize}
+
+\section{Encoding dei dati}
+I modelli di machine learning lavorano solo con valori numerici. Bisogna trasformare i valori categorici delle feature rilevanti in valori numerici.\\
+Per più input, si può usare un one-hot encoding. 1 se è quello che cerco.\\
+Se la voglio usare come groundtruth,    \\
+
+\subsection{Normalizing}
+\begin{itemize}
+    \item min-max normalization
+    \item standardization
+\end{itemize}
+
+\section{Introduzione a Pytorch}
+Machine learning framework basato su Torch library.\\
+Open source e gratuito, usato in Python ma sviluppato in C++.\\
+Mostra alcuni comandi base. I tensori sono matrici.\\
+Tipicamente un file viene diviso in tre parti:
+\begin{itemize}
+    \item data loading
+    \item network definition
+    \item architecture
+\end{itemize}
+
+\subsection{Definizione di una rete neurale}
+Proviamo a scrivere l'esercizio cartaceo di prima in Pytorch.
+\begin{verbatim}
+    import os
+    import ?
+    import ?
+    
+    class Network(nn.Module):
+        def __init__(self):
+            super(Network, self).__init__()
+            self.layer1 = nn.Linear(2, 2)
+            self.layer2 = nn.ReLU()
+            self.layer2 = nn.Linear(2, 1)
+        def forward(self, x):
+            x = self.layer1(x)
+            x = self.layer2(x)
+            x = self.layer3(x)
+            return x
+\end{verbatim}
+\begin{verbatim}
+    # initialize network
+    net = Network()
+
+    # create fake input
+    inp = torch.rand(20, 2)
+
+    # apply network
+    out = net(inp)
+
+    # print output size
+    print(out.size())
+\end{verbatim}
+
+\subsection{Definizione }
+\begin{itemize}
+    \item iteration = processing of one batch
+    \item epoch = processing of the entire training set
+\end{itemize}
+Il dataset è categorizzato in batch, che sono gruppi di esempi/dati.
+
+\begin{verbatim}
+    for cur_epoch in range(1000);
+
+\end{verbatim}
+
+\subsection{Classificazione con Pytorch}
+pipeline for classification: batch of examples -> NN -> vettore di n valori non vincolati (n \# di classi) -> softmax (funzione che mi ritorna la probabilità) -> vettore di probabilità, n valori tra 0 e 1 -> scelgo il valore più alto -> classificazione
+\subsection{softmax}
+$$\sigma(y_i) = \frac{e^i}{\sum_{i=1}^{n}e^i}$$
+
+\section{Convolutional Neural Networks}
+Finora abbiamo visto solamente NN con dataset di dati tipo altezza, città, etc.\\
+Ma nella realtà abbiamo a che fare con dati che sono strettamente dipendenti da dati vicini (es. le azioni dipendono dal percorso precedente del mercato, etc). Le CNN sfruttano i valori di dipendenze locali: valutano una variabile e le variabili vicine ottenendo così una nuova mappa di feature. La convoluzione aiuta con il problema della dipendenza dal vicinato.\\
+dopo ciò, non lavoriamo più con dati ma con \textbf{filtri} o \textbf{kernel}.\\
+Come scegliere le variabili: parliamo di stride, ovvero il salto che faccio tra un filtro e l'altro.\\
+Es.: $x_1, x_2, \dots, x_9, x_10$, passo da $x_2$ a $x_4$ con stride 2, poi a $x_6$ con stride 2, etc.
+
+\subsection{Padding}
+Supponiamo di volere un output della stessa dimensione dell'input.\\
+Boh cose.\\
+In un esempio pratico ha fatto vedere una matrice 5x5 con un "bordo" di pixel a 0, quello era un padding a 0 perché la maschera 3x3 potesse lavorare sui pixel di bordo.
+
+\subsection{Convolutive layer}
+Più filtri allo stesso momento.
+
+\subsection{Structure of a CNN}
+Boh.
+
+\subsection{Batch normalization}
+diventa media 0 e stddvs 1.
+
+\subsection{Pooling}
+Serve a diminuire la dimensione spaziale.
+\begin{itemize}
+    \item max pooling: prende il valore maggiore, mantiene la dimensione spaziale dentro certi range
+    \item average pooling: fa la media, riduce il range
+\end{itemize}
+
+Le operazioni che abbiamo visto nei segnali monodimensionali possono essere applicati alle immagini. 
+
+\section{Normalizzazione dati e }
+Due tipi:
+
+\subsection{Batch normalization}
+\subsection{Dropout}
+Irrobustisce il training.\\
+argument the training set with "jittered" examples.\\
+
+NB: rete troppo profonda: non addestrabile (abbiamo vanishing gradients).
+
+\section{Transfer learning}
+Supponiamo di avere una rete già train-ata su un altro task.\\
+Voglio una rete che a partire da quell'altra rete vada a fare un altro task.\\
+Tramite fine-tuning e il transfer learning, posso prendere la rete già train-ata e modificare/aggiungere layer finali che mi permetta di fare il mio task.\\
+Più vado avanti con i layer più diventano specifici.\\
+Es.: un italiano impara più facilmente lo spagnolo che un olandese più versato per lingue tipo inglese o tedesco (lingue neolatine vs germaniche).
+
+\subsection{With Pytorch}
+\begin{verbatim}
+    import torch
+    import torch.nn as nn
+\end{verbatim}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
