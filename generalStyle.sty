@@ -59,15 +59,16 @@
         #1
     \end{mdframed}
 }
-\newcommand{\teorema}[1]{
+\newcommand{\teorema}[2][]{
     \begin{mdframed}[
-        frametitle={\colorbox{white}{\space Teorema \space}},
+        frametitle={\colorbox{white}{\space Teorema #1\space}},
         frametitleaboveskip=-\ht\strutbox,
-        linewidth=0.5pt,
+        linewidth=1pt,
+        linecolor=red,
         topline=false,
         bottomline=false
         ]
-        #1
+        #2
     \end{mdframed}
 }
 \newcommand{\proposizione}[1]{
