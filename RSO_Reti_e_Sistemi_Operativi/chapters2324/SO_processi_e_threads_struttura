@@ -116,6 +116,271 @@ Gli stati possibili di un processo sono:
 \begin{center}
     \includegraphics[width=0.625\textwidth]{images/aa2324/SO_processithreadstruttura4.jpg}
 \end{center}
+N.B.: quel "\texttt{interrupt}" non è da confondersi con l'\texttt{interrupt} dei .
+
+% 29/11/2023
+Il processo nello stato \texttt{new} è stato creato ma non ancora ammesso. QUando il numero tot di processi che il s.o. vede alternarsi negli stati \texttt{new}, \texttt{running} (in esecuzione, ha una CPU e il codice del processo viene eseguito) e \texttt{ready} (pronto per essere eseguito ma non ha ancora CPU) è sufficientemente basso, il processo viene ammesso.\\
+Lo stato di \texttt{waiting}: va in attesa di uno specifico evento (ad esempio il completamento di un'operazione di I/O) e quando questo evento si verifica il processo torna nello stato \texttt{ready}, ma non gli viene immediatamente assegnata la CPU che potrebbe essere occupata da un altro processo.\\
+Stato \texttt{exit}: viene invocata l'API \texttt{exit()} e il processo termina e il s.o. ne recupererà tutte le risorse.
+
+\subsection{Lo scheduler della CPU}
+Lo \textbf{scheduler della CPU}, o \textbf{scheduler a breve termine} sceglie il prossimo processo da eseguire tra quelli in stato \texttt{ready} ed alloca un core libero ad esso.\\
+Mantiene diverse code di processi:
+\begin{description}
+    \item[Ready queue]: processi residenti in memoria e in stato \texttt{ready}.
+    \item[Wait queues]: code (1+) per i processi che sono residenti in memoria e in stato \texttt{wait}; una coda diversa per ciascun diverso tipo di evento di attesa che mi fa entrare un processo in stato di \texttt{waiting}.
+\end{description}
+Durante la loro vita, i processi (i loro PCB) migrano da una coda all'altra a seconda dello stato del processo stesso.
+
+\subsection{Rappresentazione delle code di scheduling}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura5.jpg}
+\end{center}
+\begin{itemize}
+    \item Ready + CPU = running.
+    \item Quando il time slice di un processo termina, rimesso nella ready queue.
+    \item Se un processo padre si mette in attesa di un processo figlio, il padre va in wait queue (visto che non gli serve CPU). Quando il processo figlio termina, quel processo padre viene ripescato da quella queue e rimesso nella ready queue.
+\end{itemize}
+
+\subsection{Schemi di scheduling}
+Lo scheduler della CPU ha il compito di decidere a quale processo tra tutti quelli nella \texttt{ready queue} assegnare un core libero.\\
+Tali \textbf{decisioni di scheduling} possono essere effettuati in diversi momenti, corrispondenti a cambi di stato dei processi:
+\begin{enumerate}
+    \item Quando un processo passa da stato running a stato waiting
+    \item Quando un processo passa da stato running a stato ready
+    \item Quando un processo passa da stato waiting a stato ready
+    \item Quando un processo termina
+\end{enumerate}
+Se il riassegnamento viene fatto solo nelle situazioni 1 e 4 lo schema di scheduling è detto \underline{senza prelazione} (\underline{\textbf{nonpreemptive}}) o \underline{cooperativo}, dal momento che un core è sempre liberato da un processo che volontariamente rinuncia ad esso. Contrariamente a quello con prelazione, un processo può essere interrotto in qualsiasi momento. Viene "congelato" e bloccato in memoria fino a quando verrà ripreso e riprenderà a funzionare come se non fosse mai tato interrotto. Questa cosa è permessa dal \textbf{dispatcher}.\\
+Altrimenti è detto \underline{con prelazione} (\underline{\textbf{preemptive}}), dal momento che un core può essere anche liberato perché un core viene forzatamente (quindi in modo asincrono) sottratto dal kernel ad un processo che lo sta usando. \`E tipo quello che succede quando introduciamo i thread asincroni (se sta svolgendo un'operazione es. di salvataggio dei dati, ma viene brutalmente interrotto, l'operazione ovviamente non va a buon fine).\\
+\textit{Lo schema di scheduling preemptive è più complicato da implementare}:
+\begin{itemize}
+    \item Che succede se due processi condividono dati?
+    \item Che succede se un processo sta eseguendo in modalità kernel (system call o IRQ)?
+\end{itemize}
+
+\subsection{Commutazione di contesto e dispatcher}
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \begin{center}
+        \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura6.jpg}
+    \end{center}
+\end{wrapfigure} 
+Quando il controllo della CPU deve passare da un processo ad un altro processo scelto dallo scheduler a breve termine avviene una \textbf{commutazione di contesto} (\textbf{context switch}).\\
+La \textbf{commutazione di contesto} viene effettuata dal \textbf{\textit{dispatcher}}, che:
+\begin{itemize}
+    \item Salva il contesto (stato, registri\dots) del processo da interrompere nel suo PCB, \textit{process control block}.
+    \item Carica il contesto del processo da eseguire dal suo PCB.
+    \item Passa in modalità utente.
+    \item Salta nel punto corretto del programma del processo selezionato (ossia, dove era stato precedentemente interrotto).
+\end{itemize}
+Notare che il dispatcher implementa un tipico \textit{meccanismo}, mentre lo scheduler implementa una tipica \textit{politica}.\\
+Es.: program counter, ad ogni registro salvato viene incrementato, è da salvare alla fine quando ha finito di incrementare.\\
+Q: se anche P1 avesse un'interrupt, cosa succede? Si torna a P0 o viene introdotto un altro processo?\\
+A: dipende dalla politica di scheduling, ma in questo caso si vede chiaramente che abbiamo solo P0 e P1, quindi si torna a P0. Questa si chiama \textit{round robin} ovvero scheduling circolare, si passa dal primo al secondo al primo di nuovo al secondo \dots.\\
+Garanzia: non ci sono processi a cui non do tempo e a tutti i processi do lo stesso tempo.
+
+\subsection{Latenza di dispatch}
+Essendo un meccanismo, si vuole che impieghi il meno tempo possibile.\\
+La \textbf{latenza di dispatch} è il tempo impiegato dal dispatcher per fermare un processo ed avviarne un altro.\\
+La latenza di dispatch è puro overhead: non viene eseguito alcun lavoro utile (il lavoro utile è l'esecuzione di un programma utente).\\
+Più è complesso il sistema operativo, più è complesso il PCB (il contesto), maggiore è la latenza di dispatch.\\
+Alcuni processori offrono supporto speciale per minimizzare la latenza di dispatch (es. banchi di registri multipli).\\
+Qua finisce la parte su multiprogrammazione e multitasking.
+
+\section{Implementazione del multithreading}
+Molto più complesso, vedremo molto superficialmente.
+
+\subsection{Thread a livello utente e kernel}
+Kernel così complesso che anche a livello di kernel si opera in multithreading (giusto?).
+\begin{description}
+    \item[Thread a livello utente:] \underline{i thread disponibili nello spazio utente dei processi}; sono quelli offerti dalle librerie di thread ai processi.
+    \item[Thread a livello del kernel:] \underline{i thread implementati nativamente dal kernel}; sono utilizzati per strutturare il kernel (se stesso) in maniera concorrente. Utile per strutturare il kernel, aprendo ad una miriade di possibilità (e di errori), potendo sfruttare la presenza di più processori (e core) nel mio sistema. C'è la tentazione di offrirli anche a livello utente, ma non è una buona idea. Ci sono modelli di supporto per ovviare a questa cosa.
+\end{description}
+
+\subsubsection{Modelli di supporto al multithreading}
+I thread a livello del kernel vengono utilizzati dalle librerie di thread per implementare i thread a livello utente di un certo processo.\\
+A tale scopo possono essere adottate diverse strategie (modelli di multithreading):
+\begin{description}
+    \item[Molti-a-uno:] i thread a livello utente di un certo processo sono implementati su un solo thread a livello del kernel.
+    \begin{itemize}
+        \item \underline{Vantaggio:} usabile su ogni sistema operativo (unica soluzione possibile se
+        il sistema operativo non è multithreaded).
+        \item \underline{Svantaggio:} se un thread utente fa una chiamata di sistema bloccante blocca tutti i thread utente dello stesso processo.
+        \item \underline{Altro svantaggio:} non sfrutta la presenza di più core.
+        \item Poco usato in pratica.
+        \item Esempi: 
+        \begin{itemize}
+            \item Solaris Green Threads
+            \item GNU Portable Threads
+        \end{itemize}
+        \begin{center}
+            \includegraphics[width=0.375\textwidth]{images/aa2324/SO_processithreadstruttura7.jpg}
+        \end{center}
+    \end{itemize}
+    \item[Uno-a-uno:] ogni thread a livello utente è implementato su un singolo, distinto thread a livello del kernel.
+    \begin{itemize}
+        \item \underline{Vantaggio:} permette un maggior grado di concorrenza.
+        \item \underline{Vantaggio:} permette di sfruttare il parallelismo nei sistemi multicore.
+        \item \underline{Svantaggio:} minore performance rispetto al modello molti-a-uno.
+        \item \underline{Svantaggio:} stress del kernel.
+        \item Esempi: 
+        \begin{itemize}
+            \item Linux
+            \item Windows
+        \end{itemize}
+        \begin{center}
+            \includegraphics[width=0.375\textwidth]{images/aa2324/SO_processithreadstruttura8.jpg}
+        \end{center}
+    \end{itemize}
+    \item[Molti-a-molti:] i thread a livello utente di un certo processo sono implementati su un insieme di thread a livello del kernel possibilmente inferiore di numero, e l'associazione thread utente / thread kernel è dinamica, stabilita da uno scheduler interno alla libreria di thread.
+    \begin{itemize}
+        \item Cerca di combinare i vantaggi dei modelli molti-a-uno e uno-a-uno.
+        \item \underline{Svantaggio:} complesso da implementare (la libreria di thread deve dinamicamente alternare l'esecuzione dei thread a livello utente sui thread a livello del kernel disponibili).
+        \item \textbf{Modello a due livelli:} permette agli utenti di creare dei thread che hanno un mapping uno-a-uno con un thread a livello del kernel.
+        \item Esempi: 
+        \begin{itemize}
+            \item Solaris
+            \item AIX
+        \end{itemize}
+        \begin{center}
+            \includegraphics[width=0.375\textwidth]{images/aa2324/SO_processithreadstruttura9.jpg}
+        \end{center}
+    \end{itemize}
+\end{description}
+
+\subsection{Thread control blocks}
+Visto che ormai ogni thread viene schedulato (lo scheduler non ha più solamente a che fare con i processi, deve avere l'idea che i thread sono composti da processi), serve un thread control block (TCB) legati al process control block (PCB) che già abbiamo visto.\\
+Nei kernel multithreaded il kernel mantiene delle strutture dati analoghe ai PCB, i thread control blocks (TCB); un TCB memorizza il contesto di un thread e le sue informazioni di contabilizzazione.\\
+Il PCB contiene solo le informazioni di contesto e contabilizzazione comuni (ad esempio lo spazio di memoria).\\
+Il PCB è di norma collegato ai TCB dei thread kernel utilizzati dal processo, e viceversa i TCB dei thread kernel utilizzati da un processo sono collegati al PCB del processo.
+
+\section{Criteri di valutazione algoritmi di scheduling}
+\subsection{Confrontare algoritmi di scheduling}
+Praticamente ogni sistema operativo ha i propri algoritmi di scheduling (quindi sono tantissimi).\\
+Questo è indizio del fatto che non esiste una politica di scheduling "migliore" di tutte le altre.\\
+Sì, ma\dots in quale senso possiamo dire che una politica di scheduling è "migliore" di un'altra?
+
+\subsection{Criteri di valutazione algoritmi di scheduling}
+\begin{itemize}
+    \item Misure che servono per confrontare le caratteristiche dei diversi algoritmi.
+    \item (purtroppo non dipendono solo dall'algoritmo, ma anche dal carico)
+    \item \underline{\textbf{Principali criteri}}:
+    \begin{description}
+        \item[Utilizzo della CPU:] \% di tempo in cui la CPU è attiva nell'esecuzione dei processi utente (dovrebbe essere tra il 40\% e il 90\%, in funzione del carico)
+        \item[Throughput:] \# di processi che completano l'esecuzione nell'unità di tempo (dipende dalla durata dei processi)
+        \item[\underline{Tempo di completamento}:] tempo necessario per completare l'esecuzione di un certo processo (dipende da molti fattori: durata del processo, carico totale, durata dell'I/O\dots)
+        \item[\underline{Tempo di attesa}:] tempo trascorso dal processo nella ready queue (meglio del tempo di completamento, meno dipendente da durata del processo e dell'I/O)
+        \item[Tempo di risposta:] negli ambienti interattivi, tempo trascorso tra l'arrivo di una richiesta al processo e la produzione della prima risposta, senza l'emissione di questa nell'output
+    \end{description}
+    \item A noi interessano essenzialmente tempo di completamento e di attesa, e su quelli svolgeremo i nostri esercizi.
+    \item Cosa guardiamo:
+    \begin{itemize}
+        \item Massimo utilizzo della CPU
+        \item Massimo throughput
+        \item Minimo tempo di completamento (medio)
+        \item Minimo tempo di attesa (medio)
+        \item Minimo tempo di risposta (medio)
+    \end{itemize}
+    \item Naturalmente nessun algoritmo di scheduling può ottimizzare tutti i criteri contemporaneamente\dots
+\end{itemize}
+
+\section{Principali algoritmi di scheduling}
+\subsection{Scheduling in ordine di arrivo}
+\textbf{Scheduling in ordine di arrivo}, o \textbf{first-come-first-served} (FCFS): la CPU viene assegnata al primo processo che la richiede.\\
+\underline{Vantaggio:} implementazione molto semplice (coda FIFO, nessuna prelazione).\\
+\underline{Svantaggio:} tempo di attesa medio può essere lungo ("effetto convoglio").
+\begin{center}
+    \includegraphics[width=0.875\textwidth]{images/aa2324/SO_processithreadstruttura10.jpg}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.875\textwidth]{images/aa2324/SO_processithreadstruttura11.jpg}
+\end{center}
+Basta cambiare l'ordine di arrivo dei processi per cambiare completamente tutti i tempi.
+
+\subsection{Scheduling per brevità}
+\textbf{Scheduling per brevità}, o \textbf{shortest-job-first} (SJF): la CPU viene assegnata al processo che ha il successivo CPU burst più breve.\\
+\underline{Vantaggi}: implementazione quasi identica a FCFS, ma minimizza il tempo di attesa medio (è ottimale).\\
+\underline{Svantaggio}: di solito non si sa in anticipo qual è il processo che avrà il CPU burst più breve (quanto durerà il prossimo CPU burst?).\\
+L'algoritmo \textbf{shortest-remaining-time-first} (SRTF) utilizza la prelazione per gestire il caso in cui i processi non arrivino tutti nello stesso istante: se nella \texttt{ready queue} arriva un processo con un burst più corto di quello running, quest'ultimo viene prelazionato dal nuovo processo.
+
+\subsection{Esempi}
+\subsubsection{Scheduling per brevità}
+Saranno così gli esercizi d'esame. Dovremo saper calcolare i tempi di attesa medio e di completamento medio per gli algoritmi presentati.\\
+\begin{center}
+    \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura_es1.jpg}
+\end{center}
+Tempo di attesa medio $FCFS = \frac{0 + 6 + 14 + 21}{4} = 10.25$\\
+Tempo di completamento medio $FCFS = \frac{6 + 14 + 21 + 24}{4} = 16.25$
+\begin{center}
+    \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura_es1.jpg}
+\end{center}
+Tempo di attesa medio $SJF = \frac{0 + 3 + 9 + 16}{4} = 7$\\
+Tempo di completamento medio $SJF = \frac{3 + 9 + 16 + 24}{4} = 13$
+
+\subsubsection{Shortest-remaining-time-first}
+\begin{itemize}
+    \item Con preemption e tempo di arrivo
+    \item Il tempo di attesa di un processo è:\\
+    \texttt{istante terminazione processo - (tempo di arrivo + durata burst)}
+    \item Il tempo di completamento di un processo invece è:\\
+    \texttt{istante terminazione processo - tempo di arrivo}
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura_es3.jpg}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es4.jpg}
+\end{center}
+Tempo di attesa medio $SJF = \frac{(17-8) + (5-5) + (26-11) +(10-8)}{4} = 6.5$\\
+Tempo di completamento medio $SJF = \frac{(17-0) + (5-1) + (26-2) +(10-3)}{4} = 13$
+
+\subsection{Scheduling circolare}
+Nello \textbf{scheduling circolare}, o \textbf{round-robin} (RR) ogni processo ottiene una piccola quantità fissata di tempo di CPU (\textbf{quanto di tempo}), di solito 10-100 millisecondi, per il quale può essere in esecuzione.\\
+Trascorso tale tempo il processo in esecuzione viene interrotto e messo in fondo alla ready queue, che è gestita in maniera FIFO.\\
+In tal modo la ready queue funziona essenzialmente come un buffer circolare, e i processi vengono scanditi dal primo all'ultimo, per poi ripartire dal primo nello stesso ordine.\\
+Timer che genera un interrupt periodico con \underline{periodo $q$} per effettuare la prelazione del processo corrente (passaggio del processo da stato running a ready).
+
+\subsubsection{Esempio}
+\begin{itemize}
+    \item Ricordiamo che il tempo di attesa di un processo è:\\
+    \texttt{istante terminazione processo - (tempo di arrivo + durata burst)}
+    \item Il tempo di completamento di un processo invece è:\\
+    \texttt{istante terminazione processo - tempo di arrivo}
+    \item In questo esempio il tempo di arrivo è 0 per tutti i processi
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura_es5.jpg}
+\end{center}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es6.jpg}
+\end{center}
+$q=4$\\
+Tempo di attesa medio $= \frac{(30-24) + (7-3) + (10-3)}{3} = 5.67$\\
+Tempo di completamento medio $= \frac{30 + 7 + 10}{3} = 15.67$
+
+% prossima lezione, 06/12/2023
+\subsubsection{Scheduling circolare: caratteristiche}
+Se ci sono $n$ processi nella \texttt{ready queue} e il quanto temporale è $q$:
+\begin{itemize}
+    \item Nessun processo attende più di q (n - 1) unità di tempo nella ready queue prima di ridiventare running per un altro quanto di tempo (rispetto a SJF e SRTF non c'è bisogno di sapere la durata del burst)
+    \item Ogni processo ottiene $\nicefrac{1}{n}$ del tempo totale di CPU, in maniera perfettamente equa (rispetto a SJF e SRTF vengono ottenute solo $q$ unità di tempo per volta)
+\end{itemize}
+Comportamento in funzione di $q$:
+\begin{itemize}
+    \item \underline{$q$ elevato}: se $q$ è di regola maggiore della durata di tutti i burst, RR tende al FCFS
+    \item \underline{$q$ basso}: deve comunque essere molto più lungo della latenza di dispatch, altrimenti questa si "mangia" un tempo comparabile al tempo di esecuzione dei processi utente e l'utilizzo della CPU diventa inaccettabilmente basso
+\end{itemize}
+Performance:
+\begin{itemize}
+    \item Rispetto a SJF tipicamente RR ha un tempo di completamento medio più alto
+    \item Ma un tempo di risposta medio più basso (va bene per i processi interattivi)
+    \item Il tempo di completamento medio non necessariamente migliora con l'aumento di $q$
+\end{itemize}
+
+
+
+
+
 
 
 
