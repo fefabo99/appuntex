@@ -25,9 +25,21 @@ Abbiamo la nostra immagine \texttt{image} e quella di confronto \texttt{skin} e 
 Possiamo dedurre quindi che otterremo delle maschere binarie (una per ogni disequazione) che andremo poi a combinare con un \texttt{AND}.\\
 Ciascuna maschera binaria avrà forma:
 \begin{verbatim}
-    mask_r = image(:,:,1) >= m(1) - k*s(1) & image(:,:,1) <= m(1) + k*s(1);
+    mask_r = image(:,:,1) >= m(1) - k*s(1) 
+             &
+             image(:,:,1) <= m(1) + k*s(1);
 \end{verbatim}
-Dove \texttt{m(1)} è la media del canale rosso e \texttt{s(1)} è la deviazione standard del canale rosso. Cambiando indice avrò gli stessi valori per gli altri canali colore (altre colonne). Combinandole con l'\texttt{and}: 
+Dove \texttt{m(1)} è la media del canale rosso e \texttt{s(1)} è la deviazione standard del canale rosso. Cambiando indice avrò gli stessi valori per gli altri canali colore (altre colonne). 
+\begin{verbatim}
+    mask_g = image(:,:,2) >= m(2) - k*s(2)
+             &
+             image(:,:,2) <= m(2) + k*s(2);
+
+    mask_b = image(:,:,3) >= m(3) - k*s(3)
+             &
+             image(:,:,3) <= m(3) + k*s(3);
+\end{verbatim}
+Combinandole con l'\texttt{and}: 
 \begin{verbatim}
     predicted = mask_r & mask_g & mask_b;
 \end{verbatim}
@@ -36,7 +48,7 @@ Vediamo i risultati con la funzione già data nello zip:
 \begin{verbatim}
     show_result(image,predicted);
 \end{verbatim}
-Esce fuori che il classificatore è "un po' razzista" cit prof, questo perché il dataset di training è sbilanciato (ci sono più pixel di pelle chiara/caucasica che di pelle di altre etnie). Proviamo a "giocare" col $k$. Se lo mettiamo $= 3$, prende troppo bg come se fosse pelle. $k = 2$ ancora troppo razzista. Diciamo che ha senso usarlo se i nostri dati seguono una distribuzione gaussiana.\\
+Esce fuori che il classificatore è "un po' razzista" cit prof, questo perché il dataset di training è sbilanciato (ci sono più pixel di pelle chiara/caucasica che di pelle di altre etnie). Proviamo a "giocare" col $k$. Se lo mettiamo $= 3$, prende troppo bg come se fosse pelle. $k = 2$ ancora troppo razzista. Diciamo che ha senso usarlo se i nostri dati seguono una distribuzione gaussiana. Alla fine torna a $k = 1$.\\
 Abbiamo bisogno di un modo per quantificare oggettivamente "quanto è buono" il nostro classificatore.\\
 La funzione \texttt{confmat} fa proprio questo: prende in ingresso una groundtruth e le nostre predizioni e ci dice quanti pixel sono stati classificati correttamente e quanti no.\\
 Per l'immagine \texttt{test1.jpg} la groundtruth è \texttt{test1-gt.png} che carichiamo con \texttt{imread} nella variabile \texttt{gt}. Per renderlo valori logici, aggiungo un $> 0$ così che tutti i valori $> 0$ siano valori di pelle.\\
@@ -45,13 +57,62 @@ Per l'immagine \texttt{test1.jpg} la groundtruth è \texttt{test1-gt.png} che ca
 \end{verbatim}
 Questa struttura dati (senza ; così che venga stampata direttamente nella console) contiene un po' di cose:
 \begin{center}
-    \begin{tabular}{ |r c l| } 
-     \hline
-     cm\_raw: & [2x2 double] & cell3 \\ 
-     cm: & [2x2 double] & matrice di confusione \\ 
-     labels: & [2x1 logical] & cell9 \\ 
-     accuracy: & 0.8340 & accuratezza del classificatore\\
-     \hline
+    \begin{tabular}{ r c l } 
+        cm\_raw: & [2x2 double] &   \\ 
+        cm: & [2x2 double] & matrice di confusione \\ 
+        labels: & [2x1 logical] &   \\ 
+        accuracy: & 0.8591 & accuratezza del classificatore\\
     \end{tabular}
 \end{center}
-e va a confrontare punto punto i pixel che ci sono in gt e quelli che ci sono in predicted. La percentuale dei pixel correttamente predetti è l'\texttt{accuracy}.\\
+e va a confrontare punto punto i pixel che ci sono in \texttt{gt} e quelli che ci sono in \texttt{predicted}. La percentuale dei pixel correttamente predetti è l'\texttt{accuracy}.\\
+N.B.: le immagini di test le usiamo solo per le predizioni e calcolare l'accuracy, non per la parte di training!!\\
+Nel nostro caso che abbiamo un problema binarizzato (skin or not skin), se andiamo a prendere la matrice di confusione:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.9891    0.0109
+        0.6633    0.3367
+\end{verbatim}
+questa ci dice le percentuali di:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 98.91\% & 01.09\% \\
+        pixel di pelle & 66.33\% & 33.67\% \\
+    \end{tabular}
+\end{center}
+La diagonale quindi mi dà le percentuali dei pixel correttamente classificati.\\
+L'accuracy è alquanto buona comunque ma è pesantemente influenzata dai pixel di non pelle.\\
+Una funzione MatLab \textbf{\underline{che sarà \textit{MOLTO UTILE PER IL PROGETTO}}} è \texttt{confusionchart()}, che prende in ingresso due vettori colonna (groundtruth e predizioni) e ci disegna una confusion matrix. Noi però li abbiamo in vettori riga, allora li devo \textit{srotolare} e quindi farò:
+\begin{verbatim}
+    >> confusionchart(gt(:), predicted(:));
+\end{verbatim}
+La matrice di confusione che otteniamo è la stessa che avevamo ottenuto con \texttt{confmat}, l'unica differenza è che invece delle percentuali vediamo il valore assoluto dei pixel classificati in modo corretto e non. Per avere le percentuali dobbiamo normalizzare i valori: per sapere come, consulta la documentazione di \texttt{confusionchart}.\\
+\begin{verbatim}
+    >> confusionchart(gt(:), predicted(:), 'RowSummary', 'row-normalized');
+\end{verbatim}
+La matrice che MatLab produce però non torna al prof, che per controllare che la sua sia giusta fa:
+\begin{verbatim}
+    % linearizzo la groundtruth
+    >> g = gt(:);
+
+    % linearizzo la predizione
+    >> p = predicted(:);
+
+    % "quanto ci azzecchiamo"
+    >> ok = (g == p);
+
+    % "conto quanti confronti sono corretti" ovvero nella gt c'è 1
+    >> sum(ok(gt))
+    ans =
+        114557
+    
+    >> cm.cm_raw
+    ans =
+        1352128     14841
+         225674    114557
+\end{verbatim}
+
+\subsection{Es2}
+Cerchiamo di provare a migliorare la situa. Lasciamo perdere questo classificatore di regole e proviamo con un classificatore \textbf{di minima distanza}.\\

@@ -1,3 +1,104 @@
-% 28/11/2023
+% 30/11/2023
 
 \chapter{Edge detection}
+Metodo di segmentazione ultimamente usato molto meno del solito per la segmentazione, di solito si vanno a preferire i metodi per regioni (es. convolutional layer, contengono filtri e activation map che rispondono ad un certo tipo di pattern).
+\definizione{Definizione: un edge è costituito da pixel adiacenti posizionati lungo una discontinuità rilevante di intensità}
+Slide 3.\\
+\begin{itemize}
+    \item Un edge non è necessariamente legato al bordo di un oggetto
+    \item Anche il rumore di acquisizione può causare discontinuità
+    \item Una quantizzazione dell’immagine può alterare le discontinuità
+\end{itemize}
+Slide 4.\\
+Diversi aspetti di una scena possono produrre (o alterare) discontinuità in un’immagine
+\begin{itemize}
+    \item Proprietà geometriche degli oggetti 
+    \item Variazioni di riflettanza degli oggetti 
+    \item Ombre
+\end{itemize}
+
+\section{Tipi di edge}
+Slide 5-7.\\
+Gli edge si possono manifestare sotto forma di diverse variazioni di intensità
+\begin{itemize}
+    \item A gradino (ideale) quando la variazione è localizzata
+    \item A rampa quando la variazione è graduale
+\end{itemize}
+L'edge a gradino in una immagine digitale “reale” di fatto non esiste.
+\begin{itemize}
+    \item campionamento
+    \item rumore
+    • La pendenza della rampa è inversamente proporzionale al grado di smussamento dell’edge (blurring) e dipende
+    \item dall’illuminante
+    \item dalla frequenza di campionamento
+
+Esistono anche edge \textit{a cresta} e \textit{a tetto}
+\begin{itemize}
+    \item possono essere considerati coppie di edge a gradino o a rampa
+
+\section{Tecniche derivative}
+Come catturare il concetto di variazione?
+Il concetto di variazione locale di intensità può essere catturato da quello di derivata• Ad esempio
+• La derivata prima è
+\begin{itemize}
+    \item Nulla dove il segnale è piatto
+\item Positiva quando il segnale è crescente (da scuro a chiaro)
+\item Negativa quando il segnale è decrescente (da chiaro a scuro)
+\item Di modulo proporzionale all’entità della variazione
+
+Gli edge sono legati alle frequenze
+\begin{itemize}
+    \item Si consideri ad esempio il segnale $sin(\omega x)$ e la sua derivata $\omega cos(\omega x)$: 
+    \begin{itemize}
+        \item Il guadagno è proporzionale alla frequenza spaziale
+    \end{itemize}
+    \item Variazioni di intensità lente = basse frequenze = bassa variabilità $f'$
+    \item Variazioni di intensità repentine = alte frequenze = alta variabilità $f'$
+
+\section{Filtri derivativi}
+Slide 12-18.
+
+\subsection{Filtri derivativi (2D)}
+Slide 19-20.\\
+Gradiente: solo valori 0-1? No, valori sia positivi che negativi. \E il modulo del gradiente a poter essere solo positivo (è un modulo).
+
+\section{Differenze mobili}
+Ho perso un botto!!
+Rumore e Smoothing \& stuff.
+
+\subsection{Filtri di Prewitt}
+Slide 33.
+
+\subsection{Filtri di Sobel}
+Slide 34-35.
+
+\section{Tecniche derivative}
+COse che mi sono persa.
+
+\subsection{Canny edge detector}
+In un intorno di pixel di edge, prendo il pixel col valore massimo e sopprime i non massimi.\\ 
+Il cambiamento deve essere perpendicolare al bordo che sto analizzando. Fase di thinning del bordo (ovviamente, prendendo quello col valore massimo), slide 62.\\
+Ma ancora devo vedere se quel valore massimo è un bordo. Come? Con una soglia. Ma se sogliamo che vediamo? Che rischio di perdere dei pezzi di edge che a guardare a livello globale avrei tenuto. Non è perfetto.\\
+\subsubsection{Thresholding e isteresi}
+Il metodo di Canny si conclude con un processo di sogliatura applicata alla magnitudine dei pixel selezionati dalla fase di non-maximum suppression.\\
+Il metodo prevede due soglie $a$ e $b$, $a<b$:
+\begin{itemize}
+    \item Se la magnitudine è inferiore alla soglia a il pixel viene scartato (non edge)
+    \item Se la magnitudine è superiore alla soglia b il pixel viene selezionato (edge forti)
+    \item Se la magnitudine assume un valore intermedio i pixel vengono considerati edge (deboli) solo se sono connessi a edge forti, tramite altri edge (forti o deboli)
+\end{itemize}
+
+\subsection{Trasformata di Hough}
+Dato un insieme di punti, capire quale è la retta (o forma generalizzata) che passa per quei punti anche se non connessi fra di loro. Come trovo che so formiche in fila o le strisce pedonali? Con i \textbf{baricentri}.
+\begin{itemize}
+    \item \`E una tecnica che permette di riconoscere particolari configurazioni di punti presenti nell'immagine, come segmenti, curve o altre forme prefissate.
+    \item \`E un tipico operatore globale. 
+    \item Il principio fondamentale è che la forma cercata può essere espressa tramite una funzione nota che fa uso di un insieme di parametri.
+    \item Una particolare istanza della forma cercata è quindi completamente precisata dal valore assunto dall’insieme di parametri.
+\end{itemize}
+La trasformata di Hough è fatta per i bordi ma è applicabile anche ai baricentri (troviamo il singolo oggetto fuori dalla fila).\\ 
+Utile per dire se devo trovare monete su uno sfondo la cui texture è fastidiosa e non voglio quindi usare la segmentazione. Non sempre funziona ma è una buona approssimazione.\\
+
+Per il progetto che ha presentato prima, fa che probabilmente l'edge detection vista la texture dello sfondo potrebbe non funzionare, ma Hough potrebbe essere utile e interessante.
+
+

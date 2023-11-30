@@ -1,0 +1,77 @@
+\chapter*{Presentazione progetto}
+Voto totale da dividere in 3 (\# componenti) a nostra discrezione.\\
+Importante per insegnarci a fare la presentazione (servirà per la tesi).\\
+Con l'esame:
+\begin{itemize}
+    \item Faccio l'esame a gennaio, tutti passano lo scritto, ma non vogliono fare subito il progetto: voto dello scritto salvato.
+    \item Se nessun componente ha passato lo scritto: non discuto il progetto.
+    \item Se un componente ha passato lo scritto: discuto il progetto con il gruppo, per non penalizzare/rallentare gli altri.
+\end{itemize}
+
+\section{Il progetto - consegna}
+Gioco di carte "Uno!" con carte sdraiate su un piano, da riconoscerle e classificarle nella tipologia corretta. Carte standard, numeriche e speciali. Non handmade.\\
+Si vuole realizzare una applicazione che, data una immagine, localizzi e riconosca tutte le carte standard presenti nel gioco UNO.\\
+N.B.: le classi di carte sono coppia colore e numero (anche per le carte speciali). Es.: non è "la carta 2" ma "la carta 2 verde", "la carta 7 rossa", "la carta +2 gialla".\\
+Nello sviluppo dell'applicazione dovete tenere conto che:
+\begin{itemize}
+    \item Le carte possono essere in numero, posizione e orientamento qualunque.
+    \item Vogliamo riconoscere le carte: carte numerate, pesca 2 o 4 carte, cambia colore, cambio giro e salta turno. 
+    \item Anche le carte capovolte vanno riconosciute come tali.
+    \item Assumete che le carte siano, di norma, posizionate in modo tale da non sovrapporsi.
+    \item [Opzionale, da valutare se conviene farlo] Gestire i casi di carte parzialmente sovrapposte (se è un gruppo \textit{troppo} sovrapposto, scegliere una regola es. riconoscere solo quelle più visibile).
+    \item Possono esistere elementi estranei che vanno classificati come "unknown", oggetto estraneo.
+    \item Ci può essere una illuminazione variabile nelle immagini. Possono esserci artefatti creati dall'illuminazione da gestire.
+    \item Ci possono essere per esempio carte parzialmente visibili nell'inquadratura.
+\end{itemize}
+Dataset trovabile al link visibile nella slide 5 della presentazione del progetto. Accedibile solo da un account universitario.\\
+Il prof ha dato un suggerimento su come valutare lo sfondo. Ho registrato.\\
+Ricorda train set e test set.\\
+Dovete crearvi la partizione di dati di training e di test da usare nell'applicazione. Il numero e tipologia di immagini di training e di test da usare è a vostra scelta e va riportata nella presentazione.\\
+Nel farlo, dovete tenere conto e gestire diverse situazioni e condizioni:
+\begin{itemize}
+    \item Ci possono essere delle ombre.
+    \item Ci possono essere dei cambiamenti di illuminazione.
+    \item Ci può essere del rumore dovuto al processo di acquisizione o al formato delle immagini.
+\end{itemize}
+Sia che usiamo il loro dataset o che ne creiamo uno nostro, dobbiamo fare prima l'analisi delle immagini: prendere le foto una alla volta e segnarci cosa usare, cosa va bene, cosa è da elaborare prima di essere usato \dots
+Es.:in base alla luce, cambia tanto il colore di sfondo: o ? processing, o feature di colore, troviamo il modo per sistemare. Se troppo illuminate, si creano artefatti sulle carte.\\
+Carte sovrapposte: scegliamo (specificandolo e motivandolo) se riconoscere solo quelle più visibili, o se riconoscere tutte, o se classificare come sovrapposte.\\
+Poi abbiamo anche la casistica carte che si toccano (ma non sovrappongono).\\
+Abbiamo anche la casiistica carte unknown che non sono da riconoscere ma da etichettare come oggetto estraneo infiltrato, oppure casi con veri e propri oggetti estranei tipo un quaderno.\\
+Abbiamo anche la casistica caso estremo di moltissime carte tanto sovrapposte. Scegliamo come gestire.\\
+Attenzione a:
+\begin{description}
+    \item[analisi degli errori:] non solo la \% di accuratezza o confusion matrix, ma capire e dire perché si verificano.
+\end{description}
+Ha fatto l'esempio di un tizio che sceglie il template matching, ma non funziona (37\%). Lo scarto? No, lo accantono e provo altri metodi e confronto il grado di successo per vedere effettivamente quale è il migliore.\\
+\textbf{E comunque sono da riportare nell'esposizione del progetto!!!} Sia falllimenti che errori che successi.
+
+\section{Requisiti}
+\begin{itemize}
+    \item L'applicazione deve essere valutata almeno in termini di \textit{accuratezza (matrice di confusione)} nella identificazione delle carte e degli "unknown". Sarà quindi necessario definire una ground truth sul dataset di immagini usate per gli esperimenti.
+    \item Definite e riportate nella presentazione le misure che usate per le valutazioni della classificazione (es. Matrice di confusion, accuracy, precision, recall\dots) e di una eventuale segmentazione o localizzazione delle carte.
+    \item Riportate e commentate nella presentazione anche i casi di fallimento, errori e problematiche.
+\end{itemize}
+La groundtruth noi non l'abbiamo, la dobbiamo fare noi a mano.\\
+Nominano \texttt{imageadjust} (prende parametri e dà questo risultato). Next question: che parametri?\\
+Ogni strumento/funzione/whatever che usiamo su MatLab dobbiamo sapere come è scritta, cosa fa, saperlo bene!! MatLab ha tantissimi esempi, una ricca documentazione, un help molto helpful.\\
+\begin{itemize}
+    \item \item Parte integrante del lavoro è l'analisi del dataset e la definizione delle assunzioni operative che hanno portato alla progettazione della pipeline di elaborazione.
+    \item Le decisioni che prendete sono parte integrante della presentazione. Dovete descrivere tutte le specifiche che caratterizzano la vostra soluzione nelle assunzioni.
+    \item Riportate anche eventuali confronti con le diverse soluzioni provate
+\end{itemize}
+Il resto dalle slide che spiegano bene.
+
+\section{Presentazione}
+Struttura tipica della presentazione
+\begin{itemize}
+    \item Introduzione al problema
+    \item Descrizione e analisi dei dati
+    \item Assunzioni (che il gruppo di carte lo considero come un aggregato, che sul tavolo ci sono solo carte, che le carte sono tutte in piano, \dots)
+    \item Descrizione dei metodi (pipeline di elaborazione) (es. slide 14)
+    \item Presentazione e analisi dei risultati (es. visuali dove funziona e dove no, matrice di confusione\dots)
+    \item Conclusioni (evitare tipo "funziona bene" ma dare dati più concreti tipo "al 99,8\% riconosce bene, nei casi x e y e z invece ho il 0.2\% di fallimento perché\dots")
+\end{itemize}
+
+\section{Ultime note}
+Valutano che funzioni, non che sia bello o efficiente il codice (ma se è efficiente è meglio per noi perché dobbiamo saper trovare al volo i parametri richiesti) o quanto ci mette in tempo (ricordando di avere circa 5 ).\\

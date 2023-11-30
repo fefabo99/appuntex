@@ -65,7 +65,7 @@ L'importante di questa high-speed switching fabric è che \textbf{non sia blocca
     \item[$\bullet$ strato di collegamento]: prende i bit e li raggruppa in frame
     \item[$\bullet$ decentralized switching]: 
     \begin{itemize}
-        \item using header field values, lookup output port using forwarding table in input port memory (“match plus action”)
+        \item using header field values, lookup output port using forwarding table in input port memory ("match plus action")
         \begin{itemize}
             \item destination-based forwarding: forward based only on destination IP address (traditional)
         \end{itemize}
@@ -215,3 +215,170 @@ How does a host get IP address?
         \item IPv6 has 128-bit address space 
     \end{itemize}
 \end{description}
+
+\section{NAT: network address translation}
+NAT: all devices in local network share just one IPv4 address as far as outside world is concerned.\\
+all datagrams leaving local network have same source NAT IP address: 138.76.29.7, but different source port numbers.\\
+datagrams with source or destination in this network have 10.0.0.0/8 address for source, destination (as usual).\\
+All devices in local network have 32-bit addresses in a "private" IP address space (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16 prefixes) that can only be used in local network.\\
+Advantages:
+\begin{itemize}
+    \item just one “public" IP address needed from provider ISP for all devices
+    \item can change addresses of host in local network without notifying outside world
+    \item can change ISP without changing addresses of devices in local network\\
+    è possibile cambiare l'ISP senza cambiare gli indirizzi IP della rete privata
+    \item security: devices inside local net not directly addressable, visible by outside world \\
+    utile dal pov della sicurezza perché tutti i dispositivi all'interno della rete privata (a destra del router dell'immagine della slide precedente) non sono direttamente visibili dall'esterno.
+\end{itemize}
+
+\subsection{Implementation}
+NAT router must (transparently):
+\begin{itemize}
+    \item outgoing datagrams: replace (source IP address, port \#) of every outgoing datagram to (NAT IP address, new port \#)
+    \begin{itemize}
+        \item remote clients/servers will respond using (NAT IP address, new port \#) as destination address
+    \end{itemize}
+    \item remember (saved in a NAT translation table) every (source IP address, port \#) to (NAT IP address, new port \#) translation pair
+    \item incoming datagrams: replace (NAT IP address, new port \#) in destination fields of every incoming datagram with corresponding (source IP address, port \#) stored in NAT table
+\end{itemize}
+
+Per ogni indirizzo sceglie una porta, come informazione inserisc eil destinatario. Quando questo datagramma raggiunge il router, questo lo traduce e lo inoltra al destinatario.\\
+Se non presente, va istituita la NAT translation table.\\
+
+
+Mentre lato LAN nel coordinamento non richiede la porta (di solito associato alla coppia indirizzo-porta) il NAT non può assegnare due pseudo porte randomiche a  boh chi ci sta capendo niente.\\
+La traslazione avviene tra indirizzo IP e porta in teoria, ma in pratica con la traslazione di indirizzo IP e traslazione della porta riesco a inoltrare questo (quale?) indirizzo.
+
+\subsection{NAT: osservazioni}
+NAT has been controversial:
+\begin{itemize}
+    \item routers "should" only process up to layer 3
+    \item address "shortage" should be solved by IPv6
+    \item violates end-to-end argument (port \# manipulation by network-layer device)
+\end{itemize}
+But NAT is here to stay:
+\begin{itemize}
+    \item extensively used in home and institutional nets, 4G/5G cellular nets
+\end{itemize}
+
+\chapter{Strato di Rete: Piano di Controllo}
+Inserisci slide 2.\\
+Finora abbiamo visto la parte di data plane:
+% immagine slide 4
+Ora vedremo la parte di control plane e in particolare di algoritmi di instradamento e protocolli.
+
+\section{Algoritmi di instradamento e protocolli.}
+Permettono di determinare rotte/cammini/percorsi migliori (= costo migliore, meno congestionati, \dots) da sorgente a destinazione attraverso una rete di router che devono essere attraversati dai pacchetti.
+
+\subsection{Astrazione di grafi}
+Per parlare di algoritmi di routing dobbiamo parlare di astrazione di grafi. Nella slide:
+% immagine slide 6
+vediamo una rete di routers interconnessi da link.\\
+Le interconnessioni fra i nodi A, B, C sono facili, mentre fra B, C, D vedo la presenza di un dispositivo di livello 2, uno switch, su cui torneremo.
+\subsubsection{Costi dei link}
+$c_{a,b}$: costo del link che unisce \textbf{direttamente} (senza passare da altri router o switch) $a$ e $b$.\\
+Cost defined by network operator: could always be 1, or inversely related to bandwidth, or inversely related to congestion.
+% immagine e equazioni slide 7
+
+\subsection{Classificazione degli algoritmi di instradamento}
+\begin{description}
+    \item[$\bullet$ Dinamici]: costi cambiano molto velocemente\\
+
+    \item[$\bullet$ Statici]: i router cambiano lentamente nel tempo\\
+
+\end{description}
+Ortogonalmente:
+\begin{description}
+    \item[$\bullet$ Globali]: c'è un continuo scambio con tutti i nodi della rete\\
+    all routers have complete topology, link cost info (“link state” algorithms)
+    \item[$\bullet$ Decentralizzati]: c'è un continuo scambio solo con i propri vicini (localmente), guardando il cammino col costo più basso verso tutti i nodi della rete\\
+
+\end{description}
+
+\subsubsection{Distance Vector (DV)}
+Si basano sull'algoritmo di Bellman-Ford, che si basa sull'equazione di Bellman-Ford: ipotizziamo di avere sorgente (nodo A) e destinazione (nodo X), e di voler trovarne la distanza. Sarà il cammino con costo minimo fra: link diretto da V a X e cammino tra V e X. $$dist(A,X) = min_V{dist(V,X) + c(A,V)}$$
+Esempio:
+% immagine slide 10
+So la distanza (cammino con costo \textit{minimo}) fra due nodi, non il percorso effettivamente seguito. Per es. fra W e Z ho un link diretto ma con la strada alternativa non diretta mi costa di più.\\
+\textbf{L'algoritmo, key idea:}
+\begin{itemize}
+    \item from time-to-time, each node sends its own distance vector (DV) estimate to neighbors
+    \item when $x$ receives new DV estimate from any neighbor $v$, it updates its own DV using Bellman-Ford equation: $$D_x(y) \leftarrow min_v{c_{x,v} + D_v(y)} for each node y in \N$$
+    \item the estimate $D_x(y)$ converges to the actual least cost $d_x(y)$
+\end{itemize}
+\textbf{State information diffusion:}\\
+
+\subsubsection{Link State (LS)}
+I problemi degli algoritmi dei distance vector è risolta dai link state.\\
+Nei DV vado a calcolare il vettore distanza di tutti i nodi ma lo comunico solo ai miei vicini.\\
+Nei LS invece tutti i nodi verso tutti i nodi informano sullo stato dei link. Possono quindi eseguire l'algoritmo di Dijkstra per trovare il cammino con costo minimo.\\
+Svantaggio: la mole di messaggi scambiati.\\
+Distribution in selective flooding of the information related to the network topology
+\begin{itemize}
+    \item Each router must broadcast its link state information to the other routers
+\end{itemize}
+Computation of the shortest path using Dijkstra's algorithm.\\
+Mi calcola l'albero dei cammini minimi da un nodo specifico (dal nodo scelto ho indicazione dei cammini minimi per raggiungere un qualsiasi altro nodo).\\
+\textbf{L'algoritmo:}
+\begin{description}
+    \item[$\bullet$ centralized:] network topology, link costs known to all nodes
+    \begin{itemize}
+        \item accomplished via "link state broadcast"
+        \item all nodes have same info
+    \end{itemize}
+    \item[] computes least cost paths from one node ("source") to all other nodes
+    \begin{itemize}
+        \item gives forwarding table for that node
+    \end{itemize}
+    \item[$\bullet$ iterative:] after $k$ iterations, know least cost path to $k$ destinations
+\end{description}
+\textbf{Notation:}
+\begin{description}
+    \item[$\bullet c_{x,y}$:] \underline{direct} link cost from node $x$ to $y$; $= \infty$ if not direct neighbors
+    \item[$\bullet D(v)$:] current estimate of cost of least-cost-path from source to destination $v$
+    \item[$\bullet p(v)$:] predecessor node along path from source to $v$
+    \item[$\bullet N'$:] set of nodes whose leastcost-path definitively known
+\end{description}
+Manca slide 62.\\
+Esempio: slide 63.
+
+\subsubsection{Distance Vector vs. Link State}
+\begin{center}
+    \begin{tabular}{ |l|l| }
+        \hline
+        \textbf{Distance Vector} & \textbf{Link State} \\
+        \hline
+        Simple and intuitive implementation & Complex implementation\\
+        \hline
+        DVs sent only to neighbors & Selective Flooding\\
+        • Low number of exchanged messages & • High number of exchanged messages\\
+        \hline
+        Slow convergence & Fast convergence\\
+        • And problems in achieving it & • And robust\\
+        \hline
+        Examples & Examples\\
+        • RIP & • OSPF\\
+        • IGRP & • IS-IS\\
+        • EIGRP & \\
+        \hline
+        BGP protocol uses an algorithms (Path Vector) based on similar principles of those of Distance Vector & \\
+        \hline        
+    \end{tabular}
+\end{center}
+    
+\subsection{Internet approach to scalable routing}
+Routers are aggregated into regions known as “autonomous systems” (AS), a.k.a. “domains”.\begin{description}
+    \item[Intra-AS (a.k.a. “intra-domain”):] routing within same AS
+    \begin{itemize}
+        \item all routers in AS must run same intra-domain protocol
+        \item routers in different ASes can run different intra-domain routing protocols
+    \end{itemize}
+    \item[Inter-AS (a.k.a. “inter-domain”):] routing among ASes
+    \begin{itemize}
+        \item \textbf{gateway router}: it is at the “edge” of an AS, and has link(s) to router(s) in other ASes
+        \item gateways routers perform inter-domain routing (as well as intra-domain routing)
+    \end{itemize}
+\end{description}
+
+
+
