@@ -344,23 +344,19 @@ Esempio: slide 63.
 
 \subsubsection{Distance Vector vs. Link State}
 \begin{center}
-    \begin{tabular}{ |l|l| }
+    \begin{tabular}{ |m{0.5\textwidth}|m{0.5\textwidth}| }
         \hline
         \textbf{Distance Vector} & \textbf{Link State} \\
         \hline
-        Simple and intuitive implementation & Complex implementation\\
-        \hline
+        Simple and intuitive implementation & Complex implementation\\ [0.5em]
         DVs sent only to neighbors & Selective Flooding\\
-        • Low number of exchanged messages & • High number of exchanged messages\\
-        \hline
+        $\cdot$ Low number of exchanged messages & $\cdot$ High number of exchanged messages\\ [0.5em]
         Slow convergence & Fast convergence\\
-        • And problems in achieving it & • And robust\\
-        \hline
+        $\cdot$ And problems in achieving it & $\cdot$ And robust\\ [0.5em]
         Examples & Examples\\
-        • RIP & • OSPF\\
-        • IGRP & • IS-IS\\
-        • EIGRP & \\
-        \hline
+        $\cdot$ RIP & $\cdot$ OSPF\\
+        $\cdot$ IGRP & $\cdot$ IS-IS\\
+        $\cdot$ EIGRP & \\ [0.5em]
         BGP protocol uses an algorithms (Path Vector) based on similar principles of those of Distance Vector & \\
         \hline        
     \end{tabular}
@@ -368,12 +364,12 @@ Esempio: slide 63.
     
 \subsection{Internet approach to scalable routing}
 Routers are aggregated into regions known as “autonomous systems” (AS), a.k.a. “domains”.\begin{description}
-    \item[Intra-AS (a.k.a. “intra-domain”):] routing within same AS
+    \item[$\cdot$ Intra-AS (a.k.a. “intra-domain”):] routing within same AS
     \begin{itemize}
         \item all routers in AS must run same intra-domain protocol
         \item routers in different ASes can run different intra-domain routing protocols
     \end{itemize}
-    \item[Inter-AS (a.k.a. “inter-domain”):] routing among ASes
+    \item[$\cdot$ Inter-AS (a.k.a. “inter-domain”):] routing among ASes
     \begin{itemize}
         \item \textbf{gateway router}: it is at the “edge” of an AS, and has link(s) to router(s) in other ASes
         \item gateways routers perform inter-domain routing (as well as intra-domain routing)
