@@ -1,6 +1,6 @@
 \chapter{Variabili aleatorie}
-Consideriamo un esperimeno aleatorio, descritto da uno spazio di probabilità $(\Omega, P)$.
-\footnote{$\Omega$ = l'insieme di tutti i possibili esiti dell'esperimento, $P$ = probabilità scelta.}
+Consideriamo un esperimeno aleatorio, descritto da uno spazio di probabilità 
+$(\Omega, P)$\footnote{$\Omega$ = l'insieme di tutti i possibili esiti dell'esperimento, $P$ = probabilità scelta.}.
 Spesso non siamo interessati a tutti i dettagli dell'esito dell'esperimento, ma oslo a una \emph{quantità, tipicamente numerica, determinata dall'esito dell'esperimento}.
 Una tale qunatità è detta \textbf{Variabile Aleatoria}.
 \\\\Una Variabile Aleatoria\footnote{detta anche casuale o stocastica.}, è una variabile che può assumere valori diversi in dipendenza da qualche fenomeno aleatorio.
@@ -20,814 +20,816 @@ concetto di rischio calcolato.
 Ricodiamo che un evento è una affermazione sull'esito dell'esperimento aleatorio, o matematicamente un
 sottoinsieme dello spazio campionario $A \subset \Omega$.
 
-\paragraph{Eventi} Sia $X$ è una variabile aleatoria e $x$ un suo possibile valore:
+\paragraph{Gli Eventi e la Probabilità}
+Sia $X$ una Variabile Aleatoria e $x$ un suo possibile valore:
 \\$\{X = x\}$ è un \textbf{Evento} in cui $X$ assume il valore $x$, ovvero:
-	\[\{X = x\}= \{w \in \Omega: X(w) = x\} \subseteq \Omega\].
-	Sono possibili eventi anche $\{X \geq x\}$, $\{X \neq x\}$, ...
-	Ogni variabile aleatoria $X$ determina molti eventi, di cui possiamo calcolare la \textbf{Probabilità}:
-	\[P(X=x), P(X\geq x), P(X\neq x), ...\]
-	\esempio{
-		Estraggo casualmente una famiglia con due figli/e.
-		indichiamo con $X$ il \textbf{numero di figli maschi}.
+\[\{X = x\}= \{w \in \Omega: X(w) = x\} \subseteq \Omega\]
+Sono possibili eventi anche $\{X \geq x\}$, $\{X \neq x\}$, ...
 
-		Che valori può assumere $X$? Con quali probabilità?
-		\[ \Omega = \{ \text{MM,MF,FM,FF} \} \;\;\; P = \text{Probabilità Uniforme} \]
-		Allora $X : \omega \to \R$ è definita da:
-		\begin{center}
-			$X$(MM)=2, $X$(MF)=1, $X$(FM)=1, $X$(FF)=0,
-		\end{center}
-		Quindi $X$ assume i valori $X(\Omega)=\{0,1,2\}$, con probabilità:
-		\begin{center}
-			$P(X=0)=P(\{$FF$\}) = \frac{1}{4}$, $P(X=2)=P(\{$MM$\}) = \frac{1}{4}$, $P(X=2)=P(\{$MF, FM$\}) = \frac{1}{2}$
-		\end{center}
-	}
+Ogni variabile aleatoria $X$ determina molti eventi, di cui possiamo calcolare la \textbf{Probabilità}:
+\[P(X=x), P(X\geq x), P(X\neq x), ...\]
+\esempio{
+	Estraggo casualmente una famiglia con due figli/e.
+	indichiamo con $X$ il \textbf{numero di figli maschi}.
 
-	\nb{Non bisogna confondere variabili aleatorie ed eventi.}
-
-	% DA CAPIRE se questa parte è importante, nel caso da riaggiungere.
-	% Le variabili aleatorie rappresentano esiti esprimibili numericamente di esperimenti
-	% ancora da effettuare! Dove per esperimento si intende qualsiasi fenomeno o situazione con sviluppi
-	% imprevedibili a priori. Essendo imprevedibile a priori il valore assunto da una variabile
-	% aleatoria, tutto ciò che si può fare è esprimere delle valutazioni di tipo probabilistico sui valori
-	% che essa assumerà. Per questa ragione ad ogni variabile aleatoria X è associata una funzione che esprime
-	% in modo chiaro tali valutazioni. 
-	% \\Se la variabile è discreta si parlerà di \textbf{Densità discreta}.
-	% \\Se la variabile è continua di parlerà di \textbf{Funzione di ripartizione}.
-
-	% \section{Notazione} Con $X_i$ indichiamo la Variabile Aleatoria $X_i: \Omega \rightarrow \R$
-	% \\ con $x_i$ indichiamo l'osservazione relativa alla V.A $X$
-
-	\pagebreak
-	\section{Variabili Aleatorie Discrete}
-	\definizione{
-	Una variabile aleatoria $X$ (reale) si dice \textbf{discreta} se i valori che può
-	assumere sono un insieme finito:
-	\[
-		X(\Omega) = {x_1, x_2, \dots, x_n} \subseteq  \R
-	\]
-	Oppure un insieme infinito Numerabile\footnote{Di punti "separati".}:
-	\[
-		X(\Omega) = {x_1, X_2, \dots } = {x_i} _{i \in \N} \subseteq \R
-	\]
-	}
-
-	\subsection{Densità Discreta}
-	E' concettualmente importante sapere che una Variabile Aleatoria $X$ è rappresentata matematicamente da una
-	una funzione definita sullo spazio campionario $\Omega$ di un esperimento aleatorio.
-	\[
-		X:\Omega \to \R
-	\]
-	Allo stesso tempo possiamo pensare a X come a un numero che dipende dal caso.
-	Se siamo interessati a una v.a. discreta X, spesso non è necessario scrivere lo
-	spazio campionario $\Omega$ ed esprimere X come funzione,
-	ci basta conoscere la \textbf{Densità Discreta}:
-
-	\definizione{
-		Ad ogni variabile aleatoria discreta $X$ possiamo associare una \textbf{Densità discreta} così definita:
-		\[
-			p_X(x_i) := P(X = x_i)
-		\]
-	}
-	Anche detta distribuzione di probabilità, è una funzione che assegna
-	ad ogni valore possibile di X la probabilità dell'evento $(X = x)$
-	\subsubsection{Proprietà della densità discreta}
-	Una densità discreta $p_X$ è una funzione da $\R \in [0,1]$ e gode delle seguenti proprietà:
-	\begin{itemize}
-		\item $p_X(x) = P(X=x) = 0$ Se $x$ non è uno dei valori $x_i$ assunti da $X$.
-		\item $p_X(x_i) \geq 0 \forall i$ ($p_X(x_i)\in [0,1]$)
-		\item $\sum_{i\geq 1} p_X(x_i) = 1$, perchè gli eventi $\{X=x_i\}$ per $i\geq 1$ sono \textbf{Disgiunti}, ovvero una partizione di $\Omega$.
-	\end{itemize}
-	\esempio{
-		Riprendiamo l'esempio precedente in cui $X$ era il numero di \textbf{figli maschi} in una famiglia estratta a caso con due figli/e.
-		Ricordiamo che $X(\Omega) = \{0,1,2\}$.
-
-		Sapendo le probabilità precedenti, quali sono le densità discrete $p_X(x)=P(X=x)$?
-		\[
-			\implies p_X(0)= \frac{1}{4}, \;\; p_X(1)= \frac{1}{2}, \;\; p_X(2)= \frac{1}{4}
-		\]
-	}
-
-	\subsection{Valore Medio}
-	\definizione{
-		Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
-		$x_1, x_2, \dots, x_n$.
-		Si definisce \textbf{Valore Medio} di $X$ $E[X]$:
-
-		\[
-			E[X]:= \sum_{i = 1}^{n} x_i \cdot p_X(x_i) = \sum_{i = 1}^{n} x_i \cdot  P(X= x_i)
-		\]
-		Ovvero la somma dei valori assunti da $X$ "pesati" con le rispettive probabilità.
-	}
-	Il valore medio è anche detto valore atteso, media, espettativa o speranza matematica.
-	Si indica come $E[X]$ dall'inglese \emph{Expected Value}.
-
-	\esempio{
-		Riprendendo sempre l'esempio del numero di \textbf{Figli Maschi}:
-		\[ X(\Omega) = \{0,1,2\} \text{ con } p_X(0)= p_X(2)=\frac{1}{4}, p_X(1) = \frac{1}{2} \]
-		Allora $E[X] = 0 \cdot p_X(0) +  1 \cdot p_X(1) + 2 \cdot p_X(2) = 1$
-
-		In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
-		il valore medio, per esempio il valore medio del numero di figli maschi
-		su una coppia con 2 figli è 1, perchè mediamente una coppia con 2 figli ha almeno 1 figlio maschio.
-
-	}
-	\osservazione{
-		Si può notare che il valore medio E[X] non è necessariamente
-		uno dei valori $x_i$ assunti da X!
-	}
-
-	A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
-	ci aspettiamo di osservare.
-	\\ Ma allora qual è l'interpretazione del valore medio $E[X]$? A cosa serve?
-	Riportiamo l'interpretazione frequentista e quella geometrica di $E{X}$:
-	\paragraph{Interpretazione frequentista del valore medio}
-	Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
-	e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
-	ripetizioni dell'esperimento si ha con grande probabilità che:
-	\[
-		\frac{X_1 + X_2 + \dots + X_n}{N} \backsimeq  E[X]
-	\]
-	Anche detta Legge dei Grandi Numeri.
-
-	\paragraph{Interpretazione Geometrica}
-	Il valore medio $E[X]$ rappresenta il "baricentro" dei valori $x_i$ assunti dalla variabile aleatoria $X$, pesati
-	con le rispettive probabilità.
-
-	\subsubsection{Proprietà del valore medio}
-	Per ogni variabile aleatoria (reale) $X$ valgono le seguenti proprietà:
-	\\Per ogni costante $c \in R$
-	\begin{itemize}
-		\item $E[X + c] = E[X] + c$
-		\item $E[cX] = c E[X]$
-	\end{itemize}
-	Se $X$ e $Y$ sono due variabili aleatorie che dipendono entrambe dallo
-	stesso esperimento aleatorio, allora:
-	\begin{itemize}
-		\item $E[X+Y] = E[X] + E[Y]$
-	\end{itemize}
-	Si dice che il valore medio è un\textbf{ operatore lineare}.
-	\osservazione{
-		Se $Z = X + c$ (oppure $Z=cX$, o $Z = X + Y$) è una variabile aleatoria,
-		per calcolare il valore medio $E[Z]$ non c'è bisogno di determinare la densità discreta.
-	}
-
-	\paragraph{Altre importanti proprietà}
-	\begin{itemize}
-		\item Se $X = c$ (costante) allora $E[X] = E[c] = c$
-		\item Se $X >= 0$ allora $E[X] >= 0$
-	\end{itemize}
-
-	\paragraph{Formula di trasferimento}
-	\begin{equation}
-		E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_X(x_i)
-		= \sum_{i = 1}^{n}f(x_i)P(X = x_i)
-	\end{equation}
-	Valida per ogni funzione $f:R \to R$. In particolare
-	\begin{equation}
-		E[X^2] = \sum_{i = 1}^{n} x_i^2 p_X^{x_i} = \sum_{i = 1}^{n} x_i^2P(X=x_i)
-	\end{equation}
-
-	\paragraph*{Nota per gli esercizi} Queste proprietà servono nel caso in cui ci venga
-	richiesto di calcolare una nuova media Y in funzione di X, in questo modo applicando
-	le proprietà non sarà necessario ricalcolare il tutto, ma partendo da Y e applicando
-	le proprietà di possiamo ricondurre a X e avere già il risultato.
-
-	\subsection[Varianza e Deviazione Standard]{Varianza e Deviazione Standard per le Variabili Aleatorie}
-	Definiamo ora Varianza e Deviazione Standard per le variabili aleatorie:
-	\definizione{
-	Definiamo la Varianza $VAR[X]$ come:
-	\[
-		VAR[X] := E[(X-\mu)^2] >= 0
-	\]
-	con $\mu:=E[X]$.
-	\\\\E la Deviazione Standard $SD[X]$ come:
-	\[ SD[X] := \sqrt{VAR[X]} \]
-	}
-	Alternativamente, la deviazione standard può essere definita come:
-	\[ VAR[X] = E[X^2] - E[X]^2 \]
-	Questa è una formula più facile da calcolare.
-
-	La deviazione standard ha la stessa "unità di misura" di X e fornisce
-	una misura della larghezza (o dispersione) dei valori $x_i$ assunti da X rispetto
-	al valore medio E[X].
-	\\Valore medio e varianza sono due numeri reali che riassumono
-	le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
-	Sono importanti anche perchè talvolta possono essere calcolati
-	senza conoscere in dettaglio la densità descrita $p_X$, ma sfruttando le
-	proprietà di valore medio e varianza.
-
-	\subsubsection{Proprietà della varianza}
-	Per ogni variabile aleatoria (reale) X
-	\begin{itemize}
-		\item $VAR[X+c] = VAR[X]$
-		\item $VAR[cX] = c^2 VAR[X]$
-	\end{itemize}
-	Per ogni costante reale $c \in R$
-	\paragraph{Osservazione} Diverse dalle proprietà del valore media!
-	\\ Varianza = $(SD)^2 \backsimeq $ (larghezza della distribuzione)$^2$
+	Che valori può assumere $X$? Con quali probabilità?
+	\[ \Omega = \{ \text{MM,MF,FM,FF} \} \;\;\; P = \text{Probabilità Uniforme} \]
+	Allora $X : \omega \to \R$ è definita da:
 	\begin{center}
-		Inoltre $X = c \Leftrightarrow VAR[X] = 0$
+		$X$(MM)=2, $X$(MF)=1, $X$(FM)=1, $X$(FF)=0,
 	\end{center}
-
-	\osservazione{Negli esericzi, le proprietà sono super
-		utili nel caso ci viene richiesto di calcolare una varianza Y in funzione di X e già
-		calcolata in precedenza.}
-
-	\subsection{Indipendenza di Variabili Aleatorie}
-	Siano $X$ e $Y$ due variabili aleatorie, che dipendono entrambe dallo
-	stesso esperimento aleatorio.
+	Quindi $X$ assume i valori $X(\Omega)=\{0,1,2\}$, con probabilità:
 	\begin{center}
-		Quanto vale $VAR[X+Y]$?
+		$P(X=0)=P(\{$FF$\}) = \frac{1}{4}$, $P(X=2)=P(\{$MM$\}) = \frac{1}{4}$, $P(X=2)=P(\{$MF, FM$\}) = \frac{1}{2}$
 	\end{center}
-	La risposta dipende da \textbf{come solo legate $X$ e $Y$!}
+}
 
-	\definizione{
-		Due Variabili Aleatorie discrete $X$ e $Y$ si dicono \textbf{indipendenti}
-		se gli eventi $\{X = x\}$ e $\{Y = y\}$ sono indipendenti, ossia:
-		\[
-			P(X=x, Y=y) = P(X = x)P(Y = y)
-		\]
-		Per ogni scelta di $x$ e $y$ tra i valori assunti da $X$ e da $Y$.
-	}
-	Intuitivamente conoscere il valore assunto da $X$ non modifica la proabilità dei valori
-	di $Y$ e viceversa.
+\nb{Non bisogna confondere variabili aleatorie ed eventi.}
 
-	Se $X$ e $Y$ sono costruite come funzioni esplicite su uno spazio campionario $\Omega$,
-	è possibile mostrare se sono indipendenti.
-	\\ Molto spesso l'indipendenza è assunta in partenza, ad esempio quando $X$ e $Y$ "non si influenzano".
+% DA CAPIRE se questa parte è importante, nel caso da riaggiungere.
+% Le variabili aleatorie rappresentano esiti esprimibili numericamente di esperimenti
+% ancora da effettuare! Dove per esperimento si intende qualsiasi fenomeno o situazione con sviluppi
+% imprevedibili a priori. Essendo imprevedibile a priori il valore assunto da una variabile
+% aleatoria, tutto ciò che si può fare è esprimere delle valutazioni di tipo probabilistico sui valori
+% che essa assumerà. Per questa ragione ad ogni variabile aleatoria X è associata una funzione che esprime
+% in modo chiaro tali valutazioni. 
+% \\Se la variabile è discreta si parlerà di \textbf{Densità discreta}.
+% \\Se la variabile è continua di parlerà di \textbf{Funzione di ripartizione}.
 
-	\paragraph{Additività della Varianza}
-	Introduciamo ora un teorema molto importante: quello di additività della varianza.
+% \section{Notazione} Con $X_i$ indichiamo la Variabile Aleatoria $X_i: \Omega \rightarrow \R$
+% \\ con $x_i$ indichiamo l'osservazione relativa alla V.A $X$
 
-	Se $X$ e $Y$ sono variabili aleatorie \textbf{indipendenti}, allora:
+\pagebreak
+\section{Variabili Aleatorie Discrete}
+\definizione{
+Una variabile aleatoria $X$ (reale) si dice \textbf{discreta} se i valori che può
+assumere sono un insieme finito:
+\[
+	X(\Omega) = {x_1, x_2, \dots, x_n} \subseteq  \R
+\]
+Oppure un insieme infinito Numerabile\footnote{Di punti "separati".}:
+\[
+	X(\Omega) = {x_1, X_2, \dots } = {x_i} _{i \in \N} \subseteq \R
+\]
+}
+
+\subsection{Densità Discreta}
+E' concettualmente importante sapere che una Variabile Aleatoria $X$ è rappresentata matematicamente da una
+una funzione definita sullo spazio campionario $\Omega$ di un esperimento aleatorio.
+\[
+	X:\Omega \to \R
+\]
+Allo stesso tempo possiamo pensare a X come a un numero che dipende dal caso.
+Se siamo interessati a una v.a. discreta X, spesso non è necessario scrivere lo
+spazio campionario $\Omega$ ed esprimere X come funzione,
+ci basta conoscere la \textbf{Densità Discreta}:
+
+\definizione{
+	Ad ogni variabile aleatoria discreta $X$ possiamo associare una \textbf{Densità discreta} così definita:
 	\[
-		\var[X+Y] = \var[X] + \var[Y]
+		p_X(x_i) := P(X = x_i)
 	\]
-	Ne segue che la deviazione standard:
+}
+Anche detta distribuzione di probabilità, è una funzione che assegna
+ad ogni valore possibile di X la probabilità dell'evento $(X = x)$
+\subsubsection{Proprietà della densità discreta}
+Una densità discreta $p_X$ è una funzione da $\R \in [0,1]$ e gode delle seguenti proprietà:
+\begin{itemize}
+	\item $p_X(x) = P(X=x) = 0$ Se $x$ non è uno dei valori $x_i$ assunti da $X$.
+	\item $p_X(x_i) \geq 0 \forall i$ ($p_X(x_i)\in [0,1]$)
+	\item $\sum_{i\geq 1} p_X(x_i) = 1$, perchè gli eventi $\{X=x_i\}$ per $i\geq 1$ sono \textbf{Disgiunti}, ovvero una partizione di $\Omega$.
+\end{itemize}
+\esempio{
+	Riprendiamo l'esempio precedente in cui $X$ era il numero di \textbf{figli maschi} in una famiglia estratta a caso con due figli/e.
+	Ricordiamo che $X(\Omega) = \{0,1,2\}$.
+
+	Sapendo le probabilità precedenti, quali sono le densità discrete $p_X(x)=P(X=x)$?
 	\[
-		SD[X+Y] = \sqrt{SD[X]^2 + SD[Y]^2}
+		\implies p_X(0)= \frac{1}{4}, \;\; p_X(1)= \frac{1}{2}, \;\; p_X(2)= \frac{1}{4}
 	\]
+}
 
-	\osservazione{
-		La relazione di additività della varianza non è affatto scontata e nemmeno intuitiva.
-		Infatti la varianza non è lineare, ma la sua somma si comporta linearmente.
-	}
+\subsection{Valore Medio}
+\definizione{
+	Sia X una variabile aleatoria discreta (reale) che assume una quantità finita di valori
+	$x_1, x_2, \dots, x_n$.
+	Si definisce \textbf{Valore Medio} di $X$ $E[X]$:
 
-	%%Copiata dagli appunti lezione 6 pagina 3 (con un OCR)
-	% Se X e Y sono indipendenti e Varie Var Y oh allora
-	% VARIX Y 28 SATAY RO
-	% Se la distribuzionedeivalori di X ha larghezza sa 6
-	% e lo stesso vale per Y la larghezza deivaloridi XYY
-	% è solo E 6 1,416 non 20
-	% Questa concentrazione deivalori di X Y è dovuta alla
-	% indipendenza diXeY
-	% Il fenomenodiventa ancora piùinteressante quando si sommano
-	% v ai indipendenti ka ka Xn con N grande vedremo
-	% la legge dei GRANDINUMERI epoi il teorema limite centrale
+	\[
+		E[X]:= \sum_{i = 1}^{n} x_i \cdot p_X(x_i) = \sum_{i = 1}^{n} x_i \cdot  P(X= x_i)
+	\]
+	Ovvero la somma dei valori assunti da $X$ "pesati" con le rispettive probabilità.
+}
+Il valore medio è anche detto valore atteso, media, espettativa o speranza matematica.
+Si indica come $E[X]$ dall'inglese \emph{Expected Value}.
 
-	\subsection{Distribuzioni Notevoli Discrete}
-	Consideriamo una variabile aleatoria $X$, definita nello spazio di probabilità
+\esempio{
+	Riprendendo sempre l'esempio del numero di \textbf{Figli Maschi}:
+	\[ X(\Omega) = \{0,1,2\} \text{ con } p_X(0)= p_X(2)=\frac{1}{4}, p_X(1) = \frac{1}{2} \]
+	Allora $E[X] = 0 \cdot p_X(0) +  1 \cdot p_X(1) + 2 \cdot p_X(2) = 1$
+
+	In poche parole se ripetiamo tante volte l'esperimento e ne calcoliamo la media otteniamo
+	il valore medio, per esempio il valore medio del numero di figli maschi
+	su una coppia con 2 figli è 1, perchè mediamente una coppia con 2 figli ha almeno 1 figlio maschio.
+
+}
+\osservazione{
+	Si può notare che il valore medio E[X] non è necessariamente
+	uno dei valori $x_i$ assunti da X!
+}
+
+A maggior ragione, E[X] non è un valore tipico di X, nè un valore che necessariamente
+ci aspettiamo di osservare.
+\\ Ma allora qual è l'interpretazione del valore medio $E[X]$? A cosa serve?
+Riportiamo l'interpretazione frequentista e quella geometrica di $E{X}$:
+\paragraph{Interpretazione frequentista del valore medio}
+Supponendo di ripetere l'esperimento aleatorio un numero elevato di volte $N >> 1$
+e indicando con $X_1, X_2, \dots, X_n$ le variabili aleatorie che rappresentano X nelle
+ripetizioni dell'esperimento si ha con grande probabilità che:
+\[
+	\frac{X_1 + X_2 + \dots + X_n}{N} \backsimeq  E[X]
+\]
+Anche detta Legge dei Grandi Numeri.
+
+\paragraph{Interpretazione Geometrica}
+Il valore medio $E[X]$ rappresenta il "baricentro" dei valori $x_i$ assunti dalla variabile aleatoria $X$, pesati
+con le rispettive probabilità.
+
+\subsubsection{Proprietà del valore medio}
+Per ogni variabile aleatoria (reale) $X$ valgono le seguenti proprietà:
+\\Per ogni costante $c \in R$
+\begin{itemize}
+	\item $E[X + c] = E[X] + c$
+	\item $E[cX] = c E[X]$
+\end{itemize}
+Se $X$ e $Y$ sono due variabili aleatorie che dipendono entrambe dallo
+stesso esperimento aleatorio, allora:
+\begin{itemize}
+	\item $E[X+Y] = E[X] + E[Y]$
+\end{itemize}
+Si dice che il valore medio è un\textbf{ operatore lineare}.
+\osservazione{
+	Se $Z = X + c$ (oppure $Z=cX$, o $Z = X + Y$) è una variabile aleatoria,
+	per calcolare il valore medio $E[Z]$ non c'è bisogno di determinare la densità discreta.
+}
+
+\paragraph{Altre importanti proprietà}
+\begin{itemize}
+	\item Se $X = c$ (costante) allora $E[X] = E[c] = c$
+	\item Se $X >= 0$ allora $E[X] >= 0$
+\end{itemize}
+
+\paragraph{Formula di trasferimento}
+\begin{equation}
+	E[f(x)] = \sum_{i = 1}^{n} f(x_i)p_X(x_i)
+	= \sum_{i = 1}^{n}f(x_i)P(X = x_i)
+\end{equation}
+Valida per ogni funzione $f:R \to R$. In particolare
+\begin{equation}
+	E[X^2] = \sum_{i = 1}^{n} x_i^2 p_X^{x_i} = \sum_{i = 1}^{n} x_i^2P(X=x_i)
+\end{equation}
+
+\paragraph*{Nota per gli esercizi} Queste proprietà servono nel caso in cui ci venga
+richiesto di calcolare una nuova media Y in funzione di X, in questo modo applicando
+le proprietà non sarà necessario ricalcolare il tutto, ma partendo da Y e applicando
+le proprietà di possiamo ricondurre a X e avere già il risultato.
+
+\subsection[Varianza e Deviazione Standard]{Varianza e Deviazione Standard per le Variabili Aleatorie}
+Definiamo ora Varianza e Deviazione Standard per le variabili aleatorie:
+\definizione{
+Definiamo la Varianza $VAR[X]$ come:
+\[
+	VAR[X] := E[(X-\mu)^2] >= 0
+\]
+con $\mu:=E[X]$.
+\\\\E la Deviazione Standard $SD[X]$ come:
+\[ SD[X] := \sqrt{VAR[X]} \]
+}
+Alternativamente, la deviazione standard può essere definita come:
+\[ VAR[X] = E[X^2] - E[X]^2 \]
+Questa è una formula più facile da calcolare.
+
+La deviazione standard ha la stessa "unità di misura" di X e fornisce
+una misura della larghezza (o dispersione) dei valori $x_i$ assunti da X rispetto
+al valore medio E[X].
+\\Valore medio e varianza sono due numeri reali che riassumono
+le caratteristiche salienti di una v.a. X (meglio della sua densità discreta).
+Sono importanti anche perchè talvolta possono essere calcolati
+senza conoscere in dettaglio la densità descrita $p_X$, ma sfruttando le
+proprietà di valore medio e varianza.
+
+\subsubsection{Proprietà della varianza}
+Per ogni variabile aleatoria (reale) X
+\begin{itemize}
+	\item $VAR[X+c] = VAR[X]$
+	\item $VAR[cX] = c^2 VAR[X]$
+\end{itemize}
+Per ogni costante reale $c \in R$
+\paragraph{Osservazione} Diverse dalle proprietà del valore media!
+\\ Varianza = $(SD)^2 \backsimeq $ (larghezza della distribuzione)$^2$
+\begin{center}
+	Inoltre $X = c \Leftrightarrow VAR[X] = 0$
+\end{center}
+
+\osservazione{Negli esericzi, le proprietà sono super
+	utili nel caso ci viene richiesto di calcolare una varianza Y in funzione di X e già
+	calcolata in precedenza.}
+
+\subsection{Indipendenza di Variabili Aleatorie}
+Siano $X$ e $Y$ due variabili aleatorie, che dipendono entrambe dallo
+stesso esperimento aleatorio.
+\begin{center}
+	Quanto vale $VAR[X+Y]$?
+\end{center}
+La risposta dipende da \textbf{come solo legate $X$ e $Y$!}
+
+\definizione{
+	Due Variabili Aleatorie discrete $X$ e $Y$ si dicono \textbf{indipendenti}
+	se gli eventi $\{X = x\}$ e $\{Y = y\}$ sono indipendenti, ossia:
+	\[
+		P(X=x, Y=y) = P(X = x)P(Y = y)
+	\]
+	Per ogni scelta di $x$ e $y$ tra i valori assunti da $X$ e da $Y$.
+}
+Intuitivamente conoscere il valore assunto da $X$ non modifica la proabilità dei valori
+di $Y$ e viceversa.
+
+Se $X$ e $Y$ sono costruite come funzioni esplicite su uno spazio campionario $\Omega$,
+è possibile mostrare se sono indipendenti.
+\\ Molto spesso l'indipendenza è assunta in partenza, ad esempio quando $X$ e $Y$ "non si influenzano".
+
+\paragraph{Additività della Varianza}
+Introduciamo ora un teorema molto importante: quello di additività della varianza.
+
+Se $X$ e $Y$ sono variabili aleatorie \textbf{indipendenti}, allora:
+\[
+	\var[X+Y] = \var[X] + \var[Y]
+\]
+Ne segue che la deviazione standard:
+\[
+	SD[X+Y] = \sqrt{SD[X]^2 + SD[Y]^2}
+\]
+
+\osservazione{
+	La relazione di additività della varianza non è affatto scontata e nemmeno intuitiva.
+	Infatti la varianza non è lineare, ma la sua somma si comporta linearmente.
+}
+
+%%Copiata dagli appunti lezione 6 pagina 3 (con un OCR)
+% Se X e Y sono indipendenti e Varie Var Y oh allora
+% VARIX Y 28 SATAY RO
+% Se la distribuzionedeivalori di X ha larghezza sa 6
+% e lo stesso vale per Y la larghezza deivaloridi XYY
+% è solo E 6 1,416 non 20
+% Questa concentrazione deivalori di X Y è dovuta alla
+% indipendenza diXeY
+% Il fenomenodiventa ancora piùinteressante quando si sommano
+% v ai indipendenti ka ka Xn con N grande vedremo
+% la legge dei GRANDINUMERI epoi il teorema limite centrale
+
+\subsection{Distribuzioni Notevoli Discrete}
+Consideriamo una variabile aleatoria $X$, definita nello spazio di probabilità
 $(\Omega, P)$ di un certo esperimento aleatorio:
-	\[
-		X:\Omega \rightarrow \R
-	\]
-	Possiamo calcolare la probabilità $P(X \in A)$ per ogni $A \subseteq \R$
-	(ad esempio per ogni intervallo $A=(a,b)$).
-	L'insieme di tali probabilità definisce la \textbf{Distriuzione di Probabilità} della Variabile Aleatoria $X$.
+\[
+	X:\Omega \rightarrow \R
+\]
+Possiamo calcolare la probabilità $P(X \in A)$ per ogni $A \subseteq \R$
+(ad esempio per ogni intervallo $A=(a,b)$).
+L'insieme di tali probabilità definisce la \textbf{Distriuzione di Probabilità} della Variabile Aleatoria $X$.
+\begin{center}
+	\includegraphics[width=.6\textwidth]{images/funzioneDistribuzione.jpg}
+\end{center}
+
+Per Variabili Aleatorie discrete, la distribuzione di $X$ è determinata dalla densità discreta $p_X$:
+\[
+	P(X \in A) = \sum_{x_i \in A} P(X=x_i) = \sum_{x_i \in A} p_X(x_i)
+\]
+Per tale ragione con abuso di notazione, per una v.a. discreta si può chiamare
+\textbf{distribuzione} la \textbf{densità discreta}.
+
+Classifichiamo ora le distribuzioni discrete più importanti:
+
+\subsubsection{Bernoulli}
+Si chiama Bernoulli una Variabile Aleatoria $X$ che può \textbf{assumere soltanto i valori 0 e 1} cioè
+\[
+	X(\Omega) = \{0,1\}
+\]
+Sia $p:=P(X=1)$, dato che la somma di tutti i valori che può assumere è 1 si ottiene:
+\[
+	p_X (x) = P(X=x) =
+	\begin{cases}
+		p   & \text{ se } x=1 \\
+		1-p & \text{ se } x=0
+	\end{cases}
+\]
+Ovvero:
+\[
+	\begin{cases}
+		P(X=1) = p \\
+		P(X=0)= 1-p
+	\end{cases}
+\]
+Quindi $X$ è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
+forma per un $p \in [0,1]$.
+\\ Scriveremo $X \sim \text{Be}(p)$.
+
+\paragraph{Valore Medio e Varianza}
+Se $X \sim \text{Be}(p)$ è una variabile di Bernoulli, allora:
+\begin{itemize}
+	\item Valore Medio: $E[X] = p$
+	\item Varianza: $\var[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
+\end{itemize}
+A dispetto della loro semplicità, le variabili aleatorie di bernoulli sono importanti, perchè spesso
+vengono utilizzate per costruire variabili aleatorie più complesse.
+
+\subsubsection{Binomiale}
+Consideriamo un esperimento aleatorio costituito da "prove ripetute e indipendenti",
+dove ciascua prova può avere due soli esiti "successo" = 1, "insuccesso" = 0, con una
+probabilità di successo $p \in [0,1]$ fissata, la stessa per ogni prova.
+\esempio{
+	\begin{itemize}
+		\item Lancio ripetutamente una moneta o un dado
+		\item Guardo se i figli/e di una coppia sono M o F
+		\item estraggo persona da una popolazione molto ampia (successo = elettore del candidato A)
+	\end{itemize}
+}
+Siano \begin{itemize}
+	\item $n \in \mathbb{N}$ il numero totale di prove.
+	\item $p \in [0,1]$ la probabilità di successo in ciascuna prova.
+\end{itemize}
+Consideriamo quindi la Variabile Aleatoria:
+\begin{center}
+	$X:=$ numero di "successi" che si verificano nelle $n$ prove.
+\end{center}
+La distribuzione di $X$ è detta \textbf{binomiale} di parametri $n$ e $p$ e indicata con $X \sim \text{Bin}(n,p)$
+\osservazione{Per $n=1$ ritroviamo Bernoulli: $\text{Bin}(1,p) = \text{Be}(p)$}
+Calcoliamo la distribuzione di X. Per costruzione:
+\[
+	X(\Omega) = \{0,1,2,\dots,n\}
+\]
+Inoltre la densità discreta è data da:
+\begin{equation*}
+	p_X (k) = P(X=k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k} \;\;\text{ per } k = 0,1,\dots, n
+\end{equation*}
+Dove: \begin{itemize}
+	\item $\binom{n}{k}$ sono le scelte di quali prove hanno successo,
+	      ovvero la combinazione di $n$ prove in cui $k$ hanno successo.
+	\item $p^k$ è la probabilità di k successi fissati.
+	\item $(1-p)^{n-k}$ è la probabilità di $(n-k)$ \underline{in}successi fissati.
+\end{itemize}
+In definitiva, una variabile aleatoria $X$ è \textbf{binomiale} di parametri $n$ e $p$, $X \sim \text{Bin}(n,p)$,
+se ha questa densità discreta.
+
+\paragraph*{Valore Medio} $E[X_i] = np$
+\paragraph*{Varianza} $Var[X_i]=np(1-p)$
+
+\esempio{
+	Riprendendo l'esempio dei figli maschi, sia $X:=$ numero di figli maschi in una coppia con due figli:
 	\begin{center}
-		\includegraphics[width=.6\textwidth]{images/funzioneDistribuzione.jpg}
+		\includegraphics[width=.7\textwidth]{images/figli_maschi_binomiale.jpg}
 	\end{center}
-
-	Per Variabili Aleatorie discrete, la distribuzione di $X$ è determinata dalla densità discreta $p_X$:
+	Non è soprendente che $X\sim$Bin$(2,\frac{1}{2})$ perchè possiamo vedere $X$ come il numero
+	di "successi" in $n=2$ prover ripetute e indipendenti con probabilità di successo $p=\frac{1}{2}$.
+	Infatti
 	\[
-		P(X \in A) = \sum_{x_i \in A} P(X=x_i) = \sum_{x_i \in A} p_X(x_i)
-	\]
-	Per tale ragione con abuso di notazione, per una v.a. discreta si può chiamare
-	\textbf{distribuzione} la \textbf{densità discreta}.
-
-	Classifichiamo ora le distribuzioni discrete più importanti:
-
-	\subsubsection{Bernoulli}
-	Si chiama Bernoulli una Variabile Aleatoria $X$ che può \textbf{assumere soltanto i valori 0 e 1} cioè
-	\[
-		X(\Omega) = \{0,1\}
-	\]
-	Sia $p:=P(X=1)$, dato che la somma di tutti i valori che può assumere è 1 si ottiene:
-	\[
-		p_X (x) = P(X=x) =
-		\begin{cases}
-			p   & \text{ se } x=1 \\
-			1-p & \text{ se } x=0
+		X = X_1 + X_2 \;\; \text{dove} \;\;
+		X_i = \begin{cases}
+			1 & \text{Se i-esimo figlio è M} \\
+			0 & \text{Altrimenti}
 		\end{cases}
 	\]
-	Ovvero:
+	E le variabili aleatorie $X_1$ e $X_2$ sono Be$(\frac{1}{2})$ indpendenti.
+}
+
+\subsubsection{Poisson}
+Una variabile aleatoria $X$ si dice Poisson di parametro $\lambda \in (0, \infty)$,
+e si scrive $X \sim \text{Pois}(\lambda)$,
+se :
+\[X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}\]
+E la sua densità discreta è:
+\[
+	p_X (k) = P(X=k) = e^{-\lambda} \cdot \frac{\lambda^k}{k!} \;\;\; \text{ per } k = 0,1,2,\dots
+\]
+\osservazione{
+	Si può ottenere una variabile aleatoria di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
+	di una variabile aleatoria binomiale $Y \sim \text{Bin}(n,p)$ quando
 	\[
-		\begin{cases}
-			P(X=1) = p \\
-			P(X=0)= 1-p
-		\end{cases}
+		n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
 	\]
-	Quindi $X$ è Bernoulli $\Leftrightarrow$ la sua densità discreta è di questa
-	forma per un $p \in [0,1]$.
-	\\ Scriveremo $X \sim \text{Be}(p)$.
+}
 
-	\paragraph{Valore Medio e Varianza}
-	Se $X \sim \text{Be}(p)$ è una variabile di Bernoulli, allora:
-	\begin{itemize}
-		\item Valore Medio: $E[X] = p$
-		\item Varianza: $\var[X] = E[X^2] - E[X]^2 = p-p^2 = p(1-p)$
-	\end{itemize}
-	A dispetto della loro semplicità, le variabili aleatorie di bernoulli sono importanti, perchè spesso
-	vengono utilizzate per costruire variabili aleatorie più complesse.
+\paragraph{Valore Medio e Varianza}
+Se $X \sim \text{Pois}(\lambda)$ è una variabile di Poisson, allora:
+\begin{itemize}
+	\item Valore Medio: $E[X] = \lambda$
+	\item Varianza: $\var[X] = \lambda$
+\end{itemize}
 
-	\subsubsection{Binomiale}
-	Consideriamo un esperimento aleatorio costituito da "prove ripetute e indipendenti",
-	dove ciascua prova può avere due soli esiti "successo" = 1, "insuccesso" = 0, con una
-	probabilità di successo $p \in [0,1]$ fissata, la stessa per ogni prova.
-	\esempio{
-		\begin{itemize}
-			\item Lancio ripetutamente una moneta o un dado
-			\item Guardo se i figli/e di una coppia sono M o F
-			\item estraggo persona da una popolazione molto ampia (successo = elettore del candidato A)
-		\end{itemize}
-	}
-	Siano \begin{itemize}
-		\item $n \in \mathbb{N}$ il numero totale di prove.
-		\item $p \in [0,1]$ la probabilità di successo in ciascuna prova.
-	\end{itemize}
-	Consideriamo quindi la Variabile Aleatoria:
-	\begin{center}
-		$X:=$ numero di "successi" che si verificano nelle $n$ prove.
-	\end{center}
-	La distribuzione di $X$ è detta \textbf{binomiale} di parametri $n$ e $p$ e indicata con $X \sim \text{Bin}(n,p)$
-	\osservazione{Per $n=1$ ritroviamo Bernoulli: $\text{Bin}(1,p) = \text{Be}(p)$}
-	Calcoliamo la distribuzione di X. Per costruzione:
-	\[
-		X(\Omega) = \{0,1,2,\dots,n\}
-	\]
-	Inoltre la densità discreta è data da:
-	\begin{equation*}
-		p_X (k) = P(X=k) = \binom{n}{k} \cdot p^k \cdot (1-p)^{n-k} \;\;\text{ per } k = 0,1,\dots, n
-	\end{equation*}
-	Dove: \begin{itemize}
-		\item $\binom{n}{k}$ sono le scelte di quali prove hanno successo,
-		      ovvero la combinazione di $n$ prove in cui $k$ hanno successo.
-		\item $p^k$ è la probabilità di k successi fissati.
-		\item $(1-p)^{n-k}$ è la probabilità di $(n-k)$ \underline{in}successi fissati.
-	\end{itemize}
-	In definitiva, una variabile aleatoria $X$ è \textbf{binomiale} di parametri $n$ e $p$, $X \sim \text{Bin}(n,p)$,
-	se ha questa densità discreta.
+\paragraph{Esempi}
+Le variabili aleatori di Poisson sono approssimazoni per variabili aleatorie che contano il "numero di successi"
+quando si considera una grande quantità di prova la cui probabilità di accesso è "piccola".
+\\ Qui di seguito alcuni esempi:
+\begin{itemize}
+	\item Numero di accessi a una pagina web in un'ora
+	\item Numero di nascite in un ospedale in una giornata
+	\item Numero di cliente in un ufficio postale in una mattinata
+\end{itemize}
 
-	\paragraph*{Valore Medio} $E[X_i] = np$
-	\paragraph*{Varianza} $Var[X_i]=np(1-p)$
-
-	\esempio{
-		Riprendendo l'esempio dei figli maschi, sia $X:=$ numero di figli maschi in una coppia con due figli:
-		\begin{center}
-			\includegraphics[width=.7\textwidth]{images/figli_maschi_binomiale.jpg}
-		\end{center}
-		Non è soprendente che $X\sim$Bin$(2,\frac{1}{2})$ perchè possiamo vedere $X$ come il numero
-		di "successi" in $n=2$ prover ripetute e indipendenti con probabilità di successo $p=\frac{1}{2}$.
-		Infatti
-		\[
-			X = X_1 + X_2 \;\; \text{dove} \;\;
-			X_i = \begin{cases}
-				1 & \text{Se i-esimo figlio è M} \\
-				0 & \text{Altrimenti}
-			\end{cases}
-		\]
-		E le variabili aleatorie $X_1$ e $X_2$ sono Be$(\frac{1}{2})$ indpendenti.
-	}
-
-	\subsubsection{Poisson}
-	Una variabile aleatoria $X$ si dice Poisson di parametro $\lambda \in (0, \infty)$,
-	e si scrive $X \sim \text{Pois}(\lambda)$,
-	se :
-	\[X(\Omega) = \mathbb{N}_0 = {0,1,2,\dots}\]
-	E la sua densità discreta è:
-	\[
-		p_X (k) = P(X=k) = e^{-\lambda} \cdot \frac{\lambda^k}{k!} \;\;\; \text{ per } k = 0,1,2,\dots
-	\]
-	\osservazione{
-		Si può ottenere una variabile aleatoria di Posson $X \sim \text{Pois}(\lambda)$ come opportuno limite
-		di una variabile aleatoria binomiale $Y \sim \text{Bin}(n,p)$ quando
-		\[
-			n \rightarrow \infty, p \rightarrow 0 \text{ con } np=\lambda \text{ cioè } p = \frac{\lambda}{n}
-		\]
-	}
-
-	\paragraph{Valore Medio e Varianza}
-	Se $X \sim \text{Pois}(\lambda)$ è una variabile di Poisson, allora:
-	\begin{itemize}
-		\item Valore Medio: $E[X] = \lambda$
-		\item Varianza: $\var[X] = \lambda$
-	\end{itemize}
-
-	\paragraph{Esempi}
-	Le variabili aleatori di Poisson sono approssimazoni per variabili aleatorie che contano il "numero di successi"
-	quando si considera una grande quantità di prova la cui probabilità di accesso è "piccola".
-	\\ Qui di seguito alcuni esempi:
-	\begin{itemize}
-		\item Numero di accessi a una pagina web in un'ora
-		\item Numero di nascite in un ospedale in una giornata
-		\item Numero di cliente in un ufficio postale in una mattinata
-	\end{itemize}
-
-	\subsubsection{Geometrica}
-	Una variabile aleatoria $X$ si dice geometrica di parametro $p \in (0,1]$, e si scrive
+\subsubsection{Geometrica}
+Una variabile aleatoria $X$ si dice geometrica di parametro $p \in (0,1]$, e si scrive
 $X \sim \text{Geo }p$, se:
-	\[X(\Omega)=\mathbb{N} = {1,2,3,\dots}\]
-	E la sua densità discreta è:
-	\[
-		p_X (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
-	\]
-	Si può ottenere una variabile aleatoria Geo(p) a partire da una successione infinita di prove ripetute
-	e indipendenti, con probabilità di successo $p$, e considerando la variabile aleatoria:
-	\begin{center}
-		T := istante del primo successo
-	\end{center}
-	Dove l'istante è il numero della prova.
-	\\ Ad esempio, indicando con $X_i \sim \text{Be}(p)$ per $i=1,2,3,\dots$ la v.a. che vale 1
-	se la i-esima prova ha successo, si ha
-	\[
-		P(T=1) = P(X_1 = 1) = p
-	\]
-	\[
-		P(T=2) = P(X_1 = 0, X_2 = 1) = P(X_1 = 0)P(X_2 = 1) = (1-p)p
-	\]
-	e in generale
-	\[
-		P(T=k) = P(X_1=0, \dots, X_{k-1} = 0, X_k = 1) = (1-p)^{k-1}p
-	\]
-	\paragraph*{Valore Medio e Varianza} se $X\sim \text{Geo}(p)$
-	\begin{itemize}
-		\item Valore Medio: $E[X] = \frac{1}{p}$
-		\item Varianza: $\var[X] = \frac{1-p}{p^2}$
-	\end{itemize}
-	\paragraph*{Note per gli esercizi}
-	Quando ho un esercizio che riguarda l'estrazione di un elemento n volte, tramite una serie
-	di prove ripetute e indipendenti, con probabilità di successo p, come lancio di dadi o
-	estrazioni di una pallina colorata \textbf{con reimmissione} allora si tratta di una v.a. con
-	distribuzione geometrica.
+\[X(\Omega)=\mathbb{N} = {1,2,3,\dots}\]
+E la sua densità discreta è:
+\[
+	p_X (k) = P(X = k) = p(1-p)^{k-1} \text{per} k=1,2,3,\dots
+\]
+Si può ottenere una variabile aleatoria Geo(p) a partire da una successione infinita di prove ripetute
+e indipendenti, con probabilità di successo $p$, e considerando la variabile aleatoria:
+\begin{center}
+	T := istante del primo successo
+\end{center}
+Dove l'istante è il numero della prova.
+\\ Ad esempio, indicando con $X_i \sim \text{Be}(p)$ per $i=1,2,3,\dots$ la v.a. che vale 1
+se la i-esima prova ha successo, si ha
+\[
+	P(T=1) = P(X_1 = 1) = p
+\]
+\[
+	P(T=2) = P(X_1 = 0, X_2 = 1) = P(X_1 = 0)P(X_2 = 1) = (1-p)p
+\]
+e in generale
+\[
+	P(T=k) = P(X_1=0, \dots, X_{k-1} = 0, X_k = 1) = (1-p)^{k-1}p
+\]
+\paragraph*{Valore Medio e Varianza} se $X\sim \text{Geo}(p)$
+\begin{itemize}
+	\item Valore Medio: $E[X] = \frac{1}{p}$
+	\item Varianza: $\var[X] = \frac{1-p}{p^2}$
+\end{itemize}
+\paragraph*{Note per gli esercizi}
+Quando ho un esercizio che riguarda l'estrazione di un elemento n volte, tramite una serie
+di prove ripetute e indipendenti, con probabilità di successo p, come lancio di dadi o
+estrazioni di una pallina colorata \textbf{con reimmissione} allora si tratta di una v.a. con
+distribuzione geometrica.
 
 
-	\section{Variabili Aleatorie Assolutamente Continue}
+\section{Variabili Aleatorie Assolutamente Continue}
 
-	% Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
-	% \\ Variabile aleatoria $\to$ funzione $X:\Omega \to R$
-	Fin'ora abbiamo studiato le Variabili Aleatorie Discrete, che assumono un \textbf{insieme finito} oppure
-	\textbf{infinito numerabile di valori} $X(\Omega) = {x_1, x_2, \dots}$, dove la distribuzione
+% Esperimento aleatorio $\to$ spazio di probabilità $(\Omega, P)$
+% \\ Variabile aleatoria $\to$ funzione $X:\Omega \to R$
+Fin'ora abbiamo studiato le Variabili Aleatorie Discrete, che assumono un \textbf{insieme finito} oppure
+\textbf{infinito numerabile di valori} $X(\Omega) = {x_1, x_2, \dots}$, dove la distribuzione
 $X$ è determinata dalla \textbf{Densità Discreta}:
-	\[
-		p_X(x_i) = P(X=x_i)
-	\]
-	\[
-		P(X \in A) = \sum_{x_i \in A}p_X^{x_i}
-	\]
+\[
+	p_X(x_i) = P(X=x_i)
+\]
+\[
+	P(X \in A) = \sum_{x_i \in A}p_X^{x_i}
+\]
 
-	Consideriamo ora una classe "complementare" di Variabili Aleatorie, dette \textbf{Assolutamente Continue}
-	che \textbf{assumono un insieme infinito più che numerabile di valori}, come ad esempio un intervallo
-	di $\R$:
+Consideriamo ora una classe "complementare" di Variabili Aleatorie, dette \textbf{Assolutamente Continue}
+che \textbf{assumono un insieme infinito più che numerabile di valori}, come ad esempio un intervallo
+di $\R$:
 $[0, 1]$ $[0, +\infty)$ $(-\infty, +\infty)$
 
-	\definizione{
-		Una Variabile Aleatoria è \textbf{Assolutamente Continua} se la sua distribuzione è determinata
-		da una funzione $f_x(x)$, a valori positivi, detta \textbf{densità della variabile aleatoria $X$}
-		nel modo seguente:
-		\[
-			P(X \in A) = \int_{A}f_x (x) \,dx
-		\]
-		Con $A\subseteq \R$.
-	}
-	In particolare, quando consideriamo $X$ compresa in un intervallo $[s,t]$,
-	con $-\infty \leq s \leq t \leq +\infty$, avremo:
+\definizione{
+	Una Variabile Aleatoria è \textbf{Assolutamente Continua} se la sua distribuzione è determinata
+	da una funzione $f_x(x)$, a valori positivi, detta \textbf{densità della variabile aleatoria $X$}
+	nel modo seguente:
 	\[
-		P(X\in[s,t]) = \int_{s}^{t} f_x (x)\,dx
+		P(X \in A) = \int_{A}f_x (x) \,dx
 	\]
-	\begin{center}
-		\includegraphics[width=100mm, scale=0.5]{va continue integrale.png}
-	\end{center}
-	La Densità di $X$ corrisponde all'area sotto il grafico di $f_x$ tra i punti $s$ e $t$.
-	\paragraph{In altre parole}
-	Una variabile aleatoria assolutamente continua può assumere qualunque valore in un
-	certo intervallo, ovvero infiniti valori all'interno di ogni intervallo.
-	Alcuni esempi di variabile aleatoria continua possono essere il tempo impiegato a
-	portare a termine un esperimento scientifico o il peso di un individuo.
+	Con $A\subseteq \R$.
+}
+In particolare, quando consideriamo $X$ compresa in un intervallo $[s,t]$,
+con $-\infty \leq s \leq t \leq +\infty$, avremo:
+\[
+	P(X\in[s,t]) = \int_{s}^{t} f_x (x)\,dx
+\]
+\begin{center}
+	\includegraphics[width=100mm, scale=0.5]{va continue integrale.png}
+\end{center}
+La Densità di $X$ corrisponde all'area sotto il grafico di $f_x$ tra i punti $s$ e $t$.
+\paragraph{In altre parole}
+Una variabile aleatoria assolutamente continua può assumere qualunque valore in un
+certo intervallo, ovvero infiniti valori all'interno di ogni intervallo.
+Alcuni esempi di variabile aleatoria continua possono essere il tempo impiegato a
+portare a termine un esperimento scientifico o il peso di un individuo.
 
-	Ogni v.a. assolutamente continua $X$ ha una curva associata, chiamata funzione di densità
-	di probabilità, che può essere usata per ottenere le probabilità associate a una v.a.
-	\paragraph{V.A continue vs discrete}
-	Tra le Variabili Aleatorie Assolutamente Continue e quelle Discrete ci sono alcune analogie, infatti:
-	\begin{center}
-		\begin{tabularx}{\textwidth}{|Y|Y|}
-			\hline
-			$X$ Assolutamente Continua                  & $X$ Discreta                                      \\
-			\hline
-			$P(X \in [s, t]) = \int_{s}^{t} f_x (x) dx$ & $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_X (x_i)$ \\
-			Integrale                                   & Somma                                             \\
-			\hline
-		\end{tabularx}
-	\end{center}
-	Ma c'è anche un'importante proprietà che le differenzia:
-	Se X è assolutamente continua:
-	\[
-		\forall x \in R: P(X=x) = 0
-	\]
-	Quindi $f_x (x)$ \textbf{NON è} $P(X=x)$, tranne dove $f_x (x) = 0$.
-	\osservazione{
-	Ne segue che nella scelta degli intervalli non cambia niente se includiamo gli estremi o no:
-	\[ P(X\in[s,t]) = P(X\in(s,t)) = P(X\in(s,t]) = P(X\in[s,t)) \]
-	}
+Ogni v.a. assolutamente continua $X$ ha una curva associata, chiamata funzione di densità
+di probabilità, che può essere usata per ottenere le probabilità associate a una v.a.
+\paragraph{V.A continue vs discrete}
+Tra le Variabili Aleatorie Assolutamente Continue e quelle Discrete ci sono alcune analogie, infatti:
+\begin{center}
+	\begin{tabularx}{\textwidth}{|Y|Y|}
+		\hline
+		$X$ Assolutamente Continua                  & $X$ Discreta                                      \\
+		\hline
+		$P(X \in [s, t]) = \int_{s}^{t} f_x (x) dx$ & $P(X \in [s, t]) = \sum_{x_i \in [s,t]}p_X (x_i)$ \\
+		Integrale                                   & Somma                                             \\
+		\hline
+	\end{tabularx}
+\end{center}
+Ma c'è anche un'importante proprietà che le differenzia:
+Se X è assolutamente continua:
+\[
+	\forall x \in R: P(X=x) = 0
+\]
+Quindi $f_x (x)$ \textbf{NON è} $P(X=x)$, tranne dove $f_x (x) = 0$.
+\osservazione{
+Ne segue che nella scelta degli intervalli non cambia niente se includiamo gli estremi o no:
+\[ P(X\in[s,t]) = P(X\in(s,t)) = P(X\in(s,t]) = P(X\in[s,t)) \]
+}
 
-	\paragraph{Proprietà della Densità:}
-	La densità di una Variabile Aleatoria Assolutamente Continua $X$ è una funzione
+\paragraph{Proprietà della Densità:}
+La densità di una Variabile Aleatoria Assolutamente Continua $X$ è una funzione
 $f_x : R \to R$ (integrabile) tale che: \begin{itemize}
-		\item $f_x (x) \geq 0$ $\forall x \in R$
-		\item $\int_{-\infty}^{+\infty} f_x (x) \,dx = 1$
-		      Area totale sotto il grafico di $f_x$
-	\end{itemize}
-	\osservazione{
-		$1 = P(X \in (-\infty, +\infty)) \neq \sum_{x \in (+\infty, -\infty)} P (X = x) = 0$
-		Dato che $X \in (+\infty, -\infty)$ più che numberabile!
-	}
+	\item $f_x (x) \geq 0$ $\forall x \in R$
+	\item $\int_{-\infty}^{+\infty} f_x (x) \,dx = 1$
+	      Area totale sotto il grafico di $f_x$
+\end{itemize}
+\osservazione{
+	$1 = P(X \in (-\infty, +\infty)) \neq \sum_{x \in (+\infty, -\infty)} P (X = x) = 0$
+	Dato che $X \in (+\infty, -\infty)$ più che numberabile!
+}
 
-	\paragraph{Valori Assunti}
-	I valori assunti da una variabile aleatoria assolutamente continua generica sono:
+\paragraph{Valori Assunti}
+I valori assunti da una variabile aleatoria assolutamente continua generica sono:
+\[
+	X(\Omega) = {x \in R: f_X(x) > 0}
+\]
+Con $P(X\in X(\omega))=1$.
+
+
+%Esempio estrazione v.a. uniforme continua
+\subsection{Variabile Uniforme Continua}
+Fissiamo un intervallo limitato $[a, b]$: $(-\infty < a < b < -\infty)$.
+\definizione{
+	Una variabile aleatoria $X$ si dice uniforme continua in $[a, b]$ e si scrive $X \sim U(a, b)$
+	se essa è assolutamente continua con densità:
 	\[
-		X(\Omega) = {x \in R: f_X(x) > 0}
+		f_x(x) =
+		\begin{cases}
+			c \text{ se } x \in [a, b] \\
+			0 \text{ se } x \notin [a, b]
+		\end{cases}
 	\]
-	Con $P(X\in X(\omega))=1$.
+	con $c = \frac{1}{b-a}$, in modo da avere $\int_{-\infty}^{+\infty} f_x(x) dx = 1$.
 
+}
+\paragraph{Probabilità di $U$}
+Dato un intervallo $[s, t] \subseteq [a, b]$, avremo che la probabilità $P(X \in [s,t])$ sarà:
+\[
+	P(X \in [s,t]) = \int_s^t f_x (x) \,dx
+\]
+Quindi:
+\[
+	\to \frac{1}{b -a} \int_s^t 1 \,dx = \frac{t-s}{b-a}
+\]
+Ovvero la lunghezza di $[s,t]$ diviso la lunghezza di $[a,b]$.
+\begin{center}
+	\includegraphics[width=.5\textwidth]{va unif continua.png}
+\end{center}
+\osservazione{Si può mostrare che a partire da una variabile aleatoria $U(0,1)$ è possibile
+	generare una variabile aleatoria con distribuzione arbitraria.
+	\\Ad esempio, se $X \sim U(0,1)$ allora $Y:=a + (b-a)X \sim U(a,b)$.
+}
 
-	%Esempio estrazione v.a. uniforme continua
-	\subsection{Variabile Uniforme Continua}
-	Fissiamo un intervallo limitato $[a, b]$: $(-\infty < a < b < -\infty)$.
-	\definizione{
-		Una variabile aleatoria $X$ si dice uniforme continua in $[a, b]$ e si scrive $X \sim U(a, b)$
-		se essa è assolutamente continua con densità:
-		\[
-			f_x(x) =
-			\begin{cases}
-				c \text{ se } x \in [a, b] \\
-				0 \text{ se } x \notin [a, b]
-			\end{cases}
-		\]
-		con $c = \frac{1}{b-a}$, in modo da avere $\int_{-\infty}^{+\infty} f_x(x) dx = 1$.
+\paragraph{Valori Assunti} Da una Variabile Aleatoria Uniforme Continua sono:
+\[
+	X\sim U(a,b) : X(\omega) = [a,b]
+\]
 
-	}
-	\paragraph{Probabilità di $U$}
-	Dato un intervallo $[s, t] \subseteq [a, b]$, avremo che la probabilità $P(X \in [s,t])$ sarà:
+\subsubsection*{Valore Medio e Varianza}
+Sia $X\sim U(a,b)$, allora vale:
+\begin{itemize}
+	\item $E[X] = ... = \frac{a+b}{2}$
+	\item $\var[X] = ... = \frac{(b-a)^2}{12}$
+\end{itemize}
+
+\subsection{Variabile Esponenziale}
+\definizione{
+	Una variabile aleatoria è detta \textbf{Esponenziale} di parametro $\lambda\in(0,\infty)$ e si scrive $X\sim Exp(\lambda)$ se
+	la sua densità è del tipo:
 	\[
-		P(X \in [s,t]) = \int_s^t f_x (x) \,dx
+		f_X(x) =
+		\begin{cases}
+			\lambda e^{-\lambda x} \quad \text{se} \, x \geq 0 \\
+			0 \quad \text{se} \, x < 0
+		\end{cases}
 	\]
-	Quindi:
-	\[
-		\to \frac{1}{b -a} \int_s^t 1 \,dx = \frac{t-s}{b-a}
-	\]
-	Ovvero la lunghezza di $[s,t]$ diviso la lunghezza di $[a,b]$.
+
 	\begin{center}
-		\includegraphics[width=.5\textwidth]{va unif continua.png}
+		\includegraphics[width=.5\textwidth]{va esponenziale.png}
 	\end{center}
-	\osservazione{Si può mostrare che a partire da una variabile aleatoria $U(0,1)$ è possibile
-		generare una variabile aleatoria con distribuzione arbitraria.
-		\\Ad esempio, se $X \sim U(0,1)$ allora $Y:=a + (b-a)X \sim U(a,b)$.
-	}
+}
+Per ogni intervallo $[s,t] \subseteq[0,\infty]$,
+la probabilità che la variabile esponenziale $X$ sia nell'intervallo è:
+\[
+	P(X \in [s, t]) = \int_{s}^{t} f_x(x)
+\]
+\[
+	\to \int_{s}^{t} \lambda e^{-\lambda x}\,dx=
+		[- e^{-\lambda x}]_{s}^{t} = e^{-\lambda s} - e^{-\lambda t}
+\]
 
-	\paragraph{Valori Assunti} Da una Variabile Aleatoria Uniforme Continua sono:
-	\[
-		X\sim U(a,b) : X(\omega) = [a,b]
-	\]
+\esempio{
+	Misuro il tempo di emissione $X$ di una particella radioattiva da un atomo, con
+	"tempo medio di emissione" $\tau$. Sia $\lambda = \frac{1}{\tau}$.
+	Descriviamo X con una variabile aleatoria assolutamente continua esponenziale di parametro $\lambda$.
+}
 
-	\subsubsection*{Valore Medio e Varianza}
-	Sia $X\sim U(a,b)$, allora vale:
-	\begin{itemize}
-		\item $E[X] = ... = \frac{a+b}{2}$
-		\item $\var[X] = ... = \frac{(b-a)^2}{12}$
-	\end{itemize}
+\paragraph{Valori Assunti} Da una Variabile Aleatoria Esponenziale sono:
+\[
+	X\sim Exp(\lambda) : X(\Omega) = [0,\infty)
+\]
 
-	\subsection{Variabile Esponenziale}
-	\definizione{
-		Una variabile aleatoria è detta \textbf{Esponenziale} di parametro $\lambda\in(0,\infty)$ e si scrive $X\sim Exp(\lambda)$ se
-		la sua densità è del tipo:
-		\[
-			f_X(x) =
-			\begin{cases}
-				\lambda e^{-\lambda x} \quad \text{se} \, x \geq 0 \\
-				0 \quad \text{se} \, x < 0
-			\end{cases}
-		\]
+\osservazione{Si può mostrare che se $Y\sim U(0,1)$ allora $X:= \frac{1}{\lambda} \cdot (-\log Y) \sim Exp(\lambda)$.}
 
-		\begin{center}
-			\includegraphics[width=.5\textwidth]{va esponenziale.png}
-		\end{center}
-	}
-	Per ogni intervallo $[s,t] \subseteq[0,\infty]$,
-	la probabilità che la variabile esponenziale $X$ sia nell'intervallo è:
-	\[
-		P(X \in [s, t]) = \int_{s}^{t} f_x(x)
-	\]
-	\[
-		\to \int_{s}^{t} \lambda e^{-\lambda x}\,dx=
-			[- e^{-\lambda x}]_{s}^{t} = e^{-\lambda s} - e^{-\lambda t}
-	\]
+\subsubsection*{Valore Medio e Varianza}
+Sia $X\sim Exp(\lambda)$, allora vale:
+\begin{itemize}
+	\item $E[X] = ... = \frac{1}{\lambda}$
+	\item $\var[X] = ... = \frac{1}{\lambda^2}$
+\end{itemize}
 
-	\esempio{
-		Misuro il tempo di emissione $X$ di una particella radioattiva da un atomo, con
-		"tempo medio di emissione" $\tau$. Sia $\lambda = \frac{1}{\tau}$.
-		Descriviamo X con una variabile aleatoria assolutamente continua esponenziale di parametro $\lambda$.
-	}
+\subsection*{Alcune Proprietà}
+\paragraph{Densità}
+Si può avere $f_X(x)>1$ in un intervallo di punti,
+ad esempio se $X\sim U(0,\frac{1}{2}): f_X(x)=2 \forall x\in[0,\frac{1}{2}]$.
 
-	\paragraph{Valori Assunti} Da una Variabile Aleatoria Esponenziale sono:
-	\[
-		X\sim Exp(\lambda) : X(\Omega) = [0,\infty)
-	\]
+Inoltre, la densità $f_X(x)$ non è univocamente definita, si può modificare in un numero finito di punti e $\int_{s}^{t}f_X(x)dx$ non cambia.
 
-	\osservazione{Si può mostrare che se $Y\sim U(0,1)$ allora $X:= \frac{1}{\lambda} \cdot (-\log Y) \sim Exp(\lambda)$.}
+\paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densità  di una V.A. Continua non è la densità discreta
+e soprattutto NON è la probabilità di assumere il valore x.
 
-	\subsubsection*{Valore Medio e Varianza}
-	Sia $X\sim Exp(\lambda)$, allora vale:
-	\begin{itemize}
-		\item $E[X] = ... = \frac{1}{\lambda}$
-		\item $\var[X] = ... = \frac{1}{\lambda^2}$
-	\end{itemize}
-
-	\subsection*{Alcune Proprietà}
-	\paragraph{Densità}
-	Si può avere $f_X(x)>1$ in un intervallo di punti,
-	ad esempio se $X\sim U(0,\frac{1}{2}): f_X(x)=2 \forall x\in[0,\frac{1}{2}]$.
-
-	Inoltre, la densità $f_X(x)$ non è univocamente definita, si può modificare in un numero finito di punti e $\int_{s}^{t}f_X(x)dx$ non cambia.
-
-	\paragraph{NB} $f_x(x)$ NON è $P(X=x)$, la densità  di una V.A. Continua non è la densità discreta
-	e soprattutto NON è la probabilità di assumere il valore x.
-
-	Le v.a. assolutamente continue sono necessariamente definite su uno spazio campionario
+Le v.a. assolutamente continue sono necessariamente definite su uno spazio campionario
 $\Omega$ infinito più che numerabile.
 
-	\subsection[Valore Medio e Varianza]{Valore medio e Varianza di Variabili Assolutamente Continue}
-	Le definizioni di $E[X]$ e $\var[X]$ per $X$ Assolutamente Continue ricalcano quelle date per
-	Per le Variabili Aleatorie Discrete:
+\subsection[Valore Medio e Varianza]{Valore medio e Varianza di Variabili Assolutamente Continue}
+Le definizioni di $E[X]$ e $\var[X]$ per $X$ Assolutamente Continue ricalcano quelle date per
+Per le Variabili Aleatorie Discrete:
+\begin{itemize}
+	\item \textbf{Valore Medio}: $E[X] = \int_{-\infty}^{+\infty} x \cdot f_x(x) \,dx$
+	\item \textbf{Varianza} : $\var[X] = E[X^2] - E[X]^2$
+	\item Distribuzione Standard: $SD[X] := \sqrt[]{\var}[X]$
+\end{itemize}
+Si nota che il momento secondo $E[X^2]$ si calcola:
+\[
+	E[X^2]= \int_{-\infty}^{+\infty} x^2 \cdot f_x(x) \,dx
+\]
+\paragraph{Proprietà} Tutte le proprietà di Valore Medio e Varianza valide per le
+Variabili Aleatorie Discrete continuano a valere.
+In particolare:
+\begin{itemize}
+	\item $E[X+c] = E[X] + c \qquad E[cX] = cE[X] \qquad E[X+Y] = E[X] + E[Y]$
+	\item $	\var[X+c] = \var[X] \qquad \var[cX] = c^2 \var[X]$
+	\item Se $X$ e $Y$ sono indipendenti: $\var[X+Y] = \var[X] +\var[Y]$
+\end{itemize}
+
+\pagebreak
+
+\section{Funzione di Ripartizione}
+Le funzioni di ripartizione ci permettono di capire di che tipo di variabile aleatoria
+stiamo parlando.
+\[
+	\text{Funzione di Ripartizione: } F_X (x) = P(X \leq x)
+\]
+A livello probabilistico, $F_X(x)$ è \textbf{la probabilità che $X$ sia minore o uguale a $x$}.
+\\Perchè studiare la funzione di ripartizione?
+\begin{itemize}
+	\item $F_x$ \textbf{è ben definita per ogni variabile aleatoria} $X: \Omega \rightarrow \R$,
+	      \\sia che questa sia discreta, assolutamente continua, o nè l'una nè l'altra.
+	\item $F_x$\textbf{ determina la distribuzione della variabile aleatoria}.
+	      \\Ad esempio: $P(X\in(s,t]) = F_X(t) - F_X(s)$.
+	\item $F_x$ è \textbf{legata alla densità discreta/densità} di $X$:
+	      \[
+		      F_X(x) =
+		      \begin{cases}
+			      \sum_{x_i} p_X (x_i) \quad \text{se X è discreta} \\
+			      \int_{-\infty}^{x} f_x(t)\,dt \quad \text{se X è assolut. continua}
+		      \end{cases}
+	      \]
+	      con $x_i \in (- \infty, x]$
+\end{itemize}
+La funzione di ripartizione è utile soprattutto per variabili assolutamente continue, su cui
+ci concentreremo nel seguito.
+\esempio{ \textbf{Bernoulli}:
+Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
+\[
+	X(\Omega) = {0, 1} \qquad p_X{0}=1-p, \qquad p_X(1) = p
+\]
+Allora $F_x(x) = P(X \leq x)$ vale:
+\[
+	F_X(x) =
+	\begin{cases}
+		0 \quad \text{se} \quad x < 0          \\
+		1-p \quad \text{se} \quad 0 \leq x < 1 \\
+		1 \quad se \quad x \leq 1
+	\end{cases}
+\]
+}
+\teorema{
+	\textbf{di ripartzione di V.A. Discrete}
 	\begin{itemize}
-		\item \textbf{Valore Medio}: $E[X] = \int_{-\infty}^{+\infty} x \cdot f_x(x) \,dx$
-		\item \textbf{Varianza} : $\var[X] = E[X^2] - E[X]^2$
-		\item Distribuzione Standard: $SD[X] := \sqrt[]{\var}[X]$
+		\item X è v.a. discreta $\Leftrightarrow$ $F_x$ è costante a tratti.
+		\item Valori assunti{$x_i$} $\Leftrightarrow$ Punti di discontinuità  di $F_x$
+		\item Densità discreta $\Leftrightarrow$ Ampiezze dei salti
 	\end{itemize}
-	Si nota che il momento secondo $E[X^2]$ si calcola:
-	\[
-		E[X^2]= \int_{-\infty}^{+\infty} x^2 \cdot f_x(x) \,dx
-	\]
-	\paragraph{Proprietà} Tutte le proprietà di Valore Medio e Varianza valide per le
-	Variabili Aleatorie Discrete continuano a valere.
-	In particolare:
-	\begin{itemize}
-		\item $E[X+c] = E[X] + c \qquad E[cX] = cE[X] \qquad E[X+Y] = E[X] + E[Y]$
-		\item $	\var[X+c] = \var[X] \qquad \var[cX] = c^2 \var[X]$
-		\item Se $X$ e $Y$ sono indipendenti: $\var[X+Y] = \var[X] +\var[Y]$
-	\end{itemize}
+	\begin{equation*}
+		p_X (x_i) = F_X(x_i) - F_X(X_{\bar{i}})
+	\end{equation*}
+	\begin{equation*}
+		F_X(x_{\bar{i}}) = \lim_{t \to x_{\bar{i}} F_X(t)}
+	\end{equation*}
+}
 
-	\pagebreak
+\teorema{
+	\textbf{di ripartizione di V.A Assol. Continue}
+	X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
+	è derivabile a tratti.
 
-	\section{Funzione di Ripartizione}
-	Le funzioni di ripartizione ci permettono di capire di che tipo di variabile aleatoria
-	stiamo parlando.
-	\[
-		\text{Funzione di Ripartizione: } F_X (x) = P(X \leq x)
-	\]
-	A livello probabilistico, $F_X(x)$ è \textbf{la probabilità che $X$ sia minore o uguale a $x$}.
-	\\Perchè studiare la funzione di ripartizione?
-	\begin{itemize}
-		\item $F_x$ \textbf{è ben definita per ogni variabile aleatoria} $X: \Omega \rightarrow \R$,
-		      \\sia che questa sia discreta, assolutamente continua, o nè l'una nè l'altra.
-		\item $F_x$\textbf{ determina la distribuzione della variabile aleatoria}.
-		      \\Ad esempio: $P(X\in(s,t]) = F_X(t) - F_X(s)$.
-		\item $F_x$ è \textbf{legata alla densità discreta/densità} di $X$:
-		      \[
-			      F_X(x) =
-			      \begin{cases}
-				      \sum_{x_i} p_X (x_i) \quad \text{se X è discreta} \\
-				      \int_{-\infty}^{x} f_x(t)\,dt \quad \text{se X è assolut. continua}
-			      \end{cases}
-		      \]
-		      con $x_i \in (- \infty, x]$
-	\end{itemize}
-	La funzione di ripartizione è utile soprattutto per variabili assolutamente continue, su cui
-	ci concentreremo nel seguito.
-	\esempio{ \textbf{Bernoulli}:
-	Sia $X \sim \text{Be}(p)$ con $p \in (0,1)$.
-	\[
-		X(\Omega) = {0, 1} \qquad p_X{0}=1-p, \qquad p_X(1) = p
-	\]
-	Allora $F_x(x) = P(X \leq x)$ vale:
-	\[
-		F_X(x) =
-		\begin{cases}
-			0 \quad \text{se} \quad x < 0          \\
-			1-p \quad \text{se} \quad 0 \leq x < 1 \\
-			1 \quad se \quad x \leq 1
-		\end{cases}
-	\]
-	}
-	\teorema{
-		\textbf{di ripartzione di V.A. Discrete}
-		\begin{itemize}
-			\item X è v.a. discreta $\Leftrightarrow$ $F_x$ è costante a tratti.
-			\item Valori assunti{$x_i$} $\Leftrightarrow$ Punti di discontinuità  di $F_x$
-			\item Densità discreta $\Leftrightarrow$ Ampiezze dei salti
-		\end{itemize}
-		\begin{equation*}
-			p_X (x_i) = F_X(x_i) - F_X(X_{\bar{i}})
-		\end{equation*}
-		\begin{equation*}
-			F_X(x_{\bar{i}}) = \lim_{t \to x_{\bar{i}} F_X(t)}
-		\end{equation*}
-	}
+	\begin{equation}
+		\text{Densità} \qquad f_X(x) = (F_X)'(x)
+	\end{equation}
+}
 
-	\teorema{
-		\textbf{di ripartizione di V.A Assol. Continue}
-		X v.a. assolutamente continua $\Leftrightarrow F_X$ è una funzione continua ed
-		è derivabile a tratti.
-
-		\begin{equation}
-			\text{Densità} \qquad f_X(x) = (F_X)'(x)
-		\end{equation}
-	}
-
-	%Da completare da lezione 7
-	\pagebreak
-	\section{Variabili aleatorie Normali}
-	Abbiamo visto due classi notevoli assolutamente continue, ovvero Uniforme Continua $U(a,b)$
-	e Esponenziale $Exp(\lambda)$.
-	\\L'ultima classe notevole per le Variabili Aleatorie Assolutamente Continue che vedremo
-	è quella delle variabili aleatorie Normali o Gaussiane. Questa è anche la più importante, di fatti merita una sezione a sè.
-	\definizione{
-		Una Variabile Aleatoria $Z$ si dice \textbf{Normale Standard} e si scrive:
-		\[Z \sim N(0,1)\]
-		Se è assolutamente continua con densità:
-		\[
-			f_Z(z)= \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}
-			\quad \forall z \in \R
-		\]
-		\begin{center}
-			\includegraphics[width=.4\textwidth]{va normale.png}
-		\end{center}
-		In questo caso i valori assunti sono: $ Z(\Omega) = (-\infty, + \infty)$
-	}
-	Come si può notare la densità ha forma a \emph{campana} simmetrica rispetto all'orgine.
+%Da completare da lezione 7
+\pagebreak
+\section{Variabili aleatorie Normali}
+Abbiamo visto due classi notevoli assolutamente continue, ovvero Uniforme Continua $U(a,b)$
+e Esponenziale $Exp(\lambda)$.
+\\L'ultima classe notevole per le Variabili Aleatorie Assolutamente Continue che vedremo
+è quella delle variabili aleatorie Normali o Gaussiane. Questa è anche la più importante, di fatti merita una sezione a sè.
+\definizione{
+	Una Variabile Aleatoria $Z$ si dice \textbf{Normale Standard} e si scrive:
+	\[Z \sim N(0,1)\]
+	Se è assolutamente continua con densità:
 	\[
-		\text{STANDARD} =
-		\begin{cases}
-			E[Z] = 0 \\
-			\var[Z] = 1
-		\end{cases}
+		f_Z(z)= \frac{1}{\sqrt{2 \pi}} e^{-\frac{z^2}{2}}
+		\quad \forall z \in \R
 	\]
-	\subsection{Probabilità di Una Variabile Normale}
-	Dato un intervallo $[s,t] \subseteq \R$, la probabilità $P$ si calcola,
-	come per ogni variabile assolutamente continua:
-	\[
-		P(Z\in [s,t]) = \int_{s}^{t} f_z(z) dz
-	\]
-	Purtroppo questo integrale \textbf{non si può calcolare esattamente} perchè
-	la densità $f_Z(z)$ non ammette primitiva esplicita.
-	\paragraph{Funzione di Ripartizione}
-	Introduciamo quindi la \textbf{funzione di ripartizione} di $Z$, indicata con $\Phi$.
-	\[
-		\Phi(z) = F_Z(z) = P(Z \leq z) = \int_{-\infty}^{z}f_z(t)\,dt
-	\]
-	Anche questa funzione non si può calcolare esattamente, ma i valori di $\Phi(z)$ per
+	\begin{center}
+		\includegraphics[width=.4\textwidth]{va normale.png}
+	\end{center}
+	In questo caso i valori assunti sono: $ Z(\Omega) = (-\infty, + \infty)$
+}
+Come si può notare la densità ha forma a \emph{campana} simmetrica rispetto all'orgine.
+\[
+	\text{STANDARD} =
+	\begin{cases}
+		E[Z] = 0 \\
+		\var[Z] = 1
+	\end{cases}
+\]
+\subsection{Probabilità di Una Variabile Normale}
+Dato un intervallo $[s,t] \subseteq \R$, la probabilità $P$ si calcola,
+come per ogni variabile assolutamente continua:
+\[
+	P(Z\in [s,t]) = \int_{s}^{t} f_z(z) dz
+\]
+Purtroppo questo integrale \textbf{non si può calcolare esattamente} perchè
+la densità $f_Z(z)$ non ammette primitiva esplicita.
+\paragraph{Funzione di Ripartizione}
+Introduciamo quindi la \textbf{funzione di ripartizione} di $Z$, indicata con $\Phi$.
+\[
+	\Phi(z) = F_Z(z) = P(Z \leq z) = \int_{-\infty}^{z}f_z(t)\,dt
+\]
+Anche questa funzione non si può calcolare esattamente, ma i valori di $\Phi(z)$ per
 $z \geq 0$ sono riportati in una \textbf{tavola}.
-	\osservazione{
-		I valori di $\Phi(z)$ per $z < 0$ si ricavano con la formula
-		\[
-			\Phi(z) = 1 - \Phi(-z)
-		\]
-	}
-	Grazie alla tavola, è come se conoscessimo $\Phi(z) = F_Z(z)$.
-	Possiamo allora calcolare la \textbf{probabilità degli intervalli}:
+\osservazione{
+	I valori di $\Phi(z)$ per $z < 0$ si ricavano con la formula
 	\[
-		P(Z\in [s,t]) = F_Z(t) - F_Z(s) = \Phi(t) - \Phi(s)
+		\Phi(z) = 1 - \Phi(-z)
 	\]
+}
+Grazie alla tavola, è come se conoscessimo $\Phi(z) = F_Z(z)$.
+Possiamo allora calcolare la \textbf{probabilità degli intervalli}:
+\[
+	P(Z\in [s,t]) = F_Z(t) - F_Z(s) = \Phi(t) - \Phi(s)
+\]
 
-	\subsection{Variabili Normali Centrate}
-	Siano ora $\mu \in \R$, $\sigma \in (0, \infty)$.
-	\definizione{
-		Una Variabile Aleatoria $X$ si dice \textbf{Normale con media $\mu$ e varianza $\sigma^2$} e si scrive
-		\[
-			X \sim N(\mu, \sigma^2)
-		\], se X è assolutamente continua e:
-		\begin{center}
-			\includegraphics[width=100mm, scale=0.5]{va normale media e var.png}
-		\end{center}
-	}
-	La densità di $f_X$ di $X$ ha un grafico a \emph{campana} centrata in $\mu$ e con ampiezza $\sigma$.
-	Essa si ottiene dalla densità di $f_Z$ di $Z \sim N(0,1)$
-	mediante una traslazione e un riscalamento.
-	\\Ci si può sempre ricondurre a una Variabile Aleatoria Normale Standard $Z$:
+\subsection{Variabili Normali Centrate}
+Siano ora $\mu \in \R$, $\sigma \in (0, \infty)$.
+\definizione{
+	Una Variabile Aleatoria $X$ si dice \textbf{Normale con media $\mu$ e varianza $\sigma^2$} e si scrive
 	\[
-		X \sim N(\mu, \sigma^2) \rightarrow Z = \frac{X-\mu}{\sigma} \sim N(0,1)
-	\]
-	E viceversa: $ Z \sim N(0,1) \rightarrow X = \sigma Z + \mu \sim N(\mu, \sigma^2) $.
-	\paragraph{Media e Varianza}
-	Si deduce, in particolare che $\mu$ e $\sigma^2$ sono rispettivamente media e varianza:
+		X \sim N(\mu, \sigma^2)
+	\], se X è assolutamente continua e:
+	\begin{center}
+		\includegraphics[width=100mm, scale=0.5]{va normale media e var.png}
+	\end{center}
+}
+La densità di $f_X$ di $X$ ha un grafico a \emph{campana} centrata in $\mu$ e con ampiezza $\sigma$.
+Essa si ottiene dalla densità di $f_Z$ di $Z \sim N(0,1)$
+mediante una traslazione e un riscalamento.
+\\Ci si può sempre ricondurre a una Variabile Aleatoria Normale Standard $Z$:
+\[
+	X \sim N(\mu, \sigma^2) \rightarrow Z = \frac{X-\mu}{\sigma} \sim N(0,1)
+\]
+E viceversa: $ Z \sim N(0,1) \rightarrow X = \sigma Z + \mu \sim N(\mu, \sigma^2) $.
+\paragraph{Media e Varianza}
+Si deduce, in particolare che $\mu$ e $\sigma^2$ sono rispettivamente media e varianza:
 \[
 	X \sim N(\mu, \sigma^2) \rightarrow E[X] = \mu \quad \var[X] = \sigma^2
 \]
