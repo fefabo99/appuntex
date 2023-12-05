@@ -113,6 +113,242 @@ La matrice che MatLab produce però non torna al prof, che per controllare che l
         1352128     14841
          225674    114557
 \end{verbatim}
+Una cosa che si potrebbe fare è cambiare spazio colore. Lo lascia fare a noi.
 
 \subsection{Es2}
-Cerchiamo di provare a migliorare la situa. Lasciamo perdere questo classificatore di regole e proviamo con un classificatore \textbf{di minima distanza}.\\
+Cerchiamo di provare a migliorare la situa, creando un classificatore più robusto. Lasciamo perdere questo classificatore di regole e proviamo con un classificatore \textbf{di minima distanza}.\\
+Un classificatore a minima distanza va a modellare sia i pixel di pelle che quelli di non pelle, perciò considera entrambe le classi di \texttt{skin} e \texttt{non-skin}.\\
+Come facciamo?
+\begin{itemize}
+    \item creo un modello di pixel di skin che si scopre essere la media dei valori
+    \item creo un modello di pixel di non skin che si scopre essere la media dei valori
+    \item il classificatore va a prendere un pixel nuovo da classificare, calcola la ditanza di questo pixel dalla media dei pixel di pelle, calcola la distanza di questo pixel dalla media dei pixel di non pelle
+    \item assegna il pixel alla classe con la distanza minore, ovvero lo classifica come pelle o non pelle in base a quale distanza è minore
+\end{itemize}
+Questo classificatore ha senso se valgono le condizioni iniziali:
+\begin{itemize}
+    \item i descrittori (i dati) sono distribuiti con uguale varianza
+    \item i descrittori sono statisticamente indipendenti
+    \item le proprietà a priori delle classi sono uguali
+\end{itemize}
+e non è detto che siano sempre vere. Se lo fossero, il classificatore sarebbe \textbf{ottimale}, ovvero molto robusto e funzionante.\\
+Passando al codice:
+\begin{itemize}
+    \item abbiamo trovato le medie di skin e non skin (triplette RGB). Le abbiamo chiamate \texttt{ms} e \texttt{mns}.
+    \item troviamo la distanza tra tutti i pixel della nostra immagine di test rispetto a queste due medie, in modo tale che per ogni pixel calcoliamo la distanza fra la media di pixel di skin e la media di pixel di non skin.
+    \item questo si fa con la funzione MatLab \texttt{pdist2} che prende in ingresso due matrici e ci calcola la distanza punto punto tra i due vettori.
+    \item prima di fare ciò dobbiamo ristrutturare la nostra immagine, ovvero trasformare le matrici in vettori, quindi usiamo \texttt{reshape} per trasformare le immagini in una matrice di tot righe e tre colonne (uno per canale); il testo chiede di chiamarlo \texttt{pixs} e gli darò in ingresso l'immagine di test, le sue dimensioni (\texttt{righe x colonne}) e 3 colonne (per i canali RGB).
+    \item con \texttt{pdist2} su immagine ristrutturata e vettore a tre componenti della media dei pixel di skin ottengo un vettore colonna dove ogni riga è la distanza dell'\texttt{i-}esimo pixel da \texttt{ms} e la chiamo \texttt{ds}.
+    \item con \texttt{pdist2} su immagine ristrutturata e vettore a tre componenti della media dei pixel di nonskin ottengo un vettore colonna dove ogni riga è la distanza dell'\texttt{i-}esimo pixel da \texttt{mns} e la chiamo \texttt{dns}.
+    \item \texttt{pdist2} fa tutti con tutti, righe per righe, ovvero se al posto del vettore a 3 componenti \texttt{ms} (o \texttt{mns}) avessi messo una matrice di 3 righe e 3 colonne, avrei ottenuto una matrice come \texttt{ds} (o \texttt{dns}).
+    \item Ora confrontiamo le due distanze per dire se l'\texttt{i-}esimo pixel è di pelle o non pelle. Se la distanza da \texttt{ms} è minore della distanza da \texttt{mns}, allora il pixel è di pelle, altrimenti è di non pelle.
+    \item \texttt{predicted = (ds < dns);}
+    \item Ottengo un vettore colonna con 1 se la distanza dalla media skin è minore dell'altra, ovvero se il pixel è di pelle e 0 se il pixel è di non pelle. Il vettore avrà tanti pixel quanti ne aveva l'immagine di test. 
+    \item Però è un vettore colonna. Per visualizzarlo dovremmo farne la reshape per riportarlo alle dimensioni dell'immagine di test. Per farlo, dobbiamo usare \texttt{reshape} e gli diamo in ingresso il vettore \texttt{predicted}, le dimensioni dell'immagine di test e 1 canale (perché è un'immagine binaria).
+    \item Sovrascrivo quindi \texttt{predicted} con la reshape di \texttt{predicted}: \texttt{predicted = reshape(predicted, r, c);}
+    \item \textbf{N.B.:} non ci sono parametri da settare (prima c'era il \texttt{k}). Questo perché \textbf{non c'è un parametro da settare per il classificatore a minima distanza}.
+\end{itemize}
+Il risultato è "un po' meno razzista" cit il prof rispetto all'altro classificatore, ma non è ancora ottimale. Ci sono ancora dei pixel di non pelle che vengono classificati come pelle. La matrice di confusione mi dà un'accuratezza più bassa, tipo 81\%.\\
+La matrice in sé però ci dice:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.8882    0.1118
+        0.4955    0.5045
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 88.82\% & 11.18\% \\
+        pixel di pelle & 49.55\% & 50.45\% \\
+    \end{tabular}
+\end{center}
+Se dovessi scegliere quale classificatore usare, sarebbe decisamente meglio questo perché l'accuratezza complessiva è più bassa ma le correttezze sono più equilibrate rispetto a prima.\\
+Ricapitolando: se le tre condizioni illustrate all'inizio sono rispettate, questo è il classificatore ottimale per eccellenza. Peccato che vengano raramente verificate.
+
+\subsection{Es3}
+Ora vedremo il classificatore \textbf{Bayesiano}. Costruisce una serie di distribuzioni gaussiane per ciascuna classe e cerca di capire  dato un valore iniziale in quale distribuzione casca (in questo caso pelle o non pelle). Lo fa feature per feature (ovvero canale per canale, ogni canale colore modella una gaussiana). Useremo MatLab per farlo.\\
+Per i classificatori che vedremo dal Bayesiano in poi, dovremo ristrutturare i dati di training perché tutte le funzioni MatLab che li implementano vogliono in un singolo array di input tutti i dati di training di tutte le classi e non vogliono solo i dati di training ma vogliono anche conoscere a che classi appartengono.
+\begin{itemize}
+    \item Carico l'immagine e creo e ristrutturo le due classi di skin e non skin.
+    \item Creo due array di input di classificazione di MatLab, \texttt{train\_values} che concatena tutti i dati di training (skin con non skin) e \texttt{train\_labels} che riga per riga ci dice a che classe appartiene ogni dato di training. Meglio fare etichette numeriche, 0 per tutte le righe corrispondente ai dati di non skin e 1 per tutte le righe corrispondenti ai dati di skin. 
+    \item Per semplificarci la vita, conto con \texttt{size} le righe di skin e non skin e le chiamo \texttt{rs} e \texttt{rns}.
+    \item \texttt{train\_labels = [ones(rs,1); zeros(rns,1)];} ovvero creo un vettore colonna di 1 di lunghezza \texttt{rs} e lo concateno con un vettore colonna di 0 di lunghezza \texttt{rns}.\\
+    Questi valori sono completamente arbitrari, abbiamo deciso noi di dargli 0 e 1 per non skin e skin anche in vista della successiva trasformazione in booleani.
+    \item Il classificatore: \texttt{classifier\_bayesian = fitcnb(train\_values, train\_labels);}
+    \item Ristrutturiamo l'immagine di test: \texttt{pixs = reshape(image, r*c, 3);}
+    \item Diamo l'immagine ristrutturata al classificatore: \texttt{predicted = predict(classifier\_bayesian, pixs);} e la ristrutturo per averla delle dimensioni dell'immagine originale con \texttt{reshape}.
+    \item Attenzione: non sono più valori logici ma i valori che gli ho passato io, ovvero 1 per skin e 0 per non skin. Sono \textbf{double}. Li dobbiamo trasformare in booleani, essendo 0 e 1 viene facile. Operativamente, sulla riga della reshape di predicted, aggiungo \texttt{> 0} così che tutti i valori $> 0$ diventino 1 e tutti gli altri diventino 0.
+    \item Poi faccio vedere il risultato e la matrice di confusione con le solite tre righe finali.
+\end{itemize}
+A prima vista non sembra essere cambiato granché rispetto a quello a minima distanza, l'accuracy è circa 82\%, la matrice di confusione è migliorata ancora:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.8975    0.1025
+        0.4832    0.5168
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 89.75\% & 10.25\% \\
+        pixel di pelle & 48.30\% & 51.70\% \\
+    \end{tabular}
+\end{center}
+Sulle righe (dove abbiamo la \textbf{groundtruth}) abbiamo l'etichetta 0 (lo vedi tramite Command Window con \texttt{cm-labels}) che noi abbiamo assegnato ai pixel di non pelle e alla seconda riga 1 per i pixel di pelle. Anche sulle colonne (dove abbiamo i \textbf{predicted}), 0 e 1. Torna.\\
+Ricorda che la diagonale principale è quella dei pixel classificati correttamente, l'altra di quelli classificati in modo errato.\\
+Il classificatore ideale (e che non credo vedrò mai di persona) è che (anche nel caso di matrici $n \times n$) abbia 1 solo sulla diagonale principale e 0 ovunque altro.\\
+Tornando al nostro esercizio. Migliorata la classificazione di pixel di pelle come pixel di pelle. Ricorda che le etichette possono anche essere booleani o stringhe.
+
+\subsection{Es4}
+Un altro classificatore è il classificatore \textbf{Cart} (Classification and Regression Tree).\\
+\`E un classificatore a regole, ma le regole sono dedotte in automatico dal classificatore stesso.\\
+Come funziona:
+\begin{itemize}
+    \item Prende le feature valore per valore (nel nostro caso triplette RGB). Prende il canale R e le due classi e cerca una soglia per fare una partizione dei dati di training in due gruppi (soddisfa/non soddisfa). 
+    \item Su ciascun sottogruppo il classificatore Cart va a prendere la successiva feature, nel nostro caso il canale G, e cerca una soglia per fare una partizione dei dati di training in due gruppi (soddisfa/non soddisfa). E ugualmente per il canale B. 
+    \item Questa operazione viene ripetuta un tot numero di volte, ovvero finché i due sottogruppi sono puri (ovvero tutti di una classe). Idealmente. 
+    \item In pratica crea un albero di regole che va di volta in volta a partizionare tutti i dati di training finché non riesce a creare dei sottogruppi omogenei dal punto di vista della classe.
+\end{itemize}
+Come implementarlo: praticamente lo stesso codice del classificatore Bayesiano, cambia solo la funzione con cui creo il classificatore.\\
+\begin{itemize}
+    \item Carico l'immagine e creo e ristrutturo le due classi di skin e non skin.
+    \item Creo due array di input di classificazione di MatLab, \texttt{train\_values} che concatena tutti i dati di training (skin con non skin) e \texttt{train\_labels} che riga per riga ci dice a che classe appartiene ogni dato di training. Meglio fare etichette numeriche, 0 per tutte le righe corrispondente ai dati di non skin e 1 per tutte le righe corrispondenti ai dati di skin. 
+    \item Per semplificarci la vita, conto con \texttt{size} le righe di skin e non skin e le chiamo \texttt{rs} e \texttt{rns}.
+    \item \texttt{train\_labels = [ones(rs,1); zeros(rns,1)];} ovvero creo un vettore colonna di 1 di lunghezza \texttt{rs} e lo concateno con un vettore colonna di 0 di lunghezza \texttt{rns}.\\
+    Questi valori sono completamente arbitrari, abbiamo deciso noi di dargli 0 e 1 per non skin e skin anche in vista della successiva trasformazione in booleani.
+    \item Il classificatore: \texttt{classifier\_cart = fitctree(train\_values, train\_labels);}
+    \item Ristrutturiamo l'immagine di test: \texttt{pixs = reshape(image, r*c, 3);}
+    \item Diamo l'immagine ristrutturata al classificatore: \texttt{predicted = predict(classifier\_bayesian, pixs);} e la ristrutturo per averla delle dimensioni dell'immagine originale con \texttt{reshape}.
+    \item Attenzione: non sono più valori logici ma i valori che gli ho passato io, ovvero 1 per skin e 0 per non skin. Sono \textbf{double}. Li dobbiamo trasformare in booleani, essendo 0 e 1 viene facile. Operativamente, sulla riga della reshape di predicted, aggiungo \texttt{> 0} così che tutti i valori $> 0$ diventino 1 e tutti gli altri diventino 0.
+    \item Poi faccio vedere il risultato e la matrice di confusione con le solite tre righe finali.
+\end{itemize}
+Meglio perché prende meno magliette ma peggio per i pixel di skin non presi.\\
+Guardiamo i numeri: l'accuracy è circa 85,4\%, la matrice di confusione è migliorata ancora:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.8970    0.1030
+        0.3180    0.6820
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 89.70\% & 10.30\% \\
+        pixel di pelle & 31.80\% & 68.20\% \\
+    \end{tabular}
+\end{center}
+Decisamente un gran bel passo avanti: abbiamo trovato un nuovo best choice per il classificatore.
+
+\subsection{Es5}
+Possiamo vedere le regole che il classificatore Cart ha creato, scrivendo nella Command Window la funzione \texttt{view(classifier\_cart)}.\\
+Possiamo anche visualizzarlo graficamente, scrivendo nella Command Window la funzione \texttt{view(classifier\_cart, 'mode', 'graph')}. Essendo tuttavia un'immagine enorme, l'albero grafico sarà altrettando sconfinato e il risultato finale sarà un gran casino. Possiamo ridurre l'area su cui operiamo. Questo lo faccio aggiungendo a ciascuna classe una riga in cui prendo solo un sottoinsieme dei dati di training, le prime 1000 righe e tutte le colonne. Es.:
+\begin{verbatim}
+    skin = ...
+    skin = skin(1:1000, :);
+    noskin = ...
+    noskin = noskin(1:1000, :);
+\end{verbatim}
+Paradossalmente è migliorata così l'accuracy, ma non è sempre detto: dipende dal dataset. Posso avere insiemi di dati molto variegati e prenderne casualmente un sottoinsieme non mi garantisce che prendo il sottoinsieme migliore.
+
+\subsection{Es6}
+L'ultimo classificatore di oggi è il \textbf{classificatore KNN} (K Nearest Neighbors).\\
+Semplice da capire ma molto potente, fa parte della famiglia dei classificatori "non parametrici", ovvero non ha parametri da settare.\\
+Come funziona:
+\begin{itemize}
+    \item Preso un pixel, sapendo che ovunque esso stia avrà sempre dei vicini, vado a osservarli e vedere a quale classe appartengono.
+    \item Il classificatore dice "visto che la maggioranza dei suoi vicini è classe X, allora anche lui è classe X".
+    \item Il classificatore è non parametrico perché gli passiamo solo quanti vicini considerare.
+    \item L'intorno è dato per raggio o per numero di vicini. Possibilmente scegliere un numero dispari per evitare che ci siano pareggi e che quindi ci sia sempre una maggioranza.
+    \item La pecca è che è molto pesante.
+\end{itemize}
+Riutilizziamo quindi ancora una volta il classificatore, selezionando tuttavia un sottoinsieme di dati di training ridotto (prime 3000 righe di skin e di non skin) perché "se no esplode": confrontando ogni pixel con x suoi vicini, più dati ho più ci mette il classificatore.\\
+La funzione che qua usiamo per costruire il classificatore \texttt{classifier\_knn} è \texttt{fitcknn}. Di default prende un intorno ($k =$) di 3 vicini. Decisamente non ci piace il risultato, l'accuracy è 78\%, ma se andiamo a vedere la matrice di confusione:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.7665    0.2335
+        0.1665    0.8335
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 76.65\% & 23.35\% \\
+        pixel di pelle & 16.65\% & 83.35\% \\
+    \end{tabular}
+\end{center}
+E vediamo che la classificazione è di gran lunga migliorata per i pixel di pelle, ma è peggiorata per i pixel di non pelle.\\
+Proviamo ad aumentare il numero di dati di training, da 3000 righe a 5000, ma vediamo che in questo caso non migliora, anzi c'è un "trade off" tra le due classi (in quanto aumenta la percentuale di pixel di non pelle correttamente riconosciuti ma diminuisce quella dei pixel di pelle).\\
+Proviamo allora ad aumentare il numero di vicini da 3 a 7, aggiungendo un parametro alla funzione \texttt{fitcknn}.\\
+Otteniamo un'accuracy del 77\%, ma se andiamo a vedere la matrice di confusione:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.7355    0.2645
+        0.0890    0.9110
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 73.55\% & 26.45\% \\
+        pixel di pelle & 08.90\% & 91.10\% \\
+    \end{tabular}
+\end{center}
+Abbiamo perso accuratezza sui pixel di non pelle ma quella dei piexl di pelle è diventata enorme. Ovviamente più aumentiamo i vicini più la statistica che calcola localmente è robusta. Proviamo 11 vicini.\\
+Otteniamo un'accuracy del 76\%, ma se andiamo a vedere la matrice di confusione:
+\begin{verbatim}
+    >> cm.cm
+    ans =
+        0.7245    0.2755
+        0.0810    0.9190
+\end{verbatim}
+Quindi:
+\begin{center}
+    \begin{tabular}{ r|c c}
+         & classificato come non pelle & classificato come pelle \\
+        \hline
+        pixel non di pelle & 72.45\% & 27.55\% \\
+        pixel di pelle & 08.10\% & 91.90\% \\
+    \end{tabular}
+\end{center}
+Se andiamo a vedere il training set ci accorgiamo che non abbiamo esempi di immagini di mobili in legno. Procedimento da adottare spesso: provo il classificatore, fallisce, capisco dove e perché, vedo che mancano esempi sufficientemente descrittivi nel training set, aggiusto il training set di conseguenza (è un processo iterativo).\\
+Strumento utile di MatLab: \texttt{classification learner} che ci permette di fare tutto in automatico (è un tasto nella scheda \texttt{app}). Gli interessano solo \texttt{train\_values} e \texttt{train\_labels}. 
+\begin{itemize}
+    \item Li incapsulo in una sola variabile \texttt{T = table(train\_values, train\_labels);}
+    \item Apro il classification learner.
+    \item New session.
+    \item \texttt{Data Set Variables}: gli do \texttt{T}.\\
+    Essendo una tabella, MatLab capisce tutto in automatico: nei "\texttt{Predictors}" dice che "\texttt{train\_values\_1, train\_values\_2, train\_values\_3} sono i dati di input (triplette RGB) e l'ultima colonna, non selezionabile, è la risposta di MatLab.
+    \item Noi abbimao usato solo \texttt{training} e \texttt{test}, ma in verità MatLab usa un terzo dataset, \texttt{validation}.\\
+    Lo troviamo a destra, nella sezione \texttt{Validation}. Il validation set è un partizionamento del training, è una parte del dataset usata per vedere "come va" il classificatore, praticamente è una parte che il classificatore non ha mai visto e che si usa per tunare il classificatore, mentre il resto del dataset è usato effettivamente per trainare il classificatore.\\
+    Per ora ignoriamo il \texttt{cross-validation}, selezioniamo \texttt{holdout-validation} e lasciamo come percentuale di dati di training scelti per il validation set il 25\%. 
+    \item Clicchiamo su \texttt{Start Session}.
+    \item Nella scheda Models troviamo una finestra a tendina con tutti i classificatori supportati da MatLab, che ci permette di destarli tutti in automatico dandoci il migliore.\\
+    \item \texttt{All Quick-To-Train} ci permette di vedere tutti i classificatori in nastro, ovvero uno di seguito all'altro.\\
+    \item Tasto \texttt{Train selected}.
+    \item Una volta scelto il classificatore migliore nella lista a sinistra, lo esporto (tasto \texttt{Export Model} in alto a destra) e lo posso poi usare in uno script. Se scriviamo il nome con cui è stato salvato quando lo abbiamo esportato nella Command Window, vediamo all'ultima riga un'istruzione con consigli su come usarlo, con un link alla documentazione di MatLab.
+\end{itemize}
+Ricorda che ovviamente non basta riportare l'accuratezza complessiva, bisogna andare a vedere le percentuali di riconoscimento corretto delle due classi.\\
+Comunque, una volta che abbiamo il nostro classificatore, dobbiamo calcolare l'accuratezza di classificazione sulle quattro immagini di test presenti nel pdf. Facciamo la media dell'accuratezza di classificazione delle quattro immagini di test e quello è il risultato di test finale.
+
+
+
+
+
+
+
+
+
+
+
+
