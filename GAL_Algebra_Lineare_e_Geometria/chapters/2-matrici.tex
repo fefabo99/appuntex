@@ -352,6 +352,13 @@ Per definire il determinante useremo le 4 proprietá che lo caratterizzano come 
 Le proprietá 1 e 2 sono dette di Multilinearitá, mentre la 3 é detta di Alternanza.
 
 \teorema{Esiste un'unica funzione che soddisfi le proprietá da 1 a 4, ed essa é il determinante.}
+\paragraph{Altre proprietà del determinante}
+Altre proprietà importanti del determinante sono:
+\begin{itemize}
+	\item In generale, $det(A+B)$ non è esprimibile in funzione di $det(A)$ e $det(B)$.
+	\item Teorema di Binet: $det(A\cdot B) = det(A)\cdot det(B)$.
+\end{itemize}
+
 \subsection{Il calolo del determinante di matrici semplici}
 Il calcolo del determinante di una matrice quadrata dipende dalla dimensione della matrice.
 \subsubsection{Determinante di Matrici $1\times 1$}
@@ -416,22 +423,15 @@ Quando effettuiamo delle trasformazioni elementari queste possono alterare il de
 \end{enumerate}
 L'uso delle trasformazioni elementari può quindi semplificare il calcolo del determinante di una matrice a patto di tracciare tutte le trasformazioni elementari effettuate.
 
-\subsection{Altre proprietà del determinante}
-Altre proprietà importanti del determinante sono:
-\begin{itemize}
-	\item In generale, $det(A+B)$ non è esprimibile in funzione di $det(A)$ e $det(B)$.
-	\item Teorema di Binet: $det(A\cdot B) = det(A)\cdot det(B)$.
-\end{itemize}
-
 \paragraph{Corollario del Teorema di Binet}
 Sia A invertibile, allora:
-\[det(A^{-1 \frac{1}{det(A)}})\]
+\[det(A^{-1}) = \frac{1}{det(A)}\]
 In particolare, $det(A)\neq0$ se $A$ è invertibile.
 
 \subsection{Relazioni tra determinante e Sistemi di Equazioni Lineari}
 Sia $A$ una matrice $n\times n$.
 
-\teorema[Formula di Kramer]{
+\teorema[- Formula di Kramer]{
 	\begin{enumerate}
 		\item Il sistema $A \underline{x} = \underline{b}$ ammette un'unica soluzione sse $det(A)\neq 0$.
 		\item In tal caso, la soluzione $^t(c_1,c_2,...,c_n)$ è data da:
@@ -440,7 +440,7 @@ Sia $A$ una matrice $n\times n$.
 	\end{enumerate}
 }
 
-\osservazione{$underline{b}$ è un vettore di $n$ scalari dello spazio $\R^{n\times 1}$, quindi la soluzione $A\underline{x}$ deve essere la stessa cosa.}
+\osservazione{$\underline{b}$ è un vettore di $n$ scalari dello spazio $\R^{n\times 1}$, quindi la soluzione $A\underline{x}$ deve essere la stessa cosa.}
 
 \subsection{Relazioni Determinante-Rango}
 Come sappiamo, il determinante di matrici non quadrate non esiste, ma esiste il determinante di sottomatrici quadrate che possiamo considerare.
@@ -452,7 +452,7 @@ Definiamo quindi cos'è una sottomatrice e il concetto di Minore:
 }
 Da qui, possiamo enunciare il teorema che definisce la relazione tra determinante e rango:
 \teorema{
-	Sia $A$ una matrice. Il rango di $A$ è uguale al massimo ordine dei minori non nulli di $A$.
+	Sia $A$ una matrice non necessariamente quadrata, allora il \underline{\textbf{Rango}} di $A$ è uguale al \textbf{massimo ordine dei minori} non nulli di $A$.
 }
 \esempio{
 	Sia $A$ una matrice $3\times 5$:
