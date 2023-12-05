@@ -99,12 +99,12 @@ Notiamo che ad ogni passo la scelta localmente ottima minimizza il tempo di fine
     \item la scelta riduceo il sottoproblema da risolvere (approccio Top-Down)
 \end{enumerate}
 \subsection{Codice Greedy}
-\begin{lstlisting}[language=Java, escapeinside={*@}{@*}]
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
     Procedura greedy_scheduling(A)
         n = |A|
-        *@$a_s$@* = attivita' di A con il minore tempo di fine
-        X = {@*$a_s$@*}
-        @*$a_s$*@ = a=[s,t) t.c @*$s \geq e_s$@* e minore tempo di fine
+        @*$a_s$*@ = attivita' di A con il minore tempo di fine
+        X = {@*$a_s$*@}
+        @*$a_s$*@ = a=[s,t) t.c @*$s \geq e_s$*@ e minore tempo di fine
         while @*$a_s \neq NIL$*@ do
             X = @*$\{a_s\} \cup X$*@
             @*$a_s$*@ = a=[s,t] t.c @*$s \geq e_s$*@ e minore tempo di fine
@@ -114,9 +114,95 @@ Tempo di esecuzione $O(n)^2$, determinato dal While, perchè le altre
 operazioni o sono costanti o nel caso della ricerca dell'evento compatibile
 con tempo di fine minore impiegano tempo $O(n)$.
 \paragraph*{Miglioramento} Posso migliorare l'algoritmo ordinando le attività di A per tempo di fine
-non decrescente,
-prima di eseguire le operazioni di ricerca evento minimo, inserisco quindi un
+non decrescente, prima di eseguire le operazioni di ricerca evento minimo, inserisco quindi un
 tempo di $O(n\log n)$ determinato dall'algoritmo di ordinamento (es. MergeSort o QuickSort).\\
-Dopodichè aggiungo $a_1$ alla soluzione ottima di X, dato che sarà sicuramente l'attività minore (visto
-che le ho ordinate). Aggiungo 
+\begin{enumerate}
+    \item Ordine le attività di A per tempo di fine non decrescente
+    \item Aggiungo $a_1$ alla soluzione ottima X
+    \item Aggiungo a X la prima attività dopo $a_1$ che ha tempo di inizio $\geq e_1$
+    \item Aggiungo a X la prima attività dopo la precedente che ha tempo di inizio $\geq$ al suo
+    tempo di fine
+    \item Aggiungo a X la prima attività dopo la precdente che ha tempo di inizio $\geq$ al suo tempo
+    di fine
+    \item Etc.
+    \item Mi fermo quando ho considerato tutte le attività
+\end{enumerate}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{greedy_code_ordinamento.png}
+\end{center}
+\section{Greedy VS DP}
+\begin{itemize}
+    \item Soluzione ottima \textbf{VS} Valore ottimo + Soluzione ottima
+    \item Top-down \textbf{VS} Bottom-up
+    \item Pochi sottoproblemi da risolvere \textbf{VS} Tanti sottoproblemi da risolvere
+    \item Efficiente e semplice da scrivere \textbf{VS} Meno efficiente e più complicato da scrivere
+    \item Applicabilità inferiore (te pareva) \textbf{VS} Applicabilità maggiore
+\end{itemize}
+\subsection{Due ingredienti chiave di un algoritmo Greedy}
+\begin{itemize}
+    \item Proprietà della sottostruttura ottima (tipica anche della Programmazione Dinamica)
+    \item Proprietà della \textbf{scelta greedy}
+\end{itemize}
+Per la \textbf{Correttezza di un algoritmo Greedy} si deve DIMOSTRARE che la sequenza di scelte
+localmente ottima conduce a una soluzione globalmente ottima.\\
+\paragraph*{Proprietà della scelta greedy:} la scelta che compio ad ogni passo appartiene a una soluzione
+ottima del sottoproblema che sto risolvendo in quel momento.
+\section{Correttezza di un algoritmo Greedy}
+Analizziamo la sottostruttura del problema della selezione di attività.
+\paragraph*{Sottoproblema al passo generico:} Trovare il sottoinsieme di cardinalità massima di
+attività compatibili, per l'insieme di attività che iniziano dopo la fine dell'attività aggiunta al passo
+precedente.\\
+\textbf{Sottoproblema 1}: sottoinsieme di cardinalità massima di attività compatibili,
+per l'insieme A\\
+\textbf{Sottoproblema 2}: sottoinsieme di cardinalità massima di attività compatibili, per 
+l'insieme $A_2$ delle attività che hanno tempo di inizio $\geq$ al tempo di fine della
+scelta fatta al passo 1.\\
+...\\
+\textbf{Sottoproblema k}: sottoinsieme di cardinalità massima di attività compatibili,
+per l'insieme $A_k$ delle attività che hanno tempo di inizio $\geq$ al tempo di fine della
+scelta fatta al passo $k-1$.\\
+Scelta localmente ottima per il sottoproblema k \ra Attività $a_s$ con il minor tempo di fine
+$A_k$.
+\paragraph*{Proprietà della scelta greedy da dimostrare}
+Ad ogni passo l'attività scelta è inclusa in una soluzione ottima del sottoproblema che sto risolvendo.
+Basta dimostrare che \textbf{$a_1$ è inclusa in una soluzione ottima per l'insieme A}.\\
+\subsection*{Dimostrazione}
+Suppongo X soluzione ottima per A. Suppongo $a'_1$ attività con il minore tempo di fine X.\\
+Se $a'_1$ uguale ad $a_1$ la dimostrazione è finita, altrimenti sostituisco in X l'attività
+$a'_1$ con $a_1$.\\
+Le attività in X sono ancora disgiunte. La dimensione di X non è cambiata.\\
+\textbf{Conclusione:} il nuovo X è un sottoinsieme massimo di attività compatibili di A che include
+ora $a_1$. 
+\subsection{Cosa succede se sbaglio parametro?}
+Consideriamo per esempio la durata massima come parametro, cosa succede alle soluzioni?\\
+Prendendo l'esempio precedente notiamo subito che gli eventi della soluzione sarebbero i più
+lunghi quindi $a_3$ e $a_6$ e questa non è una soluzione ottima.\\
+Se scegliamo la durata minima otteniamo che in ordine di scelta $a_7,\, a_4,\, a_8$,
+anche in questo caso questa non è una soluzione ottima.\\
+Ci accorgiamo inoltre che i valori scelti inizialmente non sono soluzione ottima del sottoproblema,
+mi rendo conto abbastanza velocemente quindi che sto sbagliando, ma analizziamo nel dettaglio
+la questione considerando il seguente problema. 
+\section{Il problema dello Zaino Frazionario}
+Dati n oggetti $\langle 1,2,\dots,n \rangle$, un intero C e due funzoni.
+\begin{itemize}
+    \item $V:X \rt N$   $V(i) = v_i$, valore dell'oggetto i
+    \item $W:X \rt N$   $W(i) = w_i$, peso dell'oggetto i
+\end{itemize}
+Trovare una sequenza $P = \langle p_1, p_2, \dots, p_n \rangle$ con $p_i$ in $[0,1]$ per
+$1 \leq i \leq n$, tale per cui:
+\[ \sum^n_{i=1}p_i w_i \leq C \]
+\[ \sum^n_{i=1}p_i v_i \rt \text{ massimo valore} \]
+In questo caso, a differenza del problema dello zaino 0/1, posso scegliere di frazionare gli oggetti,
+quindi non devo per forza prendere tutto l'oggetto, ma posso prenderne anche solo una parte.
+\section{Possibile strategia Greedy}
+\begin{itemize}
+    \item Ordino gli oggetti per valore non crescente
+    \item Prendo la maggiore quantità del primo oggetto compatibile con la capacità dello zaino
+    \item Prendo la maggiore quantità del secondo oggetto compatibile con la capacità residua dello zaino
+    \item Prendo la maggiore quantità del terzo oggetto compatibile con la capacità residua dello zaino
+    \item etc.
+    \item Mi fermo non appena lo zaino è completamente pieno
+\end{itemize}
+Vediamo se questa strategia funziona:
+%Arrivato a slide 128 Greedy parte I
 
