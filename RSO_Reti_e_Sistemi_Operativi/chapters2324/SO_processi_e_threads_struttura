@@ -380,9 +380,9 @@ Performance:
 \end{itemize}
 
 \subsubsection{Scheduling circolare: tempo di completamento}
-Il tempo di completamento medio migliora se la maggioranza ($\tilde80\%$) dei CPU burst è più breve di $q$.
+Il tempo di completamento medio migliora se la maggioranza ($\sim 80\%$) dei CPU burst è più breve di $q$.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura12.jpg}
+    \includegraphics[width=0.375\textwidth]{images/aa2324/SO_processithreadstruttura12.jpg}
 \end{center}
 Lì inizia ad essere un po' più simile a FCFS.
 
@@ -397,15 +397,15 @@ SJF è scheduling con priorità, dove la priorità è l'inverso della durata del
 
 \subsubsection{Scheduling con priorità: esempio}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es7.jpg}
+    \includegraphics[width=0.625\textwidth]{images/aa2324/SO_processithreadstruttura_es7.jpg}
 \end{center}
 Tempo di attesa medio = $\frac{0 + 1 + 6 + 16 + 18}{5} = 8.2$\\
 Tempo di completamento medio = $\frac{1 + 6 + 16 + 18 + 19}{5} = 12$
 
 \subsubsection{Scheduling con priorità + RR: esempio}
-% \begin{center}
-%     \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es8.jpg}
-% \end{center}
+\begin{center}
+    \includegraphics[width=0.625\textwidth]{images/aa2324/SO_processithreadstruttura_es8.jpg}
+\end{center}
 $q = 2$ per processi con stessa priorità (l'esercizio \underline{\textbf{deve}} specificare il quanto di tempo)\\
 Calcolo sempre con le formuline viste nel SRTF:\\
 Tempo di attesa medio = $\frac{(26 - 4) + (16 - 5) + (20 - 8) + (7 - 7) + (27 - 3)}{5} = 13.8$\\
@@ -415,12 +415,18 @@ Tipicamente i processi con priorità pari a 1 hanno tempo di attesa pari a 0.
 
 \section{Code multilivello con retroazione}
 \subsection{Code multilivello}
+\begin{wrapfigure}{r}{0.25\textwidth}
+    \begin{center}
+        \includegraphics[width=0.25\textwidth]{images/aa2324/SO_processithreadstruttura13.jpg}
+    \end{center}
+\end{wrapfigure}
 A volte un algoritmo solo non basta.\\
 Lo scheduling con priorità usa (tante) ready queue code separate, una per ogni priorità in modo da pescare un processo ready dalla coda giusta.\\
-Viene schedulato il processo nella coda non vuota con priorità maggiore. Se c'è qualcosa, RR. Se è vuota, vado in quella sotto. Se è vuota, vado in quella sotto\dots Finché non ne trovo una con un processo che viene quindi schedulato.
-\begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura13.jpg}
-\end{center}
+Viene schedulato il processo nella coda non vuota con priorità maggiore. \\
+Se c'è qualcosa, RR.\\
+Se è vuota, vado in quella sotto.\\
+Se è vuota, vado in quella sotto\dots\\
+Finché non ne trovo una con un processo che viene quindi schedulato.
 
 \subsubsection{Priotità basata sul tipo di processo.}
 A volte sono s.o. embedded (ovvero interamente dedicato ad un solo computer con uno scopo, es. una macchina, un aereo, una lavatrice\dots). I processi sono fissi e non cambiano e non generano altri processi.\\
@@ -459,7 +465,7 @@ Per evitare starvation l'invecchiamento sposta i processi in direzione opposta, 
 Effetto ricercato: \underline{mantenere i processi I/O bound} (con burst della CPU corti) \underline{nelle code ad alta priorità} e \underline{quelli CPU bound} (con burst della CPU lunghi) \underline{nelle code a bassa priorità}.\\
 NB: dall'alto verso il basso li faccio passare con l'invecchiamento.
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es9.jpg}
+    \includegraphics[width=0.375\textwidth]{images/aa2324/SO_processithreadstruttura_es9.jpg}
 \end{center}
 
 

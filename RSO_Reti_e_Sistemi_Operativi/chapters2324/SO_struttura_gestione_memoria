@@ -1,21 +1,23 @@
 \chapter{Gestione della memoria: la struttura}
 Argomenti
-• Allocazione contigua e protezione con registro base e limite
-• MMU con registro di rilocazione
-• Svantaggi dell'allocazione contigua
-• Paginazione
-• Swapping
-• Grado di multiprogrammazione e utilizzazione dei processori
-• Memoria virtuale
-• Allocazione e sostituzione pagine
-• Thrashing
+\begin{itemize}
+    \item Allocazione contigua e protezione con registro base e limite
+    \item MMU con registro di rilocazione
+    \item Svantaggi dell'allocazione contigua
+    \item Paginazione
+    \item Swapping
+    \item Grado di multiprogrammazione e utilizzazione dei processori
+    \item Memoria virtuale
+    \item Allocazione e sostituzione pagine
+    \item Thrashing
+\end{itemize}
 
 \section{Allocazione contigua e protezione con registro base e limite}
 Ricapitoliamo un po' di background\dots
 \begin{itemize}
     \item Le aree di memoria che i processori possono usare direttamente per l'esecuzione dei programmi sono solo la memoria centrale ed i registri.
     \item Pertanto un programma deve essere portato dal disco in memoria centrale perché possa essere eseguito, e il programma deve avere anche sufficiente memoria centrale per memorizzare i risultati della computazione.
-    \item La memoria centrale «vede» solo un flusso di indirizzi (richieste di lettura o scrittura) proveniente dal bus di sistema, e non è consapevole di chi ha generato tale flusso.
+    \item La memoria centrale "vede" solo un flusso di indirizzi (richieste di lettura o scrittura) proveniente dal bus di sistema, e non è consapevole di chi ha generato tale flusso.
     \item Le operazioni sui registri richiedono un ciclo di clock (o anche meno).
     \item Viceversa, le operazioni sulla memoria richiedono molti cicli di clock, anche diverse centinaia, causando uno stallo (stall) del processore, durante il quale un core multithread può eseguire un altro thread hardware.\\
     Quando la CPU deve aspettare che il dato venga trasferito dalla memoria, non può computare (= stallo appunto).\\
@@ -46,23 +48,23 @@ Il problema dell'allocazione della memoria:
 \textbf{\underline{Primo problema dell'allocazione della memoria}}.
 \begin{itemize}
     \item È la strategia più semplice di allocazione della memoria in un sistema multiprogrammato.
-    \item La memoria centrale è partizionata in due zone, una per il sistema operativo e una per i processi utente.
-    \item Ogni processo utente occupa un'area contigua di memoria nella partizione dei processi utente, e in quell'area viene caricata la sua immagine.
+    \item La memoria centrale è partizionata in due zone, una per il \textit{s.o.} e una per i \textit{processi utente}.
+    \item Ogni processo utente occupa un'area \underline{contigua} di memoria nella partizione dei processi utente, e in quell'area viene caricata la sua immagine.
 \end{itemize}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura1.jpg}
+    \includegraphics[width=0.275\textwidth]{images/aa2324/SO_gestione_memoria_struttura1.jpg}
 \end{center}
 
 \subsection{Protezione con registro base e limite}
 \textbf{\underline{Secondo problema dell'allocazione della memoria}}.
 \begin{itemize}
-    \item È il più semplice metodo di protezione utilizzabile con l'allocazione contigua.
+    \item È il più semplice metodo di protezione utilizzabile con l'all. cont.
     \item Il processore possiede due registri, un registro base ed un registro limite.
     \item Il registro base contiene il più piccolo indirizzo della memoria fisica che il processo corrente ha il permesso di accedere.
     \item Il registro limite determina la dimensione dell'intervallo ammesso.
 \end{itemize}
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura2.jpg}
+    \includegraphics[width=0.375\textwidth]{images/aa2324/SO_gestione_memoria_struttura2.jpg}
 \end{center}
 \begin{itemize}
     \item I registri base e limite possono essere impostati solo in modalità di sistema.
