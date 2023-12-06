@@ -1,0 +1,137 @@
+\chapter{Gestione della memoria: la struttura}
+Argomenti
+• Allocazione contigua e protezione con registro base e limite
+• MMU con registro di rilocazione
+• Svantaggi dell'allocazione contigua
+• Paginazione
+• Swapping
+• Grado di multiprogrammazione e utilizzazione dei processori
+• Memoria virtuale
+• Allocazione e sostituzione pagine
+• Thrashing
+
+\section{Allocazione contigua e protezione con registro base e limite}
+Ricapitoliamo un po' di background\dots
+\begin{itemize}
+    \item Le aree di memoria che i processori possono usare direttamente per l'esecuzione dei programmi sono solo la memoria centrale ed i registri.
+    \item Pertanto un programma deve essere portato dal disco in memoria centrale perché possa essere eseguito, e il programma deve avere anche sufficiente memoria centrale per memorizzare i risultati della computazione.
+    \item La memoria centrale «vede» solo un flusso di indirizzi (richieste di lettura o scrittura) proveniente dal bus di sistema, e non è consapevole di chi ha generato tale flusso.
+    \item Le operazioni sui registri richiedono un ciclo di clock (o anche meno).
+    \item Viceversa, le operazioni sulla memoria richiedono molti cicli di clock, anche diverse centinaia, causando uno stallo (stall) del processore, durante il quale un core multithread può eseguire un altro thread hardware.\\
+    Quando la CPU deve aspettare che il dato venga trasferito dalla memoria, non può computare (= stallo appunto).\\
+    Le CPU moderne tuttavia sono multithreaded, quindi possono eseguire un altro thread hardware \textbf{in concorrenza} mentre aspettano che il dato venga trasferito dalla memoria.
+    \item Per aumentare l'efficienza degli accessi in memoria vengono utilizzati diversi livelli di memorie cache tra processore e memoria centrale. L'accesso alla memoria centrale quindi viene mediato, le memorie cache sono più veloci (pochissimi registri mooolto veloci) della memoria centrale, ma hanno una capacità minore, e contengono una copia dei dati in memoria.\\
+    Bene se il dato sta nella cache di primo livello.\\
+    Benino se il dato sta nella cache di secondo livello.\\
+    Male se il dato sta nella cache di terzo livello.\\
+    Malissimo se il dato sta nella memoria centrale.\\
+\end{itemize}
+Il problema dell'allocazione della memoria:
+\begin{itemize}
+    \item Perché un processo possa andare in esecuzione la sua immagine (codice + dati statici + stack + heap) deve essere presente in memoria centrale.
+    \item In un sistema multiprogrammato, più immagini di più processi stanno contemporaneamente nella memoria centrale.
+    \item Il sistema operativo deve, pertanto, allocare porzioni di memoria centrale ai diversi processi in funzione delle necessità di tali processi.
+    \item Questo pone diversi problemi:
+    \begin{enumerate}
+        \item Che \textbf{strategie di allocazione} possiamo adottare?\\
+        Come diamo ad ogni processo una sezione della memoria?
+        \item Come \textbf{proteggiamo} la memoria del sistema operativo dai processi, e quella di ogni processo da ogni altro processo?\\
+        In modo che non venga sovrascritta per sbaglio.
+        \item Se un programma può essere caricato, in momenti diversi, in posizioni diverse della memoria, come possono le istruzioni del programma \textbf{referenziare} le diverse locazioni di memoria usate dal programma?\\
+        Problema del binding.
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Strategie di allocazione: contigua}
+\textbf{\underline{Primo problema dell'allocazione della memoria}}.
+\begin{itemize}
+    \item È la strategia più semplice di allocazione della memoria in un sistema multiprogrammato.
+    \item La memoria centrale è partizionata in due zone, una per il sistema operativo e una per i processi utente.
+    \item Ogni processo utente occupa un'area contigua di memoria nella partizione dei processi utente, e in quell'area viene caricata la sua immagine.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura1.jpg}
+\end{center}
+
+\subsection{Protezione con registro base e limite}
+\textbf{\underline{Secondo problema dell'allocazione della memoria}}.
+\begin{itemize}
+    \item È il più semplice metodo di protezione utilizzabile con l'allocazione contigua.
+    \item Il processore possiede due registri, un registro base ed un registro limite.
+    \item Il registro base contiene il più piccolo indirizzo della memoria fisica che il processo corrente ha il permesso di accedere.
+    \item Il registro limite determina la dimensione dell'intervallo ammesso.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura2.jpg}
+\end{center}
+\begin{itemize}
+    \item I registri base e limite possono essere impostati solo in modalità di sistema.
+    \item In modalità utente il processore proibisce tutte le operazioni di lettura/scrittura fuori dall'intervallo individuato dai registri base e limite.
+    \item Nel caso in cui venga generato un indirizzo fuori dall'intervallo, l'indirizzo non viene messo sul bus e viene generata un'eccezione.
+    \item In modalità di sistema il processore può accedere a tutta la memoria.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura3.jpg}
+\end{center}
+
+\section{MMU con registro di rilocazione}
+MMU = memory management unit.
+
+\subsection{Svantaggi della soluzione con registro base e limite}
+La soluzione con registro base e limite ha uno svantaggio: non fornisce uno spazio di indirizzamento virtuale ai processi.\\
+L'unico modo per implementare uno spazio di indirizzamento virtuale con tale soluzione sarebbe il binding in fase di caricamento.\\
+Ma questo è molto lento!\\
+Pertanto si preferiscono soluzioni basate sul binding in fase di esecuzione.
+
+\subsection{Indirizzi logici e fisici}
+Gli indirizzi generati dalla CPU quando esegue un programma sono detti indirizzi logici.\\
+Gli indirizzi che arrivano alla memoria centrale sono detti indirizzi fisici.\\
+Il binding in fase di esecuzione è l'unico metodo nel quale indirizzi logici e fisici differiscono.\\
+La memory management unit (MMU) è il dispositivo hardware che traduce indirizzi logici in indirizzi fisici.\\
+La MMU interviene solo in modalità utente: In modalità kernel gli indirizzi generati dalla CPU sono direttamente indirizzi fisici.\\
+(Quindi, se il sistema operativo deve accedere alla memoria di un processo, deve tradurre "manualmente" gli indirizzi logici del processo in fisici).
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura4.jpg}
+\end{center}
+
+\subsection{MMU con registro di rilocazione}
+\textbf{\underline{Terzo problema dell'allocazione della memoria}}.\\
+La MMU più semplice utilizzabile con lo schema di allocazione contigua è la MMU con registro di rilocazione.\\
+È una variazione dello schema con registri base e limite, dove il registro base è ora chiamato registro di rilocazione.\\
+L'indirizzo fisico è ottenuto sommando all'indirizzo logico il valore del registro di rilocazione.\\
+In tal modo i programmi hanno l'illusione di avere uno spazio di indirizzamento virtuale che va dall'indirizzo 0 a un indirizzo massimo pari al valore contenuto nel registro limite.\\
+Nel registro base viene caricato l'indirizzo più basso dell'area contigua di memoria assegnata al processo.\\
+Nel registro limite viene caricata la dimensione di tale area di memoria.\\
+Se l'indirizzo logico supera tale valore, viene generata un'interruzione (intercettata dal S.O., che di solito interrompe il processo).
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura5.jpg}
+\end{center}
+
+\section{Svantaggi dell'allocazione contigua}
+\subsection{A partizioni variabili}
+\begin{itemize}
+    \item Ogni processo ottiene una partizione di memoria distinta
+    \item Schema a partizioni variabili: partizione di dimensione pari alla memoria necessaria al processo.
+    \item Un buco è una regione di memoria libera contigua, ed ogni processo riceve la sua partizione di memoria da un buco abbastanza grande da contenerla.
+    \item Quando un processo termina libera la sua partizione creando un nuovo buco, e buchi adiacenti sono uniti. Abbiamo un problema di \textbf{frammentazione}.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_gestione_memoria_struttura6.jpg}
+\end{center}
+E che succede se quando ho solo processo 9 e processo 2, mi arrivasse un processo 10 con una memoria più grande di uno dei buchi lasciati dai processi terminati, ma più piccola della loro somma? Siamo in uno schema di partizioni contigue, non posso frammentarla: devo spostare un processo (tipo il 9).
+
+\begin{itemize}
+    \item Il sistema operativo mantiene una lista dei buchi disponibili sparsi nella memoria centrale.
+    \item Alla creazione di un nuovo processo il sistema operativo sceglie un buco dal quale prendere la memoria necessaria ad esso secondo una strategia:
+    \begin{description}
+        \item[• First-fit:] sceglie il primo buco sufficientemente grande da contenere l'immagine del processo
+        \item[• Best-fit:] sceglie il buco più piccolo
+        \item[• Worst-fit:] sceglie il buco più grande
+    \end{description}
+    \item First fit e best-fit sono sperimentalmente migliori in quanto a tempo ed efficienza
+\end{itemize}
+
+
+
+
+

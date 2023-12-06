@@ -362,27 +362,105 @@ Tempo di completamento medio $= \frac{30 + 7 + 10}{3} = 15.67$
 \subsubsection{Scheduling circolare: caratteristiche}
 Se ci sono $n$ processi nella \texttt{ready queue} e il quanto temporale è $q$:
 \begin{itemize}
-    \item Nessun processo attende più di q (n - 1) unità di tempo nella ready queue prima di ridiventare running per un altro quanto di tempo (rispetto a SJF e SRTF non c'è bisogno di sapere la durata del burst)
-    \item Ogni processo ottiene $\nicefrac{1}{n}$ del tempo totale di CPU, in maniera perfettamente equa (rispetto a SJF e SRTF vengono ottenute solo $q$ unità di tempo per volta)
+    \item Nessun processo attende più di q (n - 1) unità di tempo nella ready queue prima di ridiventare running per un altro quanto di tempo (rispetto a SJF (shortest job first) e SRTF non c'è bisogno di sapere la durata del burst per avere un'idea di quale sia la durata di attesa nella ready queue)
+    \item Ogni processo ottiene $\nicefrac{1}{n}$ del tempo totale di CPU, in maniera perfettamente equa (rispetto a SJF (shortest job first) e SRTF vengono ottenute solo $q$ unità di tempo per volta) del tempo della CPU.\\
+    Va molto bene per i processi interattivi, che hanno bisogno di un tempo di risposta il più rapido possibile.
 \end{itemize}
-Comportamento in funzione di $q$:
+Comportamento in funzione del quanto di tempo, $q$, la parte programmabile di tutto lo scheduling:
 \begin{itemize}
-    \item \underline{$q$ elevato}: se $q$ è di regola maggiore della durata di tutti i burst, RR tende al FCFS
-    \item \underline{$q$ basso}: deve comunque essere molto più lungo della latenza di dispatch, altrimenti questa si "mangia" un tempo comparabile al tempo di esecuzione dei processi utente e l'utilizzo della CPU diventa inaccettabilmente basso
+    \item \underline{$q$ troppo elevato}: se $q$ è di regola maggiore della durata di tutti i burst, RR degenera nel FCFS (diventa una coda dove il primo processo schedulato è il primo in ordine di arrivo). Non una buona idea, fa perdere lo scopo di avere un RR.
+    \item \underline{$q$ troppo basso}: deve comunque essere molto più lungo della \textbf{latenza di dispatch}, tempo "mangiato" dal cambio di contesto che finora avevamo considerato come pari a zero e rappresentato da una lineetta, altrimenti questa si "mangia" un tempo comparabile al tempo di esecuzione dei processi utente e l'utilizzo della CPU diventa inaccettabilmente basso.\\
+    L'utilizzo della CPU quindi non sarà più al 100\% ma anzi se il quanto di tempo inizia a tendere alla latenza di dispatch, l'utilizzo della CPU tende al 50\% tipo che non va assolutamente bene.
 \end{itemize}
 Performance:
 \begin{itemize}
-    \item Rispetto a SJF tipicamente RR ha un tempo di completamento medio più alto
-    \item Ma un tempo di risposta medio più basso (va bene per i processi interattivi)
-    \item Il tempo di completamento medio non necessariamente migliora con l'aumento di $q$
+    \item Rispetto a SJF (shortest job first) tipicamente RR ha un tempo di completamento medio più alto (non una buona idea per i processi batch).
+    \item Ma un tempo di risposta medio più basso (va bene per i processi interattivi).
+    \item Il tempo di completamento medio non necessariamente migliora con l'aumento di $q$.
 \end{itemize}
 
+\subsubsection{Scheduling circolare: tempo di completamento}
+Il tempo di completamento medio migliora se la maggioranza ($\tilde80\%$) dei CPU burst è più breve di $q$.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura12.jpg}
+\end{center}
+Lì inizia ad essere un po' più simile a FCFS.
 
+\subsection{Scheduling con priorità}
+Nello scheduling con priorità ad ogni processo è associato un numero intero che indica la sua priorità.\\
+Viene eseguito il processo con priorità più alta, gli altri aspettano (in Unix-like numero più basso = priorità più alta, in Windows il contrario).\\
+Può essere preemptive o no.\\
+Possono essere permessi più processi con \textit{pari priorità} o no; in caso positivo occorre stabilire un secondo algoritmo di scheduling per arbitrare tra i processi a pari priorità (di solito si utilizza RR).\\
+SJF è scheduling con priorità, dove la priorità è l'inverso della durata del CPU burst (burst breve priorità bassa, burst lungo priorità alta? ho capito giusto?).\\
+\underline{Problema} della \textbf{attesa indefinita} (\textbf{starvation}): un processo a priorità troppo bassa potrebbe non venir mai schedulato, sempre superato da altri processi a priorità maggiore. \`E un problema degli algoritmi di scheduling, l'assenza di garanzia che un processo prima o poi venga schedulato.\\
+\underline{Soluzione}: \textbf{invecchiamento} (\textbf{aging}), ossia aumento automatico di priorità di un processo al crescere del tempo di permanenza nella ready queue, in modo che anche i job a priorità più bassa prima o poi vengano schedulati.
 
+\subsubsection{Scheduling con priorità: esempio}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es7.jpg}
+\end{center}
+Tempo di attesa medio = $\frac{0 + 1 + 6 + 16 + 18}{5} = 8.2$\\
+Tempo di completamento medio = $\frac{1 + 6 + 16 + 18 + 19}{5} = 12$
 
+\subsubsection{Scheduling con priorità + RR: esempio}
+% \begin{center}
+%     \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es8.jpg}
+% \end{center}
+$q = 2$ per processi con stessa priorità (l'esercizio \underline{\textbf{deve}} specificare il quanto di tempo)\\
+Calcolo sempre con le formuline viste nel SRTF:\\
+Tempo di attesa medio = $\frac{(26 - 4) + (16 - 5) + (20 - 8) + (7 - 7) + (27 - 3)}{5} = 13.8$\\
+Tempo di completamento medio = $\frac{26 + 16 + 20 + 7 + 27}{5} = 19.2$\\
+Anche con il RR, finché c'è un processo da schedulare, occupa CPU e ne usa il 100\%.\\
+Tipicamente i processi con priorità pari a 1 hanno tempo di attesa pari a 0.
 
+\section{Code multilivello con retroazione}
+\subsection{Code multilivello}
+A volte un algoritmo solo non basta.\\
+Lo scheduling con priorità usa (tante) ready queue code separate, una per ogni priorità in modo da pescare un processo ready dalla coda giusta.\\
+Viene schedulato il processo nella coda non vuota con priorità maggiore. Se c'è qualcosa, RR. Se è vuota, vado in quella sotto. Se è vuota, vado in quella sotto\dots Finché non ne trovo una con un processo che viene quindi schedulato.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura13.jpg}
+\end{center}
 
+\subsubsection{Priotità basata sul tipo di processo.}
+A volte sono s.o. embedded (ovvero interamente dedicato ad un solo computer con uno scopo, es. una macchina, un aereo, una lavatrice\dots). I processi sono fissi e non cambiano e non generano altri processi.\\
+Deve essere lo scheduler a decidere quale processo eseguire. Nello scheduling con priorità in base a quale criterio possiamo assegnare le priorità ai processi?\\
+Un criterio comunemente usato è quello di basare la priorità di un processo sul suo tipo:
+\begin{itemize}
+    \item Priorità più \underline{alta} ai processi interattivi o cyber-fisici che devono reagire rapidamente all'I/O (tipicamente I/O bound)
+    \item Priorità più \underline{bassa} ai processi che effettuano lunghe computazioni, o processi batch (tipicamente CPU bound)
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura14.jpg}
+\end{center}
+Il problema è: come faccio a individuarli? Come faccio a capire quale processo è I/O bound (es. office per Windows) e quale CPU bound (es. grap per Unix-like)?\\
+Ma non possiamo costringere chi scrive a catalogarli a mano oppure in momenti diversi alcuni processi possono comportarsi in modi diversi. Come faccio a metterlo nella coda giusta?\\
+Soluzione: \textbf{code multilivello con retroazione}. In modo da avere processi più dinamici.
 
+\subsubsection{Code multilivello con retroazione}
+La priorità di un processo può variare dinamicamente: è sufficiente spostarlo da una ready queue ad una certa priorità ad un'altra.\\
+L'invecchiamento è di solito implementato in questo modo (spostamento di un processo verso una coda a priorità più alta per evitare la starvation).\\
+Ma anche la identificazione di un processo come I/O bound o CPU bound può essere effettuata dinamicamente, e determinare un cambio di priorità, stavolta con uno spostamento verso il basso.\\
+Uno scheduler di questo tipo è detto con code multilivello con retroazione.\\
+Introdotto nel sistema operativo CTSS (Corbatò et al., 1962).\\
+Questo tipo di scheduler è adottato da moltissimi sistemi operativi moderni (Windows, macOS, FreeBSD, Solaris).
+
+\subsubsection{Esempio}
+Code: 
+\begin{itemize}
+    \item $Q_0$: RR con $q_0$ = 8 msec
+    \item $Q_1$: RR con $q_1$ = 16 msec
+    \item $Q_2$: RR con $q_2$ = $\infty$ (ossia FCFS)
+\end{itemize}
+$Q_0$ ha priorità alta, $Q_1$ intermedia, $Q_2$ bassa.\\
+Alla creazione un processo entra in $Q_0$.\\
+Se quando un processo diventa running non termina il suo burst entro il suo quanto di tempo, avviene preemption e viene messo all'inizio della coda immediatamente più bassa, altrimenti rimane nella sua coda.\\
+Per evitare starvation l'invecchiamento sposta i processi in direzione opposta, verso le code più alte, se passano troppo tempo in una coda senza essere eseguiti.\\
+Effetto ricercato: \underline{mantenere i processi I/O bound} (con burst della CPU corti) \underline{nelle code ad alta priorità} e \underline{quelli CPU bound} (con burst della CPU lunghi) \underline{nelle code a bassa priorità}.\\
+NB: dall'alto verso il basso li faccio passare con l'invecchiamento.
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/aa2324/SO_processithreadstruttura_es9.jpg}
+\end{center}
 
 
 

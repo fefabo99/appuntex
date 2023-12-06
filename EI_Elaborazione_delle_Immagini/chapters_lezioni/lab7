@@ -1,9 +1,11 @@
+% riguardo il video 21-22 per alcuni pezzi che mi sono persa. Sono al min 0:06:45.
+
 \section{Lab7}
-Il lab di oggi sarà su problemi di classificazione, come creare classificatori per classificare l'intera immagine nelle categorie previste.
+Il lab di oggi sarà su problemi di classificazione image-based, come creare classificatori per classificare l'intera immagine nelle categorie previste.
 
 \subsection{Es.1}
-Immagine a livelli di grigio.\\
-Sono dati due file di testo: images.list e labels.list. Questi file contengono la lista delle immagini del dataset e, per ognuna, la rispettiva etichetta (di tipo stringa) della classe.\\
+Immagine a livelli di grigio. Intera immagine come sorgente di informazione. \\
+Sono dati due file di testo: images.list e labels.list. Questi file contengono la lista delle immagini del dataset e, per ognuna, la rispettiva etichetta (testuali, di tipo stringa) della classe.\\
 Per poter classificare queste immagini è necessario un pre-processing per creare i set di descrittori di feature da usare per il training e per testare il classificatore creato.\\
 Abbiamo uno script già scritto dal prof:
 \begin{itemize}
