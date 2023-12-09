@@ -339,7 +339,7 @@ Come dicitura utilizzeremo anche il rango per i vettori colonna di una matrice $
 \[ (c_1,c_2, ... ,c_n) \to det_n(c_1,c_2,...,c_n)\]
 In alcuni casi il determinante puó dirci se il rango é massimo, quindi se tutte le righe/colonne sono linearmente indipendenti.
 
-\subsection{Proprietá caratterizzanti del Determinante}
+\paragraph{Proprietá caratterizzanti del Determinante}
 Per definire il determinante useremo le 4 proprietá che lo caratterizzano come una funzione unica:
 \begin{enumerate}
 	\item $det(c_1,...,\underline{a}+ \underline{b},...,c_n) = det(c_1,...,\underline{a},...,c_n) + det(c_1,...,\underline{b},...,c_n)$
@@ -359,7 +359,7 @@ Altre proprietà importanti del determinante sono:
 	\item Teorema di Binet: $det(A\cdot B) = det(A)\cdot det(B)$.
 \end{itemize}
 
-\subsection{Il calolo del determinante di matrici semplici}
+\subsection{Determinante di matrici semplici}
 Il calcolo del determinante di una matrice quadrata dipende dalla dimensione della matrice.
 \subsubsection{Determinante di Matrici $1\times 1$}
 Una matrice quadrata di ordine 1, quindi una matrice formata da un solo scalare, ha come determinante lo scalare stesso:
@@ -414,7 +414,7 @@ poi scorrendo per ogni elemento della riga/colonna calcolo il suo complemento al
 Sia $^tA$ la matrice trasposta di $A$, ovvero la matrice avente come righe le colonne di $A$ e come colonne le righe di $A$. allora:
 \[ det(^tA) = det(A)\]
 
-\subsection{Il determinante e le Trasformazioni Elementari}
+\subsection{Determinante e Trasformazioni Elementari}
 Quando effettuiamo delle trasformazioni elementari queste possono alterare il determinante, ma lo fanno in maniera prevedibile:
 \begin{enumerate}
 	\item Permutazione di due righe $\implies$ Il determinante cambia di segno.
@@ -428,10 +428,10 @@ Sia A invertibile, allora:
 \[det(A^{-1}) = \frac{1}{det(A)}\]
 In particolare, $det(A)\neq0$ se $A$ è invertibile.
 
-\subsection{Relazioni tra determinante e Sistemi di Equazioni Lineari}
-Sia $A$ una matrice $n\times n$.
-
-\teorema[- Formula di Kramer]{
+\subsection{Teorema di Kramer}
+Il teorema di Kramer definisce una relazione tra il Determinante e i Sistemi di Equazioni Lineari.
+\teorema[di Kramer]{
+	Sia $A$ una matrice $n\times n$.
 	\begin{enumerate}
 		\item Il sistema $A \underline{x} = \underline{b}$ ammette un'unica soluzione sse $det(A)\neq 0$.
 		\item In tal caso, la soluzione $^t(c_1,c_2,...,c_n)$ è data da:
@@ -442,7 +442,7 @@ Sia $A$ una matrice $n\times n$.
 
 \osservazione{$\underline{b}$ è un vettore di $n$ scalari dello spazio $\R^{n\times 1}$, quindi la soluzione $A\underline{x}$ deve essere la stessa cosa.}
 
-\subsection{Relazioni Determinante-Rango}
+\subsection{Criterio dei Minori} %Relazioni Determinante-Rango
 Come sappiamo, il determinante di matrici non quadrate non esiste, ma esiste il determinante di sottomatrici quadrate che possiamo considerare.
 Definiamo quindi cos'è una sottomatrice e il concetto di Minore:
 \definizione{
@@ -467,12 +467,77 @@ Da qui, possiamo enunciare il teorema che definisce la relazione tra determinant
 		      \[ det(1) = 1\]
 		\item Il rango non può essere 1, perchè  $\exists$ minore di ordine 2 non nullo:
 		      \[ det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = 1 \]
-	\end{enumerate}
-	Dal teorema precedente se esibisco una sottomatrice di ordine 3 con $det\neq 0$ ho dimostrato che $rg(A) = 3$.
+		\item Dal teorema precedente se esibisco una sottomatrice di ordine 3 con $det\neq 0$ ho dimostrato che $rg(A) = 3$.
 	\\Se però trovo $B=$ sottomatrice di $A$ di ordine $3\times 3$ e $det(B)=0$ non posso concludere nulla sul determinante di $A$,
 	perchè potrebbe essereci un'altra sottomatrice $3\times 3$ con determinante non nullo.
+	Questo significa che dovrei calcolare il determinante di ogni sottomatrice $3\times 3$ finchè non ne trovo uno non nullo, il che richiederebbe molti calcoli.
+
+	D'altro canto posso usare le seguenti \textbf{considerazioni per risparmiarmi i calcoli}:
+	\begin{itemize}
+		\item $det(B)\neq 0 \Longleftrightarrow $ Colonne di $B$ linearmente indipendenti $\Longleftrightarrow  rg(B)$ massimo.
+		\item Se due colonne sono indipendenti, allora anche "allungandole" rimangono linearmente indipendenti.
+	\end{itemize}
+	Da queste due considerazioni posso prendere la matrice $2\times 2$ che ho preso in precedenza, ed essendo le due colonne linearmente indipendnenti lo sono anche le colonne complete di lunghezza 3.
+	\\Da qui mi basta prendere una \textbf{terza colonna linearmente indipendente} ad esse (per esempio $c_4$) per avere una sottomatrice $3x3$ con le colonne linearmente indipendenti, quindi determinante diverso da $0$.
+	\end{enumerate}
+
+	Quindi, prendendo la sottomatrice $3\times 3$ fatta dalle colonne $c_1,c_2,c_4$ noto che ha determinante diverso da zero, quindi $rg(A)=3$.
 }
-% Posso però arrivare concludere che: %Questa non l'ho capita.
-% \begin{center}
-% 	$det(B)\neq 0 \implies $
-% \end{center}
+
+\section{Matrici Inverse}
+\definizione{
+	Sia $A$ una matrice quadrata. Essa è \textbf{Invertibile} \emph{se e solo se}:
+	\[ \exists B: A\cdot B = B\cdot A = Id \]
+	In tal caso $B$ è detta \textbf{Matrice Inversa} di $A$ e si indica con:
+	\[ B = A^{-1}\]
+}
+Come facciamo a sapere se una matrice è invertibile?
+\teorema{
+	Una matrice è invertibile \emph{se e solo se} il suo \textbf{determinante è non nullo}.
+
+	In tal caso, l'elemento della matrice inversa $A^{-1}(x_{ij})$ è dato da:
+	\[
+		x_{ij}= (-1)^{i+j} \cdot \frac{det(A_{ji})}{edt(A)}
+	\]
+	In cui $A_{ji}$ è la sottomatrice ottenuta rimuovendo la $j$-esima riga e la $i$-esima colonna da $A$.
+}
+
+\subsection*{Procedura Standard per il Calcolo dell'inversa}
+Prendiamo la matrice:
+\[
+	A = \begin{pmatrix}
+		1 & -1 \\ 1 & 1
+	\end{pmatrix}
+\]
+Determinare la matrice $A^{-1}$.
+
+Innanzitutto verifichiamo se essa è invertibile: $det(A)=2\neq 0$, quindi è invertibile.
+\\Procediamo ora al calcolo della matrice inversa:
+\begin{enumerate}
+	\item Trasponiamo la matrice
+	\[A \to ^tA = \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}\]
+	\item Calcoliamo la Matrice dei complementi algebrici, ovvero la matrice che contiene $det(A_{ji})$:
+	\[ \begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}\]
+	\item Aggiustiamo i segni tramite $-1^{(i+j)}$: \[ \begin{pmatrix} 1 & 1 \\ -1 & 1 \end{pmatrix}\]
+	\item Dividiamo ogni elemento per $det(A)=2$:
+	\[\begin{pmatrix}
+		\frac{1}{2} & \frac{1}{2} \\ -\frac{1}{2} & \frac{1}{2}
+	\end{pmatrix} = A^{-1}
+	\] 
+\end{enumerate} 
+
+\subsection{Matrici Inverse tramite l'Algorimto di Gauss-Jordan}
+Ricordiamo che se $T$ è una trasformazione elementare sulle righe, allora:
+\[ T(A) = T(Id) \cdot A \]
+
+Usiamo la seguente proposizione:
+\paragraph{Proposizione} Sia $A$ una matrice quadrata, allora $A$ è invertibile sse
+$\exists$ successione di trasformazioni elementari sulle righe $T_1, ... , T_k$ tale che:
+\[ T_k(T_{k-1}(...(T(A))))=Id\]
+
+Da ciò segue che ponendo $c_i := T_i(Id)$,
+\[ c_k \cdot ... \cdot c_2 \cdot c_1 \cdot A = Id \]
+In cui la sequenza di ci $c$ rappresenta la matrice inversa.
+
+
+
