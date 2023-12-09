@@ -204,5 +204,35 @@ quindi non devo per forza prendere tutto l'oggetto, ma posso prenderne anche sol
     \item Mi fermo non appena lo zaino è completamente pieno
 \end{itemize}
 Vediamo se questa strategia funziona:
-%Arrivato a slide 128 Greedy parte I
+\paragraph*{Istanza Problema}
+Oggetti \ra $\langle 1,2,3 \rangle$
+\begin{enumerate}
+    \item $v_1 = 10$, $w_1 = 20$
+    \item $v_2 = 9$, $w_2 = 8$
+    \item $v_3 = 8$, $w_3 = 5$
+\end{enumerate}
+La capacità totale $C = 20$, mentre $c$ è la capacità residua.\\
+Proviamo inserendo quindi la maggiore quantità di oggetto con valore maggiore.\\
+Inserisco quindi l'oggetto 1, avendo capacità 20 e peso 20 posso inserirlo tutto.\\
+Avendo peso 20 ho saturato completamente la capacità dello zaino e ho un valore di 10,
+ottengo quindi che la soluzione $P = \langle 1,0,0 \rangle$ con appunto Valore \ra 10.\\
+\'E facile osservare che NON si tratta della soluzione ottima, questo significa che ho sbagliato
+a scegliere il parametro per la strategia Greedy.
+\subsection{Cambio parametro}
+Se scegliessi iniziassi a riempire lo zaino considerando il rapporto tra peso e valore, otterrei
+i seguenti valori:
+\begin{enumerate}
+    \item $v_1 = 10$, $w_1 = 20, \frac{v_1}{w_1} = 0.5$
+    \item $v_2 = 9$, $w_2 = 8, \frac{v_2}{w_2} = 1.125$
+    \item $v_3 = 8$, $w_3 = 5, \frac{v_3}{w_3} = 1.6$
+\end{enumerate}
+Risulta quindi evidente che conviene inserire prima l'oggetto 3 perchè posso inserire
+più parti di oggetto e avere più valori rispetto a inserire lo stesso peso degli altri.\\
+Inserisco quindi tutto il terzo oggetto, occupando capacità 5, inserisco quindi il secondo oggetto,
+che ha rapporto peso valore maggiore rispetto al primo. Dopo aver inserito il secondo oggetto,
+noto di avere ancora dello spazio disponibile, quindi procedo a inserire il primo oggetto che però
+non è possibile inserire tutto, ne inserisco quindi peso 7, cioè la capacità residua.\\
+Ottengo quindi $P = \langle 0.35, 1, 1 \rangle$ e Valore \ra 20.5 che oltre a essere un valore
+maggiore del primo tentativo è soluzione ottima. Questo è quindi il parametro corretto.
+
 
