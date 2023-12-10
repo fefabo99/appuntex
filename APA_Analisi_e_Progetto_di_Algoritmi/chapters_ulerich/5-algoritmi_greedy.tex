@@ -234,5 +234,99 @@ noto di avere ancora dello spazio disponibile, quindi procedo a inserire il prim
 non è possibile inserire tutto, ne inserisco quindi peso 7, cioè la capacità residua.\\
 Ottengo quindi $P = \langle 0.35, 1, 1 \rangle$ e Valore \ra 20.5 che oltre a essere un valore
 maggiore del primo tentativo è soluzione ottima. Questo è quindi il parametro corretto.
-
-
+\subsection{Strategia Greedy Attuata}
+\begin{itemize}
+    \item Calcolo per ogni oggetto i il valore specifico $v_i/w_i$
+    \item Ordino gli oggetti per valore specifico non crescente
+    \item Prendo la maggiore quantità del primo oggetto compatibile con la capacità
+    dello zaino
+    \item Prendo la maggiore quantità del secondo oggetto compatibile con la capacità
+    residua dello zaino
+    \item ...
+    \item Mi fermo appena lo zaino è completamente pieno
+\end{itemize}
+\paragraph*{Generico passo i} Scelta localmente ottima \ra percentuale di oggetto
+i-esimo da prendere $p_i = min(c/w_i,1)$.\\
+c è C diminuita del peso totale degli oggetti da 1 a i-1.\\
+Sottoproblema lasciato dalla scelta di $p_i$:
+\begin{itemize}
+    \item Oggetti da i+1 a n
+    \item Capacità C diminuita del peso totale degli oggetti da 1 a i
+\end{itemize}
+\subsection{Codice}
+Inserire Codice
+% Manca Codice
+\subsection{Proprietà della scelta Greedy (da dimostrare)}
+La percentuale $p_i$ scelta per l'oggetto i è inclusa in una soluzione ottima relativa al
+sottoproblema:
+\begin{itemize}
+    \item oggetti da i a n
+    \item Capacità residua dello zaino pari a C diminuita del peso totale degli
+    oggetti aggiunti da 1 a i-1
+\end{itemize}
+Basta dimostrare la proprietà per la percentuale $p_1$ e sottoproblema:
+\begin{itemize}
+    \item Oggetti da 1 a n
+    \item Capacità C dello zaino
+\end{itemize}
+\section{Algoritmi Greedy in Generale}
+\subsection{Codice generico}
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura general_greedy(S = {@*$s_1,s_2,...,s_n$*@})
+        Calcola per ogni elemento un certo parametro
+        Ordina S sulla base del parametro calcolato
+        X = @*$\emptyset$*@
+        for i from 1 to n do
+            if @*$s_i$*@ is la scelta localmente ottima then
+                X = @*$\{s_i\} \cup X$*@
+        return X
+\end{lstlisting}
+\section{Non tutti i problemi ammettono un algoritmi Greedy}
+Il problema zaino 0/1 non ammette un algoritmo di tipo greedy come soluzione.
+Nelle slide vengono fatti degli esempi che mostrano che è impoddibile identificare
+una strategia greedy valida.\\
+Questo perchè non tutti i problemi ammettono un algoritmo Greedy, ma la vera questione
+è: \textbf{Come capire, in linea di principio, se un problema ammette un algoritmo Greedy?}.\\
+Per capire questo aspetto dobbiamo introdurre una struttura denominata Matroide.
+\paragraph*{Matroide:} struttura combinatoria a cui è associato un algoritmo greedy.
+\subsection{Sistema di Indipendenza}
+Una coppia (S,F)
+\begin{itemize}
+    \item S, insieme finito $\{s_1, s_2, \dots, s_n\}$ di elementi
+    \item F, una famiglia di sottoinsiemi di S, cioè un sottoinsieme dell'insieme P(S)
+    delle parti di S
+\end{itemize}
+\paragraph*{Esempio} 
+\begin{align*}
+    &S = \{1,2,3\}\\
+    &P(S) = \{\emptyset, \{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}\\
+    &F=\{\{1\},\{3\},\{1,3\}\}\\
+\end{align*}
+Una coppia (S,F) così definita è un \textbf{Sistema di Indipendenza} se vale la seguente
+proprietà:\\
+\textbf{preso $A \in F$ allora un qualsiasi $B \subseteq A$ appartiene a F}.\\
+Elementi di F \ra sottoinsiemi indipendenti.\\
+\paragraph*{Esempio}
+\begin{itemize}
+    \item S, insieme $\{1,2,...,n\}$ di n oggetti a cui è associato un peso
+    \item F, famiglia dei sottoinsiemi di S che hanno peso totale $\leq$ C
+\end{itemize}
+è un Sistema di Indipendenza, cioè:\\
+$A \in F, \, B \subseteq A \implies B \in F$\\
+\paragraph*{PROOF:} Se $A \in F$, allora il suo peso totale è $\leq$ C.\\
+Un qualsiasi $B \subseteq A$, avrà peso totale $\leq$ C e quindi anche $B \in F$.\\
+\subsection{Proprietà di scambio}
+Un sistema di Indipendenza (S,F) è un \textbf{matroide} se vale la seguente
+\textbf{proprietà di scambio}:\\
+\textbf{Per qualsiasi A, $B \in F$ tali che $|B|=|A|+1$, allora esiste almeno un elemento
+$b \in B-A$ tale che $\{b\}\cup A \in F $}.\\
+\paragraph*{NB} in un matroide l'insieme vuoto è un insieme indipendente.
+\paragraph*{Esempio 1} Coppia (S,F):
+\begin{itemize}
+    \item S, insieme finito di oggetti
+    \item F, famiglia dei sottoinsiemi di S di cardinalità $\leq k$
+\end{itemize}
+(S,F) è un Sistema di Indipendenza, cioè:\\
+$A \in F, \, B \subseteq A \implies B \in F$\\
+\textbf{PROOF}: Se $A \in F$, allora la sua cardinalità è $\leq k$.\\
+Un qualsiasi $B \subseteq A$ avrà cardinalità $\leq k$ e quindi anche $B \in F$.
