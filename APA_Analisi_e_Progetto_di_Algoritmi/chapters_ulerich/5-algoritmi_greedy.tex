@@ -364,3 +364,65 @@ Dato un grafo $G=(V,E)$ non orientato e connesso $M_G = (S,F)$ con:
 è il \textbf{matroide grafico} relativo a G.\\
 $A \in F \implies G_A = (V,A)$ è una \textbf{foresta}.
 %Arrivato a slide 46
+
+\section{Teorema di Rado}
+\paragraph*{Definizione} La coppia (S,F) è un matroide se e solo se per ogni funzione peso W,
+l'algoritmo greedy standard fornisce la soluzione ottima (sottoinsieme indipendente di peso massimo).\\
+\textbf{Problema P \ra Matroide pesato}
+\begin{itemize}
+    \item Esiste un algoritmo greedy che lo risolve per qualsiasi funzione
+    \item In caso contrario \ra non esiste un algoritmo greedy per qualsiasi funzione peso
+\end{itemize}
+\subsection{Proof}
+Sia (S,F) un Sistema di Indipendenza e sia C un sottoinsieme di S. La coppia $(C,F_C)$,
+con $F_C=\{A \in F \text{ t.c. } A \subseteq C \}$ è il \textbf{Sottosistema di Indipendenza Indotto}
+da C.\\
+Un qualsiasi Sottosistema Indotto $(C, F_C)$ di un matroide (S,F) è esso stesso un
+matroide e i suoi insiemi massimali hanno la stessa cardinalità.
+\paragraph*{Si può dimostrare} che un Sistema di Indipendenza (S,F) è un matroide se e solo se
+per ogni $C \subseteq S$ gli insiemi massimali di $(C, F_C)$ hanno la stessa cardinalità.\\
+L'algoritmo greedy standard fornisce sempre (per costruzione) insiemi massimali.\\
+La Dimostrazione è divisa in due parti:
+\begin{itemize}
+    \item La prima dimostra che che se (S,F) è un matroide allora il problema può essere risolto
+    con la tecnica Greedy
+    \item La seconda dimostra il contrario, cioè che se (S,F) non è un matroide allora il problema
+    non può essere risolto tramite la tecnica Greedy
+\end{itemize}
+\subsection{Parte 1 - (S,F) è un matroide}
+\paragraph*{IPOTESI}: (S,F) è un matroide.\\
+Sia W la funzione peso e $X = \{s_1,s_2,\dots, s_p\}$ la soluzione fornita dall'algoritmo greedy
+standard.
+\paragraph*{TESI}: per qualsiasi $X'$ massimale, si ha $W(X) \geq W(X')$.\\
+\textbf{NB} $X'$ è un sottoinsieme massimale NON fornito dall'algoritmo greedy, ma creato ad hoc per
+la dimostrazione.\\
+Per costruzione, X è massimale e $W(s_1) \geq W_(s_2) \geq ... \geq W(s_p)$.\\
+Sia $X'=\{s'_1,s'_2,\dots,s'_p\}$ un insieme massimale diverso da X (stessa cardinalità di X) tale
+che $W_(s'_1) \geq W_(s'_2) \geq \dots \geq W(s'_p)$.\\
+Ho quindi i seguenti insiemi:
+\begin{align*}
+    &X = \{s_1, s_2, s_3, ..., s_{k-1}, s_k, ..., s_p\}\\
+    &W = \{ \geq, \geq, \geq, ..., \geq, \geq, ..., \geq\}\\
+    &X'= \{s'_1, s'_2, s'_3, ..., s'_{k-1}, s'_k, ..., s'_p\}
+\end{align*}
+W serve a indicare la relazione fra i pesi di $X$ e $X'$.
+\paragraph*{Caso 1}: $W(s_i) \geq W(s'_i), \,1 \geq i \geq p \implies W(X) \geq W(X')$. Cioè se per tutti
+il peso di ogni oggetto $s_i$ è maggiore o uguale del peso di ogni oggetti $s'_i$, per ogni oggetto da 1 a p (per i
+compreso tra 1 e p), allora necessariamente il peso totale di $W(X)$ sarà maggiore o uguale di $W(X')$.
+\paragraph*{Caso 2}: $W(s_i) < W(s'_i)$ per qualche i. Cioè qualche oggetto $s_i$ avrà peso minore di qualche oggetto
+di $s'_i$.\\
+Sia k il più piccolo indice tale che $W(s_k) < W(s'_k)$. Cioè da Sx a Dx cerco il primo elemento per cui $W(s_k) < W(s'_k)$.\\
+$\implies W(s_k) < W(s'_k) \leq W(s'{k-1}) \leq W(s_{k-1})$.
+\begin{align*}
+    &X = \{s_1, s_2, s_3, ..., s_{k-1}, s_k, ..., s_p\}\\
+    &W = \{ \geq, \geq, \geq, ..., \geq,\quad <, ...\}\\
+    &X'= \{s'_1, s'_2, s'_3, ..., s'_{k-1}, s'_k, ..., s'_p\}
+\end{align*}
+Sia $C = \{s \in S \text{ t.c } W(s) \geq W(s'_k)\} \implies (C, F_C)$ Sottosistema Indotto da C\\
+$\implies s'_k \in C, \quad X' \cap C = \{s_1, s_2, \dots, s_{k-1}, s'_k\}$.\\
+$\implies s_k \notin C, \quad X \cap C = \{s_1, s_2, s_3, \dots, s_{k-1}\}$. 
+Questo perchè $W(s_k) < W(s'_k)$, cioè non appartiene al Sottosistema Indotto da C perchè
+non rispetta questa condizione.\\
+$\implies |X' \cap C| > |X \cap C|$, ed è in \textbf{contraddizione} con il fatto che $X$ e $X'$ sono massimali,
+per (S,F).\\
+$implies$ \textbf{NON è vero} che esiste un k tale per cui $W(s_k) < W(s'_k)$ e quindi $W(X) \geq W(X')$.
