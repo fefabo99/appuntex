@@ -321,7 +321,8 @@ Un sistema di Indipendenza (S,F) è un \textbf{matroide} se vale la seguente
 \textbf{Per qualsiasi A, $B \in F$ tali che $|B|=|A|+1$, allora esiste almeno un elemento
 $b \in B-A$ tale che $\{b\}\cup A \in F $}.\\
 \paragraph*{NB} in un matroide l'insieme vuoto è un insieme indipendente.
-\paragraph*{Esempio 1} Coppia (S,F):
+\subsection{Esempio 1}
+Coppia (S,F):
 \begin{itemize}
     \item S, insieme finito di oggetti
     \item F, famiglia dei sottoinsiemi di S di cardinalità $\leq k$
@@ -329,5 +330,37 @@ $b \in B-A$ tale che $\{b\}\cup A \in F $}.\\
 (S,F) è un Sistema di Indipendenza, cioè:\\
 $A \in F, \, B \subseteq A \implies B \in F$\\
 \textbf{PROOF}: Se $A \in F$, allora la sua cardinalità è $\leq k$.\\
-Un qualsiasi $B \subseteq A$ avrà cardinalità $\leq k$ e quindi anche $B \in F$.
-%Arrivato a Slide 22 di Greedy II
+Un qualsiasi $B \subseteq A$ avrà cardinalità $\leq k$ e quindi anche $B \in F$.\\
+\paragraph*{Proprietà Scambio} Per (S,F) vale la proprietà dello scambio, cioè:\\
+\[ \forall A,b \in F \text{ t.c. } |B| = |A|+1 \implies \exists b \in B-A \text{ t.c } \{b\} \cup A \in F\]
+\paragraph*{PROOF}
+Se A e B $\in F$, allora $|A| \leq k$ e $|B| \leq k$, A ha un elemento in meno rispetto a B
+quindi $|A| < k$.\\
+Un qualsiasi $b \in B-A$ che viene aggiunto ad A produce un insieme di cardinalità $\leq k$,
+che quindi appartiene a F.
+\subsection{Esempio 2}
+\textbf{Coppia S,F}:
+\begin{itemize}
+    \item S, insieme E degli archi di un grafo non orientato
+    \item F, famiglia dei sottoinsiemi di S composti da archi che hanno un vertice in comune
+\end{itemize}
+(S,F) è un Sistema di Indipendenza, cioè:\\
+\[A \in F, B \subseteq A \implies B \in F\]
+\paragraph*{PROOF} Se $A \in F$, allora A è composto da archi incidenti in un vertice v.\\
+Un qualsiasi $B \subseteq A$ sarà composto di archi incidenti in v e quindi anche $B \in F$.
+\paragraph*{Proprietà dello scambio} Per (S,F) NON vale la proprietà dello scambio cioè:
+\[ \forall A,B \in F \text{ t.c. } |B|=|A|+1 \nrightarrow \exists b \in B-A \text{ t.c. } \{b\} \cup A \in F\]
+\paragraph*{PROOF} A e B potrebbero riferirsi a due vertici diversi.\\
+CONTROESEMPIO: $A = \{(5,6) e (6,7)\}$ e $B = \{(2,3)(3,4),(3,5)\}$.
+\paragraph*{Esempio 3} Nelle slide c'è un terzo esempio riguardo l'insieme finito di vettori
+di uno spazio vettoriale (S) e la famiglia dei sottoinsiemi di S composti da vettori 
+linearmente indipendenti (F).
+\section{Matroide Grafico $M_G$}
+Dato un grafo $G=(V,E)$ non orientato e connesso $M_G = (S,F)$ con:
+\begin{itemize}
+    \item S, insieme E degli archi
+    \item F, tutti i sottoinsiemi di S che sono aciclici
+\end{itemize}
+è il \textbf{matroide grafico} relativo a G.\\
+$A \in F \implies G_A = (V,A)$ è una \textbf{foresta}.
+%Arrivato a slide 46
