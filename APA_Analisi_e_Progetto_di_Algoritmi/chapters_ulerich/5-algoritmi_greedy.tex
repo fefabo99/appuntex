@@ -363,7 +363,26 @@ Dato un grafo $G=(V,E)$ non orientato e connesso $M_G = (S,F)$ con:
 \end{itemize}
 è il \textbf{matroide grafico} relativo a G.\\
 $A \in F \implies G_A = (V,A)$ è una \textbf{foresta}.
-%Arrivato a slide 46
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{matroide_grafico.png}
+\end{center}
+$S = E = \{(1,2), (1,5), (2,3), (2,4), (4,6), (5,2), (5,4), (3,6)\}$\\
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{matroide_grafico_A.png}
+\end{center}
+$A = \{(1,2), (2,3), (4,8), (3,6), (1,5), (7,8), (8,9)\} \in F$\\
+$G_A=(V,A)$ è una foresta di $|V|-|A| = 2$ alberi.
+\paragraph*{$M_G$ è un matroide}
+\begin{enumerate}
+    \item $A \in F$, $B \subseteq A \implies B \in F$\\
+    Se $A \in F$, allora anche $B \subseteq A$ sarà aciclico e appartenente a F
+    \item $\forall A,B \in F \text{ t.c } |B| = |A| + 1 \implies \exists b \in B-A
+    \text{ t.c } \{b\} \cup A \in F$
+\end{enumerate}
+\subsection{Dimostrazione della proprietà dello scambio}
+Siano $A,B \in F$ tali che $|B|=|A| + 1$.   
+%Arrivato a slide 56
+
 
 \section{Teorema di Rado}
 \paragraph*{Definizione} La coppia (S,F) è un matroide se e solo se per ogni funzione peso W,
@@ -444,6 +463,7 @@ Ho $p+1$, perchè in A ho almeno $p+1$ oggetti dato che la cardinalità di A è 
 $\implies W(A) > W(B)$, ma Greedy restituiva $W(B)$ come maggiore!\\
 \paragraph*{Conclusione} l'algoritmo greedy standard non restituisce la soluzione ottima per
 qualsiasi peso W.
+%Teorema dell'arco sicuro va spostato in avanti
 \section{Teorema dell'arco sicuro}
 Dati un grafo connesso non orientato e pesato $G=(V,E)$, un sottoinsieme A dell'insieme T di archi di un
 Minimum Spanning Tree (MST) e un qualsiasi taglio che rispetti A, allora un arco leggero (u,v) del taglio è
