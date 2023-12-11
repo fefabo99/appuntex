@@ -426,3 +426,45 @@ non rispetta questa condizione.\\
 $\implies |X' \cap C| > |X \cap C|$, ed è in \textbf{contraddizione} con il fatto che $X$ e $X'$ sono massimali,
 per (S,F).\\
 $implies$ \textbf{NON è vero} che esiste un k tale per cui $W(s_k) < W(s'_k)$ e quindi $W(X) \geq W(X')$.
+\subsection{Parte 2 - (S,F) non è un matroide}
+Esiste un insieme $C \subseteq S$, ed esistono due insiemi A e B massimali in $(C, F_C)$ con $|B|=p$ e $|A| > |B|$.\\
+Essendo $|A| > |B|$ avrò che $|A| \geq p+1$ 
+Le cardinalità sono diverse perchè abbiamo ipotizzato che (S,F) non è un matroide, quindi non vale la proprietà di scambio.\\
+Si consideri il seguente peso W:
+\begin{align*}
+    &W(s) = p+2 \quad \text{ se } s \in b\\
+    &W(s) = p+1 \quad \text{ se } s \in A-B\\
+    &W(s) = 1 \quad \text{altrimenti}
+\end{align*}
+Sostanzialmente sto associando un peso agli oggetti di B di $p+2$, mentre agli elementi che appartengono solo ad A associo
+un peso di $p+1$, 1 altrimenti.\\
+L'algoritmo greedy restituisce B, perchè controlla gli oggetti di peso massimo e quindi estrae B.\\
+$W(A) \geq (p+1)(p+1) = (p+1)^2 = p^2 + 2p + 1 > p^2 + 2p = p(p+2) = W(B)$\\
+Ho $p+1$, perchè in A ho almeno $p+1$ oggetti dato che la cardinalità di A è maggiore di B.\\
+$\implies W(A) > W(B)$, ma Greedy restituiva $W(B)$ come maggiore!\\
+\paragraph*{Conclusione} l'algoritmo greedy standard non restituisce la soluzione ottima per
+qualsiasi peso W.
+\section{Teorema dell'arco sicuro}
+Dati un grafo connesso non orientato e pesato $G=(V,E)$, un sottoinsieme A dell'insieme T di archi di un
+Minimum Spanning Tree (MST) e un qualsiasi taglio che rispetti A, allora un arco leggero (u,v) del taglio è
+sicuro per A, cioè $A \cup \{(u,v)\} \subseteq T$.
+\subsection{Proof}
+Considero T \ra insieme di archi di un MST.\\
+$A \subseteq T \rt$ sottoinsieme di T.\\
+Taglio che rispetta A = (\tikz \fill[green] (0,0) circle (2pt);, \tikz \fill[blue] (0,0) circle (2pt);).\\
+$(u,v) \rt$ arco leggero del taglio.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_dim_mst.png}
+\end{center}
+Il peso $W(u,v)$ è sicuramente $\leq$ rispetto al peso $W(x,y)$.\\
+Sostituisco $(x,y)$, con $(u,v)$ e inserisco quindi l'arco $(u,v)$ all'interno
+del grafo e noto che il grafo resta comunque un albero, vedo che resta un MST dato
+che non ci sono cicli, ottengo quindi $T'$ con $W(T') \leq W(T)$.\\
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_dim_mst_2.png}
+\end{center}
+Per ipotesi, $A \subseteq T$ non contiene $(u,v)$ e $(x,y)$ e per costruzione $T'$ 
+non contiene $(x,y)$.\\
+$\implies A \subseteq T'$\\
+$A \cup \{(u,v)\} \subseteq T'$
+
