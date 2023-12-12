@@ -524,28 +524,71 @@ Ho $p+1$, perchè in A ho almeno $p+1$ oggetti dato che la cardinalità di A è 
 $\implies W(A) > W(B)$, ma Greedy restituiva $W(B)$ come maggiore!\\
 \paragraph*{Conclusione} l'algoritmo greedy standard non restituisce la soluzione ottima per
 qualsiasi peso W.
-%Teorema dell'arco sicuro va spostato in avanti
-\section{Teorema dell'arco sicuro}
-Dati un grafo connesso non orientato e pesato $G=(V,E)$, un sottoinsieme A dell'insieme T di archi di un
-Minimum Spanning Tree (MST) e un qualsiasi taglio che rispetti A, allora un arco leggero (u,v) del taglio è
-sicuro per A, cioè $A \cup \{(u,v)\} \subseteq T$.
-\subsection{Proof}
-Considero T \ra insieme di archi di un MST.\\
-$A \subseteq T \rt$ sottoinsieme di T.\\
-Taglio che rispetta A = (\tikz \fill[green] (0,0) circle (2pt);, \tikz \fill[blue] (0,0) circle (2pt);).\\
-$(u,v) \rt$ arco leggero del taglio.
-\begin{center}
-    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_dim_mst.png}
-\end{center}
-Il peso $W(u,v)$ è sicuramente $\leq$ rispetto al peso $W(x,y)$.\\
-Sostituisco $(x,y)$, con $(u,v)$ e inserisco quindi l'arco $(u,v)$ all'interno
-del grafo e noto che il grafo resta comunque un albero, vedo che resta un MST dato
-che non ci sono cicli, ottengo quindi $T'$ con $W(T') \leq W(T)$.\\
-\begin{center}
-    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_dim_mst_2.png}
-\end{center}
-Per ipotesi, $A \subseteq T$ non contiene $(u,v)$ e $(x,y)$ e per costruzione $T'$ 
-non contiene $(x,y)$.\\
-$\implies A \subseteq T'$\\
-$A \cup \{(u,v)\} \subseteq T'$
+
+\subsection{Esempio 1 Applicazione Rado}
+\paragraph*{Problema} Dato un insieme V di vettori pesati da una funzione W, determinare il sottoinsieme di
+vettori linearmente indipendenti che ha peso massimo.\\
+\textbf{Matroide $M = (S,F)$}\\
+\begin{itemize}
+    \item S, insieme finito V di vettori
+    \item F, famiglia dei sottoinsiemi di S composti da vettori linearmente
+    indipendenti
+\end{itemize}
+\textbf{Funzione peso W:} S \ra $R^+$\\
+Sottoinsieme ottimo di M \ra Soluzione del problema
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura greedy_ind_vectors(V = @*$\{v_1,v_2,...,v_n\}$*@)
+        X = @*\empt*@
+        Ordine V per peso W decrescente (non crescente)
+
+        for i from 1 to n do
+            if @*$\{v_i\} \cup X$*@ contiene vettori lin. indip. then
+                X = @*$\{v_i\} \cup X$*@
+        return X
+\end{lstlisting}
+\subsection{Esempio 2 - Peso massimo archi}
+\paragraph*{Problema} dato un grafo connesso non orientato con archi pesati da 
+una funzione W, trovare l'insieme di peso massimo composto da archi che incidono
+nello stesso vertice.\\
+\textbf{Coppia (S,F)}
+\begin{itemize}
+    \item S, insieme degli archi del grafo
+    \item F, famiglia dei sottoinsiemi di S composti da archi che incidono in uno
+     stesso verfice
+\end{itemize}
+\textcolor{red}{Questo NON è un matroide}.\\
+Applico l'algoritmo greedy standard per trovare l'insieme di peso massimo in F.\\
+$X \leftarrow$ insieme vuoto\\
+Ordino gli archi in S per peso decrescente (non crescente)\\
+Aggiunto a X l'arco più pesante $(v_1, v_2)$.\\
+Proseguo a considerare gli altri archi fino a quando trovo un arco incidente in
+$v_1$ oppure in $v_2$ e lo aggiungo.\\
+Da questo momento aggiungo un arco solo se incide in $v_1$ (se prima ho aggiunto un arco
+incidente in $v_1$) oppure solo se incide in $v_2$ (se prima ho aggiunto un arco incidente in
+$v_2$).\\
+Se $(v_1,v_2)$ è isolato non aggiungo nient'altro...\\
+\textit{Voglio trovare il sottoinsieme indipendente massimale di peso minimo}.\\
+$W':S \rt R^+$ tale che $W'(s)=W_0 - W(s)$ per $s \in S$.\\
+$W_0 \rt$ massimo valore della funzione W.
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura standard_greedy_algorithm(S = @*$\{s_1,s_2,...,s_n\}$*@)
+        X = @*\empt*@
+        Ordine S per peso @*$W'$*@ decrescente (non crescente)
+
+        for i from 1 to n do
+            if @*$\{s_i\} \cup X \in F$*@ then
+                X = @*$\{s_i\} \cup X$*@
+        return X
+\end{lstlisting}
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura standard_greedy_algorithm(S = @*$\{s_1,s_2,...,s_n\}$*@)
+        X = @*\empt*@
+        Ordine S per peso W crescente (non decrescente)
+
+        for i from 1 to n do
+            if @*$\{s_i\} \cup X \in F$*@ then
+                X = @*$\{s_i\} \cup X$*@
+        return X
+\end{lstlisting}
+
 
