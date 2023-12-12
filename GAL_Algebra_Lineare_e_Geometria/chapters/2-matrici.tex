@@ -526,7 +526,7 @@ Innanzitutto verifichiamo se essa è invertibile: $det(A)=2\neq 0$, quindi è in
 	\] 
 \end{enumerate} 
 
-\subsection{Matrici Inverse tramite l'Algorimto di Gauss-Jordan}
+\subsection{L'Algorimto di Gauss-Jordan}
 Ricordiamo che se $T$ è una trasformazione elementare sulle righe, allora:
 \[ T(A) = T(Id) \cdot A \]
 
@@ -539,5 +539,23 @@ Da ciò segue che ponendo $c_i := T_i(Id)$,
 \[ c_k \cdot ... \cdot c_2 \cdot c_1 \cdot A = Id \]
 In cui la sequenza di ci $c$ rappresenta la matrice inversa.
 
+\section{Recap: Determinante, Invertibilità e Rango}
+Facciamo un piccolo recap sulle relazioni tra Determinante, Invertibilità e Rango di una matrice:
+\paragraph{Matrici Non Quadrate}
+Sia $A$ una matrice qualunque, quindi non (necessariamente) quadrata: Ne è definito solo il Rango,
+Ovvero:
+\begin{center}
+	Rango(A) = $\begin{cases}
+		\text{Massimo numero di Righe linearmente indipendenti} \\
+		\text{Massimo numero di Colonne linearmente indipendenti} \\
+		\text{Massimo ordine di minori non nulli di }A
+	\end{cases}$
+\end{center}
+
+\paragraph{Matrici Quadrate}
+Sia $A$ una matrice quadrata $n\times n$, allora:
+\begin{center}
+	det($A)\neq 0 \Leftrightarrow $ $A$ è Invertibile $\Leftrightarrow$ rg($A)=n$ 
+\end{center} 
 
 
