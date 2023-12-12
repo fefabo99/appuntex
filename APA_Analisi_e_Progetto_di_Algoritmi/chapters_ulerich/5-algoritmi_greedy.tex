@@ -380,13 +380,74 @@ $G_A=(V,A)$ è una foresta di $|V|-|A| = 2$ alberi.
     \text{ t.c } \{b\} \cup A \in F$
 \end{enumerate}
 \subsection{Dimostrazione della proprietà dello scambio}
-Siano $A,B \in F$ tali che $|B|=|A| + 1$.   
-%Arrivato a slide 56
+Siano $A,B \in F$ tali che $|B|=|A| + 1$.\\
+$G_A = (V,A) \rt$ foresta di $|V| - |A|$ alberi.\\
+$G_B = (V, B) \rt$ foresta di $|V|-|B|$ alberi.\\
+$G_B$ ha un albero in meno di $G_A$.\\
+$\implies$ in $G_B$ esiste un arco (u,v) che connette due vertici u e v che stanno
+in $G_A$ stanno su due alberi diversi.\\
+$\implies$ in $G_B$ esiste un arco (u,v) che connette due vertici u e v che in 
+$G_A$ stanno in due alberi diversi.\\
+$\implies \{(u,v)\} \cup A \in F$.
 
+\section{Insieme massimale di un matroide}
+Sia $M=(S,F)$ un matroide\\
+Un elemento $s \in S$ è estensione di $A \in F$ se $A \cup \{s\} \in F$.\\
+$A \in F$ è \textbf{massimale} se non ha estensioni ovvero non è contenuto in un
+insieme indipendente più grande.\\
+\osservazione{Tutti gli insieme indipendenti massimali di un matroide hanno la stessa dimensione}.\\
+\subsection{Insieme massimale di un matroide grafico}
+Sia $M_G = (S,F)$ un matroide grafico.\\
+\paragraph*{Insieme massimale}$A \in F$ (aciclico) che non ha estensioni\\
+\ra $\nexists s \in S \text{ t.c. } \{s\} \cup A \in F$\\
+$G_A = (V,A)$, se A è massimale, è una foresta composta da un solo albero di
+$|V|-1$ archi che connette tutti i vertici del grafo.\\
+\begin{box_giallochiaro}
+    {$G_A$ è un albero di connessione per G (Spanning Tree, ST)}.
+\end{box_giallochiaro}
+\subsection*{Esempio Grafico}
+Prendiamo l'esempio di prima $M_G$ e evidenziamo gli archi che compongono 
+lo Spanning Tree, cioè un albero aciclico che connette tutti i nodi (un albero
+di connessione).
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{spanning_tree.png}
+\end{center}
+$A = \{(1,2), (1,5), (2,4), (2,9), (4,7), (4,8), (3,9), (6,9)\} \in F$\\
+\ra A è massimale\\
+\ra $G_A = (V,A)$ è uno Spanning Tree (ST)
+\subsection{Matroide Pesato}
+Un \textit{Matroide Pesato} è un matroide $M=(S,F)$ a cui viene associata una
+\textbf{Funzione peso W}:\\
+$W:S \rt R^+$\\
+$W(s),\,s \in S \rt$ peso dell'elemento s\\
+Funzione peso estesa a F: $W(A),\, A \in F$ \ra peso di A definito come somma
+dei pesi degli alementi di S che appartengono ad A.\\
+\definizione{Sottoinsieme ottimo \ra sottoinsieme indipendente di peso massimo 
+(sicuramente massimale)}
+\section{Algoritmo Greedy Standard}
+\ra Algoritmo greedy che trova, per un matroide $M=(S,F)$ il sottoinsieme ottimo.
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura standard_greedy_algorithm(S = @*$\{s_1,s_2,...,s_n\}$*@)
+        X = @*\empt*@
+        Ordine S per peso W decrescente (non crescente)
+
+        for i from 1 to n do
+            if @*$\{s_i\} \cup X \in F$*@ then
+                X = @*$\{s_i\} \cup X$*@
+        return X
+\end{lstlisting}
+\osservazione{L'insieme restituito è indipendente}
+\paragraph*{Complessità temporale algoritmo}
+\begin{itemize}
+    \item L'ordinamento pese $O(n \log n)$
+    \item Il ciclo for $O(n)$
+    \item L'if $O(f(n))$
+\end{itemize}
+In totale avrò che la complessità è di $O(n\log n + n f(n))$
 
 \section{Teorema di Rado}
-\paragraph*{Definizione} La coppia (S,F) è un matroide se e solo se per ogni funzione peso W,
-l'algoritmo greedy standard fornisce la soluzione ottima (sottoinsieme indipendente di peso massimo).\\
+\definizione{La coppia (S,F) è un matroide se e solo se per ogni funzione peso W,
+l'algoritmo greedy standard fornisce la soluzione ottima (sottoinsieme indipendente di peso massimo)}
 \textbf{Problema P \ra Matroide pesato}
 \begin{itemize}
     \item Esiste un algoritmo greedy che lo risolve per qualsiasi funzione
