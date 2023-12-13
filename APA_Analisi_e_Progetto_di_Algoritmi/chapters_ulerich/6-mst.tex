@@ -76,4 +76,39 @@ Per ipotesi, $A \subseteq T$ non contiene $(u,v)$ e $(x,y)$ e per costruzione $T
 non contiene $(x,y)$.\\
 $\implies A \subseteq T'$\\
 $A \cup \{(u,v)\} \subseteq T'$
-%Arrivato a slide 40
+\subsection{Esempio Teorema}
+Dato il seguente sottoinsieme di T denominato $A = \{archi blu\} \subseteq T$, prendiamo\\
+l'arco (2,4) \ra che è arco leggero (dato che ha peso 2), posiamo dire che è un arco sicuro,
+infatti se guardiamo T notiamo che $A \cup \{(2,4)\} \subseteq T$, infatti l'arco appartiene
+all'MST T.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_es.png}
+\end{center}
+\subsection{Soluzione generica}
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura Generic_MST(G,W)
+        A = @*\empt*@
+        while @*$|V|-|A|>1$*@ do
+            trova arco (u,v) sicuro per A
+            A = A @*$\cup$*@ {(u,v)}
+        return A
+\end{lstlisting}
+\begin{enumerate}
+    \item A rimane aciclico durante le iterazioni
+    \item $G_A = (V,A)$ (ad ogni iterazione) è una foresta di $|V|-|A|$ alberi
+    \item All'inizio $G_A$ contiene $|V|$ alberti (i singoli vertici)
+    \item Ogni iterazione riduce di 1 il numero di alberi e l'arco sicuro (u,v) collega
+    sempre componenti distinte di $G_A$
+    \item Quando si arriva a un solo albero l'algoritmo termina
+    \item Il numero di iterazioni è pari a $|V|-1$
+\end{enumerate}
+\subsection{COROLLARIO}
+$A\subseteq T$ è tale che $G_A = (V,A)$ è una foresta di $|V|-|A|$ alberi.\\
+Sia $C= (V_C, A_C), V_C \subseteq V$ e $A_C \subseteq A$, una componente connessa di $G_A$\\
+$\implies (V_C, V-V_C)$ è sicuramente un taglio che \underline{rispetta} A\\
+$\implies$ un arco leggero di $(V_C, V-V_C)$ è arco \underline{sicuro} per A.\\
+\paragraph*{QUINDI} Ad ogni iterazione, per aggiungere ad A un arco sicuro (arco di MST) basta:
+\begin{enumerate}
+    \item Considerare una delle componenti C della foresta $G_A = (V,A)$
+    \item Trovare l'arco di peso minimo che collega un vertice in C con un vertice non in C
+\end{enumerate}
