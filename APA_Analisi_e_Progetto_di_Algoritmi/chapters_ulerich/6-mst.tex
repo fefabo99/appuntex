@@ -112,3 +112,67 @@ $\implies$ un arco leggero di $(V_C, V-V_C)$ è arco \underline{sicuro} per A.\\
     \item Considerare una delle componenti C della foresta $G_A = (V,A)$
     \item Trovare l'arco di peso minimo che collega un vertice in C con un vertice non in C
 \end{enumerate}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{arco_sicuro_corollario.png}
+\end{center}
+\paragraph*{Corollario} Dati un grafo connesso non orientato e pesato G = (V,E), un
+sottoinsieme A degli archi di MST, una componente connessa $C = (V_C, E_C)$ di $G_A = (V,A)$,
+allora un arco leggero (u,v) del taglio $(V_C, V-V_C)$ è un arco \underline{sicuro} per A.
+\subsection{Implementazione GENERIC-MST}
+Ci sono principalmente due implementazioni di GENERIC-MST e sono 2 algoritmi:
+\begin{itemize}
+    \item Algoritmo di Kruskal
+    \item Algoritmo di Prim
+\end{itemize}
+\section{Algoritmo di Kruskal}
+\textbf{MST = Sottoinsieme ottimo di un matroide grafico $M_G$}.
+$M_G = (S,F)$ per $G=(V,E,W)$ non orientato e connesso:
+\begin{itemize}
+    \item S, insieme E degli archi di G
+    \item F, tutti i sottoinsiemi di S che sono aciclici
+\end{itemize}
+pesato con:\\
+$W:S \rt R^+$ tale che $W(s)$ è il peso dell'arco s.\\
+Sottoinsieme ottimo di $M_G$ pesato con W\\
+\ra Archi dello Spanning Tree (ST) di peso massimo.\\
+$W':S \rt R^+$ tale che $W'(s) = W_0 - W(s)$\\
+$W_0$ è il massimo valore del peso degli archi (massimo per W)\\
+Sottoinsieme ottimo di $M_G$ pesato con $W'$\\
+\ra Sottoinsieme masimale di peso massimo (per $W'$) e di peso minimo per W che equivale a dire:\\
+\ra Archi dello Spanning Tree (ST) di peso \underline{minimo}, cioè l'MST.
+\subsection{Algoritmo Greedy Standard per il matroide grafico}.
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura Generic_matroid_grafic(E = @*$\{e_1, e_2, ..., e_n\}$*@)
+        X = @*$\emptyset$*@
+        Ordino E per peso W crescente (non decrescente)
+        for i form 1 to n do
+            if @*$e_i$*@ arco sicuro then
+                A = @*$\{e_i\} \cup A $*@
+        return A
+\end{lstlisting}
+\subsection{Algoritmo Kruskal}
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura KRUSKAL_MST(G = (V,E), W)
+        A = @*$\emptyset$*@
+        E = @*$\langle e_1, e_2, ..., e_n \rangle$*@ ordinati per peso crescente (non decr.)
+        for i form 1 to n do
+            if @*$\{e_i\} \cup A \subseteq T$*@ then
+                A = @*$\{e_i\} \cup A $*@
+        return A
+\end{lstlisting}
+Devo tradurre in codice l'if che determina se $e_i$ è un arco sicuro e per fare questo
+\textbf{applico il corollario}:\\
+$e_i = (u,v)$ è arco sicuro se è un arco di peso minimo che connette un vertice di una componente C
+con un vertice che non è in C. Quindi $e_i$ è arco sicuro se connette due componenti diverse
+di $G_A = (V,A)$. Quindi basta asssegnare l'arco che sto analizzando $e_i$ a $(u,v)$ e se
+non appartengono alla stessa componente di $G_A(V,A)$, allora posso aggiungere l'arco alla soluzione A.
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura KRUSKAL_MST(G = (V,E), W)
+        A = @*$\emptyset$*@
+        E = @*$\langle e_1, e_2, ..., e_n \rangle$*@ ordinati per peso crescente (non decr.)
+        for i form 1 to n do
+            (u,v) = @*$e_i$*@
+            if u e v @*$\notin$*@ stessa componente di @*$G_A(V,A)$*@ then
+                A = @*$\{(u,v)\} \cup A $*@
+        return A
+\end{lstlisting}

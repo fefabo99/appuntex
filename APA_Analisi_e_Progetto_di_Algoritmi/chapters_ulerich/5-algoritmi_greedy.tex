@@ -524,7 +524,13 @@ Ho $p+1$, perchè in A ho almeno $p+1$ oggetti dato che la cardinalità di A è 
 $\implies W(A) > W(B)$, ma Greedy restituiva $W(B)$ come maggiore!\\
 \paragraph*{Conclusione} l'algoritmo greedy standard non restituisce la soluzione ottima per
 qualsiasi peso W.
-
+\osservazione{Il teorema di Rado afferma che se il problema non è ricondubile a un matroide non è possibile 
+trovare un algoritmo Greedy che restiutisca una soluzione ottima per
+qualsiasi peso W. Ma NON dice che se un problema non può essere risolto con Greedy, questo teorema si riferisce
+ai problemi che hanno dei pesi e per cui ha senso considerare dei valori come pesi, se prendiamo il problema visto inizialmente degli eventi
+non si tratta di un problema con i pesi, infatti non si tratta di un matroide, ma è comunque possibile risolverlo tramite Greedy perchè è possibile
+scegliere un parametro (che ovviamente non è il peso), che mi permette di calcolare la soluzione ottima tramite greedy. Resta comunque
+da verificare che il parametro Greedy sia corretto.}
 \subsection{Esempio 1 Applicazione Rado}
 \paragraph*{Problema} Dato un insieme V di vettori pesati da una funzione W, determinare il sottoinsieme di
 vettori linearmente indipendenti che ha peso massimo.\\
