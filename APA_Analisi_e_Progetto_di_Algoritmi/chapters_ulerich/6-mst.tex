@@ -176,4 +176,20 @@ non appartengono alla stessa componente di $G_A(V,A)$, allora posso aggiungere l
                 A = @*$\{(u,v)\} \cup A $*@
         return A
 \end{lstlisting}
-%Arrivato a Slide 115
+\subsection{Esempio di Esecuzione Algoritmo Kruskal}
+\paragraph*{Passo 1} Ordina E per peso non decrescente \ra $E=\langle e_1, e_2, ..., e_m\rangle$,
+in modo tale da avere nell'insieme E prima gli archi più leggeri e mano a mano quelli più
+pesanti, in questo modo posso applicare un approccio Greedy.\\
+Inizializza $A = \emptyset$.\\
+\paragraph*{Inizio a considerare gli archi} Considero $e_1 = (7,8)$, connette due componenti di
+$G_A$?
+\begin{center}
+    \includegraphics[width=80mm, scale=0.5]{kruskal_esec1.png}
+\end{center}
+Sì, quindi $\implies A = \{(7,8)\}$.\\
+Considero ora il secondo arco $e_2 = (2,4)$, connette due componenti di $G_A$?
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{kruskal_esec2.png}
+\end{center}
+Sì, quindi $\implies A = \{(7,8), (2,4)\}$.\\
+%Slide 124 - Continuare a scrivere esempio procedimento Kruskal
