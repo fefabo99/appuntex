@@ -296,13 +296,15 @@ Inizializziamo i pesi a infinito e i valori del predecessore a NIL:
     \item v.key = $\infty$
     \item v.$\pi$ = NIL
 \end{itemize}
-Scegliamo un vertice r arbitrario, nell'esempio scegliamo $r = 1$ e peso $1.key = 0$.\\
+Scegliamo un \textbf{vertice r} arbitrario, che sarà il nodo d'origine dell'algoritmo. 
+Nell'esempio scegliamo $r = 1$ e peso $1.key = 0$.\\
 Inseriamo tutti i vertici in una coda Q di min priority che permette l'estrazione 
 del vertice con il minimo valore del campo key.
 \begin{center}
     \includegraphics[width=80mm,scale=0.5]{prim_impl1.png}
 \end{center}
-Estraiamo ora da Q il vertice con il minimo valore di key \ra vertice 1.\\
+\paragraph*{Prima estrazione coda} Estraiamo ora da Q il vertice con il minimo valore di key \ra vertice 1.
+\paragraph*{NB} L'estrazione implica la rimozione dell'oggetto dalla coda!\\
 Procediamo quindi ad esaminare gli adiacenti di 1 \ra 2, 7, 5.\\
 2 appartiene a Q and $W(1,2) < 2.key \\ \implies 2.key = (1,2);\quad 2.\pi = 1$.
 \begin{center}
@@ -313,4 +315,99 @@ Considero il secondo adiacente, 7. Esso appartiene a Q and $W(1,7) < 7.key \\
 \begin{center}
     \includegraphics[width=80mm,scale=0.5]{prim_impl3.png}
 \end{center}
-%slide 236 Continua con l'analisi del terzo vertice adiacente 5
+Considero il terzo vertice adiacente, 5. Esso appartiene a Q and $W(1,5) < 5.key \\
+\implies 5.key = W(1,5); \quad 5.\pi = 1$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_impl4.png}
+\end{center}
+\paragraph*{Seconda estrazione coda} Ora che ho esaurito tutti gli adiacenti procedo nuovamente a estrarre da Q il vertice
+con il minimo valore di key \ra vertice 1, in questo passo si tratta del vertice 5 che ha
+key = 4.\\
+Esamino gli adiacenti di 5 \ra 1, 7.\\ 
+1 non è più in Q, quindi lo ignoro ed esamino 7.\\
+7 appartiene a Q and $W(5,7) < 7.key \\
+\implies 7.key = W(5,7); \quad 7.\pi = 5$.
+\paragraph*{Terza estrazione coda} Non ho più adiacenti quindi riprocedo a estrarre dalla coda Q il vertice di peso minimo,
+ora si tratta del vertice 2.\\
+Gli adiacenti di 2 sono 1, 4, 9, 3.\\
+1 non è più nella coda, lo ignoro.\\
+4 appartiene a Q and $W(2,4) < 4.key$, quindi aggiorno il suo valore di key\\
+$\implies 4.key = W(2,4); \quad 4.\pi = 2$.
+\paragraph*{Saltiamo qualche passaggio} Arriviamo fino al passaggio dove estraiamo
+dalla coda il vertice 9. I suoi adiacenti sono 8, 2, 3, 6.\\
+Questo caso è interessante perchè vediamo come effettivamente l'algoritmo trova un arco
+che collega il vertice 8 di peso inferiore rispetto al precedente trovato e lo aggiorna.\\
+Verifichiamo che 8 appartiene ancora a Q e inoltre $W(9,8) < 8.key$ dato che 2 $2<6\\
+\implies 8.key = W(9,8);\quad 8.\pi = 9$. Viene aggiornato il predecessore con quello più
+che percorre l'arco più leggero in questo momento.\\
+Il vertice 2 non è più nella coda quindi non ci interessa.\\
+Altro caso interessante è il vertice 3, procediamo ad analizzarlo.\\
+3 appartiene a Q AND $W(9,3)$ non è $< 3.key$, perchè $14>7$, cioè sto percorrendo un arco
+peggiore in termini di peso rispetto a quello percorso in precedenza, quindi non aggiorno il valore
+key di 3 e lascio il suo predecessore invariato.\\
+$\dots$\\
+Procedo fino a quando la coda Q è vuota, in quel momento l'algoritmo termina.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_impl5.png}
+\end{center}
+In questo momento ho esplorato tutti i vertici, ma come faccio a determinare l'MST?
+\subsection{Determinare l'MST}
+Considero gli archi per cui: $T = \{(v.\pi, v)\text{ t.c } v \in V, v \neq r\} \rt$ archi di MST.\\
+Cioè percorro i predecessori degli archi, tranne nel caso in cui il sono nel vertice d'origine dove
+$r.\pi = NIL$.\\ In questo modo ricostruisco tutto l'MST.
+\subsection{Riassunto PRIM-MST}
+In questo algoritmo viene mantenuta una coda Q di min-priority che all'inizio contiene tutti
+i vertici del grafo e ad ogni passo Q:
+\begin{itemize}
+    \item contiene i vertici che non appartengono ancora alla componente C
+    \item permette di estrarre il vertice v tale che (u,v) è l'arco di peso minimo che collega
+    un vertice u in C con un vertice non ancora in C
+\end{itemize}
+Ogni vertice v del grafo ha due campi:
+\begin{itemize}
+    \item $v.key$ (quando v viene stratto da Q) minimo valore del peso degli archi (u,v), incidenti
+    in v tali che u sia nella componente C
+    \item $v.\pi$, vertice u tale che (u,v) è l'arco di peso $v.key$
+\end{itemize}
+All'inizio $v.key = \infty$ e $v.\pi = NIL$ per ogni vertice del grafo.\\
+$r.key = 0$.
+\paragraph*{Ad ogni passo}
+\begin{enumerate}
+    \item Viene estratto Q il vertice u con il minor valore del campo key (dato che abbiamo una
+    min priority queue)
+    \begin{itemize}
+        \item l'arco ($u.\pi$, u) è un nuovo arco di MST
+        \item u è un nuovo vertice che si aggiunge alla componente C
+    \end{itemize}
+    \item Per ogni vertice v adiacente a u, se v è in Q e \textbf{$v.key$} è inferiore al peso $W(u,v)$
+    (ho un arco migliore del precedente), allora aggiorno i valori
+    \begin{itemize}
+        \item \textbf{$v.key$} al valore $W(u,v)$
+        \item \textbf{$v.\pi$} al valore u
+    \end{itemize}
+\end{enumerate}
+L'algor9itmo termina quando Q è vuota.\\
+\textbf{$T = \{(v.\pi, v)\text{ t.c } v \in V, v \neq r\} \rt$  archi di MST}.
+\subsection{Codice PRIM-MST}
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    Procedura PRIM_MST(G,W,r)
+        foreach v @*$\in$*@ V do
+            v.key = @*$\infty$*@
+            v.@*$\pi$*@ = NIL
+        r.key = 0
+        Aggiungi tutti i vertici di V alla coda Q
+        while Q != @*$\emptyset$*@
+            u = estrai vertice da Q
+            foreach v @*$\in$*@ adj(u) do
+                if v @*$\in$*@ Q and W(u,v) < v.key then
+                    v.key = W(u,v)
+                    v.@*$\pi$*@ = u
+\end{lstlisting}
+\paragraph*{Complessità} La fase di inizializzazione impiega $O(|V|)$, lo stesso
+per il while dato che deve scorrere tutti i vertici ($O(|V|)$). Mentre l'estrazione
+richiede $O(\log |V|)$. La parte relativa agli adiacenti dipende dal numero di archi
+infatti impiegherà $O(|E|)$. La parte relativa all'aggiornamento della valore key 
+$O(\log |V|)$.\\
+La complessità alla fine sarà di $O(|E|\log |E|)$.
+
+
