@@ -192,4 +192,125 @@ Considero ora il secondo arco $e_2 = (2,4)$, connette due componenti di $G_A$?
     \includegraphics[width=80mm,scale=0.5]{kruskal_esec2.png}
 \end{center}
 Sì, quindi $\implies A = \{(7,8), (2,4)\}$.\\
-%Slide 124 - Continuare a scrivere esempio procedimento Kruskal
+Saltiamo qualche passo dove aggiungiamo sempre archi perchè troviamo sempre che
+gli archi considerati connettono due componenti.\\
+Consideriamo l'arco $e_6=(4,6)$
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{kruskal_esec3.png}
+\end{center}
+Notiamo che in questo caso l'arco non connette due componenti di $G_A$ (le 
+componenti sono già connesse tramite altri archi, aggiungere questo arco creerebbe
+un ciclo), per questo non considero questo
+arco e procedo a considerare il successivo.\\
+Continuo in questo modo fino a quando non ho considerato tutti gli archi. Alla fine
+avrò ottenuto l'MST!
+\subsection{Codice Kruskal}
+Abbiamo già scritto in precedenza il codice di Kruskal, ma come possiamo tradurre le istruzioni
+matematiche in codice? Riscriviamo le parti riguardante il controllo di appartenenza al grafo.
+\begin{lstlisting}[language=Java, escapeinside={@*}{*@}]
+    KRUSKAL-MST(G=(V,E),W)
+    A = @*$\emptyset$*@
+    E = @*$\langle e_1, e_2, ..., e_n \rangle$*@ ordinati per peso crescente (non decr.)
+    foreach v @*$\in$*@ V do
+        MAKE_SET(V)
+    for 1 from 1 to n do
+        (u,v) = @*$e_i$*@
+        if FIND_SET(u) @*$\neq$*@ FIND_SET(v) then
+            A = @*$\{(u,v)\} \cup A $*@
+    return A  
+\end{lstlisting}
+Tramite la strutture dati FIND SET andiamo ad analizzare se aggiungendo l'arco (u,v), otteniamo
+un nuovo albero (quindi connettiamo due componenti) o se abbiamo sempre lo stesso albero (quindi non stiamo
+connettendo le componenti, ma stiamo generando un ciclo). se le 2 FIND SET sono diverse allora
+possiamo aggiungere l'arco alla soluzione finale tramite la UNION,
+altrimenti lo scarto e passo a quello successivo.
+\paragraph*{Complessità Algoritmo}
+\begin{itemize}
+    \item L'ordinamento degli archi avrà complessità $O(|E|\log |E|)$ (Merge Sort)
+    \item il MAKE SET avrà complessità $O|V|$
+    \item Mentre tutto il blocco for fino a UNION ha complessità $O(|E|\alpha)$, dove
+    $\alpha$ è una funzione che cresce molto lentamente che è il tempo di aggiunta degli
+    elementi tramite UNION
+\end{itemize}
+Avendo G connesso \ra $|E| \geq |V|-1$ che possiamo approssimare a $|E|$, quindi
+$(|V|+|E|\alpha)$ sarà $(2|E|\alpha)$, ma essendo il 2 un coefficiente costante nell'utilizzo
+dell'O è trascurabile.\\
+In totale avrò $O(|E|\log |E|+|E|\alpha)$.\\
+Sicuramente $\alpha \leq \log |V|$, perchè $\alpha$ cresce molto lentamente
+$|V| = |E|$, per questo motivo avrò:\\
+\paragraph*{Complessità} $O(E \log|E| + |E|\log |E|)$ quindi\\
+$O(|E|\log |E|)$.
+
+\section{Algoritmo di Prim}
+Altro algoritmo utilizzato per trovare l'albero di copertura minimo in un grafo che in questo
+caso si basa sull'effettuare tagli e scegliere l'arco leggero (quindi sicuro).\\
+Si basa sull'assegnazione di un peso ai vertici e questo è un meccanismo utilizzato anche
+da un altro algoritmo che vedremo più avanti denominato Dijkstra.
+\subsection{Idea dell'algoritmo}
+\begin{enumerate}
+    \item Sceglie un vertice arbitrario r (componente C iniziale composta dal solo
+    vertice r)
+    \item Trova l'arco di peso minimo che connette r a un altro vertice v
+    (il vertice v entra a far parte di C)
+    \item Trova l'arco di peso minimo che connette un vertice in C a un vertice
+    v non in C, (il vertice v entra a far parte di C)
+    \item Etc.
+    \item L'algoritmo termina quando la componente C comprende tutti i vertici
+    del grafo e coincide quindi con il Minimum Spanning Tree
+\end{enumerate}
+\subsection{Proprietà dell'algoritmo}
+Ad ogni passo:
+\begin{enumerate}
+    \item Il sottoinsieme A degli archi di MST aggiunti, stanno tutti nella componente C.
+    La foresta $G_A = (V,A)$ è composta da:
+    \begin{itemize}
+        \item $C = (V_C, A)$
+        \item $|V-V_C|$ componenti di vertici singoli
+    \end{itemize}
+    \item Il taglio $(V_C, V-V_C)$ rispetta l'insieme A
+    \item l'arco sicuro è l'arco di peso minimo che connette un vertice in C con
+    un vertice non in C
+\end{enumerate}
+L'idea è quindi quella di effettuare dei tagli tali per cui $(V_C, V-V_C)$ rispetta
+l'insieme A, quindi effettuo dei tagli tra l'insieme A gli archi già aggiunti
+all'MST e gli altri archi e considero l'arco leggero. Per il teorema dell'arco sicuro, 
+l'arco sicuro è l'arco di peso minimo che connette un vertice in C con un vertice
+non i C.
+\paragraph*{Esempio} Qui di seguito notiamo che effettuando il taglio e scegliendo l'arco
+leggero preleviamo automaticamente l'arco sicuro.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_exec1.png}
+\end{center}
+Continuando ad effettuare tagli validi e a selezione l'arco leggero (quindi sicuro) otteniamo
+otterremo l'MST.
+\subsection{Implementazione Prim}
+Come possiamo implementare in maniera efficiente l'esecuzione del taglio e la
+conseguente ricerca dell'arco di peso minimo?\\
+Assegneremo dei pesi ai vertici e un valore contenente il suo predecessore per ogni v in V e utilizzeremo
+come struttura dati una \textbf{coda Q di min-priority}.\\
+La \textbf{min priority queue} è coda particolare che con l'operazione di Dequeue permette
+di estrarre l'elemento di priorità minima, in questo caso ci servirà per ottenere sempre l'elemento
+di peso minimo.\\
+Inizializziamo i pesi a infinito e i valori del predecessore a NIL:
+\begin{itemize}
+    \item v.key = $\infty$
+    \item v.$\pi$ = NIL
+\end{itemize}
+Scegliamo un vertice r arbitrario, nell'esempio scegliamo $r = 1$ e peso $1.key = 0$.\\
+Inseriamo tutti i vertici in una coda Q di min priority che permette l'estrazione 
+del vertice con il minimo valore del campo key.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_impl1.png}
+\end{center}
+Estraiamo ora da Q il vertice con il minimo valore di key \ra vertice 1.\\
+Procediamo quindi ad esaminare gli adiacenti di 1 \ra 2, 7, 5.\\
+2 appartiene a Q and $W(1,2) < 2.key \\ \implies 2.key = (1,2);\quad 2.\pi = 1$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_impl2.png}
+\end{center}
+Considero il secondo adiacente, 7. Esso appartiene a Q and $W(1,7) < 7.key \\
+\implies 7.key = W(1,7);\quad 7.\pi = 1$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{prim_impl3.png}
+\end{center}
+%slide 236 Continua con l'analisi del terzo vertice adiacente 5
