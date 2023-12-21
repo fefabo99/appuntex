@@ -1,25 +1,80 @@
 \chapter{Teoremi di convergenza}
-Siano $X_1, X_2 \dots $ successione di Variabili aleatorie indipendenti identicamente distribuite (V.A I.I.D.).
-\\ Discrete $ \rightarrow p_x(x) = p(x) $
-\\ Assolutamente continue $ \rightarrow f_{x_i} (x) = f(x) $
+\section{Verso la statistica}
+Introduciamo ora un modello probabilistico fondamentale per la \textbf{statistica}:
+\begin{center}
+    Successione $X_1,X_2,X_3,...$ di Variabili Aleatorie
+    \\\textbf{I.I.D} = Indipendenti e Identicamente Distribuite\footnote{Con la stessa distribuzione.}.
+\end{center}
+Concretamente, le variabili $X_i$ possono rappresentare misure o rilevazioni indipendenti, ripetute nel tempo di una sterssa quantità che si vuole studiare.
+Tipicamente, queste varibili sono:
+\begin{itemize}
+    \item Discrete, con la stessa densità discreta fissata: $ \rightarrow p_{X_i}(x) = p(x) $
+    \item Assolutamente continue, con la stessa densità fissata: $ \rightarrow f_{x_i} (x) = f(x)$
+\end{itemize}
+\esempio{Lancio ripetutamente un dado a sei faccie:
+    \begin{center}
+        $X_i:=$ Risultato del lancio $i$-esimo
+    \end{center}
+}
+\esempio{Rilevo la pressione arteriosa in un campione di pazienti:
+    \begin{center}
+        $X_i:=$ valore della pressione misurata nel paziente $i$-esimo
+    \end{center}
+}
 
-Per osservare $X_1, X_2$ devo raccogliere dei dati, il problema è che $p(x), f(x)$ non sono completamente
-note. 
-\paragraph*{Statistica inferenziale} Dalle osservazioni posso fare delle deduzioni (Inferenze) sulla distribuzione
+\paragraph{Problema} $p(x), f(x)$ non sono completamente note, come faccio quindi a trovare la distribuzione comune delle variabili?
+Uso al Statistica Inferenziale.
+\section{Statistica Inferenziale} 
+Dalle osservazioni posso fare delle deduzioni, ovvero delle Inferenze, sulla distribuzione
 comune di $X_1, X_2$ ossia su $p(x)$ e $f(x)$.
-\\ Non posso osservare tutte le V.A per questo ne scelgo casualmente n. 
-\\ $X_1, \dots ,X_n$ Campione aleatorio di ampiezza n. Lavoreremo con variabili aleatorie che siano funzioni del 
-campione aleatorio, cioè del tipo $g(x_1, \dots ,x:n)$
-\paragraph*{Statistica campionaria} Dato un campione aleatorio $X_1, \dots, X_n$ una statistica campionaria
-è una qualunque funzione del campione:
-\begin{equation*}
-    g(X_1, \dots, X_n) \text{   } (g:\mathbb{R}^n\rightarrow\mathbb{R})
-\end{equation*}
 
-\paragraph*{Esempio di statistica campionaria} Media campionaria
-\begin{equation*}
-    \bar{X_n}:\frac{1}{n}\sum_{n=1}^n X_i
-\end{equation*}
+Non sempre posso osservare tutte le V.A e per questo ne scelgo casualmente $n$ formando un campione: 
+\begin{center}
+    $X_1, \dots ,X_n$ è  \textbf{Campione Aleatorio} di ampiezza $n$ $\to n$ V.A. I.I.D. 
+\end{center}
+Noi lavoreremo con variabili aleatorie che siano funzioni del 
+campione aleatorio, cioè del tipo $g(x_1, \dots ,X_n)$:
+\definizione{
+    Dato un campione aleatorio $X_1, \dots, X_n$ una \textbf{Statistica Campionaria}
+    è una qualunque funzione del campione:
+    \[
+        g(X_1, \dots, X_n) \text{   } (g:\mathbb{R}^n\rightarrow\mathbb{R})
+    \]
+}
+
+% \paragraph*{Esempio di statistica campionaria} Media campionaria
+% \begin{equation*}
+%     \bar{X_n}:\frac{1}{n}\sum_{n=1}^n X_i
+% \end{equation*}
+Se $X_1,...,X_n$ sono variabili I.I.D. di media $\mu$ e varianza $\sigma^2$, allora:
+\[ E[X_i] = \mu \;\;\; var(X_i) = \sigma^2 \]
+\[ \to E(\bar{X}_n) = \mu  \;\;\; var(\bar{X}_n) = \frac{\sigma^2}{n} \]
+
+
+\section{Legge dei Grandi Numeri}
+Siano $X_1,X_2,...$ Variabili Aleatorie reali indipendenti e identicamente distribuite.
+\\Sia $\mu = E[X_i]$, $\sigma^2 = Var[X_i]$
+\osservazione{Siccome le variabili sono identicamente distribuite, $\mu$ e $\sigma^2$ sono uguali per ogni variabile.}
+
+Introduciamo la \textbf{Media Campionaria}:
+\[ \bar{X}_N  := \frac{1}{N} \sum_{i=1}^N X_i = \frac{X_1+X_2+ ... + X_N}{N}\]
+Questa è una \emph{nuova variabile aleatoria} distinta dalle $X_i$.
+
+Possiamo ora introdurre la legge dei grandi numeri:
+\teorema[Legge dei Grandi Numeri]{
+    Per ogni $\epsilon > 0$ avremo che:
+    \[ \lim_{N\to\infty} P(|\bar{X}_N - \mu | \geq \epsilon ) = 0\]
+    \[ \Longleftrightarrow \lim_{N\to\infty} P(\bar{X}_N \in (\mu - \epsilon, \mu + \epsilon)) = 1 \] 
+}
+A partire dalla sequenza di dati osservati $X_1,X_2,...,X_N$, posso essere fiducioso che la media dei dati
+$\bar{X}$ sia vicina a $\mu = E[X]$, e che la distribuzione di $\bar{X}_n$ è concentrata attorno alla media $\mu$.
+
+\osservazione{La Legge dei Grandi Numeri implica che il legame tra media campionaria e media $=$ valore atteso di $\mu$.}
+
+La legge dei grandi numeri si dimostra con la \textbf{disuguaglianza di Chebishev}.
+%\subsection{Dimostrazione della legge dei grandi numeri}
+%Pagina 18, lezione 8.
+
 \section{Distribuzione di X}
 \begin{equation*}
     \mathbb{P} (a  < \bar{X_nx} \leq b) = \mathbb{P} (\frac{a - \mu}{\frac{\sigma}{\sqrt{n}}} 
@@ -31,6 +86,8 @@ campione aleatorio, cioè del tipo $g(x_1, \dots ,x:n)$
 \begin{equation*}
     \frac{\sigma}{\sqrt{n}} = \sqrt{\text{Var}}
 \end{equation*}
+
+
 
 \section{Teorema del limite centrale}
 Siano $X_1, ..., X_n$ v.a i.i.d. (Variabili aleatorie indipendenti identicamente distribuite)

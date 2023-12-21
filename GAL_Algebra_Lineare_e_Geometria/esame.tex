@@ -37,7 +37,9 @@
 \domanda{1}{Se devo verificare che $n$ vettori $v_i \in \R^m$ siano linearmente indipendenti, cosa posso fare?}
 \rispostechiuse{Creo una matrice con $v_i$ come vettori riga che abbia determinante non nullo}{Creo una matrice con $v_i$ come vettori riga e cerco una sottomatrice quadrata di ordine $n$ Invertibile}
 {Cerco una combinazione lineare dei vettori $v_i$ che mi dia il vettore nullo}{Creo una matrice con $v_i$ come vettori colonna e verifico che il rango di questa matrice sia $m$}
-\rispostaaperta{La soluzione è la $b$}
+\rispostaaperta{\textbf{b}, perchè se ho una sottomatrice di ordine $n$ invertibile allora il suo determinante è zero. Per il teorema dei minimi, significa che il rango della matrice
+è \emph{almeno} $n$, quindi è massimo e tutti i suoi vettori sono linearmente indipendenti.
+}
 
 
 \domanda{}{Se la somma di tre numeri positivi è 120, qual'è il massimo valore possibile tra il loro prodotto?}
