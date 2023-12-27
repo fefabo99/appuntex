@@ -106,7 +106,7 @@ all'MST T.
 $A\subseteq T$ è tale che $G_A = (V,A)$ è una foresta di $|V|-|A|$ alberi.\\
 Sia $C= (V_C, A_C), V_C \subseteq V$ e $A_C \subseteq A$, una componente connessa di $G_A$\\
 $\implies (V_C, V-V_C)$ è sicuramente un taglio che \underline{rispetta} A\\
-$\implies$ un arco leggero di $(V_C, V-V_C)$ è arco \underline{sicuro} per A.\\
+$\implies$ un arco leggero di $(V_C, V-V_C)$ è arco \underline{sicuro} per A.
 \paragraph*{QUINDI} Ad ogni iterazione, per aggiungere ad A un arco sicuro (arco di MST) basta:
 \begin{enumerate}
     \item Considerare una delle componenti C della foresta $G_A = (V,A)$
@@ -180,7 +180,7 @@ non appartengono alla stessa componente di $G_A(V,A)$, allora posso aggiungere l
 \paragraph*{Passo 1} Ordina E per peso non decrescente \ra $E=\langle e_1, e_2, ..., e_m\rangle$,
 in modo tale da avere nell'insieme E prima gli archi più leggeri e mano a mano quelli più
 pesanti, in questo modo posso applicare un approccio Greedy.\\
-Inizializza $A = \emptyset$.\\
+Inizializza $A = \emptyset$.
 \paragraph*{Inizio a considerare gli archi} Considero $e_1 = (7,8)$, connette due componenti di
 $G_A$?
 \begin{center}
@@ -237,7 +237,7 @@ $(|V|+|E|\alpha)$ sarà $(2|E|\alpha)$, ma essendo il 2 un coefficiente costante
 dell'O è trascurabile.\\
 In totale avrò $O(|E|\log |E|+|E|\alpha)$.\\
 Sicuramente $\alpha \leq \log |V|$, perchè $\alpha$ cresce molto lentamente
-$|V| = |E|$, per questo motivo avrò:\\
+$|V| = |E|$, per questo motivo avrò:
 \paragraph*{Complessità} $O(E \log|E| + |E|\log |E|)$ quindi\\
 $O(|E|\log |E|)$.
 
@@ -410,4 +410,173 @@ infatti impiegherà $O(|E|)$. La parte relativa all'aggiornamento della valore k
 $O(\log |V|)$.\\
 La complessità alla fine sarà di $O(|E|\log |E|)$.
 
-
+\section{Algoritmo di Dijkstra - Cammini minimi da sorgente unica}
+L'algoritmo di Dijkstra nasce per calcolare la distanza più breve da un nodo di partenza
+a tutti gli altri nodi del grafo. L'algoritmo è applicabile solo a grafi con pesi non negativi
+sugli archi.
+\paragraph*{INPUT} Grafo $G = (V,E,W)$, orientato e pesato:
+\begin{itemize}
+    \item $W:E \rt R^+$ tale che $W(i,j) = w_{ij} =$ peso dell'arco $(i,j)$
+    \item Un vertice $s \in V$ (vertice sorgente)
+\end{itemize}
+\paragraph*{OUTPUT} Per ogni $v \in V$ diverso da s, trovare il cammino di peso minimo che inizia
+in s e termina in v.
+\subsection{Sottostruttura Ottima di un cammino minimo in generale}
+Se il cammino $P = \langle v_1,v_2,..., v_{k-1}, v_k \rangle$ è minimo, allora sono minimi
+anche tutti i sottocammini $P_{ij} = \langle v_i, v_{i+1}, ..., v_j \rangle$ per $1 \leq i < j \leq k$.
+\paragraph*{PROOF}: se esistesse un cammino da $v_i$ a $v_j$ di costo inferiore a quello di $P_{ij}$,
+allora sostituendo in P il sottocammino $P_{ij}$ con tale cammino si otterrebbe un
+cammino da $v_1$ a $v_k$ di costo inferiore a quello di P.\\
+In particolare è minimo il sottocammino $\langle v_1,v_2,..., v_{k-1}, v_k \rangle$ dove
+$v_{k-1}$ è il predecessore di $v_k$ nel cammino minimo P.
+\paragraph*{Scomposizione del peso del cammino minimo} $\delta(s,v)$ dalla sorgente s al vertice v
+\[ \delta(s,v) = \delta(s,u)+W(u,v) \]
+u \textbf{predecessore} di v nel cammino minimo da s a v.\\
+$\delta(s,v)$, peso del cammino minimo da s a v.\\
+$\delta(s,u)$, peso del cammino minimo da s a u.\\
+$W(u,v)$, peso dell'arco (u,v).
+\paragraph*{Limite superiore} del peso del cammino minimo $\delta(s,v)$ dalla sorgente s al vertice v
+\[ \delta(s,v) \leq \delta(s,u) + W(u,v) \]
+u \textbf{predecessore} di v nel cammino minimo da s a v.\\
+$\delta(s,v)$, peso del cammino minimo da s a v.\\
+$\delta(s,u)$, peso del cammino minimo da s a u.\\
+$W(u,v)$, peso dell'arco (u,v).
+\subsection{Tecnica del Rilassamento}
+Si aggiungono ad ogni vertice v i due attributi \textbf{v.d.} e \textbf{v.$\pi$} che
+durante tutta l'esecuzione dell'algoritmo sono tali che:
+\begin{itemize}
+    \item \textbf{v.d} è un limite superiore per \textbf{$\delta(s,v)$}
+    \item \textbf{v.$\pi$} è un vertice u tale che (u,v) $\in E$
+\end{itemize}
+Prima dell'esecuzione:
+\begin{itemize}
+    \item \textbf{v.d} = $\infty$ per ogni vertice v diverso dalla sorgente s
+    \item \textbf{v.$\pi$} = NIL per ogni vertice v
+    \item \textbf{s.d} = 0 per la sorgente s
+\end{itemize}
+Alla fine dell'esecuzione:
+\begin{itemize}
+    \item \textbf{v.d} = \textbf{$\delta(s,v)$}, peso del cammino minimo da s a v
+    \item \textbf{v.$\pi$} = u, predecessore di v nel cammino minimo da s a v
+\end{itemize}
+\subsection{Codice Tecnica del Rilassamento}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Inizialize-Single-Source(G,s)
+        foreach v !"$\in$"! V do
+            v.d = !"$\infty$"!
+            v.!"$\pi$"! = NIL
+        s.d = 0
+\end{lstlisting}
+\paragraph*{PASSO DEL RILASSAMENTO DELL'ARCO (u,v)} Se v.d $> u.d + W(u,v)$, allora si 
+si pone:
+\begin{enumerate}
+    \item $v.d = u.d + W(u,v)$
+    \item $v.\pi = u$
+\end{enumerate}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Relax(u,v,W)
+        if v.d > u.d + W(u,v) then
+            v.d = u.d + W(u,v)
+            v.!"$\pi$"! = u
+\end{lstlisting}
+\begin{center}
+    \includegraphics[width=80mm, scale=0.5]{tecnica_rilassamento.png}
+\end{center}
+A partire dai valori:
+\begin{itemize}
+    \item $v.d = \infty$ per ogni vertice v diverso dalla sorgente s
+    \item $v.\pi = NIL$ per ogni vertice v
+    \item $s.d = 0$ per la sorgente s
+\end{itemize}
+Viene eseguito per ognmi arco (u,v) del grafo un solo passo di rilassamento
+per ottenere alla fine dell'esecuzione:
+\begin{itemize}
+    \item $v.d = \delta(s,v)$, peso del cammino minimo da s a v
+    \item $v.\pi = u$, predecessore di v nel cammino minimo da s a v
+\end{itemize}
+\subsection{Esecuzione Dijkstra}
+Una \textbf{Coda Q di min-priority} contiene all'inizio tutti i vertici del grafo.
+\paragraph*{Ad ogni passo}:
+\begin{itemize}
+    \item Q contiene i vertici v per i quali il campo v.d non ha raggiunto il valore $\delta(s,v)$
+    \item Nel momento in cui il vertice u viene estratto da Q, il suo campo u.d è uguale a $\delta(s,u)$
+    \item Viene eseguito il rilassamento di ogni arco (u,v) uscente da u
+    \item L'algoritmo termina quando Q è vuota
+\end{itemize}
+Alla fine tramite i valori del campo dei predecessori si ricostruisce il cammino
+minimo della sorgente s a un determinato vertice v.
+\subsection{Esecuzione Grafica}
+\paragraph*{Inizializzazione e Prima estrazione}
+Per ogni v in V:
+\begin{itemize}
+    \item $v.d = \infty$
+    \item $v.\pi = NIL$
+\end{itemize}
+$s.d = 0$.\\
+Inizializza un insieme vuoto S.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec1.png}
+\end{center}
+Inserisce tutti i vertici in una coda Q di min-priority ed estrae da Q il vertice con il 
+minimo valore di d \ra vertice $s = 2$.\\
+Aggiunge il vertice 2 all'insieme S \ra $S=\{2\}$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec2.png}
+\end{center}
+Esamina gli adiacenti del vertice 2 \ra 3,5.\\
+Esegue il rilassamento dell'arco (2,5), quindi verifica $5.d > 2.d + W(2,5)$,
+ e se si verifica la condizione \ra $5.d = 2.d + W(2,5) = 10$. Aggiorno quindi peso e predecessore
+del vertice 5, il predecessore sarà chiaramente il vertice 2, chiaramente più avanti potrà cambiare, e
+vedremo che sarà così, perchè mano a mano che scopro il grafo Dijkstra aggiorna i pesi e i predecessori in base
+al cammino minimo.\\
+Esegue il rilassamento per il prossimo adiacente, il vertice 3 e quindi l'arco (2,3).\\
+$3.d > 2.d + W(3,5) \rt 3.d = 2.d + W(3,5) = 5$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec3.png}
+\end{center}
+\paragraph*{Seconda estrazione}
+Estrae da Q il vertice con il minimo valore di d \ra vertice 3.\\
+Aggiunge il vertice 3 all'insieme S \ra $S=\{2,3\}$.\\
+Esamina gli adiacenti del vertice 3 \ra 1, 4, 5.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec4.png}
+\end{center}
+Esegue il rilassamento dell'arco (3,5).\\
+$5.d > 3.d + W(3,5)$? Sì \ra $5.d = 3.d + W(3,5) = 8$.\\
+Esegue il rilassamento dell'arco (3,1).\\
+$1.d > 3.d + W(3,1) \rt 1.d = 3.d + W(3,1) = 14$.\\
+Esegue il rilassamento dell'arco (3,4).\\
+$4.d > 3.d + W(3,4) \rt 4.d = 3.d + W(3,4) = 7$.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec5.png}
+\end{center}
+\paragraph*{Continuo a estrarre fino a quando la coda non è vuota}
+Può capitare di avere come adiacente un vertice che non è più nella coda, lo ignoro e passo
+al successivo adiacente.\\
+Può capitare che la condizione di rilassamento non sia soddisfatta, in quel caso ignoro il vertice
+e procedo al prossimo adiacente.\\
+A fine esecuzione il grafo si presenterà nel seguente modo:
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_esec6.png}
+\end{center}
+Il cammino minimo da s a un vertice v può essere ricostruito utilizzando il campo $\pi$ dei
+predecessori.
+\subsection*{Codice Dijkstra}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Dijkstra(G,W,s)
+        Inizialize-Single-Source(G,s)
+        S = !"$\emptyset$"!
+        Aggiungi tutti i vertici di V alla coda Q
+        while Q !"$\neq \emptyset$"! do
+            u = estrai vertice da Q
+            S = S !"$\cup$"! {u}
+            foreach v !"$\in$"! adj(u) do
+                Relax(u,v,W) 
+\end{lstlisting}
+\subsection{Prova di correttezza}
+\paragraph*{TEOREMA}: sia $\langle v_1 = s,v_2,\dots,v_n \rangle$ la sequenza di vertici
+estratti da Q in un'esecuzione. Quando il vertice $v_k$ viene estratto, allora $v_k.d = \delta
+(s,v_k)$.
+\paragraph*{Lemma}: se $v.d=\delta(s,v)$ a qualche passo dell'esecuzione, allora sicuramente
+v.d rimarrà uguale a $\delta(s,v)$ per il resto dell'esecuzione.
+%Slide 96 Finire prova di correttezza Dijkstra
