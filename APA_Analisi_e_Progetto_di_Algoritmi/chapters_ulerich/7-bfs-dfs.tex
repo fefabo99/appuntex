@@ -42,4 +42,104 @@ I vertici hanno associato un colore:
     completamente visitati)
     \item vertice \underline{nero} \ra vertice visitato (adiacenti completamente visitati)
 \end{itemize}
-%Slide 19 BFS
+\section{Esempio Esecuzione BFS}
+BFS(G, A), in questo modo identifico che la sorgente è A, quindi inizio da A.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_esec1.png}
+\end{center}
+Controllo quali sono i nodi adiacenti ad A e $adj(A)=B,C,E$.\\
+Parto da B, percorro l'arco e per segnare che ho percorso l'arco per esplorare B 
+faccio diventare l'arco più spesso, inserisco B come risultato del BFS.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_esec2.png}
+\end{center}
+I vertici verdi indicano che la distanza dalla sorgente è 1.\\
+Dopo aver visitato B, proseguo al secondo adiacente C, l'arco A-C diventa spesso 
+perchè è stato percorso per scoprire C, inserisco C nella soluzione.\\
+Passo ad E e faccio la stessa cosa.
+\paragraph*{Coloro A di nero} Tutti gli adiacenti di A sono grigi (sono stati visitati), quindi
+A diventa nero.
+\paragraph*{Analizzo gli adiacenti di B}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_esec3.png}
+\end{center}
+Osservo che gli adiacenti sono \ra $adj(B) = D,F,C,A$.\\
+Analizzo D, noto che non è stato ancora esplorato (è bianco), quindi lo coloro di grigio e
+faccio diventare l'arco B-D spesso. Coloro di Giallo il vertice D per indicare distanza 2 dalla
+sorgente.\\
+Lo stesso per F.\\
+C lo ignoro perchè è stato già esplorato in precedenza.\\
+A lo ignoro perchè è nero, quindi è già completo.\\
+Notiamo che gli adiacenti di B sono tutti grigi, quindi B diventa nero.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_esec4.png}
+\end{center}
+\paragraph*{Analizzo gli adiacenti a C} \ra $adj(C) = B,F,E,A$.\\
+B lo ignoriamo perchè è nero.\\
+F lo ignoriamo perchè è grigio.\\
+E lo ignoriamo perchè è grigio.\\
+A lo ignoriamo perchè è nero.
+Tutti i vertici di C sono stati esplorati, C \ra nero.
+\paragraph*{Analizzo gli adiacenti a E} \ra $adj(E) = A,C,F$.\\
+A lo ignoro perchè è nero.\\
+C lo ignoro perchè è nero.\\
+F lo ignoro perchè è grigio.\\
+Tutti i vertici di E sono stati esplorati, E \ra nero.
+\paragraph*{Analizzo gli adiacenti di D} \ra $adj(D) = B, F$.\\
+B lo ignoro perchè è nero.\\
+F lo ignoro perchè è grigio.\\
+Tutti i vertici di D sono stati esplorati, D \ra nero.
+\paragraph*{Analizzo gli adiacenti a F} \ra $adj(F) = B,D,C,E$.\\
+Tutti i vertici adiacenti sono neri.\\
+Tutti i vertici di F sono stati esplorati, F \ra nero.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_esec5.png}
+\end{center}
+Questo è il risultato finale, notiamo che G e H, non sono stati esplorati, infatti sono bianchi.\\
+Questo perchè BFS visita solo archi gli archi connessi alla sorgente.\\
+A predecessore di B,C,E.\\
+B predecessore di D,F.\\
+Con questi dati otteniamo \textbf{l'Albero della BFS}:
+\begin{center}
+    \includegraphics[width=80mm,scale=0.4]{bfs_albero.png}
+\end{center}
+\section{Strutture di base della BFS}
+\begin{itemize}
+    \item color \ra vettore dei colori
+    \item d \ra vettore delle distanze
+    \item $\pi$ \ra vettore dei predecessori
+\end{itemize}
+\subsection*{Vettore dei colori di lunghezza $|V|$}
+color[v]:
+\begin{itemize}
+    \item W (bianco) \ra vertice non visitato
+    \item G (grigio) \ra vertice visitato (ma non tutti gli adiacenti sono già
+    stati ispezionati)
+    \item B (nero) \ra vertice visitato (con tutti gli adiacenti visitati)
+\end{itemize}
+\paragraph*{Prima e Dopo la visita}
+\begin{itemize}
+    \item Prima della visita \ra color[v] = W per ogni vertice v
+    \item Dopo la visita \ra color[v] = W per ogni vertice v non visitato
+    \item Dopo la visita \ra color[v] = B per ogni vertice v visitato
+\end{itemize}
+\paragraph*{Durante la visita} un vertice v che ha ancora adiacenti da ispezionare è
+di colore G. Nessun vertice ha colore G prima e dopo la visita.
+\subsection*{Vettore delle distanze di lunghezza $|V|$}
+d[v] \ra distanza di v dalla sorgente s.
+\begin{itemize}
+    \item Prima delle visita \ra $d[v] = \infty$ per ogni v diverso da s.
+    \item Per la sorgente \ra $d[s] = 0$.
+    \item Dopo la visita \ra $d[v] = \infty$ per ogni v non visitato.
+    \item Dopo la visita \ra $d[v] = n$ per ogni v visitato distante n archi da s
+\end{itemize}
+\subsection*{Vettore dei predecessori di lunghezza $|V|$}
+$\pi[v]=u$ \ra predecessore di v nella visita (si ha $(u,v)\in E$).
+\begin{itemize}
+    \item prima delle visita \ra $\pi[v] = NIL$ per ogni v
+    \item dopo la visita \ra $\pi[s] = NIL$
+    \item dopo la visita \ra $\pi[v] = NIL$ per ogni $v (\neq s)$ non visitato
+\end{itemize}
+\begin{box_giallochiaro}
+    {color[v] = W dopo la visita $\implies d[v] = \infty$ e $\pi[v]=NIL$}.
+\end{box_giallochiaro}
