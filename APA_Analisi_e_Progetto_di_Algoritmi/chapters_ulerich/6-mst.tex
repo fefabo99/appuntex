@@ -579,4 +579,20 @@ estratti da Q in un'esecuzione. Quando il vertice $v_k$ viene estratto, allora $
 (s,v_k)$.
 \paragraph*{Lemma}: se $v.d=\delta(s,v)$ a qualche passo dell'esecuzione, allora sicuramente
 v.d rimarrà uguale a $\delta(s,v)$ per il resto dell'esecuzione.
-%Slide 96 Finire prova di correttezza Dijkstra
+\[ \langle v_1 = s,v_2,...,v_{k-1}, v_k, v_{k+1},...,v_n \rangle \]
+Il teorema è vero per $v_1=s$, infatti $s.d = 0$ e $\delta(s,s) = 0$.\\
+$v_k$ è vertice estratto da Q, ma non ancora aggiunto a S, tutto ciò che precede $v_k$ 
+è quindi già appartenente ad S.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_proof1.png}
+\end{center}
+\paragraph*{Ipotesi} Il teorema è vero per $v_1, v_2,..., v_{k-1}$.
+\paragraph*{Tesi} Il teorema è vero per $v_k$, cioè $v_k.d=\delta(s,v_k)$.\\
+Per costruzione il cammino minimo da s a $v_k$ comprende (eccetto $v_k$) solo vertici in S.\\
+Si ponga per assurdo $v_k.d > \delta(s,v_k)\\
+\implies$ Il cammino minimo da s a $v_k$ include anche i vertici in V-S.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dijkstra_proof2.png}
+\end{center}
+Questa è una contraddizione con il fatto che $v_k$ viene estratto prima di $v_q$ che non appartiene
+a S.
