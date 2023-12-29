@@ -143,3 +143,39 @@ $\pi[v]=u$ \ra predecessore di v nella visita (si ha $(u,v)\in E$).
 \begin{box_giallochiaro}
     {color[v] = W dopo la visita $\implies d[v] = \infty$ e $\pi[v]=NIL$}.
 \end{box_giallochiaro}
+\subsection{BFS utilizza una coda Q}
+\begin{itemize}
+    \item Un vertice viene inserito in Q non appena viene visitato
+    \item Un vertive visitato rimane in Q finchè non viene estratto per esplorare
+    i suoi adiacenti
+    \item Quando tutti gli adiacenti di un vertie risultano visistati, il vertice
+    diventa nero
+    \item la visita termina quando Q è vuota
+\end{itemize}
+Q contiene solo i vertici grigi!
+\section{Operazioni sulla coda Q}
+\begin{itemize}
+    \item \textbf{head(Q)} restituisce il vertice in testa
+    \item \textbf{enqueue(Q, v)}, inserisce il vertice v in coda
+    \item \textbf{dequeue(Q)}, elimina il vertice in testa
+\end{itemize}
+\section{Codice}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura_BFS(G, s)
+        foreach v !"$\in$"! V \ {s} do
+            color[v] = W, d[v] = !"$\infty,\, \pi[v]$"! = NIL
+        color[s] = G, d[s] = 0, !"$\pi$"![s] = NIL
+        Q = !"$\emptyset$"!
+        enqueue(Q,s)
+        while Q is not !"$\emptyset$"! do
+            v = head(Q)
+            foreach u !"$\in$"! adj(v) do
+                if color[u] is W then
+                    color[u] = G
+                    enqueue(Q,u)
+                    d[u] = d[v]+1
+                    !"$\pi$"![u] = v
+            color[v] = B
+            dequeue(Q)
+\end{lstlisting}
+%Slide 109
