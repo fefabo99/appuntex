@@ -233,3 +233,47 @@ esempio:
 \end{lstlisting}
 
 \chapter{Depth First Search (DFS)}
+DFS(G), \textbf{Visità in profondità} di un grafo G:
+\begin{itemize}
+    \item Sceglie un vertice s come sorgente e visita s
+    \item visita il prima adiacente $a_1$ di s, poi visita il primo adiacente $a_2$ di $a_1$,
+    poi visita il primo adiacente $a_3$ di $a_2$, etc.
+    \item Quando raggiunge un vertice che non ha adiacenti da visitare risale al predecessore
+    e la visita riparte (se possibile) da n altro adiacente di tale predecessore
+    \item Ogni volta che non ci sono adiacenti da visitare si risale al predecessore
+    \item Quando la visita risale alla sorgente e s non ha più adiacenti da visitare, si sceglie
+    una nuova sorgente e la visita riparte
+    \item La visita termina quando non ci sono più vertici disponibili per essere scelti
+    come nuova sorgente
+\end{itemize}
+\section{I colori dei vertici}
+Anche in questo caso i vertici hanno associato un colore:
+\begin{itemize}
+    \item Vertice bianco \ra vertice non visitato
+    \item Vertice grigio \ra vertice visitato (archi uscenti ancora da ispezionare)
+    \item Vertice nero \ra vertice visitato (adiacenti completamente visitati)
+\end{itemize}
+Come per BFS.
+\section{Utilizzo DFS}
+Vedremo che DFS è ottimo nei grafi orientati, infatti vedremo esempi solamente di questo
+tipo di grafo.
+\paragraph*{Esempio DFS grafo orientato}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_esempio.png}
+\end{center}
+Notiamo che sui vertici sono presenti due valori:
+\begin{itemize}
+    \item Il primo è l'istante in cui il vertice viene scoperto, qua siamo partiti da A infatti viene
+    riportato il valore 1
+    \item Il secondo è l'istante in cui il vertice viene completato, quindi tutti i suoi
+    adiacenti sono esplorati
+\end{itemize}
+\section{Struture di base}
+DFS ha le seguenti strutture di base
+\begin{itemize}
+    \item color \ra vettore dei colori
+    \item $\pi$ \ra vettore dei predecessori
+    \item d \ra vettore dei tempi di scoperta
+    \item f \ra vettore dei tempi di completamento
+\end{itemize}
+%Slide 12
