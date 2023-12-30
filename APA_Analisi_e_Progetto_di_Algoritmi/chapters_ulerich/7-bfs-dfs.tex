@@ -178,7 +178,6 @@ Q contiene solo i vertici grigi!
             color[v] = B
             dequeue(Q)
 \end{lstlisting}
-%Slide 109
 \subsection{Esempio esecuzione algoritmo BFS}
 Nella slide 109 di BFS è riportata l'esecuzione passo per passo dell'algoritmo con
 i valori di distanza e di colore per ogni vertice, riportando la variazione
@@ -192,5 +191,45 @@ devo incrementare la distanza di 1 e aggiungere il vertice che sto analizzando
 sto considerando (quello dentro il foreach).\\
 Vediamo che grazie alla coda riusciamo a mantenere in memoria tutti i vertici grigi
 e mano a mano che finiamo di analizzare i vertici effettuiamo la dequeue, quindi
-quando la coda sarà vuota l'algoritmo termina.\\
-%Slide 213
+quando la coda sarà vuota l'algoritmo termina.
+\paragraph*{Alla fine dell'esecuzione avremo la seguente tabella}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{bfs_tabella.png}
+\end{center}
+Per calcolare il il BFS Tree è sufficiente guardare quali sono i predecessori nella tabella,
+questi sono i collegamenti che determinano l'albero di esplorazione BFS.
+\subsection{BFS Tree}
+$T = (V_T, E_T)$:
+\begin{itemize}
+    \item $V_T = \{v \in V | color[v] = B\}$
+    \item $E_T = \{(\pi[v], v) | v \in V_T\}$
+\end{itemize}
+\subsection{Complessità in tempo}
+$|V| \rt$ numero dei vertici del grafo.\\
+$|E| \rt$ numero archi ndel grafo.--redirect-gateway def1
+\begin{itemize}
+    \item Costo di inizializzazione \ra $O(|V|)$
+    \item Singola operazione su Q \ra tempo costante
+    \item un vertice viene aggiunto a Q al più una volta
+    \item un vertice viene estratto da Q al più una volta
+    \item Ogni lista di adiacenza viene ispezionata quado il vertice viene estratto da Q
+    (al più una volta)
+    \item Dimebnsione totale delle liste di adiacenza \ra $2|E|$
+    \item Costo di ispezioni delle liste di adiacenza \ra $O(|E|)$
+\end{itemize}
+\paragraph*{Complessità nel caso peggiore} $O(|V|+|E|)$
+\section{Esercizi}
+Sono stati proposti una serie di esercizi che richiedono l'utlizzo di BFS, per
+esempio:
+\paragraph*{Verificare se un grafo G=(V,E) è connesso}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura Is_connected(G)
+        u = randm vertex from V
+        BFS(G,u)
+        foreach v !"$\in$"! V do
+            if colour[v] is W then
+                return false
+        return true
+\end{lstlisting}
+
+\chapter{Depth First Search (DFS)}
