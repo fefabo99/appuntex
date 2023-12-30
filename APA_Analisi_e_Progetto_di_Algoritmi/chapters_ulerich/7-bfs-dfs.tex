@@ -179,3 +179,18 @@ Q contiene solo i vertici grigi!
             dequeue(Q)
 \end{lstlisting}
 %Slide 109
+\subsection{Esempio esecuzione algoritmo BFS}
+Nella slide 109 di BFS è riportata l'esecuzione passo per passo dell'algoritmo con
+i valori di distanza e di colore per ogni vertice, riportando la variazione
+passo per passo.\\
+Risulta ancora più evidente che la coda contiene solo vertici grigi, dato che vengono inseriti
+quando vengono scoperti e rimossi solo quando diventano neri.\\
+La differenza con l'esecuzione grafica è che qua chiaramente al posto dei colori ci saranno le distanze
+salvate nelle tabelle e il predecessore, quindi quando scopro un nuovo vertice
+devo incrementare la distanza di 1 e aggiungere il vertice che sto analizzando 
+(quello prelevato dalla coda tramite la head) come predecessore del vertice adiacente che
+sto considerando (quello dentro il foreach).\\
+Vediamo che grazie alla coda riusciamo a mantenere in memoria tutti i vertici grigi
+e mano a mano che finiamo di analizzare i vertici effettuiamo la dequeue, quindi
+quando la coda sarà vuota l'algoritmo termina.\\
+%Slide 213
