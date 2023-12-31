@@ -276,4 +276,141 @@ DFS ha le seguenti strutture di base
     \item d \ra vettore dei tempi di scoperta
     \item f \ra vettore dei tempi di completamento
 \end{itemize}
-%Slide 12
+I colori sono gli stessi di BFS:
+\begin{itemize}
+    \item W bianco \ra vertice non visitato
+    \item G grigrio \ra vertice visitato (non tutti gli archi uscenti sono stati ispezionati)
+    \item B nero \ra vertice visitato (con tutti gli adiacenti visitati)
+\end{itemize}
+La differenza sta però nel colore dei vertici dopo la visita, perchè a differenza di BFS,
+in questo caso dopo la visita non avrò nessun vertice W bianco, ma saranno tuti B neri.\\
+Durante la visita chiaramente un vertice visitato, che han ancora archi uscenti da ispezionare
+sarà grigio.
+\subsection{Vettore dei predecessori}
+$\pi[v]=u$ \ra predecessore di v nella visita $((u,v)\in E)$.
+\begin{itemize}
+    \item Prima della visita \ra $\pi[v] = NIL$ per ogni v.
+    \item Dopo la visita \ra $\pi[v] = NIL$ per ogni v che è sorgente.
+    \item Dopo la visita \ra $\pi[v] \neq NIL$ per ogni v che non è sorgente
+\end{itemize}
+\subsection{Vettore dei tempi}
+\begin{itemize}
+    \item \textbf{d[v]} \ra istante in cui v diventa grigio (scoperta)
+    \item \textbf{f[v]} \ra istante in cui v diventa nero (completamento)
+\end{itemize}
+$d[v], f[v] \quad \in \quad \{1,2,...,2|V|\}$.\\
+$d[v] < f[v]$ per ogni vertice v.\\
+$[d[v], f[v]] \rt$ intervallo temporale di v.
+\section{Teorema delle parentesi}
+Graficamente se alla scoperta di un vertice associamo una parentesi aperta e
+al completamente associamo una parentesi chiusa noteremo che alla fine le parentesi saranno
+bilanciate.\\
+Dopo una visita in profondità, uno solo dei tre casi seguenti si può verificare per
+due vertici u e v:
+\begin{enumerate}
+    \item $[d[u],f[u]]$ contiene $[d[v],f[v]]$\\
+    \ra v è discendente di u in un albero della visita
+    \item $[d[v],f[v]]$ contiene $[d[u],f[u]]$\\
+    \ra u è discendente di v in un albero della visita
+    \item $[d[u],f[u]]$ e $[d[v],f[v]]$ sono disgiunti\\
+    \ra u e v non sono discendenti l'uno dell'altro in un albero della visita
+\end{enumerate}
+\subsection{Proof del teorema}
+\paragraph*{CASO 1 $d[u]<d[v]$} Cioè tempo di scoperta di u è minore del tempo di scoperta di v (viene
+scoperto prima u di v)
+\begin{enumerate}
+    \item $d[v] < f[u]$ (cioè tempo di scoperta di v è minore del tempo di completamente di u)\\ 
+    Verranno ispezionati tutti gli archi uscenti da v prima di riprendere l'ispezione
+    degli archi uscenti da u.\\
+    \ra v è discendente di u in un albero della visita, quindi \textbf{$f[v]<f[u]$}\\
+    \ra $[d[u],f[u]]$ contiene $[d[v],f[v]]$
+    \item $f[u]<d[v]$ (cioè u viene completato prima della scoperta di v)\\
+    Sicuramente $d[u]<f[u]$ e $d[v] < f[v]$ \ra $d[u] < f[u] < d[v] < f[v]$\\
+    Nessuno dei due vertici è stato scoperto mentre l'altro era grigio e quindi
+    nessuno dei due vertci è discendente dall'altro nello stesso albero della visita.\\
+    \ra $\boldsymbol{[d[u],f[u]]}$ e $\boldsymbol{[d[v],f[v]]}$ \textbf{sono disgiunti}
+\end{enumerate}
+\paragraph*{CASO 2 $d[u]>d[v]$} Si ripete scambiando i ruoli dei due vertici
+\section{Etichettatura degli archi (grafo orientato)}
+\paragraph*{Arco d'albero (arco T)} \ra Arco (u,v) tale che v è bianco quando
+l'arco viene esplorato
+\begin{center}
+    \begin{tikzpicture}
+        \node[shape=circle,draw=black,line width=2pt,fill=lightgray] (A) at (0,0) {u};
+        \node[shape=circle,draw=black,fill=lightgray] (B) at (2,0) {v};
+    
+        \path [line width=2pt, ->] (A) edge (B);
+    \end{tikzpicture}
+\end{center}
+v viene visitato (e diventa grigio)\\
+u diventa predecessore di v.
+\paragraph*{Arco all'indietro (arco B)} \ra Arco (u,v) tale che v è grigio quando l'arco
+viene esplorato.
+\begin{center}
+    \begin{tikzpicture}
+        \node[shape=circle,draw=black,line width=2pt,fill=lightgray] (A) at (0,0) {u};
+        \node[shape=circle,draw=black,fill=lightgray] (B) at (2,0) {v};
+    
+        \path [line width=1pt, ->, draw=red] (A) edge (B);
+    \end{tikzpicture}
+\end{center}
+u \underline{non} è predecessore di v nella visita\\
+v è antenato di u nello stesso albero della visita \\ $\implies d[v] < d[u]$
+\paragraph*{Arco in avanti (arco F)} \ra Arco (u,v) rale che, quando l'arco viene esplorato,
+v è nero e $d[u] < d[v]$.
+\begin{center}
+    \begin{tikzpicture}
+        \node[shape=circle,draw=black,line width=2pt,fill=lightgray] (A) at (0,0) {u};
+        \node[shape=circle,draw=black,fill=black, text=white] (B) at (2,0) {v};
+    
+        \path [line width=1pt, ->, draw=blue] (A) edge (B);
+    \end{tikzpicture}
+\end{center}
+u non è predecessore di v nella visita\\
+u è antenato di v nello stesso albero della visita.
+\paragraph*{Arco trasversale (arco C)} \ra arco (u,v) tale che, quando l'arco viene esplorato,
+v è nero e $d[u] > d[v]$
+\begin{center}
+    \begin{tikzpicture}
+        \node[shape=circle,draw=black,line width=2pt,fill=lightgray] (A) at (0,0) {u};
+        \node[shape=circle,draw=black,fill=lightgray] (B) at (2,0) {v};
+    
+        \path [line width=1pt, ->, draw=green] (A) edge (B);
+    \end{tikzpicture}
+\end{center}
+u \underline{non} è predecessore di v nella visista.\\
+u \underline{non} è antenato di v (e viceversa).\\
+u e v possono anche fare parte di due diversi alberi della visita.
+\subsection{Esempio di etichettatura archi}
+\paragraph*{Esempio di Arco all'indietro}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_arco_backward.png}
+\end{center}
+In questo caso analizzando il vertice D ci siamo trovati ad analizzare l'arco (D,B),
+che parte da un arco grigio appena scoperto a uno grigio scoperto in precedenza (D non
+è predecessore di B nella visista, B è antenato di B nello stesso albero della visista,
+$d[D] < d[B]$). Si trata di un arco all'indietro.
+\paragraph*{Esempio di arco in avanti}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_arco_arco_in_avanti.png}
+\end{center}
+In questo caso notiamo che A è predecessore di D nella visista, infatti $d[A] < d[D]$ e
+A è antenato di D, si tratto di un arco in avanti.\\
+\paragraph*{Esempio di arco trasversale}
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_arco_trasversale.png}
+\end{center}
+Notiamo in questo caso che i due archi (C,E) e (C,F), permettono di raggiungere vertici
+appartenenti a un altro albero della visista, inoltre C non è predecessori di E, F nella
+visista, C non è antenato di E,F (e vicevesrsa). Si tratta proprio di due archi trasversali.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_dettaglio_archi_trasv.png}
+\end{center}
+In questa immagine notiamo ancor più nel dettaglio come gli archi trasversali tagliano i
+2 alberi della visita.
+\section{Algoritmo DFS}
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura DFS(G)
+        // Inizializzazione vertici
+        foreach v !"$\in$"! V do
+\end{lstlisting}
