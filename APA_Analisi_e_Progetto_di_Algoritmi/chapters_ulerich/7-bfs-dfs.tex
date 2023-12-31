@@ -413,4 +413,148 @@ In questa immagine notiamo ancor più nel dettaglio come gli archi trasversali t
     Procedura DFS(G)
         // Inizializzazione vertici
         foreach v !"$\in$"! V do
+            color[v] = W, !"$\pi[v]$"! = NUL, d[v] = 0, f[v] = 0
+        time = 0
+        foreach v !"$\in$"! V do
+            if color[v] is W then
+                DFS_visit(G,v)
+
+    Procedura DFS_visit(G,u)
+        time = time + 1
+        d[u] = time, color[u] = G
+        foreach v !"$\in$"! adj(u) do
+            if color[v] = W then
+                !"$\pi$"![v] = u
+                DFS_visit(G,v)
+        color[u] = B
+        time = time + 1
+        f[u] = time
+\end{lstlisting}
+Notiamo che l'approccio DPS si presta ad essere risolto tramite ricorsione, infatti 
+il ragionamento è se il vertice adiacente è W allora visita tramite DFS quel vertice e così via,
+fino a quando arrivo a un vertice senza adiacenti, allora torno indietro fino a quando
+trovo un adiacente non esplorato.
+\paragraph*{Complessità in tempo} $|V|$ \ra numero dei vertici del grafo\\
+$|E|$ \ra numero degli archi del grafo:
+\begin{itemize}
+    \item Costo di inizializzazione \ra $O(|V|)$
+    \item DFS\_visit(G,v) viene chiamata al più una volta per ogni vertice v del grafo \ra
+    $O(|V|)$ chiamate
+    \item Complessivamente su tutte le chimate di DFS\_visit(G,v), il costo di ispezione 
+    delle liste di adiacenza è $O(|E|)$
+\end{itemize}
+\textbf{Complessità nel caso peggiore} $O(|V|+|E|)$.
+\subsection{Modifica codice per aggiungere etichettatura archi}
+Chiaramente la parte da modificare sarà quella relativa all'analisi degli adiacenti
+quindi:
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura DFS_visit(G,u)
+        time = time + 1
+        d[u] = time, color[u] = G
+        foreach v !"$\in$"! adj(u) do
+            if color[v] = W then
+                (u,v) = "Arco T"
+                !"$\pi$"![v] = u
+                DFS_visit(G,v)
+            else 
+                if color[v] = G then
+                    (u,v) = "Arco B"
+                else
+                    if d[u] < d[v] then
+                        (u,v) = "Arco F"
+                    else
+                        (u,v) = "Arco C" 
+        color[u] = B
+        time = time + 1
+        f[u] = time
+\end{lstlisting}
+\section{Ordinamento Topologico}
+Si consideri un grafo G=(V,E) orientato aciclico (Directed Acyclic Graph, DAG).\\
+L'ordinamento topologico è un elenco dei vertici:
+\[ T = \langle v_1,v_2,v_3,...,v_n \rangle \]
+tale che per ogni arco ($v_i, v_j$) si ha che $v_i$ viene prima di $v_j$ in T.\\
+In poche parole dobbiamo stampare i vertici nell'ordine con cui sono stati completati.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_ord_topologico.png}
+\end{center}
+In questo esempio (grafo simile al precedente, è stato eliminato un arco per rendere il grafo
+aciclico), abbiamo che l'ordinamento è 
+\[ T = \langle C, G,A,B,F,E,D \rangle \]
+che sarebbe l'ordine dall'ultimo vertice completato al primo.
+\begin{center}
+    \includegraphics[width=80mm,scale=0.5]{dfs_ord_topologico_2.png}
+\end{center}
+Guardando il grafo con i tempi di scoperta e di completamento notiamo infatti che C
+ha tempo di completamento massimo (14), ripercorrendo a ritroso ritroviamo G (13), poi
+A (10), e così via.\\
+Per calcolare questa lista la struttura dati ideale è una pila, dato che quando completiamo un vertice
+ci basterà inserirlo nella pila effetuando una push, così a fine esecuzione troveremo in cima alla pila l'ultimo
+vertice completato, ci basterà effettuare la pop di ogni elemento stampandolo e otterremo così
+la lista dell'ordinamento topologico.\\
+\subsection{Codice}
+Ci basterà aggiungere le funzioni per inizializzare la pila e ogni volta che un vertice
+verrà completato effettuare la push dello stesso sulla pila e infine stampare tutti gli elementi
+effettuando le pop fino a quando la lista non è vuota.
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura DFS(G)
+        // Inizializzazione vertici
+        foreach v !"$\in$"! V do
+            color[v] = W, !"$\pi[v]$"! = NUL, d[v] = 0, f[v] = 0
+        time = 0
+        S = empty stack // Inizializzazione pila
+        foreach v !"$\in$"! V do
+            if color[v] is W then
+                DFS_visit(G,v)
+        // Stampa ordinamento
+        while not isEmpty(S) do 
+            print top(S)
+            pop(S)
+
+    Procedura DFS_visit(G,u)
+        time = time + 1
+        d[u] = time, color[u] = G
+        foreach v !"$\in$"! adj(u) do
+            if color[v] = W then
+                !"$\pi$"![v] = u
+                DFS_visit(G,v)
+        color[u] = B
+        push(S,u) //push del vertice completato
+        time = time + 1
+        f[u] = time
+\end{lstlisting}
+\section{Visita in profondità di un grafo non orientato}
+Nelle slide notiamo come l'ordine di visita rispetto allo stesso grafo, ma orientato
+cambia, perchè chiaramente prima per raggiungere alcuni vertici dovevo attendere la selezione
+di una nuova sorgente, in questo caso invece esploro tutto partendo da A.\\
+Notiamo anche che sono presenti solo archi T (d'albero) e archi B (all'indietro), perchè
+in un grafo non orientato non posso avere archi in avanti e archi trasversali, dato che sono
+concetti che hanno senso in presenza di un grafo orientato.
+\subsection{Codice}
+Essendo un grafo non orientato devo stare attento a non visistare il predecessore, dato che
+esso compare nella lista dei predecessori, quindi non va considerato e va escluso dalla lista
+degli adiacenti, soprattutto in vista dell'etichettatura degli archi.
+\begin{lstlisting}[language=Java, escapeinside={!"}{"!}]
+    Procedura DFS(G)
+        // Inizializzazione vertici
+        foreach v !"$\in$"! V do
+            color[v] = W, !"$\pi[v]$"! = NUL, d[v] = 0, f[v] = 0
+        time = 0
+        foreach v !"$\in$"! V do
+            if color[v] is W then
+                DFS_visit(G,v)
+
+    Procedura DFS_visit(G,u)
+        time = time + 1
+        d[u] = time, color[u] = G
+        // Togliamo il predecessore dagli adj
+        foreach v !"$\in$"! adj(u) \ {!"$\pi[u]$"!} do
+            if color[v] = W then
+                !"$\pi$"![v] = u
+                (u,v) = "Arco T"
+                DFS_visit(G,v)
+            else
+                (u,v) = "Arco B" 
+        color[u] = B
+        time = time + 1
+        f[u] = time
 \end{lstlisting}
