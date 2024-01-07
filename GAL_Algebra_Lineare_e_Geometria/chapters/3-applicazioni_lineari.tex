@@ -6,44 +6,44 @@ Per esempio, riesco a trocare funzioni insiemistiche biunivoche tra $\R^n$ e $\R
 
 Quindi, per studiare gli spazi vettoriali tramite funzioni è meglio imporre condizioni a tali funzioni.
 
-\definizione{ 
-    Siano $V$ e $W$ due spazi vettoriali su $K$me  $f:V\to W$ una funzione.
-    Diremo che $f$ è \textbf{Lineare}, o un \textbf{Omomorfismo} se:
-    \begin{enumerate}
-        \item $f(\underline{v}_1 + \underline{v}_2) = f(\underline{v}_1) + f(\underline{v}_2)$
-        \item $f(\lambda \underline{v}) = \lambda f(\underline{v})$.
-    \end{enumerate}
-    Ed equivalentemente l'immagine di una combinazione lineare è la combinazione lineare delle immagini:
-    $f(\lambda\underline{v}_1 + \beta\underline{v}_2) = \lambda f(\underline{v}_1) + \beta f(\underline{v}_2)$
+\definizione{
+	Siano $V$ e $W$ due spazi vettoriali su $K$me  $f:V\to W$ una funzione.
+	Diremo che $f$ è \textbf{Lineare}, o un \textbf{Omomorfismo} se:
+	\begin{enumerate}
+		\item $f(\underline{v}_1 + \underline{v}_2) = f(\underline{v}_1) + f(\underline{v}_2)$
+		\item $f(\lambda \underline{v}) = \lambda f(\underline{v})$.
+	\end{enumerate}
+	Ed equivalentemente l'immagine di una combinazione lineare è la combinazione lineare delle immagini:
+	$f(\lambda\underline{v}_1 + \beta\underline{v}_2) = \lambda f(\underline{v}_1) + \beta f(\underline{v}_2)$
 }
 \paragraph{Corollario}
 \begin{itemize}
-    \item Se $f$ è lineare, allora $f(\underline{0}_v) = \underline{0}_w$ e $f(-\underline{v}) = -f\underline{v}$.
-    \item Se $U<V$, $f(U) < W$
-    %Da completare
+	\item Se $f$ è lineare, allora $f(\underline{0}_v) = \underline{0}_w$ e $f(-\underline{v}) = -f\underline{v}$.
+	\item Se $U<V$, $f(U) < W$
+	      %Da completare
 \end{itemize}
 
 \osservazione{Se $\{\underline{v_i}\}$ è una base di $V$, ogni scelta di $f(\underline{v_i})$ è compatibile con le condizioni di linearità.
-\\Cioè, per ogni scetla di $\{\underline{w_i}\} \subset W \exists! f:V\to W$ Lineare t.c. $f(\{\underline{v}_i\}) = \underline{w}_i$
-%Tale $f$ dece essere definita come ...
+	\\Cioè, per ogni scetla di $\{\underline{w_i}\} \subset W \exists! f:V\to W$ Lineare t.c. $f(\{\underline{v}_i\}) = \underline{w}_i$
+	%Tale $f$ dece essere definita come ...
 }
 
 \paragraph{Corollario}
 Sia $f:V\to W$ lineare, allora dim $f(v) \geq$ dim $V$.
 
 \definizione{
-\begin{enumerate}
-    \item Due spazi vettoriali $V$ e $W$ sono detti isomorfi se esistono:
-    \begin{center}
-        $f:V\to W$ e $g:W\to V$ 
-    \end{center}
-    diverse e entrambe lineari t.c:
-    \begin{center}
-        $g\circ f = id_V$ e $f\circ g = id_W$
-    \end{center}
-    Due spazi sono isomorfi sse $dim(V) = dim(W)$.
-    \item $f:V\to W$ è detta \textbf{isomorfismo} se è lineare e iniettiva.
-\end{enumerate}    
+	\begin{enumerate}
+		\item Due spazi vettoriali $V$ e $W$ sono detti isomorfi se esistono:
+		      \begin{center}
+			      $f:V\to W$ e $g:W\to V$
+		      \end{center}
+		      diverse e entrambe lineari t.c:
+		      \begin{center}
+			      $g\circ f = id_V$ e $f\circ g = id_W$
+		      \end{center}
+		      Due spazi sono isomorfi sse $dim(V) = dim(W)$.
+		\item $f:V\to W$ è detta \textbf{isomorfismo} se è lineare e iniettiva.
+	\end{enumerate}
 }
 
 \subsection{Sottospazi}
@@ -55,7 +55,7 @@ Si verifica che $f^{-1}0_w <V$.
 \definizione{ $f^{-1}(\underline{o}_w)$ si chiama \textbf{nucleo}, o kernel, di $f$. e si indica con $N(f)$.}
 $N(f)$ è importante per il seguente teorema:
 \teorema[fondamentale dell'isomorfismo]{Sia $f:V\to W$ lineare. Allora $f$ può essere fattorializzata come:
-DA AGGIUNGERE IMMAGINE
+	DA AGGIUNGERE IMMAGINE
 }
 
 \subsection{Teorema di Grasman}
@@ -64,7 +64,38 @@ DA AGGIUNGERE IMMAGINE
 
 \paragraph{Corollario} sia $dim(W)=dim(V), f:V\to W$, allora:
 \begin{center}
-    $f$ iniettiva $\leftrightarrow$ $f$ è suriettiva $\leftrightarrow$ $f$ è Biiettiva
+	$f$ iniettiva $\leftrightarrow$ $f$ è suriettiva $\leftrightarrow$ $f$ è Biiettiva
 \end{center}
 
 \section{La matrice associata}
+%% Da youmath
+Una matrice assocaita a un'applicazione lineare rappresenta la trasformazione lineare cui è riferita rispetto a due fissate basi degli spazi vettoriali di partenza e d'arrivo.
+Tale matrice fornisce tutte le informazioni relative alla trasformazione cui è associata, dunque riveste un ruolo da protagonista nell'ambito delle applicazioni lineari.
+
+\paragraph{definizione}
+Per dare la definizione di matrice rappresentativa di una trasformazione lineare, e vedere come si costruisce, consideriamo due spazi vettoriali $V,W$ definiti sullo stesso campo e di dimensioni rispettivamente pari a $n,m$.
+\\Consideriamo un'applicazione lineare $f:V\to W$ e siano:
+\begin{center}
+	$B_v = {v_1,...,v_n}$ e $B_W={w_1,...,w_m}$ due basi, di $V$ e $W$
+\end{center}
+Per costruire la matrice associata all'applicazione $f$ rispetto alle basi $B_V$ e $B_W$ occorre procdere nel modo seguente:
+\begin{enumerate}
+	\item Determinare l'immagine rispetto all'applicazione $f$ di ogni vettore $v_i$ della base $B_V$, quindi:
+	      \[ f(v_1),...,f(v_n)\]
+	\item I vettori cos' ottenuti sono elementi di $W$, e possono quindi essere espressi come combinazione linerae dei vettori della base $B_W$ dello spazio $W$:
+	\begin{center}
+        $f(v_1) = a_{11}w_1 + ... + a_{m1}w_m $
+        \\ $f(v_2) = a_{12}w_1 + ... + a_{m2}w_m $
+        \\$ \vdots$
+        \\$f(v_n) = a_{11n}w_1 + ... + a_{mn}w_m $
+    \end{center}
+    \item La matrice che ha per $j-$esima colonna il vettore delle coordinate dell'immagine $f(v_j)$ rispetto alla abse di $W$ si dice matrice associata all'applicazione lineare $f$ rispetto alle basi $B_V$ e $B_W$:
+    \[ A_f = 
+        \begin{pmatrix}
+            a_{11} & a_{12} & ... & a_{1n} \\
+            a_{21} & a_{22} & ... & a_{2n} \\
+            \vdots & \vdots & ... & \vdots \\
+            a_{m1} & a_{m2} & ... & a_{mn} \\
+        \end{pmatrix}
+    \]
+\end{enumerate}
