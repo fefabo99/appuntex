@@ -1,0 +1,100 @@
+\chapter{Lezione Pre Esame}
+\section{Progetto: cosa possiamo usare?}
+Ci sono classificatori che possono semplificare (tipo og? boh? Sift?) ma sconsiglia? Consiglia di portarli magari come confronto per vedere quanto buono è il nostro progetto.
+
+\section{Progetto: la presentazione}
+\subsection{Indice}
+\begin{itemize}
+    \item scopo 
+    \item assunzioni e relativi problemi (1a assunzione a sinistra, spiegazione della problematica riscontrata a destra)
+    \item pipeline (grafico con i vari passaggi divisi in fasi)
+    \item pre processing
+    \item segmentazione
+    \item feautre extraction
+    \item classificazione
+    \item risultati e boh altre due cose
+\end{itemize}
+
+\subsection{Come fare la presentazione.}
+- assunzioni per far capire da cosa partiamo, spiegare il pre processing
+- slide non troppo scritte
+- carino mettere immagini per es nel pre processing per vedere i vari passaggi (ci sta per il procedimento che abbiamo scelto ma a voce spiegare le altre alternative)
+- ci sta una tabella con le features valutate (non usate tutte ma tutte presentate)
+- lista di classificatori provati 
+- risultati (grafico con i vari classificatori e le varie features)\\
+  nel progetto presentato hanno avuto un'accuracy di 70\% ma hanno preso comunque 30 (anche se era tanto scritta la presentazione)
+- fa "sarebbe stato carino separare quello che è training da quello che è test"
+- slide finale con contributi, non ho visto se giustificati o meno
+- nella seconda presentazione proposta, mettono prima una pipeline molto generica e sintetica e dopo un po' dopo aver presentato le prime cose, mettono una pipeline più dettagliata con i vari passaggi (molto bello per lui mostrare immagini dei vari passaggi mentre parliamo, nella presentazione proposta erano inserite con frecce che partivano da un passaggio)
+- nella seconda presentazione hanno messo una slide su idee che hanno avuto per migliorare la classe unknown
+- nella seconda presentazione hanno messo una slide con un'analisi critica dei propri risultati e probabili motivi per cui non funzionavano come si aspettavano
+- slide ausiliarie su cose da spiegare (chiedi a Ale) ci stanno collegamenti ipertestuali per passare velocemente a quella slide specifica velocemente 
+- classification learner, se usiamo (visto a lab, Ciocca dice che si può) dobbiamo ovviamente come tutto il resto saper spiegare quello che nominiamo
+- regioni possono essere descritte non solo con scalari (area, perimetro, etc) ma anche con strumenti (tipo LBP)
+
+\subsection{La presentazione}
+Circa 20-25 min + domande per gruppo, tutti devono parlare e tutti devono rispondere alle domande.
+
+\subsection{Consegna}
+Una demo che funzioni e abbia tutto quello che serve per farla funzionare, con input e output ed eventualmente passaggi intermedi (non ho capito, risposta un po' tropppo generica).
+
+
+
+N.B.: carte sovrapposte non separabili: se la labeling delle comp conn mi dà un'area\\
+N.B.: carte sovrapposte separabili: provo a separarle e le classifico, altre dico boh blob amen
+ma se dopo aver classificato fatto finito tutto sulle carte singole facessimo una nuova segmentazione su una parte più centrale? non usando il numero ma boh se possibile tagliare almeno all'ovale, solo su quelle che non sono state classificate, quindi non singole, e poi fare la classificazione su quelle?\\
+Rotazione? Ha parlato di alcune rotazioni, tipo cosa? Multipli di 5? Un ciclo for incrementando il numero di gradi da 1:360?
+
+\section{Scritto}
+\subsection{Esempi di domande}
+\textbf{N.B.: le asunzioni sono sempre da mettere, anche se non richieste, per evitare fraintendimenti, ma anche se non vuoi fare domande tipo incomprensioni}.
+
+1. 5 pt
+Procedimento per punti per segmentare immg di foglie da binarizzare poi (sfondo 0 e foglie 1), sfondo chiaro ma con possibili ombre, foglie colorate in modo non noto a priori e non unif
+Come procedere? 2 parti
+
+sol
+- binarizzazione con otsu
+- saturazione (gli piace), magari con binarizzazione poi restano righine nella zona bianca, poi morfologia matematica per chiuderle (dilatazione e poi erosione)
+- gradiente per la differenza fra pixel sfondo e foglia per identificare i bordi e una volta trovati bordi con dentro nero fare imfill? (dico io)
+- per lo sfondo posso fare un crop dei primi non so quanti pixel in alto a sinistra
+
+Tentativo da scrivere:
+- prendo l'immagine in esame
+- assumendo le assunzioni della traccia (per evitare fraintendimenti e far capire bene il proprio ragionamento)
+- prendo lo spazio colore in HSV 
+- prendo il secondo canale (S) e lo uso per estrapolare la saturazione, senza dire perché o per come, al massimo dire perché assumo che lo sfondo essendo molto chiaro abbia una saturazione molto prossima allo 0
+- binarizzo l'immagine con otsu sul canale scelto per trovare la soglia di binarizzazione
+- applico una morfologia matematica, uno strumento strutturante con una dimensione sufficiente a ? (dilatazione e poi erosione) per chiudere le righine bianche che rimangono nella zona bianca
+
+2. 5 pt
+Stessa immagine di prima, supponendo non siano sovrapposte, come conto le foglie? Labeling componenti connesse. Ma prendono in considerazione anche artefatti. Come conto solo le foglie?
+- per area: ma come trovo l'area della singola foglia?
+- clustering: classificatore unsupervised
+Comunque non vuole una spiegazione degli strumenti usati, solo un elenco puntato della procedura
+
+3. 5 pt
+Stessa immagine di prima, supponendo siano state segmentate, voglio contare il numero di buchi nelle foglie. Come procedo?
+- assumo già segmentate le foglie, assumo che siano segmentate perfette, , numero di eulero? ma come ci arrivo ad usarlo? (non ho capito la risposta)\\
+è la differenza fra le regioni connesse del background e del foreground, ma su tutta l'immagine, dice il n° di buchi ma non chi ha buchi. Uno fa, faccio la bounding box per ogni foglia (il prof Ciocca suggerisce di farla un pochino più grande che non tocchi la foglia, ma attenzione che non prende pezzi di altre foglie) e poi numero di eulero.
+- il prof suggerisce l'edge detection morfologico, che dà due contorni nel caso di buchi sulla stessa label, nuova labeling e poi conta le label
+- oppure posso fare un imfill sulle maschere delle foglie e poi fare la differenza con la maschera di prima? l'ha detto fabio ma non ho capito la risposta, se va bene o no 
+
+4. 5 pt
+E se volessi solo il contorno \textbf{esterno} della foglia?
+Supponendo che im già binarizzata, etc, assumo di avere maschere per ogni singola foglia (ciocca dice "ritagliate le foglie")
+Edging morfologico, erosion, differenza, trovato il bordo.
+E edge detection se im già binaria funziona comunque ma va sogliata perché non dà una im binaria
+nb: è il bordo pi lungo (es per foglie con buchi)
+
+5. 5 pt
+Messe a confronto due immagini, come faccio a dire una foglia a quale delle due appartiene?
+Idee:
+- assumo im già segmentate binarizzate etc
+- prendo le maschere delle foglie e la moltiplico all'immagine originale per avere solo le foglie senza lo sfondo
+- osservando le foglie vedo che possono essere distinte per colore, per omogeneità di tinta
+    - magari con varianza su scala di grigio, NON CANALE HUE perché è circolare può dare problemi
+    - magari invece con la media di RGB
+    - istogramma colore per ogni canale rgb per vedere "quanto rosso c'è" etc e supponendo che sia segmentata non ho neanche lo sfondo che è tutto bianco quindi contiene del verde
+    - magari con feature di forma dice il prof Ciocca, o rapporto area perimetro dice il prof (ma come li trovo?) o Fabio dice signature
+    - hanno suggerito i momenti di Hu ma dovrei avere un training set, posso supporre che le due immagini presentate ne facciano parte, allora data una foglia sconosciuta posso fare cose

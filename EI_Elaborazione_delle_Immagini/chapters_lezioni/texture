@@ -55,8 +55,7 @@ Molti lavori applicativi, basati ancora su vecchie metodologie e poca analisi te
 
 \subsection{Approccio strutturale}
 Una tessitura che corrisponde ad un modello puramente strutturale consiste nella
-giustapposizioni di configurazioni elementari che rappresentano l'entità tessitura più
-piccola che si ripete regolarmente (textel).
+giustapposizioni di configurazioni elementari che rappresentano l'entità tessitura più piccola che si ripete regolarmente (textel).
 Una descrizione si compone quindi della descrizione delle - singole configurazioni elementari - configurazioni di livello intermedio (se esistono) - distribuzione spaziale delle
 configurazioni
 

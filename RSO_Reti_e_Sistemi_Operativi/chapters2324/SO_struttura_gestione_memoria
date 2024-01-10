@@ -8,8 +8,8 @@ Argomenti
     \item Swapping
     \item Grado di multiprogrammazione e utilizzazione dei processori
     \item Memoria virtuale
-    \item Allocazione e sostituzione pagine
-    \item Thrashing
+    \item Allocazione e sostituzione pagine (NON L'HA FATTO)
+    \item Thrashing (NON L'HA FATTO)
 \end{itemize}
 
 \section{Allocazione contigua e protezione con registro base e limite}
@@ -110,7 +110,7 @@ Se l'indirizzo logico supera tale valore, viene generata un'interruzione (interc
 \end{center}
 
 \section{Svantaggi dell'allocazione contigua}
-\subsection{A partizioni variabili}
+\subsection{A.c. a partizioni variabili}
 \begin{itemize}
     \item Ogni processo ottiene una partizione di memoria distinta
     \item Schema a partizioni variabili: partizione di dimensione pari alla memoria necessaria al processo.
@@ -122,16 +122,58 @@ Se l'indirizzo logico supera tale valore, viene generata un'interruzione (interc
 \end{center}
 E che succede se quando ho solo processo 9 e processo 2, mi arrivasse un processo 10 con una memoria più grande di uno dei buchi lasciati dai processi terminati, ma più piccola della loro somma? Siamo in uno schema di partizioni contigue, non posso frammentarla: devo spostare un processo (tipo il 9).
 
+% 13/12/2023
+Un problema introdotto dall'allocazione contigua a partizioni variabili è quello della frammentazione della memoria in partizioni non contigue e non sufficientemente grandi per accogliere immagini di processi.\\
+Ci sono diverse strategie di allocazione contigua a partizioni variabili.
 \begin{itemize}
     \item Il sistema operativo mantiene una lista dei buchi disponibili sparsi nella memoria centrale.
     \item Alla creazione di un nuovo processo il sistema operativo sceglie un buco dal quale prendere la memoria necessaria ad esso secondo una strategia:
     \begin{description}
-        \item[• First-fit:] sceglie il primo buco sufficientemente grande da contenere l'immagine del processo
-        \item[• Best-fit:] sceglie il buco più piccolo
-        \item[• Worst-fit:] sceglie il buco più grande
+        \item[• \texttt{First-fit}:] scelgo il primo buco sufficientemente grande da contenere l'immagine del processo\\
+        Non sempre è la scelta migliore.
+        \item[• \texttt{Best-fit}:] scelgo il più piccolo buco che basta per il processo, in modo da ridurre lo spreco (se ne uso uno troppo grande magari avanza tanto spazio che potrebbe però non essere sufficiente a conservare altri processi e andrebbe quindi sprecato).
+        \item[• \texttt{Worst-fit}:] scelgo il buco più grande possibile in modo che tutto lo spazio che avanzi sia sufficiente per altri processi.\\
+        Ma questo non è detto che avvenga, quindi è l'approccio meno buono, tuttavia ancora usato da alcuni s.o.
     \end{description}
-    \item First fit e best-fit sono sperimentalmente migliori in quanto a tempo ed efficienza
+    \item \texttt{First-fit} e \texttt{best-fit} sono sperimentalmente migliori in quanto ad efficienza. Il più veloce è senza dubbio \texttt{best-fit}.
 \end{itemize}
+
+\subsection{Frammentazione}
+Abbiamo due tipi di \textbf{frammentazione}:
+\begin{description}
+    \item[• Frammentazione esterna:] la memoria libera è sufficiente per la creazione di un nuovo processo, ma è sparsa tra buchi non contigui troppo piccoli.
+    \item[• Frammentazione interna:] se la memoria allocata ad un processo è più grande della memoria necessaria, una partizione può contenere memoria inutilizzata.
+\end{description}
+Nell'allocazione contigua a partizioni variabili, non essendoci frammentazione interna, quando spazio si spreca per la frammentazione esterna? Statisticamente si è trovato che lo spazio utilizzato che lo spazio inutilizzabile tende ad essere circa il 50\% dello spazio utilizzato (parliamo della \textit{regola del 50\%}). Ecco perché nessuno tende più ad usare l'allocazione contigua a partizioni variabili.\\
+Un possibile rimedio è la \textbf{compattazione} (o \textbf{deframmentazione}):
+\begin{itemize}
+    \item Spostare le partizioni in maniera da poter unire buchi separati
+    \item Richiede binding in fase di esecuzione (rilocazione dinamica)
+    \item È molto onerosa in termini computazionali
+    \item Inoltre se il processo effettua I/O non può essere rilocato; alternativamente, l'I/O va fatto solo in buffer interni al sistema operativo.\\
+    Ovvero, tutte le volte che un processo è in \texttt{wait()} (per l'I/O, ma in particolare per I) è molto difficile spostare la sua immagine nella sua destinazione perché poi il kernel non sa dove andare a scrivere e salvare i dati letti in input mentre veniva spostato.
+\end{itemize}
+La frammentazione è un problema generale che si verifica anche nelle memorie secondarie.
+
+\section{Paginazione}
+Nei sistemi più moderni si usa la \textbf{paginazione} per risolvere il problema della frammentazione esterna.
+
+\subsection{Paginazione}
+• Idea: permettere una allocazione di memoria ai processi \textit{non contigua}.
+• Col supporto di hardware (serve una MMU più complessa) va a dividere la memoria centrale in \textbf{frames}, ossia blocchi di dimensione fissa (tra 512 bytes e 16 Mbytes).
+• Similmente lo spazio di indirizzamento virtuale di ogni processo è diviso in pagine, ossia blocchi delle stesse dimensioni dei frames
+• Una tabella delle pagine associa le pagine di un processo ai frames in memoria centrale, e permette alla MMU di tradurre gli indirizzi logici in
+fisici
+• Vantaggi:
+• Non vi è più frammentazione esterna
+• Vi è piena indipendenza tra indirizzi logici e indirizzi fisici (ad esempio, si possono avere indirizzi logici a 64 bit anche se la memoria fisica è più piccola)
+• Svantaggi: frammentazione interna
+
+
+
+
+
+
 
 
 
