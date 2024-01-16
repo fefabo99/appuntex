@@ -159,6 +159,8 @@ Le disposizioni con ripetizione possono essere definite come segue:
         n*n \dots n = n^k
     \end{equation}
 }
+Più formalmente, si definisce \emph{disposizione con ripetizione di classe $k$} ogni sequenza ordinata di $k$ elementi, 
+anche ripetuti, estratti tra $n$ elementi distinti.
 
 \esempio{
     Estraggo casualmente 3 persone: Qual'è la probabilità che siano tutte nate in primavera?
@@ -210,9 +212,7 @@ Ora chiediamoci: Quanti sono gli esiti del lancio di due dadi i cui numeri otten
         n*(n-1)*(n-2)\dots(n-k+1) = \frac{n!}{(n-k)!}
     \end{equation}
 }
-\nb{E preferibile utilizzare la prima formula su R dato che il fattoriale scala molto male,
-su carta spesso si semplifica, ma su Computer si calcolerebbe tutto il fattoriale e spesso richiede 
-molto tempo.}
+
 Un caso speciale è se $k = n$: in questo caso si parla di \textbf{Permutazioni} di $n$ oggetti. 
 Sono in numero:
 \begin{equation}
@@ -242,13 +242,13 @@ Si parla in questo caso di \textbf{combinazioni}, esse si possono ottenere dalle
 }
 
 Insiemi = collezioni (non ordinate) di k elementi distinti scelti tra n possibili (con $k <= n$).
-\paragraph{Esempio}. Mano di carte a Poker, un giocatore riceve 5 carte estratte da un mazzo che
+\esempio{Mano di carte a Poker, un giocatore riceve 5 carte estratte da un mazzo che
 ne contiene 52. Il numero di possibili mani è
 \begin{equation}
     {52 \choose 5} = \frac{52!}{5!47!}
 \end{equation} 
+}
 
-\pagebreak
 \section{Probabilità Condizionata}
 Consideriamo un \emph{esperimento aleatorio}, che descriviamo con uno spazio di probabilità $(\Omega, P)$.
 e un \emph{evento} $A \subseteq \Omega$, che ha un \emph{probabilità} $P(A)$.
