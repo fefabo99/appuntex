@@ -235,13 +235,18 @@ Si parla in questo caso di \textbf{combinazioni}, esse si possono ottenere dalle
 "dimenticando" l'ordine degli elementi.
 
 \definizione{
-    \textbf{Combinazioni}: Insiemi = Collezioni
-    \begin{equation}
-        {n \choose x} = \frac{n!}{k!(n-k)!}
-    \end{equation}
+    Si definiscono combinazioni di classe $k$ di $n$ elementi distinti tutti i raggruppamenti che si possono formare a partire dagli $n$ elementi, in modo che:
+    \begin{itemize}
+        \item Ogni raggruppamento contenga esattamente $k$ elementi.
+        \item I vari raggruppamenti differiscano tra loro per almeno un elemento, ma \textbf{non per l'ordine}.
+    \end{itemize}
 }
+Il numero di combinazioni semplici si ottiene:
+\[
+    {n \choose k} = \frac{n!}{k!(n-k)!}
+\]
 
-Insiemi = collezioni (non ordinate) di k elementi distinti scelti tra n possibili (con $k <= n$).
+Insiemi = collezioni (non ordinate) di $k$ elementi distinti scelti tra $n$ possibili (con $k <= n$).
 \esempio{Mano di carte a Poker, un giocatore riceve 5 carte estratte da un mazzo che
 ne contiene 52. Il numero di possibili mani è
 \begin{equation}
