@@ -85,8 +85,12 @@ $H_1:\mu<3$, si rifiuta $H_0$ a livello di significativià $5\%$. Allora posso s
 		\\ Quando due eventi sono indipendenti sappiamo che la probabilità dell'intersezione è il prodotto delle loro probabilità. quindi:
 		\[ P(B_1\cap B_2) = P(B_1)P(B_2) = (\frac{3}{20})^2 = 2.23\%\]
 		\item Siccome vogliamo calcolare un "or" vogliamo calcolare l'unione degli eventi 1,2,3.
-		che è uguale a $1-$ la probabilità dell'intersezione dei complementari.
-		Per indipendenza, $P(B_1^c \cap B_2^c \cap B_3^c ) = $ Prodotti etc.
+		Andando a logica, la propbabilità che si verifichi almeno un $B_i$ è il contrario della propbabilità che si verifichi l'evento
+		$B^c_1 \cap B^c_2 \cap B^c_3$, ovvero il caso in cui non esca neanche una pallina bianca nelle tre estrazioni.
+		\\Calcoliamo quindi la probabilità di questo caso:
+		\[ P(B^c_1 \cap B^c_2 \cap B^c_3) = P(B^c_1)P(B^c_2)P(B^c_3) = (\frac{17}{20})^3 = 61.41\% \]
+		E quindi:
+		\[ P(B_1 \cup B_2 \cup B_3) = 1 - (\frac{17}{20})^3 = 38.59\% \]
 	\end{enumerate}
 }
 
@@ -97,7 +101,56 @@ se esce un numero pari si lancia la moneta 1 volta, altrimenti si lancia la mone
 	\item Calcolare $P(X=0)$,
 	\item Determinare la densità discreta di $X$.
 \end{enumerate}
-
+}
+\rispostaaperta{
+	Per covenienza Indico con $D$ l'esito del lancio del dado. Quindi:
+	\begin{center}
+		$P(D$ è pari $) = \frac{1}{2}$
+	\end{center}
+	\begin{enumerate}
+		\item Se lanciando il dado esce un numero pari, si lancia una sola volta la moneta, quindi la probabilità condizionale che non si osservi nessuna testa (evento $X=0$) vale $\frac{2}{3}$.
+		\\ Se invece esce un numero dispari, si lancia due volte la moneta, quindi la probabilità condizionale che non si osservi nessuna testa ($X=0$) vale: $\frac{2}{3}\cdot \frac{2}{3} = \frac{4}{9}$.
+		Riassumendo:
+		\begin{center}
+			$P(X=0 | $ D è pari $)=\frac{2}{3}$ \;\;\; $P(X=0 | $ D è dispari $)=(\frac{2}{3})^2 =\frac{4}{9}$
+		\end{center}
+	\end{enumerate}
+	%%% QUESTO ESERCIZIO é ABBASTANZA SEMPLICE, Quindi per il momento smetto di scriverlo
 }
 
+
+\domandaaperta{3}
+\begin{center}
+	\includegraphics[width=.95\textwidth]{esami/es3_settembre23_testo.png}
+\end{center}
+\rispostaaperta{
+	Dobbiamo stimare la media con la deviazione standard (e quindi la varianza) note. Dal formulario l'intervallo di confidenza sinistro è dato da:
+	\[ (-\infty, \bar{x}_n + z_\alpha \frac{\sigma}{\sqrt{n}})\]
+	Nel nostro caso abbiamo che: $n=64$, $\bar{x}_n = 350$, $\sigma = 100$. Dobbiamo trovare $z_\alpha$:
+	\\ Per trovare alpha, sappiamo che $100(1-\alpha) = 95\% \implies \alpha = 5\% = 0.05$.
+	\\ trovare $z_{0.05}$ significa trovare il valore di $z$ t.c. $\phi(z) = 1-\alpha = 0.95$. Dalle tavole dell distribuzione normale troviamo $z_{0.05}$ per interpolazione, infatti:
+	\begin{center}
+		$\phi(1.64) = 0.9495$ e $\phi(1.65) = 0.9505$, quindi $z_{0.05} = 1.645$, cioè a metà trai due.
+	\end{center} 
+	Sostituiamo nella fomula e troviamo che un intervallo di confidenza sinistro al 95\% per $\mu$ è:
+	\[ (-\infty, 350 + 1.645 \frac{100}{8}) \simeq (-\infty, 370.56)\]
+}
+\rispostaaperta{
+	Dobbiamo impostare un test con media incognita e varianza nota.
+	Siccome ci chiediamo se $\mu > 400$, allora $H_0 : \mu \geq 400$ e $H_1 : \mu < 400$.
+	\\ Dal formulario, la regione critica è $\frac{\bar{x}_n - \mu_0}{\sigma}\sqrt{n}< -z_\alpha$.
+	Che significa che i dati consentono di rifiutare $H_0$ a livello di significatività $\alpha$ se questa disequazione è rispettata.
+	In questo caso: $\mu_0 = 400$, $n=64$ $\bar{x}_n=350,\sigma=100,\alpha = 0.05$. Sostituendo troviamo:
+	\[q<z_\alpha \to -4 < - 1.645\]
+	Siccome questa disequazione è \textbf{vera} rifiuto $H_0 : \mu \geq 400$ a livello di significatività del 5\%.
+	\osservazione{ Il valore 400 non appartiene all'intervallo sinistro di confidenza al 95\% per $\mu$ che abbiamo trovato nel punto precedente, quindi avremmo potuto rifiutare $H_0$ automaticamente.}
+}
+\rispostaaperta{
+	Ripetendo il test effettuato al punto precedente ma al 1\%, troviamo $z_0.01 \simeq 2.325$ ($z$ tale che $\phi(z) = 0.9900$).
+	Dato che $q$ non cambia abbiamo ancora che $-4 < - 2.325$ e quindi rifiutiamo $H_0$ al livello 1\%.
+
+	Per il p-value del test possiamo concludere che $\bar{\alpha} \geq 0.01$ e che i dati sono in constrasto significativo con $H_0$, ovvero c'è forte evidenza statistica che la durata media delle lampadine è $< 400$ ore.
+
+	Non stiamo a calcolare il p-value perchè dovremmo trovare un valore $\alpha$ tale per cui $z_\alpha = 4$, che sarebbe un valore estremamente piccolo, tanto che le nostre tavole vanno fino a $z_{0.0002} = 3.49$.
+}
 \end{document}
