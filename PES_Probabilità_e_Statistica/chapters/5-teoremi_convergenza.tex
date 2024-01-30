@@ -87,21 +87,27 @@ La legge dei grandi numeri si dimostra con la \textbf{disuguaglianza di Chebishe
     \frac{\sigma}{\sqrt{n}} = \sqrt{\text{Var}}
 \end{equation*}
 
+\pagebreak
 
+\section{Teorema del Limite Centrale}
+Il \emph{Teorema del Limite Centrale} è uno dei teoremi statistici con maggiori implicazioni pratiche. 
+Esso afferma che la somma di $n$ variabili indipendenti aventi identica distribuzione è una variabile che 
+\emph{si distribuisce normalmente, indipendentemente dalla distribuzione delle singole variabili}.
 
-\section{Teorema del limite centrale}
-Siano $X_1, ..., X_n$ v.a i.i.d. (Variabili aleatorie indipendenti identicamente distribuite)
-$E(i) = \mu$ e $\text{Var}X_i = \sigma^2$ (con media e varianza finite).
-\begin{equation*}
+\definizione{
+Siano $X_1, ..., X_n$ Variabili Aleatorie indipendenti identicamente distribuite\footnote{Generalmente indicate come \textbf{V.A. i.i.d.}}
+ con Media $\mu$ e Varianza $\sigma^2$ finite, allora:
+\[
     \mathbb{P} (\frac{X_n-\mu}{\frac{\sigma}{\sqrt{n}}} \leq t) \rightarrow \Phi (t) \quad n \rightarrow + \infty   
-\end{equation*}
-Dove $\Phi$ è la funzione di ripartizione di una V.A $Z\sim N(0,1)$
-\begin{equation*}
+\]
+Dove $\Phi$ è la funzione di ripartizione di una V.A. $Z\sim N(0,1)$
+\[
     \Phi(t) = \mathbb{P}(Z \leq t)
-\end{equation*}
-\paragraph*{Condizione per usare l'approssimazione normale} Abbiamo definito 
-che solo con $n \geq 30$ si può usare l'approx per semplicità, in realtà non è semplice
-dare un criterio univoco dato che dipende dall'asimmetria del campione di partenza.
+\]
+}
+Perchè il teroema del limite centrale sia applicabile abbiamo bisogno di un $n$ \textbf{grande}.
+Non è semplice dare un criterio univoco per la grandezza di $n$, quindi definiamo che l'approssimazione normale si può utilizzare solo con $n\geq 30$.
+
 \paragraph*{Nota per i campioni discreti} Quando ho un campione discreto è sempre necessario
 applicare la correzione di continuità 
 %https://it.wikipedia.org/wiki/Standardizzazione_(statistica)
