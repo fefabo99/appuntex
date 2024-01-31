@@ -22,40 +22,41 @@ altrimenti NON viene rifiutata.
 dati campionari permetta di rifiutare o meno. Per questo si utilizzerà un'opportuna
 statistica detta \textbf{Statistica del Test}. A seconda del suo valore assunto sui dati
 campionari si rifiuterà o meno.
-\\ Un test per la verifica dell'ipotesi nulla $H_0$ contro l'ipotesi alternativa 
+\\ Un test per la verifica dell'ipotesi nulla $H_0$ contro l'ipotesi alternativa
 $H_1$ consiste nel trovare una \textbf{regione C}, detta \textbf{Regione Critica o Regione di Rifiuto}
 tale che se $(x_1, ..., x_n) \in C$ si rifiuta $H_0$, quindi si accetta $H_1$,
 tale regione sarà calcolata utilizzando la statistica del test.
 \section{Gli errori}
 Durante il calcolo della regione critica possiamo incorrere in due tipi di errore:
 \begin{itemize}
-    \item Errore di prima specie: si rifiuta $H_0$ quando è vera.
-    \item Errore di seconda specie: si accetta $H_0$ quando è falsa.
+    \item Errore di Prima specie: si rifiuta $H_0$ quando è vera.
+    \item Errore di Seconda specie: si accetta $H_0$ quando è falsa.
 \end{itemize}
 La regione critica ideale dovrebbe rendere piccola la probabilità di commettere
 entrambi gli errori, ma questo in genere è impossibile: restringendo la regione
 critica diminuisce la probabilità di commettere un errore di prima specie, ma
 può aumentare la probabilità di commettere un errore di seconda specie e viceversa.
-\\In genere si controlla la probabilità di errore di prima specie.
+\\In genere si controlla la probabilità di errore di prima specie, usando il \emph{livello di significatività}.
 
-\paragraph{Il livello di significatività del test} 
-Fissare $\alpha$ piccolo $(\alpha = 0.10, 0.05, 0.01)$ e chiedere che la prob. di rifiutare $H_0$ quando è
-vera sia $\leq \alpha$. Ossia un test per la verifica di $H_0$ con regione critica C
-ha livello significatività $\alpha$ se:
-\begin{equation}
+\subsection{Il livello di significatività del test}
+Il livello di significatività indica il tetto massimo di probabilità commettere un errore di prima specie, ovvero di rifiutare $H_0$ quando è vera.
+
+Quindi, fissare un livello di significatività $\alpha$ piccolo, come $0.10, 0.05, 0.01$, vuol dire chiedere che la probabilità di rifiutare $H_0$ quando è vera sia minore o uguale ad $\alpha$.
+\\Matematicamente, un test per la verifica di $H_0$ con regione critica $C$ ha livello significatività $\alpha$ se:
+\[
     \mathbb{P}_H((x_1, ..., x_n)\in C) \leq \alpha
-\end{equation}
-Controllare errore di I specie $\rightarrow$ assimetria tra $H_0$ e $H_1$.
-\\ Se $(x_1, ..., x_n) \in C$ ossia si rifiuta $H_0$ i dati sperimentali sono
-in contraddizione significativa con $H_0$.
-\\ Se $(x_1, ..., x_n) \notin C$ i dati sperimentali non sono
-in contraddizione signficativa con $H_0$.
-Non è detto che siano in contraddizione con $H_1$, ma solo che non escludono
-in modo significativo che $H_0$ sia vera.
-\\ La conclusione forte è il rifiuto di $H_0$.
-\paragraph*{Implicazione} Se si vuole dimostrare con dati sperimentali una certa ipotesi
-sulla distribuzione della popolazione, ossia di una variabile, si adotterà questa
-ipotesi come \textbf{Ipotesi Alternativa}.
+\]
+% Controllare errore di I specie $\rightarrow$ assimetria tra $H_0$ e $H_1$.
+% \\ Se $(x_1, ..., x_n) \in C$ ossia si rifiuta $H_0$ i dati sperimentali sono
+% in contraddizione significativa con $H_0$.
+% \\ Se $(x_1, ..., x_n) \notin C$ i dati sperimentali non sono
+% in contraddizione signficativa con $H_0$.
+% Non è detto che siano in contraddizione con $H_1$, ma solo che non escludono
+% in modo significativo che $H_0$ sia vera.
+% \\ La conclusione forte è il rifiuto di $H_0$.
+% \paragraph*{Implicazione} Se si vuole dimostrare con dati sperimentali una certa ipotesi
+% sulla distribuzione della popolazione, ossia di una variabile, si adotterà questa
+% ipotesi come \textbf{Ipotesi Alternativa}.
 \subsection{Il P-Value}
 L'appartenenza di $(x_1, ..., x_n)$ alla regione critica dipende dalla scelta del livello di significatività $\alpha$.
 Esiste un valore $\bar{\alpha}$ t.c.
@@ -69,7 +70,7 @@ $\bar{\alpha}$ viene detto \textbf{p-value} del test, e più piccolo è il p-val
     consentono di \textbf{rifiutare} $H_0$.
 }
 \paragraph*{Legame tra Test di Ipotesi e Intervallo di Confidenza}
-Nel test di ipotesi bilatero rifiuto $H_0: \mu=\mu_0$, in cui ipotizzo che $\mu=\mu_0$, a livello $\alpha$ se $\bar{x}_n$ non 
+Nel test di ipotesi bilatero rifiuto $H_0: \mu=\mu_0$, in cui ipotizzo che $\mu=\mu_0$, a livello $\alpha$ se $\bar{x}_n$ non
 appartiene all'intervallo di confidenza di livello $100(1-\alpha)\%$ per $\mu$.
 
 \osservazione{ Se trovo un valore $\alpha$ per cui rifiuto $H_0$, sicuramente rifiuterò $H_0$ per ogni altro valore $\alpha_i$ maggiore di esso.}
