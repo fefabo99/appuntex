@@ -173,8 +173,10 @@ Che, una volta standardizzato diventa:
 \end{equation*}
 Possiamo quindi ottenere la legge di $X_n$, e invece per $S_{n}^2$ e $\bar{S}_{n}^2$?
 
+
+\subsection{Distribuzione Chi Quadrato}
 Per caratterizzare la legge di $S_{n}^2$ e di $\bar{S}_{n}^2$ dobbiamo
-introdurre una nuova distribuzione continua $\chi^2(n)$ (\emph{chi}):
+introdurre una nuova distribuzione continua $\chi^2(n)$\footnote{Chi Quadrato}:
 \definizione{
     Si dice legge \textbf{chi quadrato con $n$ gradi di libertà} la legge di una v.a.
     \[
@@ -182,7 +184,7 @@ introdurre una nuova distribuzione continua $\chi^2(n)$ (\emph{chi}):
     \]
     con $Z_1, ..., Z_n$ V.A. i.i.d $\mathcal{N}(0,1)$
 }%Video Lezione 10 T1 minuto 32:29 - https://elearning.unimib.it/mod/kalvidres/view.php?id=926811
-Dove Y è una v.a. $\geq 0$ con densità $f_Y(t) = c_n t^{\frac{n}{2}-1} e^{-\frac{t}{2}} $ per $ t>0$
+Dove Y è una v.a. continua $\geq 0$ con densità $f_Y(t) = c_n t^{\frac{n}{2}-1} e^{-\frac{t}{2}} $ per $ t>0$
 \\ Per essa si ha $\mathbb{E}(Y) = n$ e $\text{Var}(Y)=2n$
 %Per $n = 2$ è la legge $\text{exp}(\frac{1}{2})$
 \\ Per $n$ grande vale l'approssimazione della legge $\chi^2(n)$ con una
@@ -199,7 +201,7 @@ da una popolazione $\mathcal{N}(\mu, \sigma^2)$.
 Riassumendo, $\chi^2$ ci serve per la distribuzione della legge delle varianze campionarie
 
 
-\section{Distribuzione t di student}
+\subsection{Distribuzione T di student}
 Wikipedia definisce la Distribuzione t di Student come:
 \emph{
 "Una distribuzione di probabilità continua che governa il rapporto tra due variabili aleatorie, 
@@ -259,23 +261,42 @@ La simmetria di T student è la stessa della normale.
 \end{center}
 
 \section{Stima per intervalli - Intervalli di confidenza}
-Stima per intervalli della media - campione normale $\mathcal{N}(\mu, \sigma^2)$, con
-$\sigma^2$ nota.
+Consideriamo la stima per intervalli della media di un campione normale $\mathcal{N}(\mu, \sigma^2)$, con
+varianza $\sigma^2$ nota.
+\\$\bar{X}_n$ è uno stimatore di $\mu$, e sappiamo che al crescere di $n$ la stima di $\mu$  più affidabile.
+Vogliamo qunatificare questa affidabilità, construendo un intervallo \emph{centrato in $\bar{X}_n$} a cui $\mu$ appartenga con probabilità $\alpha$.
+Si vuole cercare l'ampiezza $E$ di questo intervallo:
+\[ P(|\bar{X}_n - \mu| < E) = 1-\alpha \to ... \to 
+P(\mu \in (\bar{X}_n - \frac{z_\alpha}{2} \cdot \frac{\sigma}{\sqrt{n}},\bar{X}_n + \frac{z_\alpha}{2} \cdot \frac{\sigma}{\sqrt{n}}) )
+\]
+L'intervallo $(\bar{X}_n - \frac{z_\alpha}{2} \cdot \frac{\sigma}{\sqrt{n}},\bar{X}_n + \frac{z_\alpha}{2} \cdot \frac{\sigma}{\sqrt{n}})$
+è l'intervallo di confidenza per $\mu$ di livello $100(1-\alpha)\%$.
+\\Prima di eseguire le osservazioni questo è un intervallo aleatorio, quindi i suoi estremi sono V.A. e allora ha senso parlare di Probabilità
+che il valore edl parametro $\mu$ appartenga a questo intervallo.
+\\ Eseguite le osservazioni si ottiene un itervallo numerico a cui il valore del paramtreo $\mu$ appartiene con una confidenza del $100(1-\alpha)\%$.
+Questo intervallo è simmetrico rispetto a $\bar{x}_n$.
+\osservazione{ $E$, ovvero l'ampiezza dell'intervallo, rappresenta l'errore che commetto stimando $\mu$ con $\bar{x}_n$. }
 
-La qualità dlela stima dipende Da
+\paragraph{Bontà della stima}
+Ricordando che $E$ rappresenta l'errore che commetto stimando $\mu$, 
+la bontà della stima dipende da:
 \begin{itemize}
-    \item Livelli di confidenza: maggiore è il livello, più è affidabile è la stima
+    \item Livello di confidenza: maggiore è il livello, più è affidabile è la stima ma più aumenta l'ampiezza.
     \item Ampiezza dell'intervallo = $2E$: più è piccolo, più è precisa la stima
 \end{itemize}
-\begin{equation*}
+\[
     E=Z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
-\end{equation*}
-E crece se $\alpha$ diminuisce (ossia se la confidenza aumenta) fissati n e $\sigma$
-E diminuisce al crescere di n (come $\frac{1}{\sqrt[]{n}})$
-\subsection*{Estremi Inferiori e Superiori di Confidenza Per la media di una popolazione normale con varianza nota.}
-Per la media di una popolazione normale con varianza nota.
-\\ Determinare se la media di una popolazione è maggiore o minore di un certo
-valore.
+\]
+
+
+$E$ cresce se $\alpha$ diminuisce (ossia se la confidenza aumenta) fissati $n$ e $\sigma$
+$E$ diminuisce al crescere di n (come $\frac{1}{\sqrt[]{n}})$, fissati $\alpha$ e $\sigma$
+
+
+
+\subsection[Estremi Inferiori e Superiori di Confidenza]{Estremi Inferiori e Superiori di Confidenza Per la media di una popolazione normale con varianza nota.}
+Per determinare se la media di una popolazione è maggiore o minore di un certo
+valore, uso gli estremi inferiori e superiori.
 \\ Useremo ancora $\frac{\bar{X}_n - \mu}{\frac{\sigma}{\sqrt[]{n}}} = 
 \sqrt[]{n} \frac{\bar{X}_n - \mu}{\sigma} \sim \mathcal{N}(0,1)$ 
 \\ Confidenza: $100(1-\alpha) \%$
