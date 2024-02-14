@@ -41,8 +41,26 @@
 è \emph{almeno} $n$, quindi è massimo e tutti i suoi vettori sono linearmente indipendenti.
 }
 
+\domanda{2}{Sia $Ax=b$ un sistema di equazioni lineari con più incognite che equazioni. Allora:}
+\rispostechiuse{Agendo con operazioni elementari su righe e colonne della matrice completa $A|b$ ottengo una matrice compoleta il cui sistema associato possiede le stesse soluzioni di quello di partenza}
+{Scegliendo $b$ opportunamente, il sistema ha un'unica soluzione}
+{Dato un $b$ qualsiasi, mi posso scegliere $A$ in modo che il sistema abbia soluzioni e eche la somma di due di esse sia ancora una soluzione}
+{Se il rango di $A$ è massimo, allora il sistema ha soluzione}
+\rispostaaperta{\textbf{d}, Abbiamo che $n>m$, di conseguenza il rango di $A$ è al massimo $m$. Aggiungendo la colonna $b$, il rango massimo di $(A|b)$ è ancora $m$.
+Quindi se il rango di $A$ è $m$, ovvero è massimo, allora il sistema ammette soluzioni (per R-C). 
 
-\domanda{}{Se la somma di tre numeri positivi è 120, qual'è il massimo valore possibile tra il loro prodotto?}
+
+inoltre per il teorema di Rouchè-Capelli, sappiamo che se il numero delle incognite $>$ rango($A$), allora il sistema ammette $\infty^{m-rank(A)}$ soluzioni.}
+
+
+\domanda{3}{Sia $Ax = b$ un sistema che non ammette soluzione. Scegliendo un vettore $c$ è possibile ottenere che $Ax=b+c$ abbia infinite soluzioni?}
+\rispostechiuse{Si, ma solo se $A$ non è di rango massimo}{Si, per un qualsiasi $A$}{No, mai}{Si, ma solo se $A$ è quadrata e di determinante non nullo.}
+\rispostaaperta{\textbf{a (da capire)}. 
+Se $Ax = b$ non ammette soluzioni, allora $rg(A)\neq rg(A|b)$.
+Per ottenere un sistema con infinite soluzioni, dobbiamo avere $rg(A) = rg(A|b) < n$ con $n$ numero di incognite.
+}
+
+\domanda{4}{Se la somma di tre numeri positivi è 120, qual'è il massimo valore possibile tra il loro prodotto?}
 \rispostechiuse{$30^2\cdot 80$}{$240^2 \cdot 30$}{$30^4$}{$1600\cdot 40$}
 \rispostaaperta{ %Risposta di Chatgpt
 	La somma dei tre numeri positivi è $120$, e supponiamo che i tre numeri siano $x$, $y$, e $z$. L'equazione della somma è espressa come:
@@ -51,6 +69,40 @@
 	\[ P = x \cdot y \cdot z = 40 \cdot 40 \cdot 40 = 64000 \]
 	Pertanto, il massimo valore possibile del prodotto è $64000$, ovvero la risposta $d$.
 }
+
+\domanda{5}{Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna. Se $b$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $v+\alpha \cdot w$ per un numero reale $\alpha$, che informazione abbiamo sul determinante di $B$?}
+\rispostechiuse{$Det(B) = -Det(A)$}{$Det(B) = Det(A)$}{$Det(B) = \alpha\cdot Det(A)$}{$Det(B) = 0$}
+\rispostaaperta{\textbf{b}. Nelle trasfomazioni elementari, rimpiazzare una riga/colonna $r_i$ con $r_i + \alpha r_j$ non cambia il determinante.}
+
+\domanda{6}{Sia $Ax = b$ un sistema di equazioni lineari con pi`u equazioni che incognite. Allora (si scelga l’affermazione
+corretta):}
+\rispostechiuse
+{Se ha soluzione, il rango della matrice completa A|b non pu`o essere massimo}
+{La soluzione, se esiste, necessariamente non `e unic}
+{ Se possiede soluzione, e non `e unica, allora la somma di due soluzioni (PROSEGUE)}
+{ Non ha soluzione}
+\rispostaaperta{Se $Ax=b$ ha più equazioni $m$ che incognite $n$, allora il massimo $rg(A) = n > m$.
+Supponendo di aggiungere una colonna $b$, adesso il massimo $rg(A|b) = n+1$, ma se $rg(A|b) = n+1$ il sistema non ammette soluzioni perchè è il rango di $A$ è minore.
+Quindi, sicuramente se esiste soluzione il rango di $(A|b)$ non può essere massimo.
+
+}
+
+\domanda{7}{Sia $A$ una matrice $n\times  m$ di rango $r > 0$. Quali delle seguenti affermazioni è CORRETTA:}
+\rispostechiuse{$r$ può essere strettamente maggiore di $m$}{Non esistono $r-1$ vettori riga di $A$ linearmente indipendenti.}
+{il determinante di $A$ è uguale a $r$}{Esiste una sottomatrice quadrata $B$ di $A$ di ordine $r-1$ con determinante non nullo (se $r\geq 2$)}
+\rispostaaperta{ Andando per esclusione:
+\begin{itemize}
+	\item[a] No, perchè il rango non può essere maggiore del numero di righe o del numero di colonne.
+	\item[b] No, perchè il rango è il massimo numero di vettori riga/colonna linearmente indipendenti.
+	\item[c] No, Il rango non da informazioni sul valore del determinante.
+	\item[d] Dal criterio dei minori sappiamo che il determinante di $A$ è il massimo ordine dei minori \emph{non nulli} di essa, quindi se il rango è $r$ sicuramente $\exists$ sottomatrice $B$ di ordine $r$ (e quindi $r-1$) con determinante non nullo.    
+\end{itemize}
+}
+\domanda{8}{ Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna diversi. Se $B$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $\alpha\cdot v + \beta\cdot w$ per $\alpha,\beta\in \R$, che informazioni abbiamo sul determinante di $B$?}
+\rispostaaperta{ Possiamo considerare questa operazione come due trasformazioni elementari: Prima moltiplichiamo la colonna $v$ per $\alpha$, quindi anche il determinante viene moltiplicato per $\alpha$, poi sostituiamo $v$ con $v+\beta w$, lasciando il determinante invariato.
+Quindi la risposta è $c: det(B) = \alpha \cdot det(A)$.
+}
+
 
 
 \end{document}

@@ -243,14 +243,19 @@ Introduciamo ora uno dei teoremi più importanti per i sistemi di equazioni line
 
 %Sezione nella lezione 8, fatta dopo il rango.
 \paragraph{Soluzione di Sistemi Lineari}
-Il teorema di Rouche Capelli ci permette quindi di stabilire se
-il sistema $A\underline{x} =\underline{b}$ ammette soluzioni
+Il teorema di Rouche Capelli ci permette quindi di stabilire se il sistema $A\underline{x} =\underline{b}$ ammette soluzioni
 facendo delle valutazioni sui ranghi di $A$ e di $A|b$:
 \begin{center}
 	$A\underline{x} =\underline{b}$ ammette soluzioni sse $rg(A) = rg(A|b)$.
 \end{center}
 
 \osservazione{ Se il rango di $A$ e di $A|b$ è uguale, significa che $\underline{b}$ è combinazione lineare delle colonne di $A$ e di conseguenza il sistema è risovibile.}
+\paragraph{Numero di soluzioni}
+Consideriamo un sistema lineare di $m$ equazioni in $n$ incognite. 
+Il teorema di Rouché-Capelli stabilisce che \emph{Il sistema ammette soluzioni sse $rk(A)=rk(A|b)$}.
+In particolare, se $rk(A) = rk(A|b) = n$, ovvero se il rango di $A$ è uguale al numero di incognite, allora abbiamo una e una sola soluzione.
+Se invece $rk(A)=rk(A|b)<n$ allora il sistema ammette $\infty^{n-rk(a)}$, quindi ammette infinite soluzioni che dipendono da $n-rk(A)$ parametri.
+
 
 \paragraph{Negli Esercizi}
 Dobbiamo usare quindi le Trasformazioni Elementari per stabilire se $\underline{b}$ è combinazione lineare delle colonne di $A$.
