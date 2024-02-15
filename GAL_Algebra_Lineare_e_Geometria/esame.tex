@@ -34,14 +34,14 @@
 
 \chapter{Domande Chiuse}
 \section{Algebra Lineare}
-\domanda{1}{Se devo verificare che $n$ vettori $v_i \in \R^m$ siano linearmente indipendenti, cosa posso fare?}
+\domanda[Indipendenza di Vettori]{1}{Se devo verificare che $n$ vettori $v_i \in \R^m$ siano linearmente indipendenti, cosa posso fare?}
 \rispostechiuse{Creo una matrice con $v_i$ come vettori riga che abbia determinante non nullo}{Creo una matrice con $v_i$ come vettori riga e cerco una sottomatrice quadrata di ordine $n$ Invertibile}
 {Cerco una combinazione lineare dei vettori $v_i$ che mi dia il vettore nullo}{Creo una matrice con $v_i$ come vettori colonna e verifico che il rango di questa matrice sia $m$}
 \rispostaaperta{\textbf{b}, perchè se ho una sottomatrice di ordine $n$ invertibile allora il suo determinante è zero. Per il teorema dei minimi, significa che il rango della matrice
 è \emph{almeno} $n$, quindi è massimo e tutti i suoi vettori sono linearmente indipendenti.
 }
 
-\domanda{2}{Sia $Ax=b$ un sistema di equazioni lineari con più incognite che equazioni. Allora:}
+\domanda[Rouchè-Capelli]{2}{Sia $Ax=b$ un sistema di equazioni lineari con più incognite che equazioni. Allora:}
 \rispostechiuse{Agendo con operazioni elementari su righe e colonne della matrice completa $A|b$ ottengo una matrice compoleta il cui sistema associato possiede le stesse soluzioni di quello di partenza}
 {Scegliendo $b$ opportunamente, il sistema ha un'unica soluzione}
 {Dato un $b$ qualsiasi, mi posso scegliere $A$ in modo che il sistema abbia soluzioni e eche la somma di due di esse sia ancora una soluzione}
@@ -53,7 +53,7 @@ Quindi se il rango di $A$ è $m$, ovvero è massimo, allora il sistema ammette s
 inoltre per il teorema di Rouchè-Capelli, sappiamo che se il numero delle incognite $>$ rango($A$), allora il sistema ammette $\infty^{m-rank(A)}$ soluzioni.}
 
 
-\domanda{3}{Sia $Ax = b$ un sistema che non ammette soluzione. Scegliendo un vettore $c$ è possibile ottenere che $Ax=b+c$ abbia infinite soluzioni?}
+\domanda[Rouchè-Capelli]{3}{Sia $Ax = b$ un sistema che non ammette soluzione. Scegliendo un vettore $c$ è possibile ottenere che $Ax=b+c$ abbia infinite soluzioni?}
 \rispostechiuse{Si, ma solo se $A$ non è di rango massimo}{Si, per un qualsiasi $A$}{No, mai}{Si, ma solo se $A$ è quadrata e di determinante non nullo.}
 \rispostaaperta{\textbf{a (da capire)}. 
 Se $Ax = b$ non ammette soluzioni, allora $rg(A)\neq rg(A|b)$.
@@ -70,11 +70,11 @@ Per ottenere un sistema con infinite soluzioni, dobbiamo avere $rg(A) = rg(A|b) 
 	Pertanto, il massimo valore possibile del prodotto è $64000$, ovvero la risposta $d$.
 }
 
-\domanda{5}{Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna. Se $b$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $v+\alpha \cdot w$ per un numero reale $\alpha$, che informazione abbiamo sul determinante di $B$?}
+\domanda[Determinante]{5}{Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna. Se $b$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $v+\alpha \cdot w$ per un numero reale $\alpha$, che informazione abbiamo sul determinante di $B$?}
 \rispostechiuse{$Det(B) = -Det(A)$}{$Det(B) = Det(A)$}{$Det(B) = \alpha\cdot Det(A)$}{$Det(B) = 0$}
 \rispostaaperta{\textbf{b}. Nelle trasfomazioni elementari, rimpiazzare una riga/colonna $r_i$ con $r_i + \alpha r_j$ non cambia il determinante.}
 
-\domanda{6}{Sia $Ax = b$ un sistema di equazioni lineari con pi`u equazioni che incognite. Allora (si scelga l’affermazione
+\domanda[Rango]{6}{Sia $Ax = b$ un sistema di equazioni lineari con pi`u equazioni che incognite. Allora (si scelga l’affermazione
 corretta):}
 \rispostechiuse
 {Se ha soluzione, il rango della matrice completa A|b non pu`o essere massimo}
@@ -87,7 +87,7 @@ Quindi, sicuramente se esiste soluzione il rango di $(A|b)$ non può essere mass
 
 }
 
-\domanda{7}{Sia $A$ una matrice $n\times  m$ di rango $r > 0$. Quali delle seguenti affermazioni è CORRETTA:}
+\domanda[Rango]{7}{Sia $A$ una matrice $n\times  m$ di rango $r > 0$. Quali delle seguenti affermazioni è CORRETTA:}
 \rispostechiuse{$r$ può essere strettamente maggiore di $m$}{Non esistono $r-1$ vettori riga di $A$ linearmente indipendenti.}
 {il determinante di $A$ è uguale a $r$}{Esiste una sottomatrice quadrata $B$ di $A$ di ordine $r-1$ con determinante non nullo (se $r\geq 2$)}
 \rispostaaperta{ Andando per esclusione:
@@ -98,7 +98,7 @@ Quindi, sicuramente se esiste soluzione il rango di $(A|b)$ non può essere mass
 	\item[d] Dal criterio dei minori sappiamo che il determinante di $A$ è il massimo ordine dei minori \emph{non nulli} di essa, quindi se il rango è $r$ sicuramente $\exists$ sottomatrice $B$ di ordine $r$ (e quindi $r-1$) con determinante non nullo.    
 \end{itemize}
 }
-\domanda{8}{ Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna diversi. Se $B$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $\alpha\cdot v + \beta\cdot w$ per $\alpha,\beta\in \R$, che informazioni abbiamo sul determinante di $B$?}
+\domanda[Determinante]{8}{ Sia $A$ una matrice quadrata e $v,w$ due suoi vettori colonna diversi. Se $B$ è la matrice ottenuta da $A$ rimpiazzando il vettore $v$ con il vettore $\alpha\cdot v + \beta\cdot w$ per $\alpha,\beta\in \R$, che informazioni abbiamo sul determinante di $B$?}
 \rispostaaperta{ Possiamo considerare questa operazione come due trasformazioni elementari: Prima moltiplichiamo la colonna $v$ per $\alpha$, quindi anche il determinante viene moltiplicato per $\alpha$, poi sostituiamo $v$ con $v+\beta w$, lasciando il determinante invariato.
 Quindi la risposta è $c: det(B) = \alpha \cdot det(A)$.
 }
@@ -108,7 +108,11 @@ Supponiamo che $Det(A(1)) = 5$ e $Det(A(-1)) = -5$. Quali delle seguenti afferma
 concludere?}
 \rispostechiuse{Tutti i vettori riga $A(1)$ sono indipendenti e il rango di $A(1)$ è massimo.}
 {$rg(A(1)) = 5$}{$det(A(0))=0$}{Il rango di $A(1)$ è massimo, e $det(A(1) + A(-1))=0$}
-\rispostaaperta{\textbf{a} DA CAPIRE}
+\rispostaaperta{\textbf{a} 
+\\In generale, sappiamo che $det(A)\neq 0 \Leftrightarrow rg(A) = n$, quindi il rango è massimo. Se il rango è massimo, tutti i vettori riga (e colonna, essendo quadrata) sono linearmente indipendenti.
+\\Inoltre escludiamo la risposta $d$ perchè in generale non possiamo determinare $det(A+B)$ partendo dai determinanti di $A$ e $B$.
+}
+
 \domanda{10}{Sia $A$ una matrice quadrata $n\times n$ tale che la somma delle righe è uguale ad una colonna $c$ di $A$. Cosa posso concludere su $A$?}
 \rispostechiuse{$rg(A)<n$}{$det(A)\neq 0$}{Esiste un minore di $A$ di ordine $n=1$ invertibile se $c\neq 0$}{Se la colonna $c$ è uguale ad una riga di $A$ non è invertibile.}
 
