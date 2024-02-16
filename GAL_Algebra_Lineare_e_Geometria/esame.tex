@@ -115,5 +115,32 @@ concludere?}
 
 \domanda{10}{Sia $A$ una matrice quadrata $n\times n$ tale che la somma delle righe è uguale ad una colonna $c$ di $A$. Cosa posso concludere su $A$?}
 \rispostechiuse{$rg(A)<n$}{$det(A)\neq 0$}{Esiste un minore di $A$ di ordine $n=1$ invertibile se $c\neq 0$}{Se la colonna $c$ è uguale ad una riga di $A$ non è invertibile.}
+\rispostaaperta{\textbf{a, da capire}}
 
+\domanda[Minori - Rango]{11}{Supponiamo che una matrice $A$ di dimensioni $4\times 6$ (cioè 4 righe) abbia i determinanti di tutti i minori di ordine 3. Quale delle seguenti affermazioni è falsa?}
+\rispostechiuse{Non esistono 4 colonne linearmente indipendenti in $A$}{Il rango massimo che potrebbe avere $A$ è 4}{Potrebbe esistere una sottomatrice $2\times 2$ di $A$ invertibile.}{Le righe di $A$ sono linermente indipendenti.}
+\rispostaaperta{
+	Dal teorema dei minori sappiamo che, avendo i determinanti di almeno un minore di ordine $3$ diverso da $0$ (almeno così pare dal testo), sicuramente il Rango di $A$ è $\geq 3$.
+	\\Quindi non possiamo dire che tutte le righe di $A$ sono linearmente indipendenti, ma che almeno $3$ lo sono.
+}
+
+\domanda[Cramer]{12}{Sia Ax = b un sistema di equazioni lineari con un numero di equazioni uguale al numero di incognite.
+Allora(si scelga l’affermazione corretta):}
+\rispostechiuse{Se ha soluzione, il rango è massimo}{Se $Ax=0$ ha più di una soluzione, $Ax=b$ potrebbe avere una soluzione}{Se non ha soluzione, $A$ non è invertibile}{Se $A|b$ ha rango massimo, allora il sistema ha un'unica soluzione}
+\rispostaaperta{\textbf{c}
+\\Se non ha soluzione, per il teorema di Cramer $det(A)=0$, una matrie è invertibile \emph{sse} il suo determinante è non nullo. Quindi se il sistema non ha soluzione $\implies det(A)=0 \implies A$ non è invertibile.
+}
+
+\domanda{13}{Siano A, B due matrici $5 \times 5$ tali che rank(A) = 3 e rank(B) = 2. Allora}
+\rispostaaperta{
+	In questa domanda ci sono $j$ punti, riporto qui quelle vere: \textbf{Da capire}
+	\begin{enumerate}
+		\item Non sono invertibili perchè non hanno rango massimo, quindi $det=0$.
+		\item Il rango indica il massimo numero di vettori riga/colonna linearmente indipendenti.
+		\item Esistono due minori di ordine 2, $A'$ in A e $B'$ in B tali che $A'\cdot  B'$ è una matrice invertibile.
+	\end{enumerate}
+}
+\domanda{14}{Calcolare il rango di una matrice $3\times 4$ al variare di un parametro $a$}
+
+\domanda{15}{Nel sistema composto dalle equazioni $3x-2y+z=0$, $\alpha x + y + z = 0$ e $x+\alpha y - z=0$, per quali valori di $\alpha$ posso avere soluzioni non banali\footnote{La soluzione banale è $(0,0,0)$}?}
 \end{document}
