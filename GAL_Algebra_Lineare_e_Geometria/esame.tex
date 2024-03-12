@@ -115,7 +115,11 @@ concludere?}
 
 \domanda{10}{Sia $A$ una matrice quadrata $n\times n$ tale che la somma delle righe è uguale ad una colonna $c$ di $A$. Cosa posso concludere su $A$?}
 \rispostechiuse{$rg(A)<n$}{$det(A)\neq 0$}{Esiste un minore di $A$ di ordine $n=1$ invertibile se $c\neq 0$}{Se la colonna $c$ è uguale ad una riga di $A$ non è invertibile.}
-\rispostaaperta{\textbf{a, da capire}}
+\rispostaaperta{
+\textbf{c}
+Si può ragionare con una matrice $1	times 1$, se l'unica colonna è diversa da 0 allora anche il determinante lo è e quindi è invertibile.
+In ogni caso, anche se non lo fosse un minore di ordine $1$ è sempre invertibile se è diverso da 0.
+}
 
 \domanda[Minori - Rango]{11}{Supponiamo che una matrice $A$ di dimensioni $4\times 6$ (cioè 4 righe) abbia i determinanti di tutti i minori di ordine 3. Quale delle seguenti affermazioni è falsa?}
 \rispostechiuse{Non esistono 4 colonne linearmente indipendenti in $A$}{Il rango massimo che potrebbe avere $A$ è 4}{Potrebbe esistere una sottomatrice $2\times 2$ di $A$ invertibile.}{Le righe di $A$ sono linermente indipendenti.}
@@ -143,4 +147,24 @@ Allora(si scelga l’affermazione corretta):}
 \domanda{14}{Calcolare il rango di una matrice $3\times 4$ al variare di un parametro $a$}
 
 \domanda{15}{Nel sistema composto dalle equazioni $3x-2y+z=0$, $\alpha x + y + z = 0$ e $x+\alpha y - z=0$, per quali valori di $\alpha$ posso avere soluzioni non banali\footnote{La soluzione banale è $(0,0,0)$}?}
+
+\subsection{Diagonalizzabilità di Matrici}
+
+\domanda[Diagonalizzabilità]{38}{Sia $k$ reale. Si consideri la matrice 
+\[ 
+A_k:
+\begin{pmatrix}
+	3 & 0 & -7 \\ k & 3 & 4 \\ 0 & 0 & 2
+\end{pmatrix}
+\]
+Quale delle seguenti affermazioni è corretta?
+}
+\rispostechiuse{$A_k$ è diagonalizzabile per ogni scelta di $k\neq 0$}{$A_k$ è diagonalizzabile se e solo se $k=0$}{$A_k$ è diagonalizzabile se e solo se $k$ è intero non negativo}{Per qualunque scelta di $k$, $A_k$ non è diagonalizzabile}
+\rispostaaperta{\textbf{B}
+% Soluzione dal file da guardare
+Ricordiamo le condizioni di diagonalizzabilità:
+
+}
+
+
 \end{document}
