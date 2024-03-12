@@ -1,0 +1,1 @@
+# SEA - Sicurezza e Affidabilità
