@@ -92,16 +92,22 @@ Si, ed é definito cosí:
 }
 Si osserva che non esiste $\sum_{i=1}^{\infty} \lambda_i \cdot z_i$, poiché la somma deve essere tra un \textbf{numero finito} di vettori.
 
-\section{Combinazione Lineare}
-La somma utilizzata nell'ultima definizione non é a caso, ma si chiama Combinazione Lineare:
+\pagebreak
+\section{Combinazioni Lineari}
+La somma utilizzata nell'ultima definizione non é a caso, ma si chiama \textbf{Combinazione Lineare}:
+\\Una combinazione lineare altro non è che un'espressione in cui compaiono somme di vettori e moltiplicazioni di vettori per scalari.
+
 \definizione{
-    $\sum_{i=1}^{n} \lambda_i \cdot z_i$ si chiama \textbf{Combinazione Lineare} di $\{z_i\}_{i=1,...,n}$
+    Definiamo \textbf{Combinazione Lineare} di $\{\underline{v}_i\}_{i=1,...,n}$ una qualsiasi espressione del tipo
+    \[\sum_{i=1}^{n} \lambda_i \cdot \underline{v}_i\]
+    Con $\lambda_i \in \mathbb{K}$
 }
-\subsection*{Dipendenza Lineare}
-Da qui possiamo andare a definire se i vettori di un insieme sono linearmente dipendenti o no:
+\subsection{Dipendenza Lineare}
+Dato il concetto di Combinazione Lineare possiamo andare a definire anche la \textbf{Dipendenza Lineare}, ovvero definire se 
+se i vettori di un insieme sono linearmente dipendenti o indipendenti:
 \definizione{
-    Sia $S\subset V$ con $V$ spazio Lineare.
-    \\ I vettori di $S$ sono detti \textbf{Linearmente dipendenti} se:
+    Sia $S\subset V$, con $V$ spazio Lineare.
+    \\ I vettori di $S$ sono detti \textbf{Linearmente Dipendenti} se:
     \begin{center}
         $\exists \underline{w} \in S$ e $S_{\underline{w}} = \{z_1,...,z_n\}\subset S$ (con $\underline{w} \notin S_{\underline{w}}$)
     \end{center}
@@ -111,15 +117,18 @@ Da qui possiamo andare a definire se i vettori di un insieme sono linearmente di
     \end{center}
     Altrimenti, i vettori si $S$ sono detti \textbf{Linearmente Indipendenti} 
 }
-Ovvero, si dice che i vettori di un insieme sono linearmente dipendenti se sono la combinazione lineare di altri elementi dell'insieme.
-\subsubsection*{Lemma}
-$S\subset V$ é un insieme di vettori linearmente indipendenti sse:
+Ovvero, si dice che i vettori di un insieme sono linearmente dipendenti \emph{se sono la combinazione lineare di altri elementi dell'insieme}.
+\subsubsection*{Insieme di Vettori Linearmente Indipendenti}
+$S \subset V$, con $V$ spazio lineare, é un \emph{insieme di vettori linearmente indipendenti} sse:
 \[ \sum_{i=1}^{n} \lambda_i \cdot z_i = \underline{0} \implies \lambda_i = 0 \forall i \]
 Ció deve valere $\forall n \in N$ e $\forall \{z_i\} \subset S$.
-
+\osservazione{In parole povere un insieme di $n$ vettori sono \textbf{linearmente indipendenti} se e solo se
+per ottenere 0 dalla loro combinazione lineare è $\underline{0}$ devo porre tutti i coefficienti a 0:
+\[ \alpha A + \beta B + \gamma C = 0 \implies \alpha = \beta = \gamma = 0\]
+}
 \paragraph{Dimostrazione del Lemma}
 $S\subset V$ è un insieme di vettori linearmente indipendenti.
-Voglio dimostrare che se $\{\underline{z}_i \}<S$ e $\sum_{i=1}^{n} \lambda_i \underline{z}_i = \underline{0}$ allora $\lambda_i=0 \forall 0$.
+Voglio dimostrare che se $\{\underline{z}_i \}<S$ e $\sum_{i=1}^{n} \lambda_i \underline{z}_i = \underline{0}$ allora $\lambda_i=0 \;\; \forall 0$.
 \\Nego la tesi: Supponiamo che  $\sum_{i=1}^{n} \lambda_i \underline{z}_i = \underline{0}$ ma $\exists h : \lambda_h \neq 0$.
 Allora 
 \[\lambda_h z_h = -\sum_{j\neq h} \lambda_j \underline{z}_j \to ... \to z_h = -\sum_{j\neq h} \lambda_h^{-1} \lambda_j \underline{z}_j\]
