@@ -1,9 +1,6 @@
-# Note Appunti Ulerich
+# Repo con codice algoritmi
 
-Terminata stesura programma
+Repository dove verranno tradotti gli algoritmi in codice (Python), per verificarne il funzionamento
+e per verificare i tempi di esecuzione. Repo a scopo didattico.
 
-## Revisioni da fare
-
-- Da revisionare LIS perchè la matrice ausiliaria è spiegata male
-- Revisionare anche LCS (potrebbe essere spiegato meglio)
-- Rivedere Dijkstra
+[https://github.com/Ulerich/APA-Coded.git](https://github.com/Ulerich/APA-Coded.git)
