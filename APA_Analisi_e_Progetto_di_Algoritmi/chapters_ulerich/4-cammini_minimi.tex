@@ -159,7 +159,10 @@ archi, formalmente: $P=<v_{i_1},v_{i_2},...,v_{i_k}> \rightarrow \sum^{k-1}_{j=1
         
     \end{tikzpicture}
 \end{center}
-\section{Il problema dei cammini minimi}
+\section{Il problema dei cammini minimi - Algoritmo di Floyd-Warshall}
+Floyd-Warshall è un algoritmo che sfruttra la programmazione dinamica per calcolare i cammini minimi fra tutte le coppie
+in un grafo orientato $G = (V,E)$. Ha un tempo di esecuzione di $\Theta(V^3)$.\\
+Floyd-Warshall accetta in input grafi contenenti archi di peso negativo, ma si suppone non ci siano cicli di peso negativo.
 \paragraph*{Input} Grafo $G=(V,E,W)$ (senza cappi) orientato e pesato
 \paragraph*{Output} Per ogni coppia di vertici i e j, trovare il cammino di peso minimo (cammino minimo)
 che parte da i e finisce in j.\\

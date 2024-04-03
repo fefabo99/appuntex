@@ -42,7 +42,24 @@ più soluzioni perchè le soluzioni ottime possono essere diverse.\\
 Esiste una funzione obiettivo che associa un valore ad ogni soluzione possibile e
 restituisce come OUTPUT una soluzione possibile (soluzione ottimale) per cui il valore restituito dalla funzione
 obiettivo è massimo/minimo (valore ottimo).
-
+\subsection{Sottostruttura ottima - Definizione}
+La prima fase del processo di risoluzione di un problema di ottimizzazione mediante la programmazione dinamica
+consiste nel caratterizzare la struttura di una soluzione ottima. Rocordiamo che un problema
+presenta una sottostruttura ottima se una soluzione ottima del problema contiene al suo interno le
+soluzioni ottime dei sottoproblemi.
+\paragraph*{Schema ricerca Sottostruttura ottima}
+\begin{itemize}
+    \item Dimostrare che una soluzione del problema consiste nel fare una scelta (per esempio,
+    scegliere il taglio iniziale di un asta, es taglio aste su libro pag 298). Questa scelta lascia uno o
+    più sottoproblemi da risolvere
+    \item Per un dato problema, supponete di conoscere la scelta che porta a una soluzione ottima, non vi interessa sapere
+    come sia stata determinata questa scelta. Semplicemente supponiamo di conoscere tale scelta.
+    \item Fatta la scelta, determinate queli sottoproblemi ne derivano e quale sia il modo migliore per
+    caratterizzare lo spazio di sottoproblemi risultante.
+    \item Dimostrare che le soluzioni dei sottoproblemi che abbiamo utilizzato all'interno della soluzione ottima del
+    problema devono essere necessariamente ottime, adottando una tecnica "taglia e incolla", cioè supponiamo che ciascuna
+    delle soluzioni dei sottoproblemi non sia ottima e poi giungiamo a una contraddizione (es. dimostrazione LCS e LIS).
+\end{itemize}
 \section{LCS - Longest Common Subsequence}
 Si tratta di un problema che ha come istanza due sequenze di valori e richiede di trovare la 
 più grande sottosequenza comune fra di esse. Si tratta di un problema di ottimizzazione, per questo
