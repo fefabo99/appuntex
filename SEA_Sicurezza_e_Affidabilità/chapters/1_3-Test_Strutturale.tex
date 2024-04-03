@@ -27,7 +27,7 @@ Quindi come costruiamo una suite di test accettabile?
 \\Potremmo continuare a generare test random e continuare a farlo finche non finiamo il tempo o il budget,
 ma questa strategia non ci soffisfa euristicamente!
 
-\subsection*{Criteri di adeguatezza come regole di progettazione}
+\subsection{Criteri di Adeguatezza}
 Bisogna rinunciare all'idea disperata dell'adeguatezza come garanzia sul potere di rilevamento dei difetti,
 e definire criteri euristici di adeguatezza simili alle regole di progettazione.
 
@@ -41,7 +41,7 @@ Molti criteri di (in)adeguatezza per il testing derivano da osservazioni di buon
 \textbf{Ricorda} che questi criteri ci aiutano a capire perchè ci piace o non piace una suite di test,
 ma soddisgarli (o no) non implica niente sull'effettiva abilità della suite nel trovare difetti!
 
-\subsection{Definizione di Criteri di Adeguatezza}
+\paragraph{Definizione di Criteri di Adeguatezza}
 Diamo una definizione formale di criteri di adeguatezza:
 \definizione{
     Un criterio di adeguatezza è un predicato che assume valore vero o falso
@@ -56,4 +56,26 @@ Una suite $T$ soddisfa i criteri di adeguatezza per un dato programma $P$ \emph{
     \item Tutte le test obligations sono soddisfatte da almeno un test case nella suite.
 \end{itemize}
 
+\begin{center}
+    \includegraphics[width=.8\textwidth]{images/example_testing_adequacy.jpg}
+\end{center}
+In questo esempio abbiamo che i singoli test non riescono a soddisfare singolarmente i criteri di adeguatezza perchè non riescono a coprire l'intero codice.
+
 %SLIDE 10
+
+\section{Structural Testing}
+A differenza del testing funzionale, in cui la completezza del test è giudicata sui requsiti senza tener conto del programma sotto esame,
+nel testing strutturale viene giudicata la completezza del test in base alla struttura del programma.
+
+Il test strutturale è anche chiamato "white/glass box testing", mentre quello funzionale è chiamato "black box testing".
+
+Si noti che il testing strutturale consiste ancora nel testare il prodotto (codice) rispetto alle specifiche: cambia solo la misura della completezza!
+
+\osservazione{I test confrontano \textbf{sempre} un programma con una specifica}
+
+\subsection{Statement Coverage}
+Per una suite di test T possiamo definire la \textbf{coverage} come la frazione di enunciati di P eseguiti da almeno un caso di test in T:
+\[ C_{stmt} = \frac{\text{\# executed stmts}}{\text{\# stmts}} \]
+Il test $T$ soddisfa il criterio di adeguatezza se e solo se $C_{stmt} = 1$.
+
+%slide 15
