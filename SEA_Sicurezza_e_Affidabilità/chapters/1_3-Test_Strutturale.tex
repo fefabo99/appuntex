@@ -73,28 +73,45 @@ Si noti che il testing strutturale consiste ancora nel testare il prodotto (codi
 
 \osservazione{I test confrontano \textbf{sempre} un programma con una specifica}
 
+
+\section{Statement/Basic Block Adequacy}
+Definiamo il primo criterio di adeguatezza che guardiamo: La copertura dei Basic Block e/o degli Statement.
+
 \subsection{Statement Coverage}
-Per una suite di test T possiamo definire la \textbf{coverage} come la frazione di enunciati di P eseguiti da almeno un caso di test in T:
+
+\definizione{
+Per una suite di test T possiamo definire la \textbf{coverage} degli statement come la frazione di enunciati di P eseguiti da almeno un caso di test in T:
 \[ C_{stmt} = \frac{\text{\# executed stmts}}{\text{\# stmts}} \]
-Il test $T$ soddisfa il criterio di adeguatezza se e solo se $C_{stmt} = 1$.
+Il test $T$ \textbf{soddisfa il criterio di adeguatezza} di statement coverage \emph{se e solo se} $C_{stmt} = 1$.
+}
+In sostanza, il critero di adeguatezza di statement coverage controlla quante 'righe' del codice vengono eseguite dalla suite di test, e il criterio é soddisfatto solo se tutte le righe di codice sono eseguite.
 
-%slide 15
+\paragraph*{Obbligazioni insoddisfacibili}
+%In alcuni programmi potrebbero esistere dei criteri di adeguatezza insoddisfacibili, come ad esempio 
+%alcuni statement non raggiungibili dai test.
+In alcuni programmi potrebbero esistere degli statement irraggiungibili dai test, che renderebbero fisicamente insoddisfacibile il criterio di statement adequacy.
+Quindi ci troveremmo delle suite che risultano inadeguate, ma soltanto perché non é fisicamente possibile renderle adeguate.
+%Se non consideriamo questi elementi potremmo trovarci con delle suite che risultano inadeguate solo perché alcune obbligazioni non sono fisicamente soddisfacibili.
 
-%%Restart da slide 15 perché ho missato un commit.
-
-\paragraph*{Unsatisfiable Test Obligations}
-In alcuni programmi potrebbero esistere dei criteri di adeguatezza insoddisfacibili, come ad esempio 
-alcuni statement non raggiungibili dai test.
-Se non consideriamo questi elementi potremmo trovarci con delle suite che risultano inadeguate solo perché alcune obbligazioni non sono fisicamente soddisfacibili.
-
-Abbiamo due approcci possibili a questo problema:
+Bisogna quindi tenere conto di questo problema, con due approcci possibili:
 \begin{itemize}
     \item Rimuovere dai criteri di adeguatezza tutte le obbligazioni di test insoddisfacibili.
-    \item Usare la covergae come una misura di quanto ci siamo avvicinati all'adeguatezza.
+    \item Usare la coverage come una misura di quanto ci siamo avvicinati all'adeguatezza.
 \end{itemize}
 
-\subsection{Basic Blocks}
+\subsection{Basic Block Coverage}
 Si puó notare che se due statements sono in sequenza, eseguirne uno automaticamente implica eseguire anche l'altro.
 Quindi possiamo considerare i \textbf{basic blocks}, dove le obbligazioni sono i blocchi del CFG\footnote{Control Flow Graph} del programma.
 
 \definizione{Un Basic Block è una sequenza massima di istruzioni di programma contigue con un punto di ingresso e un punto di uscita.}
+
+\subsubsection{Control Flow Graph}
+Come si costruisce un CFG?
+Un Control Flow Graph per un programma $P$ é un grafo con:
+\begin{itemize}
+    \item \textbf{Nodi} che rappresentano i Basic Blocks di $P$
+    \item \textbf{Edges} che connettono i BB in una relazione sequenziale, possono essere etichettati con T o F se il BB finisce con un controllo condizionale
+\end{itemize}
+
+
+\section{Branch Adequacy}
