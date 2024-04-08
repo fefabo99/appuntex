@@ -1,0 +1,37 @@
+\chapter{Test Funzionale}
+\section{Test Obligations}
+Una \textbf{Test Obbligation}, detta anche test objective, è una specifica parziale del caso di test che richiede alcune proprietà ritenute importanti per un test approfondito
+
+\subsection{Obbligazioni funzionali} le obbligazioni di tipo funzionale sono obbligazioni che testano 
+il funzionamento del programma secondo la sua specifica, ad esempio:
+\begin{itemize}
+    \item Testa almeno una volta con un array già ordinato
+    \item Testa almeno una volta l'autenticazione con un utente errato
+\end{itemize}
+Le obbligazioni Funzionali vengono dalle \textbf{specifiche del software}.
+
+\subsection{Obbligazioni Strutturali}
+Le obbligazioni strutturali invece vanno a testare una parte specifica del codice del programma:
+
+\begin{itemize}
+    \item Testa almeno una volta il ramo else di uno specifico if-statement
+    \item Testa almeno una volta un loop su più di una iterazione
+\end{itemize}
+Le obbligazioni strutturale derivano direttamente dal codice, senza tenere conto della specifica.
+
+\section{Boundary Testing}
+Il Boundary Testing è un tipo di test che seleziona obiettivi per tenere conto di comportamenti 
+rilevanti nel software, distinguendo tra comportamenti Normali, Eccezzionali/Erronei, e Casi di Boundary.
+\\Il test perimetrale suggerisce che gli obiettivi del test devono tenere conto dei comportamenti distinguibili del software e dei confini tra di essi
+
+\subsection*{Catalogi di Testing}
+I catalogi di test sono delle guide per identificare obbligazioni per una classe di elementi ben caratterizzati.
+
+Il Boundary Testing può essere assistita e resa più sistematica con cataloghi di test che indichino scelte standard (di casi normali, eccezionali e limite) per tipi tipici di voci di specifica.
+
+Ad esempio, un catolog per testare un Range $L ... U$ può essere
+\begin{center}
+    L-1, L, Valore tra L e U, U, U+1
+\end{center}
+
+%%SLIDE 17
