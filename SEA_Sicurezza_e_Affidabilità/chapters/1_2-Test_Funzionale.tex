@@ -1,4 +1,9 @@
 \chapter{Test Funzionale}
+Il test funzionale è un tipo di testing che prende i casi di test dalla spcifica funzionale del programma.
+Viene anche chiamato Specification-Based Testing, ovvero dalle specifiche, e Black-Box Testing perchè non si ha visione del codice.
+
+Una \textbf{Specifica Funzionale} è una descrizione di un comportamento atteso del programma.
+
 \section{Test Obligations}
 Una \textbf{Test Obbligation}, detta anche test objective, è una specifica parziale del caso di test che richiede alcune proprietà ritenute importanti per un test approfondito
 
@@ -20,6 +25,8 @@ Le obbligazioni strutturali invece vanno a testare una parte specifica del codic
 Le obbligazioni strutturale derivano direttamente dal codice, senza tenere conto della specifica.
 
 \section{Boundary Testing}
+Nel test funzionale vengono testati ogni categoria di input e i \textbf{boundary} tra di esse.
+\osservazione{Non c'è garanzia che testare i boundaries trovi più errori, ma per esperienza si trova che spesso gli errori si trovano li.}
 Il Boundary Testing è un tipo di test che seleziona obiettivi per tenere conto di comportamenti 
 rilevanti nel software, distinguendo tra comportamenti Normali, Eccezzionali/Erronei, e Casi di Boundary.
 \\Il test perimetrale suggerisce che gli obiettivi del test devono tenere conto dei comportamenti distinguibili del software e dei confini tra di essi
@@ -35,3 +42,8 @@ Ad esempio, un catolog per testare un Range $L ... U$ può essere
 \end{center}
 
 %%SLIDE 17
+
+
+%% Secondo pacco di slides
+
+\section{Test Combinatorio}
