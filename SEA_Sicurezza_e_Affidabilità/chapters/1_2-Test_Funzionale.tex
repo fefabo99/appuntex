@@ -46,4 +46,24 @@ Ad esempio, un catolog per testare un Range $L ... U$ può essere
 
 %% Secondo pacco di slides
 
-\section{Test Combinatorio}
+\section{Category Partition} %%dalla slide 22
+Il metodo di Partizione delle categorie è un approccio sistematico al testing funzionale in cui si identificano le
+caratteristiche e i valori da cui poi possiamo generare le combinazioni, possibilmente con l'approccio pairwise
+
+\subsection{La partizione} %Slide 23
+L'approccio manuale si compone di questi passi:
+\begin{enumerate}
+    \item Scomponi la specifica in features testabili indipendentemente.
+    \\ Per ogni feature vanno identificati:
+    \begin{itemize}
+        \item Parametri
+        \item Elementi d'ambiente
+    \end{itemize}
+    \item Identifica valori rilevanti
+    \begin{itemize}
+        \item Concentrati separatamente su ogni valore di input/parametro/risultato
+        \item Per ognuno di essi, identifica le caratteristiche elementari, ovvero le categorie di valori ch ti permettono di discriminare i vari comportamenti descritti nella specifica.
+        \item Per ogni caratteristica (cateogria) applica il boundary testing per identificare obiettivi di test rappresentativi (valori normali, erronei o di boundary).
+        \item Introduci dei vincoli alle possibili combinazioni, in modo da limitare gli obiettivi (combinazioni) irrangiungibili nella fase successiva.
+    \end{itemize}
+\end{enumerate}
