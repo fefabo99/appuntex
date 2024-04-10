@@ -289,6 +289,10 @@ Questo perchè non tutti i problemi ammettono un algoritmo Greedy, ma la vera qu
 è: \textbf{Come capire, in linea di principio, se un problema ammette un algoritmo Greedy?}.\\
 Per capire questo aspetto dobbiamo introdurre una struttura denominata Matroide.
 \paragraph*{Matroide:} struttura combinatoria a cui è associato un algoritmo greedy.
+\paragraph*{Attenzione!} Ci sono delle strutture di problemi che NON sono Matroide, MA si può applicare comunque
+un approccio di tipo Greedy (es. Selezione attività, codifica di Huffman). Non è detto quindi
+che un problema risolvibile con Greedy sia un Matroide. Viceversa se la struttura di un problema
+è un matroide è possibile applicare l'approccio Greedy.
 \subsection{Sistema di Indipendenza}
 Una coppia (S,F)
 \begin{itemize}
@@ -321,6 +325,17 @@ Un sistema di Indipendenza (S,F) è un \textbf{matroide} se vale la seguente
 \textbf{Per qualsiasi A, $B \in F$ tali che $|B|=|A|+1$, allora esiste almeno un elemento
 $b \in B-A$ tale che $\{b\}\cup A \in F $}.\\
 \paragraph*{NB} in un matroide l'insieme vuoto è un insieme indipendente.
+\subsection{Definizione Matroide - Riportata dal libro}
+Un matroide è una coppia ordinata $M = (S, I)$ che soddisfa le seguenti condizioni:
+\begin{itemize}
+    \item S è un insieme finito
+    \item I è una famiglia non vuota di sottoinsiemi di S detti \textbf{Sottoinsiemi indipendenti}
+    si S, tali che se $B \in I$ e $A \subseteq B$, allora $A \in I$. Diciamo che la famiglia
+    I è ereditaria se soddisfa questa proprietà. Notate che l'insieme vuoto $\emptyset$ è
+    necessariamente un membro di I.
+    \item Se $A \in I$, $B \in I$ e $|A| < |B|$, allora esiste un elemento $x \in B - A$ tale
+    che $A \cup \{x\} \in I$. Diciamo che M soddisfa la proprietà di Scambio.
+\end{itemize}
 \subsection{Esempio 1}
 Coppia (S,F):
 \begin{itemize}
