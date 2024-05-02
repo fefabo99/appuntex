@@ -71,22 +71,23 @@ $N(f)$ è importante per il seguente teorema:
 	$f$ iniettiva $\leftrightarrow$ $f$ è suriettiva $\leftrightarrow$ $f$ è Biiettiva
 \end{center}
 
-\section{La matrice associata}
+\section{Matrice Associata}
 %% Da youmath
-Una matrice assocaita a un'applicazione lineare rappresenta la trasformazione lineare cui è riferita rispetto a due fissate basi degli spazi vettoriali di partenza e d'arrivo.
-Tale matrice fornisce tutte le informazioni relative alla trasformazione cui è associata, dunque riveste un ruolo da protagonista nell'ambito delle applicazioni lineari.
+Una matrice assocaita a un'applicazione lineare \emph{rappresenta la trasformazione lineare cui è riferita rispetto a due fissate basi degli spazi vettoriali} di partenza e d'arrivo.
+\\Tale matrice fornisce tutte le informazioni relative alla trasformazione cui è associata, dunque riveste un ruolo da protagonista nell'ambito delle applicazioni lineari.
 
-\paragraph{definizione}
-Per dare la definizione di matrice rappresentativa di una trasformazione lineare, e vedere come si costruisce, consideriamo due spazi vettoriali $V,W$ definiti sullo stesso campo e di dimensioni rispettivamente pari a $n,m$.
-\\Consideriamo un'applicazione lineare $f:V\to W$ e siano:
+\subsection{Costruzione di una Matrice Associata}
+Consideriamo due spazi vettoriali $V,W$ definiti sullo stesso campo e di dimensioni rispettivamente pari a $n,m$.
+e consideriamo un'applicazione lineare $f:V\to W$.
+\\Siano:
 \begin{center}
-	$B_v = {v_1,...,v_n}$ e $B_W={w_1,...,w_m}$ due basi, di $V$ e $W$
+	$B_V = \{v_1,...,v_n\}$ e $B_W=\{w_1,...,w_m\}$ due basi, di $V$ e $W$
 \end{center}
-Per costruire la matrice associata all'applicazione $f$ rispetto alle basi $B_V$ e $B_W$ occorre procdere nel modo seguente:
+Per \textbf{costruire} la matrice associata all'applicazione $f$ rispetto alle basi $B_V$ e $B_W$ occorre procdere nel modo seguente:
 \begin{enumerate}
-	\item Determinare l'immagine rispetto all'applicazione $f$ di ogni vettore $v_i$ della base $B_V$, quindi:
+	\item Determinare l'immagine rispetto ad $f$ di ogni vettore $v_i \in B_V$:
 	      \[ f(v_1),...,f(v_n)\]
-	\item I vettori cos' ottenuti sono elementi di $W$, e possono quindi essere espressi come combinazione linerae dei vettori della base $B_W$ dello spazio $W$:
+	\item I vettori ottenuti sono elementi di $W$, e possono essere espressi come combinazione linerae dei vettori di $B_W$:
 	\begin{center}
         $f(v_1) = a_{11}w_1 + ... + a_{m1}w_m $
         \\ $f(v_2) = a_{12}w_1 + ... + a_{m2}w_m $
@@ -94,7 +95,7 @@ Per costruire la matrice associata all'applicazione $f$ rispetto alle basi $B_V$
         \\$f(v_n) = a_{11n}w_1 + ... + a_{mn}w_m $
     \end{center}
     \item La matrice che ha per $j-$esima colonna il vettore delle coordinate dell'immagine $f(v_j)$ rispetto alla abse di $W$ si dice matrice associata all'applicazione lineare $f$ rispetto alle basi $B_V$ e $B_W$:
-    \[ A_f = 
+    \[ M_{B_V}^{B_W}			 = 
         \begin{pmatrix}
             a_{11} & a_{12} & ... & a_{1n} \\
             a_{21} & a_{22} & ... & a_{2n} \\
