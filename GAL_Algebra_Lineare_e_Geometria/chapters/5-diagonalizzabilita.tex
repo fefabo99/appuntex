@@ -6,11 +6,26 @@
     è diagonalizzabile se e solo se esiste una matrice invertibile $P$ talche $D=P^{-1}AP$.
 }
 \subsection{Teorema di Diagonalizzabilità}
-Il teorema di diagonalizzabilità fornisce delle condizioni necessarie e sufficienti affinchè una matrice quadrata sia diagonalizzabile:
+Il teorema di diagonalizzabilità fornisce delle condizioni \textbf{necessarie e sufficienti} affinchè una matrice quadrata sia diagonalizzabile:
 
-Una matrice $A$ è diagonalizzabile se e solo se valgono le seguenti condizioni:
+Una matrice $A$ \textbf{è diagonalizzabile se e solo se} valgono le seguenti condizioni:
 \begin{enumerate}
     \item Il numero degli autovalori di $A$ è uguale all'ordine della matrice.
     \item La molteplicità algebrica di ogni autovalore è uguale alla relativa molteplicità geometrica.
 \end{enumerate}
 
+\subsection{Casi Particolari}
+Esistono alcuni casi particolari:
+\begin{itemize}
+    \item Se $A$ è una matrice simmetrica, ovvero $a_{ij}=a_{ji} \forall i \neq j$ allora $A$ è sempre diagonalizzabile.
+    \item Se $A$ è una matrice quadrata di ordine $n$ che ammette esattamente $n$ autovalori distinti in $\mathbb{K}$, allora $A$ è diagonalizzabile nel campo $K$.
+\end{itemize}
+
+\section{Autovalori e Autovettori}
+La nozione di Autovalore si riferisce solamente alle matrici quadrate.
+\definizione{
+    Si dice che lo scalare $\lambda_0 \in \mathbb{K}$ è un autovalore della matrice quadrata $A$ se esiste un vettore colonna non nullo $\underline{v}\in \mathbb{K}^n$ tale che:
+    \[ A\underline{v} = \lambda_0 \underline{v}\]
+    Il vettore $\underline{v}$ è detto autovettore relativo all'autovalore $\lambda_0$
+}
+\osservazione{Se $\underline{v}$ è un autovettore di $\lambda_0$ allora lo è anche $\alpha \underline{v}$ con $\alpha \in \mathbb{K}$.}
