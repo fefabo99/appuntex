@@ -1,26 +1,29 @@
 \chapter{Applicazioni Lineari}
 
 \section{Introduzione}
-Le funzioni insiemistiche non sono adatte a studiare gli spazi vettoriali.
-Per esempio, riesco a trocare funzioni insiemistiche biunivoche tra $\R^n$ e $\R^m$ $\forall n,m$.
-
-Quindi, per studiare gli spazi vettoriali tramite funzioni è meglio imporre condizioni a tali funzioni.
+Le funzioni insiemistiche normali non sono adatte a studiare gli spazi vettoriali,
+quindi per studiare gli spazi vettoriali tramite funzioni è meglio imporre condizioni a tali funzioni.
 
 \definizione{
-	Siano $V$ e $W$ due spazi vettoriali su $K$me  $f:V\to W$ una funzione.
-	Diremo che $f$ è \textbf{Lineare}, o un \textbf{Omomorfismo} se:
+	Siano $V$ e $W$ due spazi vettoriali.
+	\\ Un'applicazione $f:V\to W$ è \textbf{Lineare}, o un \textbf{Omomorfismo} se:
 	\begin{enumerate}
 		\item $f(\underline{v}_1 + \underline{v}_2) = f(\underline{v}_1) + f(\underline{v}_2)$
 		\item $f(\lambda \underline{v}) = \lambda f(\underline{v})$.
 	\end{enumerate}
-	Ed equivalentemente l'immagine di una combinazione lineare è la combinazione lineare delle immagini:
-	$f(\lambda\underline{v}_1 + \beta\underline{v}_2) = \lambda f(\underline{v}_1) + \beta f(\underline{v}_2)$
+	$\forall \underline{v}, \underline{v_1}, \underline{v_2} \in V,\lambda \in \R$
 }
-\paragraph{Corollario}
+Equivalentemente l'immagine di una combinazione lineare è la combinazione lineare delle immagini:
+$f(\lambda\underline{v}_1 + \beta\underline{v}_2) = \lambda f(\underline{v}_1) + \beta f(\underline{v}_2)$
+\\
+\\Se $V=W$, allora l'applicazione lineare si chiama \textbf{Endomorfismo} (di $V$).
+\paragraph{Corollari}
+Prendiamo sempre $f$, $V$ e $W$ dalla definizione:
 \begin{itemize}
-	\item Se $f$ è lineare, allora $f(\underline{0}_v) = \underline{0}_w$ e $f(-\underline{v}) = -f\underline{v}$.
-	\item Se $U<V$, $f(U) < W$
-	      %Da completare
+	\item \textbf{Zero}: $f(\underline{0}_v) = \underline{0}_w$
+	\item \textbf{Opposto}: $f(-\underline{v}) = -f\underline{v}$.
+	\item \textbf{Sottospazi}: Se $U<V$, $f(U) < W$
+	    %Da completare
 \end{itemize}
 
 \osservazione{Se $\{\underline{v_i}\}$ è una base di $V$, ogni scelta di $f(\underline{v_i})$ è compatibile con le condizioni di linearità.
@@ -31,6 +34,7 @@ Quindi, per studiare gli spazi vettoriali tramite funzioni è meglio imporre con
 \paragraph{Corollario}
 Sia $f:V\to W$ lineare, allora dim $f(v) \geq$ dim $V$.
 
+\subsection{Isomorfismi}
 \definizione{
 	\begin{enumerate}
 		\item Due spazi vettoriali $V$ e $W$ sono detti isomorfi se esistono:
