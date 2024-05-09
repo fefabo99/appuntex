@@ -67,7 +67,7 @@ Il concetto di Nucleo di un'applicazione lineare è importante perchè fornisce 
 Inoltre, lo studio del nucleo fornisce un condizione necessaria e sufficiente relativa all'iniettività delle applicazioni lineari.
 
 \subsubsection{Dimensione del Nucleo}
-Siccome il Nucleo è un sottospazio vettoriale ha senso parlare della sua dimensione, anche detta indice di nullità.
+Siccome il Nucleo è un sottospazio vettoriale ha una dimensione, anche detta indice di nullità.
 \\Sia $f:V\to W$, essendo il nucleo un sottospazio di $V$ dovrà valere che:
 \[ 0 \leq dim(Ker(f)) \leq dim(V) \]
 Nei due casi limite avremo:
@@ -81,7 +81,27 @@ Nei due casi limite avremo:
 % 	DA AGGIUNGERE IMMAGINE
 % }
 
+\subsection{Iniettività e Suriettività}
+Dati due spazi vettoriali $V,W$ e un'applicazione $f:V\to W$ possiamo definire se quest'ultima è iniettiva o suriettiva:
+\paragraph*{Iniettivitá}
+\definizione{Un'applicazione lineare $f$ è iniettiva se e solo se la dimensione del suo nucleo é $0$:
+\[ dim(Ker(f)) = 0 \implies \;\; f\text{ è iniettiva} \]
+}
+Si può anche affermare che:
+\begin{itemize}
+	\item Se $dim(V)>dim(W)$ l'applicazione lineare non è iniettiva
+	\item Se $dim(V)=dim(W)$ l'applicazione lineare è iniettiva se e solo se è suriettiva.
+\end{itemize}
 
+\paragraph*{Suriettività}
+\definizione{
+	L'applicazione lineare $f$ è suriettiva se e solo se la dimensione dell'immagine è uguale alla dimensione dello spazio vettoriale di destinazione $W$.
+	\[ dim(Im(f)) = dim(W) \implies \;\; f\text{ è suriettiva} \]
+}
+Si può anche affermare che:
+\begin{itemize}
+	\item Se $dim(V)<dim(W)$ l'applicazione lineare non è suriettiva
+\end{itemize}
 
 \subsection{Teorema di Grasman}
 \teorema[di Grasman]{$f:V\to W$ lineare. Allora $dim(V)=dim(f(V))=dim(N(f))$}
