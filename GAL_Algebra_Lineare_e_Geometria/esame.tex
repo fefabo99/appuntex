@@ -163,6 +163,16 @@ Allora(si scelga l’affermazione corretta):}
 
 \domanda{15}{Nel sistema composto dalle equazioni $3x-2y+z=0$, $\alpha x + y + z = 0$ e $x+\alpha y - z=0$, per quali valori di $\alpha$ posso avere soluzioni non banali\footnote{La soluzione banale è $(0,0,0)$}?}
 
+\subsection{Omomorfismi}
+\domanda{25}{Sia $f_t:\R^3\to\R^3$ un omomorfismo che manda il piano di equazioni $2x+y-z=2$ nel piano di equazioni $y-tx-2z=0$, per $t\in \R$. è possibile che $f_t$ sia iniettiva?}
+\rispostechiuse{è sempre iniettiva}{Può essere iniettiva solo per un numero finito di $t$}{Può essere iniettiva, tranne per unn numero finito di $t$}{Non è mai iniettiva}
+\rispostaaperta{\textbf{d}
+\\Un omomorfismo si definisce iniettivo se $dim(ker(f))=0$. 
+\\In questo caso avremo che $dim(im(f)) = 2$ e $dim(dom(f))=3$, quindi per il teorema nullità più rango:
+\[ dim(dom(f)) = dim(Ker(f)) + dim(Im(f)) \implies dim(ker(f))=1\]
+Di conseguenza non può essere iniettiva.
+\osservazione{La dimensione di un piano in cui passa l'origine è 2, mentre la dimensione di un piano in cui non passa l'origine è 3.}
+}
 \subsection{Diagonalizzabilità di Matrici}
 
 \domanda[Diagonalizzabilità]{38}{Sia $k$ reale. Si consideri la matrice 
