@@ -214,7 +214,7 @@ $|E| \rt$ numero archi ndel grafo.--redirect-gateway def1
     \item un vertice viene estratto da Q al più una volta
     \item Ogni lista di adiacenza viene ispezionata quado il vertice viene estratto da Q
     (al più una volta)
-    \item Dimebnsione totale delle liste di adiacenza \ra $2|E|$
+    \item Dimensione totale delle liste di adiacenza \ra $2|E|$
     \item Costo di ispezioni delle liste di adiacenza \ra $O(|E|)$
 \end{itemize}
 \paragraph*{Complessità nel caso peggiore} $O(|V|+|E|)$
@@ -284,7 +284,7 @@ I colori sono gli stessi di BFS:
 \end{itemize}
 La differenza sta però nel colore dei vertici dopo la visita, perchè a differenza di BFS,
 in questo caso dopo la visita non avrò nessun vertice W bianco, ma saranno tuti B neri.\\
-Durante la visita chiaramente un vertice visitato, che han ancora archi uscenti da ispezionare
+Durante la visita chiaramente un vertice visitato, che ha ancora archi uscenti da ispezionare
 sarà grigio.
 \subsection{Vettore dei predecessori}
 $\pi[v]=u$ \ra predecessore di v nella visita $((u,v)\in E)$.
@@ -356,7 +356,7 @@ viene esplorato.
 \end{center}
 u \underline{non} è predecessore di v nella visita\\
 v è antenato di u nello stesso albero della visita \\ $\implies d[v] < d[u]$
-\paragraph*{Arco in avanti (arco F)} \ra Arco (u,v) rale che, quando l'arco viene esplorato,
+\paragraph*{Arco in avanti (arco F)} \ra Arco (u,v) tale che, quando l'arco viene esplorato,
 v è nero e $d[u] < d[v]$.
 \begin{center}
     \begin{tikzpicture}
