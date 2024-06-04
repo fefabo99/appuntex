@@ -1,0 +1,50 @@
+\chapter{Crittografia}
+\section{introduzione}
+La crittografia è la disciplina che studia le tecniche per codificare/decodificare mesasggi in modo da garantire la privacy della comunicazione fra due soggetti.
+
+Un messaggio in chiaro passa attraverso un algoritmo crittografico che insieme a una chiave 
+lo trasforma in un messaggio cifrato, e solo chi conosce la chiave può risalire al testo originale dal messaggio cifrato.
+
+\paragraph*{Attacchi "forza burta"}
+Gli attacchi di forza bruta provano tutte le istanze di un insieme finito di schemi crittografici che potrebbero corrispondere a un messaggio.
+
+\paragraph{Classi di algoritmi crittografici}
+Ci sono 3 principali classi di algoritmi crittografici:
+\begin{itemize}
+    \item Algoritmi Simmetrici (chiave segreta)
+    \item Algoritmi Asimmetrici (chiave pubblica)
+    \item Algoritmi di Hashing (message digest)
+\end{itemize}
+
+\subsection{Sistemi Simmetrici}
+I sistemi simmetrici, detti anche a chiave segreta, utilizzano la stessa chiave sia per codifica che per decodifica.
+Per istaurare una comunicazione confidenziale, due soggetti devono conoscere una chiave che non è nota a nessun altro.
+
+\paragraph{requisiti}
+I sistemi simmetrici supportano i tre requisiti:
+\begin{itemize}
+    \item Confidenzialità: solo chi conosce la chiave segreta può decodificare il messaggio.
+    \item Integrità: una volta che il messaggio è stato crittato, non è possibile manometterlo prima della ricezione.
+    \item Autenticazione e non ripudio: solo chi conosce la chiave segreta può essere mittente del messaggio.
+\end{itemize}
+
+\paragraph{Quante chiavi segrete?} $N$ individui per comunicare in maniera sicura a coppie hanno bisogno di $\frac{n-1}{2}$ chiavi, una per coppia.
+
+\subsubsection{DES: Data Encryption Standard}
+Il DES è basato sulla confusione e diffusione dell'informazione.
+Codifica i messaggi in blocchi da 64 bit, applicando 16 volte una funzione combinatoria $f$ ad ogni blocco usando la chiave come uno dei parametri.
+
+In questo modo assicura che i bit di output non abbiano relazioni ovvie con quelli di input, diffondendo l'effetto delle modifiche dell'input su più bit dell'output.
+
+Le stesse operazioni sono usate per codificare e decodificare i dati.
+
+\paragraph{Sicurezza di DES} Non esiste la prova matematica della sicurezza di DES, ed è violabile con forza bruta.
+Nell'ipotesi iniziale (1977) ci sarebbero voluti mediamente 700 anni per rompere una codifica DES, ma nel giro di 20 anni questa media si è abbassata a 4 giorni, rendendolo poco sicuro.
+
+Un'alternativa al DES è il Triple DES, che cifra 3 volte con 3 chiavi diverse.
+
+\subsubsection{AES: Advanced Encryption Standard}
+Un altro standard è l'AES, basato su trasformazioni (sostiutuzione, scorrimento, mescolamento dei bit) applicabili efficientemente a blocchi di 128 bit.
+Utilizza chiavi a partire da 128 bit ed estensibili, con un numero di cicli fissato fra 10 e 14 ma anch'essi estensibili.
+
+%Fine primo blocco di slide sulla crittografia.
