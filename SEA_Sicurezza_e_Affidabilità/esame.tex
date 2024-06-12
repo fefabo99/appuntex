@@ -56,4 +56,42 @@
 \end{enumerate}
 }
 
+\chapter{Sistemi Operativi}
+\domandaaperta{DAC-MAC}{Si descriva la differenza tra \textbf{DAC} e \textbf{MAC}, facendo un esempio di una politica di controllo degli accessi per ognuno dei due tipi}
+\rispostaaperta{
+    \paragraph{DAC - Discretionary Access Control} il proprietario di una risorsa ne concede l'accesso ad altri utenti a sua discrezione.
+    \\Un esempio è google documenti, in cui il proprietario decide di dare accesso a una sua risorsa a un utente singolarmente.
+    \paragraph{MAC - Mandatory Access Control} In questo caso il sistema impone un modello che limita e controlla la discrezionalità degli utenti nell'assegnare i diritti di accesso alle risorse.
+    \\Un esempio è la sicurezza multi-livello militare, in cui un utente può accedere soltanto a risorse che hanno un livello di segretezza uguale o inferiore al suo. 
+}
+
+\domandaaperta{ACL}{Si descriva il funzionamento di una Access Control List}
+\rispostaaperta{Una Access Control List è una lista dove, data ogni risorsa, possiamo inserire chi ha diritto e che diritti ha (Lettura, scrittura, esecuzione).
+Una ACL ci permette di risparmiare spazio rispetta alla tabella completa, è facile determinare la lista degli utenti che hanno un diritto specifico su una risorsa condivisa ed è facile revocare/modificare l'accesso di un utente ad una risorsa.
+\paragraph{Funzionamento} Per una risorsa la ACL contiene una lista di utenti o di gruppi e i rispettivi diritti (ownership, read, write, execute).
+}
+\domandaaperta{ACL - Unix}{Si descriva il funzionamento di una Access Control List basata su 9bit come quella di Unix/Linux}
+\rispostaaperta{Unix utilizza un modello semplificato della ACL che utilizza solo 9 bit di protezione (per file).
+Vengono definiti i permesi soltanto per L'owner, un gruppo definito, e il resto del mondo. Per ognuno di essi abbiamo 3 bit (R,W,X) che definiscono i rispettivi permessi.
+
+Questo tipo di ACL è molto più piccola ma permette una granularità molto inferiore.
+}
+
+\domandaaperta{Principi}{Si descrivano i concetti di Mediazione Completa e Principio dei Privilegi Minimi }
+\rispostaaperta{\paragraph{Mediazione Completa} Ogni tentativo di accesso deve essere controllato.}
+
+\domandaaperta{Bell-LaPadula}{Descrivere il modello Bell-LaPadula completo}
+\rispostaaperta{Il modello Bell-LaPadula è un modello MAC multilivello che nasce in ambito militare per garantire la confidenzialità dei dati.
+In questo tipo di modello gli utenti e le risorse sono classificati secondo dei livelli di sicurezza, in modo che un utente possa accedere ad un dato solo se il suo livello è maggiore o uguale a quello della risorsa.
+
+Bell-LaPadula implementa due proprietà:
+\begin{itemize}
+    \item No Read Up: Un soggetto non può leggere oggetti di livello più alto. (Simple Security)
+    \item No Write Down: Un soggetto non può scrivere oggetti di livello più basso (impedendogli di trasferire documenti del suo livello a livelli più bassi). (Confinement)
+\end{itemize}
+
+Bell-Lapadula può essere esteso con \tetbf{compartimenti}, in cui ad ogni risorsa e utente è assegnato un compartimento, e un utente può accedere ad una risorsa sse il suo livello è maggiore o uguale a quello della risorsa e se fanno parte dello stesso compartimento.
+}
+
+\domandaaperta{Autenticazione Challenge-Response}
 \end{document}
