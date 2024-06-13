@@ -17,35 +17,29 @@
 \tableofcontents
 
 \chapter{Crittografia}
-\domandaaperta{simmetrica vs asimmetrica}{Si spieghino le differenze tra crittografia simmetrica e assimmetrica}
-\rispostaaperta{
-    \paragraph{Simmetrica} Nella crittografia simmetrica si utilizza una sola chiava, sia per cifrare che per decifrare un messaggio:
+
+\subsection{Crittografia Simmetrica}
+    Nella crittografia simmetrica si utilizza una sola chiave, sia per cifrare che per decifrare un messaggio:
     Il mittente cifra il messaggio con la chiave $k$ e lo invia al destinatario, che dovrà decifrare il messaggio con la stessa chiave $k$
-    \paragraph{Asimmetrica} Nella crittografia asimmetrica ogni utente genera una coppia di chiavi (legate matematicamente), una pubblica e una privata.
-    La chiave pubblica è accessibile in chiaro a tutti, quella privata invece rimane segreta e conosciuta solo a chi l'ha generata. Queste chiavi sono fatte in modo che se una viene utilizzata per cifrare un messaggio esso potrà essere decifrato solo con l'altra.
+    \begin{center}
+        decrypt(encrypt(message,$k$))
+    \end{center}
+    \paragraph{Numero di Chiavi} Ogni coppia di utenti ha bisogno di una chiave segreta per potersi scambiare messagi,
+    quindi il numero di chiavi necessario è $\frac{N(N-1)}{2}$, con $N$ numero di utenti.
+
+\subsection{Crittografia Asimmetrica}    
+    Nella crittografia asimmetrica ogni utente genera una coppia di chiavi (legate matematicamente), una pubblica e una privata.
+    La chiave pubblica è accessibile in chiaro a tutti, quella privata invece rimane segreta e conosciuta solo a chi l'ha generata. 
+    Queste chiavi sono fatte in modo che se una viene utilizzata per cifrare un messaggio esso potrà essere decifrato solo con l'altra.
     \\Quindi se devo inviare un messaggio a un destinatario lo cifrerò con la sua chiave pubblica, di modo che soltanto esso potrà decifrarlo con la sua chiave privata.
-}
+    
+    \paragraph{Numero di Chiavi} Nella crittografia asimmetrica è necessaria una coppia di chiavi per ogni utente, quindi $2N$ chiavi.
 
-\domandaaperta{}{Si descriva la relazione fra numero di chiavi e utenti per la crittografia simmetrica e asimmetrica}
-\rispostaaperta{\paragraph{simmetrica} Per la crittografia simmetrica ogni coppia di utenti ha bisogno di una chiave segreta per potersi scambiare messagi, quindi il numero di chiavi necessario è $\frac{N(N-1)}{2}$
-\paragraph{Asimmetrica} Nella crittografia asimmetrica invece è solo necessaria una coppia di chiavi per ogni utente, quindi $2N$ chiavi.
-}
-
-
-\domandaaperta{}{Si spieghi il funzionamento della crittografia a \textbf{chiave pubblica}, indicando in particolare come si può usarla per implementare \textbf{firme digitali}}
-\rispostaaperta{
-    \paragraph{Crittografia a chiave pubblica}
-    Nei sistemi asimmetrici a chiave pubblica genero una coppia di chiavi, una pubblica e una privata. 
-    \\ Le due chiavi sono generate matematicamente in modo che un messaggio criptato con una chiave può essere decrpitato solo con la rispettiva altra chiave.
-    Quindi se devo inviare un messaggio ad un altro utente, cripto il messaggio con la mia chiave privata e lo invio ad un altro utente che lo decripterà con la mia chiave pubblica (che è sempre disponibile).
-
-    \paragraph{Firme Digitali} Per realizzare firme digitali, si crea un digest del messaggio tramite un algoritmo di Hashing e lo si critta con la chiave privata del mittente.
-    Il messaggio viene quindi inviato al destinatario insieme al digest crittato, che verificherà la mia identità decrittando il digest con la mia chiave pubblica.
-    \\In questo modo avrà sia conferma che il mittente sono io, sia la conferma che il messaggio è integro verificando a sua volta con il digest del messaggio inviato.
-}
-
-\domandaaperta{2}{Si descriva come si possono combinare crittografia a chiave asimmetrica e algoritmi di Message Digest per ottenere meccanismi efficienti di \textbf{firma digitale}}
-\rispostaaperta{Firmare un messaggio intero è computazionalmente molto costoso, quindi si effettua prima un digest (ad esempio con MD5) del messaggio e poi si usa RSA per crittare il digest.
+\subsection{Firme Digitali}
+Le Firme Digitali sono utilizzate per verificare la provenienza e l'integrità di un messaggio.
+\\Firmare un messaggio intero è computazionalmente molto costoso, quindi generalmente si effettua prima un digest (MD5) del messaggio e poi si usa RSA per crittare il digest.
+Il messaggio viene quindi inviato al destinatario insieme al digest crittato, che verificherà l'identità del mittente decrittando il digest con la chiave pubblica dello stesso.
+\\In questo modo avrà sia conferma del mittente, sia la conferma che il messaggio è integro verificando a sua volta con il digest del messaggio inviato.
 \\Quindi i passaggi sono:
 \begin{enumerate}
     \item Il mittente crea il digest del messaggio da inviare.
@@ -54,36 +48,49 @@
     \item Il destinatario, ricevuti il messaggio e la firma, decifra la firma con la chiave pubblica del mittente ottenendo così il messaggio e il relativo digest.
     \item Per controllare l'autenticità del messaggio genera a sua volta un digest di esso e lo confronta con il digest ricevuto.
 \end{enumerate}
-}
+
+    % \paragraph{Crittografia a chiave pubblica}
+    % Nei sistemi asimmetrici a chiave pubblica genero una coppia di chiavi, una pubblica e una privata. 
+    % \\ Le due chiavi sono generate matematicamente in modo che un messaggio criptato con una chiave può essere decrpitato solo con la rispettiva altra chiave.
+    % Quindi se devo inviare un messaggio ad un altro utente, cripto il messaggio con la mia chiave privata e lo invio ad un altro utente che lo decripterà con la mia chiave pubblica (che è sempre disponibile).
+
+
+\subsection{Domande}
+\domandaaperta{}{Si spieghino le differenze tra Crittografia Simmetrica e Asimmetrica}
+\domandaaperta{}{Si descriva la relazione fra numero di chiavi e utenti per la crittografia simmetrica e asimmetrica}
+\domandaaperta{}{Si spieghi il funzionamento della crittografia a \textbf{chiave pubblica}, indicando in particolare come si può usarla per implementare \textbf{firme digitali}}
+\domandaaperta{}{Si descriva come si possono combinare crittografia a chiave asimmetrica e algoritmi di Message Digest per ottenere meccanismi efficienti di \textbf{firma digitale}}
+\domandaaperta{}{Perché la crittografia DES non é piú considerata sicura? Quali modi di suo utilizzo potrebbero migliorare la sicurezza?}
+
 
 \chapter{Sistemi Operativi}
-\domandaaperta{DAC-MAC}{Si descriva la differenza tra \textbf{DAC} e \textbf{MAC}, facendo un esempio di una politica di controllo degli accessi per ognuno dei due tipi}
-\rispostaaperta{
-    \paragraph{DAC - Discretionary Access Control} il proprietario di una risorsa ne concede l'accesso ad altri utenti a sua discrezione.
-    \\Un esempio è google documenti, in cui il proprietario decide di dare accesso a una sua risorsa a un utente singolarmente.
-    \paragraph{MAC - Mandatory Access Control} In questo caso il sistema impone un modello che limita e controlla la discrezionalità degli utenti nell'assegnare i diritti di accesso alle risorse.
-    \\Un esempio è la sicurezza multi-livello militare, in cui un utente può accedere soltanto a risorse che hanno un livello di segretezza uguale o inferiore al suo. 
-}
+\subsection{DAC}
+Nel modello DAC (Discretionary Access Control) il proprietario di una risorsa ne concede l'accesso ad altri utenti a sua discrezione. 
+è quindi il proprietario della risorsa che decide ogni singolo utente che può accedere ad essa.
+\paragraph*{esempi} Un esempio è google documenti, in cui il proprietario decide di dare accesso a una sua risorsa a un utente singolarmente.
 
-\domandaaperta{ACL}{Si descriva il funzionamento di una Access Control List}
-\rispostaaperta{Una Access Control List è una lista dove, data ogni risorsa, possiamo inserire chi ha diritto e che diritti ha (Lettura, scrittura, esecuzione).
+\subsection{MAC} 
+Nel modello MAC (Mandatory Access Control) il sistema impone un modello che limita e controlla la discrezionalità degli utenti nell'assegnare i diritti di accesso alle risorse.
+\paragraph*{esempi} Un esempio è la sicurezza multi livello militare, in cui ad ogni utente e risorsa è assegnato un livello di segretezza.
+
+\subsection{Access Control List}
+Una Access Control List è una lista dove, data ogni risorsa, possiamo inserire chi ha diritto e che diritti ha (Lettura, scrittura, esecuzione).
 Una ACL ci permette di risparmiare spazio rispetta alla tabella completa, è facile determinare la lista degli utenti che hanno un diritto specifico su una risorsa condivisa ed è facile revocare/modificare l'accesso di un utente ad una risorsa.
+
 \paragraph{Funzionamento} Per una risorsa la ACL contiene una lista di utenti o di gruppi e i rispettivi diritti (ownership, read, write, execute).
-}
-\domandaaperta{ACL - Unix}{Si descriva il funzionamento di una Access Control List basata su 9bit come quella di Unix/Linux}
-\rispostaaperta{Unix utilizza un modello semplificato della ACL che utilizza solo 9 bit di protezione (per file).
+
+\paragraph{ACL in Unix}
+Unix utilizza un modello semplificato della ACL che utilizza solo 9 bit di protezione (per file).
 Vengono definiti i permesi soltanto per L'owner, un gruppo definito, e il resto del mondo. Per ognuno di essi abbiamo 3 bit (R,W,X) che definiscono i rispettivi permessi.
 
 Questo tipo di ACL è molto più piccola ma permette una granularità molto inferiore.
-}
 
-\domandaaperta{Principi}{Si descrivano i concetti di Mediazione Completa e Principio dei Privilegi Minimi }
-\rispostaaperta{
-    \paragraph{Mediazione Completa} Ogni tentativo di accesso deve essere controllato.
-}
+\subsection{Principi di Mediazione Completa e Privilegi Minimi}
+\paragraph{Mediazione Completa} Ogni tentativo di accesso deve essere controllato.
 
-\domandaaperta{Bell-LaPadula}{Descrivere il modello Bell-LaPadula completo}
-\rispostaaperta{Il modello Bell-LaPadula è un modello MAC multilivello che nasce in ambito militare per garantire la confidenzialità dei dati.
+
+\subsection{Bell-LaPadula}
+Il modello Bell-LaPadula è un modello MAC multilivello che nasce in ambito militare per garantire la confidenzialità dei dati.
 In questo tipo di modello gli utenti e le risorse sono classificati secondo dei livelli di sicurezza, in modo che un utente possa accedere ad un dato solo se il suo livello è maggiore o uguale a quello della risorsa.
 
 Bell-LaPadula implementa due proprietà:
@@ -93,7 +100,71 @@ Bell-LaPadula implementa due proprietà:
 \end{itemize}
 
 Bell-Lapadula può essere esteso con \textbf{compartimenti}, in cui ad ogni risorsa e utente è assegnato un compartimento, e un utente può accedere ad una risorsa sse il suo livello è maggiore o uguale a quello della risorsa e se fanno parte dello stesso compartimento.
-}
 
-\domandaaperta{Autenticazione Challenge-Response}
+\subsection*{Autenticazione Challenge-Response}
+Nei protocolli Challenge-Response la Password è una funzione matematica F(x) che l'utente sa calcolare. Per l'autenticazione il sistema propone un valore $X$ e l'untente deve rispondere con il valore corretto $F(X)$.
+
+\paragraph{C-R con chiave Simmetrica}
+Nell'autenticazione C-R con chiave simmetrica, client e server condividono una chiave segreta $K$.
+\\In questo caso avremo che:
+\begin{itemize}
+    \item Challenge: Il sistema passa all'utente un messaggio.
+    \item Response: L'utente codifica il messaggio con la chiave segreta $K$.
+    \item Autenticazione: Se il messaggio può essere decodificato con successo.
+\end{itemize}
+In questo caso la Chiave non viene mai mandata sulla rete.
+
+\paragraph{Nonce} La challenge viene cambiata di volta in volta, altrimenti basterebbe intercettre il messaggio cifrato per poter accedere.
+
+%\paragraph*{C-R Assimetrica}
+
+\subsection{Domande}
+\domandaaperta{}{Si descriva la differenza tra \textbf{DAC} e \textbf{MAC}, facendo un esempio di una politica di controllo degli accessi per ognuno dei due tipi}
+
+\domandaaperta{}{Si descriva il funzionamento di una Access Control List}
+\domandaaperta{}{Si descriva il funzionamento di una Access Control List basata su 9bit come quella di Unix/Linux}
+
+\domandaaperta{}{Si descrivano i concetti di Mediazione Completa e Principio dei Privilegi Minimi }
+
+\domandaaperta{}{Descrivere il modello Bell-LaPadula completo}
+
+\domandaaperta{}{Si spieghi come la crittografia simmetrica possa essere usata per implementare un algoritmo di autenticazione \textbf{challenge-response}}
+\domandaaperta{}{Si descriva Challenge-Response con chiave Asimmetrica}
+
+\chapter{Sicurezza nelle Applicazioni}
+\subsection{Attacco SQL-Injection}
+\paragraph*{Funzionamento}
+L'attacco SQL Injection consiste nell'insetimento di una query SQL attraverso l'input utente al fine di modificare l'esecuzione di comandi SQL parametrici.
+\\Un attacco eseguito con successo può:
+\begin{itemize}
+    \item Leggere/Modificare dati sensibili
+    \item Eseguire operazioni di amministrazione del database
+    \item Recuperare il contenuto di un file presente nel filesystem del dbms.
+\end{itemize}
+SQL Injection si potrebbe manifestare in tutti i programmi che fanno uso di un DBMS.
+\paragraph*{Contromisure} Le contromisure per questo tipo di attacco sono:
+\begin{itemize}
+    \item Encoding sull'input: Trasformare i caratteri potenzialmente terminatori in una certa codifica ($< \to $ \&lt;).
+    \item Validazione dell'input: Accettarlo o rifiutarlo in base ad una white/black list per permettere di evitare input potenzialmente dannosi.
+\end{itemize}
+
+\subsection{Attacco Buffer Overflow}
+\paragraph*{Funzionamento}
+Un attacco di tipo Buffer-Overflow, dovuto alla mancanza di controli OutOfBound, consiste nello scrivere in un buffer uscendo intenzionalmente dai limiti dello stesso, andando a scrivere in aree di memoria non assegnategli adiacenti.
+Questo permette di modificare vaari valori, tra cui variabili locali e l'activation record (che contiene il return address) di una funzione.
+\\In genere questo tipo di attacco cerca di sovrascrivere il return aress delle funzioni in esecuzione, in modo da farlo puntare ad una funzione malevola inserita dall'attaccante nel buffer stesso.
+
+\paragraph*{ShellCode} Il codice malevolo solitamente è uno shellcode, ovvero un programma che tramite una chiamata di sistema permette di sostituire il processo corrente con uno nuovo (una shell) ed effettuare una syscall per ottenere privilegi Kernel.
+\paragraph*{Difficoltà} Le due difficoltà principali nell'uso di questo exploit sono:
+\begin{itemize}
+    \item Modifica del Base Pointer, se esso viene modificato e presenta un valore inconsistente, il programma termina.
+    \item Bisogna indovinare la posizione esatta del return address.
+\end{itemize}
+\paragraph*{Contromisure}
+Le principali contromisure sono:
+\begin{itemize}
+    \item Modifica degli indirizzi di memoria virtuale tra un'esecuzione e l'altra.
+    \item Introduzione di un Canary Value, che cambia ad ogni esecuzione e viene inserito dopo il base pointer.
+\end{itemize}
+
 \end{document}
