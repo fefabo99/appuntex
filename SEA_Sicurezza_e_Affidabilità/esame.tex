@@ -54,6 +54,18 @@ Il messaggio viene quindi inviato al destinatario insieme al digest crittato, ch
     % \\ Le due chiavi sono generate matematicamente in modo che un messaggio criptato con una chiave può essere decrpitato solo con la rispettiva altra chiave.
     % Quindi se devo inviare un messaggio ad un altro utente, cripto il messaggio con la mia chiave privata e lo invio ad un altro utente che lo decripterà con la mia chiave pubblica (che è sempre disponibile).
 
+\subsection{DES e AES}
+\paragraph*{DES} il Data Encryption Standard è basato su confusione e diffusione dell'informazione:
+\begin{itemize}
+    \item Codifica messaggi in blocchi da 64 bit;
+    \item Applica 16 volte una funzione combinatoria F ad ogni blocco usando la chiave come uno dei parametri di F.
+\end{itemize}
+Des ha delle problematiche però, perchè è stato bucato negli anni 70 e non esiste la prova matematica della sua sicurezza.
+
+é stato quindi sostituito da AES o da TripleDES, che cifra tre volte con 3 chiavi diverse.
+
+\paragraph*{AES}
+Adbanced ES è basato su trasformazioni applicabili a blocchi di 128 bit, utilizza chiavi da 128,192 o 256bit (estensibiil) e il numero di cicli è fissato tra 10 e 14 (estensibili).
 
 \subsection{Domande}
 \domandaaperta{}{Si spieghino le differenze tra Crittografia Simmetrica e Asimmetrica}
@@ -154,17 +166,134 @@ Un attacco di tipo Buffer-Overflow, dovuto alla mancanza di controli OutOfBound,
 Questo permette di modificare vaari valori, tra cui variabili locali e l'activation record (che contiene il return address) di una funzione.
 \\In genere questo tipo di attacco cerca di sovrascrivere il return aress delle funzioni in esecuzione, in modo da farlo puntare ad una funzione malevola inserita dall'attaccante nel buffer stesso.
 
-\paragraph*{ShellCode} Il codice malevolo solitamente è uno shellcode, ovvero un programma che tramite una chiamata di sistema permette di sostituire il processo corrente con uno nuovo (una shell) ed effettuare una syscall per ottenere privilegi Kernel.
+\paragraph*{ShellCode} 
+Il codice malevolo solitamente è uno shellcode, ovvero un programma che tramite una chiamata di sistema permette di sostituire il processo corrente con uno nuovo (una shell) ed effettuare una syscall per ottenere privilegi Kernel.
+\\Spesso è contornato da istruzioni NOP, ovvero istruzioni che non fanno nulla, in modo da poter fare un salto impreciso.
+
 \paragraph*{Difficoltà} Le due difficoltà principali nell'uso di questo exploit sono:
 \begin{itemize}
     \item Modifica del Base Pointer, se esso viene modificato e presenta un valore inconsistente, il programma termina.
     \item Bisogna indovinare la posizione esatta del return address.
 \end{itemize}
+\paragraph*{Heap e Stack} con buffer overflow posso modificare sia Heap che Stack, ma solo modificando lo stack posso modificare gli indirizzi di ritorno. 
 \paragraph*{Contromisure}
 Le principali contromisure sono:
 \begin{itemize}
     \item Modifica degli indirizzi di memoria virtuale tra un'esecuzione e l'altra.
     \item Introduzione di un Canary Value, che cambia ad ogni esecuzione e viene inserito dopo il base pointer.
 \end{itemize}
+
+\subsection{Attacco XSS}
+L'attacco di tipo Cross Site Scripting è un tipo di code injection.
+\\Si verifica quando un attaccante riesce ad eseguire del codice malevolo all'interno del browser di un utente sfruttando una vulnerabilità di un sito web ignaro dell'attacco.
+
+Il codice malevolo è implementato in un linguaggio di scripting, ad esempio JS.
+
+\paragraph{Tipologie}
+Esistono 3 tipologie di XSS:
+\begin{itemize}
+    \item Persistent XSS, il codice risiede nel DB del server (inserito tramite un form)
+    \item Reflected XSS, il codice risiede nella richiesta HTTP (inserito in un URL malevolo)
+    \item DOM-Based, la vulnerabilità risiede nel codice eseguito dal client.
+\end{itemize}
+
+\subsection{NULL Pointer Dereference} %DA FARE
+
+
+\subsection{Domande Sicurezza Applicazioni}
+\domandaaperta{}{Si descriva il funzionamento di un attacco SQL injection}
+\domandaaperta{}{Si descriva il funzionamento di un attacco di tipo Buffer Overflow}
+\domandaaperta{}{Se opero con codice su rom + heap è possibile avereun buffer overflow?}
+
+
+\chapter{Sicurezza nelle Reti}
+\subsection{Firewall}
+Il firewall è un sistema HW/SW per controllare il traffico in ingresso/uscita da una rete fidata rispetto a reti non sicure.
+
+\paragraph*{Tipi di Firewall}
+\begin{itemize}
+    \item Packet Filter: Agisce sui protocolli di rete e monitora sull'Header IP dei Pacchetti.
+    \item Application Gateway: Agisce sui protocolli applicativi e monitora sui dati applicativi.
+\end{itemize}
+
+\subsubsection*{Packet Filter Firewall}
+Il Firewall Packet Filter agisce a livello del procollo di rete, e quinid IP.
+Esamina in pacchetti in transito ed esegue una selezione in base al loro header IP, quindi l'indirizzo di sorgente/destinazione o la porta utilizzata.
+
+\paragraph*{Esempi}
+\begin{itemize}
+    \item Bloccare il traffico verso alcune porte o proveniente da host pericolosi o non fidati.
+    \item Bloccare pacchetti Malformati per difendere da attacchi DoS.
+    \item Non ammettere pacchetti esterni con un indirizzo sorgente interno alla rete, per difendere da IP-Spoofing. 
+\end{itemize}
+
+Tutte le decisioni prese da quessto firewall si basano su una tabella di filtraggio, la quale identifica tutti quei indirizzi IP le cui comunicazioni devono essere bloccate.
+
+\subsubsection{Application Gateway Firewall}
+Il firewall Application Gateway, anche chiamato proxy, agisce a livello applicativo
+monitorando il traffico fra applicazioni mettendosi tra le due e ridistribuendo pacchetti tra le due applicazioni.
+
+Questo tipo di firewall non agisce su pacchetti singoli ma su flussi di pacchetti e permette di controllare i dati pplicativi in dettaglio.
+
+\paragraph*{Esempi}
+\begin{itemize}
+    \item Filtro anti Spam.
+    \item Proxy FTP per bloccare i trasferimenti di file in uscita ma non quelli in entrata.
+\end{itemize}
+
+\subsection{IPsec}
+IPsec, abbreviazione di IP Security, è uno standard per reti a pacchetto che si prefigge di ottenere connessioni sicure su reti IP.
+è uno standard si sicurezza a livello di rete, implementa privacy e integrità a livello IP:
+\begin{itemize}
+    \item Trasperente alle applicazioni e agli utenti;
+    \item Host-to-Host;
+    \item Anche con protocolli di trasporto connection-less;
+\end{itemize}
+
+\paragraph*{Idea di Base}
+L'idea di base di IPsec è quella di offrire un livello di sicurezza aggiuntivo, lavorando sopra il livello IP, sostanzialmente criptando anche i metadati del livello TCP.
+Questo permette di nascondere il tipo di comunicazione che sta avvenendo a un potenziale attaccante, il quale (in modalità trasporto) saprà soltanto che la macchina A sta comunicando con la macchina B.
+
+\paragraph*{Modalità}
+IPsec ha due modalità di funzonamento:
+\begin{itemize}
+    \item Modalità Trasporto, che offre una protezione simile a SSL.
+    \item Modalità Tunneling, in cui un ulteriore header incapsula i pacchetti per l'instradamento fra i due host, proteggendo le informazioni di rete originali 
+\end{itemize}
+
+\paragraph{Difese contro attacchi}
+IPsec permette:
+\begin{itemize}
+    \item Maggiore restistenza a sniffing e modifica dei dati,
+    \item Maggiore protezione contro traffic analysis
+    \item Maggiore proteione contro IPspoofing
+\end{itemize}
+\subsubsection{Modalità Trasporto}
+IPsec in modalità trasporto è Host-to-Host, vengono criptati tutti i metadati da TCP compreso in sù.
+Grazie alla modalità trasposrto di IPsec si vuole offrire un livello di sicurezza in più, lavorando sopra al livello IP e andando a criptare i metadati del livello TCP.
+Chi intercetta il pacchetto non potrà quindi ne sapere il conenuto del pacchetto e neanche chi sono i veri attori coinvolti.
+\paragraph*{Struttura} il pacchetto sarà composto da:
+\begin{itemize}
+    \item Informazioni Protette, quindi il pacchetto applicativo e l'header TCP.
+    \item IPsec
+    \item Header IP (in chiaro)
+\end{itemize}
+
+\subsubsection{Modalità Tunneling}
+Nella modalità Tunneling abbiamo un ulteriore header che incapsula i pacchetti per l'instradamento fra i due host (tunnel end-points), proteggendo le informazioni di rete originali.
+
+\paragraph*{Struttura}
+\begin{itemize}
+    \item Informazioni Protette, quindi il pacchetto applicativo, l'header TCP e l'header IP originale.
+    \item IPsec
+    \item Nuovo Header IP (in chiaro).
+\end{itemize}
+
+
+
+\subsection{Domande Sicurezza Reti}
+\domandaaperta{}{Si spieghi come funziona un firewall "Packet-Filter", e come può essere usato per proteggere una sottorete da attacchi IP-Spoofing provenienti dall'esterno della sottorete stessa.}
+\domandaaperta{}{Si descrivano le differenze tra firewall di tipo packet filter e firewall di tipo application Gateway.}
+\domandaaperta{}{Si descriva la struttura di un pacchetto IP trasmesso usando il IPsec in modalità trasporto/ modalità tunneling, spiegando che tipo di protezione si ottiene}
 
 \end{document}
