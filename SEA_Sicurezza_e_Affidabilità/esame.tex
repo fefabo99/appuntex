@@ -198,7 +198,11 @@ Esistono 3 tipologie di XSS:
     \item DOM-Based, la vulnerabilità risiede nel codice eseguito dal client.
 \end{itemize}
 
-\subsection{NULL Pointer Dereference} %DA FARE
+\subsection{NULL Pointer Dereference}
+\paragraph{Null} Il valore NULL viene tipicamente assegnato alle variabili puntatore dopo la loro dichiarazione per 
+indicare che la variabile è vuota (non punta a niente).
+\\Per il sistema operativo rappresenta un valore non valido e un tentativo di accedere alla risorsa null porta a un errore in runtime.
+\\Per l'hardware invece é l'indirizzo 0 e rappresenta la prima cella di memoria.
 
 
 \subsection{Domande Sicurezza Applicazioni}
@@ -243,7 +247,20 @@ Questo tipo di firewall non agisce su pacchetti singoli ma su flussi di pacchett
 
 \subsection{SSL}
 SSL, ovvero Secure Socket Layer aggiunge privacy e integrità ai pacchetti in transito su una connessione TCP-IP.
+\\SSL Modifica il pacchetto applicativo e aggiunge informazioni per permettere alla macchina di destinazione di riconoscere l'informazione.
 
+\paragraph{SSL Handshake}
+L'Handshake SSL é utilizzato per stabilire la connessione sicura fra un SSL Client e un SSL Server.
+Precede lo scambio di dati relativo alla sessione applicativa (HTTP).
+\\L'Hanshake Negozia la versione del protocollo, gli algoritmi crittografici per privacy e integritá.
+
+\paragraph{Fasi dell'Handshake}
+\begin{enumerate}
+    \item Hello Phase
+    \item Server Authentication
+    \item Client Authentication
+    \item Finish.
+\end{enumerate}
 
 \subsection{IPsec}
 IPsec, abbreviazione di IP Security, è uno standard per reti a pacchetto che si prefigge di ottenere connessioni sicure su reti IP.
