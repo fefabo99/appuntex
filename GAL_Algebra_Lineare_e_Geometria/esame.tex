@@ -212,5 +212,82 @@ Domande risposte da me
 \domanda[Omomorfismi]{Quali dei seguenti omomorfismi $\R^2\to \R^2$ manda il quadrato di vertici $(0,0),(0,3),(3,0),(3,3)$ nel disco chiuso centrato in (0,0) e di raggio 2?}
 %\rispostachiusa{\textbf{d}$(1,0)\to(1/2,1/3) e (0,1)\to(-1/4,1/4)$}
 
+\chapter{Domande rispote da Ulerich}
+\section{Domanda - Spazi vettoriali}
+Sia $V = <(1,0,-1),(2,2,0)>$ il sottospazio vettoriale generato da due vettori tra parentesi. Esistono valori di $\lambda \in R$ che rendono 
+$V_{\lambda} = V \cup \{(\lambda, 1 - \lambda, 0)\}$ un sottospazio vettoriale di $R^3?$.
+\paragraph*{Risposta (generata da ChatGPT 4o, sembra avere senso e la risposta è effetticamente contenuta in una crocetta)}
+Per determinare se esistono valori di \( \lambda \in \mathbb{R} \) tali che \( V_{\lambda} = V \cup \{(\lambda, 1 - \lambda, 0)\} \) sia un sottospazio vettoriale di \( \mathbb{R}^3 \), dobbiamo verificare se l'insieme \( V_{\lambda} \) è chiuso rispetto all'addizione vettoriale e alla moltiplicazione per uno scalare.\\
+\subsection{Passi per la Soluzione}
+
+1. Definire il sottospazio \( V \):
+
+   Il sottospazio \( V \) è generato dai vettori \( (1, 0, -1) \) e \( (2, 2, 0) \). Scriviamo \( V \) come combinazione lineare di questi due vettori:
+
+   \[
+   V = \{ a(1, 0, -1) + b(2, 2, 0) \mid a, b \in \mathbb{R} \}.
+   \]
+
+2. Condizione per essere un sottospazio vettoriale:
+
+   \( V_{\lambda} \) sarà un sottospazio di \( \mathbb{R}^3 \) se è chiuso sotto l'addizione e la moltiplicazione per uno scalare. Questo significa che per qualsiasi \( u, v \in V_{\lambda} \) e \( c \in \mathbb{R} \), \( u + v \in V_{\lambda} \) e \( cu \in V_{\lambda} \).
+
+3. Esaminare l'elemento aggiuntivo \( (\lambda, 1 - \lambda, 0) \):
+
+   Per \( V_{\lambda} \) essere un sottospazio, \( (\lambda, 1 - \lambda, 0) \) deve appartenere a \( V \). Quindi, dobbiamo verificare se esistono \( a, b \in \mathbb{R} \) tali che:
+
+   \[
+   (\lambda, 1 - \lambda, 0) = a(1, 0, -1) + b(2, 2, 0).
+   \]
+
+   Riscriviamo le componenti per ottenere un sistema di equazioni:
+
+   \[
+   \begin{cases}
+   \lambda = a + 2b, \\
+   1 - \lambda = 2b, \\
+   0 = -a.
+   \end{cases}
+   \]
+
+4. Risoluzione del sistema di equazioni:
+
+   Dalla terza equazione, otteniamo:
+
+   \[
+   a = 0.
+   \]
+
+   Sostituendo \( a = 0 \) nelle prime due equazioni:
+
+   \[
+   \begin{cases}
+   \lambda = 2b, \\
+   1 - \lambda = 2b.
+   \end{cases}
+   \]
+
+   Poiché \( \lambda = 2b \), sostituiamo nella seconda equazione:
+
+   \[
+   1 - 2b = 2b \implies 1 = 4b \implies b = \frac{1}{4}.
+   \]
+
+   Dunque,
+
+   \[
+   \lambda = 2b = 2 \times \frac{1}{4} = \frac{1}{2}.
+   \]
+
+5. Conclusione:
+
+   Esiste un valore di \( \lambda \) che rende \( V_{\lambda} \) un sottospazio vettoriale di \( \mathbb{R}^3 \). Questo valore è:
+
+   \[
+   \lambda = \frac{1}{2}.
+   \]
+
+   Per \( \lambda = \frac{1}{2} \), il vettore \( (\lambda, 1 - \lambda, 0) = \left(\frac{1}{2}, \frac{1}{2}, 0\right) \) è una combinazione lineare dei vettori \( (1, 0, -1) \) e \( (2, 2, 0) \), quindi \( V_{\lambda} = V \) e quindi è un sottospazio vettoriale.
+
 
 \end{document}
