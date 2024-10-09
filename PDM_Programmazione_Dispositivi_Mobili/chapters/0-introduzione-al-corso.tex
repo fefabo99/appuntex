@@ -1,0 +1,45 @@
+% 02/10/2024
+
+\chapter{Introduzione al corso}
+\section{Obiettivi del corso}
+Il corso ha come obiettivo acquisire:
+\begin{itemize}
+    \item \textbf{\underline{Conoscenze}} (principi di buona programmazione) relative al mondo dello sviluppo mobile
+    \item \textbf{\underline{Competenze}} sullo sviluppo Android 
+\end{itemize}
+Ma perché è stato scelto proprio Android? Comporta diversi vantaggi rispetto ad altri sistemi operativi come iOs:
+\begin{itemize}
+    \item più open source
+    \item essendo più open source conosciuto meglio dai docenti che sono quindi più in grado di insegnare e correggere
+    \item Android, nel caso uno voglia poi accedere allo Store e pubblicare un'app, prevede una tassa di iscrizione di \texttildelow 25\$ \textbf{una tantum}, mentre per iOs è di 100\$ ma penso sia \textit{annuale}.
+\end{itemize}
+Ci aspettiamo che alla fine del corso siate in grado di:
+\begin{itemize}
+    \item Sviluppare un'applicazione ``from scratch'' che segua l'\textbf{\underline{architettura}} di riferimento Android
+    \begin{itemize}
+        \item alla fine se abbiamo rispettato o no l'architettura presentata a lezione è quello che guardano di più della nostra app, se non è bellissima o funzionante al 101\% importa meno
+    \end{itemize}
+    \item Comprendere il funzionamento di applicazioni Android
+\end{itemize} 
+
+\section{Il corso in pillole}
+\begin{enumerate}
+    \item Introduzione alla progettazione e allo sviluppo di applicazioni mobili
+    \item Linee guida sull'architettura dell'app
+    \item Sviluppo di un'app in Java\\
+    Per il nostro progetto possiamo usare Java o Kotlin, la teoria rimane la stessa, ma a lezione useremo solo Java. Questo perché è già stato presentato ed usato in altri due corsi e quindi conosciuto meglio da docenti e studenti. Inoltre, è previsto (penso in entrambi i linguaggi) l'uso di lambda functions, più elegante e funzionale in Kotlin, però buono anche in Java. Infine, Java risulta più conveniente per l'uso di librerie esterne di Kotlin, che è più giovane e meno conosciuto e quindi ha meno librerie disponibili.\\
+    Eventualmente, sul sito Google ci sono disponibili diversi tutorial gratuiti (video) per imparare Kotlin e per la migrazione del mio progetto da Kotlin a Java.\\
+    L'app deve essere robusta. La robustezza si basa sull'autonomia dalla connessione di rete. Il concetto ``\underline{offline-first}'' è molto importante, prima di tutto l'app deve funzionare senza connessione. Inoltre, deve essere anche \underline{evolvibile}. Oltre ai suoi componenti funzionali (ovvero le sue \underline{funzionalità}) di base, ci sono determinate funzionalità che devono essere mantenute ed evolute/ampliate nel tempo.\\
+    La nostra app deve essere:
+    \begin{enumerate}
+        \item Compliant con l'architettura di riferimento\\
+        La cosa \underline{importante} della nostra app non è l'estetica o se funziona bene, ma \textbf{\underline{come}} l'architettura presentata a lezione viene sviluppata.
+        \item Con UI
+        \item Che accede alla rete per i dati (API esterne)
+        \item Che fa persistenza (\underline{locale + remoto})\\
+        Ovvero deve funzionare \textit{localmente} e salvare localmente i dati (importante per il concetto di ``\textit{offline-first}''). Però deve anche salvare \textit{in remoto} i dati, ma deve rispettare la \textit{cross-device synchronization}.\\
+        Importante per quanto riguarda la \underline{cross-device synchronization}, ovvero deve funzionare su diversi dispositivi con stato sincronizzato.
+        \item Che usa Firebase\\
+        Firebase è un framework di Google che offre una serie di servizi per lo sviluppo di applicazioni mobili.
+    \end{enumerate}
+\end{enumerate}

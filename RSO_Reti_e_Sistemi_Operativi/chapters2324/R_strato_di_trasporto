@@ -35,11 +35,11 @@ Avremo bisogno di
     \item 1 socket per \textbf{receiver}
 \end{itemize}
 La pila protocollare da livello fisico a livello di trasporto è gestita dal \textit{sistema operativo}. Lo sviluppatore può programmare quella parte di socket esposta verso il processo applicativo.\\
-Per ricapitolare, il messaggio farà: \texttt{livello applicativo $\rightarrow$ socket $\rightarrow$ livello di trasporto $\rightarrow$ livello di rete $\rightarrow$ livello fisico $\rightarrow$ livello fisico $\rightarrow$ livello di rete $\rightarrow$ livello di trasporto $\rightarrow$ socket $\rightarrow$ livello applicativo}.
+Per ricapitolare, il messaggio farà:\\ \texttt{livello applicativo $\rightarrow$ socket $\rightarrow$ livello di trasporto $\rightarrow$ livello di rete $\rightarrow$ livello fisico $\rightarrow$ livello fisico $\rightarrow$ livello di rete $\rightarrow$ livello di trasporto $\rightarrow$ socket $\rightarrow$ livello applicativo}.
 
 \section{I due principali protolli Internet a livello di trasporto}
 \subsection{TCP, Transmission Control Protocol}
-Si assicura che tutti i \textit{segmenti} di informazione vengano consegnati \underline{\textit{correttamente} e \textit{in ordine}}. Garantisce la consegna affidabile e la connessione affidabile fra mittente e destinatario.\\
+Si assicura che tutti i \textit{segmenti} di informazione vengano consegnati \underline{\textit{correttamente}} e \underline{\textit{in ordine}}. Garantisce la consegna affidabile e la connessione affidabile fra mittente e destinatario.\\
 Offre altri servizi: 
 \begin{description}
     \item[controllo della congestione:] per evitare di contribuire alla congestione della rete fa capire al mittente di diminuire il numero di segmenti inviati.
@@ -88,8 +88,8 @@ Se i miei segmenti \textit{fossero numerati}, riesco a capire se ho perso qualco
     THEN M_(i+1)
     ELSE M_i
 \end{verbatim}
-Se vado a numerare anche gli \textit{acknowledgments}, riesco anche ad evitare l'uso di \texttt{NACK}.\\
-Nel momento in cu ricevo un \texttt{$ACK_i$} per il segmento \texttt{M\_i}, so che tutti i segmenti precedenti sono stati ricevuti correttamente. Se ricevo un \texttt{$ACK_i$} per il segmento \texttt{M\_i}, ovvero mando l'\texttt{ack} del segmento precedente, posso capire che il segmento \texttt{M\_i} è stato perso.
+Se vado a numerare anche gli \textit{acknowledgments}, riesco anche ad evitare l'uso di $NACK$.\\
+Nel momento in cu ricevo un $ACK_i$ per il segmento $M_i$, so che tutti i segmenti precedenti sono stati ricevuti correttamente. Se ricevo un $ACK_i$ per il segmento $M_{i+1}$, ovvero mando l'$ack$ del segmento precedente, posso capire che il segmento $M_i$ è stato perso.
 \begin{verbatim}
     IF ack
     THEN M_(i+1)
@@ -102,7 +102,7 @@ Parliamo di protocolli \textbf{\textit{stop-and-wait}}.
 Come settiamo questo timer? \`E una cosa complicata ma fondamentale. Se è troppo alto, se mando un time out spreco un sacco di tempo. Se è troppo breve, rischio di creare ritrasmissioni inutili, invece di usare il mio canale per comunicare normalmente lo riempio di messaggi inutili. Nelle slide un esempio di ciò, timer troppo breve.
 
 \subsubsection{Misurare la performance}
-Transmitting a segment at a time and waiting for its ack before a further transmission (stopand-wait) significantly limits performance.\\
+Transmitting a segment at a time and waiting for its ack before a further transmission (stop-and-wait) significantly limits performance.\\
 Example: $RTT = 100 ms, L = 1 kbyte, R = 100 Mbit/s \rightarrow U = 0,008$.
 
 % 18/10/2023
@@ -113,7 +113,7 @@ segments while waiting the ack of the first
 one
 Ci sarebbe da rivedere l'inizio di sta lezione.\\
 Qua ho aumentando molto l'efficienza dei protocolli stop-and-wait. Se vado a dimensionare la finestra, posso avere un numero di segmenti che posso inviare prima di ricevere l'ack, quindi molta informazione utile.\\
-Perché la trasmissione sia continua (ed evitare gli spazi vuoti) il tempo di invio del primo segmento + il tempo di ricezione dell'ack del primo segmento deve essere minore del tempo di trasmissione di $W$ segmenti. Ovvero: $$w\bullet\frac{L}{R} \geq RTT + \frac{L}{R}$$ $$W \geq \frac{RTT \bullet R}{L} + 1$$
+Perché la trasmissione sia continua (ed evitare gli spazi vuoti) il tempo di invio del primo segmento + il tempo di ricezione dell'ack del primo segmento deve essere minore del tempo di trasmissione di $W$ segmenti. Ovvero: $$w\cdot\frac{L}{R} \geq RTT + \frac{L}{R}$$ $$W \geq \frac{RTT \cdot R}{L} + 1$$
 \subsubsection{Go-back-N protocol}
 Cosa ritrasmetto in caso di errore?
 \begin{description}
@@ -145,9 +145,9 @@ Cosa ritrasmetto in caso di errore?
 \end{description}
 
 \subsubsection{TCP, struttura di un segmento}
-\includegraphics[width=0.3\textwidth]{./images/aa2324/R_TCP1.jpg}
+\includegraphics[width=0.75\textwidth]{./images/aa2324/R_TCP1.jpg}
 \begin{description}
-    \item[source port \#: + dest. port \#:] 16 bit + 16 bit
+    \item[source port \# + destination port \#:] 16 bit + 16 bit
     \item[sequence number:] 32 bit, numero di sequenza del primo byte di dati nel bytestream
     \item[acknowledgment number:] 32 bit, numero di sequenza del prossimo byte di dati che il mittente si aspetta di ricevere\\
     Sotto, non ho capito il nome, a sinistra del receive window. Noi non la vedremo, più opzioni con lunghezza variabile, dovrebbe contenere l'\textit{header length} di 4 bit, lunghezza dell'header in parole da 32 bit, poi RST, SYN, FIN che si occupando di connection management
@@ -235,9 +235,9 @@ Abbiamo detto che avviene nella parte del segmento TCP "receiver window", che si
     \includegraphics[width=0.25\textwidth]{images/aa2324/R_TCP6.jpg}
 \end{center}
 \definizione{Flow control: receiver controls sender, so sender won't overflow receiver's buffer by transmitting too much, too fast.}
-\begin{wrapfigure}{r}{0.2\textwidth}
+\begin{wrapfigure}{r}{0.375\textwidth}
     \begin{center}
-        \includegraphics[width=0.2\textwidth]{images/aa2324/R_TCP7.jpg}
+        \includegraphics[width=0.375\textwidth]{images/aa2324/R_TCP7.jpg}
     \end{center}
 \end{wrapfigure}
 \begin{description}
@@ -245,9 +245,9 @@ Abbiamo detto che avviene nella parte del segmento TCP "receiver window", che si
     \item[receiver advertises free buffer space by] including value of RcvWindow in segment
     \item[sender limits unACKed data to] receiver's RcvWindow
 \end{description}
-\begin{wrapfigure}{r}{0.2\textwidth}
+\begin{wrapfigure}{r}{0.375\textwidth}
     \begin{center}
-        \includegraphics[width=0.2\textwidth]{images/aa2324/R_TCP7.jpg}
+        \includegraphics[width=0.375\textwidth]{images/aa2324/R_TCP7.jpg}
     \end{center}
 \end{wrapfigure}
 \begin{itemize}

@@ -175,17 +175,17 @@ del VAS su:
 • Memoria condivisa
 
 \subsection{mmap}
-void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
+void *mmap(void *addr, size\_t length, int prot, int flags, int fd, off\_t offset);
 • addr è l’indirizzo virtuale a partire dal quale si vuole effettuare il mapping
 • length è la lunghezza della regione di memoria da mappare. La memoria si può mappare solo per
 multipli della dimensione di 4k (4096 bytes) su processori x86.
-• prot indica quali permessi ha quella regione di memoria, può assumere i valori PROT_READ,
-PROT_WRITE, PROT_EXEC, or PROT_NONE
-• flags indica opzioni sul mapping. MAP_FIXED ad esempio indica che la memoria deve essere
+• prot indica quali permessi ha quella regione di memoria, può assumere i valori PROT\_READ,
+PROT\_WRITE, PROT\_EXEC, or PROT\_NONE
+• flags indica opzioni sul mapping. MAP\_FIXED ad esempio indica che la memoria deve essere
 allocata a partire esattamente dall’indirizzo passato nel parametro addr oppure la chiamata deve
 fallire
 • fd è un descrittore di un file o di memoria condivisa; se si intende mappare memoria ordinaria
-occorre passare MAP_ANONYMOUS tra i flags (estensione non POSIX)
+occorre passare MAP\_ANONYMOUS tra i flags (estensione non POSIX)
 • offset viene usato in combinazione con fd per indicare la porzione del file che intendiamo
 mappare
 • mmap restituisce l’indirizzo della memoria mappata, oppure la costante MAP_FAILED se la

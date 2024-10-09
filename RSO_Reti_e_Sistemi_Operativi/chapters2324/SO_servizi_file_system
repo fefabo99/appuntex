@@ -76,7 +76,7 @@ Possibili tecniche per riconoscere il tipo di file:
 \begin{itemize}
     \item Schema del nome (\texttt{nome . estensione})
     \item Attributi nei file, visibile anche nella directory (ad esempio in macOS viene registrato il programma che ha creato il file)
-    \item "Magic number" all'inizio del file (ad esempio "shebang" magic cookie ("\texttt{#!}" e poi il nome del file eseguibile) all'inizio degli script Unix, che usano quel nome di file eseguibile come interprete di tutto quello che viene dopo)
+    \item "Magic number" all'inizio del file (ad esempio "shebang" magic cookie ("\texttt{\#!}" e poi il nome del file eseguibile) all'inizio degli script Unix, che usano quel nome di file eseguibile come interprete di tutto quello che viene dopo)
 \end{itemize}
 Es. dell'ultima cosa: ad esempio
 \begin{verbatim}
@@ -99,14 +99,14 @@ Più il sistema operativo supporta direttamente diverse strutture di file, più 
 Tipo di scrittura rapida. C'è un puntatore al livello corrente e sostanzialmente 3 operazioni.\\
 Il file è una sequenza di record a lunghezza fissa. Le operazioni:
 \begin{itemize}
-    \item read_next() e write_next() leggono/scrivono il successivo record dalla posizione corrente
+    \item read\_next() e write\_next() leggono/scrivono il successivo record dalla posizione corrente
     \item Operazione di riavvolgimento
 \end{itemize}
 % wrap immagine 1
 
 \subsubsection{Accesso diretto}
 Operazioni read(n) e write(n) per accedere direttamente all'n-esimo record (offset).\\
-Alternativamente, operazioni read_next(), write_next() (esattamente come accesso sequenziale) e position(n) (invece di rewind). Questa è la scelta di POSIX.
+Alternativamente, operazioni read\_next(), write\_next() (esattamente come accesso sequenziale) e position(n) (invece di rewind). Questa è la scelta di POSIX.
 
 \subsubsection{Accesso indicizzato}
 In alcuni sistemi operativi, ad esempio quelli per mainframe IBM (filesystem più complicati, non come sequenze di byte ma di record), c'è questa terza possibilità. I file possono essere \textbf{sequenze di record} ordinate secondo un determinato campo chiave del record.\\
@@ -146,13 +146,13 @@ Ricorda il concetto di \textbf{directory corrente}: così come il concetto di \t
 
     \item[Directory a due livelli:] è un elenco di file e di directory. Viene introdotto il concetto di \textbf{sottodirectory}.\\
     La directory principale contiene delle sottodirectory, una per ogni utente.\\
-    La sottodirectory utente contiene i file dell’utente.\\
+    La sottodirectory utente contiene i file dell'utente.\\
     Utenti diversi possono dare lo stesso nome a file diversi.\\
     Occorre quindi usare dei nomi di percorso (path name) per identificare un file univocamente:
     \begin{itemize}
-        \item \texttt{/user2/data} (separatori Unix-like)
-        \item \texttt{\user2\data} (separatori Windows-like)
-        \item \texttt{>user2>data} (separatori MULTICS-like, un vecchissimo s.o.)
+        \item \texttt{/ user 2 / data} (separatori Unix-like)
+        \item \texttt{\ user 2 \= data} (separatori Windows-like)
+        \item \texttt{> user 2 > data} (separatori MULTICS-like, un vecchissimo s.o.)
     \end{itemize}
     I file di sistema di solito sono posti in una o più directory speciali, e occorre che il sistema conosca un percorso di ricerca per trovarli.\\
     % immagine
