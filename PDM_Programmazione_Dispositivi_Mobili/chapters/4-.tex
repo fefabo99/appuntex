@@ -1,0 +1,99 @@
+% 09/10/2024
+
+\chapter{Costo Sviluppo Mobile}
+\par Diversi fattori influenzano il costo di sviluppo di un'applicazione mobile, tra cui:
+\begin{itemize}
+    \item piattaforma target
+    \item caratteristiche
+    \item design
+    \item eventuale infrastruttura aggiuntiva 
+    \item il team di sviluppo (non per forza uno unico per diverse piattaforme, es. uno per Android, uno per iOs)
+\end{itemize}
+
+\subsection{Fattore \#1: Piattaforma Target}
+\par La scelta della piattaforma target è uno dei fattori più importanti che influenzano il costo di sviluppo di un'applicazione mobile. Più piattaforme saranno supportate e più alto sarà il costo. Devo aver ben presente a quale mercato voglio indirizzare il mio prodotto.
+\par Fortunatamente, non è sempre proporzionale al numero di piattaforme supportate, grazie al \textbf{riutilizzo del codice}. 
+\par Prima si realizza su una piattaforma e, una volta creata l'architettura (che vado ad implementare per la mia piattaforma) e validata l'idea, si può replicare su altre piattaforme.
+
+\subsection{Fattore \#2: Obiettivi e modello di sviluppo}
+\par Determinare gli \textbf{obiettivi di business} e quindi \textit{cosa} dovrà fare l'app, gli obiettivi che deve raggiungere. Es.: tutto ciò che un utente vuole fare senza essere obbligato a stare bloccato davanti ad un computer, un browser. Es.: l'app di una banca.
+\par Se sbaglio, butto via un sacco di soldi. Per questo è legato ai costi.
+\par \`E necessario creare un \textbf{documento di specifiche tecniche} che elenchi le caratteristiche che l'app avrà.
+\par Devo decidere il modello di sviluppo:
+\begin{itemize}
+    \item Set fisso di caratteristiche
+    \item Set dinamico di caratteristiche
+    \item Mix: si inizia con una serie di requisiti fissi, ma i clienti hanno una certa flessibilità nel poter decidere di cambiare qualcosa
+\end{itemize}
+\par Chiaramente il meglio è l'ultimo perché si ha una certa flessibilità, se facessi un set più fisso rischierei di non soddisfare le esigenze del cliente e dover buttare via tutto e quindi aumentare i costi. Ci serve un approccio ``\textit{agile}'', ovvero un approccio che permetta di cambiare le cose in corso d'opera. Vado avanti a pochi obiettivi alla volta (\textit{``user stories''}, per dire l'autenticazione, creazione di un bonifico, vedere i movimenti, sono tutti esempi di user stories), con un ciclo di sviluppo molto breve, e poi passo al prossimo obiettivo. Facendo poco alla volta posso affrontare i miei \textit{debiti tecnologici} (ciò che devo studiarmi man mano perché non conosco) e sentirmi con gli \textit{stackholder} (chi ha interesse nel progetto) per capire se sto andando nella direzione giusta.
+
+\subsection{Fattore \#3: Design}
+\par Il design delle app (\underline{sia UI} (come sono i bottoni, i tasti\dots) \underline{che UX} (come l'utente riesce a navigare, a sfruttare le capacità dell'app)) è ciò che separa le buone app da quelle \textit{amazing}.
+\begin{itemize}
+    \item \textbf{Design classico:} con cui gli utenti hanno più familiarità, meno costoso (es. il design classico di Apple per le applicazioni iOS)
+    \item \textbf{Design impressive:} più costoso, richiede più tempo e risorse, ma può fare la differenza
+\end{itemize}
+
+\subsection{UI \& UX}
+% Slide, titolo rosa perché è un'aggiunta optional, non è fondamentale
+\par Diversi ruoli, diverse skills e competenze. Ha nominato Figma che aiuta a "disegnare/creare" i prototipi delle app.
+
+\subsection{Fattore \#4: Come Sviluppare?}
+\par Che strumenti uso? Anche questa scelta incide sui costi. C'è nelle slide una lista di \underline{piattaforme di sviluppo di applicazioni mobili}, di \underline{strumenti cross-platform} e di \underline{sviluppo nativo}.
+\par Ha nominato \textbf{Flutter} come strumento cross-platform, che permette di scrivere una volta sola il codice e poi eseguirlo su diverse piattaforme. \`E la cosa più vicina a sviluppo nativo però (se ho capito bene).
+
+\subsection{Fattore \#5: Caratteristiche dell'app}
+\par Le caratteristiche dell'app sono il fattore determinante per il costo dell'app stessa. Con l'aumentare del numero e della complessità delle funzioni della app, aumenta anche il costo di sviluppo.
+\par Es.: è una to-do list app? Poche semplici funzionalità. Include mail e autenticazione? Richiede l'uso del GPS? Già diverso. Etc.
+
+\subsection{Fattore \#6: Infrastrutture}
+\par Un'app che si appoggia ad un componente remoto ha costi di sviluppo più alti di una "off-line".
+\par \`E necessario prendere in considerazione, tra le altre cose:
+\begin{itemize}
+    \item configurazione del server
+    \item requisiti di memorizzazione 
+    \item crittografia e sicurezza dei dati
+    \item comunicazione con l'app
+    \item gestione degli utenti
+    \item \dots
+\end{itemize}
+
+\subsection{Fattore \#7: Altri costi oltre a quelli di sviluppo}
+\par Oltre ai costi di sviluppo, ci sono altri costi da considerare:
+\begin{itemize}
+    \item \textbf{Account dello sviluppatore (Developer Account):} c'è la slide
+    \item \textbf{Componenti server-side e servizi Cloud:} c'è la slide
+    \item \textbf{Manutenzione dell'app}:
+    \begin{itemize}
+        \item Molte app zombie
+        \item Se non si vuole - guarda la slide
+    \end{itemize}
+\end{itemize}
+\par Grafico di proiezione del guadagno da app: è in crescita, questo anche perché (come ha mostrato uno studio) un utente tende a preferire un'applicazione ad un sito web. Perciò se ho sia un'app che una web app che svolgono gli stessi compiti, l'utente tenderà a preferire l'applicazione.
+
+\subsubsection{*: App zombie}
+\par Sono app non gestite. Avevamo parlato di una curva grafico che mostrava quante app sono state eliminate dall'Android App Store, questo era successo anche per la gran quantità di app non gestite o mantenute nel tempo che sono state tirate giù.
+
+\section{Monetizzazione}
+\par \textbf{Monetizzare un'app significa implementare strategie che permettano di generare, al proprietario dell'app, entrate attraverso il suo utlizzzo}. Slide
+
+\subsection{Purchase-app-once (paid app)}
+\par Quasi 95\% delle app sono gratuite. Tuttavia ci sono utenti che \textbf{pagheranno} per applicazioni di \textbf{qualità} che soddisfino un bisogno molto specifico, da pochi centesimi a centinaia di euro.
+
+\subsection{Freemium app}
+\par Prevede due o più varianti del prodotto da distribuire a prezzi diversi. Di solito due varianti:
+\begin{itemize}
+    \item \textbf{Versione Base:} gratuita
+    \item \textbf{Versione Premium:} a pagamento, include funzioni e/o contenuti aggiuntivi (es.: sblocco livelli) o rimuove pubblicità
+\end{itemize}
+\par Filosofia: dare un
+
+\subsection{Subscription app}
+\par Gli utenti \textbf{pagano un canone} periodico per l'utilizzo della app. Funziona bene per app che:
+\begin{itemize}
+    \item si basano su un \textit{servizio di backend}
+    \item forniscono l'\textit{accesso a contenuti aggiornati costantemente}
+\end{itemize}
+\par Gli utenti, pagando un canone, si aspettano di ricevere più di quanto offra una paid app. Le app in abbonamento devono fornire continuamente nuovi contenuti e/o funzioni.
+
+\subsection{In-app purchases}
