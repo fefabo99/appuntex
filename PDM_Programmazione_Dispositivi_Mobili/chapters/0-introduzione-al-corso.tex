@@ -2,18 +2,18 @@
 
 \chapter{Introduzione al corso}
 \section{Obiettivi del corso}
-Il corso ha come obiettivo acquisire:
+\par Il corso ha come obiettivo acquisire:
 \begin{itemize}
     \item \textbf{\underline{Conoscenze}} (principi di buona programmazione) relative al mondo dello sviluppo mobile
     \item \textbf{\underline{Competenze}} sullo sviluppo Android 
 \end{itemize}
-Ma perché è stato scelto proprio Android? Comporta diversi vantaggi rispetto ad altri sistemi operativi come iOs:
+\par Ma perché è stato scelto proprio Android? Comporta diversi vantaggi rispetto ad altri sistemi operativi come iOs:
 \begin{itemize}
     \item più open source
     \item essendo più open source conosciuto meglio dai docenti che sono quindi più in grado di insegnare e correggere
     \item Android, nel caso uno voglia poi accedere allo Store e pubblicare un'app, prevede una tassa di iscrizione di \texttildelow 25\$ \textbf{una tantum}, mentre per iOs è di 100\$ ma penso sia \textit{annuale}.
 \end{itemize}
-Ci aspettiamo che alla fine del corso siate in grado di:
+\par Alla fine del corso dovremo essere in grado di:
 \begin{itemize}
     \item Sviluppare un'applicazione ``from scratch'' che segua l'\textbf{\underline{architettura}} di riferimento Android
     \begin{itemize}
@@ -57,6 +57,132 @@ Ci aspettiamo che alla fine del corso siate in grado di:
         \item L'idea può anche essere non nuova, ad esempio un'app che mostra i film e le recensioni\dots
     \end{itemize}
     \item Il progetto deve essere sviluppato per Android (in Java)
+    \item \underline{Assistenza al progetto} (oltre che ai laboratori durante i quali lavoreremo sul \textbf{nostro} progetto) verrà fornita \textit{eventualmente} anche durante le \underline{esercitazioni} (durante le quali vedremo coe realizzare un'applicazione da zero tramite un \textit{progetto} \underline{scelto dal docente} con le proprie funzionalità e sviluppato \textbf{\underline{esattamente}} come vuole la prof che sia realizzata la nostra app)
 \end{itemize}
 
 \subsection{Valutazione}
+\begin{itemize}
+    \item Codice sorgente e documentazione della nostra app con dentro:
+    \begin{enumerate}
+        \item Scelte architetturali
+        \item Uso di API esterne (in maniera sensata)
+        \item Uso storage locale, per offline-first
+        \item Uso del framework Firebase (autenticazione), per cross-device synchronization
+        \item Layout grafico che sia (circa) sensato, per es. tramite uso librerie di material design
+        \item Documentazione
+    \end{enumerate}
+    \item 1-5 per Software, 6 cartaceo
+    \item Uso di GitLab o GitHub
+\end{itemize}
+
+\subsubsection{Scelte architetturali}
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/00_scelte_architetturali1.png}
+\end{center}
+\par Queste 5 entità \textbf{\underline{devono}} essere presenti nel nostro progetto.
+
+\subsubsection{Uso di API esterne}
+\par Esempi di API esterne (gratuite):
+\begin{itemize}
+    \item Immagini
+    \begin{itemize}
+        \item \url{https://unsplash.com/developers}
+        \item \url{https://developers.google.com/maps/documentation/places/web-service/photos}
+    \end{itemize}
+    \item Video Giochi
+    \begin{itemize}
+        \item \url{https://www.igdb.com/api}
+    \end{itemize}
+    \item Film
+    \begin{itemize}
+        \item Film
+        \item MovieDB
+        \item Open Moview DB
+        \item IMDb
+        \item The Moview DB
+    \end{itemize}
+    \item Qualità dell'aria
+    \begin{itemize}
+        \item \url{https://aqicn.org/}
+    \end{itemize}
+    \item Cibo
+    \begin{itemize}
+        \item TheMealDB.com
+        \item \url{https://spoonacular.com/food-api}
+    \end{itemize}
+    \item Meteo
+    \begin{itemize}
+        \item \url{https://openweathermap.org/current}
+    \end{itemize}
+    \item …
+\end{itemize}
+\par Tante disponibili free
+\begin{itemize}
+    \item \url{https://github.com/public-apis/public-apis}
+\end{itemize}
+\par Postman è un'applicazione che permette di testare le API, di interrogarle, è molto utile per vedere come funzionano le API e come si comportano. \url{https://www.postman.com/}
+
+\subsubsection{Uso ORM - Object Relational Mapping}
+\par Uso di ORM (Object-relational mapping). Due tool sono:
+\begin{itemize}
+    \item Room (integrato in Android), utile per persistenza
+    \item greenDao
+\end{itemize}
+
+\subsubsection{Uso di Firebase}
+\par Se ho capito bene, lo vedremo ad esercitazione. Ti aiuta a creare:
+\begin{itemize}
+    \item Autenticazione
+    \begin{itemize}
+        \item se necessario nell'app
+    \end{itemize}
+    \item DB remoto
+    \begin{itemize}
+        \item Anche a supporto della cross-device synchronization
+    \end{itemize}
+    \item Notifiche push
+    \item \dots
+\end{itemize}
+
+\subsubsection{Layout grafico}
+\par Ho delle regole da seguire, il progetto deve seguire i principi di material design (che sono linee guida di Google per lo sviluppo di UI, ma ci sono anche widget grafici, gratuiti ed usabili). Per esempio: color extraction (tutti i widget hanno colorazione uniformata allo sfondo per conferire maggiore fluidità).
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/00_orm1.png}
+\end{center}
+
+\subsubsection{Documentazione}
+\par La documentazione dovrà essere strutturata in 3 sezioni:
+\begin{enumerate}
+    \item le \textbf{funzionalità offerte}
+    \begin{itemize}
+        \item potete scriverle in italiano, oppure usare degli use case
+    \end{itemize}
+    \item l'\textbf{architettura complessiva} che specifica i componenti da voi sviluppati e le loro relazioni e modalità di comunicazione con eventuali componenti esterni utilizzati
+    \begin{itemize}
+        \item Firebase, API esterne, DB interno, etc.
+    \end{itemize}
+    \item il \textbf{design della soluzione} che include i \textit{componenti} che avete sviluppato (inteso come Fragment, Activity, etc.), le loro \textit{responsabilità} (cioè cosa fanno) le loro \textit{modalità di interazione}
+\end{enumerate}
+\par Alcuni esempi … (?)
+
+\subsection{Discussione progetto}
+\begin{itemize}
+    \item 24 gennaio, \texttildelow 09:00
+    \item 21 febbraio, \texttildelow 09:00
+\end{itemize}
+
+\subsection{Scadenze}
+\begin{itemize}
+    \item \underline{11 ottobre 2024}: comunicazione gruppo
+    \begin{itemize}
+        \item la composizione del gruppo (matricola, cognome, nome), un nominativo per riga;
+        \item il referente del gruppo.
+    \end{itemize}
+    \item \underline{18 ottobre 2024}: comunicazione argomento progetto
+    \begin{itemize}
+        \item Il titolo del progetto;
+        \item una descrizone del progetto che si intende svolgere;
+        \item il referente del gruppo.
+    \end{itemize}
+\end{itemize}
+
