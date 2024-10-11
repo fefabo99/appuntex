@@ -1,0 +1,59 @@
+% 10/10/2024
+
+\chapter{Esercitazione 1}
+\section{Passi su Android Studio}
+\begin{itemize}
+    \item New Project
+    \item Empty Views Activity
+    \item Scegliamo linguaggio Java
+\end{itemize}
+\par Da terminale (seconda icona dal basso a sinistra) possiamo scrivere:
+\begin{enumerate}
+    \item \texttt{git init} per inizializzare una repository (fatta dentro perché ci lavoro dentro Android Studio e non da VSCode come faccio con tutte le altre repository)
+    \item \texttt{levels} per vedere i livelli di git
+    \item \texttt{git commit} per fare un commit
+    \item \texttt{git branch nomebranch} per creare un nuovo branch
+    \item \texttt{git checkout} si aspetta il nome del branch
+    \item \texttt{git checkout nomebranch1} per passare al branch nomebranch1
+    \item \texttt{git checkout nomebranch2} per passare al branch nomebranch2\\
+    Se faccio commit su modifiche non pushate, rischio di andare incontro a conflitti.\\
+    L'asterisco (sul sito \url{https://learngitbranching.js.org/}) mi indica su quale branch mi trovo.
+    \item \texttt{git merge nomebranch} per fare il merge in nomebranch del branch in cui mi trovo (quello attivo in quello più stabile)
+    \item \texttt{git rebase nomebranch} per fare il rebase in nomebranch del branch in cui mi trovo: è un'alternativa a merge, "riscrive la storia", collassa tutti i branch in uno cancellando la storia di quello in cui mi trovo e mettendola in quello in cui voglio fare il rebase.
+    \item \texttt{git revert nomedelcommit} per fare il revert di un commit, tornare al commit (es. c6) e cancellare le modifiche da quel commit in poi, magari per eliminare branch che ho fatto inutilmente.
+\end{enumerate}
+
+\subsection{Sito per simulare funzionamento di git}
+\url{https://learngitbranching.js.org/}
+
+\subsection{Comandi git da terminale}
+\par Le commit, partendo dalla cartella del progetto:
+\begin{itemize}
+    \item \texttt{git pull}
+    \item \texttt{git add .}: mette tutto ciò che c'è nella working area nella staging area, il punto mi dice "tutti i file"
+    \item \texttt{git commit -m "messaggio in cui dico cosa ho fatto in breve"}: mette tutto ciò che c'è nella staging area nella commit area
+    \item \texttt{git push}
+\end{itemize}
+
+\subsection{I conflitti}
+\par In caso di conflitti, per arrivare alla pagina di risoluzione dei conflitti (al centro versione locale, a sinistra un branch e a destra l'altro), quando si verifica un conflitto esce un pulsante "risolvi conflitti" magari in inglese. Tendenzialmente il main è la versione più stabile, quindi si fa il merge del branch in cui si è lavorato in main.
+\par Consiglia di fare branch per funzionalità e non per persona, però è un approccio personale e comunque l'importante è essere consistenti.
+
+
+\par Git Ignore è un file che va ad appuntare estensioni di file o file o cartelle da ignorare. Al momento dell'inizializzazione del progetto avremo già una lista di file di base ignorati. Di solito i file compilati (es su Java i \texttt{.class}) sono da ignorare.
+\par Il sito \texttt{gitignore.io} permette di generare un file \texttt{.gitignore} in base al linguaggio di programmazione che si sta utilizzando con i file da ignorare. Metto Android, Windows. Consiglia di farlo all'inizio anche per alleggerire la compilazione.
+
+\par GitHub e GitLab sono istanze di git, mentre git è il programma generico.
+
+\subsection{Il progetto}
+\par Prima cosa da fare: avviare la repository, il gitignore, il README. Decidere come gestire i branch (non valutato, ma l'approccio deve essere consistente) se per team o funzionalità o cosa, vedi online. Dice che ci dovrebbero essere consigli. Meglio tenere il main branch come quello che funziona di più.
+\par Per creare una nuova repository su GitHub:
+\begin{itemize}
+    \item scelgo nome e descrizione
+    \item scelgo se pubblica o privata (per il progetto può anche essere privata perché tanto posso aggiungere dopo chi può accedervi)
+    \item posso scegliere se aggiungere un README (che è un file markdown che appare nella home della repository) e un \texttt{.gitignore} (che posso scegliere in base al linguaggio di programmazione che sto usando), ma sono cose che posso aggiungere anche dopo
+    \item posso scegliere se installare la repository tramite set up desktop, da linea di comando (sono i comandi che abbiamo visto prima) o pushare da linea di comando una repo già esistente
+    \begin{itemize}
+        \item l'unica riga che non abbiamo visto è \texttt{git remote add origin url}, che serve per collegare la repository locale a quella remota
+    \end{itemize}
+\end{itemize}
