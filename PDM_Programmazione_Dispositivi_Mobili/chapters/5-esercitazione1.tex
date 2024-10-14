@@ -11,8 +11,12 @@
 \begin{enumerate}
     \item \texttt{git init} per inizializzare una repository (fatta dentro perché ci lavoro dentro Android Studio e non da VSCode come faccio con tutte le altre repository)
     \item \texttt{levels} per vedere i livelli di git
+    \begin{itemize}
+        \item da prompt dei comandi \texttt{dir} per vedere la lista di directory e file, ma forse è un livello solo, NON LO SO CONTROLLA. \texttt{dir} su Windows, \texttt{ls -a} su Linux.
+    \end{itemize}
     \item \texttt{git commit} per fare un commit
     \item \texttt{git branch nomebranch} per creare un nuovo branch
+    \item \texttt{git checkout -b nomebranch} ne crea uno nuovo
     \item \texttt{git checkout} si aspetta il nome del branch
     \item \texttt{git checkout nomebranch1} per passare al branch nomebranch1
     \item \texttt{git checkout nomebranch2} per passare al branch nomebranch2\\
@@ -22,6 +26,7 @@
     \item \texttt{git rebase nomebranch} per fare il rebase in nomebranch del branch in cui mi trovo: è un'alternativa a merge, "riscrive la storia", collassa tutti i branch in uno cancellando la storia di quello in cui mi trovo e mettendola in quello in cui voglio fare il rebase.
     \item \texttt{git revert nomedelcommit} per fare il revert di un commit, tornare al commit (es. c6) e cancellare le modifiche da quel commit in poi, magari per eliminare branch che ho fatto inutilmente.
 \end{enumerate}
+\par GitHub sul suo sito ha una sezione (\url{https://docs.github.com/en}) con una serie di guide su come usare git.
 
 \subsection{Sito per simulare funzionamento di git}
 \url{https://learngitbranching.js.org/}
@@ -41,7 +46,7 @@
 
 
 \par Git Ignore è un file che va ad appuntare estensioni di file o file o cartelle da ignorare. Al momento dell'inizializzazione del progetto avremo già una lista di file di base ignorati. Di solito i file compilati (es su Java i \texttt{.class}) sono da ignorare.
-\par Il sito \texttt{gitignore.io} permette di generare un file \texttt{.gitignore} in base al linguaggio di programmazione che si sta utilizzando con i file da ignorare. Metto Android, Windows. Consiglia di farlo all'inizio anche per alleggerire la compilazione.
+\par Il sito \url{gitignore.io} permette di generare un file \texttt{.gitignore} in base al linguaggio di programmazione che si sta utilizzando con i file da ignorare. Metto Android, Windows. Consiglia di farlo all'inizio anche per alleggerire la compilazione.
 
 \par GitHub e GitLab sono istanze di git, mentre git è il programma generico.
 
