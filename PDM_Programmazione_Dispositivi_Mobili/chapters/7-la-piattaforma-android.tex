@@ -1,0 +1,227 @@
+% 16/10/2024
+
+\chapter{La piattaforma Android - prime info}
+\section{AOSP - Android Open System Platform}
+\par L'Android Open Source Project (AOSP) è un'iniziativa open source, slide
+
+\subsection{Architettura}
+% Slide con immagine
+\begin{itemize}
+    \item basato su un kernel Linux
+    \item architettura a stack
+    \begin{itemize}
+        \item un livello sopra all'altro
+        \item ognuno dotato di proprie funzionalità
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Kernel Linux}
+\par Fornisce supporto per funzionalità di basso livello (threading, gestione della memoria, l'accesso all'hardware via driver, etc.)
+\par Fornisce modello di sicurezza
+\par Permette ai produttori di dispositivi di sviluppare driver hardware per un \textit{kernel ben noto}
+\par Devo basare il driver per interfacciarmi con le funzionalità di quel modello specifico che sto implementando: ogni hardware ha API specifiche, quando scrivo un driver devo interfacciarmi con quelle API
+
+\subsubsection{HAL - Hardware Abstraction Layer}
+\par Fornisce un insieme di \textbf{\underline{interfacce} \underline{standard}} che espongono le funzionalità hardware al \textbf{Java API Framework}.
+\par Ciascuna interfaccia (ciò che ci si aspetta dal sensore) fornisce un insieme di servizi offerti dall'hardware corrispondente.
+\par Quando una \textbf{Java API Framework} effettua una chiamata per accedere all'hardware del dispositivo, il sistema Android carica il modulo che gestisce quel componente hardware specifico.
+\par Quindi quello che devo andare ad individuare è il set di funzioni minime che il sensore deve avere e lo mando poi all'HAL. Io so che devo implementare una interfaccia con queste funzioni specifiche? So quale è l'insieme di funzioni che devo implementare perché l'interfaccia sia usabile.
+
+\subsubsection{ART - Android Runtime}
+\par \`E il motore di esecuzione di Android, introdotto dalla versione 5.0 (Lollipop) per sostituire il vecchio Dalvik:
+\begin{itemize}
+    \item Dalvik: compilazione JIT (Just In Time)
+    \item ART: compilazione AOT (\textbf{Ahead Of Time}) e JIT (compilazione Just In Time)
+\end{itemize}
+\par Dato il bytecode ch emi arriva, serve qualcuno che lo compili \textbf{e} lo esegua. 
+\par Vantaggi ART:
+\begin{itemize}
+    \item miglioramento efficienza complessiva dell'esecuzione
+    \item cose
+    \item slide
+\end{itemize}
+% Slide con confronto fra Dalvik e ART
+% Slide con funzionamento di ART
+\par \textbf{Profile guided compilation} (introdotto da Android N (Nougat)) praticamente scarica un po' all'installazione un po' quando vedo che l'utente usa particolari funzionalità non inizialmente scaricate all'installazione. Per questo è profile guided, perché devo guardare il profilo dell'utente.
+\par Da Android P (Pie) è stato introdotto Profiles in the Cloud: permette di scaricare il profilo dell'applicazione da un server e non dal dispositivo stesso, in modo da avere un'applicazione più leggera e più veloce.
+
+\subsubsection{Librerie Native (C/C++)}
+\par Android permette di scrivere librerie native in C/C++ che:
+\begin{itemize}
+    \item consentono agli sviluppatori 
+\end{itemize}
+
+\subsubsection{Java API Framework}
+\par Quello che andremo noi ad usare nel progetto.
+\par Insieme di API Java che forniscono un insieme ricco di funzionalità:
+\begin{itemize}
+    \item \textbf{\dots}
+\end{itemize}
+
+\subsubsection{System Apps}
+\par Applicazioni preinstallate nel sistema Android, che all'occorrenza posso integrare nello sviluppo della mia applicazione.
+\par Le app di sistema funzionano sia come 
+\par Es.: se devo aprire un url, non vado mica a costruire a mano un browser, ma uso quello preinstallato.
+
+% "precisazioni sugli ultimi due livelli" l'ha saltato
+
+
+Tre concetti importanti:
+\begin{itemize}
+    \item minimum SDK\\
+    Es.: la 8 è la minima versione di Android che supporto, perciò se uno ha la 7 non può installare la mia app
+    \item target SDK\\
+    Quella per cui andiamo a sviluppare l'app, però siamo noi che garantiamo che la nostra app (per esempio nel caso di minima 8 e target a 10), andiamo a garantire che se funziona per la 10 funzionerà anche per la 8
+    \item compile SDK
+\end{itemize}
+
+\section{Componenti minime}
+\subsection{Android SDK (Software Development Kit)}
+\par Insieme di strumenti per sviluppare app per Android: strumenti e librerie necessari per sviluppare app Android e rendere l'implementazione del codice più gestibile.
+\par L'SDK contiene strumenti principali:
+\begin{itemize}
+    \item \textbf{Android Studio:} è l'ambiente di sviluppo integrato (IDE) ufficiale per Android
+    \begin{itemize}
+        \item basato su IntelliJ IDEA
+        \item offre strumenti come l'editor di codice, debugger e strumenti di testing
+    \end{itemize}
+    \item \textbf{Emulatore Android:} permette di simulare diversi dispositivi Android sul computer
+    \begin{itemize}
+        \item Utile per testare l'applicazione senza aver bisogno di un dispositivo fisico
+    \end{itemize}
+    \item \textbf{SDK Tools:} strumenti per compilare, debuggare e testare le app, oltre al profilo delle prestazioni
+    \item \textbf{API:} 
+\end{itemize}
+
+\section{Google Play Services}
+\par Servizi che possiamo usare, ma serve una \textit{key} da memorizzare sulla nostra applicazione, possibilmente in un posto sicuro quindi non codice sorgente che mando in giro. Senza questa chiave non posso usare i servizi di Google. Di solito si è monitorati perché oltre ad un certo numero di utilizzi si inizia a pagare.
+
+\chapter{Android - la prima applicazione e le risorse}
+\section{Strumenti}
+\par Essenziale per iniziare a sviluppare un'applicazione.
+\par L'IDE che noi abbiamo usato è Android Studio, che è l'IDE ufficiale per lo sviluppo di app Android. L'ultima versione rilasciata in versione stabile è Ladybug (io avevo scaricato Koala, che va bene uguale, il grosso dei cambiamenti è avvenuto fra Giraffe e Koala).
+\par Gli emulatori sono sempre stati molto lenti o addirittura non funzionavano. Genymotion è un buon escamotage (\url{https:}) vedi slide.
+
+\section{Setup}
+\par All'installazione, c'è da configurare AVD e .
+
+\subsection{AVD - Android Virtual Device}
+\par Emula un dispositivo fisico Android, configurabile anche come meglio credo. Posso scegliere la versione di Android, la dimensione dello schermo, la memoria, \dots c'è la lista sulle slide.
+\par Non basta chiaramente vedere se funziona con l'AVD per andare sullo store: devo sempre ricordarmi della frammentazione di Android, ovvero quante diverse versioni di hardware e produttori ci si affidino, quindi devo testare su più dispositivi possibili.
+
+\subsubsection{Set Up di un AVD}
+\par Lista sulle slide. Ne ho saltate alcune con screen dei passaggi. Comunque ad usare l'app e smanettarci poi uno ci prende la mano. In ogni caso, è \textbf{fondamentale} consultare sempre la documentazione ufficiale di Android che spiega nel dettaglio come fare qualsiasi cosa. Anche perché noi vediamo le best practice, ma è tutto in continua evoluzione quindi la documentazione costantemente aggiornata è la fonte più affidabile.
+
+\section{Prima di cominciare con la prima app}
+\par Sia che usiamo l'\texttt{xml} (senti lezione qua)\\
+Es.: la home, la ricerca, la visualizzazione dei risultati della ricerca, \dots, sono tutte activities diverse. Mi sono persa cosa sono i fragment, riascolta la lezione.
+\par Ho due componenti:
+\begin{itemize}
+    \item \textit{Activity}: componente che gestisce l'interfaccia utente (UI) e che l'utente può usare per interagire con l'applicazione
+    \begin{itemize}
+        \item due cose
+    \end{itemize}
+    \item \textit{Layout}: elenco degli elementi grafici, definisce un insieme di \textbf{elementi} della UI e la loro \textbf{posizione} sullo schermo
+    \begin{itemize}
+        \item 
+    \end{itemize}
+    \par Noi avremo Activity () e Layout (xml, quindi xml è "descrittivo") in due file separati.
+\end{itemize}
+
+\subsection{Es.}
+\par Slide con esempio di quello che vogliamo costruire.
+
+\subsection{Cominciamo}
+\par Sezione "Projects"
+\begin{itemize}
+    \item New Project
+    \item Ho quattro dispositivi target (phone \& tablet, wear OS, tv, automobili), ciascuno con una lista di template
+    \item Es. empty activity non permette di scegliere il linguaggio di programmazione, fisso su Kotlin, \textbf{non lo useremo}
+    \item Noi ci basiamo sul concetto di View, quindi andrò a prendere Empty View Activity e faccio Via/Next
+    \item In package name, dovrei mettere l'inverso dell'azienda (es. com.azienda.nomeapp) e nomeapp lo prende dal nome che ho dato al progetto, mentre azienda è l'identificativo dell'azienda
+    \begin{itemize}
+        \item il nome del progetto è il nome dell'applicazione e non è modificabile una volta iniziato a sviluppare
+        \item chiedono se per fare il progetto dobbiamo mettere "it.unimib.nomedelprogetto" e fa "mh sì penso possa valere la pena" 
+    \end{itemize}
+    \item Language: Java
+    \item Minimum API level: la versione minima che voglio supportare, dalla Android 7 in su \textbf{dovrebbe} funzionare, la 6 sa per certo che non funziona e anzi non viene neanche mostrata nello store ed esce scritto che non è compatibile
+    \item Build configuration level: consiglia quello "recommended" 
+    \item faccio "Finish"
+    \item Mi trovo davanti due finestre: 1 a sinistra del progetto con la sua struttura, 2 a destra con il file sorgente
+    \item mi escono due file, un \texttt{activity\_main.xml} (file di Layout in questo caso specifico, anche lui in Java) e un \texttt{MainActivity.java} (che ha un nome inverso di xml, è \textbf{una convenzione}, compreso l'underscore)
+    \item con il tasto in alto a destra (sulla riga di .xml e .java, ma riguarda solo l'xml perché riguarda il design) "\underline{Code}" (ALT + Maiusc + Destra) mi cambia visualizzazione xml
+    \item "\texttt{<androidx.constraintlayout.widget.ConstraintLayout...}" sono constrain, forzati lì dove sono (c'è una slide "widget" che spiega cosa sono)
+    \begin{itemize}
+        \item una widget può mostrare testo o grafica, interagire con l'utente, organizzare altri widget sullo schermo
+        \item l'SDK Android include molti widget che è possibile configurare
+        \item e
+    \end{itemize}
+    \item il "device manager" (il terzo a destra in verticale) mi fa vedere i dispositivi che ho configurato e mi permette di aggiungerne di nuovi con tutte le cose che posso impostare
+    \item slide che mostrano cosa ConstraintLayout e TextView controllano
+    \item quando vado tipo a toccare "hello world" mi si aprono una serie di proprietà che posso impostare e modificare che sono quelle che trovo nel codice xml
+    \item due a destra di "code" c'è "\underline{design}" che mi fa vedere come viene visualizzato il layout con una serie di strumenti e comandi
+    \item c'è una slide con dei numeri verdi che spiega un po' tutta la finestra, inserisci
+    \item "component tree" mi mostra la gerarchia dei componenti
+    \item tornando su "code", ho una serie di proprietà con ruoli ben precisi
+    \begin{itemize}
+        \item nella slide, quelli evidenziati in verde
+        \item quelli blu sono i constraint
+        \item a me interessano quelli che nella slide credo 20 sono sulla sinistra
+    \end{itemize}
+    \item Concetti di:
+    \begin{itemize}
+        \item \textbf{Screen Size:}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+        \item \textbf{Screen Density:}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+        \item \textbf{Screen Resolution:}
+        \begin{itemize}
+            \item 
+        \end{itemize}
+    \end{itemize}
+    \item Esempio: "si immagini un'app in cui uno scroll è riconosciuto dopo che l'utente si è mosso sullo schermo per almeno 16 pixel". Il gesto viene riconosciuto dopo:
+    \begin{itemize}
+        \item 2,5 mm (25,4mm*)
+    \end{itemize}
+    \item Io ragiono in termini di DP e SP, pixel virtuali che sono indipendenti dalla densità:
+    \begin{itemize}
+        \item slide
+    \end{itemize}
+    \item In questo modo ho una migliore esperienza utente, "guai a voi" se usiamo i pixel invece dei dp. Questa è una delle cose che \textbf{va a valutare} nel progetto. Ha mostrato un'immagine di minion, screen size uguale ma diversa densità.
+    \item "ems" è un'altra unità, prende la dimensione della lettera "M" maiuscola e su questa basa la dimensione del testo, mentre "sp" è una unità di misura che tiene conto della dimensione del testo dell'utente
+    \item tornando ad A.S., con la visualizzazione "Project" a sinistra vedo come effettivamente sono organizzate le mie cartelle, ma "Android" è più comoda
+    \begin{itemize}
+        \item dentro "Android" c'è una cartella "res" \textgreater "values" che contiene xml con diverse risorse (es. aggiunge dentro "strings" "bottone")
+        \begin{verbatim}
+            <resources>
+                <string name="app_name">My Application</string>
+                <string name="bottone">Saluta</string>
+                <string name="campo">Ciao</string>
+            </resources>
+        \end{verbatim}
+        \item contiene le mie risorse, stringhe, colori, font, layout, immagini, icone \dots In Android c'è una netta distinzione fra codice e risorse, quindi le risorse vanno messe in cartelle apposite (le risorse sono tutto ciò che si distingue dal codice, stringhe non sono codice, colori nemmeno, font nemmeno \dots)
+        \item A questo punto tornando su xml, dentro "Button", invece di 
+        \begin{verbatim}
+            Button> android:text="Saluta"
+            TextView> android:text="Ciao!"
+        \end{verbatim}
+        farò
+        \begin{verbatim}
+            Button> android:text="@string/bottone"
+            TextView> android:text="@string/campo"
+        \end{verbatim}
+        dove "@" vuol dire "presso", quindi "presso il file delle stringhe prendi quella chiamata bottone".\\
+        
+    \end{itemize}
+    \item Una cosa utile sono le traduzioni: 
+    \begin{itemize}
+        \item da file "strings.xml" \textgreater "Open editor" \textgreater "Add locale" \textgreater scelgo la lingua \textgreater "OK"
+        \item poi metto le traduzioni delle risorse che ho inserito
+    \end{itemize}
+    \item In generale la sintassi è "@ NomeRisorsa / nomeElemento" senza spazi.
+    \item Slide con concetto di risorsa. Nelle slide "raggruppare le risorse" ho una lista delle cartelle che devo avere. Slide "risorsa e id risorsa" interessante ma me la sono persa.
+\end{itemize} 
