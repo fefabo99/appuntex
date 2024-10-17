@@ -1,0 +1,83 @@
+% 17/10/2024
+
+\chapter{Esercitazione 2}
+\par Avviamo un nuovo progetto Android Studio, scegliendo il template \textit{Empty Activity}.
+\par Manifest (prima directory nella visualizzazione Android) è un xml che contiene le informazioni dell'applicazione, come il nome, l'icona, le activity, i permessi, \dots Dentro, definiamo \texttt{MainActivity} come activity principale, con un target ideale. \texttt{MainActivity} è il nostro punto di partenza. Estende la classe \texttt{AppCompactActivity}, che è un'activity standard che supporta le funzionalità più recenti di Android.
+
+\subsection{Directory \texttt{Java}}
+\par Dentro la directory Java e la prima sottodirectory, vado a prendere il \texttt{MainActivity.java}. Qui sostituisco l'override che vedo con:
+\begin{verbatim}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+\end{verbatim}
+\par Punto ai layout con il .
+\par Best practice:
+\begin{itemize}
+    \item nomi delle classi: camelcase ma con maiuscola
+    \item nomi dei metodi : camelcase ma con minuscola
+    \item nomi dei layout: stesso del Java ma invertito e con underscore\\
+    Es.: \texttt{MainActivity.java} e \texttt{activity\_main.xml}
+\end{itemize}
+\par Le altre due directory dentro Java posso ignorarle per ora.
+
+\subsection{La cartella \texttt{res}}
+\par Contiene le risorse layout dell'applicazione, come stringhe, colori, font, layout, immagini, icone, \dots
+
+\subsection{Mipmap}
+\par Simili a \texttt{drawable} ma di solito usato per le icone. Contiene icone di diverse dimensioni per adattarsi a diverse risoluzioni. 
+\par Di solito meglio vettoriali perché png si sgranano.
+
+\subsection{Values}
+\par Riservato a colori e stringhe. 
+\par Dentro \texttt{colors.xml} posso definire i colori che uso nell'applicazione.
+\par Dentro \texttt{strings.xml} posso definire le stringhe che uso nell'applicazione, ovvero tutti i testi che compaiono dentro l'applicazione. Utile perché Android Studio nella sezione "Open Editor" dà uno strumento utile: la traduzione. Posso fare una traduzione automatica delle stringhe in altre lingue, e posso anche fare una traduzione manuale.
+
+\subsection{Themes}
+\par Due file: \texttt{themes.xml} e \texttt{themes.xml (night)}. Il secondo è per la modalità notturna.
+
+\subsection{xml}
+\par Non andremo a vedere queste cose, ignorare completamente.
+
+\section{Gradle Scripts}
+\subsection{build.gradle.kts (:app)}
+\par Ho dentro tipo:
+\begin{itemize}
+    \item namespace = "com.example.esercitazione2": identificativo univoco dell'applicazione
+    \item compileSdk = 34: SDK con cui compilo
+    \item \texttt{defaultConfig}: 
+    \begin{itemize}
+        \item \texttt{applicationId =}: identificativo univoco dell'applicazione
+        \item \texttt{minSdk =}: SDK minimo con cui funziona
+        \item \texttt{targetSdk =}: SDK con cui è stato testato (min SDK $\leq$ target SDK $\leq$ compile SDK)
+        \item \texttt{versionCode =}: 
+        \item \texttt{versionName =}:
+    \end{itemize}
+\end{itemize}
+\par Dentro \texttt{dependencies} posso aggiungere le dipendenze che voglio. Lui ha inserito \texttt{implementation('com.squareup.retrofit2:retrofit:(insert latest version)')}. Ma dà errore, faccio tasto destro e "Show context actions" e "replace with new library".
+\par In breve, a sinistra c'è il tasto "Resource Manager" che mi permette di vedere in sintesi tutto quello che abbiamo visto finora.
+
+\par Torno su "activity\_main.xml", "code" (tastino in alto a destra) e va ad aggiungere 
+
+\par Apriamo l'emulatore. C'è già un emulatore acceso, lo togliamo e mettiamo Pixel 8a (preso a casissimo).
+\par Se vogliamo usare il nostro telefono, dall'emulatore andiamo su impostazioni,"developer options", "about emulated device", "build number" e clicchiamo 7 volte. Torniamo indietro e andiamo su "developer options", "usb debugging" e lo attiviamo. Collego il telefono al computer e mi chiede se voglio usare il telefono per debuggare, accetto. Se non mi chiede, vado su "developer options" e attivo "usb debugging".
+
+\par Dentro activity\_main.xml, andiamo a vedere le variabili
+\begin{verbatim}
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+\end{verbatim}
+\par Dentro "TextView" vado a mettere
+\begin{verbatim}
+    android:id="@+id/textView1"
+\end{verbatim}
+\par Ho due tipi di misure spaziali:
+\begin{verbatim}
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+\end{verbatim}
+\par Il primo sta attorno al contenuto, il secondo si adatta all'altezza dello schermo.
+\par Se faccio linear layout mi affianca gli elementi, da dentro il primo blocco (prima di TextView) vado a mettere \texttt{android:orientation="vertical"} li mette uno sotto l'altro.
