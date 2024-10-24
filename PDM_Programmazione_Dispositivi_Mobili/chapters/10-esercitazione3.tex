@@ -1,0 +1,26 @@
+% 24/10/2024
+
+\chapter{Esercitazione 3}
+\section{Il progetto}
+Cominciamo il progetto \texttt{WordNews} con un template \textit{Empty Activity}. Sarà un'app che mostra le notizie.
+
+\begin{itemize}
+    \item \texttt{androidx.constraintlayout.widget.ConstraintLayout} diventa \texttt{LinearLayout}, mette gli elementi in lista semplicemente, in verticale o in orizzontale.
+    \item dentro ci aggiungo \texttt{android:orientation="vertical"}
+    \item \texttt{android:gravity} sposta il testo all'interno dell'oggetto
+    \item \texttt{android:layout_weight} fa in modo che l'oggetto si adatti alla grandezza dello schermo (no valore di default)
+    \item ora proviamo il Layout \texttt{RelativeLayout} (lo useremo per poco o nulla) in cui mettiamo una TextView con \texttt{android:layout\_below="@id/testo1"} che mette le view in fila verticalmente, comoda per le view ma non tanto per i singoli oggettini
+    \item su moodle ha caricato una risorsa con buoni consigli per la programmazione, su questo sito Material Design Guidelines possiamo anche trovare le palette da inserire nel nostro progetto
+    \item ogni schermata è un'activity: per farne una nuova "New -> Activity -> Empty View Activity". Diamo il nome "PickCountryActivity" e mettiamo il layout "activity\_pick\_country" (fa di default veramente)
+    \item dentro "AndroidManifest.xml" andiamo a mettere \texttt{<activity android:name=".PickCountryActivity" />} che sarà il nuovo punto di ingresso dell'app. Di seguito:
+    \begin{verbatim}        
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter> 
+    \end{verbatim}
+    Questa parte che è dentro MainActivity la mettiamo dentro PickCountryActivity.
+    \item dentro "activity\_pick\_country.xml" utile sono le "guidelines" che metto verticale
+    \item comunque ha fatto roba tra cui inserire 1-2 cards che mi sono persa, ma quasi tutto mi sembra possa essere fatto dal sito di material design e importato
+    \item comunque poi anche il login mail password e "did you forget your password?" è un bottone anche se sembra testo, sul sito material design si vedono i vari stili di bottoni 
+\end{itemize}
