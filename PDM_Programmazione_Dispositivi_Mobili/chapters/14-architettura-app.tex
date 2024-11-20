@@ -180,3 +180,60 @@
 
 \subsubsection{General Best Practice}
 \par Documento importante da guardare: \url{https://developer.android.com/topic/architecture#best-practices}
+
+\section{UI Layer}
+\subsection{Introduzione}
+\subsubsection{Sintesi}
+\par Il ruolo di un'interfaccia utente (UI) %slide
+
+\subsection{Stato UI}
+\subsubsection{Definizione}
+\par Lo stato UI è l'informazione che l'applicazione stabilisce che l'utente dovrebbe vedere.
+\par Gli elementi UI sono un mezzo per mostrare lo stato.
+\par \textbf{UI elements + UI states = UI}
+
+\subsubsection{Evoluzione dello stato: gestione attraverso UDF}
+\par Lo stato UI può evolvere nel tempo.
+\par L'evoluzione dello stato UI è gestita attraverso unidirectional data flow (UDF).
+
+\subsubsection{Gestione dell'evoluzione attraverso UDF: state holders}
+\par Gli state holders sono classi responsabili del mantenimento dello stato della UI e della logica necessaria al suo aggiornamento.
+\par Le classi \texttt{ViewModel} sono un esempio di state holders.
+
+\subsubsection{Esposizione dello stato: Live Data (o StateFlow)}
+\par Lo stato (dati) è mantenuto dagli State Holders (ViewModel).
+% Slide
+
+\subsection{Eventi UI}
+\par Sono azioni che %slide
+\par Due tipi di eventi UI:
+\begin{itemize}
+    \item \underline{business logic}: \textbf{cosa} occorre fare a fronte di un cambiamento di stato\\
+    Ha inserito una slide di esempio in cui nel caso di business logic, ci interfacciamo direttamente con il \texttt{ViewModel}.
+    \item \underline{UI behaviour logic}: \textbf{come} mostrare il cambiamento di stato
+\end{itemize}
+
+\section{Domain Layer}
+% Nel caso di domain layer, ha detto che lei di solito rispetta la convenzione di chiamare le classi che si occupano di business logic con il nome terminante per UseCase.
+
+% Nell'esempio delle notizie, data layer ha due repository da cui il domain layer prende i dati e li manipola (classe intermedia) per poi passarli al UI layer.
+
+\section{Data Layer}
+\par A differenza di ViewModel e UseCase, i repository non sono elementi architetturali, non sono classi astratte, ma concrete.
+
+% Slide Introduzione Architettura: Acquisizione Data Source e APIs ha un pezzo di codice in cui il costruttore non ha il nome della classe.
+\par Slide Architettura: naming conventions. molto importante.
+\par Slide Architettura: molteplici livelli di repository. molto importante.
+\par Slide Architettura: source of truth. molto importante ocio.
+
+% \section{Riassumendo:}
+% \begin{itemize}
+%     \item S.O.L.I.D.: la nostra app li deve sempre mostrare
+%     \item Separazione flusso dati ed eventi (seguendo pattern di dipendenze ben precisi)\\
+%     es. ui dipende da model, model dipende da repository, repository dipende da data source etc
+%     \item Unidirectional data flow (meccanismi di osservo osservo)
+%     \item NON FARE ROBA A CIRCOLO: entrano in gioco le notifications
+%     \item nella mia app devo avere TUTTI i livelli: activity, viewmodel, live data etc
+%     \item importante usare service locator
+% \end{itemize}
+% Prossima volta: ciclo di vita 
