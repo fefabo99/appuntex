@@ -1,0 +1,182 @@
+% 20/11/2024
+
+\chapter{Architettura dell'applicazione}
+\par L'architettura dell'applicazione è un aspetto molto importante per la nostra applicazione, per garantire che sia robusta, testabile e manutenibile. Un'architettura (pezzi di codice con precise responsabilità) ben fatta permette di scrivere codice più pulito, mantenibile e testabile. Inoltre, permette di dividere il lavoro tra più persone in modo più efficiente.
+\par Android ci facilita nel nostro lavoro perché mette a disposizione un insieme di librerie e componenti per creare un'architettura solida. 
+
+\section{Cos'è un'architettura SW?}
+\par Definisce come il sistema (che sarà sviluppato secondo questa architettura) è strutturato, in che modo i suoi componenti e connettori interagiscono tra loro (rendendoli \textbf{compatti/coesi}, ovvero che di base si preoccupa di una sua sola responsabilità e solo di quello, e \textbf{lascamente connessi}, ovvero che ho poca interazione fra i componenti o che le loro dipendenze siano al minimo per non impattare sugli altri) attraverso \textit{interfacce} e come i dati vengono scambiati.
+
+\section{Principi di base della programmazione}
+\par Parliamo di \textbf{S.O.L.I.D.}:
+\begin{itemize}
+    \item \textbf{S}ingle Responsibility Principle: ogni classe dovrebbe avere una sola responsabilità.
+    \item \textbf{O}pen/Closed Principle: le classi dovrebbero essere aperte all'estensione, ma chiuse alla modifica.
+    \item \textbf{L}iskov Substitution Principle: gli oggetti di una superclasse devono essere sostituibili con gli oggetti delle sue sottoclassi senza interrompere il funzionamento del programma.
+    \item \textbf{I}nterface Segregation Principle: un'interfaccia dovrebbe essere specifica per i suoi clienti.
+    \item \textbf{D}ependency Inversion Principle: le classi dovrebbero dipendere da interfacce e non da classi concrete.
+\end{itemize}
+
+\subsection{Single Responsibility Principle}
+\par Ogni classe dovrebbe avere una e una sola ragione per cambiare (una classe deve essere responsabile solo di un unico aspetto o funzionalità del sistema). Se una classe fa troppo, è difficile da mantenere e testare. Se una classe fa troppo poco, è difficile da riutilizzare.
+\par Garantisce:
+\begin{itemize}
+    \item \textbf{Testing facilitato}: una componente con una sola responsabilità richiederà meno casi di test.
+    \item \textbf{Loose coupling}: meno funzionalità in un singolo componente, meno dipendenze.
+    \item 
+\end{itemize}
+% Slide successiva, esempio.
+
+\subsection{Open/Closed Principle}
+\par Le classi, i componenti, dovrebbero essere aperte all'estensione, ma chiuse alla modifica. Questo significa che dovremmo essere in grado di estendere una classe senza modificarla. \textbf{Deve essere closed, non posso permettere modifiche}.
+\par Garantisce:
+\begin{itemize}
+    \item \textbf{Non modificabilità del codice}: il rischio di introdurre bug è limitato.
+\end{itemize}
+
+\subsection{Liskov Substitution Principle}
+\par A parità di \textbf{contratto}, un componente dovrebbe poter essere sostituito senza compromettere il sistema.
+\par Ma cos'è il contratto? Quando abbiamo introdotto a Prog2 le interfacce abbiamo detto che si \textit{istituisce un contratto}.
+\par Garantisce:
+\begin{itemize}
+    \item \textbf{Supporto all'evoluzione} del software.
+    \item \textbf{Supporto allo sviluppo incrementale} (sub).
+\end{itemize}
+\par Si basa sui concetti di ereditarietà e polimorfismo visti a Prog2.
+\par Vedremo fra poco il concetto di \textbf{dependency injection}.
+
+\subsection{Interface Segregation Principle}
+\par Un'interfaccia troppo ampia dovrebbe essere suddivisa in più interfacce più specifiche e piccole.
+\par C'è l'esempio dell'interfaccia BearKeeper nelle slide: viola il primo principio di separazione delle responsabilità: viene sostituita da una classe BearCarer che implementa BearFeeder, BearCleaner e BearPetter, ciascuna con le proprie responsabilità.
+
+% Perso un paio di slides.
+
+\subsection{Dependency Inversion Principle}
+\par Si riferisce a 
+\par Es. Firebase: non posso usare la formulazione a sinistra perché mi lego \textbf{troppo} a Firebase. La formulazione a destra è più corretta perché mi lego solo all'interfaccia ProfileSaver, quando voglio sfruttare Firebase mi affido all'istanza più specifica FirebaseProfileSaver.
+
+\section{Clean Architecture}
+\par Clean Architecture è un'architettura software proposta da Robert C. Martin ("Uncle Bob". Non si sa perché questo soprannome, o perché si firmava così nei primi blog o per il suo carattere affabile) nel 2012. È un'architettura che permette di scrivere codice pulito, mantenibile e testabile. È basata sui principi SOLID e su altri principi di progettazione software.
+% Diciamo che copierei la slide
+% Inserisci slide dei cerchi concentrici
+\par La Clean Architecture è un insieme di linee guida per progettare l'architettura di un software.
+\par Definisce come partizionare in livelli il software definendo in maniera chiara i confini fra questi.
+\begin{itemize}
+    \item Al centro: codice di alto livello (logica pura).
+    \item All'esterno, codice di basso livello. 
+\end{itemize}
+\par Codice di base che non dipende dalle architetture progettative.
+\par Quando io strutturo quello che è Entities, me ne frego del rosso che è Use Cases. Questo perché dipende dalla dependency ?:
+\begin{itemize}
+    \item Il codice di basso livello (più esterno) può dipendere da quello di livello superiore (più interno), ma mai il contrario.
+    \item Ogni cerchio interno può sapere nulla di qualcosa di un cerchio esterno, cioè il cerchio interno non deve dipendere dal cerchio esterno.
+\end{itemize}
+
+\subsection{Entities}
+\par Questo è il livello centrale dell'architettura e contiene le entità principali del sistema.
+
+
+\subsection{Use Cases}
+\par Questo livello contiene i casi d'uso che rappresentano i comportamenti specifici dell'applicazione.
+\par Siamo ancora nel \textbf{cosa}, non nel \textit{come}.
+\par I casi d'uso coordinano le operazioni tra le entità e gestiscono la logica di business.
+\par Si tratta di logica
+
+\subsection{Interface Adapters}
+\par SI occupa di adattare l'applicazione a elementi esterni, come database, UI, servizi web\dots
+\par Questo livello contiene componenti come \textbf{Repositories}, \textbf{Presenters}, \textbf{Controllers}, \dots
+\begin{itemize}
+    \item Repositories è il design pattern che si occupa di traduzione da database a 
+    \item Presenters: si occupa di tradurre i dati in una forma che può essere visualizzata dall'utente.
+    \item Controllers: si occupa di tradurre le azioni dell'utente in azioni che l'applicazione può eseguire.
+\end{itemize}
+
+\subsection{Frameworks and Drivers}
+\par Questo livello esterno contiene i dettagli tecnici e le librerie esterne che l'applicazione utilizza.
+% Guarda slide
+
+
+\section{Architettura moderna delle app Android}
+\par Come anticipato a inizio corso, se l'app che andiamo a progettare non rispetta i principi linee huida che stiamo per andare a vedere e che sono universalmente riconosciuti come buone pratiche, l'applicazione sarà valutata non sufficiente.
+
+\subsection{Principi alla base da seguire}
+\begin{itemize}
+    \item \textbf{Separazione delle responsabilità}.
+    \item \textbf{Drive UI from data model}: UI dovrebbe essere generata e aggiornata in base ai dati contenuti nei modelli di dati separati dalla UI.\\
+    Dato che c'è stretta correlazione tra dati e app, per non legare la presentazione (elementi grafici) ai dati, si utilizzano 
+    \item \textbf{SIngle source of truth (SSOT)}: i dati possono arrivare sia dalla rete che altre fonti. Io devo sempre fare fluire i dati dal mio daatbase che ho istituito come fonte autorevole e affidabile (trustworthy) di dati. Questo garantisce anche di evitare inconsistenze.
+    \item \textbf{Unidirectional Data Flow}: il dato fluisce in una sola direzione. Lo stato fluisce in una sola direzione ( $\rightarrow$ UI), mentre gli eventi che modificano i dati fluiscono in direzione opposta.
+\end{itemize}
+
+\subsection{Tre livelli}
+\par L'architettura moderna delle app Android si basa su tre livelli:
+\begin{itemize}
+    \item \textbf{UI layer}
+    \item \textbf{Data layer}
+    \item \textbf{Domain layer}
+\end{itemize}
+
+\subsubsection{UI layer}
+\par \textbf{Overview}
+\begin{itemize}
+    \item Il ruolo del livello UI (o livello di presentazione) è:
+    \begin{itemize}
+        \item la \textbf{visualizzazione} dei dati dell'app sullo schermo
+        \item l'\textbf{aggiornamento} dei dati quando cambiano
+    \end{itemize}
+    \item Il livello UI è composto da due elementi:
+    \begin{itemize}
+        \item \textbf{UI elements}:
+        \item \textbf{State Holders}:
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Data layer}
+\par \textbf{Overview}
+\begin{itemize}
+    \item Definisce le regole (business logic) che determinano il modo in cui l'app crea archivia e modifica i dati.
+    \item Il livello dati è composto da due elementi:
+    \begin{itemize}
+        \item \textbf{Repository} (con cui noi ci interfacciamo):
+        \begin{itemize}
+            \item contengono uno o più data source (\textbf{un repository per tipo di dato})
+            \item espongono i dati al resto dell'app
+            \item centralizzano la modifica dei dati
+            \item risolvono i conflitti quando esistono più data source
+            \item nascondono la data source (parliamo di astrazione)
+        \end{itemize}
+        \item \textbf{Data Sources}:
+        \begin{itemize}
+            \item fornisce una sola fonte di dati
+            \item può essere ..., rete, database locale\dots
+        \end{itemize}
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Domain layer}
+\par \textbf{Overview}
+\begin{itemize}
+    \item Incapsula la logica di business complessa oppure quella più semplice ma usata da più State Holders.
+    % \item Ha skippato la slide di prepotenza, non ho capito perché.
+\end{itemize}
+% domanda in aula, per tipo password etc dove mettere, ha detto ciò che riguarda i dati data layer
+
+\subsection{Confronto}
+\subsection{Gestione delle dipendenze fra componenti}
+\subsection{Dependency Injection}
+\par Le classi hanno bisogno di riferimenti ad altre classi. Una classe costruisce la dipendenza di cui ha bisogno.
+
+\subsubsection{Soluzione Manuale}
+\par La classe riceve le istanze da cui dipende dall'esterno. Ho due modi:
+\begin{itemize}
+    \item constructor injection: %slide
+    \item field (get/set) injection: %slide
+\end{itemize}
+
+\subsubsection{Service Locator}
+\par Sono classi che forniscono le dipendenze di cui una classe ha bisogno. %slide 
+\par Si chiamano davvero così. Creano e memorizzano le dipendenze e le forniscono quando richiesto.
+% Slide
+
+\subsubsection{General Best Practice}
+\par Documento importante da guardare: \url{https://developer.android.com/topic/architecture#best-practices}
