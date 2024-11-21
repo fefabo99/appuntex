@@ -1,0 +1,92 @@
+% 21/11/2024
+
+\chapter{Esercitazione 6}
+\par Oggi vedremo una cosa essenziale per la nostra app: la gestione delle viste in maniera dinamica. Quello che dovremo andare ad avere sarà una lista di carte con collegamenti a servizi API.
+\begin{itemize}
+    \item Grid Layout contiene una lista di carte.\\
+    Vogliamo andare a renderlo più dinamico.
+    \begin{itemize}
+        \item file PickCountryFragment.java
+        \item creiamo nella cartella Java il package \texttt{util} in cui creo il file java \texttt{Constants.java}
+        \item sull'API delle news (https://newsapi.org/) troviamo la lista dei paesi e delle categorie (in codici che sono costanti e che posso prendere e sbatter nel mio codice): dentro il codice ho delle righe con i codici che avrò per gli stati, poi uguale per le categorie, che andrò ad usare. Sotto avrò delle liste (categorie, drawables delle categorie, codici nazioni, nomi nazioni...)
+        \item dentro "\texttt{strings.xml}" andiamo a creare delle stringhe per i paesi e le categorie: \texttt{<string name="countries\_name">"..."</string>} per ogni nazione
+        \item Su \url{developers.android.com} andiamo a cercare "List View". Ne useremo la logica per andare a creare la nostra Grid View (che ha la stessa logica).
+        \item L'oggetto che stiamo modellando (tipo la categoria) avrà un codice un nome e un'immagine. Fra la lista e l'oggetto ho l'adapter: ho un oggetto, faccio in modo di metterlo dentro una view.
+        \item definiamo un package \texttt{model} (classi container): dentro la dir \texttt{java} vado a creare la nuova classe \texttt{Country.java} che sarà l'oggetto che voglio andare a modellare. Avrà un costruttore, getter e setter per nome, codice e immagini.
+        \item La nostra dir \texttt{java} avrà:
+        \begin{itemize}
+            \item \texttt{model} con \texttt{Country.java}
+            \item \texttt{ui.welcome} con \texttt{fragment} con \texttt{PickCountryFragment} e \texttt{PickCategoryFragment} e \texttt{LoginFragment}.\\
+            Dentro \texttt{PickCountryFragment} vado a mettere l'adapter: \texttt{gridview.setAdapter(new CountryAdapter(getActivity(), countries));}
+            \item \texttt{adapter} con \texttt{CountryAdapter.java} che importa:
+            \begin{itemize}
+                \item android.content.Context
+                \item android.view.View
+                \item android.view.ViewGroup
+                \item android.widget.ArrayAdapter
+            \end{itemize}
+            e altre tre righe. Avrà poi un costruttore (class CountryAdapter extends ArrayAdapter<Country>) con dentro Context context non nullo e un layout (che fa riferimento al card\_country in \texttt{layout}) in ingresso e un metodo \texttt{getView()} che andrà a restituire la view e in ingresso avrà: int position, View convertView, ViewGroup parent.
+        \end{itemize}
+        \item La gridview c'è ma va riempita, poi per modificare semplicemente un'immagine vado in CountryAdapter.java e modifico il metodo \texttt{getView()} facendo:\\
+        \texttt{imageView.setImageResource(countriesList.get(Position).getImage);}
+        \item Dentro Constants.java vado a mettere una lista di oggetti Country:\\
+        \texttt{public static final ArrayList<Country> countriesList = new ArrayList<>();}\\
+        Faccio un \texttt{for} per la dimensione di COUNTRIES\\
+        \texttt{countriesList.add(new Country(context.[i]));}
+
+        \item Dentro PickCountryFragment.java vado a mettere l'adapter: \texttt{gridview.setAdapter();}
+        % vabbeh mi sono persa
+        \item MaterialCardView è un componente di Material Design che permette di creare delle card, faccio:\\
+        \begin{verbatim}
+            MaterialCardView cardView = (MaterialCardView) convertView;\\
+            cardView.setOnClickListener(new View.OnClickListener() 
+            \{
+                @Override
+                public void onClick(View view) 
+                \{
+                    //qui dentro metto il codice per andare a fare il click
+                    Navigation findNavController(view).navigate(R.id.action\_pickCountryFragment\_to\_pickCategoryFragment);
+                \}
+            \});
+        \end{verbatim}
+        \item In \texttt{util} vado a creare una classe \texttt{SharedPreferences} che vado a prendere da \url{developer.android.com} e che mi permette di salvare delle informazioni in maniera persistente.
+        \begin{itemize}
+            \item Il metodo \texttt{writeStringData} va a scrivere una stringa (ci salveremo Country)
+            \item Il metodo \texttt{writeStringSetData} va a scrivere un set di stringhe (ci salveremo Category)
+            \item Poi ho i metodi read.
+        \end{itemize}
+        \item Dentro \texttt{Country.java} metto tre stringhe dove salvo le chiavi di preferenze, nazione e categoria.
+        \item Andiamo a creare dentro \texttt{adapter} un nuovo file \texttt{CategoryAdapter.java} che sarà uguale a \texttt{CountryAdapter.java} ma per le categorie.\\
+        Credo copia incollato sostiutendo Country con Category.
+        \item Dentro \texttt{model} creo \texttt{Category.java} che sarà uguale a \texttt{Country.java} ma per le categorie.\\
+        Credo copia incollato sostiutendo Country con Category.
+        \item Anche in Constants.java vado a creare una lista di oggetti Category. anche in pickCategoryFragment.java vado a mettere l'adapter, copia incollando ma stando attenti a rinominare correttamente. Tanto hanno la stessa identica logica.
+        \item Ora, voglio poter scegliere più categorie assieme e poi poter confermare. Ha aggiunto perciò un bottone. Questo comunque lo vedo in \texttt{card\_category.xml} e \texttt{PickCategoryFragment.java}. La card avrà lo stato selezionato. Dentro \texttt{PickCategoryFragment.java} ho il floatingActionButton che mi permette di andare avanti (= view.findViedById(R.id.floatingActionButton);).
+        \item Posso andare ad aggiungere un riferimento alla precisa istanza di un fragment. Lo faccio in \texttt{PickCategoryFragment.java} con \texttt{private PickCategoryFragment fragment;} e aggiungendolo in ingresso al costruttore.
+        \item Solo se la lista di categorie selezionate non è vuota si accende il bottone (introdotto in \texttt{fragment\_pick\_categrories.xml} in \texttt{layout} e trovato sul git di material-components-android). Come? Dentro CategoryAdapter.java vado a mettere fragment.tryEnableFloatingActionButton(); e dentro PickCategoryFragment.java creo il metodo \texttt{tryEnableFloatingActionButton()} che abilita il bottone se la lista non è vuota.
+        \item Dentro PickCategoryFragment.java vado a creare il metodo \texttt{floatingActionButton.setOnClickListener()} in cui vado a salvare le categorie selezionate tramite i loro codici e a navigare verso la prossima schermata.
+        \item aggiungo un intent in PickCategoryFragment per andare alla prossima schermata (HomeActivity).
+    \end{itemize}
+\end{itemize}
+
+\section{L'activity Home}
+Non la mettiamo in ui.welcome ma in ui direttamente.
+\par Ricorda che viene sempre valutata molto nel progetto la struttura: la ui nella cartella ui, i layout nella cartella layout etc.
+\par IN questa activity avremo una barra sotto con 4 schede: Scelte in base alla selezione, Top Headlines (più recenti), Ricerca (per keyword o argomento) e credo Preferiti. Sono tutti servizi offerti dall'API delle notizie. Useremo di material-components-android il BottomNavigationView.
+\par Ora la nostra struttura sarà:
+\begin{itemize}
+    \item \texttt{ui}
+    \begin{itemize}
+        \item \texttt{home} con \texttt{HomeActivity.java}
+    \end{itemize}
+\end{itemize}
+\par Dentro \texttt{res} dentro \texttt{menu} (dir che se non esiste creo) creo \texttt{home\_menu.xml}. Dentro avrò una lista di item con id e titolo e icona (l'ultima non essenziale).\\
+\par Importa l'icona vettoriale delle notizie.
+\par L'idea è che l'activity abbia sotto la barra con i 4 contenitori e sopra il fragment.
+\par Dentro \texttt{navigation} (dir sotto a mipmap, dovrebbe avere già \texttt{nav\_graph.xml}) creo \texttt{home\_nav\_graph.xml} che è il file di navigazione, dentro al quale col simbolino che ho in alto (rettangolo con il +) aggiungo i 4 fragment con id "preferenceNewsFragment", "popularNewsFragment", "searchNewsFragment" e "favoriteNewsFragment". Avrò i 4 xml dentro layout.
+\par Per fare la toolbar in alto dentro \texttt{activity\_home.xml} metto un \texttt{Toolbar}: \texttt{androidx.appcompat.widget.Toolbar}.
+\par Ora posso navigare fra le schede (non si vede perché i fragment sono tutti uguali e comunque ancora vuoti, next time).
+
+
+
+% Mi sono un poco rotta guarderei la fine della registrazione.
