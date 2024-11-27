@@ -1,0 +1,73 @@
+% 27/11/2024
+
+\chapter{Services}
+\par Un Service è un componente (uno dei 4 fondamentali di Android, un insieme di API dette "work-manager") che esegue operazioni in background senza fornire un'interfaccia utente. Possono persistere se programmati bene. Altri componenti possono avviare un service e interagire con esso anche se l'applicazione è in background. Un service può essere avviato da un componente (come un'attività) o può essere avviato in risposta a un'evento (come un broadcast receiver).
+% slide, es sincronizzazione con firebase, che va in background senza disturbare l'utente
+\par Un Service fornisce funzionalità ad altre app (ha fatto esempio di backup a fine giornata).
+\par Posso posticiparne l'esecuzione.
+
+\section{Cos'è un Service}
+\begin{itemize}
+    \item Un service \textbf{\textit{non}} è un \textbf{processo} separato.
+    \begin{itemize}
+        \item A meno che non sia specificato diversamente, viene eseguito nello stesso processo dell'applicazione di cui fa parte.
+    \end{itemize}
+    \item Un service \textbf{\textit{non}} è un \textbf{thread}.
+    \begin{itemize}
+        \item Boh
+    \end{itemize}
+    \item Un service fornisce \textbf{due} caratteristiche principali:
+    \begin{itemize}
+        \item guarda slide
+    \end{itemize}
+\end{itemize}
+
+% quando spengo il telefono i services sono persi, non sono persistenti. Il work manager infatti (come vedremo) va a salvare su un DB.
+% i services sono meno onerosi ma i work manager mettono a disposizione API che permettono di fare cose più complesse e renderle persistenti. Es.: chiamate ogni tot è un esempio di una cosa che quelle API possono fare.
+
+\subsection{Platform e Custom Services}
+\par \texttt{Context} fa da tramite con hardware e boh risenti.
+
+\section{Tipi di services}
+\subsubsection{Foreground}
+\subsubsection{Background}
+\subsubsection{Bound}
+
+\subsection{Avviare un service:}
+\subsubsection{Started}
+\subsubsection{Bound}
+\subsubsection{Started e Bound}
+
+\subsection{La vita del processo}
+\par Un servizio viene killato da Android solo quando la memoria è bassa e risenti.
+
+\subsection{Le basi per la realizzazione}
+\subsubsection{Creazione}
+\par onBind() obbligatorio implementarlo anche se è un servizio started.
+
+\subsection{Il file Manifest}
+\par Services da attivare con intent esplicito (cosa voglio che venga fatto, es.: voglio visualizzare una pagina web, chi c'è che me lo può fare?).
+
+\subsection{Foreground}
+\par \textbf{Un Foreground Service è un servizio di cui l'utente è attivamente consapevole.}
+
+\subsubsection{Notifiche}
+\par Forniscono informazioni brevi e tempestive sugli eventi di un'app mentre non è in uso.
+\par N.B.: è una classe a sé (\texttt), non è un'Activity.
+
+\subsubsection{Anatomia di una notifica}
+
+\subsubsection{Azioni}
+
+\subsubsection{Notification channel: creazione}
+% pendingintent: rimane nel tempo più di un intent, gli passo l'intent che mi specifica l'intent dell'activity che
+
+\subsection{Started Foreground Service}
+startForegroundService() mi chiama un servizio foreground, di default avrei un started.
+startForeground() chiede 2 parametri in ingresso:
+\begin{itemize}
+    \item boh
+\end{itemize}
+
+
+
