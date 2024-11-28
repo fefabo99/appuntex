@@ -1,0 +1,47 @@
+% 28/11/2024
+
+\chapter{Esercitazione 7}
+\par L'altra volta adapter e liste da statiche a dinamiche, e navbar.
+\par Oggi: toolbar in alto, dove vogliamo che esca il fragment corrente.
+\begin{itemize}
+    \item HomeActivity.java: andiamo a dirgli (tramite \texttt{getSupportActionBar(toolbar)}) quale fragment sarà il principale.
+    \item Facciamo collegamento fra navbar sotto e toolbar sopra che farà da contenitore al fragment: \texttt{navigationUI.setUpWithNavController(bottomNav, navController).}
+    \item \texttt{AppBarConfiguration} fa da contenitore per i fragment.
+    \item In \texttt{home\_menu.xml} andiamo a fare il menù laterale creando gli items per ogni sezione dentro a \texttt{<menu> \dots </menu>}.
+    \item \url{reqbin.com}: sito per fare richieste HTTP e API simulator and tester.
+    \item Ha creato un po' di classi con le info di un articolo, autore, titolo, etc. 
+    \item Ha fatto un JSON (che mette poi nella dir \texttt{assets}) "\texttt{sample\_api\_response.json}" che simula la risposta di una API.
+    \item Libreria GSON: data una stringa JSON, la trasforma in un oggetto Java. Ha i suoi metodi (che sono statici, no need di inizializzazione) per fare il parsing.
+    \item In \texttt{util} crea una cartella \texttt{JSONParserUtils} e dentro una classe \texttt{JSONParserUtils.java} in cui mette il codice per fare il parsing del JSON. 
+    \item Per visualizzare la lista di articoli creata con il JSON, non usando la ListView dell'altra volta (li visualizza tutti uno sotto l'altro), ma usando il RecyclerView. Nasce apposta per risolvere questo problema, creando liste più dinamiche. All'inizio crea un tot di oggetti, quando vede che uno di questi non è più visibile, lo rimuove e lo mette in fondo e aggiorna i rimanenti visibili nello schermo. Non ne istanzia di nuovi!!
+    \item Hanno chiesto differenze fra ListView e ScrollView: la ListView è una lista di elementi (messa in un adapter) che si scrollano, mentre la ScrollView è un contenitore che si scrolla.
+    \item Comunque, per usare il RecyclerView, bisogna aggiungere la dipendenza in \texttt{build.gradle} e creare un adapter che è leggermente diverso da quello già creato per Country per la ListView.
+    \item Invece di creare es. 10 card, crea es. 10 viewHolder che contengono informazioni di un articolo.
+    \item \texttt{getItemCount()} conta le view visualizzabili. Sul sito solito per developers con cose utili di Android, c'è il codice per creare un adapter per il RecyclerView. In particolare il pezzo per sostituire una view quando questa finisce fuori dallo schermo.
+    \item Va a creare un layout, poi la lista degli articoli. La materialCardView che va a prendere ha due LinearLayout, uno per l'immagine e uno per il testo in cui avrà titolo, autore e quanto è passato dalla pubblicazione. Ci sono anche due checkbox nel LinearLayout del testo: uno per il like e uno per impostazioni (?). Per il primo va ad implementare un selector per vedere se selezionato o no (due drawable diversi).
+    \item \texttt{onBindViewHolder(ViewHolder viewHolder, final int position)}: funzione che lancio quando voglio riempire una card, prendendo l'oggetto in posizione \texttt{position} ovvero la categoria e riempiendo i campi della card con le info dell'oggetto.
+    \item Un'altra cosa che si può fare in una RecyclerView è aggiungere un separatore tra le card. Si può fare creando un drawable che rappresenta il separatore e poi andando a settare il separatore nel layout della card.
+    \item In fragment\_preference\_news.xml ha messo un padding per separare le card.
+    \item Per dire se volessi salvare in locale gli articoli "favorite": fai riferimento a "save data in a local database using Room" su \url{developers.android.com}, Room è una libreria. Come? Con un DB in cui andiamo a salvare gli articoli preferiti. Va a mettere la prima riga del codice versione 2.6.1.
+    \item Diagramma dell'architettura di Room: next esercitazione.
+    \item In sample implementation c'è il codice per andare ad aggiungere annotations agli articoli.
+    \item Aggiunge import: \texttt{import androidx.room.Entity;} e \texttt{import androidx.room.PrimaryKey;}. La chiave primaria è l'uid che ho aggiunto all'inizio dell'entity, ovvero della classe.
+    \item Creo package "database" dove vado a mettere l'interfaccia ArticleDao.java con le relative import: \texttt{import androidx.room.Dao;}, \texttt{import androidx.room.Delete;}, \texttt{import androidx.room.Insert;} e \texttt{import androidx.room.Query;}.
+    \item In \texttt{ArticleDao.java} vado a creare le query per inserire, cancellare e selezionare articoli:
+    \begin{itemize}
+        \item \texttt{\@Insert} per inserire un articolo
+    \end{itemize}
+    \item \texttt{ArticleDatabase.java} è la classe (che vado a creare nel package "database" che ho creato prima) che estende RoomDatabase e contiene le istanze di ArticleDao.
+    \item Sempre su \url{developers.android.com} sotto "Usage" c'è il codice per creare un database Room: creo una classe che implementa l'interfaccia di prima, con una funzione che esegue la mia query. Room si occupa di definire lui il codice per eseguire la query, nascondendolo all'utente.
+    \item Dentro Usage però vedo che usa il nome del database, perciò in \texttt{Constants.java} vado a creare una costante che contenga questo nome.
+    \item La connessione al database sarebbe meglio farla \textbf{asincrona}, quindi creare una view per poi aggiornarla quando ritornano gli output delle query. Noi però facciamo "allowMainThreadQueries().build()" che permette di fare query sul main thread, ma non è una buona pratica.
+    \item Nell'adapter della RecyclerView, vado a salvarmi cose utili quali titolo e autore. Quando clicco sulla checkbox del like, però, abilitandola vado a salvare l'articolo nel database Room. Per farlo, devo creare un'istanza del database Room e poi chiamare la funzione per inserire l'articolo (\texttt{insert()}). Nell'adapter va anche ad aggiungere un listener per il click sulla checkbox. Quindi dentro a \texttt{onBindViewHolder()} va a settare il listener, con parametri un compoundButton e un booleano. Dentro a questo listener, se l'istanza già esiste nel database, la richiama, altrimenti la aggiunge. In ingresso ha messo \texttt{viewHolder.textViewAuthor.getContext()} per prendere il contesto e \texttt{newsDao().insertAll(articleList.get(position))} per inserire l'articolo.\\
+    Dentro a \texttt{Article.java} ho delle stringhe che sono considerate tipi primitivi quindi quando faccio l'SQL per le query del DB non ho capito.
+    \item Invece nell'else del listener, se l'articolo è già nel DB, lo rimuove. Per farlo, va a creare un'altra funzione in ArticleDao.java che prende in ingresso un articolo e lo rimuove. Poi va a chiamare questa funzione nell'else del listener.
+    \item Per visualizzare la pagina con solo gli articoli salvati tra i preferiti, andiamo sempre ad usare una RecyclerView quindi copiamo quanto fatto. Però, non voglio il JSON quindi vado a togliere il parser e il try catch.
+    \item Vado a fare la lista degli articoli (che non gli interessa se arriva dal JSON, dal DB o online) con la funzione dell'interfaccia "\texttt{getAll()}". Per farlo, vado a creare un'altra funzione in ArticleDao.java che mi ritorna tutti gli articoli. Poi vado a chiamare questa funzione nel fragment che visualizza gli articoli preferiti.
+    \item Ha definito una query "custom": quando avvio l'app voglio che il DB venga svuotato. Perciò: \texttt{@Query("DELETE FROM article")} che cancella tutti gli articoli. Poi va a chiamare questa query nel fragment che visualizza gli articoli preferiti.
+    \item Poi ha rinominato i label in \texttt{home\_nav\_bar.xml} e va a prendere i label da \texttt{strings.xml}.
+    \item L'ultima modifica l'ha fatta andando a dire dentro \texttt{favorites\_fragment.xml} che quando si istanzia un articolo, lo devo istanziare senza il drawable del like (perché è già stato messo nei preferiti). Dentro l'adapter della RecyclerView, va a settare la visibilità del like dicendo "se visibilità è visible, allora tolgo il drawable del like, altrimenti no". Communque è sempre lo stesso oggetto, non c'è bisogno di creare un nuovo layout, semplicemente in uno nascondo il cuore.
+\end{itemize}
+\par La prossima volta: non più file locali ma andiamo a recuperare i dati direttamente dal servizio, con uso sensato dell'API. Ricorda che deve essere \textbf{asincrona}, l'UI non si deve bloccare mentre aspetta la risposta. Poi vedremo come impostare il progetto in base all'architettura.
