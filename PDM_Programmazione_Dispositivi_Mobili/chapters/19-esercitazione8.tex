@@ -1,0 +1,62 @@
+% 05/12/2024 auguri Fabio
+
+\chapter{Esercitazione 8}
+\par L'ultima volta ArticleRoomDatabase, ArticleDAO, JSON degli assets\dots
+\par Per quanto riguarda oggi, facciamo riferimento alla scheda \href{https://developer.android.com/topic/architecture}{Guide to app architecture} per andare a parolare dell'srchitettura dell'app, seguendo la Modern App Architecture vista a lezione.
+\begin{itemize}
+    \item \textbf{UI Layer}: tutto ciò che ha a che fare con fragment e activities.
+    \item \textbf{Data Layer}: composto da repositories e data sources.\\
+    Quello che mi interessa è creare un "ponte" fra PreferenceNewsFregment e JSONParserUtils, questo verrà fatto tramite una repository come quelle d'esempio presentate al link di prima sotto "\href{https://developer.android.com/topic/architecture/data-layer#naming-conventions}{Naming conventions in this guide}" in "\href{https://developer.android.com/topic/architecture/data-layer}{Data Layer}".
+\end{itemize}
+\par Andiamo ad adoperare RetroFit: libreria per fare richieste HTTP.
+\par L'idea è avere un \texttt{ArticleRepository} che è un'interfaccia. Andremo ad usare un'altra interfaccia (un'istanziazione della prima) detta \texttt{ArticleMockRepository} che andremo ad usare per debugging. Poi \texttt{ArticleAPIRepository} che andrà a fare le richieste HTTP. Infine, \texttt{ArticleDBRepository} che andrà a fare le query al DB. Oggi ci limiteremo alle prime due.
+\par Definiremo due modalità di lavoro in base a quello che vogliamo andare a fare: \texttt{ArticleRepository} e \texttt{ArticleMockRepository}.
+\par Domanda in aula: ma fra \texttt{PreferenceNewsFregment} e \texttt{ArticleRepository} non dovremmo mettere un ViewModel? Sì, ma la prossima volta.
+\par \texttt{ArticleRepository} andrà ad appoggiarsi su \texttt{ServiceLocator} che serve a creare le istanze delle repository. Questo è un pattern di design che permette di creare un'istanza di una classe in base a un'interfaccia. In questo caso, \texttt{ServiceLocator} avrà un metodo \texttt{getArticleRepository()} che restituirà un'istanza di \texttt{ArticleRepository} e un metodo \texttt{getArticleDB()} che restituirà un'istanza di \texttt{ArticleDBRepository}.
+\par Ricordiamoci che deve essere asincrona, e offline first: vedi \url{https://developer.android.com/topic/architecture/data-layer/offline-first}.
+\par Al lavoro! Cominciamo creando un'interfaccia \texttt{IArticleRepository} con i metodi che ci servono: \texttt{fetchArticles(String country, int page, long lastUpdate())} è uno, \texttt{getFavoriteArticles()} è un altro. Sono entrambi \texttt{void}.
+\par Poi creiamo l'interfaccia \texttt{ResponseCallback} che ci servirà per fare il callback quando la richiesta è completata. Questa ha un metodo \texttt{onCreate(List<Article> articles)}, un metodo \texttt{onSuccess(List<Article> articlesList, long lastUpdate)}.
+\par Per mentre fa la richiesta, ha messo dentro fragment\_preference\_news.xml un \href{https://m3.material.io/components/progress-indicators/overview}{Progress Indicator} che sposta poi al centro.
+\par Creiamo la classe \texttt{ArticleAPIRepository} che implementa \texttt{IArticleRepository}. Questa ha un costruttore che prende in ingresso un \texttt{ResponseCallback} e un \texttt{Context}. Poi ha un metodo \texttt{fetchArticles(String country, int page, long lastUpdate)} che fa la richiesta HTTP. Per farlo, crea un'istanza di RetroFit, poi un'istanza di \texttt{ArticleService} che è un'interfaccia che definisce i metodi per fare le richieste. Poi fa la richiesta HTTP e, se va a buon fine, chiama il metodo \texttt{onSuccess()} del \texttt{ResponseCallback}.
+\par Alla seconda lezione avevamo visto un file \texttt{local.properties} che non viene caricato su git ed è quindi individuale e permette a tutti di avere la propria chiave senza creare conflitti. Dentro ci metto:
+\begin{verbatim}
+    sdk.dir=/Users/sara/Library/Android/sdk
+
+    debug_mode=false
+    newsap_key= ...
+\end{verbatim}
+Poi non ho capito. Ma dice che non è importante capire cosa facciano. Praticamente dice in caso di compilazione Gradle di aggiungere anche quella roba che ha scritto.
+% Guarda il video?
+\par Dentro il fragment di PreferenceNewsFregment.java, va a creare un'istanza di \texttt{ArticleAPIRepository} e chiama il metodo \texttt{fetchArticles()}. Crea il \texttt{onCreate} con in ingresso 
+
+\par Creiamo un nuovo package: \texttt{service}, che ci servirà per le chiamate API (sarebbe il \texttt{ServiceLocator} dello schema iniziale). Dentro creiamo un'interfaccia \texttt{ArticleAPIService} che definisce i metodi per fare le richieste. Dentro ci fa le query per le richieste HTTP.
+\begin{verbatim}
+    @GET(Constants.TOP_HEADLINES_ENDPOINT) {
+        Call<NewsResponse> getTopHeadlines(
+            @Query("country") String country, //???
+            @Query("apiKey") String apiKey
+        );
+    }
+\end{verbatim}
+\par Praticamente ha detto che GSON fa da tramite tra JSON e RetroFit.
+\par Torniamo in \texttt{PreferenceNewsFregment}. Dentro onCreateView, dopo aver creato la view, andiamo a fare \texttt{ArticleRepository.fetchArticles(country, page, lastUpdate)}.
+\par Torniamo in \texttt{ArticleAPIRepository}. Vogliamo gestire le callbacks quindi nella classe ArticleAPIRepository che implementa l'interfaccia, fa il costruttore con in ingresso \texttt{applications} e \texttt{callbacks} e poi i metodi void \texttt{fetchArticles(String country, int page, long lastUpdate)} e \texttt{getFavoriteArticles()}. Questi metodi vanno a fare le richieste HTTP e a gestire le callbacks. % Se ti interessa il come, guarda il video.
+\par Dentro \texttt{fetchArticles} ha messo un \texttt{if} che controlla se il currentTime - lastUpdate è maggiore di ?boh?, in caso affermativo fa la richiesta, altrimenti no.
+\par Nel caso ci siano tante richieste dico a cosa dare priorità con \texttt{.enqueue}.
+
+\par N.B.: quando vai a prendere librerie da internet, devo dirlo nel Manifest per "chiedere il permesso" al sistema operativo di poter usare internet.\\
+Per farlo, devo mettere \texttt{<uses-permission android:name="android.permission.INTERNET"/>}.
+\par Dentro \texttt{ArticleAPIRepository} creiamo void saveDataInDataBase(List<Article> apiArticles) che salva gli articoli nel DB.\\
+Per farlo, crea un'istanza di \texttt{ArticleRoomDatabase} e chiama il metodo \texttt{articleDao().insertAll(articles)}.
+\par Fa un for per scorrere gli articoli: vedo se c'è corrispondeza DB e locale, se non c'è li aggiungo.
+\par Quando inserisco articoli nel DB, assegna id ad ogni articolo ricevuto dall'API. Li aggiorno settando il liked in base a quelli che ho nel DB, poi li unisco.
+\par Dopo che lancio fetchArticles e mette in coda, quando riceve risposta scarica lista articoli e li dà a saveDataInDataBase. Poi chiama onSuccess del callback.
+\par Va ad aggiungere una RecyclerView che visualizza gli articoli. Per farlo, crea un adapter e un ViewHolder. Poi prende la lista locale di articoli, la svuota e aggiunge tutti quelli ricevuti. Avendo cambiato la lista di articoli, segue che devo fare una modifica anche alla UI sul thread main: lancia \texttt{requireActivity().runOnUiThread(() -> adapter.notifyDataSetChanged())}. Poi mette la visibilità della ProgressBar a GONE. 
+\par Lancia articleRepository.fetchArticles("...", ..., ...) e return view.
+\par L'ultima volta avevamo visto i liked articles. Dentro l'adapter del ArticleRecycler c'è un bool liked che tramite un listener sul cuore cambia il valore andando a modificare il DB.
+\par Perché sia offline first dentro saveDataInDataBase vado a salvare i dati che aggiornerò quando possibile. Se non ho internet, vado a prendere i dati dal DB.
+\par Prossima volta avremo anche un tempo dall'ultima richiesta API: se è passato troppo poco tempo, non vado a fare un'altra richiesta ma prendo i dati dal DB. Se è passato troppo tempo, vado a fare la richiesta. L'offline first è anche dato dalla struttura che abbiamo creato con le repositories oggi. Comunque, nel caso di offline first ho nel DB tutti i miei articoli e quando faccio la richiesta API, se non ho internet, vado a prendere i dati dal DB. Se ho internet, vado a fare la richiesta e aggiorno il DB.
+\par Potrebbe capitare un errore tipo "Room couldn't verify the data integrity" che è un errore di Room che dice che i dati che ho nel DB non sono quelli che mi aspetto. Questo può capitare se ho cambiato la struttura del DB e non ho aggiornato il DB. Per risolverlo, posso andare a cancellare il DB e ricrearlo. Per farlo, vado a disinstallare l'app e reinstallarla. Questo è un errore che capita spesso quando si lavora con Room.
+\par Prossima volta vedremo come avere immagini in mod asincrona (offine, senza internet) e come usare l'app in quella modalità facendo apparire la barra in alto che dice "no internet connection".
+\par L'importante è avere capito il concetto "UI --> Data Layer --> Repository --> Data Source --> metto i dati presi dalle sources nel repository e poi li passo alla UI".
+\par Vedremo anche come fare il ViewModel e come fare il Repository con il ViewModel.texttt{databaseWriteExecutor.execute()} che praticamente quando possibile, quando riesce, va a fare gli aggiornamenti necessari.
