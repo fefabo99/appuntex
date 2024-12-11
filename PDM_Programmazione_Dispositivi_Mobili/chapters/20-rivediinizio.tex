@@ -1,0 +1,290 @@
+% 11/12/2024
+
+\chapter{Rivedi Inizio}
+\par Ha parlato di:
+\begin{itemize}
+    \item Main Thread
+    \item Background processing\\
+    Parte importante della creazione dell'app Android che sia \textbf{reattiva} per gli utenti e che sia un \textbf{buon cittadino} della piattaforma Android.
+\end{itemize}
+
+\section{Principio}
+\begin{itemize}
+    \item Opportuno eliminare qualsiasi \textbf{attività bloccante} dal \textbf{thread} dell'UI.
+    \item Attività bloccanti più comuni:
+    \begin{itemize}
+        \item decodifica di una bitmap
+        \item accesso allo storage
+        \item esecuzione di modelli di ML (machine learning)
+        \item boh
+    \end{itemize}
+\end{itemize}
+\par \`E importante capire 
+
+\subsection{Come scegliere la soluzione giusta}
+\begin{itemize}
+    \item \textbf{Il tempo di inizio e fine task devono essere precisi?}
+    \item \textbf{Il task è interrompibile?}
+    \item \textbf{Il task può essere rinviato o deve essere svolto subito?}
+    \item \textbf{Il task dipende dalle condizioni del sistema?}
+    \item \textbf{Il task comporta la raccolta o l'utilizzo di dati sensibili dell'utente?}\\
+    Esempio tipico, geolocalizzazione. Mi avvalgo di foreground services (quelli che mi avvisano l'utente).
+    \item \textbf{Il task deve essere eseguito in un momento specifico?}
+\end{itemize}
+
+\section{Tipi di task in background}
+\par Il task in background rientra in una delle tre categorie principali:
+\begin{itemize}
+    \item \textit{Immediate}: il task deve essere eseguito subito e completato in tempi brevi.
+    \item \textit{Di lunga durata}: può richiedere del tempo per essere completato.
+    \item \textit{Differibile}: 
+\end{itemize}
+
+\section{Approcci al background work} %rivedere la struttura
+\par Task persistenti e non persistenti vanno gestiti in maniera differente:
+\begin{itemize}
+    \item \textbf{Persistenti:}
+    \begin{itemize}
+        \item Tutti i task persistenti vanno gestiti con il \textbf{WorkManager}.
+    \end{itemize}
+    \item \textbf{Non persistenti immediati} (aka, asynch work):
+    \begin{itemize}
+        \item \textit{Kotlin}: si usano le \textbf{coroutines Kotlin}.
+        \item \textit{Java}: si usa il \textbf{threading}.
+    \end{itemize}
+    \item Mi sono persa
+\end{itemize}
+
+\subsection{Alarms}
+\par Caso d'uso speciale che non fa parte del background work.
+\par Si usano
+\par Doze Mode.
+
+\subsection{Doze mode}
+\par Android 6.0
+\par Android 7
+\par Android 8
+
+\chapter{Asynchronous Work}
+\section{Caratteristiche}
+Si parla di work asincrono e persistente. Hanno luogo in background.
+\begin{itemize}
+    \item \textbf{Work asincrono}
+    \begin{itemize}
+        \item si svolge
+    \end{itemize}
+    \item \textbf{Work persistente}
+    \begin{itemize}
+        \item si
+    \end{itemize}
+\end{itemize}
+
+\section{Java and Kotlin}
+Il modo in cui gestire il lavoro asincrono dipende da quale linguaggio si usa per sviluppare l'app. Abbiamo detto che Java usa Java threads, mentre Kotlin usa coroutines.
+\par Non vedremo altro su Java threads, in quanto sono stati già affrontati nel corso di Sistemi Distribuiti.
+
+\chapter{WorkManager per}
+\section{WorkManager: lavoro persistente}
+\subsection{Introduzione}
+\par Annunciato a 
+\par WorkManager è una libreria che facilita la schedulizzazione 
+
+\subsection{Tipi di work persistenti}
+Supporta 3 tipi di work (immediate, long running, deferrable).
+Permette di gestire:
+\begin{itemize}
+    \item Work one-shot (o one time)
+    \item Periodici
+\end{itemize}
+Buona norma: usare foreground services.
+
+\subsection{Caratteristiche principali}
+\begin{itemize}
+    \item \textbf{Work constrains}
+    \begin{itemize}
+        \item Definizione di condizioni entro le quali il task può essere eseguito.
+    \end{itemize}
+    \item \textbf{Robust scheduling}
+    \begin{itemize}
+        \item Pianificazione dell'esecuzione del task.\\
+        Una volta (\texttt{OneTimeWorkRequest}) o ripetutamente (\texttt{PeriodicWorkRequest}).
+        \item Task etichettato per una più facile gestione.
+    \end{itemize}
+    \item \textbf{Expedited work}
+    \begin{itemize}
+        \item è possibile utilizzare 
+    \end{itemize}
+    \item \textbf{Flexible retry policy}
+\end{itemize}
+
+\subsection{Boh}
+
+\subsection{Relazioni con altre API}
+
+\section{WorkManager}
+\subsection{How-to}
+\par Vedremo come:
+\begin{itemize}
+    \item 
+\end{itemize}
+
+\subsection{Definire cosa il task deve fare}
+
+\subsection{Configurare come e quando eseguire il task}
+
+\subsection{Consegnare il task al sistema}
+
+\subsection{Stati del work}
+% diagramma slide
+
+\subsection{Personalizzare una WorkRequest}
+\par Personalizzare le WorkRequest per:
+\begin{enumerate}
+    \item Specificare dei vincoli per l'esecuzione dei task.
+    \item ...
+    \item ...
+    \item ...
+    \item ...
+\end{enumerate}
+
+\subsubsection{Vincoli}
+\par Per default il task parte subito.
+\par Si possono impostare alcune regole che specificano quando il task dovrebbe essere eseguito.
+\par Si aggiunge un \texttt{Constrains} per 
+
+\subsubsection{Boh}
+
+\subsubsection{Boh}
+
+\subsubsection{Input e output}
+\par Un task può necessitare di dati in ingresso e/o può produrre dati in uscita.
+
+\subsection{Work Immadiato}
+
+\subsection{WorkService e }
+% Per quello che ha capito dai nostri progetti, è difficile che useremo 
+
+\chapter{Testing delle app}
+\section{Motivazione}
+\par Le app mobili sono molto diverse da quelle desktop o web.
+\par Perciò serve definire casi d'uso e 
+
+\section{Vantaggi}
+è parte integrante del processo di sviluppo
+si verifica correttezza, comportamento funzionale e usabilità.
+Altri vantaggi:
+individuazione tempestiva dei fallimenti nel ciclo di sviluppo (non fare tutti i test alla fine!!!)
+refactoring del codice più sicura senza preoccupazioni delle regressioni
+
+\section{Tipi di test in Android}
+\subsection{Boh}
+\begin{itemize}
+    \item \textbf{Test funzionali}
+    \item \textbf{Test delle prestazioni}
+    \item \textbf{Test}
+\end{itemize}
+
+\subsection{Portata del testing}
+\par I test variano in base alla \textbf{dimensione} o al \textbf{grado di isolamento}.
+\par I \textbf{test di unità} (visti a prog2) o \textit{small test} verificano solo una parte del sistema.
+\par I \textbf{test di integrazione} verificano come le parti del sistema interagiscono tra loro.
+\par Es.: si assuma che un bottone di una activity è usato per lanciare una seconda activity:
+\begin{itemize}
+    \item Un \textbf{test di unità} verifica l'intent
+    \item Un \textbf{test di integrazione} verifica che il bottone lanci l'activity
+\end{itemize}
+\par I \textbf{test end-to-end} o \textit{big test} verificano il funzionamento del sistema in un possibile scenario di utilizzo.
+\par I \textbf{test UI} verificano il funzionamento dell'interfaccia dell'app. Sarebbe del tutto appropriato eseguire questo testing con un \textbf{backend simulato}.
+\par Es.: E2E vs UI testing
+\begin{itemize}
+    \item Un \textbf{test E2E} 
+    \item Un \textbf{test UI} 
+\end{itemize}
+% bel grafico a piramide dei tipi di test
+
+\subsection{Dove testare}
+\par I test possono essere eseguiti in 4 contesti diversi:
+\begin{enumerate}
+    \item \textbf{Dispositivo fisico}
+    \begin{itemize}
+        \item Offrono massima fedeltà ma
+    \end{itemize}
+    \item \textbf{Dispositivo virtuale} (come l'emulatore di Android Studio, o Genymotion)
+    \begin{itemize}
+        \item Offrono 
+    \end{itemize}
+    \item \textbf{Dispositivo simulato} (come Robolectric)
+    \begin{itemize}
+        \item Forniscon 
+    \end{itemize}
+    \item \textbf{Macchina/Server di sviluppo}
+    \begin{itemize}
+        \item Offrono 
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Instrumented vs local}
+
+
+% bello schema con dimensione e localizzazione, local vs instrumented.
+
+\subsection{Cosa testare}
+\par Una buona strategia di testing trova un giusto equilibrio tra la \textbf{fedeltà} di un test e la sua \textbf{velocità} ed \textbf{affidabilità}.
+
+\section{Architettura testabile}
+\subsection{Introduzione}
+
+\subsection{Approcci al disaccoppiamento}
+Fa mi raccomando di dividere l'app in layer di domninio
+
+% bellissima slide con i diversi test
+
+\subsection{Come testare}
+
+\subsection{Cosa testare}
+\par La scelta di quali test E2E e di integrazione 
+
+\subsection{Unit test}
+\subsubsection{Casi limite}
+\par La scelta di quali test E2E e di integrazione 
+
+\subsubsection{Quelli da evitare}
+\par Alcuni test di unità dovrebbero essere evitati a causa del loro scarso valore:
+\begin{itemize}
+    \item test che verificano il corretto funzionamento del framework o di una libreria, \textbf{non il mio codice}
+    \item test che 
+\end{itemize}
+
+\subsubsection{Quelli da includere}
+\par Alcuni test 
+
+\subsection{UI test}
+\subsubsection{Quelli da includere}
+\par Alcuni test 
+
+\subsection{Digressione: i test double}
+% copia e incolla
+\par Usando i test double, Robolectric va a simulare (esecuzione dummy dei componenti Android) senza aver bisogno di un dispositivo fisico o emulatore. Le prestazioni sono quelle che sono ma mi va bene.
+
+\section{Strumenti per il testing}
+\subsection{Test Locali}
+\subsubsection{Strumento}
+\par Il test locale è un test che viene eseguito sulla JVM del computer di sviluppo.
+\par La creazione di test locali è supportata da JUnit.
+% cose
+\subsection{UI Test}
+\subsubsection{Strumenti}
+\par \textbf{Espresso} è
+
+\subsubsection{Altri Strumenti}
+\begin{itemize}
+    \item Espresso Test Recorder
+    \item App Crawler
+    \item Monkey
+    \item Appium
+    \item Selenium e Calabash
+    \item Con BrowserStack automatizzo i test su diversi dispositivi Android 
+\end{itemize}
+
+% Skeumorfing: l'interfaccia grafica di un'applicazione riproduce fedelmente l'aspetto di un oggetto reale. Scheumorfismo in italiano.
+% poi metro e flat design
