@@ -1,0 +1,56 @@
+% 12/12/2024
+
+\chapter{Esercitazione 9}
+\section{L'ultima volta}
+\begin{itemize}
+    \item Linee guida su architettura
+    \item Repository
+    \item Come DB
+    \item  
+\end{itemize}
+
+\section{Oggi}
+\begin{itemize}
+    \item Ricorda: noi vogliamo fare un'app offline first.
+    \item Single source of truth: due fonti di informazioni diverse non vanno bene perché la chiamata va da DB a UI. Il DB è la fonte di verità. Questo mi garantisce affidabilità e consistenza. Ci saranno momenti in cui UI e DB non sono allineati e questo è da evitare.
+    \item Data Layer abbiamo detto che vuole il dato senza fregarsene di da dove viene. Il data layer è il ponte tra il DB e il repository.
+    \item Come istante di attesa quando apri una sezione di notizie, ha fatto un placeholder che ha un'animazione. L'ha messo nel \texttt{LinearLayout}.
+    \item La \texttt{articleRepository} avevamo detto la scorsa volta che era il ponte fra DB e UI.
+    \item Le risposte vanno nel metodo \texttt{onSuccess} che viene definito nel file \texttt{ResponseCallback.java}\\
+    Quando chiamo questo metodo lancio la chiamata a \texttt{lastUpdate}, un long. Vado a vedere la differenza con \texttt{currentTime} e se questa è troppo grande vado a fare un refresh.
+    \item Va a fare una chiamata ad un service che ha preso dalla documentazione dell'API delle news.
+    \item Poi ha aggiunto un metodo per accettare l'HTTP del client perché apparently non funziona (dentro \texttt{ServiceLocator.java}).
+    \item Tutte le chiamate di accesso a DB e API vengono gestite da repository.
+    \item Oggi introdurremo il concetto finora accantonato di \textbf{ViewModel}. Siamo nella pagina "About the UI layer" nel sito GoogleDev solito. Ad azione dell'utente, il Data Layer fa una chiamata al ViewModel che va a interpellare la UI la quale manda una risposta al ViewModel che la passa al Data Layer.
+    \item La nostra struttura sarà:
+    \begin{enumerate}
+        \item Popular News Fragment
+        \item Article ViewModel (non essenziale ma fa in modo che non sia il fragment che deve gestire le chiamate), raggiunto con ServiceLocator (registro dove le classi possono trovare le proprie dipendenze per non continuare a fare riferimenti etc).
+        \item Article Repository (sorta di interfaccia, punto di accesso al data layer)
+        \item Due data sources: Base Article Remote e Base Article Local.
+        \begin{itemize}
+            \item Il primo è il più lento, va a prendere dati remoti. Si divide in due: Article Remote e Article Mock Data Source, il secondo è quello del testing, il primo è quello che effettivamente andrà a contenere le chiamate API oltre che le chiamate ai DB remoti (interpretazioni diverse della stessa interfaccia).
+            \item Il secondo più veloce, va a prendere dati locali.
+        \end{itemize}
+        \item Quindi il flusso va dall'alto verso il basso: ma ora è il momento di rispondere. Comincio a tornare indietro tramite le callbacks.\\
+        N.B.: le callbacks (che mi dicono se c'è stato un errore o no) esistono solamente nel Data Layer. Nell'UI layer non ci sono callbacks, ma LiveData. 
+        \item I LiveData hanno un meccanismo simile alle callbacks. L'idea è che quello che voglio ottenere (e che deve tornare al Fragment) non è quello che viene tornato, ma viene tornato un \textit{contenitore} con dentro quello che abbiamo chiesto. Es.: voglio una stringa? Mi torna il \textit{LiveData di una stringa}. Perciò questi LiveData invece di definire una stringa mi permettono di definire il ViewModel con dentro il LiveData di quella stringa: posso referenziarla ogni volta che la stringa viene riutilizzata e cambiata di valore.
+        \item "Observe the LiveData, passing in this activity as the LyfeCycleOwner and the observer." (dal sito di Google Dev sotto "LiveData"). Come faccio ciò?
+        \begin{verbatim}
+            model.viewCurrent
+            usa "this" che è istanza della classe 
+        \end{verbatim}
+    \end{enumerate}
+    \item Tornando al nostro progetto, abbiamo una repository che ha due data sources: una remota e una locale. N.B.: le ha \textbf{entrambe}.
+    \item La repository fa le chiamate ed è in grado di gestire le risposte (tutte le risposte, ha i metodi onSuccess e onFailure, quindi è in grado di gestire le risposte sia positive che negative).
+    \item Il ViewModelFactory è il livello più esterno, praticamente va a gestire il ViewModel nel caso volessi passargli argomenti in ingresso.
+    \item Noi abbiamo detto però che vogliamo una sola fonte di verità, source of truth. Questa è la Data Source Locale (il DB), quindi in breve: se ho già i dati in locale, non vado a fare la chiamata remota. Se non ho i dati in locale, vado a fare la chiamata remota e salvo i dati in locale. Ovvero:
+    \begin{itemize}
+        \item Fragment chiama ViewModel che chiama Repository che chiama Data Source Remoto. 
+        \item Remoto fa callback tornando a Repository che va a salvare l'articolo in Locale.
+        \item Locale fa callback tornando a Repository che torna a ViewModel che torna a Fragment.
+    \end{itemize}
+    \item Per vedere sotto il database, è il simbolino sotto al debugger (se non c'è, View > Tool Windows > App Inspection). (?)
+    \item Last thing: abbiamo detto che un Bundle è un contenitore per passare roba fra fragment e activity etc.
+    \item Cerca cos'è Glide, l'ha detto ma mi sono persa. Si occupa (anche in mod. aereo) di gestire le immagini.
+\end{itemize}
