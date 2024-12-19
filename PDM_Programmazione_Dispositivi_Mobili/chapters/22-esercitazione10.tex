@@ -1,0 +1,35 @@
+% 19/12/2024
+
+\chapter{Esercitazione 10}
+\par Oggi vedremo Firebase. Torniamo alla schermata del LogIn che implementeremo con Firebase.
+\par Ricorda che "\texttt{intent filter}" mi dice quale activity deve essere lanciata per prima.
+\par Firebase fornisce un server su cui caricare un'autenticazione (login) che un database, più altre funzionalità che al momento non ci servono.
+\par All'avvio dobbiamo registrare la nostra app: chiede nome pacchetto android (lo troviamo nel file \texttt{build.gradle.kts} in \texttt{gradle}, dentro \texttt{android}: è tipo "com.unimib.worldnews, quello definito all'avvio del progetto). Poi cerco il simbolino "gradle" a destra (dovrebbe essere sotto la campanella) e cerco "SHA1". I prossimi passi comunque sono sufficientemente guidati: passo per passo ti dice che righe di codice vuole che tu copi. L'ultimo passo sarà aggiungere l'implementazione di Firebase nel \texttt{build.gradle.kts} del progetto, che Android Studio ti dovrebbe chiedere di poter rinominare come vuole lui.
+\par Poi in "Autenticazione" dovrebbe esserci una lista dei metodi di login disponibili: noi oggi vedremo accesso tramite mail e password e poi tramite Google.
+\par Poi dovrò andare ad includere il pacchetto di autenticazione di Firebase nel mio progetto (sempre in \texttt{build.gradle.kts}).
+\par Ora scrivendo codice nel resto del progetto dovrebbe suggerirti già metodi di Firebase iniziando a richiamarlo.
+\par Il prossimo passo è verificare se sono già autenticato o no. Se non lo sono, mi chiede di fare il login. Se lo sono, potrò rimandare l'utente alla home. Come?
+\begin{itemize}
+    \item Costruisco un oggetto \texttt{FirebaseAuth} e chiamo il metodo \texttt{getInstance()} che mi crea in automatico una istanza nuova. Se vado a chiamare \texttt{.getCurrentUser()} estraggo l'utente. Se non ero autenticato, giustamente mi ritorna null. Così posso dare la possibilità all'utente di fare il login.
+    \item Con mail e password, vado a creare un nuovo utente e aggiungo un Listener. Così posso prendere le informazioni che mi interesserà tenere dell'utente. Chiaramente per motivi di sicurezza, la password non viene salvata.
+    \item Su Firebase, c'è una sezione "Utenti" che mi dà una lista degli utenti registrati. Lo fa in automatico: ha provato a fare il login inserendo una mail a caso, quella mail me la sono ritrovata nella lista degli utenti su Firebase.
+    \item Ad ogni nuovo utente verrà associato un ID univoco.
+\end{itemize}
+\par E se l'utente fosse troppo pigro e volesse autenticarsi con Google? Not to worry, torno sulla documentazione di FIrebase e aggiungo la dipendenza anche per Google. Ocio che ci sia l'account Google installato sul telefono dell'emulatore di Android Studio prima di lanciare l'app.
+\par Il vecchio modo (che vedremo ora) è deprecato da qualche settimana perché ora Google sta cercando di implementare le Android Credential Manager API. 
+\par I passaggi del metodo vecchio li ho un pochino persi perché ha fatto un po' un pasticcio col codice (aveva già salvato il SHA1 e quindi non poteva più usarlo per la lezione, è una cosa una tantum \textbf{FAI ATTENZIONE}). Però nel \texttt{LoginFragment} va a costruire degli oggetti nell'\texttt{onCreate}. Servono a chiedere con un intent delle informazioni che poi andrò a prendere e salvare. Lancio un intent, mi esce una lista di account, prendo il risultato che è quello che mi interessa, le credenziali dell'utente scelto e controllo che non siano null (se finisco su \texttt{idToken} sta andando tutto secondo i piani).
+\par Quindi:
+\begin{itemize}
+    \item Listener: on click faccio la richiesta e va a \texttt{signIn}.
+    \item \texttt{signIn} ha un altro listener perché asincrono.
+    \item onSuccess prendo il risultato dell'intent e vado a fare il login.
+\end{itemize}
+\par Un po' antipatica è la cosa che se l'utente è già loggato, viene salvato e quindi se mi serve riprovare il login devo andare a cancellare l'utente da Firebase. O disinstallare e reinstallare l'app nell'emulatore. O metto una variabile \texttt{debugMode} che mi dice se sono in debug mode o no ed eventualmente non fa il login come farei normalmente.
+\par Come avevamo fatto per gli articoli, anche qua per gli utenti c'è un'architettura: avrò fragment, viewmodel, repository, data source. Il fragment chiama il viewmodel che chiama il repository che chiama il data source. Il data source è diviso in due: uno remoto e uno locale. Il remoto va a fare il login, il locale va a salvare l'utente. Il repository fa le chiamate e gestisce le risposte e le callbacks.
+\par L'altra volta vevamo parlato di "singola fonte di verità" che valeva per gli articoli ma devono esserci anche per gli utenti.
+\par Chiedo a Firebase se ci sono già informazioni sul mio utente (es. se nell'app delle notizie ha già scelto il paese delle notizie nel database). Sulla console di Firebase vado a creare un database (un enooorme file \texttt{.json}) nella sezione "realtime database".
+\par Un'altra cosa comoda di Firebase è che posso andare a prendere il current \texttt{loggedUser}: se c'è qualcuno loggato, questo mi darà qualcosa, altrimenti \texttt{null}.
+\par In questo file .json posso andare a creare un nodo con il nome dell'utente e metterci dentro le informazioni che mi interessano. Ovvero, ho un nodo principale che \textbf{nessun} utente può toccare, questo nodo avrà tantin nodi figli quanti utenti ci sono. Poi posso andare a leggere queste informazioni nel mio progetto. 
+\par Siccome c'è una singola sorgente di verità, quando vado ad aggiungere un'informazione al database, devo aggiungere un listener. Ovvero, vado ad aggiungere un'informazione al db, lo aggiungo alle shared preferences in modo da poter prima fare le operazioni da remoto. Avrò un oggetto "dataSnapshot" che sono spesso usati da Firebase e rappresentano una query del db. Questo oggetto è lo stato dle db su quel preciso nodo su cui ho fatto una "push".
+\par Quando poi ho fatto il login, scelto il country questo non è ancora salvato nel db, è salvato solamente nelle shared preferences. Quando vado a fare il logout, vado a cancellare le shared preferences. Scelte le categorie, con il tasto conferma vado a fare un insert nel db delle mie scelte. Riprendendo la struttura ad albero di prima, ogni nodo avrò le preferenze salvate nel db di ogni utente.
+\par Poi su Firebase avrò una sezione "Dati" in "realtime database" che mi mostra il db in tempo reale. Se vado a fare un insert, vedrò che il db si aggiorna in tempo reale. Qui avrò le shared preferences dell'utente (nell'app delle notizie fatte in aula avrò country e categories scelte, oltre ad una voce "stability" che dovrebbe essere recuperata in automatico dalla UI e che noi andiamo ad ignorare).
