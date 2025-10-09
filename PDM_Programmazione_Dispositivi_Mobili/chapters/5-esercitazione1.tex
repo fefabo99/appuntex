@@ -1,15 +1,26 @@
-% 10/10/2024
+% 09/10/2025
 
 \chapter{Esercitazione 1}
 \section{Passi su Android Studio}
 \begin{itemize}
     \item New Project
-    \item Empty Views Activity
-    \item Scegliamo linguaggio Java
+    \item Empty Views Activity (le altre sono già pronte per fare cose specifiche, non ci interessa)
+    \item package name usato per identificare univocamente l'app, di solito\\
+    com.nomeorganizazione.nomeapp (noi com.unimib.nomeprogetto)
+    \item SDK librerie standard da cui partiamo per il progetto; le più recenti hanno le funzionalità più nuove ma rischiamo di lasciare fuori una fetta di pubblico (facciamo tipo Android 30).
+    \item Scegliamo linguaggio Java (l'ultima voce la lascia così com'è)
+    \item una volta avviato nella lista di cartelle e file annidati mi interessano \texttt{MainActivity.java} e \texttt{activity\_main.xml} che è la struttura grafica
 \end{itemize}
+
+\subsection{Usare Android Studio}
+\par Una volta avviato, nel main del java mi interessa tenere il super che richiama il costruttore e la navigazione al corrispondente layout.
+
+\section{Git}
 \par Da terminale (seconda icona dal basso a sinistra) possiamo scrivere:
 \begin{enumerate}
-    \item \texttt{git init} per inizializzare una repository (fatta dentro perché ci lavoro dentro Android Studio e non da VSCode come faccio con tutte le altre repository)
+    \item \texttt{git init} per inizializzare una repository (fatta dentro perché ci lavoro dentro Android Studio e non da VSCode come faccio con tutte le altre repository) 
+    \item Stato della repository: \texttt{git status}
+    \item \texttt{add} e \texttt{commit} per aggiungere quanto inizializzato
     \item \texttt{levels} per vedere i livelli di git
     \begin{itemize}
         \item da prompt dei comandi \texttt{dir} per vedere la lista di directory e file, ma forse è un livello solo, NON LO SO CONTROLLA. \texttt{dir} su Windows, \texttt{ls -a} su Linux.
@@ -24,7 +35,7 @@
     L'asterisco (sul sito \url{https://learngitbranching.js.org/}) mi indica su quale branch mi trovo.
     \item \texttt{git merge nomebranch} per fare il merge in nomebranch del branch in cui mi trovo (quello attivo in quello più stabile)
     \item \texttt{git rebase nomebranch} per fare il rebase in nomebranch del branch in cui mi trovo: è un'alternativa a merge, "riscrive la storia", collassa tutti i branch in uno cancellando la storia di quello in cui mi trovo e mettendola in quello in cui voglio fare il rebase.
-    \item \texttt{git revert nomedelcommit} per fare il revert di un commit, tornare al commit (es. c6) e cancellare le modifiche da quel commit in poi, magari per eliminare branch che ho fatto inutilmente.
+    \item \texttt{git revert nomedelcommit} per fare il revert di un commit, tornare al commit e cancellare le modifiche da quel commit in poi, magari per eliminare branch che ho fatto inutilmente.
 \end{enumerate}
 \par GitHub sul suo sito ha una sezione (\url{https://docs.github.com/en}) con una serie di guide su come usare git.
 
@@ -36,9 +47,10 @@
 \begin{itemize}
     \item \texttt{git pull}
     \item \texttt{git add .}: mette tutto ciò che c'è nella working area nella staging area, il punto mi dice "tutti i file"
-    \item \texttt{git commit -m "messaggio in cui dico cosa ho fatto in breve"}: mette tutto ciò che c'è nella staging area nella commit area
+    \item \texttt{git commit -m "messaggio in cui dico cosa ho fatto"}: mette tutto ciò che c'è nella staging area nella commit area
     \item \texttt{git push}
 \end{itemize}
+\par 
 
 \subsection{I conflitti}
 \par In caso di conflitti, per arrivare alla pagina di risoluzione dei conflitti (al centro versione locale, a sinistra un branch e a destra l'altro), quando si verifica un conflitto esce un pulsante "risolvi conflitti" magari in inglese. Tendenzialmente il main è la versione più stabile, quindi si fa il merge del branch in cui si è lavorato in main.
@@ -55,10 +67,13 @@
 \par Per creare una nuova repository su GitHub:
 \begin{itemize}
     \item scelgo nome e descrizione
-    \item scelgo se pubblica o privata (per il progetto può anche essere privata perché tanto posso aggiungere dopo chi può accedervi)
-    \item posso scegliere se aggiungere un README (che è un file markdown che appare nella home della repository) e un \texttt{.gitignore} (che posso scegliere in base al linguaggio di programmazione che sto usando), ma sono cose che posso aggiungere anche dopo
+    \item scelgo se pubblica o privata (per il progetto può anche essere privata perché tanto posso scegliere dopo chi può accedervi)
+    \item posso scegliere se aggiungere un README (che è un file markdown che appare nella home della repository) e un \texttt{.gitignore} (che posso scegliere in base al linguaggio di programmazione che sto usando; il punto davanti mi dice che è un file nascosto), ma sono cose che posso aggiungere anche dopo (l'idea è nascondere almeno i file temporanei o le build (es. gradle) lasciando solo il codice sorgente). GitHub mi dà la possibilità di aggiungere un solo gitignore (es. Android).\\
+    C'è un sito (\href{gitignore.io}) dove puoi aggiungere diversi tag (Android, Windows, etc...) e mi genera il .gitignore con TUTTO quello che ho detto nei tag.
     \item posso scegliere se installare la repository tramite set up desktop, da linea di comando (sono i comandi che abbiamo visto prima) o pushare da linea di comando una repo già esistente
     \begin{itemize}
         \item l'unica riga che non abbiamo visto è \texttt{git remote add origin url}, che serve per collegare la repository locale a quella remota
     \end{itemize}
+    \item Il \texttt{README.md} dovrebbe contenere nome app, composizione gruppo, funzionalità base etc\dots Ci sono siti che te ne generano di carini.
 \end{itemize}
+\par In \texttt{settings} $\rightarrow$ \texttt{collaborators} posso aggiungere collaboratori (per aggiungere membri del gruppo).
