@@ -1,4 +1,4 @@
-% 11/10/2024
+% 10/10/2025
 
 \chapter{Tipi di applicazioni}
 \section{Situazione ad oggi}
@@ -7,6 +7,7 @@
     \item molti linguaggi di programmazione
     \begin{itemize}
         \item Java
+        \item Kotlin
         \item Swift
         \item JavaScript
         \item Dart
@@ -14,31 +15,31 @@
     \end{itemize}
     \item Molti framework
     \begin{itemize}
-        \item Cordova
         \item React Native
-        \item Xamarin
         \item Flutter
+        \item Xamarin
+        \item Ionic
         \item \dots
     \end{itemize}
     \item E soprattutto, molte architetture
     \begin{itemize}
-        \item app native (oggetto di questo corso)
+        \item app native (oggetto di questo corso) che sviluppo secondo la piattaforma target
         \item web app
         \item app ibride
         \item progressive web app
         \item app cross-compiled
     \end{itemize}
-    Per scegliere la migliore, devo considerare l'oggetto del mio progetto (alcuni linguaggi/framework sono più adatti di altri), il tipo di applicazione che voglio realizzare, il tempo a disposizione, il budget, le competenze del team, \dots
+    Per scegliere la migliore, non c'è \textbf{UNA} scelta migliore, devo considerare l'oggetto del mio progetto (alcuni linguaggi/framework sono più adatti di altri), il tipo di applicazione che voglio realizzare, il tempo a disposizione, il budget, le competenze del team, \dots
 \end{itemize}
 
 \section{Livelli di astrazione}
 \subsection{Livello più basso: hardware}
-\par L'hardware Apple è proprio dell'azienda Apple, poi magari varia da modello a modello ma è sempre lo stesso costruttore.
-\par L'hardware Android è invece prodotto da diversi costruttori, quindi varia molto da modello a modello.
+\par L'hardware Apple è proprio dell'azienda Apple, poi magari varia da modello a modello ma è sempre lo stesso costruttore, sia per hardware che software (non c'è frammentazione).
+\par L'hardware Android è invece prodotto da diversi costruttori, ovvero c'è frammentazione di hardware, quindi varia molto da modello a modello.
 \begin{itemize}
     \item es.: Google, Samsung, Huawei, Xiaomi, LG, Motorola\dots
 \end{itemize}
-\par Su questi hardware andiamo a implementare \textbf{app native} (così chiamate perché vanno ad usare il 100\% delle API messe a disposizione dal sistema operativo). I linguaggi nativi per implementare queste app sono:
+\par Su questi hardware andiamo a implementare \textbf{app native} (così chiamate perché vanno ad usare il 100\% delle API messe a disposizione dal sistema operativo) che sono app target per i dispositivi di destinazione. I linguaggi nativi per implementare queste app sono:
 \begin{itemize}
     \item Android
     \begin{itemize}
@@ -46,7 +47,11 @@
         \begin{itemize}
             \item compiliamo per linguaggio intermedio (bytecode) e poi viene eseguito da una JVM (Java Virtual Machine); scrivo in un'unica codebase su cui compilo nel momento in cui viene eseguito e quindi sulla piattaforma effettiva
         \end{itemize}
-        \item Kotlin (\texttildelow 2008????)
+        \item Kotlin (\texttildelow 2017)
+        \begin{itemize}
+            \item Rilasciato da JetComeSiChiama nel 2011, abbastanza scagato
+            \item Poi ripreso nel 2017 da Google e dal 2018 è tornato ad essere usato
+        \end{itemize}
         \item Problema è che ogni volta che viene rilasciata una nuova API deve essere sviluppata sia in Java che in Kotlin.
         \item (NDK) la sigla significa \textit{Native Development Kit}, permette di scrivere codice in C/C++ e di interfacciarsi con il codice Java.
     \end{itemize}
@@ -56,6 +61,7 @@
         \item Swift
         \begin{itemize}
             \item linguaggio di paradigma molto più moderno rispetto a Objective-C che nasce da C e quindi si porta dietro molte complicazioni
+            \item entrambi a oggetti, versioni semplificate di C
         \end{itemize}
     \end{itemize}
 \end{itemize}
@@ -64,15 +70,16 @@
 \subsubsection{Caratteristiche}
 Slide con lista
 \begin{itemize}
-    \item specifico s.o.
-    \item codice binario scaricato e memorizzato nel file system
-    \item app store o marketplace (anche Apple ha perso la causa ed è costretta a rendere le sue app disponibili anche su altri store/marketplace)
-    \item eseguita direttamente dal s.o. 
+    \item Sviluppata per uno \textbf{specifico s.o. mobile}
+    \item nativa per uno \textbf{specifico device o piattaforma}
+    \item distribuita attraverso \textbf{codice binario} \textbf{scaricato} e \textbf{memorizzato} nel file system
+    \item distribuita attraverso \textbf{app store} o \textbf{marketplace} (anche Apple ha perso la causa ed è costretta a rendere le sue app disponibili anche su altri store/marketplace)
+    \item eseguita \textbf{direttamente} dal \textbf{s.o.}
     \begin{itemize}
         \item viene lanciata attraverso la schermata home del dispositivo con un ``tap'' (tocco l'icona e parte, non ci sono passaggi intermedi)
         \item non contiene un container app in cui girare (ho perso cos'ha detto a voce)
     \end{itemize}
-    \item l'app fa uso diretto delle API del s.o. (GPS, fotocamera, accelerometro, \dots) (avevamo visto a prog2, Java mette a disposizione una SDK, una libreria, per facilitare la programmazione). Porgrammando da d.m. faremo un uso intenso delle API del sistema su cui mi trovo e ci dovremo interfacciare molto con l'hardware. Abbiamo:
+    \item l'app fa uso diretto delle API del s.o. (GPS, fotocamera, accelerometro, \dots) (avevamo visto a prog2, Java mette a disposizione una SDK, una libreria, per facilitare la programmazione). Programmando da d.m. faremo un uso intenso delle API del sistema su cui mi trovo e ci dovremo interfacciare molto con l'hardware. Abbiamo:
     \begin{itemize}
         \item strato sotto: hardware
         \item strato intermedio: sistema operativo che si interfaccia con l'hardware da solo senza che ci debba pensare io
@@ -92,24 +99,72 @@ Slide con lista
         \hline
         \textbf{Compilatore} e \textbf{Linker} & $\rightarrow$ & Eseguibile (binario) & $\rightarrow$ & \textbf{Packager} \\
         \hline
-        & & & & \textbf{Packager distribuibile} (\texttt{.apk}, \texttt{.apks}, \texttt{bundle}) \\
+        & & & & \textbf{Packager distribuibile} (*) \\
         \hline
         & & & & App store\\
         \hline
     \end{tabular}
 \end{center}
+(*) $=$ (\texttt{.apk} ora obsoleto al suo posto c'è \texttt{.aab}, \texttt{.apks}, \texttt{bundle}).\\
+L'\texttt{.aab} è tutto un file grosso, poi viene estrapolato da solo l'\texttt{.apk} del dispositivo.\\
+A settembre 2025 è stata rilasciata la versione ``narvalo'' dell'\texttt{.apk}.
+
+\subsubsection{Store publishing flow}
+\begin{enumerate}
+    \item Preparazione del pacchetto
+    \begin{itemize}
+        \item Android: generazione file \texttt{.aab} (Android App Bundle)
+        \item iOS: generazione file \texttt{.ipa}
+        \item il codice viene \textbf{firmato digitalmente} per garantire l'autenticità
+    \end{itemize}
+    Serve un certificato di sviluppatore (Play Console o Apple Developer Program)
+    \item Testing e valutazione
+    \begin{itemize}
+        \item Android: test interni, chiusi (specifici tester, amici, tester fidati, etc\dots per raccogliere feedback più ampi), aperti su Play Console
+        \item iOS: test tramite TestFlight
+        \item Verifica di funzionalità, compatibilità, performance e privacy
+    \end{itemize}
+    Fase di qualità tecnica controllata dal team
+    \item Pubblicazione e revisione
+    \begin{itemize}
+        \item Upload su \textbf{Google Play Store} o \textbf{Apple App Store}.
+        \item Analisi automatica (Google)
+        \item Revisione manuale (più rigorosa e lenta su iOS)
+        \item Controlli su:
+        \begin{itemize}
+            \item uso delle API sensibili (es. posizione, GPS)
+            \item privacy e permessi
+            \item stabilità e prestazioni
+        \end{itemize}
+    \end{itemize}
+    Fase di qualità tecnica controllata dal team
+    \item Distribuzione
+    \begin{itemize}
+        \item L'app diventa disponibile sugli store pubblici.
+        \item Possibilità di:
+        \begin{itemize}
+            \item release oprogressive
+            \item aggiornamenti versionati
+            \item \textbf{sospensione o ritiro} in caso di violazioni
+        \end{itemize}
+    \end{itemize}
+    Ricorda: Build $\rightarrow$ Test $\rightarrow$ ? $\rightarrow$ ?
+\end{enumerate}
 
 \subsubsection{Interazione con il dispositivo}
-\par Slide con immagine che mostra quello che abbiamo detto prima: ho API del s.o. per sfruttare potenzialità e servizi del dispositivo (hardware).
+\par Slide con immagine che mostra quello che abbiamo detto prima: mi appoggio direttamente alle API del s.o. per sfruttare potenzialità e servizi del dispositivo (hardware).
 \par Il vantaggio è un accesso semi-diretto all'hardware. Hai a disposizione \textbf{tutto}, non hai restrizioni (grosso pro delle app native) se non quei servizi esplicitamente rifiutati dal cliente (es. non do accesso alla fotocamera).
-\par Lo svantaggio è che devi scrivere due versioni dell'app (una per iOs e una per Android): se vuoi fare un'applicazione Android devi conoscere le API Android, se vuoi fare un'applicazione iOs devi conoscere le API iOs. Perciò usando librerie specifiche, linguaggi diversi ovviamente, e quindi API specifiche, non posso fare un'unica app nativa per entrambi i sistemi operativi.
+\par Lo svantaggio è che devi scrivere due versioni dell'app (una per iOS e una per Android): se vuoi fare un'applicazione Android devi conoscere le API Android, se vuoi fare un'applicazione iOS devi conoscere le API iOS. Perciò usando librerie specifiche, linguaggi diversi ovviamente, e quindi API specifiche, non posso fare un'unica app nativa per entrambi i sistemi operativi.
+% Lista 3 categorie
 \par Vedremo che esistono API di basso livello che si interfacciano ancora più direttamente di altre (quindi sono più di basso livello) con l'hardware. Le altre di livello più alto sono più user-friendly. Non va l'utente direttamente a gestire il touchscreen, la rete, etc. 
+% slide 
 
 \subsubsection{Mobile apps runtime architecture}
 \par Slide con immagine. Ho da una parte la mia app scritta in linguaggio nativo, dall'altra la piattaforma con OEM (Original Equipment Manufacturer) widgets, servizi, \dots.
-\par Qaundo faccio app native ho due componenti:
+\par Quando faccio app native ho due componenti:
 \begin{itemize}
-    \item vabbeh senti il video
+    \item Da una parte codice nativo (compilato in linguaggio macchina)
+    \item Questo comunica direttamente con componenti della piattaforma (widget grafici, risorse del dispositivo)
 \end{itemize}
 
 \subsubsection{Sviluppo nativo: pro e contro}
@@ -123,23 +178,26 @@ Slide con lista
 
 \par \textbf{Svantaggi}
 \begin{itemize}
-    \item due codebase da manterenere (e relativi costi!!)
+    \item due codebase da manterenere (e relativi costi e tempistiche di sviluppo e di manutenzione) e ridotta riusabilità del codice
     \item convincere gli utenti a scaricare l'applicazione
+    \item dipendenza forte dagli aggiornamenti dei s.o.
     \item richiede l'installazione
     \begin{itemize}
-        \item ad eccezione di alcune app che non serve installare: es. \textit{Instant Apps} (Google) e \textit{App Clips} (Apple)
-        \item Permettono di utilizzare un'applicazione senza installarla, ma solo per prestazioni limitate, danno un assaggio dell'applicazione
+        \item ad eccezione di alcune app che non serve installare: es. \textit{Instant Apps} (Google) e a seguire \textit{App Clip} (Apple)
+        \item Permettono di utilizzare un'applicazione senza installarla, ma \textit{solo per prestazioni limitate}, danno un assaggio dell'applicazione per provarla senza stare lì a installarla; funziona solo se l'app è ben modularizzata
         \item A volte possono essere comode, per esempio quando l'utente non ha voglia di installare direttamente un'applicazione per fare una cosa una tantum
         \item C'è una documentazione apposita nel sito Android che spiega come creare queste instant app \\
-        slide con immagine tabella verde apple vs google (non c'è scritto ma quelle apple permettevano di effettuare pagamenti e all'inizio quelle android no ma poi si sono uniformate)
+        slide con immagine tabella verde apple vs google (non c'è scritto ma quelle Apple permettevano di effettuare pagamenti e all'inizio quelle Android no ma poi si sono uniformate)
     \end{itemize}
 \end{itemize}
 
-\par Tornando ai \textbf{livelli di astrazione}, abbiamo detto che sugli hardware andiamo a implementare le app native. Questi i due livelli più bassi. Ma partendo dall'alto (ho perso cose che ha detto a voce) abbiamo:
+\section{Tipi di app}
+\par Tornando ai \textbf{livelli di astrazione}, abbiamo detto che sugli hardware andiamo a implementare le app native. Questi i due livelli più bassi. Ma partendo dall'alto abbiamo:
 \begin{itemize}
     \item Web App
     \begin{itemize}
-        \item Angular, Vue, Ember, Backbone, React, \dots guarda slide 
+        \item Angular, React, Vue, Ember, Backbone, \dots guarda slide 
+        \item non esattamente app mobili
     \end{itemize}
     \item PWA
     \item Browser
@@ -152,17 +210,20 @@ Slide con lista
 \end{itemize}
 \par Ad oggi queste sono le macrocategorie di app mobile che possiamo trovare.
 \par \textbf{Ma quanti strumenti/framework abbiamo?} Slide con lista di \textbf{alcuni} esempi, perché è un mondo in costante evoluzione e quindi non si può fare una lista esaustiva. Non bisogna restare ancorati a ciò che si conosce evitando cose nuove, perché rischi di metterci molto più tempo perché magari un nuovo linguaggio o framework ha delle facilities che ti permettono di fare in 10 minuti quello che in un altro linguaggio ti avrebbe richiesto 10 ore. C'è anche il rischio che ciò che usavo tipo 5 anni fa diventi obsoleto e quindi non più supportato o deprecato.
+
+\subsection{Web App}
+\par Una web app è un'applicazione accessibile tramite browser ma progettata per comportarsi come una'app.
 \par Gli strumenti di testing sono molto importanti, mi permettono di vedere se la mia app va o no. 
 \par C'è un sito (\url{https://whatwebcando.today/}) che fa vedere, dato un browser (nella slide Firefox e Safari), cosa quel browser ti permette di fare.
 % slide
 \par Per esempio, se uso Firefox e voglio fare una web app che usi fotocamera e microfono, posso. Invece per esempio \textit{advanced camera control} non posso con nessuno dei due, mentre \textit{record media} va con Firefox ma non con Safari.
 \par Quindi quando realizzo una web app devo aver presente cosa voglio fare e quali strumenti mi servono e quindi (esattamente come le app mobili devo stare attento al s.o.) devo stare attento al browser che l'utente usa e a ciò che mi permette di fare.
 
-\subsection{Web App}
 \subsubsection{Interazione con il dispositivo}
 % Slide
 \par Devo vedere quali API siano effettivamente disponibili, perché non tutte le API sono disponibili su tutti i browser. In verde ciò che posso utilizzare.
-\par Ci sono diversi \textbf{rendering engine} che sono alla base dei browser. Ogni browser ne ha uno suo, ma sono diversi in base a quale dispositivo sto utilizzando. Per esempio, se uso un dispositivo Apple, Safari usa \textbf{WebKit}, mentre se uso un dispositivo Android, Chrome usa \textbf{Blink}. Lo stesso browser, es. Safari, si comporta in modo diverso su un dispositivo Apple fisso, su un dispositivo Apple mobile, su un dispositivo Android, su un dispositivo fisso che gira su Linux, \dots
+\par Ci sono diversi \textbf{rendering engine} (rendering grafico è interpretare ed eseguire il JavaScript) che sono alla base dei browser. Ogni browser ne ha uno suo, ma sono diversi in base a quale dispositivo sto utilizzando. Per esempio, se uso un dispositivo Apple, Safari usa \textbf{WebKit}, mentre se uso un dispositivo Android, Chrome usa \textbf{Blink}. Lo stesso browser, es. Safari, si comporta in modo diverso su un dispositivo Apple fisso, su un dispositivo Apple mobile, su un dispositivo Android, su un dispositivo fisso che gira su Linux, \dots
+\par Tramite W3C calls.
 
 \subsubsection{Caratteristiche}
 % Slide
@@ -172,27 +233,28 @@ Slide con lista
 \subsubsection{Sviluppo web app: pro e contro}
 \par \textbf{Vantaggi}
 \begin{itemize}
+    \item accessibilità universale
     \item unica codebase
     \item \dots
 \end{itemize}
-
+% slide
 \par \textbf{Svantaggi}
 \begin{itemize}
     \item performance inferiori 
     \item \dots
 \end{itemize}
 
-\subsection{Perché vale la pena sviluppare più app che web?}
+\subsubsection{Perché vale la pena sviluppare più app che web?}
 \par Slide tempo medio speso al giorno con uno smartphone e una connessione internet. \texttildelow 90\%!!
 \par Ovviamente dipende dal dispositivo: per dire, se sono da portatile, mi sarà più comoda. Una volta che uso un dispositivo mobile, magari con schermo piccolo, meglio l'app.
 \par Lista di perché.
 Schermata conclusiva con perché meglio app di web app. Inserisci. Dal pov dell'engagement l'utente mostra di preferire l'uso di app invece di web app. Anche perché un cell ce l'hanno tutti, ma è facile che molti non abbiano un portatile. Magari hanno un tablet, ma è un altro dispositivo mobile.
 
 \subsection{PWA - Progressive Web App}
-\par Sono una via di mezzo fr web app e browser, permettono di avere una web app che si comporta come un'applicazione mobile, ``installata''. Tende a comportarsi come un'app nativa, parte del perché si chiamano così.
-% \par Manca qualcosa che ha detto a voce
+\par Sono una via di mezzo fra web app e browser, permettono di avere una web app potenziata che si comporta come un'applicazione mobile, ``installata'' dal browser senza passare dallo store. Tende a comportarsi come un'app nativa, parte del perché si chiamano così. Si basano su file manifests e service workers. Funzionano anche offline e possono inviare notifiche push.
+
 \subsubsection{Tecnologie}
-% A sinistra screen di esempio
+% A destra screen di esempio
 \begin{itemize}
     \item HTML, CSS e JavaScript
     \item Service Worker
@@ -211,33 +273,38 @@ Schermata conclusiva con perché meglio app di web app. Inserisci. Dal pov dell'
     \item \textbf{Affidabili}
     \begin{itemize}
         \item Veloci
-        \item Funzionanti anche in assenza di rete o in presenza ma scarsa (\textbf{importante per l'offline-first!})
+        \item Funzionanti anche in assenza di rete o in presenza ma scarsa\\
+        (\textbf{importante per l'offline-first!})
     \end{itemize}
-    \item \textbf{?}
+    \item \textbf{Installabili}
 \end{itemize}
+
+\subsubsection{Dove si collocano?}
 % Slide con grafico "Dove si collocano?"
-\par "Dove si collocano?". Caratteristiche di web app (più raggiungibili) e app native (più potenti, più funzionalità). Le PWA si collocano in mezzo, sono più ricche di funzionalità delle web app ma più raggiungibili delle app native.
+\par Caratteristiche di web app (più raggiungibili) e app native (più potenti, più funzionalità). Le PWA si collocano in mezzo, sono più ricche di funzionalità delle web app ma più raggiungibili delle app native.
 \par \textbf{\underline{Nativa o progressiva?}}
 \par Quando usare PWA?
 \begin{itemize}
     \item lista
     \item importante tenere a mente quali browser permettono di fare cosa
 \end{itemize}
-\par Quando usare app native?
+
+\subsubsection{Quando usare app native?}
 \begin{itemize}
     \item occorre 
     \item ...
     \item le PWA non dovrebbero avere meccanismi di monetizzazione, quindi se li voglio applicare mi serve un'app nativa
 \end{itemize}
 \par \textbf{\underline{Dove trovare le PWA?}}
-senti il video 
+\par Non sono negli store di app tradizionali (su google play store solo se impacchettate dentro un'app nativa)
+\par Non tutti i browser le supportano (guarda la slide)
 
 \subsubsection{Sviluppo PWA: pro e contro}
 \par \textbf{Vantaggi}
 \begin{itemize}
     \item \dots
 \end{itemize}
-
+% slide
 \par \textbf{Svantaggi}
 \begin{itemize}
     \item \dots
@@ -245,17 +312,15 @@ senti il video
 
 \subsection{App ibride}
 \par Es. Cordova, slide con architettura.
-\par Per dire se non ho API per fare una cosa, ciò che non è direttamente supportato dalle API che hanno a che fare direttamente con il s.o. (es. termoscopio (?)), posso scrivere un plugin che mi permette di fare quella cosa. I rendering engine quindi sono ``ponti'' che fanno da tramite per fare esattamente ciò.
+\par Per dire se non ho API per fare una cosa, ciò che non è direttamente supportato dalle API che hanno a che fare direttamente con il s.o. (es. termoscopio (?)), posso scrivere un plugin che mi permette di fare quella cosa. I \textbf{rendering engine} quindi sono ``ponti'' che fanno da tramite per fare esattamente ciò.
 
-\subsubsection{Caratteristiche}
+\subsubsection{Architettura di Capacitator}
 \par Slide con lista di caratteristiche in cui vedo come gli engine fanno un po' da ponte.
-
-\subsubsection{Mobile apps runtime architecture}
+\par Praticamente ho il mio \textbf{rendering engine} che comunica direttamente con il s.o., ma se ci sono cose che non riesco a fare da sola mi appoggio ai plugins per ciò che non è supportato dall'engine. Del \textbf{HTML rendering engine (WebView)} ho sempre comunque bisogno.
 \par Slide con immagine aggiornata. 
 \par Attraverso la webview ora posso osservare e catturare le interazioni dell'utente con ciò che ho realizzato con HTML, CSS, JavaScript.
-\par Sotto ho il bridge che mi permette di usare i servizi nativi ma non direttamente, ma attraverso il rendering engine, in modo da poter integrare plugins nel caso di servizi mancanti. 
 \par Se nativo dipendeva dal s.o., ibrido è sempre JavaScript, così come anche il suo bridge è in JavaScript.
-\par Ho i miei vantaggi e svantaggi. senti il video 
+\par Ho i miei vantaggi e svantaggi. 
 
 \subsubsection{Sviluppo Hybrid App: pro e contro}
 \par \textbf{Vantaggi}
@@ -272,11 +337,13 @@ senti il video
 \end{itemize}
 
 \subsection{Web-native app}
-\par Stiamo sotto alla WebView. Stiamo programmando in JavaScript qua. Ma risenti. Tipo iOs ha il motore già compreso, mentre Android no.
+\par Stiamo sotto alla WebView. Stiamo programmando in JavaScript qua. Tipo iOs ha il motore già compreso, mentre Android no.
 
 \subsubsection{Mobile apps runtime architecture}
 \par Slide con immagine aggiornata. 
 \par Ho sempre JavaScript, ma ora ho un rendering engine unico che è sia per servizi che per piattaforma, quindi sia interfaccia utente che per convertire servizi nativi, gli OEM widgets, \dots
+\par è uguale a quelle native, ma c'è il bridge che trasforma il codice in codice nativo (sostanzialmente il bridge è un convertitore just in time o ahead of time).
+\par Uso React Native, Native Script, Appcelerator Titanium\dots
 
 \subsubsection{Sviluppo Web-Native App: pro e contro}
 \par \textbf{Vantaggi}
@@ -286,16 +353,18 @@ senti il video
 % es navbar di Android non c'è nel mondo Apple
 \par \textbf{Svantaggi}
 \begin{itemize}
+    \item \textbf{Bridge complesso}: tradurre JS in codice nativo può creare overhead.
     \item \dots
 \end{itemize}
 
 \subsection{Cross-compiled app}
 \par Slide con immagine.
+\par Sono quelle più vicine di tutte all'hardware: ci stacchiamo completamente da tutte le tecnologie web.
 \par Vuol dire compilate (app compilate, \textbf{non più JavaScript, ci dimentichiamo del web}) per più piattaforme. Non usiamo più gli strumenti web, ma strumenti di sviluppo nativo.
 
 \subsubsection{Mobile apps runtime architecture}
 \par Slide con immagine aggiornata. 
-\par Ho un unico codice sorgente, ma ho un compilatore che mi permette di avere un'app per entrambi i s.o. (es. Xamarin, Flutter, \dots). Tipo Ruby compila direttamente per dispositivo target. Xamarin compila in C\# e poi in bytecode, una sorta di web-native (ho un bytecode che fa una sorta di e un bridge). Flutter in Dart e poi in bytecode. Flutter ha un meccanismo diverso, due elementi: rendering engine (non si appoggia più su componenti nativi), realizza lui i suoi componenti grafici, poi ho il concetto di platform channels.
+\par Ho un unico codice sorgente, ma ho un compilatore che mi permette di avere un'app per entrambi i s.o. (es. \texttt{Flutter}, \texttt{.NET MAUI}, \texttt{RubyMotion} \dots). Tipo RubyMotion compila direttamente per dispositivo target (\textit{native} \& \textit{cross-compiled}) e compila ahead-of-time. \texttt{.NET MAUI} compila in C\# e poi in bytecode, una sorta di \textit{web-native} (ho un bytecode che fa una sorta di bridge). Flutter in Dart e poi in bytecode. Flutter ha un meccanismo diverso, un'architettura tutta sua, due elementi: rendering engine (non si appoggia più su componenti nativi), realizza lui i suoi componenti grafici (widget rendering), poi ho il concetto di platform channels.
 
 \subsubsection{Sviluppo Web-Native App: pro e contro}
 \par \textbf{Vantaggi}
@@ -308,7 +377,27 @@ senti il video
     \item \dots
 \end{itemize}
 
+% \subsubs
+
 \subsection{Quale piattaforma scegliere?}
-\par Dipende da quale è la ima base di partenza, cosa voglio ottenere e quali sono le mie competenze.
+\par Dipende da quale è la mia base di partenza, cosa voglio ottenere e quali sono le mie competenze.
 \par Tutto ciò che sta sotto WebView è considerato app mobile (quindi anche web-native anche se uso strumenti web oriented).
-\par Slide con guideline per aiutare a scegliere la piattaforma migliore per il proprio progetto.
+\begin{itemize}
+    \item \textbf{Performance migliori}
+    \begin{itemize}
+        \item .
+    \end{itemize}
+    \item \textbf{Negli app store}
+    \begin{itemize}
+        \item .
+    \end{itemize}
+    \item \textbf{Support web framework}
+    \begin{itemize}
+        \item .
+    \end{itemize}
+    \item \textbf{No installazione}
+    \begin{itemize}
+        \item .
+    \end{itemize}
+\end{itemize}
+\par Slide con guideline, 3 domande per aiutare a scegliere la piattaforma migliore per il proprio progetto.
