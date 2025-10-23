@@ -2,7 +2,7 @@
 
 \chapter{La piattaforma Android - prime info}
 \section{AOSP - Android Open System Platform}
-\par L'Android Open Source Project (AOSP) è un'iniziativa open source, slide
+\par L'Android Open Source Project (AOSP) è un'iniziativa open source (non tutto Android lo è, ma mette delle parti e librerie e SDK a disposizione), vedi slide.
 
 \subsection{Architettura}
 % Slide con immagine
@@ -16,10 +16,11 @@
 \end{itemize}
 
 \subsubsection{Kernel Linux}
-\par Fornisce supporto per funzionalità di basso livello (threading, gestione della memoria, l'accesso all'hardware via driver, etc.)
-\par Fornisce modello di sicurezza
-\par Permette ai produttori di dispositivi di sviluppare driver hardware per un \textit{kernel ben noto}
-\par Devo basare il driver per interfacciarmi con le funzionalità di quel modello specifico che sto implementando: ogni hardware ha API specifiche, quando scrivo un driver devo interfacciarmi con quelle API
+\par Fornisce supporto per funzionalità di basso livello (threading, gestione della memoria, l'accesso all'hardware via driver, etc.).
+\par Fornisce modello di sicurezza (UID e sandbox, vedremo alla prossima lezione).
+\par Permette ai produttori di dispositivi di sviluppare driver hardware per un \textit{kernel ben noto}.\\
+Componenti che vanno ad interfacciarsi direttamente con l'hardware relativo.
+\par Devo basare il driver per interfacciarmi con le funzionalità di quel modello specifico che sto implementando: ogni hardware ha API specifiche, quando scrivo un driver devo interfacciarmi con quelle API.
 
 \subsubsection{HAL - Hardware Abstraction Layer}
 \par Fornisce un insieme di \textbf{\underline{interfacce} \underline{standard}} che espongono le funzionalità hardware al \textbf{Java API Framework}.
@@ -31,40 +32,61 @@
 \par \`E il motore di esecuzione di Android, introdotto dalla versione 5.0 (Lollipop) per sostituire il vecchio Dalvik:
 \begin{itemize}
     \item Dalvik: compilazione JIT (Just In Time)
-    \item ART: compilazione AOT (\textbf{Ahead Of Time}) e JIT (compilazione Just In Time)
+    \item ART: compilazione \textbf{AOT} (\textbf{Ahead Of Time}) e \textbf{JIT} (compilazione Just In Time)
 \end{itemize}
-\par Dato il bytecode ch emi arriva, serve qualcuno che lo compili \textbf{e} lo esegua. 
+\par Dato il bytecode che mi arriva, serve qualcuno che lo compili \textbf{e} lo esegua.
 \par Vantaggi ART:
 \begin{itemize}
     \item miglioramento efficienza complessiva dell'esecuzione
-    \item cose
-    \item slide
+    \item riduzione consumo di energia
+    \item rapido start-up delle applicazioni
+    \item miglioramento meccanismi di allocazione della memoria
+    \item miglioramento garbage collector (GC)
+    \item introduzione di nuove funzionalità di debug delle applicazioni
 \end{itemize}
-% Slide con confronto fra Dalvik e ART
-% Slide con funzionamento di ART
 \par \textbf{Profile guided compilation} (introdotto da Android N (Nougat)) praticamente scarica un po' all'installazione un po' quando vedo che l'utente usa particolari funzionalità non inizialmente scaricate all'installazione. Per questo è profile guided, perché devo guardare il profilo dell'utente.
 \par Da Android P (Pie) è stato introdotto Profiles in the Cloud: permette di scaricare il profilo dell'applicazione da un server e non dal dispositivo stesso, in modo da avere un'applicazione più leggera e più veloce.
 
 \subsubsection{Librerie Native (C/C++)}
 \par Android permette di scrivere librerie native in C/C++ che:
 \begin{itemize}
-    \item consentono agli sviluppatori 
+    \item permettono prestazioni elevate
+    \item es.: OpenGL, \dots vedi slide
+    \item Usate per sfruttare direttamente le capacità hardware
+    \item accesso tramite JNI o NDK
 \end{itemize}
 
 \subsubsection{Java API Framework}
 \par Quello che andremo noi ad usare nel progetto.
-\par Insieme di API Java che forniscono un insieme ricco di funzionalità:
+\par Espone le API Java che consentono lo sviluppo delle app. Forniscono un insieme ricco di funzionalità:
 \begin{itemize}
+    \item \textbf{Activity Manager} per la gestione del ciclo di vita delle applicazioni
+    \item \textbf{View System} per la costruzione di UI
+    \item \textbf{Resource Manager} per accesso a risorse quali immagini
+    \item \textbf{Notification Manager} per le notifiche di sistema
+    \item \textbf{Content Provider} per l'accesso/condivisione di dati tra app
     \item \textbf{\dots}
 \end{itemize}
 
 \subsubsection{System Apps}
 \par Applicazioni preinstallate nel sistema Android, che all'occorrenza posso integrare nello sviluppo della mia applicazione.
-\par Le app di sistema funzionano sia come 
-\par Es.: se devo aprire un url, non vado mica a costruire a mano un browser, ma uso quello preinstallato.
+\par Le app di sistema costituiscono assieme al framework l'ambiente base di Android e offrono 
+\par Es.: se devo aprire un URL, non vado mica a costruire a mano un browser, ma uso quello preinstallato.
 
-% "precisazioni sugli ultimi due livelli" l'ha saltato
+% fai "precisazioni sugli ultimi due livelli" dalla slide
+\par Ci sono due tipi di API:
+\begin{itemize}
+    \item \textbf{Android API}: sono quelle che possiamo usare per la nostra app, sono pubbliche e liberamente usabili.
+    \item \textbf{System API}: sono quelle interne, non pubbliche, che sono destinate solo a uso interno del s.o. o a OEM/Google
+\end{itemize}
+\par Poi ho anche:
+\begin{itemize}
+    \item \textbf{Android Apps}: 
+    \item \textbf{Priviliged App}: 
+    \item \textbf{Device Manifacturer Apps}: 
+\end{itemize}
 
+versioni android
 
 Tre concetti importanti:
 \begin{itemize}
@@ -90,11 +112,21 @@ Tre concetti importanti:
         \item Utile per testare l'applicazione senza aver bisogno di un dispositivo fisico
     \end{itemize}
     \item \textbf{SDK Tools:} strumenti per compilare, debuggare e testare le app, oltre al profilo delle prestazioni
+    \item \textbf{ADB (Android Debug Bridge):} connessione a
     \item \textbf{API:} 
 \end{itemize}
 
 \section{Google Play Services}
 \par Servizi che possiamo usare, ma serve una \textit{key} da memorizzare sulla nostra applicazione, possibilmente in un posto sicuro quindi non codice sorgente che mando in giro. Senza questa chiave non posso usare i servizi di Google. Di solito si è monitorati perché oltre ad un certo numero di utilizzi si inizia a pagare.
+
+distribuzione delle app
+
+dal download all'esecuzione di un'app
+
+jit e aot: al primo avvio ovviamente JIT con compilazione "al volo" per avere dal mio bytecode il machine code. poi viene memorizzato quale codice viene usato "più spesso" e questo frequently run code viene caricato con l'AOT.
+
+da android P
+
 
 \chapter{Android - la prima applicazione e le risorse}
 \section{Strumenti}

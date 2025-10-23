@@ -1,10 +1,19 @@
-% 17/10/2024
+% 16/10/2025
 
 \chapter{Esercitazione 2}
-\par Avviamo un nuovo progetto Android Studio, scegliendo il template \textit{Empty Activity}.
-\par Manifest (prima directory nella visualizzazione Android) è un xml che contiene le informazioni dell'applicazione, come il nome, l'icona, le activity, i permessi, \dots Dentro, definiamo \texttt{MainActivity} come activity principale, con un target ideale. \texttt{MainActivity} è il nostro punto di partenza. Estende la classe \texttt{AppCompactActivity}, che è un'activity standard che supporta le funzionalità più recenti di Android.
+\par Avviamo un nuovo progetto Android Studio, scegliendo il template \textit{Empty Views Activity}.
+\par Scegliamo il nome dell'app, il package name è \texttt{com.unimib.nomedellamiaapp} e lasciamo il minimo SDK che c'è che è API 30 (Android 11). Il build configuration language è \texttt{gradle} per configurare le librerie, quindi lasciamo ``Kotlin''.
 
-\subsection{Directory \texttt{Java}}
+\section{Il manifest}
+\par Manifest (prima directory nella visualizzazione Android) è un xml che contiene dei metadati, letti dal s.o., con le informazioni dell'applicazione, come il nome, l'icona, le activity, i permessi, \dots Dentro, definiamo \texttt{MainActivity} come activity principale, con un target ideale. \texttt{MainActivity} è il nostro punto di partenza. Estende la classe \texttt{AppCompactActivity}, che è un'activity standard che supporta le funzionalità più recenti di Android.
+
+\section{L'API}
+\par Necessario sapere a inizio progetto che API vogliamo usare. Noi useremo NewsAPI. 
+
+\section{Il tema}
+\par Ha fatto vedere come aggiungere il tema all'app per non farlo da 0.
+
+\section{Directory \texttt{Java}}
 \par Dentro la directory Java e la prima sottodirectory, vado a prendere il \texttt{MainActivity.java}. Qui sostituisco l'override che vedo con:
 \begin{verbatim}
     @Override
