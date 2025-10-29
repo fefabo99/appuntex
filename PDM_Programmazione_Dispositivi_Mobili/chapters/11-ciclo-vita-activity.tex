@@ -1,0 +1,160 @@
+% 29/10/2025
+
+% onStop praticamente è quando ho la lista delle app aperte
+\chapter{Ciclo di vita delle activity}
+\section{Activity}
+\par Sono delle componenti fondamentali (una delle 4 componenti base) di Android. Difficilmente ci sarà un reference diretto fra un'activity e l'altra (perciò dette lascamente connesse), o perlomeno deve succedere molto raramente. Insomma è una cosa da evitare. Le informazioni devono essere passate in maniera indiretta.
+\par L'esperienza utente di un'app si differenzia dalla sua controparte desktop per il fatto che l'\textbf{interazione} dell'utente con l'app \textbf{\underline{non}} inizia sempre dallo stesso punto.
+\par Anche se le activity insieme formano un'esperienza utente coesa in un'app, ogni activity è solo lascamente legata alle altre activity: ognuna deve ovviamente avere il proprio motivo di esistere nell'app.
+\par Ogni activity può avviare un'altra activity per eseguire azioni diverse.
+\par Per funzionare correttamente, un'Activity deve necessariamente:
+\begin{itemize}
+    \item essere registrata con le proprie informazioni nel file \texttt{Manifest} dell'app
+    \item il suo \textbf{ciclo di vita} deve essere gestito in modo efficace
+\end{itemize}
+
+\subsection{File Manifest}
+\par L'intent, l'intento, è quello che voglio far fare all'activity.
+\begin{verbatim}
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+\end{verbatim}
+\par Praticamente mi dice "nome dell'azione che voglio fare e categoria a cui appartiene".
+\par Questo funziona anche per activity di altre applicazioni già presenti (bisogna sempre partire dal presupposto "se qualcosa già esiste lo uso"): vado a chiamare cosa mi serve, se non c'è dà NullPointerException, se c'è lo uso.
+% img
+
+\subsection{Ciclo di vita}
+\par Un'Activity piuò essere trovata in diversi \textbf{stati}: \textit{created, started, resumed, paused}...
+\par ``textit{As a user navigates etc}''
+\par Mi dice che è l'utente con il suo intervento a far cambiare un'Activity (ovvero cambia di stato).
+\par La classe Activity ha predefiniti dei \textbf{metodi} (chiamati ``\textbf{di callback}'') invocati in momenti ben precisi (momenti che dipendono dallo stato dell'Activity) che permettono alle Activity di sapere che il proprio stato è cambiato:
+\begin{itemize}
+    \item Le \textit{callback} sono invocate dal sistema ogni volta che l'activity cambia stato
+    \item ad ogni cambiamento di stato corrisponde una \textit{callback} ben precisa (che di solito ha un nome legato allo stato relativo: è in stato \texttt{created}? Viene chiamato \texttt{onCreated}, etc...)
+\end{itemize}
+\par Implementare il \textit{comportamento corretto} %manca slide
+%img
+\begin{itemize}
+    \item onStart è quando l'applicazione è in primo piano
+    \item onPause è quando l'applicazione è visibile ma non ha il focus (es. un dialog appare davanti)\\
+    è meglio rilasciare qua le risorse che non servono (tipo la camera, etc)
+    \item onStop è quando l'applicazione è in background (può essere killata qui e tornare a onStart, devo mettere quali risorse voglio ripristinare)
+\end{itemize}
+% da finire
+\par Con i tre tastini sotto:
+% da finire
+
+\par Per i LOG e vedere il comportamento del sistema (per errori, debug, informazioni etc): \texttt{private static final String TAG = "Main";}
+\par Poi sotto dentro \texttt{onCreate}: \texttt{Log.i(TAG, "Sono in onCreate");}
+\par Come tag è meglio usare main. Nel LogCat si può filtrare per tipo di log (hanno una sorta di gerarchia, quindi se tipo metti \texttt{i} dà tutte le informazioni e gli errori e il debug etc; se metti \texttt{e} dà gli errori e il debug etc ma non le informazioni generiche; se metti \texttt{d} mette debug etc ma non errori o informazioni\dots)
+
+
+\subsubsection{Activity Destroyed: cosa ci si aspetta venga fatto?}
+\par Un'activity va in uno stato di Destroyed per diversi motivi:
+\begin{itemize}
+    \item se l'utente vuole eliminare dalla memoria l'activity (ovvero l'utente non desidera che l'activity una volta riavviata ripristini il suo stato prima della distruzione), es.: tasto back.
+    \item se il sistema deve aggiornare la configurazione (voluto dall'utente, es cambio lingua o orientamento verticale/orizzontale o cambio tema giorno/notte\dots praticamente qualsiasi cosa mi faccia cambiare la schermata, l'interfaccia che mi trovo davanti) ma l'utente si aspetta di ritrovare l'activity come l'aveva impostata. 
+\end{itemize}
+\par Per questo devo salvare lo stato dell'activity (cosa che Android di per sé non fa).
+
+\subsubsection{Processo cancellato dalla memoria}
+\par Ma un'activity può essere cancellata anche dal sistema proprio e non dall'utente:
+\begin{itemize}
+    \item il sistema deve liberare una RAM limitata
+\end{itemize}
+
+\subsubsection{Salvare lo stato volatile di un'activity}
+\par Quando un utente si aspetta di ritrovare un'activity come l'aveva lasciata, devo salvare lo stato \textbf{volatile} dell'activity (i dati persistenti ci si aspetta vengano sempre salvati) affinché possa essere ripristinato. 
+\begin{itemize}
+    \item classe \texttt{ViewModel} (elemento architetturale)\\
+    Usato \textbf{\underline{insieme a \texttt{onSaveInstanceState()}}} perché quest'ultimo comporta costi di serializzazione/deserializzazione, nei casi di dati più complessi.
+    \item metodo \texttt{onSaveInstanceState}: salva lo stato volatile dell'activity \textit{in quel momento}\\
+    Unico che posso usare per salvare dati della UI \textbf{semplici} e \textbf{leggeri} (come un tipo di dato primitivo o un oggetto semplice come \texttt{String})
+    \item memorizzazione locale
+\end{itemize}
+\par La prossima lezione IMPORTANTISSIMA vedremo \textbf{architetture}.
+\par N.B.: distruggere un processo vuol dire distruggere tutte le activity che ci sono dentro, perdere la memoria.
+\begin{itemize}
+    \item Instance state e \texttt{Bundle} (che ha una capacità limitata, è una classe che mi permette di salvare coppie $<$chiave-valore$>$)
+    \begin{itemize}
+        \item boh
+    \end{itemize}
+    \item Il metodo \texttt{onSaveInstanceState()}
+    \begin{itemize}
+        \item Invocato dopo onStop()
+    \end{itemize}
+    \item Con il ViewModel (contenitore di dati)
+\end{itemize}
+
+\chapter{Task e Back Stack}
+\section{Cancellazione della memoria: Task e Back Stack}
+\par Per ogni processo c'è un back stack.
+\begin{itemize}
+    \item Task: insieme di activity con cui l'utente interagisce per svolgere un compito
+    \item Le activity vengono messe in uno stack (Back Stack) nell'ordine in cui sono state aperte
+    \begin{itemize}
+        \item la nuova activity viene messa (push) sopra a quella vecchia
+        \item quando viene premuto back, la top task viene istrutta (pop) e si torna alla precedente appena sotto (non visibile) che torna di nuovo visibile
+    \end{itemize}
+    \item Seguiamo la politica LIFO (Last In First Out) come ha detto la prof, ovvero FILO (First In Last Out)
+\end{itemize}
+
+
+% --- è arrivata qua ---
+
+
+\section{Attivare i componenti}
+\par Un'app realizza le funzionalità per cui è stata implementata avvalendosi di componenti sia proprie sia di altre app.
+\par Activity, Service e Broadcast Receiver vengono attivati da messaggi asincroni chiamati \textbf{\texttt{Intent}}.
+\par L'app demanda il compito al sistema Android inviandogli un messaggio che specifica l'\textbf{intent} di avviare un particolare componente.
+\par \textbf{Gli Intent sono quindi usati per attivare comoponenti e condividere dati}.
+\par Un Intent wrappa un Bundle.
+\par I Content Provider (gestiscono insiemi di componenti utili a più applicazioni, es. i contatti della rubrica) non vengono direttamente attivati attraverso Intent. Ma abbiamo \textbf{Content Resolver} che fa da tramite/intermediario (non li vedremo, si possono trovare nella documentazione).
+
+\subsection{Tipi di Intent}
+\par 
+\begin{itemize}
+    \item \textbf{Espliciti}: specificano l'azione da eseguire e il tipo di dati su cui eseguirla
+    \item \textbf{Impliciti}: chi lancia questo Intent non ha idea
+\end{itemize}
+
+\subsubsection{Intent esplicito}
+\par \textbf{Messaggio per attivare un componente specifico}.
+\begin{itemize}
+    \item Da usare quando
+    \item 
+    \item Da utilizzare con i Service (ovvero, i Service possono essere attivati \textbf{solo} con Intent espliciti)
+\end{itemize}
+
+\subsubsection{Intent implicito}
+\par \textbf{Messaggio per attivare uno specifico \underline{tipo} di componente}.
+\begin{itemize}
+    \item Da usare quando
+    \item Si specifica il tipo di componente attraverso una \textbf{action} che deve essere eseguita e il sistema sceglier
+    \item Android
+\end{itemize}
+% boh senti ci rinuncio copia le slide.
+
+\subsection{Intent Filter}
+Dichiara il file Manifest
+se conosco il suo nome posso attivarlo altrimenti no
+% diagramma dalla slide
+
+\subsubsection{La costruzione di un Intent}
+% tabella, tanti costruttori nella terza colonna, scelgo quello che mi serve
+
+Le action hanno semantica ben precisa, se non c'è una action che fa quello che voglio fare, la implemento io.
+Gli intent hanno una serie di metodi per andare a mettere tutte le informazioni che mi servono per attivare un componente.
+
+L'invio cambia in base al componente: ci sono dei metodi appositi.
+% tabella nella slide, nella terza colonna cosa succede sul componente che riceve.
+
+registri permettono di registrare intent di ritorno di attività
+
+\subsection{Intent impliciti: problemi}
+non è detto che l'app esista
+ho più app che lo fanno, lascio la scelta all'utente (es condividere un'immagine)
+
