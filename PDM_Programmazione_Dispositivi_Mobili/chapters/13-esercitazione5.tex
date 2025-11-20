@@ -1,4 +1,4 @@
-% 07/11/2024
+% 06/11/2025
 
 \chapter{Esercitazione 5}
 C'è un field chiamato "inputText". è bene comune controllare che i campi abbiano sempre il tipo di input corretto (es. mail per le email \dots).
@@ -7,17 +7,22 @@ C'è un field chiamato "inputText". è bene comune controllare che i campi abbia
 \par Dentro LoginActivity.java c'è un metodo \texttt{onCreate} che viene chiamato quando l'activity viene creata. Si può fare l'override di questo metodo e mettere il codice che si vuole eseguire quando l'activity viene creata.
 \par Dentro LoginActivity.java c'è un metodo \texttt{isMailOk} che controlla se la mail è corretta. EmailValidator.getInstance().isValid(email) è un metodo che controlla se la mail è corretta. Se la mail è corretta, ritorna true, altrimenti ritorna false.
 \par Le Snackbar sono delle notifiche che appaiono in basso. Su Material3 \texttt{"material-components-android/docs/components/Snackbar.md"} c'è la documentazione. Su "activity-login.xml" faccio una nuova Log e metto un id. Dentro LoginActivity.java metodo loginButton.setOnClickListener > "Snackbar.make(findViewBy(android.R.id.content), text: "", Snackbar.LENGTH\_SHORT).show(); così fa uscire la Snackbar.
-\par Introduciamo il concetto di intent. Sono oggetti che permettono alle activities e non solo di dialogare fra loro. Possiamo generarlo o senza parametri (intent implicito) o con come parametro l'activity verso cui voglio andare (intent esplicito).
-\par Per fare un intent esplicito, si fa \texttt{Intent intent = new Intent(this, PickACountryActivity.class); startActivity(intent);}. 
-\par Sono anche contenitori di informazioni. Si possono mettere informazioni dentro l'intent e passarle all'altra activity. Si fa \texttt{intent.putExtra("key", "value");} (noi facciamo \texttt{(EMAIL\_KEY)}). Per recuperare l'informazione si fa \texttt{String value = getIntent().getStringExtra("key");}.
-\par Per fare un intent implicito, si fa \texttt{Intent intent = new Intent(Intent.ACTION\_VIEW, Uri.parse("http://www.google.com")); startActivity(intent);}.
+\par Introduciamo il concetto di intent (\url{https://developer.android.com/guide/components/intents-filters}). Sono oggetti che permettono alle activities e non solo (anche app, o per dire se voglio condividere un'immagine o altro penso all'esterno dell'app verso altre app) di dialogare fra loro. Possiamo generarlo o senza parametri (intent implicito, tipo "voglio mandare questa foto come messaggio" o "voglio aprire la mappa") o con come parametro l'activity verso cui voglio andare (intent esplicito).
+\par Per fare un intent implicito, si fa\\ \texttt{Intent intent = new Intent();}\\ \texttt{startActivity(intent);} (l'ultimo da mettere dentro un try-catch). 
+\par Per fare un intent esplicito, si fa\\ \texttt{Intent intent = new Intent(this, PickACountryActivity.class);}\\ \texttt{startActivity(intent);}. 
+\par \texttt{setAction} invece con \texttt{(Intent.blah);} mi dà una lista di possibili azioni che posso fare (es. ACTION\_SEND mi condivide quello che gli do da condividere).
+\par Sono anche contenitori di informazioni. Si possono mettere informazioni dentro l'intent e passarle all'altra activity. Si fa \texttt{intent.putExtra("key", "value");}. Per recuperare l'informazione si fa \texttt{String value = getIntent().getStringExtra("key");}.
+\par Per fare un intent esplicito, si fa \texttt{Intent intent = new Intent(Intent.ACTION\_VIEW, Uri.parse("http://www.google.com")); startActivity(intent);}.
+
+\par Posso dare ad un utente la possibilità di caricare una foto da galleria o whatever (cerca su doc se posso aprire fotocamera), lo facciamo in un esempio ora. La sezione è "\href{https://developer.android.com/training/basics/intents/result#launch}{Launch an activity for result}". Ha poi fatto vedere come usare l'immagine (Bitmap e uri).
+% Io potrei usarlo per le cover dei libri. O anche come diceva lui per la foto profilo.
 
 \par In activity\_login.xml per immagine scelta dall'utente, vedi lezione.
 
 \par Introduciamo il concetto di fragment. Un'activity corrisponde ad una schermata. Fragment funziona un po' come un activity, ma è un pezzo di schermata. Si possono mettere più fragment in una activity. 
 \par Un esempio. Google foto. Ha sotto una barra con "Photos" e "Search". Ma se clicchiamo su una delle due non cambia l'activity, ma cambia il contenuto. Ovvero, cambia il fragment. Perché l'activity è sempre la stessa, ovvero la barra sotto (e logo di Google Foto in alto e il burger menu in alto a sinistra).
 \par A differenza dell'activity, il fragment è ideato a runtime. Costruttore vuoto. Dentro LoginFragment.java c'è un metodo LoginFragment newInstance() {\dots}.
-\par Dentro onViewCreated() si fa il binding dei campi. Si fa \texttt{binding = FragmentLoginBinding.inflate(inflater, container, false); return binding.getRoot();}.
+\par Dentro onViewCreated() si fa il binding dei campi. Si fa\\ \texttt{binding = FragmentLoginBinding.inflate(inflater, container, false);}\\ \texttt{return binding.getRoot();}.
 \par Dentro activity\_login.xml metto "FragmentContainerView" che è un contenitore per i fragment. Si mette un id. 
 \par navGraph è un file xml che contiene la navigazione dell'applicazione. 
 \par Sulla modalità Design di nav\_graph.xml si può fare il drag and drop dei fragment manualmente, collegandoli con delle frecce. La cosa si rifletterà in automatico sul xml.
@@ -26,3 +31,11 @@ C'è un field chiamato "inputText". è bene comune controllare che i campi abbia
 \par Da un fragment posso passare a due diverse activity. Per fare questo, si fa \texttt{navGraph.xml} e si collega il fragment a due activity diverse. A livello di codice gestirò come fare a passare da un'activity all'altra. Per esempio il findNavController di prima era dentro un if.
 
 \par Per salvare in locale (quindi su file dati persistenti), c'è la funzione \texttt{getSharedPreferences}. Guarda la documentazione.
+
+% per la mia app ha fatto il floating button per "continue/confirm" che sarebbe utile per "add a note", enabled false nell'xml e poi nel java dentro il onClick c'è modo per abilitarlo/disabilitarlo. Poi ci sarà il metodo tryToEnableFloatingActionButton() per vedere se 1+ categorie sono selezionate allora permette di procedere, non so se a me serve tho. Per vedere se ci sono categorie selezionate crea una lista che aggiorna la lista aggiungendo o rimuovendo currentCategory nel caso in cui sia selezionata o meno. La funzione avrà un if che guarda se la lista di categorie selezionate è vuota o meno (selectedCategory.isEmpty()) e attiva o disattiva il bottone in base allo stato della lista (if riscritto per leggibilità).
+
+% Per salvare costanti e altre cose fa una classe java chiamata appunto Constants e la mette in un package chiamato "utils". Salvando le chiavi delle costanti come stringhe posso poi usarle nelle traduzioni.
+
+% Trovandomi in Consants e non Activity non ho contesto quindi tipo getString getName etc che funzionano con Activities non vanno, allora faccio "public static String[] getListCategoriesNames(Context context) {...}", context è un oggetto astratto che aggira questo problema e fa appunto da contesto che potrebbe essere un'activity etc.
+
+% Poi ha creato il riferimento alla immagine e al titolo della card

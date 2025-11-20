@@ -105,6 +105,7 @@
 
 % --- è arrivata qua ---
 
+% 07/11/2025
 
 \section{Attivare i componenti}
 \par Un'app realizza le funzionalità per cui è stata implementata avvalendosi di componenti sia proprie sia di altre app.
@@ -115,46 +116,84 @@
 \par I Content Provider (gestiscono insiemi di componenti utili a più applicazioni, es. i contatti della rubrica) non vengono direttamente attivati attraverso Intent. Ma abbiamo \textbf{Content Resolver} che fa da tramite/intermediario (non li vedremo, si possono trovare nella documentazione).
 
 \subsection{Tipi di Intent}
-\par 
+\par Elemento programmativo Android che permette alle applicazioni e alle activities di avviarsi e far partire servizi e mille altre cose.
+\par Un'app realizza le funzionalità per cui è stata implementata avvalendosi di componenti lascamente connesse (indipendenti ma che collaborano fra loro) definite all'interno della stessa applicazione o resi disponibili da altre. Es.: mandare una mail, attivando un servizio di mail esterno senza stare a programmare una nuova componente ad hoc.
+\par La componente può essere una qualsiasi (a parte contentProvider che si attiva in maniera differente, permettono di condividere dati fra diverse applicazioni (usando più componenti); vengono attivati quando sono i destinatari di una richiesta da parte di un'entità chiamata \textit{content resolver}).
+\par Questo avviene attraverso diversi meccanismi, il predominante è l'\textbf{intent}. Sono messaggi asincroni per ``chiedere aiuto'' per una determinata azione. L'app domanda il compito al sistema Android inviandogli un messaggio che specifica l'\textit{intenzione} (\textit{intent}) di avviare un particolare componente ed eventualmente condividere dati.
+\par Gli \textit{intent} possono essere:
 \begin{itemize}
-    \item \textbf{Espliciti}: specificano l'azione da eseguire e il tipo di dati su cui eseguirla
+    \item \textbf{Espliciti}: mi permettono di andare ad attivare un componente \textit{ben specifico}; specificano l'azione da eseguire e il tipo di dati su cui eseguirla (gen. usato per attivare componenti dell'app stessa).
+    \begin{itemize}
+        \item Usato nella forma: \texttt{Messaggio per attivare un componente specifico}
+        \item Da usare quando conosco il nome del componente, perché specificano l'azione da eseguire e il tipo di dati su cui eseguirla (gen. usato per attivare componenti dell'app stessa).
+        \item Android inoltra l'intent direttamente al componente specificato.
+        \item Da utilizzare con i Service (ovvero, i Service possono essere attivati \textbf{solo} con Intent espliciti)
+    \end{itemize}
     \item \textbf{Impliciti}: chi lancia questo Intent non ha idea
+    \begin{itemize}
+        \item Usato nella forma: \texttt{Messaggio per attivare uno specifico \underline{tipo} di componente}.
+        \item Da usare quando l'app non ha la funzionalità richiesta, ma qualche altra app disponibile nel dispositivo sì (possibile non ne abbia nessuna o anche molteplici, approfondiremo).
+        \item Si specifica il tipo di componente attraverso una \textbf{action} (eventualmente in un contesto ben preciso) che deve essere eseguita e il sistema sceglierà il componente più idoneo che soddisfa la richiesta.
+        \item Android trova il componente appropriato (vedremo come), il componente più idoneo, confrontando il contenuto dell'intent con gli \textbf{intent filter} dichiarati nel manifest e %cerca la slide
+    \end{itemize}
 \end{itemize}
-
-\subsubsection{Intent esplicito}
-\par \textbf{Messaggio per attivare un componente specifico}.
-\begin{itemize}
-    \item Da usare quando
-    \item 
-    \item Da utilizzare con i Service (ovvero, i Service possono essere attivati \textbf{solo} con Intent espliciti)
-\end{itemize}
-
-\subsubsection{Intent implicito}
-\par \textbf{Messaggio per attivare uno specifico \underline{tipo} di componente}.
-\begin{itemize}
-    \item Da usare quando
-    \item Si specifica il tipo di componente attraverso una \textbf{action} che deve essere eseguita e il sistema sceglier
-    \item Android
-\end{itemize}
-% boh senti ci rinuncio copia le slide.
 
 \subsection{Intent Filter}
-Dichiara il file Manifest
-se conosco il suo nome posso attivarlo altrimenti no
+\par Dichiarazione nel file Manifest da parte di un componente che specifica i tipi di intent che il componente desidera ricevere. 
+\par Se un componente non dichiara nessun \textit{intent filter} potrà essere attivato solo attraverso intent esoliciti; ovvero, se conosco il suo nome posso attivare il mio componente, altrimenti no.
 % diagramma dalla slide
 
-\subsubsection{La costruzione di un Intent}
+\subsection{La costruzione di un Intent}
+\par Un oggetto di tipo \texttt{Intent} contiene informazioni che il sistema Android usa per determinare quale componente avviare, oltre alle informazioni che il componente destinatario usa per eseguire correttamente l'azione.
 % tabella, tanti costruttori nella terza colonna, scelgo quello che mi serve
+\par I component name sono presenti solo in intent espliciti e sono nomi di classi fully qualified (arrivano fno all'activity destinataria).
+\par Tipicamente con intent impliciti (posso anche espliciti, ma quando non ho un component name serve almeno l'azione). Le action hanno semantica ben precisa, se non c'è una action che fa quello che voglio fare, la implemento io. Posso dare io nomi significativi alle action ma solo se so quali azioni i componenti sono in grado di eseguire.
+\par Data, ciò su cosa vado ad operare, può essere esterno (es. un URL) all'app o interno (tipo tramite URI).
+\par Categories sono le categorie, i tipi di componenti che l'intent dovrebbe gestire per realizzare una determinata azione. Sono composte da 1+ stringhe. La maggior parte degli intent non richiede categories.\\
+Tipo quando apro il cell e c'è la lista di app, quella è un'altra app (di sistema). Quando nel manifest della mia app vedo un'azione etichettata ``\texttt{Launcher}'' (tipicamente con ``\texttt{main}'') mi va a dire che quello è l'entry point dell'app.
 
-Le action hanno semantica ben precisa, se non c'è una action che fa quello che voglio fare, la implemento io.
-Gli intent hanno una serie di metodi per andare a mettere tutte le informazioni che mi servono per attivare un componente.
+\subsubsection{Intent: action}
+\par Definisce il tipo di operazione che deve essere eseguita (ovvero \textit{cosa si vuole fare}); il sistema poi confronta le stringhe e se c'è un match lancia quell'azione se no la aggiunge nuova.
+% perso la slide
 
-L'invio cambia in base al componente: ci sono dei metodi appositi.
-% tabella nella slide, nella terza colonna cosa succede sul componente che riceve.
+\subsubsection{Intent: category}
+\par Fornisce informazioni aggiuntive sull'azione, indicando in quale contesto l'intent può essere gestito.
+\par Posso avere più categorie, il filtro le deve comprendere tutte
+% perso la slide
 
-registri permettono di registrare intent di ritorno di attività
+\subsubsection{Esempi di Intent}
+\par Nell'intent esplicito, "Intent intentSecondaActivity = new Intent(this, SecondaActivity.java)" questo ha detto che this è il contesto, poi fa "ovvero in parole povere quale è la componente che lo chiama", è questa la definizione di contesto?
+\par In quello implicito invece ho la coppia (azione, data).
+
+\subsubsection{Intent: invio}
+\par Gli intent hanno una serie di metodi per andare a mettere tutte le informazioni che mi servono per attivare un componente.
+\par L'invio cambia in base al componente: ci sono dei metodi appositi.
+% tabella nella slide, nella prima colonna il nome del metodo, nella seconda colonna il tipo di componente richiesto e nella terza colonna cosa succede sul componente che riceve.
+\par ActivityResultLauncher (dalla versione 11) mi permette di far comunicare fra due activities (A e B) con ritorno di risposta: sul chiamato viene chiamato \texttt{onCreate()} il cui risultato viene ripassato al chiamante su cui viene attivato \texttt{onActivityResult()}.
+
+\subsubsection{Esempi pratici sul codice (non slides)}
+\par Ha fatto vedere un esempio dove fa un onCreate con in ingresso un Bundle per mantenere i dati in caso di cambio di stato dell'app (es. sospensione o background). Dentro, nel caso di click, c'è un intent (esplicito) che chiama la seconda activity (Activity1 contesto, Activity2 quella chiamata) e poi \texttt{startActivity(intent)}. Nell'altra avrò un \texttt{setContentView(R.layout.activity2.xml)} per vedere il layout della seconda activity.
+\par Il secondo esempio aggiunge degli extra con una costante ``\texttt{KEY\_NAME = "key"}'' (salvata nel file delle stringhe per poterlo definire in maniera pulita e permettere traduzioni etc).
+\par Ora vediamo \texttt{onActivityResult()}. Uso il meccanismo dei registri (i registri permettono di registrare intent di ritorno di attività), observable-observe. ActivityResultLauncher è un'activity che fa tutto da sola, mi permette di andare a registrare un contratto: specifica che tipo di azione sta eseguendo e ciò che deve andare a fare una volta che il risultato viene ritornato.
+\par Nel codice ha usato un Toast, che è un widget grafico di Android: un piccolo messaggio che compare in basso allo schermo e poi dopo poco sparisce.
+
+\subsubsection{Esempi di intent (slides)}
+% Slide
 
 \subsection{Intent impliciti: problemi}
-non è detto che l'app esista
-ho più app che lo fanno, lascio la scelta all'utente (es condividere un'immagine)
+\par Due casi:
+\begin{itemize}
+    \item non è detto che l'app esista
+    % \\
+    % codice
+    \item ho più app che lo fanno, lascio la scelta all'utente (es condividere un'immagine)
+    % \\
+    % codice
+\end{itemize}
 
+% ho perso due slide, invio esempi e intent:ricezione
+\par Nel codice abbiamo visto solamente intent espliciti. Ma nel caso di quelli impliciti? Deve essere effettivamente scelto il componente.
+\par Avrò più componenti con un certo attributo settato a \texttt{true} nel caso in cui voglio sia visibile dall'esterno. % Ho perso una frase prima di questa e una dopo.
+\par Ha fatto es. di visualizzazione e editing di campo di testo: sezione note di Bookly?
+% perso altro
+\par Se per le action ne basta una, le categories ci devono essere tutte.

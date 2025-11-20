@@ -1,4 +1,4 @@
-% 21/11/2024
+% 20/11/2025
 
 \chapter{Esercitazione 6}
 \par Oggi vedremo una cosa essenziale per la nostra app: la gestione delle viste in maniera dinamica. Quello che dovremo andare ad avere sarà una lista di carte con collegamenti a servizi API.
@@ -35,7 +35,7 @@
         \texttt{countriesList.add(new Country(context.[i]));}
 
         \item Dentro PickCountryFragment.java vado a mettere l'adapter: \texttt{gridview.setAdapter();}
-        % vabbeh mi sono persa
+        \item L'Adapter fa da ponte fra l'oggetto grafico che voglio mostrare e la logica del suo funzionamento. Noi vediamo l'ArrayAdapter ma ce ne sono di diversi tipi.
         \item MaterialCardView è un componente di Material Design che permette di creare delle card, faccio:\\
         \begin{verbatim}
             MaterialCardView cardView = (MaterialCardView) convertView;\\
@@ -90,3 +90,12 @@ Non la mettiamo in ui.welcome ma in ui direttamente.
 
 
 % Mi sono un poco rotta guarderei la fine della registrazione.
+
+
+\par Note in più rispetto all'anno scorso.
+\par Le transizioni: selezionando una freccia (un'azione) posso cambiare in ``Attributes'': enter/exit della nuova schermata che arriva, mentre popEnter e popExit per quella vecchia che se ne va.
+\par GridLayout è come LinearLayout ma invece che lineare permette di fare tabelle: sono comunque entrambi statici, perciò vanno dentro una ScrollView.
+\par Adesso per la barra in alto con la freccia indietro e il nome del fragment in cui mi trovo (che sincronizzeremo in seguito), usa una TopAppBar (o ToolBar):\\
+\url{https://github.com/material-components/material-components-android/blob/master/docs/components/TopAppBar.md}.
+\par Nell'esempio su GitHub linkato c'è anche la barra di ricerca.
+\par La classe che faremo SharedPreferences è perfetta per salvare preferenze dell'utente quali tema (light/dark mode), lingua ig?, e altre cose. A me per Bookly sarà comoda. \`E un oggetto che già esiste non lo facciamo noi, va a creare coppie chiave-valore e le usa per salvare le preferenze dell'utente. Queste preferenze sono salvate in locale ma possono essere salvate da remoto anche per portabilità dell'account e delle preferenze dell'utente su altri dispositivi.

@@ -1,11 +1,11 @@
-% 27/11/2024
+% 19/11/2025
 
 \chapter{Android Architecture Components}
-\par La volta scorsa abbiamo visto architettura generica, S.O.L.I.D. e Clean Architecture.
+\par La volta scorsa abbiamo visto architettura generica, S.O.L.I.D. e Clean Architecture e Dependency Injection, ovvero il fatto di appoggiarsi su astrazioni (interfacce) piuttosto che entità concrete per favorire il riutilizzo.
 \par Android sfrutta quella detta Modern, che è un'evoluzione di Clean Architecture: tre livelli: UI, Domain (opzionale) e Data. Poi abbiamo visto come si relazionano alla Clean Architecture.
 \par Come abbiamo detto più volte, saper strutturare bene è il cuore dello sviluppo di un'applicazione, e la struttura della Modern Architecture è la base per l'inizio della valutazione della nostra app. Importante quindi che sia strutturata su 3 livelli, con i dati che fluiscono dal Data Layer al UI Layer e gli eventi che fluiscono dal UI Layer al Data Layer.
 \par Android ha introdotto delle librerie per aiutarci a fare questo, che sono le Android Architecture Components. Sono incluse in Jetpack.
-\par SI parla di first class object: si vede a livello programmativo.
+\par Si parla di first class object: si vede a livello programmativo.
 \par La slide "Architectural Component: Overview" contiene tutto ciò che abbiamo bisogno di sapere:
 \begin{itemize}
     \item \texttt{Activity/Fragment} si occupano 
@@ -27,18 +27,16 @@
     \item \texttt{Retrofit} è una libreria API messa a disposizione da Android che facilita l'accesso a dati remoti.
 \end{itemize}
 
-% grafico slide con i vari livelli: es. di UN'istanza di ViewModel, UN'istanza di Repository\dots con un'istanza di Local e una di Remote Data Source, ma posso avere $n$ data sources.
-
 \section{Lifecycle-Aware Components}
 \subsubsection{Motivazioni}
-\par A seguito di un cambiamento di \textbf{stato} dei componenti Android occorre effettuare delle \textbf{azioni di risposta}. Di norma sono codificate nei metodi del ciclo di vita del componente.
+\par A seguito di un cambiamento di \textbf{stato} dei componenti Android occorre effettuare delle \textbf{azioni di risposta} (es. mettere in pausa la camera a seguito di uno stato \textit{PAUSED}). Di norma sono codificate nei metodi del ciclo di vita del componente (es.: nelle \texttt{Activity}, nei metodi \texttt{onStop()}, \texttt{onStart()}\dots).
 \par Ci sono i Lifecycle Owner e i Lifecycle Observer. Devo mantenere però la separazione fra UI e logica applicativa (Separation of Concerns). Saranno i Lifecycle-Aware Components a fare da tramite notificando i cambiamenti di stato ai componenti interessati.
 
-% slide Oberser-Observed pattern
+% slide Oberser-Observable pattern
 
 \subsubsection{Introduzione ai 3 componenti principali}
 % Slide di presentazione dei 3 componenti principali
-\par \textbf{Activity/Fragment} è il Lifecycle Owner.\\
+\par \textbf{Activity/Fragment} è il Lifecycle Owner. Ovvero implementa o estende l'observer (i cui metodi sono callback dell'activity e che sono observer di tutti gli stati della LifeCycle che il LifecycleOwner ha associato).
 \par Interfaccia LifecycleObserver e classe DefaultLifecycleObserver che la estende.
 
 \subsubsection{Lifecycle}
@@ -53,23 +51,24 @@
 % Slide con formalizzazione scritta di quanto abbiamo già detto prima a voce.
 
 \subsubsection{LifecycleObserver}
-% Slide con formalizzazione 
-% CI sono due interfacce, Default è più vecchia, l'altra è più recente e sarà quella che andremo ad usare noi a partire da Java 8.
+% Slide con implementazione, "TestObserver" è il mio "MyObserver" della slide "Funzionamento".
+% CI sono due interfacce, Java 7 è più vecchia e deprecata, l'altra è più recente e sarà quella che andremo ad usare noi a partire da Java 8.
 
 \subsubsection{Funzionamento}
 % Slide 
+MyObserver è la classe che IO implemento (perché IO voglio gestire cosa succede quando cambia di stato) e che estende quella Default di Android che è Observer dell'Activity.
 
 \section{LiveData}
 \subsubsection{Cosa sono}
 \par Rientrano in quanto presentato perché si basano sul meccanismo del LifeCycle e delle notifiche.
 \par La classe LiveData è un "contenitore" di dati osservabile (\textbf{observable}).
-\par Notifica gli observer quando i dati cambiano di valore.
+\par Notifica gli observer quando i dati cambiano di valore ("aggiornamento dal basso").
 \par A diffferenza di un normale observable, LiveData è lifecycle-aware: 
 \begin{itemize}
     \item sa quando un observer è attivo o meno, rispetta il ciclo di vita di un \textit{LifecycleOwner} a lui associato.
     \item ciò garantisce che LiveData notifichino gli \textbf{observer} di un cambiamento del valore del dato solo quando il \textit{LifecycleOwner} associato si trova in uno stato attivo del ciclo di vita (\texttt{started} o \texttt{resumed}).
 \end{itemize}
-% Slide con schema
+% Slide con schema e frasetta utile
 \par onChanged() metodo che invoco quando effettivamente c'è stato un cambiamento di stato.
 
 \subsubsection{Lavorare con i LiveData}
@@ -77,13 +76,17 @@
 
 \subsubsection{Funzionamento}
 % Slide esempio di grafico: T è generico, credo un po' come "Any" in Kotlin.
-% AnObserver vuole essere notificato ("this") dei cambiamenti di stato del LifecycleOwner (activity/fragment).
+% AnObserver vuole registrarsi come observer ed essere notificato ("this") dei cambiamenti di stato del LifecycleOwner (activity/fragment).
+% spiega bene il flusso "evento che mi cambia generando una azione in risposta"
 
 \subsubsection{Esempio di implementazione}
+% IMPORTANTE per il progetto
 % MutableLiveData contengono liste di oggetti, nell'esempio specifico wrappa un solo oggetto "Pippo".
 % ho creato una Inner Class anonima di tipo "Observer<User>"
 % alla classe esterna posso dare il riferimento all'activity MA NON IL CONTRARIO.
 % l'ultima riga è il lifecycleowner che osserva il liveData.
+
+% Fa, se due fragment di un'activity comunicano fra loro, si appoggiano ai loro ViewModel (ciascuno ne ha uno) e comunicano fra loro attraverso il ViewModel dell'Activity. Es: un VM per le News un VM per glu users, ciascuno è un singleton.
 
 \subsubsection{Esempio di aggiornamento}
 % Slide con codice (continuo del codice della slide precedente) con aggiornamento del valore del dato.
@@ -111,9 +114,12 @@
 % Slide testuale con cose già dette, copia e incolla
 % Posso avere tanti ViewModel quanti tipi di dato che voglio andare a gestire.
 
-\section{Android Architecture Components: schema complessivo}
+\section{Android Architecture Components}
+\subsubsection{Schema complessivo}
+% Importante, ha tutto
+
 \subsubsection{LiveData}
-% LiveData observer Activity, notifica sse active.
+% LiveData observer Activity, notifica se active.
 
 \subsubsection{ViewModel}
 % ViewModel osserva LiveData, comunica con Repository.
@@ -129,3 +135,4 @@
 % Slide con codice
 
 
+% Le ultime 25 slide direi guardale le ha passate veloci veloci
