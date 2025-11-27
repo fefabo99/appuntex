@@ -1,4 +1,4 @@
-% 28/11/2024
+% 27/11/2025
 
 \chapter{Esercitazione 7}
 \par L'altra volta adapter e liste da statiche a dinamiche, e navbar.
@@ -9,20 +9,28 @@
     \item \texttt{AppBarConfiguration} fa da contenitore per i fragment.
     \item In \texttt{home\_menu.xml} andiamo a fare il menù laterale creando gli items per ogni sezione dentro a \texttt{<menu> \dots </menu>}.
     \item \url{reqbin.com}: sito per fare richieste HTTP e API simulator and tester.
+    \item Con "json visualize" su Google visualizziamo il json in maniera più leggibile.
     \item Ha creato un po' di classi con le info di un articolo, autore, titolo, etc. 
-    \item Ha fatto un JSON (che mette poi nella dir \texttt{assets}) "\texttt{sample\_api\_response.json}" che simula la risposta di una API.
-    \item Libreria GSON: data una stringa JSON, la trasforma in un oggetto Java. Ha i suoi metodi (che sono statici, no need di inizializzazione) per fare il parsing.
-    \item In \texttt{util} crea una cartella \texttt{JSONParserUtils} e dentro una classe \texttt{JSONParserUtils.java} in cui mette il codice per fare il parsing del JSON. 
+    \item Ha fatto un JSON (che mette poi nella dir \texttt{assets} allo stesso livello di \texttt{res} e \texttt{java}, dedicato ai file più grezzi, ovvero comodo per una fase iniziale per un sample di risultati di chiamata per la fase iniziale a mano di sviluppo prima di andare a chiamare direttamente l'API) "\texttt{sample\_api\_response.json}" che simula la risposta di una API.
+    \item Libreria GSON: data una stringa JSON, la trasforma in un oggetto Java. Ha i suoi metodi (che sono statici, no need di inizializzazione) per fare il parsing. C'è una dipendenza Gradle da mettere (che troviamo sul suo \href{https://github.com/google/gson}{GitHub}).
+    \item In \texttt{util} crea una cartella \texttt{JSONParserUtils} e dentro una classe \texttt{JSONParserUtils.java} in cui mette il codice per fare il parsing del JSON.\\
+    Usa quello che appare in questa pagina per il parser che vedremo fra poco, creo il model (lui \texttt{Article.java}) e \texttt{ArticleAPIResponse.java}.\\
+    Se un'API ci dà molti più parametri di quelli che ci interessano (la domanda che volevo fargli) basta non aggiungere il parametro che non ci interessa nella lista di parametri del model.
     \item Per visualizzare la lista di articoli creata con il JSON, non usando la ListView dell'altra volta (li visualizza tutti uno sotto l'altro), ma usando il RecyclerView. Nasce apposta per risolvere questo problema, creando liste più dinamiche. All'inizio crea un tot di oggetti, quando vede che uno di questi non è più visibile, lo rimuove e lo mette in fondo e aggiorna i rimanenti visibili nello schermo. Non ne istanzia di nuovi!!
     \item Hanno chiesto differenze fra ListView e ScrollView: la ListView è una lista di elementi (messa in un adapter) che si scrollano, mentre la ScrollView è un contenitore che si scrolla.
     \item Comunque, per usare il RecyclerView, bisogna aggiungere la dipendenza in \texttt{build.gradle} e creare un adapter che è leggermente diverso da quello già creato per Country per la ListView.
-    \item Invece di creare es. 10 card, crea es. 10 viewHolder che contengono informazioni di un articolo.
+    \item Invece di creare es. 100 card, crea es. 10 viewHolder che contengono informazioni di un articolo, poi li riutilizza.
     \item \texttt{getItemCount()} conta le view visualizzabili. Sul sito solito per developers con cose utili di Android, c'è il codice per creare un adapter per il RecyclerView. In particolare il pezzo per sostituire una view quando questa finisce fuori dallo schermo.
-    \item Va a creare un layout, poi la lista degli articoli. La materialCardView che va a prendere ha due LinearLayout, uno per l'immagine e uno per il testo in cui avrà titolo, autore e quanto è passato dalla pubblicazione. Ci sono anche due checkbox nel LinearLayout del testo: uno per il like e uno per impostazioni (?). Per il primo va ad implementare un selector per vedere se selezionato o no (due drawable diversi).
+    \item Va a creare un layout, poi la lista degli articoli. La materialCardView che va a prendere ha due LinearLayout, uno per l'immagine e uno per il testo in cui avrà titolo, autore e quanto è passato dalla pubblicazione. Ci sono anche due checkbox nel LinearLayout del testo: uno per il like e uno per impostazioni (tipo i tre puntini, ma non è una checkbox ho sbagliato, apre un menu a tendina). Per il primo va ad implementare un selector per vedere se selezionato o no (due drawable diversi).
+    \item Ha fatto la card dell'articolo con un checkbox con un selettore (che è un drawable che cambia in base a se è selezionato o no) per metterlo o no nei preferiti.
+    \item Poi ha collegato il parser JSON GSON (senti la lezione) dentro un try catch.
     \item \texttt{onBindViewHolder(ViewHolder viewHolder, final int position)}: funzione che lancio quando voglio riempire una card, prendendo l'oggetto in posizione \texttt{position} ovvero la categoria e riempiendo i campi della card con le info dell'oggetto.
     \item Un'altra cosa che si può fare in una RecyclerView è aggiungere un separatore tra le card. Si può fare creando un drawable che rappresenta il separatore e poi andando a settare il separatore nel layout della card.
     \item In fragment\_preference\_news.xml ha messo un padding per separare le card.
-    \item Per dire se volessi salvare in locale gli articoli "favorite": fai riferimento a "save data in a local database using Room" su \url{developers.android.com}, Room è una libreria. Come? Con un DB in cui andiamo a salvare gli articoli preferiti. Va a mettere la prima riga del codice versione 2.6.1.
+    \item ORA VEDIAMO ROOM.
+    \item Il bello di Room è che non siamo noi a gestire direttamente il DB con SQL. Etichettiamo le variabili (es.: uid come chiave primaria) e creiamo un package "database" a livello di adapter e ui.
+    \item Messe le dipendenze che troviamo sulla \href{https://developer.android.com/training/data-storage/room?hl=en}{documentazione}, possiamo fare queries a Room e si gestisce tutto lui.
+    \item Per dire se volessi salvare in locale gli articoli "favorite": fai riferimento a \href{https://developer.android.com/training/data-storage/room?hl=en}{"save data in a local database using Room"}, Room è una libreria. Come? Con un DB in cui andiamo a salvare gli articoli preferiti. Va a mettere la prima riga del codice versione 2.6.1.
     \item Diagramma dell'architettura di Room: next esercitazione.
     \item In sample implementation c'è il codice per andare ad aggiungere annotations agli articoli.
     \item Aggiunge import: \texttt{import androidx.room.Entity;} e \texttt{import androidx.room.PrimaryKey;}. La chiave primaria è l'uid che ho aggiunto all'inizio dell'entity, ovvero della classe.
@@ -45,3 +53,5 @@
     \item L'ultima modifica l'ha fatta andando a dire dentro \texttt{favorites\_fragment.xml} che quando si istanzia un articolo, lo devo istanziare senza il drawable del like (perché è già stato messo nei preferiti). Dentro l'adapter della RecyclerView, va a settare la visibilità del like dicendo "se visibilità è visible, allora tolgo il drawable del like, altrimenti no". Communque è sempre lo stesso oggetto, non c'è bisogno di creare un nuovo layout, semplicemente in uno nascondo il cuore.
 \end{itemize}
 \par La prossima volta: non più file locali ma andiamo a recuperare i dati direttamente dal servizio, con uso sensato dell'API. Ricorda che deve essere \textbf{asincrona}, l'UI non si deve bloccare mentre aspetta la risposta. Poi vedremo come impostare il progetto in base all'architettura.
+
+\par Appunti in più rispetto all'anno scorso: su tools > app inspection posso vedere la tabella del db.
